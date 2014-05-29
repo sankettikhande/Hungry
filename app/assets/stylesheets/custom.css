@@ -159,7 +159,7 @@ ul,ol,dd {margin: 0;padding: 0;list-style-type: none}
 
 /***** =Navbar *****/
 .navbar-default {background: #ff8800;color: #fff;}
-.navbar-default .navbar-brand {color: #fff;text-indent: -99999px;background: url('../images/hola-logo-xs.png') no-repeat left center;background-size: 100% auto;margin-left: 20px;width: 30px;overflow: hidden;height: auto;}
+.navbar-default .navbar-brand {color: #fff;text-indent: -99999px;background: url('/assets/hola-logo-xs.png') no-repeat left center;background-size: 100% auto;margin-left: 20px;width: 30px;overflow: hidden;height: auto;}
 
 .navbar-default .navbar-toggle {border: none;}
 .navbar-default .navbar-toggle .icon-bar {background: #fff;}
@@ -209,10 +209,10 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;c
 #recipe-modal .modal-body .recipe-header .recipe-name {font-size: 1.4em;padding: 1.8em 0.25em}
 
 .add-lens, .add-heart {display: none;position: absolute;z-index: 1;width: 24px;height: 24px;cursor: pointer;}
-.add-lens {background: url('../images/icon-lens.png') no-repeat left top;top: 3px;background-size: 100% 100%;right: 4px;}
-.add-heart {background: url('../images/icon-heart.png') no-repeat left top;top: 100%;margin-top: -27px;background-size: 100% 100%;right: 4px;}
+.add-lens {background: url('/assets/icon-lens.png') no-repeat left top;top: 3px;background-size: 100% 100%;right: 4px;}
+.add-heart {background: url('/assets/icon-heart.png') no-repeat left top;top: 100%;margin-top: -27px;background-size: 100% 100%;right: 4px;}
 
-.add-cart {background: url('../images/add-cart.png') no-repeat left top;top: 100%;margin-top: -41px;background-size: 100% 100%;right: 0;width: 40px;height: 41px;position: absolute;z-index: 1;cursor: pointer;}
+.add-cart {background: url('/assets/add-cart.png') no-repeat left top;top: 100%;margin-top: -41px;background-size: 100% 100%;right: 0;width: 40px;height: 41px;position: absolute;z-index: 1;cursor: pointer;}
 
 
 #recipe-modal .modal-body .add-lens,#recipe-modal .modal-body .add-heart {display: block;}
@@ -256,7 +256,7 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;c
 #footer ul.chosen-options li {width: 50%;display: inline-block;float: left;font-size: 1.4em;font-family: 'robotoregular',Sans-serif;line-height: 50px}
 #footer ul.chosen-options li.billing {text-align: left;color: #666666;}
 #footer ul.chosen-options li.billing a{color: #666666;}
-#footer ul.chosen-options li.billing:before {background: url('../images/icon-cart.png')no-repeat left center;content:'';background-size: 24px 20px;width: 24px;height: 20px;padding-left: 24px;margin-right: 4px}
+#footer ul.chosen-options li.billing:before {background: url('/assets/icon-cart.png')no-repeat left center;content:'';background-size: 24px 20px;width: 24px;height: 20px;padding-left: 24px;margin-right: 4px}
 #footer ul.chosen-options li.checkout {text-align: right;color: #ff8800;}
 #footer ul.chosen-options li.checkout a {color: #ff8800;}
 
