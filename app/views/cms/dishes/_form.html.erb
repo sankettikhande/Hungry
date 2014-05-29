@@ -1,2 +1,10 @@
 
 <%= f.cms_text_field :name %>
+<div class="fields text_fields">
+  <label for="dish_dish_image">Dish Image</label>
+  <%= f.file_field :dish_image, :label => "Dish Image" %>
+</div>
+<%= f.cms_drop_down :if_signature, ["veg", "non-veg"] %>
+<%= f.cms_text_field :portions %>
+<%= f.cms_text_field :price %>
+<%= f.cms_text_editor :information, :class => "ckeditor" %>
