@@ -1,0 +1,2 @@
+module Cms::DishesHelper
+end
