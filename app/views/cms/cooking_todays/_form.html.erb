@@ -1,0 +1,36 @@
+<style>
+  #cooking_today_dish_id.selectbox{
+      border: 1px solid #cccccc;
+      background: none;
+  }
+</style>
+<%#= f.cms_text_field :name %>
+<%= f.cms_drop_down :cheff_id, Cheff.all(:order => "id").map { |c| [c.name, c.id] },
+                    :prompt => "Select Cheff Name", :label => "Cheff Name" %>
+<%#= f.cms_drop_down :dish_id, Dish.all(:order => "id").map { |s| [s.name, s.id] },
+                    :prompt => "Cheff's Dishes", :label => "Dish Name", :disabled => 'true' %>
+<div class="fields text_fields">
+  <label for="dish_dish_image">Cheff's Dishes</label>
+  <select id="cooking_today_dish_id" name="cooking_today[dish_id]" style="width: 458px" disabled="disabled" class="selectbox"></select>
+</div>
+<%= f.cms_text_field :quantity %>
+<%= f.cms_text_field :ordered %>
+<%= f.cms_date_picker :date %>
+<script>
+    $("#cooking_today_cheff_id").change(function(){
+        var chef = $(this).val();
+        if(chef==''){
+            $("#cooking_today_dish_id").val('')
+            $("#cooking_today_dish_id").attr('disabled','disabled')
+        }
+        else {
+            $.ajax({
+                'type': 'GET',
+                'url': '/cms/cheffs/load_dishes?cheff_id=' + chef,
+                'dataType': 'script'
+            })
+        }
+    })
+
+</script>
+

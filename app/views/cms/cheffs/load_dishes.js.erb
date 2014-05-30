@@ -1,0 +1,6 @@
+$("#cooking_today_dish_id").removeAttr('disabled')
+$("#cooking_today_dish_id").empty()
+$.each(<%= @list.to_json.html_safe %>, function(key, value)
+{
+    $('<option></option>').val(key).text(value).appendTo('#cooking_today_dish_id');
+});
