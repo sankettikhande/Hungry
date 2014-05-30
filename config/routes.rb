@@ -1,4 +1,6 @@
 Holachef::Application.routes.draw do
+  namespace :cms  do content_blocks :cooking_todays end
+
   namespace :cms  do content_blocks :dishes end
 
   namespace :cms  do content_blocks :cheffs end

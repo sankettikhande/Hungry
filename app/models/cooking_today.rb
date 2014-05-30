@@ -1,0 +1,9 @@
+class CookingToday < ActiveRecord::Base
+  acts_as_content_block
+
+  belongs_to :cheff
+  belongs_to :dish
+
+  validates :dish_id, :presence => true
+  validates :cheff_id, :presence => true
+end

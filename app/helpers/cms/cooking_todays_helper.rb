@@ -1,0 +1,2 @@
+module Cms::CookingTodaysHelper
+end
