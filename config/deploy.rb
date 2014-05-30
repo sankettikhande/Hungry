@@ -58,5 +58,6 @@ namespace :deploy do
 end
 
 after "deploy:update_code", "db:symlink"
+before "deploy:assets:update_asset_mtimes", "db:symlink"
 # after "deploy:update_code", "deploy:migrate"
 after "deploy:create_symlink", "deploy:change_permission_for_fcgi"
