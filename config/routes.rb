@@ -1,9 +1,10 @@
 Holachef::Application.routes.draw do
-  namespace :cms  do content_blocks :cooking_todays end
-
-  namespace :cms  do content_blocks :dishes end
-
-  namespace :cms  do content_blocks :cheffs end
+  namespace :cms  do
+    match '/cheffs/load_dishes'=>'cheffs#load_dishes'
+    content_blocks :cheffs
+    content_blocks :dishes
+    content_blocks :cooking_todays
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

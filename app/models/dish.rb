@@ -8,6 +8,6 @@ class Dish < ActiveRecord::Base
   attr_accessible :dish_image
 
 
-  validate :name, :presence => true
-  validate :cheff_id, :presence => true
+  validates :name, :presence => true
+  validates :cheff_id, :presence => true
 end

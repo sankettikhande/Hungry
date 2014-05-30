@@ -6,4 +6,9 @@ class CookingToday < ActiveRecord::Base
 
   validates :dish_id, :presence => true
   validates :cheff_id, :presence => true
+
+  def name
+    "Cheff: #{self.cheff.name} | Dish: #{self.dish.name} "
+  end
+
 end

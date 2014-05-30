@@ -7,5 +7,5 @@ class Cheff < ActiveRecord::Base
 
   attr_accessible :cheff_image
 
-  validate :name, :presence => true
+  validates :name, :presence => true
 end
