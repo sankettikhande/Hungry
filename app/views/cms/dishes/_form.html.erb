@@ -1,5 +1,8 @@
 
 <%= f.cms_text_field :name %>
+<%= f.cms_drop_down :cheff_id, Cheff.find(:all,:order => 'name asc').collect { |s| [s.name, s.id] },
+                    :include_blank => true, :label => "Cheff",
+                    :instructions => "Select Cheff for the dish." %>
 <div class="fields text_fields">
   <label for="dish_dish_image">Dish Image</label>
   <%= f.file_field :dish_image, :label => "Dish Image" %>
