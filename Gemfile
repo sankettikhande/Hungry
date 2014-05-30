@@ -21,7 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.3.0'
-gem 'browsercms', :git => "git@github.com:LoebPharma/browsercms.git", :tag => "v3.5.7.2"
+gem 'browsercms', :git => "https://github.com/LoebPharma/browsercms.git", :tag => "v3.5.7.2"
 
 gem 'quiet_assets', group: :development
 # To use ActiveModel has_secure_password

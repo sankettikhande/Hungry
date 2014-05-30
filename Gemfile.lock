@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:LoebPharma/browsercms.git
+  remote: https://github.com/LoebPharma/browsercms.git
   revision: 3f492f05138404262ad8187638c61dc552f31dc3
   tag: v3.5.7.2
   specs:
