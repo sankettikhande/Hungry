@@ -46,6 +46,12 @@ GEM
       activerecord (>= 2.2.2)
     arel (3.0.3)
     builder (3.0.4)
+    capistrano (2.15.4)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     ckeditor_rails (3.6.4.1)
       railties (~> 3.0)
       thor (~> 0.14)
@@ -62,6 +68,8 @@ GEM
     coffee-script-source (1.7.0)
     erubis (2.7.0)
     execjs (2.1.0)
+    fcgi (0.9.2.1)
+    highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.9)
     journey (1.0.4)
@@ -75,6 +83,13 @@ GEM
     mime-types (1.25.1)
     multi_json (1.10.1)
     mysql2 (0.3.16)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.1)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     paperclip (3.5.4)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -98,6 +113,8 @@ GEM
       activesupport (= 3.2.18)
       bundler (~> 1.0)
       railties (= 3.2.18)
+    rails_config (0.4.2)
+      activesupport (>= 3.0)
     railties (3.2.18)
       actionpack (= 3.2.18)
       activesupport (= 3.2.18)
@@ -108,6 +125,8 @@ GEM
     rake (10.3.2)
     rdoc (3.12.2)
       json (~> 1.4)
+    rvm-capistrano (1.5.1)
+      capistrano (~> 2.15.4)
     sass (3.3.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -136,10 +155,14 @@ PLATFORMS
 
 DEPENDENCIES
   browsercms!
+  capistrano (= 2.15.4)
   coffee-rails (~> 3.2.1)
+  fcgi
   jquery-rails (= 2.3.0)
   mysql2
   quiet_assets
   rails (= 3.2.18)
+  rails_config
+  rvm-capistrano
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)

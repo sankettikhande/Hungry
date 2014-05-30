@@ -24,6 +24,15 @@ gem 'jquery-rails', '2.3.0'
 gem 'browsercms', :git => "https://github.com/LoebPharma/browsercms.git", :tag => "v3.5.7.2"
 
 gem 'quiet_assets', group: :development
+
+gem "fcgi"
+
+gem 'rails_config'
+
+group :development do
+  gem 'capistrano', '2.15.4', require: false
+  gem 'rvm-capistrano'
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
