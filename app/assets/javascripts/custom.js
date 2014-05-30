@@ -21,3 +21,11 @@ function onComplete()
         });
      });
 
+// random splash on refresh
+ $(document).ready(function(){
+    var splash = parseInt(Math.random()*$('.random-imgs .bg-img').length);
+    splash +=1;
+    $('.bg-img').removeClass('active');
+    $('.random-imgs .bg-img:nth-child('+splash+')').addClass('active');
+ });
+
