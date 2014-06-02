@@ -5,6 +5,9 @@ Holachef::Application.routes.draw do
     content_blocks :dishes
     content_blocks :cooking_todays
   end
+  #resources :home do
+    match '/review_order' => 'home#review_order'
+  #end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
