@@ -1,25 +1,10 @@
-#!/home/holachef/ruby/bin/ruby
 
-ENV['RAILS_ENV'] ||= 'production'
-ENV['HOME'] ||= `echo ~`.strip
-ENV['GEM_HOME'] = File.expand_path('/home/holachef/.gems')
-ENV['GEM_PATH'] = File.expand_path('/home/holachef/.gems') + ":" +
-    File.expand_path('/home/holachef/.gems')
-
-require 'fcgi' 
-require File.join(File.dirname(__FILE__), '../config/environment.rb')
-
-class Rack::PathInfoRewriter
-  def initialize(app)
-    @app = app
-  end
-
-  def call(env)
-    env.delete('SCRIPT_NAME')
-    parts = env['REQUEST_URI'].split('?')
-    env['PATH_INFO'] = parts[0]
-    env['QUERY_STRING'] = parts[1].to_s
-    @app.call(env)
-  end
-end
-Rack::Handler::FastCGI.run  Rack::PathInfoRewriter.new(Holachef::Application) # REPLACE X WITH YOUR APPLICATION'S NAME (found in config/application.rb)
+#!/bin/bash
+unset GEM_HOME
+unset GEM_PATH
+export HOME='/home/holachef'
+export GEM_HOME='/home/holachef/.gems'
+export GEM_PATH='/home/holachef/.gems'
+export PATH=/home/holachef/ruby/bin:"$PATH"
+err_log_file="/home/holachef/qa.holachef.com/shared/log/dispatch_error.log"
+exec /home/holachef/ruby/bin/ruby "/home/holachef/qa.holachef.com/current/holachef_dispatch.rb" "$@" 2>>"${err_log_file}"
