@@ -1,4 +1,3 @@
-
 #!/bin/bash
 unset GEM_HOME
 unset GEM_PATH
