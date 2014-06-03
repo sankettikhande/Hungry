@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-xs-12">
       <div id="hola-container">
-        <input type="hidden" id="selected_menu" value="0" />
         <% if @todays_menu %>
             <% @todays_menu.each do |menu| %>
                 <% menu_type = menu.dish.dish_type == "veg" ? "veg" : "non-veg" %>

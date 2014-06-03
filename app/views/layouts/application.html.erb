@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <title>Hola</title>
   <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application"%>
+  <%#= javascript_include_tag "application"%>
   <link rel="shortcut icon" href="/assets/favicon.png">
   <!--[if lt IE 9]><script src="/assets/ie8-responsive-file-warning.js"></script><![endif]-->
   <!--[if lt IE 9]>
@@ -22,9 +22,6 @@
         <%= yield %>
         <%= render :partial => "/layouts/footer" %>
     </div><!-- #wrap ends -->
-    <script src="/assets/jquery-1.11.0.min.js"></script>
-    <script src="/assets/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/assets/jquery.grid-a-licious.min.js"></script>
-    <script type="text/javascript" src="/assets/custom.js"></script>
+    <%= javascript_include_tag "application"%>
 </body>
 </html>
