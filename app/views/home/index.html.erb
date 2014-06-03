@@ -1,143 +1,129 @@
 <div class="container seperator-10">
-<div class="row">
-<div class="col-xs-12">
-    <div id="hola-container">
-    <% if @todays_menu %>
-        <% @todays_menu.each do |menu| %>
-            <% menu_type = menu.dish.dish_type == "veg" ? "veg" : "non-veg" %>
-            <div class="item" data-toggle="modal" data-target="#item-modal">
-              <ul class="square">
-                <li class="recipe-block <%=menu_type%>">
-                    <% if qty_left(menu) <= 0 %>
-                        <div class="recipe-header not-available">
-                          <div class="add-lens"></div>
-                          <div class="recipe-name">
-                            <%= menu.dish.name %>
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="hola-container">
+        <input type="hidden" id="selected_menu" value="0" />
+        <% if @todays_menu %>
+            <% @todays_menu.each do |menu| %>
+                <% menu_type = menu.dish.dish_type == "veg" ? "veg" : "non-veg" %>
+                <div class="item" data-toggle="modal" data-target="#item-modal" id="<%=menu.id%>">
+                  <input type="hidden" class="menu_price" value="<%=menu.dish.price%>" />
+                  <input type="hidden" class="menu_qty" value="" />
+                  <input type="hidden" class="menu_max_qty" value="<%= qty_left(menu) %>"/>
+                  <ul class="square">
+                    <li class="recipe-block <%=menu_type%>">
+                      <% if qty_left(menu) <= 0 %>
+                          <div class="recipe-header not-available">
+                            <div class="add-lens"></div>
+                            <div class="recipe-name">
+                              <%= menu.dish.name %>
+                            </div>
+                            <div class="add-heart"></div>
                           </div>
-                          <div class="add-heart"></div>
-                          <div class="add-cart hidden"></div>
-
-                        </div>
-                    <% elsif !menu.dish.dish_image.blank? %>
-                      <div class="recipe-header <%=menu_type%>">
-                        <div class="add-lens"></div>
-                        <div class="recipe-image">
-                          <%= image_tag menu.dish.dish_image.url, :alt=>"#{menu.dish.name}", :class => "img-responsive center-block" %>
-                        </div>
-                        <div class="add-heart"></div>
-                        <div class="add-cart hidden"></div>
-                      </div>
+                      <% elsif !menu.dish.dish_image.blank? %>
+                          <div class="recipe-image append-cart">
+                            <div class="add-lens"></div>
+                            <div class="add-heart"></div>
+                            <%= image_tag menu.dish.dish_image.url, :alt=>"#{menu.dish.name}", :class => "img-responsive center-block" %>
+                          </div>
+                      <% else %>
+                          <div class="recipe-header <%=menu_type%> append-cart">
+                            <div class="add-lens"></div>
+                            <div class="recipe-name">
+                              <%= menu.dish.name %>
+                            </div>
+                            <div class="add-heart"></div>
+                          </div>
+                      <% end %>
+                    </li>
+                    <% if  menu.dish.dish_image && qty_left(menu) > 0 %>
+                        <li class="recipe-title"><%= menu.dish.name %></li>
                     <% else %>
-                      <div class="recipe-header <%=menu_type%>">
-                        <div class="add-lens"></div>
-                        <div class="recipe-name">
-                          <%= menu.dish.name %>
+                        <div class="recipe-image hidden">
+                          <div class="add-lens"></div>
+                          <div class="add-heart"></div>
                         </div>
-                        <div class="add-heart"></div>
-                        <div class="add-cart hidden"></div>
-
-                      </div>
                     <% end %>
-                </li>
-                <% if  menu.dish.dish_image %>
-                    <li class="recipe-title"><%= menu.dish.name %></li>
-                <% else %>
-                    <div class="recipe-image hidden">
 
-                    </div>
-                <% end %>
-
-                <li class="recipe-tags">
-                  <ul class="stock-value">
-                    <li class="recipe-stock"><%= qty_left(menu)>0 ? "#{qty_left(menu)} left" :  "Sold Out!" %></li>
-                    <li class="recipe-price"><%= qty_left(menu)>0 ? "#{menu.dish.price}/-" : "Sorry :(" %></li>
+                    <li class="recipe-tags">
+                      <ul class="stock-value">
+                        <li class="recipe-stock"><%= qty_left(menu)>0 ? "#{qty_left(menu)} left" :  "Sold Out!" %></li>
+                        <li class="recipe-price"><%= qty_left(menu)>0 ? "#{menu.dish.price}/-" : "Sorry :(" %></li>
+                      </ul>
+                    </li>
                   </ul>
-                </li>
-              </ul>
-            </div>
+                </div>
+            <% end %>
         <% end %>
-    <% end %>
 
- </div>
-  <div id="recipe-modal">
-    <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <ul class="user-profile">
-              <li class="profile-pic">
-                <img class="img-responsive center-block" src="/assets/user-pic.jpg" alt="User">
-              </li>
-              <li class="user-name">
-                <h3>Mrs. Sharma
-                  <span class="user-level">Hola Star</span></h3>
-              </li>
-            </ul>
-          </div>
-          <div class="modal-body"> <!-- below content changes from jquery -->
-
-            <ul class="square">
-              <li class="recipe-block">
-                <div class="recipe-header veg">
-                  <div class="add-lens"></div>
-                  <div class="recipe-name">Cheese Loaded Nachos with Beans</div>
-                  <div class="add-heart"></div>
-
-                </div>
-                <div class="recipe-image hidden">
-                </div>
-              </li>
-              <li class="recipe-title hidden"></li>
-              <li class="recipe-tags">
-                <ul class="stock-value">
-                  <li class="recipe-stock"><span class="stock-count">10</span> left</li>
-                  <li class="recipe-price">180/-</li>
+      </div>
+      <div id="recipe-modal">
+        <input type="hidden" id="selected_item" value="" />
+        <input type="hidden" id="total_price" value="0" />
+        <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <ul class="user-profile">
+                  <li class="profile-pic">
+                    <img class="img-responsive center-block" src="/assets/user-pic.jpg" alt="User">
+                  </li>
+                  <li class="user-name">
+                    <h3>Mrs. Sharma
+                      <span class="user-level">Hola Star</span></h3>
+                  </li>
                 </ul>
-              </li>
-            </ul>
+              </div>
+              <div class="modal-body"> <!-- below content changes from jquery -->
 
-          </div>
-          <div class="modal-footer">
-            <div class="row">
-              <div class="col-xs-12 text-center">
+                <ul class="square">
+                  <li class="recipe-block veg">
+                    <div class="recipe-header">
+                      <div class="add-lens"></div>
+                      <div class="recipe-name">Cheese Loaded Nachos with Beans</div>
+                      <div class="add-heart"></div>
+                    </div>
+                    <div class="recipe-image hidden">
+                    </div>
+                  </li>
+                  <li class="recipe-title hidden"></li>
+                  <li class="recipe-tags">
+                    <ul class="stock-value">
+                      <li class="recipe-stock"><span class="stock-count">10</span> left</li>
+                      <li class="recipe-price">180/-</li>
+                    </ul>
+                  </li>
+                </ul>
+
+              </div>
+              <div class="modal-footer modal-form">
                 <div class="row">
-                  <div class="col-xs-3">
-                    <button class="btn btn-orange disabled" type="button" id="reduce-order">-1</button>
-                  </div>
-                  <div class="col-xs-3">
-                    <p class="form-control looks-input" id="order-count">0</p>
-                  </div>
-                  <div class="col-xs-3">
-                    <button class="btn btn-orange" type="button" id="add-order">+1</button>
-                  </div>
-                  <div class="col-xs-3">
-                    <button type="button" class="btn btn-link text-orange" data-dismiss="modal">Done</button>
+                  <div class="col-xs-12 text-center">
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <button class="btn btn-orange disabled" type="button" id="add-order-minus" disabled>-1</button>
+                      </div>
+                      <div class="col-xs-3">
+                        <p class="form-control looks-input" id="order-count">0</p>
+                      </div>
+                      <div class="col-xs-3">
+                        <button class="btn btn-orange" type="button" id="add-order-plus">+1</button>
+                      </div>
+                      <div class="col-xs-3">
+                        <button type="button" class="btn btn-link text-orange" data-dismiss="modal" id="order-done">Done</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
-
         </div>
-      </div>
-    </div>
-  </div> <!-- modal ends -->
+      </div> <!-- modal ends -->
 
+    </div>
+  </div>
 </div>
-</div>
-</div>
-<script>
-  $(document).ready(function(){
-      var howMany = 0;
-      $('#add-order').click(function(){
-          howMany += 1;
-          $("#order-count").text(howMany);
-          $('#reduce-order').removeClass("disabled");
-      });
-      $('#reduce-order').click(function(){
-          howMany -= 1;
-          $("#order-count").text(howMany);
-      });
-      $("#order-count").text(howMany);
-  });
-</script>
+
+
