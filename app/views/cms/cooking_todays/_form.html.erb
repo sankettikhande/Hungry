@@ -17,11 +17,14 @@
 <%= f.cms_text_field :ordered %>
 <%= f.cms_date_picker :date %>
 <script>
+    $(document).ready(function(){
+        $("#cooking_today_cheff_id").trigger('change');
+    });
     $("#cooking_today_cheff_id").change(function(){
         var chef = $(this).val();
         if(chef==''){
-            $("#cooking_today_dish_id").val('')
-            $("#cooking_today_dish_id").attr('disabled','disabled')
+            $("#cooking_today_dish_id").val('');
+            $("#cooking_today_dish_id").attr('disabled','disabled');
         }
         else {
             $.ajax({
