@@ -18,6 +18,10 @@ function onComplete()
      $(document).ready(function(){
         $('.item').click(function(){
           $("#selected_item").val($(this).attr('id'));
+          var src = "#"+parseInt($("#selected_item").val(),10)+" .chef-profile-pic";
+          var user_name = "#"+parseInt($("#selected_item").val(),10)+" .chef-name";
+          $("#recipe-modal .profile-pic img").attr("src", $(src).val());
+          $("#recipe-modal .user-name").html("<h3>"+ $(user_name).val() +"<span class='user-level'>Hola Star</span></h3>")
           $("#order-count").html("0")
           $('.modal-body').html($(this).html());
         });
@@ -68,7 +72,7 @@ function onComplete()
             var selected_item = $("#selected_item").val()
             var selected_id = "#"+selected_item+" li.recipe-stock"
             $(selected_id).addClass('text-orange')
-            var order_count = parseInt($("#order-count").html(),10)
+            var order_count = parseInt($("#order-count").html(),10);
 
 //          Printing Cart message
             if(order_count != 0){
