@@ -30,14 +30,15 @@ function onComplete()
             $("#add-order-minus").removeAttr("disabled")
             var selected_item = $("#selected_item").val()
             var max_qty = $("#"+selected_item+" .menu_max_qty").val();
-            if (cnt == max_qty){
-                $("#add-order-plus").attr("disabled");
-                $("#add-order-plus").addClass("disabled");
-            }
             if (cnt < parseInt(max_qty,10)){
                 cnt = cnt + 1;
                 $("#order-count").html(cnt);
             }
+            if (cnt == max_qty){
+                $("#add-order-plus").attr("disabled");
+                $("#add-order-plus").addClass("disabled");
+            }
+
 
         })
 
@@ -45,22 +46,24 @@ function onComplete()
         $('#add-order-minus').unbind("click").click(function(e){
             $("#add-order-plus").removeAttr("disabled");
             $("#add-order-plus").removeClass("disabled");
-             e.preventDefault();
-             var decr = $("#order-count").html()
-             decr = parseInt(decr,10)
-             if (decr == 0){
+            e.preventDefault();
+            cnt = $("#order-count").html()
+            cnt = parseInt(cnt,10);
+             if(cnt >=  0){
+                 cnt = cnt - 1;
+                $("#order-count").html(cnt);
+             }
+             if (cnt == 0){
                  $("#add-order-minus").attr("disabled");
                  $("#add-order-minus").addClass("disabled");
              }
-             if(decr >=  1){
-                cnt = decr - 1;
-                $("#order-count").html(cnt);
-             }
+
         })
 
 //      On PopUp Close
         $("#order-done").unbind("click").click(function(e){
             cnt = 0
+            $("#order-count").val("0");
             e.preventDefault();
             var selected_item = $("#selected_item").val()
             var selected_id = "#"+selected_item+" li.recipe-stock"

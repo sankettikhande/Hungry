@@ -6,7 +6,8 @@
         <% if @todays_menu %>
             <% @todays_menu.each do |menu| %>
                 <% menu_type = menu.dish.dish_type == "veg" ? "veg" : "non-veg" %>
-                <div class="item" data-toggle="modal" data-target="#item-modal" id="<%=menu.id%>">
+                <% target = qty_left(menu) > 0 ? "#item-modal" : "#" %>
+                <div class="item" data-toggle="modal" data-target="<%=target %>" id="<%=menu.id%>">
                   <input type="hidden" class="menu_price" value="<%=menu.dish.price%>" />
                   <input type="hidden" class="menu_qty" value="" />
                   <input type="hidden" class="menu_max_qty" value="<%= qty_left(menu) %>"/>
