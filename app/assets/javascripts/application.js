@@ -10,11 +10,10 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
 //= require jquery-1.11.0.min
-//= require jquery-migrate-1.2.1.min
+//= require jquery_ujs
 //= require bootstrap.min
 //= require jquery.grid-a-licious.min
 //= require custom
+//= require jquery-migrate-1.2.1.min
 //= require_tree .
