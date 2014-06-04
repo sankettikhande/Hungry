@@ -1,5 +1,6 @@
 Holachef::Application.routes.draw do
 
+  match "/cms" => "cms/dashboard#index"
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
     content_blocks :cheffs
@@ -9,7 +10,7 @@ Holachef::Application.routes.draw do
     content_blocks :ordered_menus
   end
   #resources :home do
-    match '/review_order' => 'home#review_order'
+  match '/review_order' => 'home#review_order'
   #end
 
   # The priority is based upon order of creation:
