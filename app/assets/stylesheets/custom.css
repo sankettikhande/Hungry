@@ -345,7 +345,7 @@ label.css-label {
 .recipe-block.veg ~ li.recipe-title{color: #339900;}
 .recipe-block.non-veg ~ li.recipe-title {color: #ff9900;}
 
-.recipe-header .recipe-name {text-transform: capitalize;color: #fff;font-size: 1.4em;text-align: center;padding: 1em 0.25em;font-family: 'lemonregular',Sans-serif;word-wrap:break-word;}
+.recipe-header .recipe-name {text-transform: capitalize;color: #fff;font-size: 1.4em;text-align: center;padding: 1em 0.25em;font-family: 'lemonregular',Sans-serif;word-wrap:break-word;word-break:break-all;}
 .recipe-header .recipe-name {display: table-cell;vertical-align: middle;}
 
 li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;padding-top: 3px;text-transform: capitalize;}

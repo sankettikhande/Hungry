@@ -1,9 +1,12 @@
 Holachef::Application.routes.draw do
+
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
     content_blocks :cheffs
     content_blocks :dishes
     content_blocks :cooking_todays
+    content_blocks :orders
+    content_blocks :ordered_menus
   end
   #resources :home do
     match '/review_order' => 'home#review_order'

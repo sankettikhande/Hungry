@@ -1,0 +1,2 @@
+module Cms::OrdersHelper
+end
