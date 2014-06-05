@@ -4,13 +4,13 @@ class Cms::OrderedMenusController < Cms::ContentBlockController
   def checkout
     @order = Order.create(:date => Time.now)
     session[:cart].each do |item|
-     item.each do |k,v|
-       cooking_today  = CookingToday.find(k)
+     item.each do |item_id,item_attr|
+       cooking_today  = CookingToday.find(item_id)
        dish = cooking_today.dish
        if @order
           OrderedMenu.create(:order_id => @order.id,:dish_id => dish.id,
-                                        :cheff_id => dish.cheff.id, :quantity => v['quantity'],
-                                        :rate => v['price'])
+                                        :cheff_id => dish.cheff.id, :quantity => item_attr['quantity'],
+                                        :rate => item_attr['price'])
        end
      end
     end

@@ -77,7 +77,7 @@ function onComplete()
             var selected_id = "#"+selected_item+" li.recipe-stock"
             $(selected_id).addClass('text-orange')
             var order_count = parseInt($("#order-count").html(),10);
-            var date = $("#"+selected_item+" .menu_date").val()
+            var date = new Date();
 
 //          Printing Cart message
             if(order_count != 0){
@@ -97,7 +97,7 @@ function onComplete()
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item': parseInt(selected_item) , 'qty': order_count, 'price': menu_price, 'date': date },
+                'data': {'item_id': parseInt(selected_item) , 'qty': order_count, 'price': menu_price, 'date': date },
                 'dataType': 'script'
             })
 
