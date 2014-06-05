@@ -8,9 +8,11 @@ Holachef::Application.routes.draw do
     content_blocks :cooking_todays
     content_blocks :orders
     content_blocks :ordered_menus
+
   end
-  #resources :home do
-  match '/review_order' => 'home#review_order'
+  match '/review_order' => 'Cms::ordered_menus#checkout'
+  match '/orders/set_cart'=> 'Cms::orders#set_cart'
+
   #end
 
   # The priority is based upon order of creation:

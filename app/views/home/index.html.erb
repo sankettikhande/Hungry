@@ -9,6 +9,7 @@
                 <div class="item" data-toggle="modal" data-target="<%=target %>" id="<%=menu.id%>">
                   <input type="hidden" class="menu_price" value="<%=menu.dish.price%>" />
                   <input type="hidden" class="menu_qty" value="" />
+                  <input type="hidden" class="menu_date" value="<%=menu.date%>" />
                   <input type="hidden" class="menu_max_qty" value="<%= qty_left(menu) %>"/>
                   <input type="hidden" class="chef-profile-pic" value="<%= menu.cheff.cheff_image.url %>"/>
                   <input type="hidden" class="chef-name" value="<%= menu.cheff.name %>"/>

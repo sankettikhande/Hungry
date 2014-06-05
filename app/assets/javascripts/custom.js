@@ -34,6 +34,7 @@ function onComplete()
             $("#add-order-minus").removeAttr("disabled")
             var selected_item = $("#selected_item").val()
             var max_qty = $("#"+selected_item+" .menu_max_qty").val();
+
             if (cnt < parseInt(max_qty,10)){
                 cnt = cnt + 1;
                 $("#order-count").html(cnt);
@@ -73,6 +74,7 @@ function onComplete()
             var selected_id = "#"+selected_item+" li.recipe-stock"
             $(selected_id).addClass('text-orange')
             var order_count = parseInt($("#order-count").html(),10);
+            var date = $("#"+selected_item+" .menu_date").val()
 
 //          Printing Cart message
             if(order_count != 0){
@@ -89,9 +91,15 @@ function onComplete()
             $("#total_price").val(total);
             $("#bill_amount a").html(total+"/-");
 
+            $.ajax({
+                'method': 'GET',
+                'url': '/orders/set_cart',
+                'data': {'item': parseInt(selected_item) , 'qty': order_count, 'price': menu_price, 'date': date },
+                'dataType': 'script'
+            })
+
 
         })
-
      });
 
 // random splash on refresh
