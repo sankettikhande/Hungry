@@ -13,6 +13,7 @@
                   <input type="hidden" class="menu_max_qty" value="<%= qty_left(menu) %>"/>
                   <input type="hidden" class="chef-profile-pic" value="<%= menu.cheff.cheff_image.url %>"/>
                   <input type="hidden" class="chef-name" value="<%= menu.cheff.name %>"/>
+                  <input type="hidden" class="chef-id" value="<%= menu.cheff.id %>"/>
                   <ul class="square">
                     <li class="recipe-block <%=menu_type%>">
                       <% if qty_left(menu) <= 0 %>
@@ -69,7 +70,7 @@
               <div class="modal-header">
                 <ul class="user-profile">
                   <li class="profile-pic">
-                    <img class="img-responsive center-block" src="/assets/user-pic.jpg" alt="User">
+                    <%= link_to image_tag("/assets/user-pic.jpg", :class => "img-responsive center-block"), "/cheff/#{params[:cheff_id]}", :id => "chef_info" %>
                   </li>
                   <li class="user-name">
                     <h3>Mrs. Sharma

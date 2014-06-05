@@ -1,5 +1,5 @@
 // grid-system
-    $("#hola-container").gridalicious({
+    $("#hola-container, .hola-container").gridalicious({
       width: 150,
       gutter: 5,
       animate:true,
@@ -18,9 +18,12 @@ function onComplete()
      $(document).ready(function(){
         $('.item').click(function(){
           $("#selected_item").val($(this).attr('id'));
-          var src = "#"+parseInt($("#selected_item").val(),10)+" .chef-profile-pic";
+          var img_src = "#"+parseInt($("#selected_item").val(),10)+" .chef-profile-pic";
           var user_name = "#"+parseInt($("#selected_item").val(),10)+" .chef-name";
-          $("#recipe-modal .profile-pic img").attr("src", $(src).val());
+          var chef_id = "#"+parseInt($("#selected_item").val(),10)+" .chef-id";
+          var href =  "/chef-profile/"+ $(chef_id).val();
+          $("#recipe-modal a#chef_info").attr('href', href);
+          $("#recipe-modal .profile-pic img").attr("src", $(img_src).val());
           $("#recipe-modal .user-name").html("<h3>"+ $(user_name).val() +"<span class='user-level'>Hola Star</span></h3>")
           $("#order-count").html("0")
           $('.modal-body').html($(this).html());

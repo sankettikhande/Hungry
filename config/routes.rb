@@ -8,11 +8,12 @@ Holachef::Application.routes.draw do
     content_blocks :cooking_todays
     content_blocks :orders
     content_blocks :ordered_menus
-
   end
   match '/review_order' => 'Cms::ordered_menus#checkout'
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
 
+  #resources :home do
+  match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
   #end
 
   # The priority is based upon order of creation:
