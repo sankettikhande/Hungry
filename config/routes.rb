@@ -1,15 +1,16 @@
 Holachef::Application.routes.draw do
 
   match "/cms" => "cms/dashboard#index"
+  match '/review_order' => 'ordered_menus#checkout', :as => :review_order
+
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
     content_blocks :cheffs
     content_blocks :dishes
     content_blocks :cooking_todays
     content_blocks :orders
-    content_blocks :ordered_menus
   end
-  match '/review_order' => 'Cms::ordered_menus#checkout'
+
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
 
   #resources :home do
