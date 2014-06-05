@@ -12,7 +12,7 @@ Holachef::Application.routes.draw do
   end
   #resources :home do
   match '/review_order' => 'home#review_order'
-  match '/chef-profile/:id'=>'Cms::cheffs#show_details'
+  match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
   #end
 
   # The priority is based upon order of creation:
