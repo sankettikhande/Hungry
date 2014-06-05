@@ -5,6 +5,6 @@ class Order < ActiveRecord::Base
 
   #validates :name, :presence => true
   #validates :address, :presence => true
-  #validates :date, :presence => true
+  validates :date, :presence => true
   #validates :phone_no, :presence => true
 end
