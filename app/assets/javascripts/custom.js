@@ -78,6 +78,7 @@ function onComplete()
             $(selected_id).addClass('text-orange')
             var order_count = parseInt($("#order-count").html(),10);
             var date = new Date();
+            var dish_name = $("#"+selected_item +" ul li.recipe-title").html();
 
 //          Printing Cart message
             if(order_count != 0){
@@ -97,7 +98,7 @@ function onComplete()
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt(selected_item) , 'qty': order_count, 'price': menu_price, 'date': date },
+                'data': {'item_id': parseInt(selected_item) , 'qty': order_count, 'price': menu_price, 'date': date, 'dish': dish_name },
                 'dataType': 'script'
             })
 

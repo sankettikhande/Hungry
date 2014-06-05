@@ -1,5 +1,6 @@
 class Dish < ActiveRecord::Base
-  acts_as_content_block
+  acts_as_content_block({:versioned => false})
+  attr_accessor :skip_callbacks
 
   belongs_to :cheff, foreign_key: :cheff_id
   has_many :cooking_todays

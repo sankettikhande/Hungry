@@ -1,5 +1,6 @@
 class CookingToday < ActiveRecord::Base
-  acts_as_content_block
+  acts_as_content_block({:versioned => false})
+  attr_accessor :skip_callbacks
 
   belongs_to :cheff
   belongs_to :dish

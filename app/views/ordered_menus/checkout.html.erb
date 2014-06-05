@@ -2,28 +2,27 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="container">
-
         <ul class="booked-orders">
           <li class="food-bill">
             <span class="item-name">Meal</span>
             <span class="item-qty">Qty</span>
             <span class="item-cost">Cost</span>
           </li>
-          <li class="food-bill">
-            <span class="item-name">Kasmiri Chicken Biryani</span>
-            <span class="item-qty">2</span>
-            <span class="item-cost">360</span>
-          </li>
-          <li class="food-bill">
-            <span class="item-name">HolaChef Lemonade</span>
-            <span class="item-qty">5</span>
-            <span class="item-cost">150</span>
-          </li>
-
+          <% if session[:cart] %>
+              <% session[:cart].each do |order| %>
+                  <% order.each do |order_id, order_attrs| %>
+                      <li class="food-bill">
+                        <span class="item-name"><%= order_attrs['dish'] %></span>
+                        <span class="item-qty"><%= order_attrs['quantity'] %></span>
+                        <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
+                      </li>
+                  <% end %>
+              <% end %>
+          <% end %>
           <li class="food-bill">
             <span class="item-name">&nbsp;</span>
             <span class="item-qty">Total</span>
-            <span class="item-cost">510</span>
+            <span class="item-cost"><%= @order.total %></span>
           </li>
         </ul>
 
@@ -55,3 +54,15 @@
 </div> <!-- fluid container ends -->
 <div class="floral-block"></div>
 </div><!-- #wrap ends -->
+<%= javascript_include_tag "jquery-1.11.0.min" %>
+<script>
+  $(document).ready(function(){
+      $("#footer").html("<div class='container'><div class='row'><div class='col-xs-12'><div class='tap-text'>" +
+              "<p class='text-center'><a class='text-orange' href='/payment-method'>Select Payment Method</a></p>" +
+              "</div>" +
+              "<ul class='chosen-options hidden'>" +
+              "<li class='billing'><a href='#'>500/-</a></li>" +
+              "<li class='checkout'><a href='#'>Checkout</a></li>" +
+              "</ul></div></div></div>")
+  })
+</script>
