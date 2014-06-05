@@ -1,0 +1,52 @@
+<% menu_type = @menu.dish.dish_type == "veg" ? "veg" : "non-veg" %>
+<% target = qty_left(@menu) > 0 ? "#item-modal" : "#" %>
+<div class="item" data-toggle="modal" data-target="<%=target %>" id="<%=@menu.id%>">
+  <input type="hidden" class="menu_price" value="<%=@menu.dish.price%>" />
+  <input type="hidden" class="menu_qty" value="" />
+  <input type="hidden" class="menu_max_qty" value="<%= qty_left(@menu) %>"/>
+  <input type="hidden" class="chef-profile-pic" value="<%= @menu.cheff.cheff_image.url %>"/>
+  <input type="hidden" class="chef-name" value="<%= @menu.cheff.name %>"/>
+  <input type="hidden" class="chef-id" value="<%= @menu.cheff.id %>"/>
+  <ul class="square">
+    <li class="recipe-block <%=menu_type%>">
+      <% if qty_left(@menu) <= 0 %>
+          <div class="recipe-header not-available">
+            <div class="add-lens"></div>
+            <div class="recipe-name">
+              <%= @menu.dish.name %>
+            </div>
+            <div class="add-heart"></div>
+          </div>
+      <% elsif !@menu.dish.dish_image.blank? %>
+          <div class="recipe-image append-cart">
+            <div class="add-lens"></div>
+            <div class="add-heart"></div>
+            <%= image_tag @menu.dish.dish_image.url, :alt=>"#{@menu.dish.name}", :class => "img-responsive center-block" %>
+          </div>
+      <% else %>
+          <div class="recipe-header <%=menu_type%> append-cart">
+            <div class="add-lens"></div>
+            <div class="recipe-name">
+              <%= @menu.dish.name %>
+            </div>
+            <div class="add-heart"></div>
+          </div>
+      <% end %>
+    </li>
+    <% if  @menu.dish.dish_image && qty_left(@menu) > 0 %>
+        <li class="recipe-title"><%= @menu.dish.name %></li>
+    <% else %>
+        <div class="recipe-image hidden">
+          <div class="add-lens"></div>
+          <div class="add-heart"></div>
+        </div>
+    <% end %>
+
+    <li class="recipe-tags">
+      <ul class="stock-value">
+        <li class="recipe-stock"><%= qty_left(@menu)>0 ? "#{qty_left(@menu)} left" :  "Sold Out!" %></li>
+        <li class="recipe-price"><%= qty_left(@menu)>0 ? "#{@menu.dish.price}/-" : "Sorry :(" %></li>
+      </ul>
+    </li>
+  </ul>
+</div>
