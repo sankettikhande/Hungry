@@ -16,6 +16,7 @@ function onComplete()
 }
 //  each item inside modal script
      $(document).ready(function(){
+         var cnt = 0;
         $('.item').click(function(){
           $("#selected_item").val($(this).attr('id'));
           var img_src = "#"+parseInt($("#selected_item").val(),10)+" .chef-profile-pic";
@@ -25,7 +26,7 @@ function onComplete()
           $("#recipe-modal a#chef_info").attr('href', href);
           $("#recipe-modal .profile-pic img").attr("src", $(img_src).val());
           $("#recipe-modal .user-name").html("<h3>"+ $(user_name).val() +"<span class='user-level'>Hola Star</span></h3>")
-          $("#order-count").html("0")
+          $("#order-count").html(cnt);
           $('.modal-body').html($(this).html());
         });
 
@@ -74,22 +75,22 @@ function onComplete()
             $("#order-count").val("0");
             e.preventDefault();
             var selected_item = $("#selected_item").val()
-            var selected_id = "#"+selected_item+" li.recipe-stock"
-            $(selected_id).addClass('text-orange')
-            var order_count = parseInt($("#order-count").html(),10);
+            var selected_id = "#"+selected_item+" li.recipe-stock";
+            cnt = parseInt($("#order-count").html(),10);
             var date = new Date();
 
 //          Printing Cart message
-            if(order_count != 0){
-                $(selected_id).html(order_count +" in cart")
+            if(cnt >= 0){
+                $(selected_id).html(cnt +" in cart")
                 $("#"+selected_item+" li div.append-cart").append("<div class='add-cart'></div>")
+                $(selected_id).addClass('text-orange');
             }
 
 //          Calculation of Total Price
             var total = 0;
-            $("#"+selected_item+" .menu_qty").val(order_count)
+            $("#"+selected_item+" .menu_qty").val(cnt)
             var menu_price = parseInt($("#"+selected_item+" .menu_price").val(), 10);
-            total = parseInt($("#total_price").val(),10) + (menu_price * order_count);
+            total = parseInt($("#total_price").val(),10) + (menu_price * cnt);
 
             $("#total_price").val(total);
             $("#bill_amount a").html(total+"/-");
@@ -97,7 +98,7 @@ function onComplete()
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt(selected_item) , 'qty': order_count, 'price': menu_price, 'date': date },
+                'data': {'item_id': parseInt(selected_item) , 'qty': cnt, 'price': menu_price, 'date': date },
                 'dataType': 'script'
             })
 
