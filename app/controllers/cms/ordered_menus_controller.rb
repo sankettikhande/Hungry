@@ -4,7 +4,7 @@ class Cms::OrderedMenusController < Cms::ContentBlockController
   def checkout
     @order = Order.create(:date => Time.now)
     session[:cart].each do |item|
-     item.each do |item_id,item_attr|
+     item.each do |item_id, item_attr|
        cooking_today  = CookingToday.find(item_id)
        dish = cooking_today.dish
        if @order
