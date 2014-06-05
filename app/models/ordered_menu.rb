@@ -1,5 +1,4 @@
 class OrderedMenu < ActiveRecord::Base
-  acts_as_content_block
 
   belongs_to :order
   belongs_to :dish

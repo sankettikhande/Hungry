@@ -5,7 +5,9 @@
         <div class="tap-text hidden text-orange"><p class="text-center">Tap on a Cart to Add/Remove</p></div>
         <ul class="chosen-options">
           <li class="billing" id="bill_amount"><a href="#">0/-</a></li>
-          <li class="checkout"><a href="review-order.html">Checkout</a></li>
+          <li class="checkout">
+            <%= link_to "Checkout", review_order_path %>
+          </li>
         </ul>
       </div>
     </div>
