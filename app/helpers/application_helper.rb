@@ -8,8 +8,6 @@ module ApplicationHelper
     today = {}
     cart.each do |item|
       item.each do |item_id, item_attr|
-        p item_attr
-        p item_attr['quantity']
         today[item_id.to_i] = item_attr['quantity'].to_i
       end
     end
