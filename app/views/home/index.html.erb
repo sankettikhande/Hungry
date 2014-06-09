@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div id="hola-container">
+        <% today = collect_session_items(session[:cart]) if !session[:cart].nil? %>
         <% if @todays_menu %>
             <% @todays_menu.each do |menu| %>
                 <% menu_type = menu.dish.dish_type == "veg" ? "veg" : "non-veg" %>
@@ -28,6 +29,9 @@
                             <div class="add-lens"></div>
                             <div class="add-heart"></div>
                             <%= image_tag menu.dish.dish_image.url, :alt=>"#{menu.dish.name}", :class => "img-responsive center-block" %>
+                            <% if today.has_key?(menu[:id]) %>
+                                <div class='add-cart'></div>
+                            <% end %>
                           </div>
                       <% else %>
                           <div class="recipe-header <%=menu_type%> append-cart">
@@ -36,6 +40,9 @@
                               <%= menu.dish.name %>
                             </div>
                             <div class="add-heart"></div>
+                            <% if today.has_key?(menu[:id]) %>
+                                <div class='add-cart'></div>
+                            <% end %>
                           </div>
                       <% end %>
                     </li>
@@ -50,7 +57,11 @@
 
                     <li class="recipe-tags">
                       <ul class="stock-value">
-                        <li class="recipe-stock"><%= qty_left(menu)>0 ? "#{qty_left(menu)} left" :  "Sold Out!" %></li>
+                        <% if today.has_key?(menu[:id]) %>
+                            <li class="recipe-stock text-orange"><%= today.fetch(menu[:id]) %> in cart</li>
+                        <% else %>
+                            <li class="recipe-stock"><%= qty_left(menu)>0 ? "#{qty_left(menu)} left" :  "Sold Out!" %></li>
+                        <% end %>
                         <li class="recipe-price"><%= qty_left(menu)>0 ? "#{menu.dish.price}/-" : "Sorry :(" %></li>
                       </ul>
                     </li>
