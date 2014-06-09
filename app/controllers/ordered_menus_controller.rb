@@ -9,7 +9,9 @@ class OrderedMenusController < ApplicationController
           menu = OrderedMenu.create(:order_id => @order.id,:dish_id => dish.id,
                              :cheff_id => dish.cheff.id, :quantity => item_attr['quantity'],
                              :rate => item_attr['price'])
-        cooking_today.update_attributes(:ordered => (cooking_today.quantity.to_i - item_attr['quantity'].to_i))
+        cooking_today.update_attributes(:quantity => (cooking_today.quantity.to_i - item_attr['quantity'].to_i),
+                                        :ordered => (cooking_today.ordered.to_i + item_attr['quantity'].to_i)
+                                        )
         end
       end
     end

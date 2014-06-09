@@ -98,7 +98,7 @@ function onComplete()
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt(selected_item) , 'qty': order_count, 'price': menu_price, 'date': date, 'dish': dish_name },
+                'data': {'item_id': parseInt(selected_item) , 'qty': order_count, 'price': menu_price, 'date': date, 'dish_name': dish_name },
                 'dataType': 'script'
             })
 
