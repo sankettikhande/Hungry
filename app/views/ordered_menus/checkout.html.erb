@@ -7,18 +7,23 @@
             <span class="item-name">Meal</span>
             <span class="item-qty">Qty</span>
             <span class="item-cost">Cost</span>
+            <span class="item-remove">&nbsp;</span>
           </li>
           <% total = [] %>
           <% if session[:cart] %>
               <% session[:cart].each do |order| %>
                   <% order.each do |order_id, order_attrs| %>
-                      <li class="food-bill">
+                      <li class="food-bill review_order_list" id="<%= order_id %>">
                         <span class="item-name" data-toggle="modal" data-target="#item-modal" data-quantity="<%= order_attrs['quantity'] %>" style="cursor: pointer;" id="<%= order_id %>">
                           <%= order_attrs['dish_name'] %>
                         </span>
                         <span class="item-qty"><%= order_attrs['quantity'] %></span>
                         <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
+                        <span class="item-remove">
+                           <a href="#" data-item="<%= order_id %>"><i class="fa fa-times-circle"></i></a>
+                        </span>
                         <% total << order_attrs['quantity'].to_i * order_attrs['price'].to_i %>
+
                       </li>
                   <% end %>
               <% end %>
@@ -26,7 +31,7 @@
           <li class="food-bill">
             <span class="item-name">&nbsp;</span>
             <span class="item-qty">Total</span>
-            <span class="item-cost"><%= total.inject(:+) %></span>
+            <span class="item-cost" id="review_order_total"><%= total.inject(:+) %></span>
           </li>
         </ul>
 

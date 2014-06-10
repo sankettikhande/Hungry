@@ -1,6 +1,6 @@
-<% cart_menu = collect_cart_items(@cooking_today) if !@cooking_today.nil? %>
+<% cart_menu = collect_cart(@cooking_today) if !@cooking_today.nil? %>
 <input type="hidden" id="selected_item" value="<%=@cooking_today.id%>" />
-<input type="hidden" id="total_price" value="0" />
+<input type="hidden" id="item_max_qty" value="<%= qty_left(@cooking_today)%>" />
 <div class="modal-dialog modal-sm">
   <div class="modal-content">
     <div class="modal-header">
@@ -20,7 +20,7 @@
         <li class="recipe-block veg">
           <div class="recipe-header">
             <div class="add-lens"></div>
-            <div class="recipe-name"><%= cart_menu[:dish_name]%></div>
+            <div class="recipe-name recipe-title"><%= cart_menu[:dish_name]%></div>
             <div class="add-heart"></div>
           </div>
           <div class="recipe-image hidden">
@@ -44,7 +44,7 @@
               <button class="btn btn-orange disabled" type="button" id="add-order-minus" disabled>-1</button>
             </div>
             <div class="col-xs-3">
-              <p class="form-control looks-input" id="order-count"><%= cart_menu[:quantity] %></p>
+              <p class="form-control looks-input" id="order-count"><%= cart_menu[:quantity]%></p>
             </div>
             <div class="col-xs-3">
               <button class="btn btn-orange" type="button" id="add-order-plus">+1</button>
