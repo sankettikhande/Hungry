@@ -123,6 +123,13 @@ function onComplete()
                 'dataType': 'script'
             });
         });
+        $("#submit-order-button").click(function(){
+            $("#submit_order").submit();
+        })
+        $("#submit_order input").focus(function(){
+            $("#submit_order input").removeClass('active');
+            $(this).addClass('active');
+        })
 
     })
 

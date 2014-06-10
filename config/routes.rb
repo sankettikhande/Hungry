@@ -19,7 +19,7 @@ Holachef::Application.routes.draw do
 
   #resources :home do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
-  match '/payment-method'=>"Cms::orders#payment_gateway"
+  post '/payment-method'=>"Cms::orders#payment_gateway"
   #end
 
   # The priority is based upon order of creation:

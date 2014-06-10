@@ -109,12 +109,14 @@
         <ul class="del-details">
           <li class="del-d del-header roboto">Delivery Details</li>
           <li class="del-d del-warning roboto">Orders are delivered in ~30min of placing order</li>
-          <li class="del-d roboto"><input class="lower-only active" type="text" placeholder="Name" id="u-name" maxlength="50"></li>
-          <li class="del-d roboto"><input class="lower-only" type="tel" placeholder="Phone Number" id="u-contact" maxlength="10"></li>
-          <li class="del-d roboto"><input class="lower-only" type="text" placeholder="Address" id="u-address" maxlength="250"></li>
-          <li class="del-d check-mark roboto text-center">
-            <input class="css-checkbox" type="checkbox" id="save-del-details" checked="checked">
-            <label class="css-label roboto" for="save-del-details">Save my details</label></li>
+          <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
+              <li class="del-d roboto"><input class="lower-only active" name="orders[name]" type="text" placeholder="Name" id="u-name" maxlength="50"></li>
+              <li class="del-d roboto"><input class="lower-only" name="orders[phone_no]" type="tel" placeholder="Phone Number" id="u-contact" maxlength="10"></li>
+              <li class="del-d roboto"><input class="lower-only" name="orders[address]" type="text" placeholder="Address" id="u-address" maxlength="250"></li>
+              <li class="del-d check-mark roboto text-center">
+                <input class="css-checkbox" type="checkbox" id="save-del-details" checked="checked">
+                <label class="css-label roboto" for="save-del-details">Save my details</label></li>
+          <% end -%>
         </ul>
 
       </div>
@@ -129,11 +131,12 @@
 <script>
   $(document).ready(function(){
       $("#footer").html("<div class='container'><div class='row'><div class='col-xs-12'><div class='tap-text'>" +
-              "<p class='text-center'><a class='text-orange' href='/payment-method'>Select Payment Method</a></p>" +
+              "<p class='text-center'><a class='text-orange' id='submit-order-button' href='#'>Select Payment Method</a></p>" +
               "</div>" +
               "<ul class='chosen-options hidden'>" +
               "<li class='billing'><a href='#'>500/-</a></li>" +
               "<li class='checkout'><a href='#'>Checkout</a></li>" +
-              "</ul></div></div></div>")
+              "</ul></div></div></div>");
+
   })
 </script>
