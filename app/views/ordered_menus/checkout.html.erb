@@ -11,8 +11,8 @@
           </li>
           <% total = [] %>
           <% if session[:cart] %>
-              <% session[:cart].each do |order| %>
-                  <% order.each do |order_id, order_attrs| %>
+              <% session[:cart].each do |todays_item| %>
+                  <% todays_item.each do |order_id, order_attrs| %>
                       <li class="food-bill review_order_list" id="<%= order_id %>">
                         <span class="item-name" data-toggle="modal" data-target="#item-modal" data-quantity="<%= order_attrs['quantity'] %>" style="cursor: pointer;" id="<%= order_id %>">
                           <%= order_attrs['dish_name'] %>
