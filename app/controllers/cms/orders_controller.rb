@@ -3,13 +3,8 @@ class Cms::OrdersController < Cms::ContentBlockController
   def set_cart
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []
-    session[:cart].each do |item|
-      item.each do |item_id, item_attr|
-        cart_ids << item_id.to_i
-      end
-    end
-    cart_ids = cart_ids.flatten
-    if cart_ids.include?(params[:item_id].to_i)
+    cart_ids = session[:cart].collect{|item| item.keys}.flatten
+    if cart_ids.include?(params[:item_id])
        session[:cart].each do |item|
          session[:cart].delete(item) if item.keys.flatten.include?(params[:item_id])
        end
