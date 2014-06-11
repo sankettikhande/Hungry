@@ -126,17 +126,8 @@
 </div> <!-- fluid container ends -->
 <div class="floral-block"></div>
 </div><!-- #wrap ends -->
+<% content_for :review_order_footer do %>
+    <%= render :partial => "/layouts/review_order_footer" %>
+<% end %>
 
 <%= javascript_include_tag "jquery-1.11.0.min" %>
-<script>
-  $(document).ready(function(){
-      $("#footer").html("<div class='container'><div class='row'><div class='col-xs-12'><div class='tap-text'>" +
-              "<p class='text-center'><a class='text-orange' id='submit-order-button' href='#'>Select Payment Method</a></p>" +
-              "</div>" +
-              "<ul class='chosen-options hidden'>" +
-              "<li class='billing'><a href='#'>500/-</a></li>" +
-              "<li class='checkout'><a href='#'>Checkout</a></li>" +
-              "</ul></div></div></div>");
-
-  })
-</script>
