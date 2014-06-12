@@ -8,7 +8,9 @@ class HomeController < ApplicationController
 
   private
   def update_cart(todays_menu)
-    todays_ids = todays_menu.collect(&:id)
+    return if todays_menu.blank?
+    todays_ids = todays_menu.map(&:id)
+    session[:cart] = [] if session[:cart].blank?
     cart_keys = session[:cart].collect{|item| item.keys}.flatten
     cart_keys = cart_keys.collect{|i| i.to_i}
     session[:cart].each do |item|
