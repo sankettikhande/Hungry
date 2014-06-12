@@ -25,7 +25,7 @@
                             </div>
                             <div class="add-heart"></div>
                           </div>
-                      <% elsif !menu.dish.dish_image.blank? %>
+                      <% elsif menu.dish.dish_image? %>
                           <div class="recipe-image append-cart">
                             <div class="add-lens"></div>
                             <div class="add-heart"></div>
@@ -47,7 +47,7 @@
                           </div>
                       <% end %>
                     </li>
-                    <% if  menu.dish.dish_image && qty_left(menu) > 0 %>
+                    <% if  menu.dish.dish_image? && qty_left(menu) > 0 %>
                         <li class="recipe-title"><%= menu.dish.name %></li>
                     <% else %>
                         <div class="recipe-image hidden">
