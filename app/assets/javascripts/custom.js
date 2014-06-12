@@ -136,9 +136,33 @@ function onComplete()
 
 // random splash on refresh
  $(document).ready(function(){
-    var splash = parseInt(Math.random()*$('.random-imgs .bg-img').length);
-    splash +=1;
-    $('.bg-img').removeClass('active');
-    $('.random-imgs .bg-img:nth-child('+splash+')').addClass('active');
+
+//   random splash on refresh
+     var splash = parseInt(Math.random()*$('.random-imgs .bg-img').length);
+     splash +=1;
+     $('.bg-img').removeClass('active');
+     $('.random-imgs .bg-img:nth-child('+splash+')').addClass('active');
+
+
+    //  Datepicker
+
+         $('#datetimepicker5').datetimepicker({
+             pickTime: false
+         });
+
+
+         $('#datetimepicker-from,#datetimepicker-upto').datetimepicker({
+             pickDate: false
+         });
+
+     // Sidemenu for desktop fix
+     $('.navbar-header .navbar-toggle').click(function(){
+         $('#sidebar').fadeToggle();
+     });
+
+     $('#star').raty({
+         path:'/assets/',
+         half:true
+     });
  });
 
