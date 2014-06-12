@@ -1,5 +1,5 @@
 class Cms::OrdersController < Cms::ContentBlockController
-  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway]
+  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm]
   def set_cart
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []
@@ -46,6 +46,12 @@ class Cms::OrdersController < Cms::ContentBlockController
                              :phone_no=>params[:orders][:phone_no])
     #session[:cart] = []
     @footer = "false"
+    respond_to do |format|
+      format.html {render :layout => 'application'}
+    end
+  end
+
+  def order_confirm
     respond_to do |format|
       format.html {render :layout => 'application'}
     end

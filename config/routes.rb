@@ -2,6 +2,8 @@ Holachef::Application.routes.draw do
 
   match "/cms" => "cms/dashboard#index"
   match '/review_order' => 'ordered_menus#checkout', :as => :review_order
+  match '/recipe/:recipe_name'=>'Cms::dishes#show_recipe'
+  match '/signature/:dish_name'=> 'Cms::dishes#signature_dishes'
 
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
@@ -20,6 +22,8 @@ Holachef::Application.routes.draw do
   #resources :home do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
   post '/payment-method'=>"Cms::orders#payment_gateway"
+  match '/order-confirm'=>"Cms::orders#order_confirm"
+
   #end
 
   # The priority is based upon order of creation:

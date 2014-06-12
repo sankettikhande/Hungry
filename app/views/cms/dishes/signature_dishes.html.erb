@@ -1,0 +1,165 @@
+<div class="container seperator-10">
+  <div class="row row-offcanvas row-offcanvas-left">
+    <div class="col-xs-12">
+      <div class="signature-panel">
+        <div class="hola-container">
+
+          <div class="item">
+            <ul class="square">
+              <li class="recipe-block veg">
+                <div class="recipe-header">
+                  <div class="add-lens"></div>
+                  <div class="recipe-name">
+                    <%= @signature_dish.name %>
+                  </div>
+                  <div class="add-heart"></div>
+                  <div class="recipe-image hidden">
+                    <div class="add-lens"></div>
+                    <div class="add-heart"></div>
+                    <%= image_tag @signature_dish.dish_image.url, :class => "img-responsive center-block" %>
+                    <!--<img class="img-responsive center-block" src="" alt="Sarso">-->
+                  </div>
+                </div>
+              </li>
+              <li class="recipe-title hidden"></li>
+              <li class="recipe-tags">
+                <ul class="stock-value">
+                  <li class="recipe-stock"><span class="stock-count">10</span> left</li>
+                  <li class="recipe-price">180/-</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="hola-rating">
+          <ul class="rating-block">
+            <li class="five-stars">
+              <div id="star"></div>
+            </li>
+            <li class="review-count">
+              <span class="count">83</span>
+              <span class="ask-rate"><a href="#">Rate it</a></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dish-info">
+          <p>A rajasthani delicacy, this is ideal for those who like it heavy. </p>
+          <p><span class="portion">1</span><span id="portion-eqv">2 Baatis</span></p>
+        </div>
+
+        <div class="min-order-block">
+          <h3>Minimum Order Details</h3>
+
+          <ul class="block-3">
+            <li class="each-block">
+              <a href="#">
+                <span id="served-count" class="upper roboto-b">20</span>
+                <span class="lower text-uppercase">Portions</span>
+              </a>
+            </li>
+            <li class="each-block">
+              <a href="#">
+                <span id="recipe-count" class="upper roboto-b">2</span>
+                <span class="lower text-uppercase">Days Notice</span>
+              </a>
+            </li>
+            <li class="each-block">
+              <a href="#">
+                <span id="fan-count" class="upper roboto-b">180/-</span>
+                <span class="lower text-uppercase">Per Portion</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= content_for :signature_footer do %>
+    <div id="footer" class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="tap-text"><p class="text-center"><a class="text-orange btn-block" data-toggle="modal" data-target="#sign-modal">Place Order</a></p></div> <!-- change text-light to text-orange for changing color -->
+            <ul class="chosen-options hidden">
+              <li class="billing"><a href="#">500/-</a></li>
+              <li class="checkout"><a href="#">Checkout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<div id="recipe-modal">
+  <div class="modal fade bs-example-modal-sm" id="sign-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header seperator-5">
+          <button class="btn-close pull-right" data-dismiss="modal">x</button>
+          <p>Delivery on:</p>
+        </div>
+        <div class="modal-body modal-form">
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <div class="form-group">
+                <input type="text" class="form-control btn-default" id='datetimepicker5' placeholder="Pick Date"/>
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div class="form-group hola-cal">
+                    <input type="text" class="form-control btn-default" id='datetimepicker-from' placeholder="From Time"/>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="form-group hola-cal">
+                    <input type="text" class="form-control btn-default" id='datetimepicker-upto' placeholder="Upto Time"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-3">
+              <p class="form-control looks-input">Qty</p>
+            </div>
+            <div class="col-xs-3">
+              <button class="btn btn-orange disabled" type="button" id="add-order" disabled>-1</button>
+            </div>
+            <div class="col-xs-3">
+              <p class="form-control looks-input" id="order-count">20</p>
+            </div>
+            <div class="col-xs-3">
+              <button class="btn btn-orange" type="button" id="add-order">+1</button>
+            </div>
+          </div>
+          <div class="container-fluid seperator-5">
+            <div class="row">
+              <div class="col-xs-6">
+                <p class="text-left">Cost: <span id="">180/p</span></p>
+              </div>
+              <div class="col-xs-6">
+                <p class="text-right">Bill: <span id="">3600</span></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <button type="submit" class="btn btn-flat btn-saffron btn-block" id="">Submit</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <p class="text-6">Signature Orders are taken subject<br> to Chef's availability.<br> We'll confirm with <br>payment details in 1 hour.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

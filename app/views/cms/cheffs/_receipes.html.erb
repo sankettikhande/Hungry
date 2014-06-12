@@ -1,0 +1,29 @@
+<div class="hola-container">
+  <% @recipes.each do |recipe| %>
+      <div class="item" data-toggle="modal" data-target="#">
+        <ul class="square">
+          <li class="recipe-block veg">
+            <div class="recipe-header">
+              <div class="add-lens"></div>
+              <div class="recipe-name">
+                <%= recipe.name %>
+              </div>
+              <div class="add-heart"></div>
+            </div>
+            <div class="recipe-image hidden">
+              <div class="add-lens"></div>
+              <div class="add-heart"></div>
+              <img class="img-responsive center-block" src="assets/images/sarso.png" alt="Sarso">
+            </div>
+          </li>
+          <li class="recipe-title hidden"></li>
+          <li class="recipe-tags">
+            <ul class="stock-value">
+              <li class="recipe-stock hidden"><span class="stock-count">10</span> left</li>
+              <li class="recipe-price"><%= link_to "View", "/recipe/#{recipe.name}" %></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+  <% end %>
+</div>

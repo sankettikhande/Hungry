@@ -1,5 +1,5 @@
 <div class="container seperator-10">
-  <div class="row">
+  <div class="row row-offcanvas row-offcanvas-left">
     <div class="col-xs-12">
       <div id="hola-container">
         <% today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
@@ -80,6 +80,7 @@
           <div class="modal-dialog modal-sm">
             <div class="modal-content">
               <div class="modal-header">
+                <button data-dismiss="modal" class="btn-close pull-right">x</button>
                 <ul class="user-profile">
                   <li class="profile-pic">
                     <%= link_to image_tag("/assets/user-pic.jpg", :class => "img-responsive center-block"), "/cheff/#{params[:cheff_id]}", :id => "chef_info" %>

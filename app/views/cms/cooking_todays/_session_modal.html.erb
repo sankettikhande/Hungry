@@ -4,9 +4,10 @@
 <div class="modal-dialog modal-sm">
   <div class="modal-content">
     <div class="modal-header">
+      <button data-dismiss="modal" class="btn-close pull-right">x</button>
       <ul class="user-profile">
         <li class="profile-pic">
-          <%= link_to image_tag(@cooking_today.cheff.cheff_image.url, :class => "img-responsive center-block"), "/chef-profile/#{@cooking_today.cheff}", :id => "chef_info" %>
+          <%= link_to image_tag(@cooking_today.cheff.cheff_image.url, :class => "img-responsive center-block"), "/chef-profile/#{@cooking_today.cheff.id}", :id => "chef_info" %>
         </li>
         <li class="user-name">
           <h3><%= cart_menu[:cheff_name] %>
