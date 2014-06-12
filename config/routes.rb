@@ -12,9 +12,14 @@ Holachef::Application.routes.draw do
   end
 
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
+  match '/cooking_todays/get_review_order_details'=> 'Cms::cooking_todays#get_review_order_details'
+  match '/cooking_todays/get_item_details'=> 'Cms::cooking_todays#get_item_details'
+  match '/cooking_todays/total_calculation'=> 'Cms::cooking_todays#total_calculation'
+  match '/cooking_todays/delete_item'=> 'Cms::cooking_todays#delete_item'
 
   #resources :home do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
+  post '/payment-method'=>"Cms::orders#payment_gateway"
   #end
 
   # The priority is based upon order of creation:

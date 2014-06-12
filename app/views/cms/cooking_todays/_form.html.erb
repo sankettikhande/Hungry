@@ -6,23 +6,20 @@
 </style>
 <%#= f.cms_text_field :name %>
 <%= f.cms_drop_down :cheff_id, Cheff.all(:order => "id").map { |c| [c.name, c.id] },
-                        :prompt => "Select Cheff Name", :label => "Cheff Name" %>
-<% if @block.new_record? %>
-    <div class="fields text_fields">
-      <label for="dish_dish_image">Cheff's Dishes</label>
-      <select id="cooking_today_dish_id" name="cooking_today[dish_id]" style="width: 458px" disabled="disabled" class="selectbox"></select>
-    </div>
-    <%= f.cms_text_field :quantity %>
-    <%= f.cms_date_picker :date %>
-<% else %>
-    <%=f.cms_drop_down :dish_id, options_for_select(Dish.all(:order => "id", :conditions => {:cheff_id => @block.cheff_id}).map { |c| [c.name, c.id] }, @block.dish_id ),
-                       :prompt => "Select Dish", :label => "Dish Name"%>
-    <%= f.cms_text_field :quantity %>
-    <%= f.cms_text_field :ordered, :disabled=> true %>
-    <%= f.cms_date_picker :date %>
-<% end %>
-
+                    :prompt => "Select Cheff Name", :label => "Cheff Name" %>
+<%#= f.cms_drop_down :dish_id, Dish.all(:order => "id").map { |s| [s.name, s.id] },
+                    :prompt => "Cheff's Dishes", :label => "Dish Name", :disabled => 'true' %>
+<div class="fields text_fields">
+  <label for="dish_dish_image">Cheff's Dishes</label>
+  <select id="cooking_today_dish_id" name="cooking_today[dish_id]" style="width: 458px" disabled="disabled" class="selectbox"></select>
+</div>
+<%= f.cms_text_field :quantity %>
+<%= f.cms_text_field :ordered %>
+<%= f.cms_date_picker :date %>
 <script>
+    $(document).ready(function(){
+        $("#cooking_today_cheff_id").trigger('change');
+    });
     $("#cooking_today_cheff_id").change(function(){
         var chef = $(this).val();
         if(chef==''){
@@ -36,5 +33,7 @@
                 'dataType': 'script'
             })
         }
-    });
+    })
+
 </script>
+

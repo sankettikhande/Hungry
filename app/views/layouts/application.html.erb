@@ -19,7 +19,14 @@
     <div id="wrap">
         <%= render :partial => "/layouts/header" %>
         <%= yield %>
-        <%= render :partial => "/layouts/footer" %>
+        <% if !@footer %>
+          <% if content_for?(:review_order_footer) %>
+              <%= yield(:review_order_footer) %>
+          <% else %>
+              <%= render :partial => "/layouts/footer" %>
+          <% end %>
+        <% end %>
+
     </div><!-- #wrap ends -->
     <%= javascript_include_tag "application"%>
 </body>
