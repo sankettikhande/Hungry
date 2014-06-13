@@ -58,5 +58,12 @@ module Holachef
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.middleware.use ExceptionNotification::Rack,
+                          :email => {
+                              :email_prefix => "[HOLACHEF-ERROR] ",
+                              :sender_address => %{"pravin.mhatre@sodelsolutions.com},
+                              :exception_recipients => %w{pravin.mhatre@sodelsolutions.com supriya.yatam@sodelsolutions.com animesh.jain@sodelsolutions.com}
+                          }
   end
 end

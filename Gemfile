@@ -33,6 +33,7 @@ group :development do
   gem 'capistrano', '2.15.4', require: false
   gem 'rvm-capistrano'
 end
+gem 'exception_notification'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
