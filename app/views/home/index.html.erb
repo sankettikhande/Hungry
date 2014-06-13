@@ -37,10 +37,10 @@
                       <% else %>
                           <div class="recipe-header <%=menu_type%> append-cart">
                             <div class="add-lens"></div>
+                            <div class="add-heart"></div>
                             <div class="recipe-name">
                               <%= menu.dish.name %>
                             </div>
-                            <div class="add-heart"></div>
                             <% if today_menu && today_menu.has_key?(menu[:id]) %>
                                 <div class='add-cart'></div>
                             <% end %>
@@ -50,11 +50,6 @@
                     <li class="recipe-title hidden"><%= menu.dish.name %></li>
                     <% if  menu.dish.dish_image? && qty_left(menu) > 0 %>
                         <li class="recipe-title"><%= menu.dish.name %></li>
-                    <% else %>
-                        <div class="recipe-image hidden">
-                          <div class="add-lens"></div>
-                          <div class="add-heart"></div>
-                        </div>
                     <% end %>
 
                     <li class="recipe-tags">
@@ -141,7 +136,6 @@
       </div> <!-- modal ends -->
 
     </div>
-    <%= render 'layouts/side_menu' %>
   </div>
 </div>
 

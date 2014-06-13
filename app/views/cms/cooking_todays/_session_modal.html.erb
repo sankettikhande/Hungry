@@ -16,16 +16,22 @@
       </ul>
     </div>
     <div class="modal-body"> <!-- below content changes from jquery -->
-
       <ul class="square">
         <li class="recipe-block veg">
-          <div class="recipe-header">
-            <div class="add-lens"></div>
-            <div class="recipe-name recipe-title"><%= cart_menu[:dish_name]%></div>
-            <div class="add-heart"></div>
-          </div>
-          <div class="recipe-image hidden">
-          </div>
+          <% if !@cooking_today.dish.dish_image? %>
+              <div class="recipe-header">
+                <div class="add-lens"></div>
+                <div class="recipe-name"><%= cart_menu[:dish_name]%></div>
+                <div class="add-heart"></div>
+              </div>
+          <% end %>
+          <% if @cooking_today.dish.dish_image? %>
+              <div class="add-lens"></div>
+              <div class="add-heart"></div>
+              <div class="recipe-image">
+                <%= image_tag @cooking_today.dish.dish_image.url, :alt=>"#{ @cooking_today.dish.name}", :class => "img-responsive center-block" %>
+              </div>
+          <% end %>
         </li>
         <li class="recipe-title hidden"></li>
         <li class="recipe-tags">
