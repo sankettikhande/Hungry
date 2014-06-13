@@ -41,7 +41,7 @@ function onComplete()
             e.preventDefault();
             $("#add-order-minus").removeClass("disabled");
             $("#add-order-minus").removeAttr("disabled");
-            var max_qty = $("#item_max_qty").val();
+            var max_qty = parseInt($(".stock-count").html(), 10);
             if (cnt < parseInt(max_qty,10)){
                 cnt = parseInt($("#order-count").html(),10) + 1;
                 $("#order-count").html(cnt);
@@ -74,7 +74,7 @@ function onComplete()
             var dish_name = $("#"+$("#selected_item").val() +" ul li.recipe-title").html();
 
             //Printing Cart message
-            if(cnt > 0){
+            if(parseInt($("#order-count").html()) > 0){
                 $(selected_id).html(cnt +" in cart")
                 $("#"+$("#selected_item").val()+" li div.append-cart").append("<div class='add-cart'></div>")
                 $(selected_id).addClass('text-orange');

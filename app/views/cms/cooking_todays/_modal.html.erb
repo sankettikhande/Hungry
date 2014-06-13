@@ -37,7 +37,7 @@
         <li class="recipe-title hidden"></li>
         <li class="recipe-tags">
           <ul class="stock-value">
-            <li class="recipe-stock"><span class="stock-count"><%= qty_left(@cooking_today) %></span> left</li>
+            <li class="recipe-stock"><span class="stock-count"><%= qty_left(@cooking_today).to_i - cart_menu[:quantity].to_i %></span> left</li>
             <li class="recipe-price"><span><%= cart_menu[:price] %></span>/-</li>
           </ul>
         </li>

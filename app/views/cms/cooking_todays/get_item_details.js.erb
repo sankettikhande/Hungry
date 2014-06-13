@@ -1,1 +1,5 @@
 $('#item-modal').html("<%= escape_javascript(render :partial => "cms/cooking_todays/session_modal", :locals => {:cooking_today => @cooking_today}, :inline => true) %>");
+if(parseInt($("#order-count").html()) > 0){
+    $("#add-order-minus").removeAttr("disabled");
+    $("#add-order-minus").removeClass("disabled");
+}
