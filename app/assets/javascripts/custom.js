@@ -74,21 +74,22 @@ function onComplete()
             var dish_name = $("#"+$("#selected_item").val() +" ul li.recipe-title").html();
 
             //Printing Cart message
-            if(cnt >= 0){
+            if(cnt > 0){
                 $(selected_id).html(cnt +" in cart")
                 $("#"+$("#selected_item").val()+" li div.append-cart").append("<div class='add-cart'></div>")
                 $(selected_id).addClass('text-orange');
+                //Calculation of Total Price
+                var menu_qty = parseInt($("#order-count").html(),10);
+                var menu_price = parseInt($(".modal-body li.recipe-price").html(),10);
+                $.ajax({
+                    'method': 'GET',
+                    'url': '/orders/set_cart',
+                    'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': cnt, 'price': menu_price, 'date': date, 'dish_name': dish_name },
+                    'dataType': 'script'
+                })
             }
 
-            //Calculation of Total Price
-            var menu_qty = parseInt($("#order-count").html(),10);
-            var menu_price = parseInt($(".modal-body li.recipe-price").html(),10);
-            $.ajax({
-                'method': 'GET',
-                'url': '/orders/set_cart',
-                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': cnt, 'price': menu_price, 'date': date, 'dish_name': dish_name },
-                'dataType': 'script'
-            })
+
         });
         var selected_review_id = "";
 
@@ -135,9 +136,33 @@ function onComplete()
 
 // random splash on refresh
  $(document).ready(function(){
-    var splash = parseInt(Math.random()*$('.random-imgs .bg-img').length);
-    splash +=1;
-    $('.bg-img').removeClass('active');
-    $('.random-imgs .bg-img:nth-child('+splash+')').addClass('active');
+
+//   random splash on refresh
+     var splash = parseInt(Math.random()*$('.random-imgs .bg-img').length);
+     splash +=1;
+     $('.bg-img').removeClass('active');
+     $('.random-imgs .bg-img:nth-child('+splash+')').addClass('active');
+
+
+    //  Datepicker
+
+         $('#datetimepicker5').datetimepicker({
+             pickTime: false
+         });
+
+
+         $('#datetimepicker-from,#datetimepicker-upto').datetimepicker({
+             pickDate: false
+         });
+
+     // Sidemenu for desktop fix
+     $('.navbar-header .navbar-toggle').click(function(){
+         $('#sidebar').fadeToggle();
+     });
+
+     $('#star').raty({
+         path:'/assets/',
+         half:true
+     });
  });
 

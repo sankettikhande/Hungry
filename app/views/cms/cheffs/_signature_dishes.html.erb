@@ -1,0 +1,31 @@
+<div class="hola-container">
+  <% if @signature_dishes %>
+      <% @signature_dishes.each do |dish| %>
+          <div class="item" data-toggle="modal" data-target="#">
+            <ul class="square" onclick="window.location='/signature/<%=dish.name%>'">
+              <li class="recipe-block veg">
+                <div class="recipe-header">
+                  <div class="add-lens"></div>
+                  <div class="recipe-name">
+                    <%= dish.name %>
+                  </div>
+                  <div class="add-heart"></div>
+                </div>
+                <div class="recipe-image hidden">
+                  <div class="add-lens"></div>
+                  <div class="add-heart"></div>
+                  <%= image_tag dish.dish_image.url, :class => "img-responsive center-block", :alt => dish.name %>
+                </div>
+              </li>
+              <li class="recipe-title hidden"></li>
+              <li class="recipe-tags">
+                <ul class="stock-value">
+                  <li class="recipe-stock hidden"><span class="stock-count">10</span> left</li>
+                  <li class="recipe-price"><%= link_to "Order","/signature/#{dish.name}" %></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+      <% end %>
+  <% end %>
+</div>

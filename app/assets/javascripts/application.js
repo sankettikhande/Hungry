@@ -11,7 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery-1.11.0.min
-//= require jquery_ujs
+//= require moment.min
 //= require bootstrap.min
 //= require jquery.grid-a-licious.min
 //= require custom

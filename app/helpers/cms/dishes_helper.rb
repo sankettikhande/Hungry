@@ -1,6 +1,6 @@
 module Cms::DishesHelper
 
-  def new # in the ItemController
+  def new
     @dishes = Dish.new
     @dishes.ingredients.build if @dishes.ingredients.nil?
   end

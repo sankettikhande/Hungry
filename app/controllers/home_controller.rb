@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
   include ApplicationHelper
   def index
+    @title = "Today's Menu"
     @todays_menu = CookingToday.where(:date => Date.today)
     update_cart(@todays_menu) if !@todays_menu.blank?
-    @cheff_pp = Cheff.find(:all,:order => 'id')
   end
 
   private
