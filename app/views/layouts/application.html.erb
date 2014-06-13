@@ -21,14 +21,8 @@
         <%= yield %>
         <%= render 'layouts/side_menu' %>
       <% if !@footer %>
-          <% if content_for?(:review_order_footer) %>
-              <%= yield(:review_order_footer) %>
-          <% elsif content_for?(:signature_footer) %>
-                  <%= yield(:signature_footer) %>
-          <% else %>
-              <%= render :partial => "/layouts/footer" %>
-          <% end %>
-        <% end %>
+          <%= render 'layouts/content_footer' %>
+      <% end %>
 
     </div><!-- #wrap ends -->
     <%= javascript_include_tag "application"%>

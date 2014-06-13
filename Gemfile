@@ -33,6 +33,7 @@ group :development do
   gem 'capistrano', '2.15.4', require: false
   gem 'rvm-capistrano'
 end
+gem 'exception_notification'
 
 gem 'quiet_assets'
 # To use ActiveModel has_secure_password

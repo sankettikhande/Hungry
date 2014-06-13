@@ -3,9 +3,9 @@
     font-family: 'robotobold';
     src: url('/assets/fonts/roboto-bold-webfont.eot');
     src: url('/assets/fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/roboto-bold-webfont.woff') format('woff'),
-    url('/assets/fonts/roboto-bold-webfont.ttf') format('truetype'),
-    url('/assets/fonts/roboto-bold-webfont.svg#robotobold') format('svg');
+         url('/assets/fonts/roboto-bold-webfont.woff') format('woff'),
+         url('/assets/fonts/roboto-bold-webfont.ttf') format('truetype'),
+         url('/assets/fonts/roboto-bold-webfont.svg#robotobold') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -16,23 +16,23 @@
     font-family: 'robotoregular';
     src: url('/assets/fonts/roboto-regular-webfont.eot');
     src: url('/assets/fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/roboto-regular-webfont.woff') format('woff'),
-    url('/assets/fonts/roboto-regular-webfont.ttf') format('truetype'),
-    url('/assets/fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
+         url('/assets/fonts/roboto-regular-webfont.woff') format('woff'),
+         url('/assets/fonts/roboto-regular-webfont.ttf') format('truetype'),
+         url('/assets/fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
 
 @font-face {
-    font-family: 'RobotoCondensed-Bold';
-    src: url('/assets/fonts/RobotoCondensed-Bold.eot?') format('eot'),
-    url('/assets/fonts/RobotoCondensed-Bold.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/RobotoCondensed-Bold.woff') format('woff'),
-    url('/assets/fonts/RobotoCondensed-Bold.ttf')  format('truetype'),
-    url('/assets/fonts/RobotoCondensed-Bold.svg#RobotoCondensed-Bold') format('svg');
+  font-family: 'RobotoCondensed-Bold';
+  src: url('/assets/fonts/RobotoCondensed-Bold.eot?') format('eot'), 
+       url('/assets/fonts/RobotoCondensed-Bold.eot?#iefix') format('embedded-opentype'), 
+       url('/assets/fonts/RobotoCondensed-Bold.woff') format('woff'), 
+       url('/assets/fonts/RobotoCondensed-Bold.ttf')  format('truetype'),
+       url('/assets/fonts/RobotoCondensed-Bold.svg#RobotoCondensed-Bold') format('svg');
     font-weight: normal;
-    font-style: normal;
+    font-style: normal;       
 }
 
 
@@ -40,54 +40,54 @@
     font-family: 'lemonregular';
     src: url('/assets/fonts/lemon_regular-webfont.eot');
     src: url('/assets/fonts/lemon_regular-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/lemon_regular-webfont.woff') format('woff'),
-    url('/assets/fonts/lemon_regular-webfont.ttf') format('truetype'),
-    url('/assets/fonts/lemon_regular-webfont.svg#lemonregular') format('svg');
+         url('/assets/fonts/lemon_regular-webfont.woff') format('woff'),
+         url('/assets/fonts/lemon_regular-webfont.ttf') format('truetype'),
+         url('/assets/fonts/lemon_regular-webfont.svg#lemonregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
 
 @font-face {
-    font-family: 'Roboto-Italic';
-    src: url('/assets/fonts/Roboto-Italic.eot?') format('eot'),
-    url('/assets/fonts/Roboto-Italic.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/Roboto-Italic.woff') format('woff'),
-    url('/assets/fonts/Roboto-Italic.ttf')  format('truetype'),
-    url('/assets/fonts/Roboto-Italic.svg#Roboto-Italic') format('svg');
+  font-family: 'Roboto-Italic';
+  src: url('/assets/fonts/Roboto-Italic.eot?') format('eot'), 
+       url('/assets/fonts/Roboto-Italic.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/Roboto-Italic.woff') format('woff'), 
+       url('/assets/fonts/Roboto-Italic.ttf')  format('truetype'),
+       url('/assets/fonts/Roboto-Italic.svg#Roboto-Italic') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roboto-Medium';
-    src: url('/assets/fonts/Roboto-Medium.eot?') format('eot'),
-    url('/assets/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
-    url('/assets/fonts/Roboto-Medium.woff') format('woff'),
-    url('/assets/fonts/Roboto-Medium.ttf')  format('truetype'),
-    url('/assets/fonts/Roboto-Medium.svg#Roboto-Medium') format('svg');
+  font-family: 'Roboto-Medium';
+  src: url('/assets/fonts/Roboto-Medium.eot?') format('eot'), 
+       url('/assets/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/Roboto-Medium.woff') format('woff'), 
+       url('/assets/fonts/Roboto-Medium.ttf')  format('truetype'),
+       url('/assets/fonts/Roboto-Medium.svg#Roboto-Medium') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'Roboto-Light';
-    src: url('/assets/fonts/Roboto-Light.eot?') format('eot'),
-    url('/assets/fonts/Roboto-Light.woff') format('woff'),
-    url('/assets/fonts/Roboto-Light.ttf')  format('truetype'),
-    url('/assets/fonts/Roboto-Light.svg#Roboto-Light') format('svg');
+  font-family: 'Roboto-Light';
+  src: url('/assets/fonts/Roboto-Light.eot?') format('eot'), 
+       url('/assets/fonts/Roboto-Light.woff') format('woff'), 
+       url('/assets/fonts/Roboto-Light.ttf')  format('truetype'),
+       url('/assets/fonts/Roboto-Light.svg#Roboto-Light') format('svg');
 }
 
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 #wrap {
-    /*  min-height: 100%;*/
-    height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+/*  min-height: 100%;*/
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
 }
 
 body {background: #e2e2e2;padding-top: 55px;font-family: 'robotoregular',Sans-serif}
@@ -144,8 +144,8 @@ body {background: #e2e2e2;padding-top: 55px;font-family: 'robotoregular',Sans-se
 .col-sm-12,
 .col-md-12,
 .col-lg-12 {
-    padding-right: 10px;
-    padding-left: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 
@@ -202,27 +202,27 @@ h1,h2,h3,h4,h5,h6,strong,b {font-weight: normal;}
 .btn-flat {-webkit-border-radius: 0 !important;border-radius: 0 !important;-moz-border-radius: 0 !important;-o-border-radius:0 !important;}
 
 .btn-orange {
-    color: #ff8800;
-    background-color: #ffffff;
-    border-color: #ff8800;
-    border-radius: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -o-border-radius: 0;
+  color: #ff8800;
+  background-color: #ffffff;
+  border-color: #ff8800;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
 }
 .btn-orange:hover,
 .btn-orange:focus,
 .btn-orange:active,
 .btn-orange.active,
 .open .dropdown-toggle.btn-orange {
-    color: #000;
-    background-color: #ffffff;
-    border-color: #ff8800;
+  color: #000;
+  background-color: #ffffff;
+  border-color: #ff8800;
 }
 .btn-orange:active,
 .btn-orange.active,
 .open .dropdown-toggle.btn-orange {
-    background-image: none;
+  background-image: none;
 }
 .btn-orange.disabled,
 .btn-orange[disabled],
@@ -239,16 +239,16 @@ fieldset[disabled] .btn-orange:active,
 .btn-orange.disabled.active,
 .btn-orange[disabled].active,
 fieldset[disabled] .btn-orange.active {
-    background-color: #ffffff;
-    border-color: #ff8800;
+  background-color: #ffffff;
+  border-color: #ff8800;
 }
 
 .btn-saffron {
-    color: #fff;
-    background-color: #ff9900;
-    border-color: #ff9900;
-    font-family: 'robotoregular',Sans-serif;
-    font-size: 16px;
+  color: #fff;
+  background-color: #ff9900;
+  border-color: #ff9900;
+  font-family: 'robotoregular',Sans-serif;
+  font-size: 16px;
 }
 
 .btn-saffron:hover,
@@ -256,14 +256,14 @@ fieldset[disabled] .btn-orange.active {
 .btn-saffron:active,
 .btn-saffron.active,
 .open .dropdown-toggle.btn-saffron {
-    color: #fff;
-    background-color: #e39014;
-    border-color: #ff9900;
+  color: #fff;
+  background-color: #e39014;
+  border-color: #ff9900;
 }
 .btn-saffron:active,
 .btn-saffron.active,
 .open .dropdown-toggle.btn-saffron {
-    background-image: none;
+  background-image: none;
 }
 .btn-saffron.disabled,
 .btn-saffron[disabled],
@@ -280,8 +280,8 @@ fieldset[disabled] .btn-saffron:active,
 .btn-saffron.disabled.active,
 .btn-saffron[disabled].active,
 fieldset[disabled] .btn-saffron.active {
-    background-color: #ff9900;
-    border-color: #ff9900;
+  background-color: #ff9900;
+  border-color: #ff9900;
 }
 
 
@@ -290,33 +290,33 @@ fieldset[disabled] .btn-saffron.active {
 
 /*********** Custom Checkbox **************/
 input[type=checkbox].css-checkbox {
-    display: none;
-    /*  position:absolute; z-index:-1000; top:-1000px;border:1px solid #f00;          -Scroll top Fix*/
+display: none;
+/*  position:absolute; z-index:-1000; top:-1000px;border:1px solid #f00;          -Scroll top Fix*/  
 }
 
 input[type=checkbox].css-checkbox + label.css-label, input[type=checkbox].css-checkbox + label.css-label.clr {
-    padding-left:23px;
-    height:18px;
-    display:inline-block;
-    line-height:18px;
-    background-repeat:no-repeat;
-    background-position: 0 0;
-    vertical-align:middle;
-    cursor:pointer;
+  padding-left:23px;
+  height:18px; 
+  display:inline-block;
+  line-height:18px;
+  background-repeat:no-repeat;
+  background-position: 0 0;
+  vertical-align:middle;
+  cursor:pointer;
 
 }
 
 input[type=checkbox].css-checkbox:checked + label.css-label, input[type=checkbox].css-checkbox + label.css-label.chk {
-    background-position: 0 -18px;
+  background-position: 0 -18px;
 }
 label.css-label {
-    background-image:url('/assets/custom-checkbox.png');
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  background-image:url('/assets/custom-checkbox.png');
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /***** =Navbar *****/
@@ -373,13 +373,13 @@ label.css-label {
 
 .recipe-header .recipe-name {text-transform: capitalize;color: #fff;font-size: 1.4em;text-align: center;padding: 1em 0.25em;font-family: 'lemonregular',Sans-serif;}
 .recipe-header .recipe-name {display: table-cell;vertical-align: middle;-webkit-hyphens: auto;
-    word-wrap:break-word;
-    -ms-word-break: break-all;
-    word-break: break-all;
-    word-break:break-word;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
+word-wrap:break-word;
+-ms-word-break: break-all;
+word-break: break-all;
+word-break:break-word;
+-moz-hyphens: auto;
+-ms-hyphens: auto;
+hyphens: auto;
 
 }
 
@@ -416,7 +416,7 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 #recipe-modal .modal-footer {border: none;margin-top: 2px;padding: 5px 10px;}
 #recipe-modal .modal-form .form-control {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;text-align: center;margin:0 auto 10px;}
 
-#recipe-modal .modal-form .btn-orange.disabled {border-color:#ccc;}
+#recipe-modal .modal-form .btn-orange.disabled {border-color:#ccc;} 
 .form-control.looks-input {border:none;box-shadow: none}
 #recipe-modal .btn:focus,#recipe-modal .btn:active {outline: none;}
 
@@ -428,7 +428,7 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 .booked-orders {padding: 15px 0 20px;display: block;float:left;width: 100%;background: #fff}
 .booked-orders li.food-bill {display: block;width: 100%;font-family: 'robotobold',Sans-serif;padding: 0.5em 0 0;float: left;font-size: 1em;}
 .booked-orders li.food-bill:first-child span {font-family: 'robotoregular',Sans-serif;border-bottom: 3px double #d3c9b5;padding-bottom: 0.3em;}
-.booked-orders li.food-bill span {display: inline-block;float: left;padding-left: 3px;padding-right: 3px}
+.booked-orders li.food-bill span {display: inline-block;float: left;padding-left: 3px;padding-right: 3px} 
 .booked-orders li.food-bill span.item-name {width:61%;text-transform: capitalize;text-align: left;}
 .booked-orders li.food-bill span.item-qty {width:16.66666667%;text-align: right;}
 .booked-orders li.food-bill span.item-cost {width:16.66666667%;text-align: right;}
@@ -510,7 +510,7 @@ p.hola-text {color: #222222;}
 .chef-page .profile-details {display: table-cell;width: 100%;float: left;vertical-align: middle;}
 .chef-page .profile-details li.profile {display: inline-block;width: 100%;float: left;padding: 0;color: #333;text-align: center;}
 .chef-page .profile-details li.profile ul.cover-image {width: 100%;display: block;}
-.chef-page .profile-details li.profile ul.cover-image li.cover {width: 100%;display: block;float: left;}
+.chef-page .profile-details li.profile ul.cover-image li.cover {width: 100%;display: block;float: left;} 
 
 .chef-page .profile-details li.profile ul.cover-image li.cover-photo img {width: 100%;min-height: 180px;}
 .chef-page .profile-details li.profile ul.cover-image li.cover-text {text-align: center;padding: 15px 10px;min-height: 180px;}
@@ -552,14 +552,13 @@ p.hola-text {color: #222222;}
 
 .signature-panel .item {cursor: default;}
 .signature-panel .square {border:none;padding: 0;margin-top: 0}
-.signature-panel .galcolumn {width: 100% !important;padding-bottom: 0 !important}
+.signature-panel .galcolumn {width: 100% !important;padding-bottom: 0 !important} 
 
 .signature-panel .square li.recipe-tags {display: none;}
 .signature-panel .square .add-lens,.signature-panel .square .add-heart {display: block;}
 
 .signature-panel .star-bar {background: #fff;clear: both;display: block;padding: 5px 8px;border:1px solid #ff8902;width: 100%}
 
-#sign-modal .modal-dialog {margin-left: 30px;margin-right: 30px;}
 
 /******  =Stars *********/
 
@@ -596,23 +595,23 @@ p.hola-text {color: #222222;}
 .nopadding-right {padding-right: 0}
 
 /******* =Sidemenu *********/
-.hola-sidemenu {margin-top: -10px;height: 100%;background: #fff;border-bottom: 1px solid #ddd;border-right: 1px solid #ddd;}
-.hola-sidemenu .list-group {background: #fff;}
+.hola-sidemenu {margin-top: -10px;height: 100%;border-bottom: 1px solid #ddd;border-right: 1px solid #ddd;background: #fff}
+.hola-sidemenu .list-group {background: #fff;padding-bottom: 50px}
 .hola-sidemenu .list-group .list-group-item {border-radius:0;border-right: none;border-left: none;}
 .hola-sidemenu .list-group .list-group-item:first-child {padding-top: 20px;}
 .hola-sidemenu .list-group a.list-group-item {color: #333;}
 .hola-sidemenu .list-group a.list-group-item.active {background: #e2e2e2;outline: none;border:1px solid #e2e2e2;}
 .hola-sidemenu .list-group a.list-group-item:hover,.hola-sidemenu .list-group a.list-group-item:focus {background: #ededed;outline: none;}
 
-span.icon-home {background: url('/assets/icons/icon-home.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
+span.icon-home {background: url('/assets/icons/icon-home.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;} 
 span.icon-signature {background: url('/assets/icons/icon-signature.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
 span.icon-party-order {background: url('/assets/icons/icon-party-order.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
-span.icon-recipe {background: url('/assets/icons/icon-recipe.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
-span.icon-favorite {background: url('/assets/icons/icon-favorite.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
+span.icon-recipe {background: url('/assets/icons/icon-recipe.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;} 
+span.icon-favorite {background: url('/assets/icons/icon-favorite.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;} 
 span.icon-order-history {background: url('/assets/icons/icon-order-history.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
 span.icon-address {background: url('/assets/icons/icon-address.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
 span.icon-email {background: url('/assets/icons/icon-email.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
-span.icon-share {background: url('/assets/icons/icon-share.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
+span.icon-share {background: url('/assets/icons/icon-share.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;} 
 span.icon-gear {background: url('/assets/icons/icon-gear.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
 
 
@@ -634,7 +633,7 @@ h3.dark-title{color: #000;font-family: 'robotobold',Sans-serif;font-size: 1.125e
 .recipe-ingredients ul.ingredients-list {width: 100%;float: left;display: block;margin-bottom: 5px;margin-top: 5px;}
 .recipe-ingredients ul.ingredients-list li.ingredient {width: 100%;display: block;float: left;color: #666;font-size: 1em;font-family: 'robotoregular',Sans-serif;}
 .recipe-ingredients ul.ingredients-list li.ingredient span.quantity,.recipe-ingredients ul.ingredients-list li.ingredient span.unit,.recipe-ingredients ul.ingredients-list li.ingredient span.name {
-    margin-right: 3px;text-transform: lowercase;}
+margin-right: 3px;text-transform: lowercase;}
 .recipe-ingredients ul.ingredients-list li.ingredient span.google a {background: url('/assets/icon-lens-g.png') no-repeat left top;background-size: 16px 16px;width: 16px;height: 16px;display:block;float: right;}
 
 
@@ -648,95 +647,95 @@ ol.direction-list > li.text {line-height: 1.8em;}
 /****** =Responsive ****/
 
 @media (min-width: 768px) {
-    .navbar > .container .navbar-brand {margin-left: 0}
+  .navbar > .container .navbar-brand {margin-left: 0}
 
-    .navbar-header {width: 100%;}
-    .navbar-toggle {
-        display: block;
-        margin-right:0;}
+  .navbar-header {width: 100%;}
+  .navbar-toggle {
+    display: block;
+    margin-right:0;}
 
 }
 
 @media (max-width: 380px) {
 
-    .block-3 li.each-block span:first-child {font-size: 1em;}
-    .block-3 li.each-block span:last-child {font-size: 0.8em;}
-    .recipe-header .recipe-name {font-size: 1.2em}
+.block-3 li.each-block span:first-child {font-size: 1em;}
+.block-3 li.each-block span:last-child {font-size: 0.8em;}
+.recipe-header .recipe-name {font-size: 1.2em}
 
 }
 
 /*******  =Offcanvas ************/
 
 @media screen and (max-width: 767px) {
-    .row-offcanvas {
-        position: relative;
-        -webkit-transition: all 0.25s ease-out;
-        -moz-transition: all 0.25s ease-out;
-        transition: all 0.25s ease-out;
-        left: 0;
-    }
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    left: 0;
+  }
 
-    .row-offcanvas-right
-    .sidebar-offcanvas {
-        right: -50%; /* 6 columns */
-    }
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+  }
 
-    .row-offcanvas-left
-    .sidebar-offcanvas {
-        left: -50%; /* 6 columns */
-    }
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -50%; /* 6 columns */
+  }
 
-    .row-offcanvas-right.active {
-        right: 50%; /* 6 columns */
-    }
+  .row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
+  }
 
-    .row-offcanvas-left.active {
-        left: 50%; /* 6 columns */
-    }
+  .row-offcanvas-left.active {
+    left: 50%; /* 6 columns */
+  }
 
-    .sidebar-offcanvas {
-        position: absolute;
-        top: 0;
-        width: 50%; /* 6 columns */
-        display: none;
-        padding-right: 0;
-    }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
+    display: none;
+    padding-right: 0;
+  }
 }
 
 @media (min-width: 768px) {
 
-    .row-offcanvas {
-        position: relative;
-        -webkit-transition: all 0.25s ease-out;
-        -moz-transition: all 0.25s ease-out;
-        transition: all 0.25s ease-out;
-        left: 0;
-    }
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    left: 0;
+  }
 
-    .row-offcanvas-right
-    .sidebar-offcanvas {
-        right: -25%; /* 2 columns */
-    }
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -25%; /* 2 columns */
+  }
 
-    .row-offcanvas-left
-    .sidebar-offcanvas {
-        left: -25%; /* 2 columns */
-    }
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -25%; /* 2 columns */
+  }
 
-    .row-offcanvas-right.active {
-        right: 25%; /* 2 columns */
-    }
+  .row-offcanvas-right.active {
+    right: 25%; /* 2 columns */
+  }
 
-    .row-offcanvas-left.active {
-        left: 25%; /* 2 columns */
-    }
+  .row-offcanvas-left.active {
+    left: 25%; /* 2 columns */
+  }
 
-    .sidebar-offcanvas {
-        position: absolute;
-        top: 0;
-        width: 25%; /* 2 columns */
-        display: none;
-    }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 25%; /* 2 columns */
+    display: none;
+  }
 
 }
 
