@@ -14,6 +14,7 @@ Holachef::Application.routes.draw do
   end
 
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
+  match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
   match '/cooking_todays/get_review_order_details'=> 'Cms::cooking_todays#get_review_order_details'
   match '/cooking_todays/get_item_details'=> 'Cms::cooking_todays#get_item_details'
   match '/cooking_todays/total_calculation'=> 'Cms::cooking_todays#total_calculation'
