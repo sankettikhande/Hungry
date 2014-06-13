@@ -34,6 +34,8 @@ group :development do
   gem 'rvm-capistrano'
 end
 gem 'exception_notification'
+
+gem 'quiet_assets'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
