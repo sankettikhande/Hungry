@@ -1,5 +1,5 @@
 class Cms::OrdersController < Cms::ContentBlockController
-  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm]
+  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm, :remove_from_cart]
   def set_cart
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []
@@ -11,6 +11,26 @@ class Cms::OrdersController < Cms::ContentBlockController
        session[:cart] << ({params[:item_id]=>{'quantity'=> params[:qty], 'price' => params[:price], 'date' => params[:date], 'dish_name' => params[:dish_name] }})
     else
       session[:cart] << ({params[:item_id]=>{'quantity'=> params[:qty], 'price' => params[:price], 'date' => params[:date], 'dish_name' => params[:dish_name] }})
+    end
+    @total = 0
+    if !session[:cart].nil?
+      session[:cart].each do |item|
+        item.each do |item_id, item_attr|
+          @total = @total + (item_attr['quantity'].to_i * item_attr['price'].to_i)
+        end
+      end
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def remove_from_cart
+    session[:cart].each do |item|
+      key = item.keys.collect{|c| c.to_i}.join('').to_i
+      if key == params[:item_id].to_i
+        session[:cart].delete(item)
+      end
     end
     @total = 0
     if !session[:cart].nil?
