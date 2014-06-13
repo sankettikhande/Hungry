@@ -47,6 +47,7 @@
                           </div>
                       <% end %>
                     </li>
+                    <li class="recipe-title hidden"><%= menu.dish.name %></li>
                     <% if  menu.dish.dish_image? && qty_left(menu) > 0 %>
                         <li class="recipe-title"><%= menu.dish.name %></li>
                     <% else %>
@@ -140,6 +141,7 @@
       </div> <!-- modal ends -->
 
     </div>
+    <%= render 'layouts/side_menu' %>
   </div>
 </div>
 
