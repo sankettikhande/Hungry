@@ -16,15 +16,14 @@
   <![endif]-->
 </head>
 <body>
-    <div id="wrap">
-        <%= render :partial => "/layouts/header" %>
-        <%= yield %>
-        <%= render 'layouts/side_menu' %>
-      <% if !@footer %>
-          <%= render 'layouts/content_footer' %>
-      <% end %>
-
-    </div><!-- #wrap ends -->
-    <%= javascript_include_tag "application"%>
+   <%= yield %>
+   <%= javascript_include_tag "application"%>
 </body>
+<script>
+    $(document).ready(function() {
+        window.setTimeout(function() {
+            window.location.href = '/';
+        }, 3000);
+    });
+</script>
 </html>
