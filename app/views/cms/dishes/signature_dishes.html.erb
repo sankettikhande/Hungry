@@ -34,7 +34,9 @@
         <div class="hola-rating">
           <ul class="rating-block">
             <li class="five-stars">
-              <div id="star"></div>
+              <div id="star" style="float: left"></div>
+              <input type="hidden" name="dish[dish_id]" id = "dish_id" value="<%= @signature_dish.id %>">
+              <div class="rating_msg" style="float: left"></div>
             </li>
             <li class="review-count">
               <span class="count">83</span>

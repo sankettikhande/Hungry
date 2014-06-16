@@ -174,6 +174,18 @@ $(document).ready(function(){
 
     $('#star').raty({
         path:'/assets/',
-        half:true
+        half:false,
+        scoreName: 'dish[ratings]',
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        click: function(score, evt) {
+            $.ajax({
+                'url' : '/update_ratings',
+                'type' : 'POST',
+                'data' : {'dish_id': parseInt($("#dish_id").val()), 'dish_ratings': parseInt($("input[name='dish[ratings]']").val())},
+                'dataType' : 'script'
+            })
+        }
     });
 });
