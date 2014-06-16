@@ -19,11 +19,10 @@
     <div id="wrap">
         <%= render :partial => "/layouts/header" %>
         <%= yield %>
-        <%= render 'layouts/side_menu' %>
-      <% if !@footer %>
-          <%= render 'layouts/content_footer' %>
-      <% end %>
-
+        <% if !@footer %>
+            <%= render 'layouts/content_footer' %>
+        <% end %>
+       <%= render 'layouts/side_menu' %>
     </div><!-- #wrap ends -->
     <%= javascript_include_tag "application"%>
 </body>
