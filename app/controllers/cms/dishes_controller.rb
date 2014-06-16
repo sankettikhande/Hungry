@@ -17,6 +17,8 @@ class Cms::DishesController < Cms::ContentBlockController
   def new
     @dish = Dish.new
     1.times { @dish.ingredients.build }
+    @dish.prepration_steps.build
+    @dish.tips.build
     respond_to do |format|
       format.html
     end

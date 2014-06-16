@@ -10,7 +10,7 @@ class CookingToday < ActiveRecord::Base
   validates :date, :presence => true
 
   def name
-    "Cheff: #{self.cheff.name} | Dish: #{self.dish.name} "
+    "Cheff: #{self.cheff.name} | Dish: #{self.dish.name} " if self.cheff && self.dish
   end
 
 end
