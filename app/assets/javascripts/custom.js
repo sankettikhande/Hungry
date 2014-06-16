@@ -16,7 +16,7 @@ function onComplete()
 }
 //  each item inside modal script
 $(document).ready(function(){
-    $("#bill_amount a").html($("#total_price").val()+"/-");
+    $("#bill_amount").html($("#total_price").val()+"/-");
     var total = 0;
     var cnt = parseInt($("#order-count").html(),10);
     $('.item').live('click', function(){
