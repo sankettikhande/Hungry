@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Hola</title>
+  <%= stylesheet_link_tag "application" %>
+  <link rel="shortcut icon" href="/assets/favicon.png">
+  <!--[if lt IE 9]><script src="/assets/ie8-responsive-file-warning.js"></script><![endif]-->
+  <!--[if lt IE 9]>
+  <script src="/assets/html5shiv.js"></script>
+  <script src="/assets/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+   <%= yield %>
+   <%= javascript_include_tag "application"%>
+</body>
+<script>
+    $(document).ready(function() {
+        window.setTimeout(function() {
+            window.location.href = '/';
+        }, 3000);
+    });
+</script>
+</html>
