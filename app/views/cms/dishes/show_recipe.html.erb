@@ -10,7 +10,7 @@
             <ul class="cover-image">
               <li class="cover cover-photo hidden"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
               <li class="cover cover-text">
-                <h1 class="lemon text-white">Dal Baati</h1>
+                <h1 class="lemon text-white"><%= @recipe.name %></h1>
                 <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
               </li>
             </ul>
@@ -64,21 +64,21 @@
       </div>
       <div class="normal-body">
         <div class="recipe-ingredients">
-          <h3 class="dark-title">Panchmel Dal</h3>
-
-          <ul class="ingredients-list">
-            <li class="ingredient"><span class="quantity">1/3</span><span class="unit">cup</span><span class="name">chana dal</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-            <li class="ingredient"><span class="quantity">1</span><span class="unit">tbsp</span><span class="name">urad dal</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-            <li class="ingredient"><span class="quantity">1/3</span><span class="unit">cup</span><span class="name">cummin seeds (jeera)</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-          </ul>
-
-          <h3 class="dark-title">Baatis (10 pcs)</h3>
-
-          <ul class="ingredients-list">
-            <li class="ingredient"><span class="quantity">1/3</span><span class="unit">cup</span><span class="name">chana dal</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-            <li class="ingredient"><span class="quantity">1</span><span class="unit">tbsp</span><span class="name">urad dal</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-            <li class="ingredient"><span class="quantity">1/3</span><span class="unit">cup</span><span class="name">cummin seeds (jeera)</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-          </ul>
+          <% @recipe.ingredients.group_by(&:sub_heading).each do |ingredient_heading, ingredient_attr| %>
+              <h3 class="dark-title"><%= ingredient_heading %></h3>
+              <ul class="ingredients-list">
+                  <% ingredient_attr.each do |attr| %>
+                    <li class="ingredient">
+                      <span class="quantity"><%= attr.quantity %></span>
+                      <span class="unit"><%= attr.unit %></span>
+                      <span class="name"><%= attr.ingredient_name %></span>
+                      <span class="google pull-right">
+                        <%= link_to "Search", "https://www.google.co.in/?#q=#{attr.ingredient_name}", :target=>"_blank", :class=>"text-hide" %>
+                      </span>
+                    </li>
+                  <% end %>
+              </ul>
+          <% end %>
 
         </div>
       </div>

@@ -276,15 +276,21 @@
       Preparation Steps
     </div>
     <%= f.fields_for :prepration_steps do |builder| %>
-        <%= render 'prepration_steps', :f => builder %>
+        <%= render 'prepration_step_fields', :f => builder %>
     <% end %>
+    <span style="margin-top: -20px;display: table;">
+      <%= link_to_add_fields "Add Steps", f, :prepration_steps %>
+    </span>
 
     <div class="fields text_fields" style="font-weight: bold;font-size: 25px;color: #36659D;padding-top: 35px;">
       Tips
     </div>
     <%= f.fields_for :tips do |builder| %>
-        <%= render 'tips', :f => builder %>
+        <%= render 'tip_fields', :f => builder %>
     <% end %>
+    <span style="margin-top: -20px;display: table;">
+      <%= link_to_add_fields "Add Tips", f, :tips %>
+    </span>
 
     <div style="margin-top: 20px;">
       <span style="padding: 20px;width: 100px;">

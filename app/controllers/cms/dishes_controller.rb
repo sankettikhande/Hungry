@@ -3,6 +3,7 @@ class Cms::DishesController < Cms::ContentBlockController
   def show_recipe
     @title = "Recipe"
     @footer = "false"
+    @recipe = Dish.find_by_name(params[:recipe_name])
      respond_to do |format|
        format.html { render :layout=>'application' }
      end
@@ -17,8 +18,8 @@ class Cms::DishesController < Cms::ContentBlockController
   def new
     @dish = Dish.new
     1.times { @dish.ingredients.build }
-    @dish.prepration_steps.build
-    @dish.tips.build
+    1.times { @dish.prepration_steps.build }
+    1.times { @dish.tips.build }
     respond_to do |format|
       format.html
     end
