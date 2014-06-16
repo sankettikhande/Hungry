@@ -2,8 +2,10 @@ Holachef::Application.routes.draw do
 
   match "/cms" => "cms/dashboard#index"
   match '/review_order' => 'ordered_menus#checkout', :as => :review_order
+
   match '/recipe/:recipe_name'=>'Cms::dishes#show_recipe'
   match '/signature/:dish_name'=> 'Cms::dishes#signature_dishes'
+  match '/update_ratings' => "Cms::dishes#update_ratings"
 
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
@@ -15,6 +17,9 @@ Holachef::Application.routes.draw do
 
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
+  post '/payment-method'=>"Cms::orders#payment_gateway"
+  match '/order-confirm'=>"Cms::orders#order_confirm"
+
   match '/cooking_todays/get_review_order_details'=> 'Cms::cooking_todays#get_review_order_details'
   match '/cooking_todays/get_item_details'=> 'Cms::cooking_todays#get_item_details'
   match '/cooking_todays/total_calculation'=> 'Cms::cooking_todays#total_calculation'
@@ -22,8 +27,8 @@ Holachef::Application.routes.draw do
 
   #resources :home do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
-  post '/payment-method'=>"Cms::orders#payment_gateway"
-  match '/order-confirm'=>"Cms::orders#order_confirm"
+
+
 
   #end
 

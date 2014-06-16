@@ -46,6 +46,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   end
 
   def payment_gateway
+    @title = "Select Payment Method"
     @order = Order.create(:date => Time.now, :order_status => "Created")
     session[:cart].each do |item|
       item.each do |item_id, item_attr|
@@ -72,6 +73,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   end
 
   def order_confirm
+    @title = "Thank You!"
     respond_to do |format|
       format.html {render :layout => 'application'}
     end

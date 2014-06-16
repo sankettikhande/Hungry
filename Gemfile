@@ -35,6 +35,8 @@ group :development do
 end
 gem 'exception_notification'
 
+gem 'quiet_assets'
+gem 'jquery-raty-rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

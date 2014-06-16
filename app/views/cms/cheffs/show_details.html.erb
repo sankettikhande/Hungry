@@ -198,17 +198,5 @@
   </div>
 </div> <!-- modal ends -->
 <%= content_for :cheff_footer do %>
-    <div id="footer" class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="tap-text"><p class="text-center"><a class="text-orange" href="#">Become a Chef</a></p></div> <!-- change text-light to text-orange for changing color -->
-            <ul class="chosen-options hidden">
-              <li class="billing"><a href="#">500/-</a></li>
-              <li class="checkout"><a href="#">Checkout</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render 'layouts/chef_footer' %>
 <% end %>

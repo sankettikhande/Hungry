@@ -1,5 +1,5 @@
 class Cms::DishesController < Cms::ContentBlockController
-  skip_before_filter :login_required, :cms_access_required, :only => [:show_recipe, :signature_dishes]
+  skip_before_filter :login_required, :cms_access_required, :only => [:show_recipe, :signature_dishes, :update_ratings]
   def show_recipe
     @title = "Recipe"
     @footer = "false"
@@ -28,6 +28,16 @@ class Cms::DishesController < Cms::ContentBlockController
     @dish  = Dish.find(params[:id])
     respond_to do |format|
       format.html
+    end
+  end
+
+  def update_ratings
+    dish = Dish.find(params[:dish_id])
+    if dish
+      dish.update_attributes(:ratings => (dish.ratings.to_i + params[:dish_ratings].to_i))
+      respond_to do |format|
+        format.js
+      end
     end
   end
 end
