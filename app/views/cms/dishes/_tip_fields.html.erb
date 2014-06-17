@@ -4,12 +4,15 @@
     <%= f.text_area :tips, :class => "tips_textarea" %>
   </div>
   <span style="margin-left: 140px;margin-top: 10px;display: table;">
-    <%= link_to_remove_fields "Remove Tips", f %>
+    <%= link_to_remove_fields "Remove Tip", f %>
   </span>
 </div>
 <style>
     .tips_textarea{
-        width: 100px !important;
+        width: 600px !important;
         height: 100px !important;
+    }
+    .text_editor_fields label{
+        vertical-align: top;
     }
 </style>
