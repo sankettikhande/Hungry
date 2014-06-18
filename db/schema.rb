@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140603123734) do
+ActiveRecord::Schema.define(:version => 20140618065157) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_type_id"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
     t.string   "version_comment"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.string   "hotel_name"
+    t.string   "address"
   end
 
   create_table "cheffs", :force => true do |t|
@@ -56,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
     t.string   "cheff_image_content_type"
     t.integer  "cheff_image_file_size"
     t.datetime "cheff_image_updated_at"
+    t.string   "hotel_name"
+    t.string   "address"
   end
 
   create_table "cms_attachment_versions", :force => true do |t|
@@ -200,6 +204,13 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
     t.string   "dish_image_content_type"
     t.integer  "dish_image_file_size"
     t.datetime "dish_image_updated_at"
+    t.integer  "cooking_time"
+    t.integer  "serves"
+    t.string   "cuisine"
+    t.string   "tags"
+    t.string   "category"
+    t.string   "cooking_equipment"
+    t.string   "treatment"
   end
 
   create_table "dishes", :force => true do |t|
@@ -224,6 +235,14 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
     t.datetime "dish_image_updated_at"
     t.integer  "price"
     t.string   "dish_type"
+    t.integer  "ratings",                 :default => 0
+    t.integer  "cooking_time"
+    t.integer  "serves"
+    t.string   "cuisine"
+    t.string   "category"
+    t.string   "cooking_equipment"
+    t.string   "treatment"
+    t.string   "tag_list"
   end
 
   create_table "dynamic_view_versions", :force => true do |t|
@@ -390,6 +409,17 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
 
   add_index "html_blocks", ["deleted"], :name => "index_html_blocks_on_deleted"
 
+  create_table "ingredients", :force => true do |t|
+    t.integer  "dish_id"
+    t.string   "ingredient_name"
+    t.integer  "quantity"
+    t.string   "special_remarks"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "unit"
+    t.string   "sub_heading"
+  end
+
   create_table "link_versions", :force => true do |t|
     t.integer  "original_record_id"
     t.integer  "version"
@@ -429,7 +459,7 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
     t.text     "address"
     t.integer  "total"
     t.datetime "date"
-    t.string   "status"
+    t.string   "order_status"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
     t.string   "name"
@@ -485,7 +515,7 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
     t.text     "address"
     t.integer  "total"
     t.datetime "date"
-    t.string   "status"
+    t.string   "order_status"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
     t.string   "name"
@@ -594,6 +624,14 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
 
   add_index "portlets", ["name"], :name => "index_portlets_on_name"
 
+  create_table "prepration_steps", :force => true do |t|
+    t.integer  "dish_id"
+    t.text     "steps"
+    t.string   "sub_heading"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "redirects", :force => true do |t|
     t.string   "from_path"
     t.string   "to_path"
@@ -638,16 +676,20 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
-    t.integer  "taggable_version"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
   end
 
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], :name => "taggings_idx", :unique => true
+
   create_table "tags", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string  "name"
+    t.integer "taggings_count", :default => 0
   end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "tasks", :force => true do |t|
     t.integer  "assigned_by_id"
@@ -663,6 +705,13 @@ ActiveRecord::Schema.define(:version => 20140603123734) do
   add_index "tasks", ["assigned_to_id"], :name => "index_tasks_on_assigned_to_id"
   add_index "tasks", ["completed_at"], :name => "index_tasks_on_completed_at"
   add_index "tasks", ["page_id"], :name => "index_tasks_on_page_id"
+
+  create_table "tips", :force => true do |t|
+    t.integer  "dish_id"
+    t.text     "tips"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "user_group_memberships", :force => true do |t|
     t.integer "user_id"

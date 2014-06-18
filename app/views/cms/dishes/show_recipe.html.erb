@@ -48,7 +48,11 @@
           <li>Cooking time<span><%= @recipe.cooking_time %> min</span></li>
           <li>Serves<span><%= @recipe.serves %></span></li>
           <li>Cuisine<span class="comma"><%= @recipe.cuisine %></span></li>
-          <li>Tags<span class="comma"><a href="#"></a></span><span class="comma"><a href="#">Dinner</a></span><span class="comma"><a href="#">Heavy</a></span><span class="comma"><a href="#">Vegitarian</a></span></li>
+          <li>Tags
+            <% @recipe.tag_list.each do |tag| %>
+                <span class="comma"><%= link_to tag, "#" %></span>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>
