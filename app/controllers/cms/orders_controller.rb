@@ -74,6 +74,7 @@ class Cms::OrdersController < Cms::ContentBlockController
 
   def order_confirm
     @title = "Thank You!"
+    @footer = "false"
     respond_to do |format|
       format.html {render :layout => 'application'}
     end
