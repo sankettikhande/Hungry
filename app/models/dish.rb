@@ -2,7 +2,11 @@ class Dish < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
   attr_accessor :skip_callbacks
 
-  attr_accessible :dish_image, :ingredients_attributes, :prepration_steps_attributes, :tips_attributes
+  attr_accessible :dish_image, :ingredients_attributes, :prepration_steps_attributes, :tips_attributes, :tag_list
+  has_many :taggings
+  has_many :tags, through: :taggings
+  acts_as_taggable_on :tags
+
   belongs_to :cheff, foreign_key: :cheff_id
   has_many :cooking_todays
   has_many :ordered_menus

@@ -3,7 +3,7 @@ class Cms::DishesController < Cms::ContentBlockController
   def show_recipe
     @title = "Recipe"
     @footer = "false"
-    @recipe = Dish.find_by_name(params[:recipe_name])
+    @recipe = Dish.find_by_name(params[:recipe_name]) if !params[:recipe_name].blank?
      respond_to do |format|
        format.html { render :layout=>'application' }
      end
