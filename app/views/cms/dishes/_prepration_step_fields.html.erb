@@ -1,0 +1,13 @@
+<div class="fields">
+  <div class="fields text_fields">
+    <%= f.label :sub_heading %>
+    <%= f.text_field :sub_heading %>
+  </div>
+  <div class="fields text_editor_fields">
+    <%= f.label :steps %>
+    <%= f.text_area :steps, :class => "prep_steps_textarea" %>
+  </div>
+  <span style="margin-left: 140px;margin-top: 10px;display: table;">
+    <%= link_to_remove_fields "Remove Step", f %>
+  </span>
+</div>

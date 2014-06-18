@@ -10,7 +10,7 @@
             <ul class="cover-image">
               <li class="cover cover-photo hidden"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
               <li class="cover cover-text">
-                <h1 class="lemon text-white">Dal Baati</h1>
+                <h1 class="lemon text-white"><%= @recipe.name %></h1>
                 <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
               </li>
             </ul>
@@ -35,7 +35,7 @@
         <h3 class="roboto">About</h3>
       </div>
       <div class="normal-block">
-        <p class="text-left text-6">Esca Brahma - (Esca means food in Latin and Brahma is creation)is all about culinary creation! It’s about culture and sensitivity! Welcome to and enjoy my world of creating private gourmet experience.</p>
+        <p class="text-left text-6"><%= @recipe.information.html_safe %></p>
       </div>
     </div>
   </div>
@@ -45,10 +45,10 @@
     <div class="col-xs-12">
       <div class="normal-block">
         <ul class="recipe-info">
-          <li>Cooking time<span>90min</span></li>
-          <li>Serves<span>5</span></li>
-          <li>Cuisine<span class="comma">Rajasthani</span><span class="comma">North Indian</span></li>
-          <li>Tags<span class="comma"><a href="#">Meal</a></span><span class="comma"><a href="#">Dinner</a></span><span class="comma"><a href="#">Heavy</a></span><span class="comma"><a href="#">Vegitarian</a></span></li>
+          <li>Cooking time<span><%= @recipe.cooking_time %> min</span></li>
+          <li>Serves<span><%= @recipe.serves %></span></li>
+          <li>Cuisine<span class="comma"><%= @recipe.cuisine %></span></li>
+          <li>Tags<span class="comma"><a href="#"></a></span><span class="comma"><a href="#">Dinner</a></span><span class="comma"><a href="#">Heavy</a></span><span class="comma"><a href="#">Vegitarian</a></span></li>
         </ul>
       </div>
     </div>
@@ -64,21 +64,21 @@
       </div>
       <div class="normal-body">
         <div class="recipe-ingredients">
-          <h3 class="dark-title">Panchmel Dal</h3>
-
-          <ul class="ingredients-list">
-            <li class="ingredient"><span class="quantity">1/3</span><span class="unit">cup</span><span class="name">chana dal</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-            <li class="ingredient"><span class="quantity">1</span><span class="unit">tbsp</span><span class="name">urad dal</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-            <li class="ingredient"><span class="quantity">1/3</span><span class="unit">cup</span><span class="name">cummin seeds (jeera)</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-          </ul>
-
-          <h3 class="dark-title">Baatis (10 pcs)</h3>
-
-          <ul class="ingredients-list">
-            <li class="ingredient"><span class="quantity">1/3</span><span class="unit">cup</span><span class="name">chana dal</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-            <li class="ingredient"><span class="quantity">1</span><span class="unit">tbsp</span><span class="name">urad dal</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-            <li class="ingredient"><span class="quantity">1/3</span><span class="unit">cup</span><span class="name">cummin seeds (jeera)</span><span class="google pull-right"><a class="text-hide" target="_blank" href="https://www.google.co.in/?#q=chana+dal">Search</a></span></li>
-          </ul>
+          <% @recipe.ingredients.group_by(&:sub_heading).each do |ingredient_heading, ingredient_attr| %>
+              <h3 class="dark-title"><%= ingredient_heading %></h3>
+              <ul class="ingredients-list">
+                  <% ingredient_attr.each do |attr| %>
+                    <li class="ingredient">
+                      <span class="quantity"><%= attr.quantity %></span>
+                      <span class="unit"><%= attr.unit %></span>
+                      <span class="name"><%= attr.ingredient_name %></span>
+                      <span class="google pull-right">
+                        <%= link_to "Search", "https://www.google.co.in/?#q=#{attr.ingredient_name}", :target=>"_blank", :class=>"text-hide" %>
+                      </span>
+                    </li>
+                  <% end %>
+              </ul>
+          <% end %>
 
         </div>
       </div>
@@ -87,35 +87,17 @@
       </div>
       <div class="normal-body">
         <div class="recipe-directions">
-
-          <h3 class="dark-title">Panchmel Dal</h3>
-
+          <% @recipe.prepration_steps.group_by(&:sub_heading).each do |preparation_heading, preparation_attr| %>
+          <h3 class="dark-title"><%= preparation_heading %></h3>
           <ol class="direction-list">
-            <li class="text">Clean and wash the dals and add 4 cups of water. </li>
-            <li class="text">Pressure cook for 2 to 3 whistles or till the dals are cooked.</li>
-            <li class="text">In a bowl, combine the chilli powder, turmeric powder, coriander powder, garam masala with 3 tablespoons of water and mix well. Keep aside.</li>
-            <li class="text">Heat the ghee in a pan and add the cloves, bay leaves, cumin seeds, green chillies and asafoetida. </li>
-            <li class="text">When the cumin seeds crackle, add the prepared masala paste and saut for 1 to 2 minutes.</li>
-            <li class="text">Add the cooked dals, amchur, tamarind pulp and salt and simmer for 5 to 7 minutes.</li>
-            <li class="text">Adjust the consistency of the dal before serving and if required, add some water.</li>
+            <% preparation_attr.each do |attr| %>
+                <li class="text"><%= attr.steps %></li>
+            <% end %>
           </ol>
+          <% end %>
           <div class="direction-image">
             <img class="img-responsive center-block" src="/assets/dal-pic.jpg" alt="dal">
           </div>
-
-
-          <h3 class="dark-title">Baatis</h3>
-
-          <ol class="direction-list">
-            <li class="text">Mix all the ingredients and knead into a firm dough. Knead well for 5 to 7 minutes.</li>
-            <li class="text">Divide the dough into 10 equal portions and shape each portion into an even sized round. </li>
-            <li class="text">Flatten the rounds lightly using your thumb to make an indentation in the centre of the baati.</li>
-            <li class="text">Boil water in a broad vessel and drop the baatis in the boiling water. Cook for 15 to 20 minutes over a high flame.</li>
-            <li class="text">When the baatis are done, drain and keep aside.</li>
-            <li class="text">Heat a gas tandoor and put the baatis on the grill of the tandoor. Cook them on a medium flame for 20 to 25 minutes.</li>
-            <li class="text">Cooking the baatis over a medium flame will ensure that the baatis are cooked on the insides also.</li>
-            <li class="text">Arrange the baatis on a serving plate, break each baati into two pieces and pour melted ghee on the baatis.</li>
-          </ol>
           <div class="direction-image">
             <img class="img-responsive center-block" src="/assets/baati-pic.jpg" alt="dal">
           </div>
@@ -129,13 +111,10 @@
       <div class="normal-body">
         <div class="recipe-directions">
           <ol class="direction-list">
-            <li class="text">Pour hot panchmel dal over the baatis.</li>
-            <li class="text">Serve hot with churma.</li>
-            <li class="text">You can cook the baatis in a gas tandoor without boiling them.</li>
-            <li class="text">Alternatively bake the boiled baatis in a pre-heated oven at 200°C (400°F) for 10 to 15 minutes turning them over occasionally.</li>
-            <li class="text">Or even deep fry them in hot ghee instead of cooking them in a tandoor.</li>
+            <% @recipe.tips.each do |recipe| %>
+                <li class="text"><%= recipe.tips %></li>
+            <% end %>
           </ol>
-
         </div>
       </div>
 
@@ -165,7 +144,7 @@
           <ul class="block-3">
             <li class="each-block">
               <a href="#">
-                <span id="served-count" class="upper roboto-b">20</span>
+                <span id="served-count" class="upper roboto-b"><%= @recipe.portions %></span>
                 <span class="lower text-uppercase">Portions</span>
               </a>
             </li>
@@ -177,7 +156,7 @@
             </li>
             <li class="each-block">
               <a href="#">
-                <span id="fan-count" class="upper roboto-b">180/-</span>
+                <span id="fan-count" class="upper roboto-b"><%= @recipe.price %>/-</span>
                 <span class="lower text-uppercase">Per Portion</span>
               </a>
             </li>

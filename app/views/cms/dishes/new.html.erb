@@ -1,205 +1,8 @@
-<style>
+<%= stylesheet_link_tag "cms_custom" %>
 
-    form, .faux_form {
-        color: #485561;
-        font-family: "Trebuchet MS",Helvetica,Verdana,Arial,sans-serif;
-        font-size: 10pt;
-        padding: 0 20px 20px;
-    }
-    #functions form {
-        color: #FFFFFF;
-        font-size: 100%;
-        padding: 0;
-    }
-    .searchbox form {
-        font-size: 100%;
-        padding: 0;
-    }
-    .fields {
-        background: url("/assets/cms/dashed.gif") repeat-x scroll 100% 100% rgba(0, 0, 0, 0);
-        clear: both;
-        padding: 10px 0;
-    }
-    .faux_form .fields {
-        font-size: 12px;
-        overflow: hidden;
-        padding: 22px 0 10px;
-    }
-    .faux_form .fields .label {
-        float: left;
-        font-weight: bold;
-        padding: 0 0 12px;
-        width: 140px;
-    }
-    .text_fields label, .textarea_fields label, .select_fields label, .file_fields label {
-        float: left;
-        font-size: 12px;
-        padding: 12px 0;
-        width: 140px;
-    }
-    .checkbox_group label, .text_fields label, .textarea_fields label, .select_fields label, .text_editor_fields label, .file_fields label, .checkboxes label, .faux_label {
-        font-size: 12px;
-        font-weight: bold;
-    }
-    .checkbox_group label {
-        float: left;
-        padding: 12px 0;
-        width: 140px;
-    }
-    .checkbox_group .checkboxes {
-        float: left;
-        padding-top: 12px;
-        width: 445px;
-    }
-    .checkbox_group .checkboxes .checkbox_fields label {
-        padding-left: 20px;
-    }
-    .select_fields select {
-        border: 1px solid #CCCCCC;
-        margin: 7px 0 5px;
-        padding: 8px 0;
-        width: 445px;
-    }
-    .text_fields, .checkbox_group {
-        padding: 8px 0;
-    }
-    .text_fields input, .select_fields input, .textarea_fields textarea, .file_fields input.mock {
-        border: 1px solid #CCCCCC;
-        padding: 4px 5px;
-        width: 445px;
-    }
-    .text_fields input, .select_fields input {
-        height: 15px;
-    }
-    .textarea_fields textarea {
-        height: 100px;
-        margin-bottom: 10px;
-    }
-    .text_editor_fields select {
-        margin-left: 380px;
-    }
-    .text_editor_fields .selectbox {
-        border: 1px solid #CCCCCC;
-        color: #485561;
-        font-size: 8pt;
-        height: 16px;
-        margin-left: 397px;
-    }
-    .text_editor_fields label {
-    }
-    .text_editor_fields .selectbox-wrapper {
-        color: #485561;
-        font-size: 8pt;
-        margin-left: 415px;
-    }
-    .text_editor_fields textarea {
-        border: 1px solid #CCCCCC;
-        height: 338px;
-        margin-top: 10px;
-        width: 595px;
-    }
-    .text_editor_fields .select_label {
-        margin-left: 380px;
-        margin-right: -374px;
-    }
-    .text_editor_fields label {
-    }
-    .text_editor_fields br {
-    }
-    .checkbox_fields, .check_uncheck {
-        clear: both;
-    }
-    .checkbox_fields label, .check_uncheck {
-        display: block;
-        padding: 4px 0;
-    }
-    .no_check_all {
-        padding-bottom: 26px;
-    }
-    .checkbox_fields label span {
-        display: block;
-        float: left;
-        line-height: 15px;
-        padding: 1px 5px;
-        width: 500px;
-    }
-    .checkbox_fields input {
-        float: left;
-    }
-    .file_fields div.file_inputs {
-        padding-bottom: 2px;
-        position: relative;
-    }
-    .file_fields .fakefile {
-        display: inline;
-        left: 0;
-        margin-left: 140px;
-        position: absolute;
-        top: 0;
-        z-index: 1;
-    }
-    .file_fields input.fancy_file {
-        opacity: 0;
-        position: relative;
-        text-align: right;
-        z-index: 2;
-    }
-    .file_fields input.mock {
-        margin-top: 2px;
-        opacity: 1;
-        padding: 5px;
-        position: absolute;
-        width: 378px;
-        z-index: 1;
-    }
-    .file_fields img {
-        margin: 3px 0 0 397px;
-        position: absolute;
-    }
-    .buttons {
-        margin-left: 140px;
-        padding: 10px 0 20px;
-    }
-
-    .fieldWithErrors input, .fieldWithErrors select, .fieldWithErrors textarea {
-        border: 1px solid #FF0000;
-    }
-    #errorExplanation h2 {
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-    #errorExplanation li {
-        color: #FF0000;
-        font-weight: bold;
-        margin: 8px 0;
-    }
-    .instructions {
-        clear: left;
-        color: #666666;
-        float: left;
-        font-size: 80%;
-        font-style: italic;
-        font-weight: normal;
-        margin-left: 140px;
-        padding-top: 5px;
-    }
-    .checkboxes .instructions {
-        margin-left: 0;
-    }
-    #dish_dish_image{
-        height: 25px;;
-    }
-    #dish_cheff_id{
-        width: 200px;
-    }
-    a{
-        font-weight: bold;
-    }
-</style>
 <%= form_for @dish, :url => "/cms/dishes" do |f| %>
-    <%#= f.error_messages %>
-    <div class="fields text_fields">
 
+    <div class="fields text_fields">
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
@@ -276,15 +79,21 @@
       Preparation Steps
     </div>
     <%= f.fields_for :prepration_steps do |builder| %>
-        <%= render 'prepration_steps', :f => builder %>
+        <%= render 'prepration_step_fields', :f => builder %>
     <% end %>
+    <span style="margin-top: -20px;display: table;">
+      <%= link_to_add_fields "Add Steps", f, :prepration_steps %>
+    </span>
 
     <div class="fields text_fields" style="font-weight: bold;font-size: 25px;color: #36659D;padding-top: 35px;">
       Tips
     </div>
     <%= f.fields_for :tips do |builder| %>
-        <%= render 'tips', :f => builder %>
+        <%= render 'tip_fields', :f => builder %>
     <% end %>
+    <span style="margin-top: -20px;display: table;">
+      <%= link_to_add_fields "Add Tips", f, :tips %>
+    </span>
 
     <div style="margin-top: 20px;">
       <span style="padding: 20px;width: 100px;">
