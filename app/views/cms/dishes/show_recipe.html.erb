@@ -16,12 +16,13 @@
             </ul>
           </li>
           <li class="profile profile-heart"><div class="add-heart"></div></li>
-          <li class="profile profile-dp"><img class="img-responsive img-circle center-block" src="/assets/user-pic.jpg" alt="User Pic"></li>
-          <li class="profile user-name by">Sandeep Sreedharan</li>
-          <li class="profile user-level">Hola Master</li>
+          <li class="profile profile-dp">
+            <%= image_tag(@recipe.cheff.cheff_image.url, :class => "img-responsive img-circle center-block" ) %>
+          </li>
+          <li class="profile user-name by"><%= @recipe.cheff.name.camelize %></li>
+          <li class="profile user-level"><%= @recipe.cheff.hotel_name.camelize %></li>
           <li class="profile user-city">
-            <span class="area">Powai</span>
-            <span class="city">Mumbai</span>
+            <span class="city"><%= @recipe.cheff.address.camelize %></span>
           </li>
         </ul>
       </div>
@@ -150,7 +151,7 @@
             </li>
             <li class="each-block">
               <a href="#">
-                <span id="recipe-count" class="upper roboto-b">2</span>
+                <span id="recipe-count" class="upper roboto-b"><%= @recipe.days_notice %></span>
                 <span class="lower text-uppercase">Days Notice</span>
               </a>
             </li>
