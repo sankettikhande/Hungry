@@ -17,8 +17,9 @@
     </div>
     <div class="modal-body"> <!-- below content changes from jquery -->
       <ul class="square">
-        <li class="recipe-block veg">
-          <% if @cooking_today.dish.picture && !@cooking_today.dish.picture.image? %>
+        <% menu_type = @cooking_today.dish.dish_type == "veg" ? "veg" : "non-veg" %>
+        <li class="recipe-block <%= menu_type %>">
+          <% if !@cooking_today.dish.picture %>
               <div class="recipe-header">
                 <div class="add-lens"></div>
                 <div class="recipe-name"><%= cart_menu[:dish_name]%></div>
