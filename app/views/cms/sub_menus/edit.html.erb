@@ -1,0 +1,49 @@
+<%= stylesheet_link_tag "cms_custom" %>
+
+<%= form_for @sub_menu, :html=>{:multipart => true }, :url => "/cms/sub_menus/#{@sub_menu.id}" do |f| %>
+
+    <div class="fields text_fields" style="font-weight: bold;font-size: 25px;color: #36659D;padding-top: 35px;
+            text-align: center;text-transform: uppercase">
+      SubMenu : <%= @sub_menu.title %>
+    </div>
+
+    <div class="fields text_fields" style="font-weight: bold;font-size: 25px;color: #36659D;padding-top: 35px;">
+      Ingredients
+    </div>
+    <%= f.fields_for :ingredients do |builder| %>
+        <%= render 'ingredient_fields', :f => builder %>
+    <% end %>
+    <span style="margin-top: -20px;display: table;"><%= link_to_add_fields "Add Ingredient", f, :ingredients %></span>
+
+    <div class="fields text_fields" style="font-weight: bold;font-size: 25px;color: #36659D;padding-top: 35px;">
+      Preparation Steps
+    </div>
+    <%= f.fields_for :prepration_steps do |builder| %>
+        <%= render 'prepration_step_fields', :f => builder %>
+    <% end %>
+    <span style="margin-top: -20px;display: table;"><%= link_to_add_fields "Add Steps", f, :prepration_steps %></span>
+
+    <div style="margin-top: 20px;">
+      <span style="padding: 20px;width: 100px;">
+        <%= f.submit "SUBMIT" %>
+      </span>
+      <span style="padding: 20px;width: 100px;">
+        <input type="button" value="CANCEL" onclick="window.location='/cms/sub_menus';">
+      </span>
+    </div>
+
+<% end %>
+
+<script>
+    function remove_fields(link) {
+        alert(link)
+        $(link).prev("input[type=hidden]").val("1");
+        $(link).closest(".fields").hide();
+    }
+
+    function add_fields(link, association, content) {
+        var new_id = new Date().getTime();
+        var regexp = new RegExp("new_" + association, "g");
+        $(link).parent().before(content.replace(regexp, new_id));
+    }
+</script>

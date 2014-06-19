@@ -17,7 +17,7 @@
           </li>
           <li class="profile profile-heart"><div class="add-heart"></div></li>
           <li class="profile profile-dp">
-            <%= image_tag(@recipe.cheff.picture.image.url, :class => "img-responsive img-circle center-block" ) if @recipe.cheff.picture %>
+            <%= image_tag(@recipe.picture.image.url, :class => "img-responsive img-circle center-block" ) if @recipe.picture %>
           </li>
           <li class="profile user-name by"><%= @recipe.cheff.name.camelize %></li>
           <li class="profile user-level"><%= @recipe.cheff.hotel_name.camelize %></li>
@@ -69,16 +69,16 @@
       </div>
       <div class="normal-body">
         <div class="recipe-ingredients">
-          <% @recipe.ingredients.group_by(&:sub_heading).each do |ingredient_heading, ingredient_attr| %>
-              <h3 class="dark-title"><%= ingredient_heading %></h3>
+          <% @recipe.sub_menus.each do |submenu| %>
+              <h3 class="dark-title"><%= submenu.title.camelize %></h3>
               <ul class="ingredients-list">
-                  <% ingredient_attr.each do |attr| %>
+                  <% submenu.ingredients.each do |ingredient| %>
                     <li class="ingredient">
-                      <span class="quantity"><%= attr.quantity %></span>
-                      <span class="unit"><%= attr.unit %></span>
-                      <span class="name"><%= attr.ingredient_name %></span>
+                      <span class="quantity"><%= ingredient.quantity %></span>
+                      <span class="unit"><%= ingredient.unit %></span>
+                      <span class="name"><%= ingredient.ingredient_name %></span>
                       <span class="google pull-right">
-                        <%= link_to "Search", "https://www.google.co.in/?#q=#{attr.ingredient_name}", :target=>"_blank", :class=>"text-hide" %>
+                        <%= link_to "Search", "https://www.google.co.in/?#q=#{ingredient.ingredient_name}", :target=>"_blank", :class=>"text-hide" %>
                       </span>
                     </li>
                   <% end %>
@@ -92,20 +92,17 @@
       </div>
       <div class="normal-body">
         <div class="recipe-directions">
-          <% @recipe.prepration_steps.group_by(&:sub_heading).each do |preparation_heading, preparation_attr| %>
-          <h3 class="dark-title"><%= preparation_heading %></h3>
-          <ol class="direction-list">
-            <% preparation_attr.each do |attr| %>
-                <li class="text"><%= attr.steps %></li>
-            <% end %>
-          </ol>
+          <% @recipe.sub_menus.each do |submenu| %>
+              <h3 class="dark-title"><%= submenu.title.camelize %></h3>
+              <ol class="direction-list">
+                <% submenu.prepration_steps.each do |step| %>
+                    <li class="text"><%= step.steps %></li>
+                <% end %>
+              </ol>
+              <div class="direction-image">
+                <%= image_tag(submenu.picture.image.url, :class => "img-responsive img-circle center-block" ) if submenu.picture %>
+              </div>
           <% end %>
-          <div class="direction-image">
-            <img class="img-responsive center-block" src="/assets/dal-pic.jpg" alt="dal">
-          </div>
-          <div class="direction-image">
-            <img class="img-responsive center-block" src="/assets/baati-pic.jpg" alt="dal">
-          </div>
 
         </div>
       </div>
