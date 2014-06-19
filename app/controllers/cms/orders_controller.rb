@@ -56,9 +56,10 @@ class Cms::OrdersController < Cms::ContentBlockController
           menu = OrderedMenu.create(:order_id => @order.id,:dish_id => dish.id,
                                     :cheff_id => dish.cheff.id, :quantity => item_attr['quantity'],
                                     :rate => item_attr['price'])
-          cooking_today.update_attributes(:quantity => (cooking_today.quantity.to_i - item_attr['quantity'].to_i),
-                                          :ordered => (cooking_today.ordered.to_i + item_attr['quantity'].to_i)
+          qty_left = cooking_today.quantity.to_i - item_attr['quantity'].to_i
+          cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + item_attr['quantity'].to_i)
           )
+
         end
       end
     end
@@ -75,6 +76,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @title = "Thank You!"
     @footer = "false"
+    session[:cart] = []
     respond_to do |format|
       format.html {render :layout => 'application'}
     end
