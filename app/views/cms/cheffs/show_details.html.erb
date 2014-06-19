@@ -17,7 +17,7 @@
                 </li>
                 <li class="profile profile-heart"><div class="add-heart"></div></li>
                 <li class="profile profile-dp">
-                  <%= image_tag @chef.cheff_image.url, :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" %>
+                  <%= image_tag @chef.picture.image.url, :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" if @chef.picture %>
                 </li>
                 <li class="profile user-name"><%= @chef.name %></li>
                 <li class="profile user-level"><%= @chef.hotel_name %></li>
