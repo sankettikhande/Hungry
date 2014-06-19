@@ -15,6 +15,7 @@ class Cms::DishesController < Cms::ContentBlockController
       format.html { render :layout => 'application' }
     end
   end
+
   def new
     @dish = Dish.new
     1.times { @dish.ingredients.build }

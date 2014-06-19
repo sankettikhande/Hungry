@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag "cms_custom" %>
+<%= form_for @chef , :url => "/cms/cheffs/#{@chef.id}" do |f| %>
+    <div class="fields text_fields">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="fields text_fields">
+      <label for="cheff_cheff_image">Chef Image</label>
+      <%= f.fields_for :picture, Cheff.new do |i| %>
+          <%= i.file_field :image %>
+      <% end %>
+    </div>
+    <div class="fields text_fields">
+      <%= f.label :hotel_name %>
+      <%= f.text_field :hotel_name %>
+    </div>
+    <div class="fields text_fields">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+    <div style="margin-top: 20px;">
+      <span style="padding: 20px;width: 100px;">
+        <%= f.submit "SUBMIT" %>
+      </span>
+      <span style="padding: 20px;width: 100px;">
+        <input type="button" value="CANCEL" onclick="window.location='/cms/cheffs';">
+      </span>
+    </div>
+<% end %>

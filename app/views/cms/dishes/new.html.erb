@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "cms_custom" %>
 
-<%= form_for @dish, :url => "/cms/dishes" do |f| %>
+<%= form_for @dish, :html=>{:multipart => true }, :url => "/cms/dishes" do |f| %>
 
     <div class="fields text_fields">
       <%= f.label :name %>
@@ -14,7 +14,9 @@
     </div>
     <div class="fields text_fields">
       <label for="dish_dish_image">Dish Image</label>
-      <%= f.file_field :dish_image, :label => "Dish Image" %>
+      <%= f.fields_for :picture, Dish.new do |i| %>
+          <%= i.file_field :image %>
+      <% end %>
     </div>
 
     <div class="fields text_fields">
@@ -66,8 +68,8 @@
       <%= f.select :treatment, ["Select Treatment Method","Shallow Fried","Fried","Baked","Frozen","Steamed","Thaw","Preservation","Roast","Pressure Cook","Scaling","Skinning","Slow Cooked","Smoked","BBQ","Boil","Toast","Marination","Simmering","Shallow Poaching","Poaching","Well Done","Medium","Rare","Grilling","Blanching","Canning","Others"] %>
     </div>
     <div class="fields text_fields">
-      <%= f.label :tags %>
-      <%= f.text_field :tags %>
+      <%= f.label :tag_list %>
+      <%= f.text_field :tag_list %>
     </div>
 
     <div class="fields text_fields" style="font-weight: bold;font-size: 25px;color: #36659D;padding-top: 35px;">

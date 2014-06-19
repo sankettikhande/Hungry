@@ -14,7 +14,9 @@
     </div>
     <div class="fields text_fields">
       <label for="dish_dish_image">Dish Image</label>
-      <%= f.file_field :dish_image, :label => "Dish Image" %>
+      <%= f.fields_for :picture, Dish.new do |i| %>
+          <%= i.file_field :image %>
+      <% end %>
     </div>
 
     <div class="fields text_fields">

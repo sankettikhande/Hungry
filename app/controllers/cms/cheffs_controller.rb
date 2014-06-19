@@ -10,6 +10,20 @@ class Cms::CheffsController < Cms::ContentBlockController
     end
   end
 
+  def new
+    @chef = Cheff.new
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def edit
+    @chef  = Cheff.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def show_details
     @chef = Cheff.includes(:cooking_todays).find(params[:chef_id])
     @total_qty = CookingToday.sum(:ordered, :conditions => {:cheff_id => @chef.id})
