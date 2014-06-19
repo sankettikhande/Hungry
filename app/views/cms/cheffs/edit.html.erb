@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "cms_custom" %>
-<%= form_for @chef, :html=>{:multipart => true }, :url => "/cms/cheffs" do |f| %>
+<%= form_for @chef , :url => "/cms/cheffs/#{@chef.id}" do |f| %>
     <div class="fields text_fields">
       <%= f.label :name %>
       <%= f.text_field :name %>

@@ -14,9 +14,8 @@
     </div>
     <div class="fields text_fields">
       <label for="dish_dish_image">Dish Image</label>
-      <%= f.fields_for :pictures do |attachment_form| %>
-          <%= attachment_form.file_field :image %>
-          <%#= attachment_form.link_to_remove 'Remove' %>
+      <%= f.fields_for :picture, Dish.new do |i| %>
+          <%= i.file_field :image %>
       <% end %>
     </div>
 

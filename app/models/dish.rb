@@ -3,7 +3,7 @@ class Dish < ActiveRecord::Base
   attr_accessor :skip_callbacks
 
   attr_accessible :dish_image, :ingredients_attributes, :prepration_steps_attributes, :tips_attributes, :tag_list,
-                  :pictures_attributes
+                  :picture_attributes
   has_many :taggings
   has_many :tags, through: :taggings
   acts_as_taggable_on :tags
@@ -22,6 +22,6 @@ class Dish < ActiveRecord::Base
   validates :name, :presence => true
   validates :cheff_id, :presence => true
 
-  has_many :pictures, :as => :picturable, :class_name => 'Picture', :dependent => :destroy
-  accepts_nested_attributes_for :pictures
+  has_one :picture, :as => :picturable, :class_name => 'Picture', :dependent => :destroy
+  accepts_nested_attributes_for :picture
 end

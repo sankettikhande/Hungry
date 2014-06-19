@@ -21,7 +21,6 @@ class Cms::DishesController < Cms::ContentBlockController
     1.times { @dish.ingredients.build }
     1.times { @dish.prepration_steps.build }
     1.times { @dish.tips.build }
-    1.times { @dish.pictures.build }
     respond_to do |format|
       format.html
     end
@@ -29,7 +28,6 @@ class Cms::DishesController < Cms::ContentBlockController
 
   def edit
     @dish  = Dish.find(params[:id])
-    @dish.pictures.build
     respond_to do |format|
       format.html
     end
