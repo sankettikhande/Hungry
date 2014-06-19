@@ -4,7 +4,7 @@
   <input type="hidden" class="menu_price" value="<%=@menu.dish.price%>" />
   <input type="hidden" class="menu_qty" value="" />
   <input type="hidden" class="menu_max_qty" value="<%= qty_left(@menu) %>"/>
-  <input type="hidden" class="chef-profile-pic" value="<%= @menu.cheff.cheff_image.url %>"/>
+  <input type="hidden" class="chef-profile-pic" value="<%= @menu.cheff.picture.image.url if @menu.cheff.picture %>"/>
   <input type="hidden" class="chef-name" value="<%= @menu.cheff.name %>"/>
   <input type="hidden" class="chef-id" value="<%= @menu.cheff.id %>"/>
   <ul class="square">
@@ -17,11 +17,11 @@
             </div>
             <div class="add-heart"></div>
           </div>
-      <% elsif !@menu.dish.dish_image.blank? %>
+      <% elsif !@menu.dish.picture.blank? %>
           <div class="recipe-image append-cart">
             <div class="add-lens"></div>
             <div class="add-heart"></div>
-            <%= image_tag @menu.dish.dish_image.url, :alt=>"#{@menu.dish.name}", :class => "img-responsive center-block" %>
+            <%= image_tag @menu.dish.picture.image.url, :alt=>"#{@menu.dish.name}", :class => "img-responsive center-block" %>
           </div>
       <% else %>
           <div class="recipe-header <%=menu_type%> append-cart">
@@ -33,7 +33,7 @@
           </div>
       <% end %>
     </li>
-    <% if  @menu.dish.dish_image && qty_left(@menu) > 0 %>
+    <% if  @menu.dish.picture && qty_left(@menu) > 0 %>
         <li class="recipe-title"><%= @menu.dish.name %></li>
     <% else %>
         <div class="recipe-image hidden">

@@ -21,18 +21,18 @@ module ApplicationHelper
        item.each do |item_id, item_attr|
         if menu.id == item_id.to_i
           menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'],
-          :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => menu.cheff.cheff_image.url}
+          :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture) }
           return menu
         else
           menu = {:price => menu.dish.price, :quantity => 0, :dish_name => menu.dish.name,
-                  :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => menu.cheff.cheff_image.url}
+                  :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
           return menu
         end
        end
       end
     else
       menu = {:price => menu.dish.price, :quantity => 0, :dish_name => menu.dish.name,
-              :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => menu.cheff.cheff_image.url}
+              :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
       return menu
     end
 
@@ -45,17 +45,17 @@ module ApplicationHelper
         item.each do |item_id, item_attr|
           if menu.id == item_id.to_i
             menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'],
-                    :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => menu.cheff.cheff_image.url}
+                    :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
             return menu
           end
         end
       end
       menu = {:price => menu.dish.price, :quantity => 0, :dish_name => menu.dish.name,
-                 :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => menu.cheff.cheff_image.url}
+                 :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url =>(menu.cheff.picture.image.url if menu.cheff.picture)}
          return menu
     else
       menu = {:price => menu.dish.price, :quantity => 0, :dish_name => menu.dish.name,
-              :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => menu.cheff.cheff_image.url}
+              :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
       return menu
     end
 

@@ -17,7 +17,7 @@
           </li>
           <li class="profile profile-heart"><div class="add-heart"></div></li>
           <li class="profile profile-dp">
-            <%= image_tag(@recipe.cheff.cheff_image.url, :class => "img-responsive img-circle center-block" ) %>
+            <%= image_tag(@recipe.cheff.picture.image.url, :class => "img-responsive img-circle center-block" ) if @recipe.cheff.picture %>
           </li>
           <li class="profile user-name by"><%= @recipe.cheff.name.camelize %></li>
           <li class="profile user-level"><%= @recipe.cheff.hotel_name.camelize %></li>

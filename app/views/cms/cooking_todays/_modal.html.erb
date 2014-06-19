@@ -7,7 +7,7 @@
       <button data-dismiss="modal" class="btn-close pull-right">x</button>
       <ul class="user-profile">
         <li class="profile-pic">
-          <%= link_to image_tag(@cooking_today.cheff.cheff_image.url, :class => "img-responsive center-block"), "/chef-profile/#{@cooking_today.cheff}", :id => "chef_info" %>
+          <%= link_to image_tag(@cooking_today.cheff.picture.image.url, :class => "img-responsive center-block"), "/chef-profile/#{@cooking_today.cheff}", :id => "chef_info" if !@cooking_today.cheff.picture.blank? %>
         </li>
         <li class="user-name">
           <h3><%= cart_menu[:cheff_name] %>
@@ -19,18 +19,18 @@
 
       <ul class="square">
         <li class="recipe-block veg">
-          <% if !@cooking_today.dish.dish_image? %>
+          <% if @cooking_today.dish.picture && !@cooking_today.dish.picture.image? %>
               <div class="recipe-header">
                 <div class="add-lens"></div>
                 <div class="recipe-name"><%= cart_menu[:dish_name]%></div>
                 <div class="add-heart"></div>
               </div>
           <% end %>
-          <% if @cooking_today.dish.dish_image? %>
+          <% if @cooking_today.dish.picture && @cooking_today.dish.picture.image? %>
               <div class="add-lens"></div>
               <div class="add-heart"></div>
               <div class="recipe-image">
-                <%= image_tag @cooking_today.dish.dish_image.url, :alt=>"#{ @cooking_today.dish.name}", :class => "img-responsive center-block" %>
+                <%= image_tag @cooking_today.dish.picture.image.url, :alt=>"#{ @cooking_today.dish.name}", :class => "img-responsive center-block" %>
               </div>
           <% end %>
         </li>
