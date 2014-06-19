@@ -75,6 +75,10 @@ $(document).ready(function(){
         var menu_qty = parseInt($("#order-count").html(),10);
         var menu_price = parseInt($(".modal-body li.recipe-price").html(),10);
 
+        if(cnt == 0){
+            $(selected_id).html(parseInt($("#order-count").html(),10) +" in cart");
+            return
+        }
         //Printing Cart message
         if(parseInt($("#order-count").html()) > 0){
             $(selected_id).html(cnt +" in cart")
