@@ -1,195 +1,197 @@
-<div class="container-fluid seperator-10">
-<div class="row row-offcanvas row-offcanvas-left">
-<div class="col-xs-12">
-<div class="container">
-  <div class="chef-page">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="profile-details">
-          <li class="profile veg cover-block">
-            <ul class="cover-image">
-              <li class="cover cover-photo hidden"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
-              <li class="cover cover-text">
-                <h1 class="lemon text-white"><%= @recipe.name %></h1>
-                <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
-              </li>
-            </ul>
-          </li>
-          <li class="profile profile-heart"><div class="add-heart"></div></li>
-          <li class="profile profile-dp">
-            <%= image_tag(@recipe.cheff.picture.image.url, :class => "img-responsive img-circle center-block" ) if @recipe.cheff.picture %>
-          </li>
-          <li class="profile user-name by"><%= @recipe.cheff.name.camelize %></li>
-          <li class="profile user-level"><%= @recipe.cheff.hotel_name.camelize %></li>
-          <li class="profile user-city">
-            <span class="city"><%= @recipe.cheff.address.camelize %></span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="normal-header">
-        <h3 class="roboto">About</h3>
-      </div>
-      <div class="normal-block">
-        <p class="text-left text-6"><%= @recipe.information.html_safe %></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="normal-block">
-        <ul class="recipe-info">
-          <li>Cooking time<span><%= @recipe.cooking_time %> min</span></li>
-          <li>Serves<span><%= @recipe.serves %></span></li>
-          <li>Cuisine<span class="comma"><%= @recipe.cuisine %></span></li>
-          <li>Tags
-            <% @recipe.tag_list.each do |tag| %>
-                <span class="comma"><%= link_to tag, "#" %></span>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="right-body">
+    <div class="container-fluid seperator-10">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="container">
+              <div class="chef-page">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <ul class="profile-details">
+                      <li class="profile veg cover-block">
+                        <ul class="cover-image">
+                          <li class="cover cover-photo hidden"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
+                          <li class="cover cover-text">
+                            <h1 class="lemon text-white"><%= @recipe.name %></h1>
+                            <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="profile profile-heart"><div class="add-heart"></div></li>
+                      <li class="profile profile-dp">
+                        <%= image_tag(@recipe.picture.image.url, :class => "img-responsive img-circle center-block" ) if @recipe.picture %>
+                      </li>
+                      <li class="profile user-name by"><%= @recipe.cheff.name.camelize %></li>
+                      <li class="profile user-level"><%= @recipe.cheff.hotel_name.camelize %></li>
+                      <li class="profile user-city">
+                        <span class="city"><%= @recipe.cheff.address.camelize %></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="normal-header">
+                    <h3 class="roboto">About</h3>
+                  </div>
+                  <div class="normal-block">
+                    <p class="text-left text-6"><%= @recipe.information.html_safe %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="normal-block">
+                    <ul class="recipe-info">
+                      <li>Cooking time<span><%= @recipe.cooking_time %> min</span></li>
+                      <li>Serves<span><%= @recipe.serves %></span></li>
+                      <li>Cuisine<span class="comma"><%= @recipe.cuisine %></span></li>
+                      <li>Tags
+                        <% @recipe.tag_list.each do |tag| %>
+                            <span class="comma"><%= link_to tag, "#" %></span>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="normal-header">
-        <h2 class="roboto-l">Ingredients</h2>
-      </div>
-      <div class="normal-body">
-        <div class="recipe-ingredients">
-          <% @recipe.ingredients.group_by(&:sub_heading).each do |ingredient_heading, ingredient_attr| %>
-              <h3 class="dark-title"><%= ingredient_heading %></h3>
-              <ul class="ingredients-list">
-                  <% ingredient_attr.each do |attr| %>
-                    <li class="ingredient">
-                      <span class="quantity"><%= attr.quantity %></span>
-                      <span class="unit"><%= attr.unit %></span>
-                      <span class="name"><%= attr.ingredient_name %></span>
-                      <span class="google pull-right">
-                        <%= link_to "Search", "https://www.google.co.in/?#q=#{attr.ingredient_name}", :target=>"_blank", :class=>"text-hide" %>
-                      </span>
-                    </li>
-                  <% end %>
-              </ul>
-          <% end %>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="normal-header">
+                    <h2 class="roboto-l">Ingredients</h2>
+                  </div>
+                  <div class="normal-body">
+                    <div class="recipe-ingredients">
+                      <% @recipe.sub_menus.each do |submenu| %>
+                          <h3 class="dark-title"><%= submenu.title.camelize %></h3>
+                          <ul class="ingredients-list">
+                              <% submenu.ingredients.each do |ingredient| %>
+                                <li class="ingredient">
+                                  <span class="quantity"><%= ingredient.quantity %></span>
+                                  <span class="unit"><%= ingredient.unit %></span>
+                                  <span class="name"><%= ingredient.ingredient_name %></span>
+                                  <span class="google pull-right">
+                                    <%= link_to "Search", "https://www.google.co.in/?#q=#{ingredient.ingredient_name}", :target=>"_blank", :class=>"text-hide" %>
+                                  </span>
+                                </li>
+                              <% end %>
+                          </ul>
+                      <% end %>
 
-        </div>
-      </div>
-      <div class="normal-header">
-        <h2 class="roboto-l">Directions</h2>
-      </div>
-      <div class="normal-body">
-        <div class="recipe-directions">
-          <% @recipe.prepration_steps.group_by(&:sub_heading).each do |preparation_heading, preparation_attr| %>
-          <h3 class="dark-title"><%= preparation_heading %></h3>
-          <ol class="direction-list">
-            <% preparation_attr.each do |attr| %>
-                <li class="text"><%= attr.steps %></li>
-            <% end %>
-          </ol>
-          <% end %>
-          <div class="direction-image">
-            <img class="img-responsive center-block" src="/assets/dal-pic.jpg" alt="dal">
+                    </div>
+                  </div>
+                  <div class="normal-header">
+                    <h2 class="roboto-l">Directions</h2>
+                  </div>
+                  <div class="normal-body">
+                    <div class="recipe-directions">
+                      <% @recipe.sub_menus.each do |submenu| %>
+                          <h3 class="dark-title"><%= submenu.title.camelize %></h3>
+                          <ol class="direction-list">
+                            <% submenu.prepration_steps.each do |step| %>
+                                <li class="text"><%= step.steps %></li>
+                            <% end %>
+                          </ol>
+                          <div class="direction-image">
+                            <%= image_tag(submenu.picture.image.url, :class => "img-responsive img-circle center-block" ) if submenu.picture %>
+                          </div>
+                      <% end %>
+
+                    </div>
+                  </div>
+
+                  <div class="normal-header">
+                    <h2 class="roboto-l">Tips</h2>
+                  </div>
+                  <div class="normal-body">
+                    <div class="recipe-directions">
+                      <ol class="direction-list">
+                        <% @recipe.tips.each do |recipe| %>
+                            <li class="text"><%= recipe.tips %></li>
+                        <% end %>
+                      </ol>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="container">
+                  <div class="hola-rating seperator-10">
+                    <div class="add-heart">
+                      <ul class="rating-block">
+                        <li class="five-stars">
+                          <div id="star"></div>
+                        </li>
+                        <li class="review-count">
+                          <span class="count">83</span>
+                          <span class="ask-rate"><a href="#">Rate it</a></span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="container seperator-10">
+                    <div class="normal-body">
+                      <p class="text-6 text-center">This is a signature dish and can be made to order</p>
+
+                    </div>
+                    <div class="min-order-block text-center">
+                      <h3>Minimum Order Details</h3>
+
+                      <ul class="block-3">
+                        <li class="each-block">
+                          <a href="#">
+                            <span id="served-count" class="upper roboto-b"><%= @recipe.portions %></span>
+                            <span class="lower text-uppercase">Portions</span>
+                          </a>
+                        </li>
+                        <li class="each-block">
+                          <a href="#">
+                            <span id="recipe-count" class="upper roboto-b"><%= @recipe.days_notice %></span>
+                            <span class="lower text-uppercase">Days Notice</span>
+                          </a>
+                        </li>
+                        <li class="each-block">
+                          <a href="#">
+                            <span id="fan-count" class="upper roboto-b"><%= @recipe.price %>/-</span>
+                            <span class="lower text-uppercase">Per Portion</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="container">
+                    <div class="normal-body text-center">
+                      <button class="btn-golden col-xs-8 col-xs-push-2 roboto-b text-6" type="button">Order it</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 sidebar-offcanvas hola-sidemenu" id="sidebar" role="navigation">
+                  <div class="list-group">
+                    <a href="#" class="list-group-item">
+                      <h4 class="list-group-item-heading active" id="user-name">Abhishek Thakkar</h4>
+                      <p class="list-group-item-text " id="user-contact">9876543210</p></a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-home"></span>Home</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-signature"></span>Signature Dishes</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-party-order"></span>Party Orders</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-recipe"></span>Recipes</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-favorite"></span>Favorites</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-order-history"></span>Order History</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-address"></span>Addressbook</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-email"></span>Talk to us</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-share"></span>Love us?</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-gear"></span>Settings</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="direction-image">
-            <img class="img-responsive center-block" src="/assets/baati-pic.jpg" alt="dal">
-          </div>
-
         </div>
-      </div>
-
-      <div class="normal-header">
-        <h2 class="roboto-l">Tips</h2>
-      </div>
-      <div class="normal-body">
-        <div class="recipe-directions">
-          <ol class="direction-list">
-            <% @recipe.tips.each do |recipe| %>
-                <li class="text"><%= recipe.tips %></li>
-            <% end %>
-          </ol>
-        </div>
-      </div>
-
-    </div>
-    <div class="container">
-      <div class="hola-rating seperator-10">
-        <div class="add-heart">
-          <ul class="rating-block">
-            <li class="five-stars">
-              <div id="star"></div>
-            </li>
-            <li class="review-count">
-              <span class="count">83</span>
-              <span class="ask-rate"><a href="#">Rate it</a></span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="container seperator-10">
-        <div class="normal-body">
-          <p class="text-6 text-center">This is a signature dish and can be made to order</p>
-
-        </div>
-        <div class="min-order-block text-center">
-          <h3>Minimum Order Details</h3>
-
-          <ul class="block-3">
-            <li class="each-block">
-              <a href="#">
-                <span id="served-count" class="upper roboto-b"><%= @recipe.portions %></span>
-                <span class="lower text-uppercase">Portions</span>
-              </a>
-            </li>
-            <li class="each-block">
-              <a href="#">
-                <span id="recipe-count" class="upper roboto-b"><%= @recipe.days_notice %></span>
-                <span class="lower text-uppercase">Days Notice</span>
-              </a>
-            </li>
-            <li class="each-block">
-              <a href="#">
-                <span id="fan-count" class="upper roboto-b"><%= @recipe.price %>/-</span>
-                <span class="lower text-uppercase">Per Portion</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="container">
-        <div class="normal-body text-center">
-          <button class="btn-golden col-xs-8 col-xs-push-2 roboto-b text-6" type="button">Order it</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 sidebar-offcanvas hola-sidemenu" id="sidebar" role="navigation">
-      <div class="list-group">
-        <a href="#" class="list-group-item">
-          <h4 class="list-group-item-heading active" id="user-name">Abhishek Thakkar</h4>
-          <p class="list-group-item-text " id="user-contact">9876543210</p></a>
-        <a href="#" class="list-group-item"><span class="sprite icon-home"></span>Home</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-signature"></span>Signature Dishes</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-party-order"></span>Party Orders</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-recipe"></span>Recipes</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-favorite"></span>Favorites</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-order-history"></span>Order History</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-address"></span>Addressbook</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-email"></span>Talk to us</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-share"></span>Love us?</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-gear"></span>Settings</a>
-      </div>
-    </div>
-  </div>
-</div> <!-- fluid container ends -->
+     </div> <!-- fluid container ends -->
+</div>

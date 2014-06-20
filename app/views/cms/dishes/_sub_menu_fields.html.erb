@@ -1,0 +1,17 @@
+<%= stylesheet_link_tag "cms_custom" %>
+
+<div class="fields">
+  <div class="fields text_fields">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="fields text_fields">
+    <label for="dish_dish_image">Sub Menu Image</label>
+    <%= f.fields_for :picture, SubMenu.new do |i| %>
+        <%= i.file_field :image, :class => "submenu_picture" %>
+    <% end %>
+  </div>
+  <span style="margin-left: 140px;margin-top: 10px;display: table;">
+    <%= link_to_remove_fields "Remove SubMenu", f %>
+  </span>
+</div>

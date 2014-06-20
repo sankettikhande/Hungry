@@ -1,0 +1,19 @@
+<div class="fields">
+  <div class="fields text_fields">
+    <%= f.label :ingredient_name %>
+    <%= f.text_field :ingredient_name %>
+  </div>
+  <div class="fields text_fields">
+    <%= f.label :quantity %>
+    <%= f.text_field :quantity %>
+  </div>
+  <div class="fields text_fields">
+    <%= f.label :unit %>
+    <%= f.text_field :unit %>
+  </div>
+  <div class="fields text_fields">
+    <%= f.label :special_remarks %>
+    <%= f.text_field :special_remarks %>
+  </div>
+  <span style="margin-left: 140px;margin-top: 10px;display: table;"><%= link_to_remove_fields "Remove Ingredient", f %></span>
+</div>

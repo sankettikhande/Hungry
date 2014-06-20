@@ -190,8 +190,8 @@ form, .faux_form {
 a{
     font-weight: bold;
 }
-#dish_dish_image{
-    height: 25px;;
+#dish_picture_attributes_image, input.submenu_picture{
+    height: 25px;
 }
 #dish_cheff_id{
     width: 200px;

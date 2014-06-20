@@ -1,4 +1,4 @@
 class PreprationStep < ActiveRecord::Base
-  belongs_to :dish
-  attr_accessible :steps, :sub_heading
+  belongs_to :sub_menu
+  attr_accessible :steps, :sub_heading, :sub_menu_id
 end
