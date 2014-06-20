@@ -18,8 +18,12 @@
 <body>
     <div id="wrap">
         <%= render :partial => "/layouts/header" %>
-        <%= yield %>
-        <%= render 'layouts/side_menu' %>
+        <div class="sliding-page row-offcanvas row-offcanvas-left">
+
+            <%= render 'layouts/side_menu' %>
+            <%= yield %>
+
+        </div>
       <% if !@footer %>
           <%= render 'layouts/content_footer' %>
       <% end %>
