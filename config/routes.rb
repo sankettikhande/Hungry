@@ -15,6 +15,7 @@ Holachef::Application.routes.draw do
     content_blocks :dishes
     content_blocks :cooking_todays
     content_blocks :orders
+    content_blocks :sub_menus
   end
 
   match '/orders/set_cart'=> 'Cms::orders#set_cart'

@@ -1,8 +1,9 @@
-<div class="container seperator-10">
-  <div class="row row-offcanvas row-offcanvas-left">
-    <div class="col-xs-12">
-      <div class="signature-panel">
-        <div class="hola-container">
+<div class="right-body">
+    <div class="container seperator-10">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="signature-panel">
+            <div class="hola-container">
 
           <div class="item" id="signature_item">
             <ul class="square">
@@ -17,7 +18,6 @@
                     <div class="add-lens"></div>
                     <div class="add-heart"></div>
                     <%= image_tag @signature_dish.picture.image.url, :class => "img-responsive center-block" %>
-                    <!--<img class="img-responsive center-block" src="" alt="Sarso">-->
                   </div>
                 </div>
               </li>
@@ -27,31 +27,28 @@
                   <li class="recipe-stock"><span class="stock-count">10</span> left</li>
                   <li class="recipe-price">180/-</li>
                 </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="hola-rating">
-          <ul class="rating-block">
-            <li class="five-stars">
-              <div id="star" style="float: left"></div>
-              <input type="hidden" name="dish[dish_id]" id = "dish_id" value="<%= @signature_dish.id %>">
-              <div class="rating_msg" style="float: left"></div>
-            </li>
-            <li class="review-count">
-              <span class="count">83</span>
-              <span class="ask-rate"><a href="#">Rate it</a></span>
-            </li>
-          </ul>
-        </div>
+             </div>
+            </div>
+            <div class="hola-rating">
+              <ul class="rating-block">
+                <li class="five-stars">
+                  <div id="star" style="float: left"></div>
+                  <input type="hidden" name="dish[dish_id]" id = "dish_id" value="<%= @signature_dish.id %>">
+                  <div class="rating_msg" style="float: left"></div>
+                </li>
+                <li class="review-count">
+                  <span class="count"><%= @signature_dish.ratings %></span>
+                </li>
+              </ul>
+            </div>
 
-        <div class="dish-info">
-          <p>A rajasthani delicacy, this is ideal for those who like it heavy. </p>
-          <p><span class="portion">1</span><span id="portion-eqv">2 Baatis</span></p>
-        </div>
+            <div class="dish-info">
+              <p>A rajasthani delicacy, this is ideal for those who like it heavy. </p>
+              <p><span class="portion">1</span><span id="portion-eqv">2 Baatis</span></p>
+            </div>
 
-        <div class="min-order-block">
-          <h3>Minimum Order Details</h3>
+            <div class="min-order-block">
+              <h3>Minimum Order Details</h3>
 
           <ul class="block-3">
             <li class="each-block">
