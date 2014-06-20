@@ -7,6 +7,8 @@ Holachef::Application.routes.draw do
   match '/signature/:dish_name'=> 'Cms::dishes#signature_dishes'
   match '/update_ratings' => "Cms::dishes#update_ratings"
 
+  match '/create_signature_order'=>"Cms::orders#create_signature_order"
+
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
     content_blocks :cheffs

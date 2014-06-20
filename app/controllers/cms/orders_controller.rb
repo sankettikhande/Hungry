@@ -1,5 +1,5 @@
 class Cms::OrdersController < Cms::ContentBlockController
-  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm, :remove_from_cart]
+  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm, :remove_from_cart, :create_signature_order]
   def set_cart
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []
@@ -79,6 +79,18 @@ class Cms::OrdersController < Cms::ContentBlockController
     session[:cart] = []
     respond_to do |format|
       format.html {render :layout => 'application'}
+    end
+  end
+
+  def create_signature_order
+    @signature_dish = Dish.find(params[:dish_id])
+    order = Order.create(:date => params[:order][:date], :from_time => params[:order][:from_time],
+                         :upto_time => params[:order][:upto_time], :order_type => "Pick Up")
+    if order
+      Order.create_signature_menus(order, @signature_dish, params[:order])
+    end
+    respond_to do |format|
+      format.js
     end
   end
 end
