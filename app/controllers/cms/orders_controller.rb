@@ -47,7 +47,7 @@ class Cms::OrdersController < Cms::ContentBlockController
 
   def payment_gateway
     @title = "Select Payment Method"
-    @order = Order.create(:date => Time.now, :order_status => "Created")
+    @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular')
     session[:cart].each do |item|
       item.each do |item_id, item_attr|
         cooking_today  = CookingToday.find(item_id)
@@ -76,6 +76,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @title = "Thank You!"
     @footer = "false"
+    Order.update_all({:order_status => "Payment Done"} , {:id => params[:order_id]}) if params[:order_id]
     session[:cart] = []
     respond_to do |format|
       format.html {render :layout => 'application'}
