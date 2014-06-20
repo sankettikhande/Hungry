@@ -1,5 +1,5 @@
 class Cms::OrdersController < Cms::ContentBlockController
-  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm, :remove_from_cart]
+  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm, :remove_from_cart, :create_signature_order]
   def set_cart
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []
@@ -47,7 +47,7 @@ class Cms::OrdersController < Cms::ContentBlockController
 
   def payment_gateway
     @title = "Select Payment Method"
-    @order = Order.create(:date => Time.now, :order_status => "Created")
+    @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular')
     session[:cart].each do |item|
       item.each do |item_id, item_attr|
         cooking_today  = CookingToday.find(item_id)
@@ -76,9 +76,22 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @title = "Thank You!"
     @footer = "false"
+    Order.update_all({:order_status => "Payment Done"} , {:id => params[:order_id]}) if params[:order_id]
     session[:cart] = []
     respond_to do |format|
       format.html {render :layout => 'application'}
+    end
+  end
+
+  def create_signature_order
+    @signature_dish = Dish.find(params[:dish_id])
+    order = Order.create(:date => params[:order][:date], :from_time => params[:order][:from_time],
+                         :upto_time => params[:order][:upto_time], :order_type => "Pick Up")
+    if order
+      Order.create_signature_menus(order, @signature_dish, params[:order])
+    end
+    respond_to do |format|
+      format.js
     end
   end
 end

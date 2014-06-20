@@ -7,13 +7,13 @@
 
     <div class="container-fluid back-white seperator-2">
 
-      <ul class="pay-options">
-        <li class="payby"><a href="order-confirm.html">Cash on Delivery</a></li>
-        <li class="payby"><a href="order-confirm.html">Credit Card Swipe on Delivery</a></li>
-        <li class="payby"><a href="order-confirm.html">Netbanking</a></li>
-        <li class="payby"><a href="order-confirm.html">Prepaid Balance</a></li>
-      </ul>
-    </div>
+  <ul class="pay-options">
+    <li class="payby"><%= link_to "Cash on Delivery", "order-confirm?order_id=#{@order.id}" %></li>
+    <li class="payby"><%= link_to "Credit Card Swipe on Delivery", "order-confirm?order_id=#{@order.id}" %></li>
+    <li class="payby"><%= link_to "Netbanking", "order-confirm?order_id=#{@order.id}" %></li>
+    <li class="payby"><%= link_to "Prepaid Balance", "order-confirm?order_id=#{@order.id}" %></li>
+  </ul>
+</div>
 
     <div class="container-fluid back-white seperator-10">
       <div class="seperator-5 card-header">

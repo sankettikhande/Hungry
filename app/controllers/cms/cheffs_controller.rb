@@ -28,7 +28,7 @@ class Cms::CheffsController < Cms::ContentBlockController
     @chef = Cheff.includes(:cooking_todays).find(params[:chef_id])
     @total_qty = CookingToday.sum(:ordered, :conditions => {:cheff_id => @chef.id})
     @total_receipes = Dish.count(:all, :conditions => {:cheff_id => @chef.id})
-    @cooking_todays = @chef.cooking_todays
+    @cooking_todays = @chef.cooking_todays.where(:date => Time.current.to_date)
     @signature_dishes = Dish.where(:if_signature => true, :cheff_id => @chef.id)
     @recipes = Dish.where(:cheff_id => @chef.id)
     respond_to do |format|

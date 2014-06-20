@@ -28,6 +28,8 @@ $(document).ready(function(){
         });
     });
 
+
+
     $('li.food-bill span.item-name').live('click',function(){
         $.ajax({
             'method': 'GET',
@@ -147,6 +149,90 @@ $(document).ready(function(){
         $("#submit_order input").removeClass('active');
         $(this).addClass('active');
     })
+
+
+//    Signature Dish Order
+    var signature_cnt = 0;
+    var signature_total = 0;
+    var price = 0;
+    $('#signature-add-order').unbind("click").live('click', function(e) {
+        e.preventDefault();
+        $("#signature-minus-order").removeClass("disabled");
+        $("#signature-minus-order").removeAttr("disabled");
+        price = parseInt($('#signature-cost').html(),10);
+        var max_qty = 20;
+        if (signature_cnt < max_qty){
+            signature_cnt = parseInt($("#order-count").html(),10) + 1;
+            signature_total = signature_cnt * price;
+            $("#order-count").html(signature_cnt);
+            $("#signature_qty").val(signature_cnt);
+            $('#signature-total').html(signature_total);
+        }
+        if (signature_cnt == max_qty){
+            $("#signature-add-order").attr("disabled");
+            $("#signature-add-order").addClass("disabled");
+        }
+    });
+
+    $('#signature-minus-order').unbind("click").live('click',function(e){
+        e.preventDefault();
+        $("#signature-add-order").removeAttr("disabled");
+        $("#signature-add-order").removeClass("disabled");
+        signature_cnt = parseInt($("#order-count").html(),10)
+        price = parseInt($('#signature-cost').html(),10);
+        if(signature_cnt >=  0){
+            signature_cnt = signature_cnt - 1;
+            signature_total = signature_cnt * price
+            $("#order-count").html(signature_cnt);
+            $("#signature_qty").val(signature_cnt);
+            $('#signature-total').html(signature_total);
+        }
+        if (signature_cnt == 0){
+            $("#signature-minus-order").attr("disabled");
+            $("#signature-minus-order").addClass("disabled");
+        }
+    });
+
+    $("#signature_form").validationEngine({
+        'custom_error_messages': {
+            '#datetimepicker5' : {
+                'required': {
+                    'message': "Date is required "
+                }
+            },
+            '#datetimepicker-from' : {
+                'required': {
+                    'message': "From Time is required "
+                }
+            },
+            '#datetimepicker-upto' : {
+                'required': {
+                    'message': "Upto Time is required "
+                }
+            }
+        }
+    });
+
+    $('#signature-submit').click(function(){
+        var valid = $("#signature_form").validationEngine('validate');
+        if(valid == true){
+            if(parseInt($('#signature_qty').val(),10) == 0) {
+                alert('elsif')
+                $('#order-count').validationEngine('showPrompt', 'Please select at least quantity', 'error')
+            }
+            else{
+                $.ajax({
+                    'url': '/create_signature_order',
+                    'type': "POST",
+                    'data' : $('#signature_form').serialize(),
+                    'dataType': 'script'
+                })
+            }
+        }
+        else{
+            $("#signature_form").validationEngine();
+        }
+    });
 
 })
 
