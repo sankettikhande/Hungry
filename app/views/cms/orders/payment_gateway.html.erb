@@ -8,10 +8,10 @@
     <div class="container-fluid back-white seperator-2">
 
   <ul class="pay-options">
-    <li class="payby"><%= link_to "Cash on Delivery", "order-confirm?order_id=#{@order.id}" %></li>
-    <li class="payby"><%= link_to "Credit Card Swipe on Delivery", "order-confirm?order_id=#{@order.id}" %></li>
-    <li class="payby"><%= link_to "Netbanking", "order-confirm?order_id=#{@order.id}" %></li>
-    <li class="payby"><%= link_to "Prepaid Balance", "order-confirm?order_id=#{@order.id}" %></li>
+    <li class="payby"><%= link_to "Cash on Delivery", "order-confirm/#{@order.id}" %></li>
+    <li class="payby"><%= link_to "Credit Card Swipe on Delivery", "order-confirm/#{@order.id}" %></li>
+    <li class="payby"><%= link_to "Netbanking", "order-confirm/#{@order.id}" %></li>
+    <li class="payby"><%= link_to "Prepaid Balance", "order-confirm/#{@order.id}" %></li>
   </ul>
 </div>
 
