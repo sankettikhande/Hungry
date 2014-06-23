@@ -79,7 +79,13 @@ $(document).ready(function(){
 
         if(cnt == 0){
             $(selected_id).html(parseInt($("#order-count").html(),10) +" in cart");
-            return
+            $.ajax({
+                'method': 'GET',
+                'url': '/orders/remove_from_cart',
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': parseInt($("#order-count").html()), 'price': menu_price, 'total': parseInt($("#total_price").val(),0)},
+                'dataType': 'script'
+            })
+
         }
         //Printing Cart message
         if(parseInt($("#order-count").html()) > 0){
