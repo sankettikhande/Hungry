@@ -24,7 +24,11 @@ $(document).ready(function(){
             'method': 'GET',
             'url': '/cooking_todays/get_item_details',
             'data': {'cooking_today_id': parseInt($(this).attr('id'))},
-            'dataType': 'script'
+            'dataType': 'script',
+            'beforeSend': function(){
+                $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+                    "<p class='form-control looks-input hidden' id='order-count'>0</p>")
+            }
         });
     });
 
@@ -35,7 +39,11 @@ $(document).ready(function(){
             'method': 'GET',
             'url': '/cooking_todays/get_review_order_details',
             'data': {'cooking_today_id': parseInt($(this).attr('id')), 'cooking_today_qty':$(this).attr('data-quantity') },
-            'dataType': 'script'
+            'dataType': 'script',
+            'beforeSend': function(){
+                $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+                    "<p class='form-control looks-input hidden' id='order-count'>0</p>")
+            }
         });
     })
 
