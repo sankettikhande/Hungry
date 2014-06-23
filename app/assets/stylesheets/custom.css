@@ -750,3 +750,6 @@ html{overflow-x:hidden }
     padding-left: 20px;
     display: none;
 }
+.modal-loading{
+    text-align: center;width: 100%
+}
