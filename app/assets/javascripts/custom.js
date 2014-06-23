@@ -20,6 +20,8 @@ $(document).ready(function(){
     var total = 0;
     var cnt = parseInt($("#order-count").html(),10);
     $('.item').live('click', function(){
+        $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+            "<p class='form-control looks-input hidden' id='order-count'>0</p>");
         $.ajax({
             'method': 'GET',
             'url': '/cooking_todays/get_item_details',
@@ -35,6 +37,8 @@ $(document).ready(function(){
 
 
     $('li.food-bill span.item-name').live('click',function(){
+        $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+            "<p class='form-control looks-input hidden' id='order-count'>0</p>");
         $.ajax({
             'method': 'GET',
             'url': '/cooking_todays/get_review_order_details',
