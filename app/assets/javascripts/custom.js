@@ -20,6 +20,8 @@ $(document).ready(function(){
     var total = 0;
     var cnt = parseInt($("#order-count").html(),10);
     $('.item').live('click', function(){
+        $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
+        $(".modal-footer").empty();
         $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
             "<p class='form-control looks-input hidden' id='order-count'>0</p>");
         $.ajax({
@@ -33,6 +35,8 @@ $(document).ready(function(){
 
 
     $('li.food-bill span.item-name').live('click',function(){
+        $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
+        $(".modal-footer").empty();
         $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
             "<p class='form-control looks-input hidden' id='order-count'>0</p>");
         $.ajax({
