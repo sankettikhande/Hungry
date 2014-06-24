@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   include ApplicationHelper
   before_filter :landing, :only => [:index]
+  before_filter :prepare_for_mobile
+  skip_before_filter :prepare_for_mobile, :only => [:desktop]
 
   def landing
     if session[:landing].nil?
@@ -18,6 +20,14 @@ class HomeController < ApplicationController
     @title = "Today's Menu"
     @todays_menu = CookingToday.where(:date =>Time.current.to_date)
     update_cart(@todays_menu) if !@todays_menu.blank?
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def desktop
+    render :layout => false
   end
 
   private

@@ -31,8 +31,7 @@ Holachef::Application.routes.draw do
   #resources :home do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
 
-
-
+  match '/desktop' => 'home#desktop'
   #end
 
   # The priority is based upon order of creation:
