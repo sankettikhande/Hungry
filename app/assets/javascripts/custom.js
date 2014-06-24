@@ -20,6 +20,10 @@ $(document).ready(function(){
     var total = 0;
     var cnt = parseInt($("#order-count").html(),10);
     $('.item').live('click', function(){
+        $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
+        $(".modal-footer").empty();
+        $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+            "<p class='form-control looks-input hidden' id='order-count'>0</p>");
         $.ajax({
             'method': 'GET',
             'url': '/cooking_todays/get_item_details',
@@ -31,6 +35,10 @@ $(document).ready(function(){
 
 
     $('li.food-bill span.item-name').live('click',function(){
+        $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
+        $(".modal-footer").empty();
+        $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+            "<p class='form-control looks-input hidden' id='order-count'>0</p>");
         $.ajax({
             'method': 'GET',
             'url': '/cooking_todays/get_review_order_details',
@@ -79,7 +87,13 @@ $(document).ready(function(){
 
         if(cnt == 0){
             $(selected_id).html(parseInt($("#order-count").html(),10) +" in cart");
-            return
+            $.ajax({
+                'method': 'GET',
+                'url': '/orders/remove_from_cart',
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': parseInt($("#order-count").html()), 'price': menu_price, 'total': parseInt($("#total_price").val(),0)},
+                'dataType': 'script'
+            })
+
         }
         //Printing Cart message
         if(parseInt($("#order-count").html()) > 0){
