@@ -341,9 +341,11 @@ label.css-label {
 .navbar-titlebar .page-title  {font-size: 1.2em;font-family: 'robotoregular',Sans-serif;text-align: left;display: inline-block;line-height: 50px;margin:0;margin-left: 10px;position: absolute;}
 .navbar-titlebar .page-title a:hover,.navbar-titlebar .page-title a:focus,.navbar-titlebar .page-title a:active {text-decoration: none;outline: none;}
 
-.navbar-titlebar .page-title .dropdown-menu {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;background: #fff}
-.navbar-titlebar .page-title .dropdown-menu li {display: block;float: none;width: 100%;padding: 6px 0}
-.navbar-titlebar .page-title .dropdown-menu li a {color: #000;display: block;width: 100%;padding: 6px 20px;}
+
+.navbar-titlebar .page-title .dropdown-menu {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;background: #fff;padding-bottom: 0}
+.navbar-titlebar .page-title .dropdown-menu li {display: block;float:left;width: 100%;padding: 0;}
+.navbar-titlebar .page-title .dropdown-menu li+li {border-top: 1px solid #d7d7d7}
+.navbar-titlebar .page-title .dropdown-menu li a {color: #000;display: block;width: 100%;padding: 10px 20px;}
 .navbar-titlebar .page-title a.drop-icon {background: url('/assets/dropd-icon.png') no-repeat;background-size: 10px 10px;background-position: 100% 100%;min-width: 160px}
 
 /**** =Main Content *****/

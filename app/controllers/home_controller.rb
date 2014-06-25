@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
   include ApplicationHelper
-  before_filter :landing, :only => [:index]
+
   before_filter :prepare_for_mobile
+  before_filter :landing, :only => [:index]
   skip_before_filter :prepare_for_mobile, :only => [:desktop]
 
   def landing
@@ -10,8 +11,6 @@ class HomeController < ApplicationController
       respond_to do |format|
         format.html{render :template =>  'home/landing' ,:layout => 'landing'}
       end
-    else
-      return
     end
 
   end
