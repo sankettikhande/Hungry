@@ -248,7 +248,12 @@ $(document).ready(function(){
         }
     });
 
-})
+//    Disable back button on Order Confirmation page
+
+    if (window.location.href.indexOf("order-confirm") > -1) {
+        $(".btn-back").addClass("hidden");
+    }
+});
 
 // random splash on refresh
 $(document).ready(function(){
