@@ -231,7 +231,6 @@ $(document).ready(function(){
         var valid = $("#signature_form").validationEngine('validate');
         if(valid == true){
             if(parseInt($('#signature_qty').val(),10) == 0) {
-                alert('elsif')
                 $('#order-count').validationEngine('showPrompt', 'Please select at least quantity', 'error')
             }
             else{
