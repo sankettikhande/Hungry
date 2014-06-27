@@ -8,7 +8,11 @@
             <%= calculate_total_price() %>/-
           </li>
           <li class="checkout">
-            <%= link_to "Checkout", '/review_order' %>
+            <% if session[:cart].blank? %>
+                <%= link_to "Checkout", '#', :class => "text-grey", :id=> "checkout_link" %>
+            <% else %>
+                <%= link_to "Checkout", '/review_order', :id=> "checkout_link" %>
+            <% end %>
           </li>
         </ul>
       </div>
