@@ -1,1 +1,0 @@
-$QA_DOMAIN_URL="http://qa.holachef.com"
