@@ -131,21 +131,35 @@ $(document).ready(function(){
 
     $("#review-order-done").unbind("click").live('click',function(e){
         e.preventDefault();
+        var selected_id = "#"+$("#selected_item").val()+" li.recipe-stock";
         var date = new Date();
         var menu_qty = parseInt($("#order-count").html(),10);
         var menu_price = parseInt($(".modal-body li.recipe-price span").html(),10);
-        $.ajax({
-            'method': 'GET',
-            'url': '/orders/set_cart',
-            'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html() },
-            'dataType': 'script'
-        });
-        $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
-        $("#"+selected_review_id+" span.item-qty").html($("#order-count").html() )
-        $("#"+selected_review_id+" span.item-cost").html(parseInt($("#order-count").html(),10)*menu_price )
 
+        if(parseInt($("#order-count").html()) > 0){
+            $.ajax({
+                'method': 'GET',
+                'url': '/orders/set_cart',
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html() },
+                'dataType': 'script'
+            })
+            $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
+            $("#"+selected_review_id+" span.item-qty").html($("#order-count").html() )
+            $("#"+selected_review_id+" span.item-cost").html(parseInt($("#order-count").html(),10)*menu_price )
+        }
+        else if(parseInt($("#order-count").html()) == 0){
+            $.ajax({
+                'method': 'GET',
+                'url': '/orders/remove_from_cart',
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': parseInt($("#order-count").html()), 'price': menu_price, 'total': parseInt($("#total_price").val(),0)},
+                'dataType': 'script'
+            })
 
-
+            $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
+            $("#"+selected_review_id+" span.item-qty").html($("#order-count").html() )
+            $("#"+selected_review_id+" span.item-cost").html(parseInt($("#order-count").html(),10)*menu_price );
+            $("#"+selected_review_id).remove();
+        }
     });
 
     $("span.item-remove a").live('click',function(){
