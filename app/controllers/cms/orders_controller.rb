@@ -92,10 +92,10 @@ class Cms::OrdersController < Cms::ContentBlockController
     @secSignature=''
     @reqtime = Time.now.to_f*1000
     ct = CitrusLib.new
-    ct.setApiKey($apikey,$gateway)
-    data=$pmturl+"#{@order.total}#{@order.id}INR"
+    ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway_env)
+    data=Settings.citrus_gateway.pmturl+"#{@order.total}#{@order.id}INR"
     @secSignature = ct.getHmac(data)
-    $action=ct.getCpUrl+$pmturl
+    @action=ct.getCpUrl+Settings.citrus_gateway.pmturl
     @flag=true
     respond_to do |format|
       format.js
@@ -136,7 +136,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         @statusmsg=@txmsg
       elsif @txstatus == 'SUCCESS'
         ct = CitrusLib.new
-        ct.setApiKey($apikey,$gateway)
+        ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
         secSignature = ct.getHmac(@data)
         if secSignature != @signature    # post signature verification to prevent forgery
           @status = false
