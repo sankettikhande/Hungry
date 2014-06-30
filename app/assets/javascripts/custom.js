@@ -310,4 +310,18 @@ $(document).ready(function(){
             })
         }
     });
+
+    $(".payment_mode").click(function(){
+        var paymentMode = $(this).attr('data-paymentMode');
+        var orderId = $(this).attr('data-orderId');
+        $.ajax({
+            'url' : '/submit_payment_form',
+            'method': 'POST',
+            'data': {'paymentMode': paymentMode, 'orderId':orderId},
+            'dataType':'script'
+        })
+
+
+
+    })
 });

@@ -2,6 +2,8 @@ class Order < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
   attr_accessor :skip_callbacks
 
+  serialize :payment_gateway_response, Hash
+
   has_many :ordered_menus
 
   #validates :name, :presence => true
@@ -15,4 +17,5 @@ class Order < ActiveRecord::Base
                                     :cheff_id => signature_dish.cheff_id)
     order.update_attributes(:total => ordered_menu.rate * ordered_menu.quantity)
   end
+
 end

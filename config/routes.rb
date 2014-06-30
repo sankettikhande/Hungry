@@ -32,6 +32,12 @@ Holachef::Application.routes.draw do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
 
   match '/desktop' => 'home#desktop'
+
+  match '/submit_payment_form'=> 'Cms::orders#submit_payment_form'
+  post "orders/callback"=>'Cms::orders#callback'
+
+  match '/home/index_call' =>'home#index_call'
+
   #end
 
   # The priority is based upon order of creation:
