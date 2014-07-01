@@ -2,7 +2,7 @@ class Dish < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
   attr_accessor :skip_callbacks
 
-  attr_accessible :dish_image, :tips_attributes, :tag_list,
+  attr_accessible :tips_attributes, :tag_list,
                   :picture_attributes, :sub_menus_attributes
   has_many :taggings
   has_many :tags, through: :taggings
@@ -18,7 +18,6 @@ class Dish < ActiveRecord::Base
 
   accepts_nested_attributes_for :tips
   accepts_nested_attributes_for :sub_menus
-  has_attached_file :dish_image
 
   validates :name, :presence => true
   validates :cheff_id, :presence => true

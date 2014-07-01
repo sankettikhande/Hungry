@@ -1,4 +1,4 @@
-require './lib/citrus_lib.rb'
+require "#{Rails.root}/lib/citrus_lib.rb"
 class Cms::OrdersController < Cms::ContentBlockController
   skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm,
                                                                      :remove_from_cart, :create_signature_order, :callback,
