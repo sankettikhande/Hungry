@@ -5,9 +5,8 @@ class Cheff < ActiveRecord::Base
   has_many :dishes
   has_many :cooking_todays
   has_many :ordered_menus
-  has_attached_file :cheff_image
 
-  attr_accessible :cheff_image,:picture_attributes
+  attr_accessible :picture_attributes
 
   has_one :picture, :as => :picturable, :class_name => 'Picture', :dependent => :destroy
   accepts_nested_attributes_for :picture
