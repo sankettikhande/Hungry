@@ -1,0 +1,13 @@
+$(".payment_form").append("<form action='<%= @action %>' method='POST' id='transactionForm'>");
+$(".payment_form form").append('<input class="text" name="merchantAccessKey" type="hidden" value="<%= Settings.citrus_gateway.accesskey %>" />');
+$(".payment_form form").append('<input class="text" name="merchantTxnId" type="hidden" value="<%= @order.id %>" />');
+$(".payment_form form").append('<input class="text" name="firstName" type="hidden" value="<%= @order.name %>" />');
+$(".payment_form form").append('<input class="text" name="phoneNumber" type="hidden" value="<%= @order.phone_no %>" />');
+$(".payment_form form").append('<input class="text" name="addressStreet1" type="hidden" value="<%= @order.address %>" />');
+$(".payment_form form").append('<input class="text" name="orderAmount" type="hidden" value="<%= @order.total %>" />');
+$(".payment_form form").append('<input class="text" name="currency" type="hidden" value="INR" />');
+$(".payment_form form").append('<input type="hidden" name="returnUrl" value="<%= Settings.citrus_gateway.returnUrl %>" />');
+$(".payment_form form").append('<input type="hidden" name="secSignature" value="<%= @secSignature %>" />');
+$(".payment_form form").append('<input type="hidden" name="reqtime" value="<%= @reqtime %>" />');
+$(".payment_form form").append('<input class="text" name="paymentMode" type="hidden" value="<%= @paymentMode%>" />');
+$('#transactionForm').submit();

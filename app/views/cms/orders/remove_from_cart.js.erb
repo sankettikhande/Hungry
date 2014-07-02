@@ -1,3 +1,7 @@
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
 $("#review_order_total").html("<%=@total%>");
+if (<%= session[:cart].blank? %>){
+    $("#checkout_link").addClass("text-grey");
+    $("#checkout_link").attr("href","#")
+}

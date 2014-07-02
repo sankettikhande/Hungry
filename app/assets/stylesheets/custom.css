@@ -603,6 +603,9 @@ p.hola-text {color: #222222;}
 .nopadding-right {padding-right: 0}
 
 /******* =Sidemenu *********/
+
+/*.hola-sidemenu:before {content: '';background: #fff;position: absolute;left: 0;top: 0;bottom: 0;width: 100%;float: left;z-index: -1;  margin-bottom: -99999px;
+    padding-bottom: 99999px;overflow: hidden;} */
 .hola-sidemenu {margin-top: -10px;height: 100%;border-bottom: 1px solid #ddd;border-right: 1px solid #ddd;background: #fff}
 .hola-sidemenu .list-group {background: #fff;padding-bottom: 50px}
 .hola-sidemenu .list-group .list-group-item {border-radius:0;border-right: none;border-left: none;}
@@ -610,6 +613,9 @@ p.hola-text {color: #222222;}
 .hola-sidemenu .list-group a.list-group-item {color: #333;padding:10px;font-weight:normal}
 .hola-sidemenu .list-group a.list-group-item.active {background: #e2e2e2;outline: none;border:1px solid #e2e2e2;}
 .hola-sidemenu .list-group a.list-group-item:hover,.hola-sidemenu .list-group a.list-group-item:focus {background: #ededed;outline: none;}
+
+span.icon-xs {height: 20px;width: 20px;display:block;margin-right: 5px;float: left;}
+span.text {display: inline-block;line-height: 20px;margin-top: 1px}
 
 span.icon-home {background: url('/assets/icons/icon-home.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;} 
 span.icon-signature {background: url('/assets/icons/icon-signature.png')no-repeat left bottom;width: 20px;height: 20px;margin-right: 5px;display: inline-block;background-size: 20px 20px;}
@@ -714,3 +720,5 @@ html{overflow-x:hidden }
 @media (max-width:480px) {
   .rating_msg {display:none !important}
 }
+
+.modal-sm {max-width:300px;width: 80%;margin-left: auto;margin-right: auto;}

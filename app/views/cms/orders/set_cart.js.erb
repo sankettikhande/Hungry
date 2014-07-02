@@ -1,3 +1,5 @@
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
 $("#review_order_total").html("<%=@total%>");
+$("#checkout_link").removeClass("text-grey");
+$("#checkout_link").attr("href","/review_order")
