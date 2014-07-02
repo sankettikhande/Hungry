@@ -1,6 +1,12 @@
 <div id="footer" class="footer">
 <div class='container'><div class='row'><div class='col-xs-12'><div class='tap-text'>
-  <p class='text-center'><a class='text-orange' id='submit-order-button' href='#'>Select Payment Method</a></p>
+  <p class='text-center' id="select_payment">
+    <% if session[:cart].blank? %>
+        <a class='text-orange text-grey' href='#'>Select Payment Method</a>
+    <% else %>
+        <a class='text-orange' id='submit-order-button' href='#'>Select Payment Method</a>
+    <% end %>
+  </p>
   </div>
   <ul class='chosen-options hidden'>
   <li class='billing'><a href='#'>500/-</a></li>
