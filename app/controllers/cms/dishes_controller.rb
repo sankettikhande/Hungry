@@ -10,6 +10,7 @@ class Cms::DishesController < Cms::ContentBlockController
   end
 
   def signature_dishes
+    @title = "Meet the Chef"
     @signature_dish = Dish.find_by_name(params[:dish_name])
     respond_to do |format|
       format.html { render :layout => 'application' }

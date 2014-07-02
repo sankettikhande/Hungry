@@ -1,20 +1,24 @@
 <div class="hola-container">
   <% @recipes.each do |recipe| %>
+      <% menu_type = recipe.dish_type == "veg" ? "veg" : "non-veg" %>
       <div class="item" data-toggle="modal" data-target="#">
         <ul class="square">
-          <li class="recipe-block veg">
-            <div class="recipe-header">
-              <div class="add-lens"></div>
-              <div class="recipe-name">
-                <%= recipe.name %>
-              </div>
-              <div class="add-heart"></div>
-            </div>
-            <div class="recipe-image hidden">
-              <div class="add-lens"></div>
-              <div class="add-heart"></div>
-              <img class="img-responsive center-block" src="assets/images/sarso.png" alt="Sarso">
-            </div>
+          <li class="recipe-block <%=menu_type%>">
+            <% if !recipe.picture.blank? %>
+                <div class="recipe-image append-cart">
+                  <div class="add-lens"></div>
+                  <div class="add-heart"></div>
+                  <%= image_tag recipe.picture.image.url, :alt=>"#{recipe.name}", :class => "img-responsive center-block" %>
+                </div>
+            <% else %>
+                <div class="recipe-header <%=menu_type%> append-cart">
+                  <div class="add-lens"></div>
+                  <div class="recipe-name">
+                    <%= recipe.name %>
+                  </div>
+                  <div class="add-heart"></div>
+                </div>
+            <% end %>
           </li>
           <li class="recipe-title hidden"></li>
           <li class="recipe-tags">

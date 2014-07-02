@@ -25,6 +25,7 @@ class Cms::CheffsController < Cms::ContentBlockController
   end
 
   def show_details
+    @title = "Meet the Chef"
     @chef = Cheff.includes(:cooking_todays).find(params[:chef_id])
     @total_qty = CookingToday.sum(:ordered, :conditions => {:cheff_id => @chef.id})
     @total_receipes = Dish.count(:all, :conditions => {:cheff_id => @chef.id})
