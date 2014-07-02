@@ -398,13 +398,14 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 #recipe-modal .modal-body .square .recipe-image img{width:100%}
 
 
-.user-profile {display: block;float: left;}
+.user-profile {display: block;float: left;width: 100%}
 .user-profile li {display: inline-block;width: auto;float: left;}
 .user-profile .profile-pic {width:80px;height: 80px;margin-right: 15px;background:url('/assets/chef-icon.png') no-repeat left top;background-size: 100% 100%;overflow:hidden}
 .user-profile .profile-pic img {height:80px;width: 80px;}
-.user-profile .user-name h3 {margin: 0;padding: 0;font-size: 2em;font-family: 'RobotoCondensed-Bold',Sans-serif;line-height: 44px}
+.user-profile li.user-name {display: inline-block;float: left;max-width: 183px;}
+.user-profile .user-name h3 {margin: 0;padding: 0;font-size: 1.8em;font-family: 'RobotoCondensed-Bold',Sans-serif;line-height: 44px}
 .user-profile .user-name h3 span.user-level {display: block;font-family: 'Roboto-Italic',Sans-serif;font-size: 0.6em;line-height: 10px}
-.user-profile .user-name h3 a {color: #333;text-decoration: none;}
+.user-profile .user-name h3 a {color: #333;text-decoration: none;display: block;}
 .user-profile .user-name h3 a:hover {color: #333;text-decoration: none;}
 
 #recipe-modal .modal-body {padding: 5px 4px;}
@@ -422,6 +423,9 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 #recipe-modal .modal-body .stock-value li {color: #666666;}
 
 #recipe-modal .modal-footer {border: none;margin-top: 2px;padding: 5px 10px;}
+#recipe-modal .modal-footer button.btn-orange {width: 46px}
+#recipe-modal .modal-footer button.btn-link.text-orange {font-family: 'Roboto-Medium',Sans-serif}
+
 #recipe-modal .modal-form .form-control {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;text-align: center;margin:0 auto 10px;}
 
 #recipe-modal .modal-form .btn-orange.disabled {border-color:#ccc;} 
@@ -524,6 +528,7 @@ p.hola-text {color: #222222;}
 .chef-page .profile-details li.profile ul.cover-image li.cover-text {text-align: center;padding: 15px 10px;min-height: 180px;}
 .chef-page .profile-details li.profile-heart {position: relative;right: 0;z-index: 1;}
 .chef-page .profile-details li.profile-heart .add-heart {z-index: 5;display: block;}
+.chef-page .profile-details li.profile ul.cover-image li.cover-text h1{margin-bottom: 0;}
 
 .chef-page .profile-details li.profile-dp {margin-top: -60px;margin-bottom: 10px;width: 100%;}
 .chef-page .profile-details li.profile-dp img {width: 120px;height:120px;border:7px solid #fff;box-shadow:0px 0px 10px 3px rgba(255,153,0,0.5);overflow: hidden;}
@@ -646,6 +651,7 @@ h3.dark-title{color: #000;font-family: 'robotobold',Sans-serif;font-size: 1.125e
 
 .recipe-ingredients ul.ingredients-list {width: 100%;float: left;display: block;margin-bottom: 5px;margin-top: 5px;}
 .recipe-ingredients ul.ingredients-list li.ingredient {width: 100%;display: block;float: left;color: #666;font-size: 1em;font-family: 'robotoregular',Sans-serif;}
+.recipe-ingredients ul.ingredients-list li.ingredient span {min-width: 15px;display: inline-block;}
 .recipe-ingredients ul.ingredients-list li.ingredient span.quantity,.recipe-ingredients ul.ingredients-list li.ingredient span.unit,.recipe-ingredients ul.ingredients-list li.ingredient span.name {
 margin-right: 3px;text-transform: lowercase;}
 .recipe-ingredients ul.ingredients-list li.ingredient span.google a {background: url('/assets/icon-lens-g.png') no-repeat left top;background-size: 16px 16px;width: 16px;height: 16px;display:block;float: right;}
@@ -653,7 +659,7 @@ margin-right: 3px;text-transform: lowercase;}
 
 .recipe-directions {width: 100%;float: left;display: block;}
 ol.direction-list {width: 100%;float: left;display: block;margin: 10px 0 5px;list-style-type: decimal;padding-left: 20px;}
-ol.direction-list > li.text {line-height: 1.8em;}
+ol.direction-list > li.text {line-height: 1.8em;color: #666}
 
 .direction-image {display: block;width: 100%;margin: 10px 0 5px;float: left;}
 .direction-image img {width: 100%;}
@@ -721,4 +727,4 @@ html{overflow-x:hidden }
   .rating_msg {display:none !important}
 }
 
-.modal-sm {max-width:300px;width: 80%;margin-left: auto;margin-right: auto;}
+.modal-dialog,.modal-sm {max-width:300px;width: 80%;margin-left: auto;margin-right: auto;}
