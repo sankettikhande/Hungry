@@ -1,7 +1,6 @@
 class Cms::DishesController < Cms::ContentBlockController
   skip_before_filter :login_required, :cms_access_required, :only => [:show_recipe, :signature_dishes, :update_ratings]
   def show_recipe
-    @title = "Recipe"
     @footer = "false"
     @recipe = Dish.find_by_name(params[:recipe_name]) if !params[:recipe_name].blank?
      respond_to do |format|
@@ -10,7 +9,6 @@ class Cms::DishesController < Cms::ContentBlockController
   end
 
   def signature_dishes
-    @title = "Meet the Chef"
     @signature_dish = Dish.find_by_name(params[:dish_name])
     respond_to do |format|
       format.html { render :layout => 'application' }

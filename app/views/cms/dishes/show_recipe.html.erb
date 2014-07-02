@@ -10,7 +10,7 @@
                       <li class="profile veg cover-block">
                         <ul class="cover-image">
                           <li class="cover cover-photo hidden"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
-                          <li class="cover cover-text">
+                          <li class="cover cover-text <%= set_menu_type(@recipe)%>">
                             <h1 class="lemon text-white" id="cover-title"><%= @recipe.name %></h1>
                             <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
                           </li>
