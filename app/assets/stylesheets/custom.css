@@ -528,6 +528,7 @@ p.hola-text {color: #222222;}
 .chef-page .profile-details li.profile ul.cover-image li.cover-text {text-align: center;padding: 15px 10px;min-height: 180px;}
 .chef-page .profile-details li.profile-heart {position: relative;right: 0;z-index: 1;}
 .chef-page .profile-details li.profile-heart .add-heart {z-index: 5;display: block;}
+.chef-page .profile-details li.profile ul.cover-image li.cover-text h1{margin-bottom: 0;}
 
 .chef-page .profile-details li.profile-dp {margin-top: -60px;margin-bottom: 10px;width: 100%;}
 .chef-page .profile-details li.profile-dp img {width: 120px;height:120px;border:7px solid #fff;box-shadow:0px 0px 10px 3px rgba(255,153,0,0.5);overflow: hidden;}

@@ -11,7 +11,7 @@
                         <ul class="cover-image">
                           <li class="cover cover-photo hidden"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
                           <li class="cover cover-text">
-                            <h1 class="lemon text-white"><%= @recipe.name %></h1>
+                            <h1 class="lemon text-white" id="cover-title"><%= @recipe.name %></h1>
                             <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
                           </li>
                         </ul>
@@ -34,7 +34,7 @@
               <div class="row">
                 <div class="col-xs-12">
                   <div class="normal-header">
-                    <h3 class="roboto">About</h3>
+                    <h2 class="roboto-l">About</h2>
                   </div>
                   <div class="normal-block">
                     <p class="text-left text-6"><%= @recipe.information.html_safe %></p>
