@@ -4,4 +4,5 @@ $("#review_order_total").html("<%=@total%>");
 if (<%= session[:cart].blank? %>){
     $("#checkout_link").addClass("text-grey");
     $("#checkout_link").attr("href","#")
+    $("#select_payment").html(" <a class='text-orange text-grey' href='#'>Select Payment Method</a>");
 }

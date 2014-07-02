@@ -11,13 +11,13 @@
                 <div class="recipe-header">
                   <div class="add-lens"></div>
                   <div class="recipe-name">
-                    <%= @signature_dish.name %>
+                    <%= @signature_dish.name if @signature_dish %>
                   </div>
                   <div class="add-heart"></div>
                   <div class="recipe-image hidden">
                     <div class="add-lens"></div>
                     <div class="add-heart"></div>
-                    <%= image_tag @signature_dish.picture.image.url, :class => "img-responsive center-block" if @signature_dish.picture %>
+                    <%= image_tag @signature_dish.picture.image.url, :class => "img-responsive center-block" if @signature_dish && @signature_dish.picture %>
                   </div>
                 </div>
               </li>
@@ -35,11 +35,11 @@
               <ul class="rating-block">
                 <li class="five-stars">
                   <div id="star" style="float: left"></div>
-                  <input type="hidden" name="dish[dish_id]" id = "dish_id" value="<%= @signature_dish.id %>">
+                  <input type="hidden" name="dish[dish_id]" id = "dish_id" value="<%= @signature_dish.id  if @signature_dish %>">
                   <div class="rating_msg" style="float: left"></div>
                 </li>
                 <li class="review-count">
-                  <span class="count"><%= @signature_dish.ratings %></span>
+                  <span class="count"><%= @signature_dish.ratings  if @signature_dish %></span>
                 </li>
               </ul>
             </div>
@@ -92,5 +92,5 @@
       </div>
     </div>
 <% end %>
-<%= render 'cms/dishes/signature_modal', :locals => {:signature_dish => @signature_dish} %>
+<%= render 'cms/dishes/signature_modal', :locals => {:signature_dish => @signature_dish} if @signature_dish %>
 </div>
