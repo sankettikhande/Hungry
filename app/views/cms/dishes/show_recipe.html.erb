@@ -122,20 +122,22 @@
                   </div>
 
                 </div>
+
                 <div class="container">
-                  <div class="hola-rating seperator-10">
-                    <div class="add-heart">
-                      <ul class="rating-block">
-                        <li class="five-stars">
-                          <div id="star"></div>
-                        </li>
-                        <li class="review-count">
-                          <span class="count">83</span>
-                          <span class="ask-rate"><a href="#">Rate it</a></span>
-                        </li>
-                      </ul>
-                    </div>
+                  <div class="hola-rating">
+                    <ul class="rating-block">
+                      <li class="five-stars">
+                        <div id="star" style="float: left"></div>
+                        <input type="hidden" name="dish[dish_id]" id = "dish_id" value="<%= @recipe.id  if @recipe %>">
+                        <div class="rating_msg" style="float: left"></div>
+                      </li>
+                      <li class="review-count">
+                        <span class="count"><%= @recipe.ratings if @recipe %></span>
+                      </li>
+                    </ul>
                   </div>
+                </div>
+
                   <div class="container seperator-10">
                     <div class="normal-body">
                       <p class="text-6 text-center">This is a signature dish and can be made to order</p>
