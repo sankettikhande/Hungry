@@ -1,21 +1,25 @@
 <div class="hola-container">
   <% if @signature_dishes %>
       <% @signature_dishes.each do |dish| %>
+          <% menu_type = dish.dish_type == "veg" ? "veg" : "non-veg" %>
           <div class="item" data-toggle="modal" data-target="#">
             <ul class="square" onclick="window.location='/signature/<%=dish.name%>'">
-              <li class="recipe-block veg">
-                <div class="recipe-header">
-                  <div class="add-lens"></div>
-                  <div class="recipe-name">
-                    <%= dish.name %>
-                  </div>
-                  <div class="add-heart"></div>
-                </div>
-                <div class="recipe-image hidden">
-                  <div class="add-lens"></div>
-                  <div class="add-heart"></div>
-                  <%= image_tag dish.picture.image.url, :class => "img-responsive center-block", :alt => dish.name if dish.picture %>
-                </div>
+              <li class="recipe-block <%=menu_type%>">
+                <% if !dish.picture.blank? %>
+                    <div class="recipe-image append-cart">
+                      <div class="add-lens"></div>
+                      <div class="add-heart"></div>
+                      <%= image_tag dish.picture.image.url, :alt=>"#{dish.name}", :class => "img-responsive center-block" %>
+                    </div>
+                <% else %>
+                    <div class="recipe-header <%=menu_type%> append-cart">
+                      <div class="add-lens"></div>
+                      <div class="recipe-name">
+                        <%= dish.name %>
+                      </div>
+                      <div class="add-heart"></div>
+                    </div>
+                <% end %>
               </li>
               <li class="recipe-title hidden"></li>
               <li class="recipe-tags">
@@ -24,6 +28,7 @@
                   <li class="recipe-price"><%= link_to "Order","/signature/#{dish.name}" %></li>
                 </ul>
               </li>
+
             </ul>
           </div>
       <% end %>
