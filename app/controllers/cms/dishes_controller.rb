@@ -40,4 +40,25 @@ class Cms::DishesController < Cms::ContentBlockController
       end
     end
   end
+
+  def create
+    @dish = Dish.new(params[:dish])
+    if @dish.save
+      redirect_to '/cms/dishes', :notice => "Successfully created dish."
+    else
+      render :action => 'new'
+    end
+  end
+
+  def update
+    @dish = Dish.find(params[:id])
+    if @dish.update_attributes(params[:dish])
+      flash[:notice] = "Successfully updated product."
+      redirect_to '/cms/dishes', :notice => "Successfully created dish."
+    else
+      render :action => 'edit'
+    end
+
+  end
+
 end

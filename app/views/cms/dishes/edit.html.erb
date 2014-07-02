@@ -1,5 +1,13 @@
 <%= stylesheet_link_tag "cms_custom" %>
-
+<% if @dish.errors.any? %>
+    <div id="errorExplanation" class="errorExplanation">
+      <ul>
+        <% @dish.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
 <%= form_for @dish , :url => "/cms/dishes/#{@dish.id}" do |f| %>
     <div class="fields text_fields">
 
