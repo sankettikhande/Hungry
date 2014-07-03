@@ -1,3 +1,4 @@
+
 class HomeController < ApplicationController
   include ApplicationHelper
 
@@ -16,7 +17,6 @@ class HomeController < ApplicationController
   end
 
   def index
-    @title = "Today's Menu"
     @todays_menu = CookingToday.where(:date =>Time.current.to_date)
     update_cart(@todays_menu) if !@todays_menu.blank?
 

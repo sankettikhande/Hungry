@@ -1,7 +1,6 @@
 class Cms::DishesController < Cms::ContentBlockController
   skip_before_filter :login_required, :cms_access_required, :only => [:show_recipe, :signature_dishes, :update_ratings]
   def show_recipe
-    @title = "Recipe"
     @footer = "false"
     @recipe = Dish.find_by_name(params[:recipe_name]) if !params[:recipe_name].blank?
      respond_to do |format|
@@ -10,7 +9,6 @@ class Cms::DishesController < Cms::ContentBlockController
   end
 
   def signature_dishes
-    @title = "Meet the Chef"
     @signature_dish = Dish.find_by_name(params[:dish_name])
     respond_to do |format|
       format.html { render :layout => 'application' }
@@ -42,4 +40,25 @@ class Cms::DishesController < Cms::ContentBlockController
       end
     end
   end
+
+  def create
+    @dish = Dish.new(params[:dish])
+    if @dish.save
+      redirect_to '/cms/dishes', :notice => "Successfully created dish."
+    else
+      render :action => 'new'
+    end
+  end
+
+  def update
+    @dish = Dish.find(params[:id])
+    if @dish.update_attributes(params[:dish])
+      flash[:notice] = "Successfully updated product."
+      redirect_to '/cms/dishes', :notice => "Successfully created dish."
+    else
+      render :action => 'edit'
+    end
+
+  end
+
 end

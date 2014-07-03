@@ -84,4 +84,33 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, \'#{association}\', \'#{escape_javascript(fields)}\')")
   end
+
+  def set_drop_down_title(controller, action)
+    case
+    when controller == "home" && action == "index"
+      return "Today's Menu"
+    when controller == "ordered_menus" && action == "checkout"
+      return "Review Order"
+    when controller == "cms/dishes" && action == "show_recipe"
+      return "Recipe"
+    when controller == "cms/dishes" && action == "signature_dishes"
+      return "Meet the Chef"
+    when controller == "cms/orders" && action == "payment_gateway"
+      return "Select Payment Method"
+    when controller == "cms/orders" && action == "order_confirm"
+      return "Thank You!"
+    when controller == "cheffs" && action == "show_details"
+      return "Meet the Chef"
+    else
+      return "Today's Menu"
+    end
+  end
+
+  def set_menu_type(recipe)
+    return recipe.dish_type == "veg" ? "veg" : "non-veg"
+  end
+
+  def set_cooing_today_type(cooking_today)
+    return cooking_today.dish.dish_type == "veg" ? "veg" : "non-veg"
+  end
 end

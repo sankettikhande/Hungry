@@ -7,7 +7,6 @@
         <% if @todays_menu %>
             <% @todays_menu.each do |menu| %>
                 <% cart_menu = collect_cart_items(menu) if !menu.nil? %>
-                <% menu_type = menu.dish.dish_type == "veg" ? "veg" : "non-veg" %>
                 <% target = qty_left(menu) > 0 ? "#item-modal" : "#" %>
                 <div class="item" data-toggle="modal" data-target="<%=target %>" id="<%=menu.id%>">
                   <input type="hidden" class="menu_price" value="<%=cart_menu[:price] if cart_menu %>" />
@@ -17,7 +16,7 @@
                   <input type="hidden" class="chef-name" value="<%= cart_menu[:cheff_name] if cart_menu  %>"/>
                   <input type="hidden" class="chef-id" value="<%= cart_menu[:cheff_id] if cart_menu  %>"/>
                   <ul class="square">
-                    <li class="recipe-block <%=menu_type%>">
+                    <li class="recipe-block <%=set_cooing_today_type(menu)%>">
                       <% if qty_left(menu) <= 0 %>
                           <div class="recipe-header not-available">
                             <div class="add-lens"></div>
@@ -36,7 +35,7 @@
                             <% end %>
                           </div>
                       <% else %>
-                          <div class="recipe-header <%=menu_type%> append-cart">
+                          <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart">
                             <div class="add-lens"></div>
                             <div class="add-heart"></div>
                             <div class="recipe-name">

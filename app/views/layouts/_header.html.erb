@@ -16,7 +16,7 @@
         <li><a class="navbar-brand" href="/">Hola</a></li>
         <li class="dropdown page-title">
           <a class="drop-icon" data-toggle="dropdown" href="#">
-            <%= @title ? @title : "Today's Menu" %>
+            <%= set_drop_down_title(params[:controller], params[:action]) %>
           </a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/">Today's Menu</a></li>

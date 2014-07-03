@@ -1,9 +1,8 @@
 <div class="hola-container">
   <% @recipes.each do |recipe| %>
-      <% menu_type = recipe.dish_type == "veg" ? "veg" : "non-veg" %>
       <div class="item" data-toggle="modal" data-target="#">
         <ul class="square">
-          <li class="recipe-block <%=menu_type%>">
+          <li class="recipe-block <%=set_menu_type(recipe)%>">
             <% if !recipe.picture.blank? %>
                 <div class="recipe-image append-cart">
                   <div class="add-lens"></div>
@@ -11,7 +10,7 @@
                   <%= image_tag recipe.picture.image.url, :alt=>"#{recipe.name}", :class => "img-responsive center-block" %>
                 </div>
             <% else %>
-                <div class="recipe-header <%=menu_type%> append-cart">
+                <div class="recipe-header <%=set_menu_type(recipe)%> append-cart">
                   <div class="add-lens"></div>
                   <div class="recipe-name">
                     <%= recipe.name %>

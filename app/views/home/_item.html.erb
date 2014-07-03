@@ -1,4 +1,3 @@
-<% menu_type = @menu.dish.dish_type == "veg" ? "veg" : "non-veg" %>
 <% target = qty_left(@menu) > 0 ? "#item-modal" : "#" %>
 <div class="item" data-toggle="modal" data-target="<%=target %>" id="<%=@menu.id%>">
   <input type="hidden" class="menu_price" value="<%=@menu.dish.price%>" />
@@ -8,7 +7,7 @@
   <input type="hidden" class="chef-name" value="<%= @menu.cheff.name %>"/>
   <input type="hidden" class="chef-id" value="<%= @menu.cheff.id %>"/>
   <ul class="square">
-    <li class="recipe-block <%=menu_type%>">
+    <li class="recipe-block <%=set_cooing_today_type(@menu)%>">
       <% if qty_left(@menu) <= 0 %>
           <div class="recipe-header not-available">
             <div class="add-lens"></div>
@@ -24,7 +23,7 @@
             <%= image_tag @menu.dish.picture.image.url, :alt=>"#{@menu.dish.name}", :class => "img-responsive center-block" %>
           </div>
       <% else %>
-          <div class="recipe-header <%=menu_type%> append-cart">
+          <div class="recipe-header <%=set_cooing_today_type(@menu)%> append-cart">
             <div class="add-lens"></div>
             <div class="recipe-name">
               <%= @menu.dish.name %>
