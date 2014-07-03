@@ -8,8 +8,8 @@ class SubMenu < ActiveRecord::Base
   has_many :prepration_steps, :dependent => :destroy
   has_many :ingredients, :dependent => :destroy
 
-  accepts_nested_attributes_for :ingredients
-  accepts_nested_attributes_for :prepration_steps
+  accepts_nested_attributes_for :ingredients, :allow_destroy => true
+  accepts_nested_attributes_for :prepration_steps, :allow_destroy => true
 
   has_one :picture, :as => :picturable, :class_name => 'Picture', :dependent => :destroy
   accepts_nested_attributes_for :picture
