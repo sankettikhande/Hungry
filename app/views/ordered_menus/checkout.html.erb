@@ -58,6 +58,34 @@
   </div>
 </div> <!-- fluid container ends -->
 
+<div class="modal fade bs-example-modal-sm" id="remove_dish" tabindex="-1">
+  <div class="modal-dialog modal-sm modal-alert">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button data-dismiss="modal" class="btn-close pull-right">x</button>
+        <%= image_tag ('/assets/hola-logo-xs.png'), :id => 'review_page_modal_logo' %>
+      </div>
+      <div class="modal-body">
+        Dish removed successfully!
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="remove_last_dish" tabindex="-1">
+  <div class="modal-dialog modal-sm modal-alert">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button data-dismiss="modal" class="btn-close pull-right">x</button>
+        <%= image_tag ('/assets/hola-logo-xs.png'), :id => 'review_page_modal_logo' %>
+      </div>
+      <div class="modal-body">
+        Dish removed successfully! There is no item in cart.
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid back-white seperator-5">
   <div class="container">
     <div class="row">
