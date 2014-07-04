@@ -1,4 +1,5 @@
 require "#{Rails.root}/lib/citrus_lib.rb"
+include ApplicationHelper
 class Cms::OrdersController < Cms::ContentBlockController
   skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm,
                                                                      :remove_from_cart, :create_signature_order, :callback,
@@ -67,7 +68,7 @@ class Cms::OrdersController < Cms::ContentBlockController
                              :phone_no=>params[:orders][:phone_no])
     #session[:cart] = []
     @footer = "false"
-
+    @@cart_items = view_context.collect_items(session[:cart])
 
     respond_to do |format|
       format.html {render :layout => 'application'}
@@ -115,11 +116,9 @@ class Cms::OrdersController < Cms::ContentBlockController
                                :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
                                :addressCity=>params[:addressCity], :addressState=>params[:addressState],
                                :addressCountry=>params[:addressCountry],:addressZip=>params[:addressZip])
-      session[:cart].each do |item|
-        item.each do |item_id, item_attr|
-          cooking_today  = CookingToday.find(item_id)
-          cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + item_attr['quantity'].to_i))
-        end
+      @@cart_items.each do |item_id, quantity|
+        cooking_today  = CookingToday.find(item_id)
+        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
       end
       session[:cart] = []
     else

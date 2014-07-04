@@ -87,8 +87,6 @@ module ApplicationHelper
 
   def set_drop_down_title(controller, action)
     case
-    when controller == "home" && action == "index"
-      return "Today's Menu"
     when controller == "ordered_menus" && action == "checkout"
       return "Review Order"
     when controller == "cms/dishes" && action == "show_recipe"
