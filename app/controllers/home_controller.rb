@@ -17,7 +17,7 @@ class HomeController < ApplicationController
   end
 
   def index
-    @todays_menu = CookingToday.where(:date =>Time.current.to_date)
+    @todays_menu = CookingToday.sorted_by_qty_left
     update_cart(@todays_menu) if !@todays_menu.blank?
 
     respond_to do |format|
