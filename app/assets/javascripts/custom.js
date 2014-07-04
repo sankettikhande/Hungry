@@ -245,7 +245,7 @@ $(document).ready(function(){
         var valid = $("#signature_form").validationEngine('validate');
         if(valid == true){
             if(parseInt($('#signature_qty').val(),10) == 0) {
-                $('#order-count').validationEngine('showPrompt', 'Please select at least quantity', 'error')
+                $('#order-count').validationEngine('showPrompt', 'Please select at least 1 quantity', 'error')
             }
             else{
                 $.ajax({
@@ -281,6 +281,7 @@ $(document).ready(function(){
     //  Datepicker
 
     $('#datetimepicker5').datetimepicker({
+        format: "DD/MM/YYYY",
         pickTime: false
     });
 

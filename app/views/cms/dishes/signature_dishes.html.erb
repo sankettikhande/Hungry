@@ -46,7 +46,7 @@
 
             <div class="dish-info">
               <p><%= @signature_dish.information.html_safe %> </p>
-              <p><span class="portion">1</span><span id="portion-eqv">2 Baatis</span></p>
+              <!--<p><span class="portion">1</span><span id="portion-eqv">2 Baatis</span></p>-->
             </div>
 
             <div class="min-order-block">
@@ -55,19 +55,19 @@
           <ul class="block-3">
             <li class="each-block">
               <a href="#">
-                <span id="served-count" class="upper roboto-b">20</span>
+                <span id="served-count" class="upper roboto-b"><%= @signature_dish.portions %></span>
                 <span class="lower text-uppercase">Portions</span>
               </a>
             </li>
             <li class="each-block">
               <a href="#">
-                <span id="recipe-count" class="upper roboto-b">2</span>
+                <span id="recipe-count" class="upper roboto-b"><%= @signature_dish.days_notice %></span>
                 <span class="lower text-uppercase">Days Notice</span>
               </a>
             </li>
             <li class="each-block">
               <a href="#">
-                <span id="fan-count" class="upper roboto-b">180/-</span>
+                <span id="fan-count" class="upper roboto-b"><%= @signature_dish.price %></span>
                 <span class="lower text-uppercase">Per Portion</span>
               </a>
             </li>
