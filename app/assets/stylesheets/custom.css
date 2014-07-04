@@ -730,3 +730,11 @@ html{overflow-x:hidden }
 .modal-sm {max-width:300px;width: 80%;margin-left: auto;margin-right: auto;}
 
 form {margin:0 !important;padding:0 !important;color:inherit !important;}.modal-dialog,.modal-sm {max-width:300px;width: 80%;margin-left: auto;margin-right: auto;}
+
+.st_twitter_custom{
+    background: url("/assets/twittie.png") no-repeat left top rgba(0, 0, 0, 0);
+    border:0;
+    display: inline-block;
+    height: 34px;
+    width: 121px;
+}
