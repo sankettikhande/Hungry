@@ -1,5 +1,5 @@
+$("#footer .col-xs-12").empty();
+$("#footer .col-xs-12").html("<%= escape_javascript(render :partial => 'checkout_details' )%>");
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
 $("#review_order_total").html("<%=@total%>");
-$("#checkout_link").removeClass("text-grey");
-$("#checkout_link").attr("href","/review_order")
