@@ -93,10 +93,11 @@
           <div class="normal-body">
 
             <div id="hola-container">
+              <% @today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
               <% if @cooking_todays %>
                   <% @cooking_todays.each do |menu| %>
                       <% @menu = menu %>
-                      <%= render :partial => "home/item", :locals => {:menu => menu } %>
+                      <%= render :partial => "home/item", :locals => {:menu => menu, :today_menu => @today_menu } %>
                   <% end %>
               <% end %>
             </div>
@@ -133,8 +134,6 @@
 
     </div>
     <div id="recipe-modal">
-      <input type="hidden" id="selected_item" value="" />
-      <input type="hidden" id="total_price" value="0" />
       <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
@@ -198,7 +197,17 @@
         </div>
       </div>
     </div> <!-- modal ends -->
+    <input type="hidden" id="total_price" value= <%= calculate_total_price() %> />
     <%= content_for :cheff_footer do %>
-        <%= render 'layouts/chef_footer' %>
+        <% if session[:cart].blank? %>
+            <div id="cheff_footer">
+                <%= render 'layouts/chef_footer' %>
+            </div>
+        <% else %>
+            <%= render 'layouts/footer' %>
+        <% end %>
     <% end %>
+
+
+
 </div>

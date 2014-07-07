@@ -3,9 +3,17 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="tap-text"><p class="text-center"><a class="text-orange" href="#">Become a Chef</a></p></div> <!-- change text-light to text-orange for changing color -->
-        <ul class="chosen-options hidden">
-          <li class="billing"><a href="#">500/-</a></li>
-          <li class="checkout"><a href="#">Checkout</a></li>
+        <ul class="chosen-options">
+          <li class="billing" id="bill_amount">
+            <%= calculate_total_price() %>/-
+          </li>
+          <li class="checkout">
+            <% if session[:cart].blank? %>
+                <%= link_to "Checkout", '#', :class => "text-grey", :id=> "checkout_link" %>
+            <% else %>
+                <%= link_to "Checkout", '/review_order', :id=> "checkout_link" %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>
