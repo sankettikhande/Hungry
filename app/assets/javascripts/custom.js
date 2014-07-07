@@ -263,8 +263,9 @@ $(document).ready(function(){
 
 //    Disable back button on Order Confirmation page
 
-    if (window.location.href.indexOf("order-confirm") > -1) {
+    if (window.location.href.indexOf("orders") > -1) {
         $(".btn-back").addClass("hidden");
+        $('#footer').hide();
     }
 });
 

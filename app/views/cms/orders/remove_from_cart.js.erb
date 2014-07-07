@@ -1,8 +1,7 @@
+if (<%= session[:cart].blank? %>){
+    $("#footer .col-xs-12").empty();
+    $("#footer .col-xs-12").html("<div class='tap-text text-orange'><p class='text-center'>Tap on a Cart to Add/Remove</p></div>");
+}
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
 $("#review_order_total").html("<%=@total%>");
-if (<%= session[:cart].blank? %>){
-    $("#checkout_link").addClass("text-grey");
-    $("#checkout_link").attr("href","#")
-    $("#select_payment").html(" <a class='text-orange text-grey' href='#'>Select Payment Method</a>");
-}
