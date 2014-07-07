@@ -261,6 +261,15 @@ $(document).ready(function(){
         }
     });
 
+    $('.signature-modal').on('hide.bs.modal', function (e) {
+       $(".modal-header p").html("Delivery on:");
+       $("#order-count").html("0");
+       $('#datetimepicker-from, #datetimepicker-upto, #datetimepicker5').val(null)
+       $("#signature_thanks").remove();
+       $("#signature-minus-order").attr("disabled", "disabled");
+       $("#signature-minus-order").addClass("disabled")
+    });
+
 //    Disable back button on Order Confirmation page
 
     if (window.location.href.indexOf("order-confirm") > -1) {

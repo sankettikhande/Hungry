@@ -1,2 +1,5 @@
-$(".modal-header").empty();
-$(".modal-body").html("<p style='text-align: center; font-weight: bold;'>Thank You for placing the order.</p>");
+$(".modal-header p").html("<span style='text-align: center; font-weight: bold; color: #FF9900; margin-left: 20px;' id='signature_thanks'>Thank You for placing the order.</span>");
+$('#datetimepicker-from, #datetimepicker-upto, #datetimepicker5').val(null);
+$("#signature-minus-order").attr("disabled", "disabled");
+$("#signature-minus-order").addClass("disabled");
+$("#order-count").html("0");
