@@ -288,10 +288,11 @@ $(document).ready(function(){
 
 
     //  Datepicker
-
+    var dateToday = new Date();
     $('#datetimepicker5').datetimepicker({
         format: "DD/MM/YYYY",
-        pickTime: false
+        pickTime: false,
+        minDate: dateToday
     });
 
 

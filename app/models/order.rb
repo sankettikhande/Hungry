@@ -36,5 +36,12 @@ class Order < ActiveRecord::Base
     return hola_user
   end
 
+  def self.check_signature_order_delivery_date(order_date)
+    date_now = Date.today
+    date_delivery = Date.parse(order_date)
+    date_diff = (date_delivery - date_now).to_i
+    return date_diff
+  end
+
 
 end

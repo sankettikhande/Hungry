@@ -153,10 +153,15 @@ class Cms::OrdersController < Cms::ContentBlockController
 
   def create_signature_order
     @signature_dish = Dish.find(params[:dish_id])
-    order = Order.create(:date => params[:order][:date], :from_time => params[:order][:from_time],
-                         :upto_time => params[:order][:upto_time], :order_type => "Pick Up")
-    if order
-      Order.create_signature_menus(order, @signature_dish, params[:order])
+    date_diff = Order.check_signature_order_delivery_date(params[:order][:date])
+    if date_diff < @signature_dish.days_notice
+    @error_msg = "Delivery date should be greater than #{@signature_dish.days_notice} days."
+    else
+     order = Order.create(:date => params[:order][:date], :from_time => params[:order][:from_time],
+                          :upto_time => params[:order][:upto_time], :order_type => "Pick Up")
+     if order
+       Order.create_signature_menus(order, @signature_dish, params[:order])
+     end
     end
     respond_to do |format|
       format.js
