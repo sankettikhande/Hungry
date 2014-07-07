@@ -1,0 +1,2 @@
+class HolaUsersController < ApplicationController
+end
