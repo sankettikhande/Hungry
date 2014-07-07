@@ -16,12 +16,13 @@ class Dish < ActiveRecord::Base
   has_many :tips, :dependent => :destroy
 
 
-  accepts_nested_attributes_for :tips
-  accepts_nested_attributes_for :sub_menus
+  accepts_nested_attributes_for :tips, :reject_if => :all_blank
+  accepts_nested_attributes_for :sub_menus, :reject_if => :all_blank
 
   validates :name, :presence => true
   validates :cheff_id, :presence => true
   validates :price, :presence => true
+  validates_presence_of :dish_type
 
   has_one :picture, :as => :picturable, :class_name => 'Picture', :dependent => :destroy
   accepts_nested_attributes_for :picture

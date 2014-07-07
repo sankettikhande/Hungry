@@ -33,7 +33,7 @@
     </div>
     <div class="fields text_fields">
       <%= f.label :dish_type %>
-      <%= f.select :dish_type, ["veg", "non-veg"] %>
+      <%= f.select :dish_type, ["veg", "non-veg"], :include_blank => '-- Select Dish Type --' %>
     </div>
     <div class="fields text_fields">
       <%= f.label :portions %>

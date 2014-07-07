@@ -1,0 +1,8 @@
+<ul class="chosen-options">
+  <li class="billing" id="bill_amount">
+    <%= calculate_total_price() %>/-
+  </li>
+  <li class="checkout">
+    <%= link_to "Checkout", '/review_order', :id=> "checkout_link" %>
+  </li>
+</ul>
