@@ -51,6 +51,8 @@ class Cms::OrdersController < Cms::ContentBlockController
 
   def payment_gateway
     @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular')
+    hola_user = Order.save_user(params)
+    cookies[:user_mobile] = {:value => hola_user.phoneNumber} if hola_user
     session[:cart].each do |item|
       item.each do |item_id, item_attr|
         cooking_today  = CookingToday.find(item_id)

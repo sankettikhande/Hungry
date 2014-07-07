@@ -111,4 +111,9 @@ module ApplicationHelper
   def set_cooing_today_type(cooking_today)
     return cooking_today.dish.dish_type == "veg" ? "veg" : "non-veg"
   end
+
+  def get_user_details
+    user = HolaUser.find_by_phoneNumber(cookies[:user_mobile]) if !cookies[:user_mobile].blank?
+    return user if user
+  end
 end
