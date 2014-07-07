@@ -16,8 +16,8 @@ class Dish < ActiveRecord::Base
   has_many :tips, :dependent => :destroy
 
 
-  accepts_nested_attributes_for :tips
-  accepts_nested_attributes_for :sub_menus
+  accepts_nested_attributes_for :tips, :reject_if => :all_blank
+  accepts_nested_attributes_for :sub_menus, :reject_if => :all_blank
 
   validates :name, :presence => true
   validates :cheff_id, :presence => true
