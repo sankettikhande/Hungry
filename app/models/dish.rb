@@ -22,6 +22,7 @@ class Dish < ActiveRecord::Base
   validates :name, :presence => true
   validates :cheff_id, :presence => true
   validates :price, :presence => true
+  validates_presence_of :dish_type
 
   has_one :picture, :as => :picturable, :class_name => 'Picture', :dependent => :destroy
   accepts_nested_attributes_for :picture
