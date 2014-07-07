@@ -51,6 +51,8 @@ class Cms::OrdersController < Cms::ContentBlockController
 
   def payment_gateway
     @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular')
+    hola_user = Order.save_user(params)
+    cookies[:user_mobile] = {:value => hola_user.phoneNumber} if hola_user
     session[:cart].each do |item|
       item.each do |item_id, item_attr|
         cooking_today  = CookingToday.find(item_id)
@@ -151,10 +153,15 @@ class Cms::OrdersController < Cms::ContentBlockController
 
   def create_signature_order
     @signature_dish = Dish.find(params[:dish_id])
-    order = Order.create(:date => params[:order][:date], :from_time => params[:order][:from_time],
-                         :upto_time => params[:order][:upto_time], :order_type => "Pick Up")
-    if order
-      Order.create_signature_menus(order, @signature_dish, params[:order])
+    date_diff = Order.check_signature_order_delivery_date(params[:order][:date])
+    if date_diff < @signature_dish.days_notice
+    @error_msg = "Delivery date should be greater than #{@signature_dish.days_notice} days."
+    else
+     order = Order.create(:date => params[:order][:date], :from_time => params[:order][:from_time],
+                          :upto_time => params[:order][:upto_time], :order_type => "Pick Up")
+     if order
+       Order.create_signature_menus(order, @signature_dish, params[:order])
+     end
     end
     respond_to do |format|
       format.js

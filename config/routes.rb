@@ -1,4 +1,5 @@
 Holachef::Application.routes.draw do
+  resources :hola_users
 
   match "/cms" => "cms/dashboard#index"
   match '/review_order' => 'ordered_menus#checkout', :as => :review_order
