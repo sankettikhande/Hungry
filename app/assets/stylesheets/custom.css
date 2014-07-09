@@ -404,8 +404,8 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 .user-profile .profile-pic {width:80px;height: 80px;margin-right: 5px;background:url('/assets/chef-icon.png') no-repeat left top;background-size: 100% 100%;overflow:hidden}
 .user-profile .profile-pic img {height:80px;width: 80px;}
 .user-profile li.user-name {display: inline-block;float: left;max-width: 137px;}
-.user-profile .user-name h3 {margin: 0;padding: 0;font-size: 1.8em;font-family: 'RobotoCondensed-Bold',Sans-serif;line-height: 25px}
-.user-profile .user-name h3 span.user-level {display: block;font-family: 'Roboto-Italic',Sans-serif;font-size: 0.6em;line-height: 10px;margin-top:5px;}
+.user-profile .user-name h3 {margin: 0;padding: 0;font-size: 1.6em;font-family: 'RobotoCondensed-Bold',Sans-serif;line-height: 22px}
+.user-profile .user-name h3 span.user-level {display: block;font-family: 'Roboto-Italic',Sans-serif;font-size: 0.6em;line-height: 16px;margin-top:5px;}
 .user-profile .user-name h3 a {color: #333;text-decoration: none;display: block;}
 .user-profile .user-name h3 a:hover {color: #333;text-decoration: none;}
 
@@ -441,7 +441,7 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 .booked-orders {padding: 15px 0 20px;display: block;float:left;width: 100%;background: #fff}
 .booked-orders li.food-bill {display: block;width: 100%;font-family: 'robotobold',Sans-serif;padding: 0.5em 0 0;float: left;font-size: 1em;}
 .booked-orders li.food-bill:first-child span {font-family: 'robotoregular',Sans-serif;border-bottom: 3px double #d3c9b5;padding-bottom: 0.3em;}
-.booked-orders li.food-bill span {display: inline-block;float: left;padding-left: 3px;padding-right: 3px} 
+.booked-orders li.food-bill span {display: inline-block;float: left;padding-left: 3px;padding-right: 3px}
 .booked-orders li.food-bill span.item-name {width:61%;text-transform: capitalize;text-align: left;}
 .booked-orders li.food-bill span.item-qty {width:16.66666667%;text-align: right;}
 .booked-orders li.food-bill span.item-cost {width:16.66666667%;text-align: right;}
@@ -530,6 +530,7 @@ p.hola-text {color: #222222;}
 .chef-page .profile-details li.profile-heart {position: relative;right: 0;z-index: 1;}
 .chef-page .profile-details li.profile-heart .add-heart {z-index: 5;display: block;}
 .chef-page .profile-details li.profile ul.cover-image li.cover-text h1{margin-bottom: 0;}
+ul.cover-image li.cover-text p {margin-top:8px;}
 
 .chef-page .profile-details li.profile-dp {margin-top: -60px;margin-bottom: 10px;width: 100%;}
 .chef-page .profile-details li.profile-dp img {width: 120px;height:120px;border:7px solid #fff;box-shadow:0px 0px 10px 3px rgba(255,153,0,0.5);overflow: hidden;}
@@ -652,10 +653,10 @@ h3.dark-title{color: #000;font-family: 'robotobold',Sans-serif;font-size: 1.125e
 
 .recipe-ingredients ul.ingredients-list {width: 100%;float: left;display: block;margin-bottom: 5px;margin-top: 5px;}
 .recipe-ingredients ul.ingredients-list li.ingredient {width: 100%;display: block;float: left;color: #666;font-size: 1em;font-family: 'robotoregular',Sans-serif;}
-.recipe-ingredients ul.ingredients-list li.ingredient span {min-width: 15px;display: inline-block;}
+.recipe-ingredients ul.ingredients-list li.ingredient span {min-width: 15px;}
 .recipe-ingredients ul.ingredients-list li.ingredient span.quantity,.recipe-ingredients ul.ingredients-list li.ingredient span.unit,.recipe-ingredients ul.ingredients-list li.ingredient span.name {
 margin-right: 3px;text-transform: lowercase;}
-.recipe-ingredients ul.ingredients-list li.ingredient span.google a {background: url('/assets/icon-lens-g.png') no-repeat left top;background-size: 16px 16px;width: 16px;height: 16px;display:block;float: right;}
+.recipe-ingredients ul.ingredients-list li.ingredient span.google a {background: url('/assets/icon-lens-g.png') no-repeat left top;background-size: 16px 16px;width: 16px;height: 16px;display:block;display:table-cell;vertical-align:top}
 
 
 .recipe-directions {width: 100%;float: left;display: block;}
@@ -734,13 +735,15 @@ form {margin:0 !important;padding:0 !important;color:inherit !important;}
 
 #review_page_modal_logo{width: 50px;padding-top:5px;}
 
-#remove_dish .modal-body, #remove_last_dish .modal-body {color: #fe8802;}
+#remove_dish .modal-body, #remove_last_dish .modal-body {color: #fe8802;text-align: center;}
 form {margin:0 !important;padding:0 !important;color:inherit !important;}.modal-dialog,.modal-sm {max-width:300px;width: 80%;margin-left: auto;margin-right: auto;}
 
 .st_twitter_custom{
-    background: url("/assets/twittie.png") no-repeat left top rgba(0, 0, 0, 0);
+    background: none;
     border:0;
     display: inline-block;
     height: 34px;
     width: 121px;
+    cursor:pointer;
 }
+.st_twitter_custom:hover {opacity:0.7;}

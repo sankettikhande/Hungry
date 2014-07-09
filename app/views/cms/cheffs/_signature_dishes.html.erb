@@ -2,7 +2,7 @@
   <% if @signature_dishes %>
       <% @signature_dishes.each do |dish| %>
           <div class="item" data-toggle="modal" data-target="#">
-            <ul class="square" onclick="window.location='/signature/<%=dish.name%>'">
+            <ul class="square" onclick="window.location='/signature/<%=dish.id%>'">
               <li class="recipe-block <%=set_menu_type(dish)%>">
                 <% if !dish.picture.blank? %>
                     <div class="recipe-image append-cart">
@@ -24,7 +24,7 @@
               <li class="recipe-tags">
                 <ul class="stock-value">
                   <li class="recipe-stock hidden"><span class="stock-count">10</span> left</li>
-                  <li class="recipe-price"><%= link_to "Order","/signature/#{dish.name}" %></li>
+                  <li class="recipe-price"><%= link_to "Order","/signature/#{dish.id}" %></li>
                 </ul>
               </li>
 
