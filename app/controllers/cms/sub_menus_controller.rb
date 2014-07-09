@@ -1,4 +1,5 @@
 class Cms::SubMenusController < Cms::ContentBlockController
+  layout 'templates/content_library'
   def new
   end
 
