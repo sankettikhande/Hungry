@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xs-12">
         <% if session[:cart].blank? %>
-            <div class="tap-text text-orange"><p class="text-center">Tap on a Cart to Add/Remove</p></div>
+            <div class="tap-text text-orange"><p class="text-center">Tap on a Card to Add/Remove</p></div>
         <% else %>
             <%= render :partial => 'cms/orders/checkout_details' %>
         <% end %>
