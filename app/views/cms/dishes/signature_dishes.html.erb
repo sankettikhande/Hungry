@@ -9,13 +9,13 @@
             <ul class="square">
               <li class="recipe-block <%=set_menu_type(@signature_dish)%>">
                 <div class="recipe-header">
-                  <div class="add-lens"></div>
+                  <div><%= link_to "","/recipe/#{@signature_dish.id}",:class => "add-lens" %></div>
                   <div class="recipe-name">
                     <%= @signature_dish.name if @signature_dish %>
                   </div>
                   <div class="add-heart"></div>
                   <div class="recipe-image hidden">
-                    <div class="add-lens"></div>
+                    <div><%= link_to "","/recipe/#{@signature_dish.id}",:class => "add-lens" %></div>
                     <div class="add-heart"></div>
                     <%= image_tag @signature_dish.picture.image.url, :class => "img-responsive center-block" if @signature_dish && @signature_dish.picture %>
                   </div>
