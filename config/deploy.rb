@@ -8,7 +8,7 @@ load 'config/recipes/db'
 task :qa do
   set :bundle_cmd, "/home/holachef/.gems/bin/bundle"
   set :default_environment, {
-    
+
     'PATH' => "$PATH:/home/holachef/ruby/bin",
     'GEM_HOME'        => "/home/holachef/.gems",
     'GEM_PATH'        => "/home/holachef/.gems",
@@ -17,7 +17,7 @@ task :qa do
 
   default_run_options[:pty] = true
 
-  
+
   # be sure to change these
   set :user, 'holachef'
   set :domain, 'qa.holachef.com'
@@ -35,6 +35,33 @@ task :qa do
 
   server domain, :app, :web
   # role :db, domain, :primary => true
+  after "deploy:create_symlink", "deploy:change_permission_for_fcgi"
+end
+
+task :prod do
+  default_run_options[:pty] = true
+
+
+  # be sure to change these
+  set :user, 'root'
+  set :domain, '103.13.97.227'
+  set :application, 'holachef'
+
+  # the rest should be good
+  set :repository,  "https://pravinhmhatre@bitbucket.org/pravinhmhatre/holachef.git"
+  set :deploy_to, "/data/apps/#{application}"
+  set :deploy_via, :remote_cache
+  set :scm, 'git'
+  set :branch, 'master'
+  set :git_shallow_clone, 1
+  set :scm_verbose, true
+  set :use_sudo, false
+
+  role :db, domain, :primary => true
+
+  server domain, :app, :web
+
+  after "deploy:update_code", "deploy:migrate"
 end
 
 
@@ -59,5 +86,5 @@ end
 
 after "deploy:update_code", "db:symlink"
 before "deploy:assets:update_asset_mtimes", "db:symlink"
-# after "deploy:update_code", "deploy:migrate"
-after "deploy:create_symlink", "deploy:change_permission_for_fcgi"
+
+
