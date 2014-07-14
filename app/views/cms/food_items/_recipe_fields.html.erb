@@ -1,0 +1,98 @@
+<%= stylesheet_link_tag "cms_custom" %>
+
+<div class="fields apply-border">
+
+  <div class="fields heading">
+    Recipe
+  </div>
+
+  <div class="fields sub-heading">
+    &nbsp;>> Ingredients
+  </div>
+  <%= f.fields_for :ingredients do |builder| %>
+      <%= render 'ingredient_fields', :f => builder %>
+  <% end %>
+  <span style="margin-top: -20px;display: table;">
+      <%= link_to_add_fields "Add Ingredients", f, :ingredients %>
+  </span>
+
+  <div class="fields sub-heading">
+    &nbsp;>> Preparation Steps
+  </div>
+  <%= f.fields_for :prepration_steps do |builder| %>
+      <%= render 'prepration_step_fields', :f => builder %>
+  <% end %>
+  <span style="margin-top: -20px;display: table;">
+      <%= link_to_add_fields "Add Steps", f, :prepration_steps %>
+  </span>
+
+  <div class="fields text_fields">
+    <%= f.label :dish_type %>
+    <%= f.select :dish_type, ["veg", "non-veg"], :include_blank => 'Select Veg/Non-Veg' %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :if_signature %>
+    <%= f.select :if_signature, ["true", "false"] %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :if_recipe %>
+    <%= f.select :if_recipe, ["true", "false"] %>
+  </div>
+
+  <!--<div class="fields text_fields">-->
+    <!--<%#= f.label :cuisine %>-->
+    <!--<%#= f.select :cuisine, ["Select Cuisine","Punjabi","South Indian","Mughlai","Hyderabadi","Gujrati","Kashmiri","Mexican","American","Others"] %>-->
+  <!--</div>-->
+  <!--<div class="fields text_fields">-->
+    <!--<%#= f.label :category %>-->
+    <!--<%#= f.select :category, ["Select Category","Main Course","Salad","Side Dish","Entre", "Snack","Soup","Brunch","Dessert","Other"] %>-->
+  <!--</div>-->
+
+  <!--<div class="fields text_fields">-->
+    <!--<%#= f.label :treatment %>-->
+    <!--<%#= f.select :treatment, ["Select Treatment Method","Shallow Fried","Fried","Baked","Frozen","Steamed","Thaw","Preservation","Roast","Pressure Cook","Scaling","Skinning","Slow Cooked","Smoked","BBQ","Boil","Toast","Marination","Simmering","Shallow Poaching","Poaching","Well Done","Medium","Rare","Grilling","Blanching","Canning","Others"] %>-->
+  <!--</div>-->
+
+  <div class="fields text_fields">
+    <%= f.label :equipment_required %>
+    <%= f.select :equipment_required, ["Gas/Electric Stove","Oven","Freezer","Frying Pan","Non-Stick Pan","Steamer","Pressure Cooker","Others"], :include_blank => 'Select Cooking Equipment' %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :preparation_time %>
+    <%= f.text_field :preparation_time %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :total_time %>
+    <%= f.text_field :total_time %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :servings %>
+    <%= f.text_field :servings %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :garnishing_tips %>
+    <%= f.text_area :garnishing_tips, :class => 'recipe_text_area' %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :serving_tips %>
+    <%= f.text_area :serving_tips, :class => 'recipe_text_area' %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :storage_instructions %>
+    <%= f.text_area :storage_instructions, :class => 'recipe_text_area' %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :shelf_life %>
+    <%= f.text_field :shelf_life %>
+  </div>
+
+</div>

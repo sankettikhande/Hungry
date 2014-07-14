@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag "cms_custom" %>
+
+<div class="fields apply-border">
+
+  <div class="fields heading">
+    Review
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :review_date %>
+    <%= f.date_select :review_date %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :reviewer %>
+    <%= f.text_field :reviewer %>
+  </div>
+
+  <div class="fields text_fields">
+    <%= f.label :review %>
+    <%= f.text_field :review %>
+  </div>
+
+</div>

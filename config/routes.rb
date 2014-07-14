@@ -1,4 +1,6 @@
 Holachef::Application.routes.draw do
+  namespace :cms  do content_blocks :food_items end
+
   resources :hola_users
 
   match "/cms" => "cms/dashboard#index"

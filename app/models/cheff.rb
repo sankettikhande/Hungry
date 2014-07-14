@@ -5,6 +5,7 @@ class Cheff < ActiveRecord::Base
   has_many :dishes
   has_many :cooking_todays
   has_many :ordered_menus
+  has_many :food_items
 
   attr_accessible :picture_attributes
 

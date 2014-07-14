@@ -1,0 +1,59 @@
+<% if @food_item.errors.any? %>
+    <div id="errorExplanation" class="errorExplanation">
+      <ul>
+        <% @food_item.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<%= form_for @food_item , :html=>{:multipart => true }, :url => "/cms/food_items" do |f| %>
+
+    <div class="fields text_fields">
+      <%= f.label :cheff %>
+      <%= f.select :cheff_id, Cheff.find(:all,:order => 'name asc').collect { |s| [s.name, s.id] },
+                   :include_blank =>'Select Cheff', :label => "Cheff",
+                   :instructions => "Select Cheff for the dish." %>
+    </div>
+
+    <div class="fields text_fields" style="padding-bottom: 20px;">
+      <%= f.label :meal_acquired_date %>
+      <%= f.date_select :meal_acquired_date %>
+    </div>
+
+    <%= f.fields_for :meal_info do |builder| %>
+        <%= render 'meal_info_fields', :f => builder %>
+    <% end %>
+
+    <%= f.fields_for :recipe do |builder| %>
+        <%= render 'recipe_fields', :f => builder %>
+    <% end %>
+
+    <%= f.fields_for :review do |builder| %>
+        <%= render 'review_fields', :f => builder %>
+    <% end %>
+
+    <div style="margin-top: 20px;">
+      <span style="padding: 20px;width: 100px;">
+        <%= f.submit "SUBMIT" %>
+      </span>
+      <span style="padding: 20px;width: 100px;">
+        <input type="button" value="CANCEL" onclick="window.location='/cms/food_items';">
+      </span>
+    </div>
+
+<% end %>
+
+<script>
+    function remove_fields(link) {
+        $(link).prev("input[type=hidden]").val("1");
+        $(link).closest(".fields").hide();
+    }
+
+    function add_fields(link, association, content) {
+        var new_id = new Date().getTime();
+        var regexp = new RegExp("new_" + association, "g");
+        $(link).parent().before(content.replace(regexp, new_id));
+    }
+</script>
+
