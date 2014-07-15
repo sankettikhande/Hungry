@@ -11,14 +11,18 @@ class Cms::CheffsController < Cms::ContentBlockController
   end
 
   def new
-    @chef = Cheff.new
+    @cheff = Cheff.new
+    @cheff.build_chef_coordinate
+    @cheff.build_chef_profile
+    @cheff.cheff_cuisine_geographies.build
     respond_to do |format|
       format.html
+      format.js
     end
   end
 
   def edit
-    @chef  = Cheff.find(params[:id])
+    @cheff  = Cheff.find(params[:id])
     respond_to do |format|
       format.html
     end
@@ -33,6 +37,35 @@ class Cms::CheffsController < Cms::ContentBlockController
     @recipes = Dish.where(:cheff_id => @chef.id)
     respond_to do |format|
       format.html { render :layout => "application"}
+    end
+  end
+
+  def create
+    params[:cheff].delete("cuisine_geographies_attributes")
+    params[:cheff].delete("cheff_cuisine_geographies")
+    p params
+    @cheff = Cheff.create(params[:cheff])
+    if @cheff.save
+      Cheff.save_cuisine_style(@cheff, params[:cuisine_style]) if params[:cuisine_style]
+      Cheff.save_cuisine_geographies(@cheff, params[:cuisine_geography_childrens]) if params[:cuisine_geography_childrens]
+      redirect_to '/cms/cheffs', :notice => "Successfully created Chef."
+    else
+      render :action => 'new'
+    end
+  end
+
+  def update
+    params[:cheff].delete("cuisine_geographies_attributes")
+    params[:cheff].delete("cheff_cuisine_geographies")
+    params[:cheff].delete("_destroy")
+    p params
+    @cheff = Cheff.find(params[:id])
+    if @cheff.update_attributes(params[:cheff])
+      Cheff.save_cuisine_style(@cheff, params[:cuisine_style]) if params[:cuisine_style]
+      Cheff.save_cuisine_geographies(@cheff, params[:cuisine_geography_childrens]) if params[:cuisine_geography_childrens]
+      redirect_to '/cms/cheffs', :notice => "Successfully created Chef."
+    else
+      render :action => 'edit'
     end
   end
 

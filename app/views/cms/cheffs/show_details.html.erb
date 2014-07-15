@@ -20,10 +20,10 @@
                     <li class="profile profile-dp">
                       <%= image_tag @chef.picture.image.url, :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" if @chef.picture %>
                     </li>
-                    <li class="profile user-name"><%= @chef.name %></li>
+                    <li class="profile user-name"><%= @chef.chef_coordinate.name %></li>
                     <li class="profile user-level"><%= @chef.hotel_name %></li>
                     <li class="profile user-city">
-                      <span class="city"><%= @chef.address %></span>
+                      <span class="city"><%= @chef.chef_coordinate.address_line_1 %></span>
                       <!--<span class="city">Mumbai</span>-->
                     </li>
                   </ul>
@@ -40,7 +40,7 @@
               <h2 class="roboto-l">About</h2>
             </div>
             <div class="normal-block">
-              <p class="text-left text-6">Esca Brahma - (Esca means food in Latin and Brahma is creation)is all about culinary creation! It’s about culture and sensitivity! Welcome to and enjoy my world of creating private gourmet experience.</p>
+              <p class="text-left text-6"><%= @chef.chef_profile.about_me %></p>
             </div>
           </div>
         </div>
