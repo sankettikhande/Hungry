@@ -1,0 +1,16 @@
+$("#sub_cuisine").removeAttr('disabled')
+$("#sub_cuisine").empty();
+
+    <% if !@list.blank? and @cuisine_geography.has_children? %>
+
+
+            var s = $("<select class=\"cuisine\" name=\"cuisines[]\" />");
+            var opts = [];
+            $.each(<%= @list.to_json.html_safe %>, function(key, value)
+            {
+                $('<option></option>').val(key).text(value).appendTo(s);
+            });
+            $("#<%= @parent_field %> span.remove_field").before(s);
+
+    <% end %>
+

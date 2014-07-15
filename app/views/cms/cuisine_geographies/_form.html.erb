@@ -1,0 +1,9 @@
+<%= form_for CuisineGeography.new(:parent_id => params[:parent_id]), :html=>{:multipart => true }, :url => "/cms/cuisine_geographies" do |f| %>
+    <%#= f.error_messages %>
+    <%= f.hidden_field :parent_id %>
+    <p>
+      <%= f.label :name, "New Cuisine" %><br />
+      <%= f.text_area :name, :rows => 8 %>
+    </p>
+    <p><%= f.submit "Post Cuisine" %></p>
+<% end %>

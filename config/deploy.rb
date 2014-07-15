@@ -62,6 +62,7 @@ task :prod do
   server domain, :app, :web
 
   after "deploy:update_code", "deploy:migrate"
+  after "deploy:migrate", "deploy:change_permission_for_tmp"
 end
 
 
@@ -72,6 +73,10 @@ namespace :deploy do
 
   task :change_permission_for_fcgi do
     run "chmod +x #{current_path}/public/dispatch.fcgi"
+  end
+
+  task :change_permission_for_tmp do
+    run "chmod -R 777 #{current_path}/tmp"
   end
 
   namespace :assets do

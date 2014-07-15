@@ -14,11 +14,15 @@ Holachef::Application.routes.draw do
 
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
+    match '/cuisine_geographies/load_sub_cuisines'=>'cuisine_geographies#load_sub_cuisines'
+    match '/cuisine_geographies/load_parent_cuisine'=>'cuisine_geographies#load_parent_cuisine'
     content_blocks :cheffs
     content_blocks :dishes
     content_blocks :cooking_todays
     content_blocks :orders
     content_blocks :sub_menus
+    content_blocks :cuisine_geographies
+    content_blocks :cuisine_styles
   end
 
   match '/orders/set_cart'=> 'Cms::orders#set_cart'

@@ -1,0 +1,3 @@
+<%= stylesheet_link_tag "cms_custom" %>
+<%= link_to "Add New Cuisine", "/cms/cuisine_geographies/new" %>
+<%= nested_messages @cuisine_geographies.arrange(:order => :created_at) %>

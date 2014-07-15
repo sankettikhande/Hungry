@@ -1,29 +1,102 @@
 <%= stylesheet_link_tag "cms_custom" %>
-<%= form_for @chef, :html=>{:multipart => true }, :url => "/cms/cheffs" do |f| %>
-    <div class="fields text_fields">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+<% if @cheff.errors.any? %>
+    <div id="errorExplanation" class="errorExplanation">
+      <ul>
+        <% @cheff.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
-    <div class="fields text_fields">
-      <label for="cheff_cheff_image">Chef Image</label>
-      <%= f.fields_for :picture, Cheff.new do |i| %>
-          <%= i.file_field :image %>
+<% end %>
+<%= form_for @cheff, :html=>{:multipart => true }, :url => "/cms/cheffs", :id => "new_cheff" do |f| %>
+
+    <div style="border: 1px slategray dotted; float: left; padding: 10px;margin: ">
+      <h2 style="font-size: 20px">Cheff </h2>
+      <%= f.label :chef_acquired_on %>
+      <%= f.date_select :chef_acquired_on %>
+    </div>
+
+    <div style="border: 1px slategray dotted; float: left; padding: 10px;margin: ">
+      <h2 style="font-size: 20px">Chef Coordinates</h2>
+      <%= f.fields_for :chef_coordinate do |builder| %>
+          <%= render 'chef_coordinate_fields', :f => builder %>
       <% end %>
     </div>
-    <div class="fields text_fields">
-      <%= f.label :hotel_name %>
-      <%= f.text_field :hotel_name %>
+    <div style="border: 1px slategray dotted; float: left; padding: 10px;margin: 10px 0 0">
+      <h2 style="font-size: 20px">Chef Profile</h2>
+      <div class="fields text_fields">
+        <label for="cheff_cheff_image">Chef Image</label>
+        <%= f.fields_for :picture, Cheff.new do |i| %>
+            <%= i.file_field :image %>
+        <% end %>
+      </div>
+      <%= f.fields_for :chef_profile do |builder| %>
+          <%= render 'chef_profile_fields', :f => builder %>
+      <% end %>
     </div>
-    <div class="fields text_fields">
-      <%= f.label :address %>
-      <%= f.text_field :address %>
+
+    <div style="border: 1px slategray dotted; float: left; padding: 10px;width: 90%;margin: 10px 0 0">
+      <h2 style="font-size: 20px">Chef Preferences</h2>
+      <%= render 'chef_preferences', :f => f, :chef => @chef   %>
     </div>
+    <div class="fields text_fields"></div>
+    <div class="fields text_fields"></div>
     <div style="margin-top: 20px;">
       <span style="padding: 20px;width: 100px;">
-        <%= f.submit "SUBMIT" %>
+        <%= f.button "SUBMIT", :id=>"new_cheff_submit" %>
       </span>
       <span style="padding: 20px;width: 100px;">
         <input type="button" value="CANCEL" onclick="window.location='/cms/cheffs';">
       </span>
     </div>
 <% end %>
+
+<script>
+   $("#new_cheff_submit").click(function(){
+       $(".child_fields").each(function() {
+           $('#new_cheff').append("<input type='hidden' name='cuisine_geography_childrens[]' value=" + $(this).find('select').last().val() + ">");
+       });
+       $("#new_cheff").submit();
+   })
+    $(document).on("change", ".cuisine" ,function(){
+        that = this;
+        var cuisine = $(this).val();
+        if(cuisine==''){
+            $("#sub_cuisine").val('');
+            $("#sub_cuisine").attr('disabled','disabled');
+        }
+        else {
+            $.ajax({
+                'type': 'GET',
+                'url': '/cms/cuisine_geographies/load_sub_cuisines?parent_id=' + cuisine+"&parent_field="+ $(this).parent().attr('id'),
+                'dataType': 'script',
+                'beforeSend': function(){
+                    $(that).nextAll(".cuisine").remove();
+                }
+            })
+        }
+    });
+
+</script>
+<script>
+    $(function(){
+        $('#myTags').tagit({
+            fieldName: "cheff[tag_list][]"
+        });
+    });
+
+    function remove_fields(link) {
+        $(link).prev("input[type=hidden]").val("1");
+        $(link).closest(".fields").hide();
+    }
+
+    function add_fields(link, association, content) {
+        var new_id = new Date().getTime();
+        var regexp = new RegExp("new_" + association, "g");
+        var id_regex = new RegExp(/fields_\d+/)
+        content = content.replace(regexp, new_id);
+        content = content.replace(id_regex, "fields_"+new_id)
+        $(link).parent().before(content);
+
+    }
+</script>
