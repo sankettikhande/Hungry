@@ -116,4 +116,19 @@ module ApplicationHelper
     user = HolaUser.find_by_phoneNumber(cookies[:user_mobile]) if !cookies[:user_mobile].blank?
     return user if user
   end
+
+  def nested_messages(messages)
+    messages.map do |message, sub_messages|
+      render(message) + content_tag(:div, nested_messages(sub_messages), :class => "nested_messages")
+    end.join.html_safe
+  end
+
+  def render_parent_select_box(cuisine)
+    if !cuisine.parent.blank?
+      return select_tag "cuisines[]", (options_for_select(cuisine.parent.siblings.collect{ |u| [u.name, u.id]}, :selected => cuisine.parent)), :prompt => "Select Cuisine", :class => "cuisine"
+    else
+      return select_tag "cuisines[]", (options_for_select(cuisine.siblings.collect{ |u| [u.name, u.id]}, :selected => cuisine)), :prompt => "Select Cuisine", :class => "cuisine"
+    end
+
+  end
 end

@@ -162,6 +162,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  ancestry
   browsercms
   capistrano (= 2.15.4)
   coffee-rails (~> 3.2.1)

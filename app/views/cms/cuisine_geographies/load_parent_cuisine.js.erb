@@ -1,0 +1,22 @@
+var s = $("<select class=\"cuisine\" name=\"cuisines[]\" />");
+var opts = [];
+$.each(<%= @list.to_json.html_safe %>, function(key, value)
+{
+    $('<option></option>').val(key).text(value).appendTo(s);
+});
+$(".edit_cuisines").prepend(s);
+<% if !@cuisine_geography.is_root? %>
+
+               alert("load")
+                var cuisine = "<%= @cuisine_parent.id %>";
+                $.ajax({
+                    'url': '/cms/cuisine_geographies/load_parent_cuisine?cuisine_id=' + cuisine,
+                    'type': 'GET',
+                    'dataType': 'script'
+                })
+
+
+
+<% end %>
+
+

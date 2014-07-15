@@ -1,0 +1,53 @@
+<%= stylesheet_link_tag "tagit.ui-zendesk", "jquery.tagit" %>
+    <% if @cheff.new_record? %>
+      <%= f.fields_for :cheff_cuisine_geographies do |builder| %>
+          <%= render 'cuisine_geography_fields', :f => builder, :level => @level %>
+      <% end %>
+      <span style="display: table; margin-top: -18px; font-weight: bold;"><%= link_to_add_fields "Add Cuisine", f, :cuisine_geographies %></span>
+    <% else %>
+        <% @cheff.cuisine_geographies.each do |cuisine| %>
+            <div class="fields text_fields child_fields edit_cuisines" id="fields_<%= Time.now.to_i %>" data-cuisine="<%=cuisine.id %>" >
+                  <%= f.label :cuisine_geography %>
+                  <% cuisine.ancestors.each do |parent| %>
+                    <%= select_tag "cuisine[]", (options_for_select(parent.siblings.collect{ |u| [u.name, u.id]}, :selected => parent.id)), :prompt => "Select Cuisine", :class => "cuisine", :class => "cuisine" %>
+                  <% end %>
+                  <%= select_tag "cuisine[]", (options_for_select(cuisine.siblings.collect{ |u| [u.name, u.id]}, :selected => cuisine.id)), :prompt => "Select Cuisine", :class => "cuisine", :class => "cuisine" %>
+                  <span style="margin-left: 140px;margin-top: 10px;display: table;" class="remove_field">
+                    <%= link_to_remove_fields "Remove Cuisine", f %>
+                  </span>
+            </div>
+        <% end %>
+        <span style="display: table; margin-top: 18px; font-weight: bold;"><%= link_to_add_fields "Add Cuisine", f, :cuisine_geographies %></span>
+
+    <% end %>
+
+
+
+<div class="fields text_fields">
+  <%= label_tag :cuisine_styles %>
+  <% CuisineStyle.all.each do |style| %>
+      <%= style.name %>
+      <%= check_box_tag 'cuisine_style[]', style.id, false ,:style => "width:20px !important;", :checked => (true if @cheff.cuisine_styles.map(&:name).include?(style.name.strip)) %>
+  <% end %>
+
+</div>
+<div class="fields text_fields">
+  <%= f.label :cuisine_tags %>
+  <% if @cheff.new_record? %>
+    <ul id="myTags"></ul>
+  <% else %>
+      <ul id="myTags">
+        <% if @cheff.tag_list %>
+         <% @cheff.tag_list.each do |tag| %>
+                <li data-value="<%= tag %>"><%= tag %></li>
+         <% end %>
+        <% end %>
+      </ul>
+  <% end %>
+</div>
+<style>
+    ul.tagit li.tagit-choice .tagit-close .text-icon{
+        display: block;
+    }
+</style>
+<%= javascript_include_tag "jquery-1.11.0.min", "jquery-ui.min", "jquery.taglist", "tag-it.min" %>
