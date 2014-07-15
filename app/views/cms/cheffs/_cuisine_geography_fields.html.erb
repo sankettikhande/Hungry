@@ -1,7 +1,7 @@
 <div class="fields text_fields child_fields" id="fields_<%= Time.now.to_i %>">
   <%= f.label :cuisine_geography %>
   <% @cuisines = collect_cuisines_geographies  %>
-  <%= select_tag "cuisine_geography_id", (options_for_select(@cuisines.collect{ |u| [u.name, u.id]}, :selected => @cheff.cuisine_geography_id)), :prompt => "Select Cuisine", :class => "cuisine" %>
+  <%= select_tag "cuisine_geography_id", (options_for_select(@cuisines.collect{ |u| [u.name, u.id]})), :prompt => "Select Cuisine", :class => "cuisine" %>
   <br/>
   <span style="margin-left: 140px;margin-top: 10px;display: table;" class="remove_field">
     <%= link_to_remove_fields "Remove Cuisine", f %></span>
