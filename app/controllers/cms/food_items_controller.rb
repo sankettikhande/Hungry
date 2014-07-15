@@ -1,11 +1,11 @@
 class Cms::FoodItemsController < Cms::ContentBlockController
+
   def new
     @food_item = FoodItem.new
     @food_item.build_recipe
-    @food_item.recipe.ingredients.build
+    @food_item.recipe.sub_menus.build
     @food_item.recipe.prepration_steps.build
     @food_item.build_meal_info
-
     @food_item.build_review
     respond_to do |format|
       format.html

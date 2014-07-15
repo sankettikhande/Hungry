@@ -6,25 +6,26 @@
     Recipe
   </div>
 
-  <div class="fields sub-heading">
-    &nbsp;>> Ingredients
+  <div class="border-and_padding">
+      <%= f.fields_for :sub_menus do |builder| %>
+          <%= render 'sub_menu_fields', :f => builder %>
+      <% end %>
+      <span class="add-remove-links">
+          <%= link_to_add_fields "Add Sub Menus", f, :sub_menus %>
+      </span>
   </div>
-  <%= f.fields_for :ingredients do |builder| %>
-      <%= render 'ingredient_fields', :f => builder %>
-  <% end %>
-  <span style="margin-top: -20px;display: table;">
-      <%= link_to_add_fields "Add Ingredients", f, :ingredients %>
-  </span>
 
-  <div class="fields sub-heading">
-    &nbsp;>> Preparation Steps
+  <div class="border-and_padding">
+      <div class="fields sub-heading">
+        &nbsp;>> Preparation Steps
+      </div>
+      <%= f.fields_for :prepration_steps do |builder| %>
+          <%= render 'prepration_step_fields', :f => builder %>
+      <% end %>
+      <span class="add-remove-links">
+          <%= link_to_add_fields "Add Steps", f, :prepration_steps %>
+      </span>
   </div>
-  <%= f.fields_for :prepration_steps do |builder| %>
-      <%= render 'prepration_step_fields', :f => builder %>
-  <% end %>
-  <span style="margin-top: -20px;display: table;">
-      <%= link_to_add_fields "Add Steps", f, :prepration_steps %>
-  </span>
 
   <div class="fields text_fields">
     <%= f.label :dish_type %>

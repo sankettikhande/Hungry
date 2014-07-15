@@ -211,8 +211,8 @@ form, .faux_form {
     height: 75px;
 }
 .apply-border{
-    border: 1px solid #CCCCCC;
-    padding: 5px;
+    border: 1px solid #707A85;
+    padding: 20px;
     margin-bottom: 25px;
 }
 .heading{
@@ -227,6 +227,26 @@ form, .faux_form {
 .sub-heading{
     font-weight: bold;
     font-size: 20px;
-    color: #424f65;
+    color:#0000CC;
     padding: 15px 15px 15px 0;
+}
+.sub-sub-heading{
+    font-weight: bold;
+    font-size: 20px;
+    color: #991F00;
+    padding: 15px 15px 15px 0;
+    margin-bottom: 30px;
+}
+.border-and_padding{
+    border: 1px solid #000000;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.add-remove-links{
+    margin-top: -20px;
+    display: table;
+}
+.errorExplanation{
+    padding-left: 20px;
+    font-size: 12px;
 }
