@@ -4,6 +4,7 @@ class SubMenu < ActiveRecord::Base
 
   attr_accessible :title, :picture_attributes, :ingredients_attributes, :prepration_steps_attributes
 
+  belongs_to :recipe
   belongs_to :dish
   has_many :prepration_steps, :dependent => :destroy
   has_many :ingredients, :dependent => :destroy
