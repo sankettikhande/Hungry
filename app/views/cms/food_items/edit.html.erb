@@ -11,7 +11,7 @@
 
     <div class="fields text_fields">
       <%= f.label :cheff %>
-      <%= f.select :cheff_id, ChefCoordinate.find(:all,:order => 'name asc').map { |s| [s.name, s.id] },
+      <%= f.select :cheff_id, Cheff.find(:all,:order => 'name asc', :include => 'chef_coordinate').map { |s| [s.chef_coordinate.name, s.id] },
                    :include_blank =>'Select Cheff', :label => "Cheff",
                    :instructions => "Select Cheff for the dish." %>
     </div>
