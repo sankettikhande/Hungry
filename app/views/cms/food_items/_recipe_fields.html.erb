@@ -15,17 +15,6 @@
       </span>
   </div>
 
-  <div class="border-and_padding">
-      <div class="fields sub-heading">
-        &nbsp;>> Preparation Steps
-      </div>
-      <%= f.fields_for :prepration_steps do |builder| %>
-          <%= render 'prepration_step_fields', :f => builder %>
-      <% end %>
-      <span class="add-remove-links">
-          <%= link_to_add_fields "Add Steps", f, :prepration_steps %>
-      </span>
-  </div>
 
   <div class="fields text_fields">
     <%= f.label :dish_type %>

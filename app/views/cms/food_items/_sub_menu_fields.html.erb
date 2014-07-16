@@ -2,7 +2,7 @@
 
 
 
-<div class="fields">
+<div class="fields" style="border-bottom: 1px solid #000000;">
   <div class="fields sub-heading">
     &nbsp;>> Sub Menu
   </div>
@@ -21,6 +21,18 @@
       <% end %>
       <span class="add-remove-links">
           <%= link_to_add_fields "Add Ingredients", f, :ingredients %>
+      </span>
+  </div>
+
+  <div class="border-and_padding">
+    <div class="fields sub-sub-heading">
+      &nbsp;>> Preparation Steps
+    </div>
+    <%= f.fields_for :prepration_steps do |builder| %>
+        <%= render 'prepration_step_fields', :f => builder %>
+    <% end %>
+    <span class="add-remove-links">
+          <%= link_to_add_fields "Add Steps", f, :prepration_steps %>
       </span>
   </div>
 

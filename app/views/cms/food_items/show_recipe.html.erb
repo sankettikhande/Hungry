@@ -1,0 +1,207 @@
+<div class="right-body">
+    <div class="container-fluid seperator-10">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="container">
+              <div class="chef-page">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <ul class="profile-details">
+                      <li class="profile veg cover-block">
+                        <ul class="cover-image">
+                          <li class="cover cover-photo hidden"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
+                          <li class="cover cover-text <%= set_menu_type(@food_item.recipe)%>">
+                            <h1 class="lemon text-white" id="cover-title"><%= @food_item.meal_info.name %></h1>
+                            <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="profile profile-heart"><div class="add-heart"></div></li>
+                      <li class="profile profile-dp">
+                        <%= image_tag(@food_item.meal_info.picture.image.url, :class => "img-responsive img-circle center-block" ) if @food_item.meal_info.picture %>
+                      </li>
+                      <li class="profile user-name by"><%= @food_item.cheff.chef_coordinate.name if @food_item.cheff %></li>
+                      <li class="profile user-level"><%#= @food_item.cheff.chef_coordinate.hotel_name if @food_item.cheff %></li>
+                      <li class="profile user-city">
+                        <span class="area"><%= @food_item.cheff.chef_coordinate.address_line_2 if @food_item.cheff %></span>
+                        <span class="city"><%= @food_item.cheff.chef_coordinate.city if @food_item.cheff %></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="normal-header">
+                    <h2 class="roboto-l">About</h2>
+                  </div>
+                  <div class="normal-block">
+                    <p class="text-left text-6"><%= @food_item.meal_info.description.html_safe %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="normal-block">
+                    <ul class="recipe-info">
+                      <li>Cooking time<span><%= @food_item.recipe.preparation_time %> min</span></li>
+                      <li>Serves<span><%= @food_item.recipe.servings %></span></li>
+                      <li>Cuisine<span class="comma"><%#= @food_item.cuisine %></span></li>
+                      <li>Tags
+                        <%# @food_item.tag_list.each do |tag| %>
+                            <span class="comma"><%#= link_to tag, "#" %></span>
+                        <%# end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="normal-header">
+                    <h2 class="roboto-l">Ingredients</h2>
+                  </div>
+                  <div class="normal-body">
+                    <div class="recipe-ingredients">
+                      <% @food_item.recipe.sub_menus.each do |sub_menu| %>
+                          <h3 class="dark-title"><%= sub_menu.title %></h3>
+                          <ul class="ingredients-list">
+                              <% sub_menu.ingredients.each do |ingredient| %>
+                                <li class="ingredient">
+                                  <span class="quantity"><%= ingredient.quantity %></span>
+                                  <span class="unit"><%= ingredient.unit %></span>
+                                  <span class="name"><%= ingredient.ingredient_name %></span>
+                                  <span class="google pull-right">
+                                    <%= link_to "Search", "https://www.google.co.in/?#q=#{ingredient.ingredient_name}", :target=>"_blank", :class=>"text-hide" %>
+                                  </span>
+                                </li>
+                              <% end %>
+                          </ul>
+                      <% end %>
+
+                    </div>
+                  </div>
+                  <div class="normal-header">
+                    <h2 class="roboto-l">Directions</h2>
+                  </div>
+                  <div class="normal-body">
+                    <div class="recipe-directions">
+                      <% @food_item.recipe.sub_menus.each do |sub_menu| %>
+                          <h3 class="dark-title"><%= sub_menu.title %></h3>
+                          <ol class="direction-list">
+                            <% sub_menu.prepration_steps.each do |steps| %>
+                                <li class="text"><%= steps.steps %></li>
+                                <div class="direction-image">
+                                  <%= image_tag(steps.picture.image.url, :class => "img-responsive center-block" ) if steps.picture %>
+                                </div>
+                            <% end %>
+                          </ol>
+
+                      <% end %>
+
+                    </div>
+                  </div>
+
+                  <div class="normal-header">
+                    <h2 class="roboto-l">Tips</h2>
+                  </div>
+                  <div class="normal-body">
+                    <div class="recipe-directions">
+                      <ol class="direction-list">
+                        <%# @food_item.tips.each do |recipe| %>
+                            <li class="text"><%#= recipe.tips %></li>
+                        <%# end %>
+                      </ol>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="container">
+                  <div class="hola-rating">
+                    <ul class="rating-block">
+                      <li class="five-stars">
+                        <div id="star" style="float: left"></div>
+                        <input type="hidden" name="food_item[id]" id = "food_item_id" value="<%= @food_item.id  if @food_item %>">
+                        <div class="rating_msg" style="float: left"></div>
+                      </li>
+                      <li class="review-count">
+                        <span class="count"><%= @food_item.review.ratings if @food_item.review %></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                  <div class="container seperator-10">
+                    <div class="normal-body">
+                      <%# if @recipe.if_signature == true %>
+                        <p class="text-6 text-center">This is a signature dish and can be made to order</p>
+                      <%# end %>
+
+                    </div>
+                    <div class="min-order-block text-center">
+                      <h3>Minimum Order Details</h3>
+
+                      <ul class="block-3">
+                        <li class="each-block">
+                          <a href="#">
+                            <span id="served-count" class="upper roboto-b"><%= @food_item.meal_info.portion_size %></span>
+                            <span class="lower text-uppercase">Portions</span>
+                          </a>
+                        </li>
+                        <li class="each-block">
+                          <a href="#">
+                            <span id="recipe-count" class="upper roboto-b"><%= @food_item.meal_info.preorder_time %></span>
+                            <span class="lower text-uppercase">Days Notice</span>
+                          </a>
+                        </li>
+                        <li class="each-block">
+                          <a href="#">
+                        <span id="fan-count" class="upper roboto-b"><%= @food_item.meal_info.hola_sell_price %>/-</span>
+                            <span class="lower text-uppercase">Per Portion</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="container">
+                    <div class="normal-body text-center">
+                      <%# if @recipe.if_signature == true %>
+                        <button class="btn-golden col-xs-8 col-xs-push-2 roboto-b text-6" type="button"  data-toggle="modal" data-target="#sign-modal">Order it</button>
+                      <%# end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 sidebar-offcanvas hola-sidemenu" id="sidebar" role="navigation">
+                  <div class="list-group">
+                    <a href="#" class="list-group-item">
+                      <h4 class="list-group-item-heading active" id="user-name">Abhishek Thakkar</h4>
+                      <p class="list-group-item-text " id="user-contact">9876543210</p></a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-home"></span>Home</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-signature"></span>Signature Dishes</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-party-order"></span>Party Orders</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-recipe"></span>Recipes</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-favorite"></span>Favorites</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-order-history"></span>Order History</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-address"></span>Addressbook</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-email"></span>Talk to us</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-share"></span>Love us?</a>
+                    <a href="#" class="list-group-item"><span class="sprite icon-gear"></span>Settings</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+     </div> <!-- fluid container ends -->
+<%# @signature_dish = @recipe %>
+<%#= render 'cms/dishes/signature_modal', :signature_dish => @signature_dish if @signature_dish %>
+</div>
