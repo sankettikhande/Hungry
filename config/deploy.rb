@@ -62,7 +62,7 @@ task :prod do
   server domain, :app, :web
 
   after "deploy:update_code", "deploy:migrate"
-  after "deploy:migrate", "deploy:change_permission_for_tmp"
+  after "deploy:create_symlink", "deploy:change_permission_for_tmp"
 end
 
 
