@@ -23,6 +23,9 @@ class Cms::CheffsController < Cms::ContentBlockController
 
   def edit
     @cheff  = Cheff.find(params[:id])
+    @cheff.build_chef_coordinate
+    @cheff.build_chef_profile
+    @cheff.cheff_cuisine_geographies.build
     respond_to do |format|
       format.html
     end
