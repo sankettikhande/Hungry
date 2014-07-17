@@ -4,7 +4,7 @@
     <%= cuisine_geography.name %>
   </div>
   <div class="actions">
-    <%= link_to "Reply", "/cms/cuisine_geographies/new?parent_id=#{cuisine_geography.id}" %> |
-    <%= link_to "Destroy", "/cms/cuisine_geographies/#{cuisine_geography.id}", :confirm => "Are you sure?", :method => :delete %>
+    <%= link_to "Add Sub Cuisine", "/cms/cuisine_geographies/new?parent_id=#{cuisine_geography.id}" %> |
+    <%= link_to "Delete", "#", :class => "delete_cuisine", :data => {:cuisine => cuisine_geography.id} %>
   </div>
 </div>

@@ -28,4 +28,11 @@ class Cms::CuisineGeographiesController < Cms::ContentBlockController
       format.js
     end
   end
+
+  def delete_cuisine
+    @cuisine_geography = CuisineGeography.find(params[:id])
+    @cuisine_geography.destroy
+    redirect_to "/cms/cuisine_geographies"
+  end
+
 end
