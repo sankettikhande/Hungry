@@ -21,9 +21,9 @@
                       <%= image_tag @chef.picture.image.url, :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" if @chef.picture %>
                     </li>
                     <li class="profile user-name"><%= @chef.chef_coordinate.name %></li>
-                    <li class="profile user-level"><%= @chef.hotel_name %></li>
+                    <li class="profile user-level"><%= @chef.chef_profile.brand_represented if @chef.chef_profile %></li>
                     <li class="profile user-city">
-                      <span class="city"><%= @chef.chef_coordinate.address_line_1 %></span>
+                      <span class="city"><%= @chef.chef_coordinate.city.camelize %></span>
                       <!--<span class="city">Mumbai</span>-->
                     </li>
                   </ul>
@@ -142,7 +142,6 @@
               <ul class="user-profile">
                 <li class="profile-pic">
                   <%= link_to image_tag("/assets/user-pic.jpg", :class => "img-responsive center-block"), "/cheff/#{params[:cheff_id]}", :id => "chef_info" %>
-                  <!--<img class="img-responsive center-block" src="/assets/user-pic.jpg" alt="User">-->
                 </li>
                 <li class="user-name">
                   <h3>Mrs. Sharma

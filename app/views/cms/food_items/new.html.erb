@@ -21,6 +21,16 @@
       <%= f.date_select :meal_acquired_date %>
     </div>
 
+    <div class="fields text_fields">
+      <%= f.label :if_signature %>
+      <%= f.select :if_signature, ["true", "false"] %>
+    </div>
+
+    <div class="fields text_fields">
+      <%= f.label :if_recipe %>
+      <%= f.select :if_recipe, ["true", "false"] %>
+    </div>
+
     <%= f.fields_for :meal_info do |builder| %>
         <%= render 'meal_info_fields', :f => builder %>
     <% end %>

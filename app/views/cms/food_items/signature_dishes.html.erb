@@ -1,0 +1,96 @@
+<div class="right-body">
+    <div class="container seperator-10">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="signature-panel">
+            <div class="hola-container">
+
+          <div class="item" id="signature_item">
+            <ul class="square">
+              <li class="recipe-block <%=set_menu_type(@signature_dish)%>">
+                <div class="recipe-header">
+                  <div><%= link_to "","/recipe/#{@signature_dish.id}",:class => "add-lens" %></div>
+                  <div class="recipe-name">
+                    <%= @signature_dish.meal_info.name if @signature_dish %>
+                  </div>
+                  <div class="add-heart"></div>
+                  <div class="recipe-image hidden">
+                    <div><%= link_to "","/recipe/#{@signature_dish.id}",:class => "add-lens" %></div>
+                    <div class="add-heart"></div>
+                    <%= image_tag @signature_dish.meal_info.picture.image.url, :class => "img-responsive center-block" if @signature_dish && @signature_dish.meal_info %>
+                  </div>
+                </div>
+              </li>
+              <li class="recipe-title hidden"></li>
+              <li class="recipe-tags">
+                <ul class="stock-value">
+                  <li class="recipe-stock"><span class="stock-count">10</span> left</li>
+                  <li class="recipe-price">180/-</li>
+                </ul>
+              </li>
+            </ul>
+             </div>
+            </div>
+            <div class="hola-rating">
+              <ul class="rating-block">
+                <li class="five-stars">
+                  <div id="star" style="float: left"></div>
+                  <input type="hidden" name="food_item[id]" id = "food_item_id" value="<%= @signature_dish.id  if @signature_dish %>">
+                  <div class="rating_msg" style="float: left"></div>
+                </li>
+                <li class="review-count">
+                  <span class="count"><%= @signature_dish.review.ratings  if @signature_dish %></span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="dish-info">
+              <p><%= @signature_dish.meal_info.description.html_safe %> </p>
+              <!--<p><span class="portion">1</span><span id="portion-eqv">2 Baatis</span></p>-->
+            </div>
+
+            <div class="min-order-block">
+              <h3>Minimum Order Details</h3>
+
+          <ul class="block-3">
+            <li class="each-block">
+              <a href="#">
+                <span id="served-count" class="upper roboto-b"><%= @signature_dish.meal_info.portion_size %></span>
+                <span class="lower text-uppercase">Portions</span>
+              </a>
+            </li>
+            <li class="each-block">
+              <a href="#">
+                <span id="recipe-count" class="upper roboto-b"><%= @signature_dish.meal_info.preorder_time %></span>
+                <span class="lower text-uppercase">Days Notice</span>
+              </a>
+            </li>
+            <li class="each-block">
+              <a href="#">
+                <span id="fan-count" class="upper roboto-b"><%= @signature_dish.meal_info.hola_sell_price %>/-</span>
+                <span class="lower text-uppercase">Per Portion</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= content_for :signature_footer do %>
+    <div id="footer" class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="tap-text"><p class="text-center"><a class="text-orange btn-block" data-toggle="modal" data-target="#sign-modal">Place Order</a></p></div> <!-- change text-light to text-orange for changing color -->
+            <ul class="chosen-options hidden">
+              <li class="billing"><a href="#">500/-</a></li>
+              <li class="checkout"><a href="#">Checkout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<%= render 'cms/food_items/signature_modal', :locals => {:signature_dish => @signature_dish} if @signature_dish %>
+</div>

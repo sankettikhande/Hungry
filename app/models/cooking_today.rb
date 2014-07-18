@@ -3,14 +3,14 @@ class CookingToday < ActiveRecord::Base
   attr_accessor :skip_callbacks
 
   belongs_to :cheff
-  belongs_to :dish
+  belongs_to :food_item
 
-  validates :dish_id, :presence => true
+  validates :food_item_id, :presence => true
   validates :cheff_id, :presence => true
   validates :date, :presence => true
 
   def name
-    "Cheff: #{self.cheff.name} | Dish: #{self.dish.name} " if self.cheff && self.dish
+    "Cheff: #{self.cheff.chef_coordinate.name} | Dish: #{self.food_item.meal_info.name} " if self.cheff && self.food_item
   end
 
   def self.sorted_by_qty_left

@@ -10,7 +10,7 @@ class Cms::FoodItemsController < Cms::ContentBlockController
   end
 
   def signature_dishes
-    @signature_dish = Dish.find_by_id(params[:dish_name])
+    @signature_dish = FoodItem.find_by_id(params[:dish_name])
     respond_to do |format|
       format.html { render :layout => 'application' }
     end

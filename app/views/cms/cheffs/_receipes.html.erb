@@ -1,19 +1,19 @@
 <div class="hola-container">
-  <% @recipes.each do |recipe| %>
+  <% @recipes.each do |food_item| %>
       <div class="item" data-toggle="modal" data-target="#">
         <ul class="square">
-          <li class="recipe-block <%=set_menu_type(recipe)%>">
-            <% if !recipe.picture.blank? %>
+          <li class="recipe-block <%=set_menu_type(food_item)%>">
+            <% if !food_item.meal_info.picture.blank? %>
                 <div class="recipe-image append-cart">
                   <div class="add-lens"></div>
                   <div class="add-heart"></div>
-                  <%= image_tag recipe.picture.image.url, :alt=>"#{recipe.name}", :class => "img-responsive center-block" %>
+                  <%= image_tag food_item.meal_info.picture.image.url, :alt=>"#{food_item.meal_info.name}", :class => "img-responsive center-block" %>
                 </div>
             <% else %>
-                <div class="recipe-header <%=set_menu_type(recipe)%> append-cart">
+                <div class="recipe-header <%=set_menu_type(food_item)%> append-cart">
                   <div class="add-lens"></div>
                   <div class="recipe-name">
-                    <%= recipe.name %>
+                    <%= food_item.meal_info.name %>
                   </div>
                   <div class="add-heart"></div>
                 </div>
@@ -23,7 +23,7 @@
           <li class="recipe-tags">
             <ul class="stock-value">
               <li class="recipe-stock hidden"><span class="stock-count">10</span> left</li>
-              <li class="recipe-price"><%= link_to "View", "/recipe/#{recipe.id}" %></li>
+              <li class="recipe-price"><%= link_to "View", "/recipe/#{food_item.id}" %></li>
             </ul>
           </li>
         </ul>

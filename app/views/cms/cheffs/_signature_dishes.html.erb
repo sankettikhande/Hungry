@@ -1,20 +1,20 @@
 <div class="hola-container">
   <% if @signature_dishes %>
-      <% @signature_dishes.each do |dish| %>
+      <% @signature_dishes.each do |food_item| %>
           <div class="item" data-toggle="modal" data-target="#">
-            <ul class="square" onclick="window.location='/signature/<%=dish.id%>'">
-              <li class="recipe-block <%=set_menu_type(dish)%>">
-                <% if !dish.picture.blank? %>
+            <ul class="square" onclick="window.location='/signature/<%=food_item.meal_info.id%>'">
+              <li class="recipe-block <%=set_menu_type(food_item)%>">
+                <% if !food_item.meal_info.picture.blank? %>
                     <div class="recipe-image append-cart">
                       <div class="add-lens"></div>
                       <div class="add-heart"></div>
-                      <%= image_tag dish.picture.image.url, :alt=>"#{dish.name}", :class => "img-responsive center-block" %>
+                      <%= image_tag food_item.meal_info.picture.image.url, :alt=>"#{food_item.meal_info.name}", :class => "img-responsive center-block" %>
                     </div>
                 <% else %>
-                    <div class="recipe-header <%=set_menu_type(dish)%> append-cart">
+                    <div class="recipe-header <%=set_menu_type(food_item)%> append-cart">
                       <div class="add-lens"></div>
                       <div class="recipe-name">
-                        <%= dish.name %>
+                        <%= food_item.meal_info.name %>
                       </div>
                       <div class="add-heart"></div>
                     </div>
@@ -24,7 +24,7 @@
               <li class="recipe-tags">
                 <ul class="stock-value">
                   <li class="recipe-stock hidden"><span class="stock-count">10</span> left</li>
-                  <li class="recipe-price"><%= link_to "Order","/signature/#{dish.id}" %></li>
+                  <li class="recipe-price"><%= link_to "Order","/signature/#{food_item.meal_info.id}" %></li>
                 </ul>
               </li>
 

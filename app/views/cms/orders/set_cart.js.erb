@@ -1,7 +1,10 @@
 $("#cheff_footer #footer div.col-xs-12 div p").addClass("hidden");
 $("#cheff_footer #footer div.col-xs-12 ul").removeClass("hidden");
-$("#footer .col-xs-12").empty();
-$("#footer .col-xs-12").html("<%= escape_javascript(render :partial => 'checkout_details' )%>");
+
+   if (<%= !"#{request.referer}".include?('review_order')%>) {
+       $("#footer .col-xs-12").empty();
+       $("#footer .col-xs-12").html("<%= escape_javascript(render :partial => 'checkout_details' )%>");
+   }
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
 $("#review_order_total").html("<%=@total%>");
