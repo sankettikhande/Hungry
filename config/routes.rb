@@ -18,7 +18,6 @@ Holachef::Application.routes.draw do
     match '/cuisine_geographies/load_parent_cuisine'=>'cuisine_geographies#load_parent_cuisine'
     match '/cuisine_geographies/delete/:id' =>'cuisine_geographies#delete_cuisine'
     content_blocks :cheffs
-    content_blocks :dishes
     content_blocks :cooking_todays
     content_blocks :orders
     content_blocks :sub_menus

@@ -56,10 +56,10 @@ class Cms::OrdersController < Cms::ContentBlockController
     session[:cart].each do |item|
       item.each do |item_id, item_attr|
         cooking_today  = CookingToday.find(item_id)
-        dish = cooking_today.dish
+        food_item = cooking_today.food_item
         if @order
-          menu = OrderedMenu.create(:order_id => @order.id,:dish_id => dish.id,
-                                    :cheff_id => dish.cheff.id, :quantity => item_attr['quantity'],
+          menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id,
+                                    :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
                                     :rate => item_attr['price'])
 
         end

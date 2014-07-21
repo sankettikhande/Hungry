@@ -29,9 +29,6 @@ class Order < ActiveRecord::Base
         hola_user = HolaUser.create(:name => params[:orders][:name], :phoneNumber => params[:orders][:phone_no])
         HolaUserAddress.create(:address => params[:orders][:address].strip, :hola_user_id => hola_user.id)  if hola_user
       end
-    else
-      HolaUserAddress.create(:address => params[:orders][:address],
-                             :hola_user_id => hola_user.id) if hola_user && !hola_user.hola_user_addresses.map(&:address).include?(params[:orders][:address].strip)
     end
     return hola_user
   end
