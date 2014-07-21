@@ -1,3 +1,14 @@
 <%= stylesheet_link_tag "cms_custom" %>
 <%= link_to "Add New Cuisine", "/cms/cuisine_geographies/new" %>
-<%= nested_messages @cuisine_geographies.arrange(:order => :created_at) %>
+<%= nested_messages @cuisine_geographies.arrange(:order => :created_at) if @cuisine_geographies %>
+<script>
+    $(function(){
+        $(".delete_cuisine").click(function(){
+            var cuisine = $(this).attr("data-cuisine");
+            var r = confirm("Are You Sure?");
+            if (r == true) {
+                window.location = "/cms/cuisine_geographies/delete/"+ cuisine;
+            }
+        });
+    })
+</script>
