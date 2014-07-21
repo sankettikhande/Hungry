@@ -261,6 +261,12 @@ $(document).ready(function(){
         }
     });
 
+//        validation for cart select payment method
+    if($("#u-name").val() == "" || $("#u-contact").val() == "" || $("#u-address").val() == "" ) {
+            $("#submit_order").validationEngine();
+    }
+
+
     $('.signature-modal').on('hide.bs.modal', function (e) {
        $(".modal-header p").html("Delivery on:");
        $("#order-count").html("0");
