@@ -11,7 +11,7 @@
         </li>
         <li class="user-name">
           <h3><%= link_to "#{cart_menu[:cheff_name]}", "/chef-profile/#{@cooking_today.cheff.id}" %>
-            <span class="user-level"><%= @cooking_today.cheff.chef_coordinate.city.camelize %></span></h3>
+            <span class="user-level"><%= @cooking_today.cheff.chef_profile.brand_represented.camelize %></span></h3>
         </li>
       </ul>
     </div>
