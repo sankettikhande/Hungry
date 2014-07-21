@@ -15,7 +15,7 @@
       <%= f.date_select :chef_acquired_on %>
     </div>
 
-    <div style="border: 1px slategray dotted; float: left; padding: 10px;margin: ">
+    <div style="border: 1px slategray dotted; float: left; padding: 10px;">
       <h2 style="font-size: 20px">Chef Coordinates</h2>
       <%= f.fields_for :chef_coordinate do |builder| %>
           <%= render 'chef_coordinate_fields', :f => builder %>

@@ -1,6 +1,6 @@
-$("#cooking_today_dish_id").removeAttr('disabled')
-$("#cooking_today_dish_id").empty()
+$("#cooking_today_food_item_id").removeAttr('disabled')
+$("#cooking_today_food_item_id").empty()
 $.each(<%= @list.to_json.html_safe %>, function(key, value)
 {
-    $('<option></option>').val(key).text(value).appendTo('#cooking_today_dish_id');
+    $('<option></option>').val(key).text(value).appendTo('#cooking_today_food_item_id');
 });

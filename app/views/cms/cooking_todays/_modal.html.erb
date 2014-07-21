@@ -19,18 +19,18 @@
 
       <ul class="square">
         <li class="recipe-block <%= set_cooing_today_type(@cooking_today) %>">
-          <% if !@cooking_today.dish.picture %>
+          <% if !@cooking_today.food_item.meal_info.picture %>
               <div class="recipe-header">
-                <div><%= link_to "","/recipe/#{@cooking_today.dish.id}",:class => "add-lens" %></div>
+                <div><%= link_to "","/recipe/#{@cooking_today.food_item.meal_info.id}",:class => "add-lens" %></div>
                 <div class="recipe-name"><%= cart_menu[:dish_name]%></div>
                 <div class="add-heart"></div>
               </div>
           <% end %>
-          <% if @cooking_today.dish.picture && @cooking_today.dish.picture.image? %>
-              <div><%= link_to "","/recipe/#{@cooking_today.dish.id}",:class => "add-lens" %></div>
+          <% if @cooking_today.food_item.meal_info.picture && @cooking_today.food_item.meal_info.picture.image? %>
+              <div><%= link_to "","/recipe/#{@cooking_today.food_item.meal_info.id}",:class => "add-lens" %></div>
               <div class="add-heart"></div>
               <div class="recipe-image">
-                <%= image_tag @cooking_today.dish.picture.image.url, :alt=>"#{ @cooking_today.dish.name}", :class => "img-responsive center-block" %>
+                <%= image_tag @cooking_today.food_item.meal_info.picture.image.url, :alt=>"#{ @cooking_today.food_item.meal_info.name}", :class => "img-responsive center-block" %>
               </div>
           <% end %>
         </li>

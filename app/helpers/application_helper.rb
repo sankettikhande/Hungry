@@ -21,18 +21,18 @@ module ApplicationHelper
        item.each do |item_id, item_attr|
         if menu.id == item_id.to_i
           menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'],
-          :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture) }
+          :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture) }
           return menu
         else
-          menu = {:price => menu.dish.price, :quantity => 0, :dish_name => menu.dish.name,
-                  :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
+          menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name,
+                  :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
           return menu
         end
        end
       end
     else
-      menu = {:price => menu.dish.price, :quantity => 0, :dish_name => menu.dish.name,
-              :cheff_name => menu.cheff.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
+      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name,
+              :cheff_name  => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
       return menu
     end
 
@@ -50,11 +50,11 @@ module ApplicationHelper
           end
         end
       end
-      menu = {:price => menu.dish.price, :quantity => 0, :dish_name => menu.dish.name,
+      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name,
                  :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url =>(menu.cheff.picture.image.url if menu.cheff.picture)}
          return menu
     else
-      menu = {:price => menu.dish.price, :quantity => 0, :dish_name => menu.dish.name,
+      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name,
               :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
       return menu
     end
@@ -104,12 +104,12 @@ module ApplicationHelper
     end
   end
 
-  def set_menu_type(recipe)
-    return recipe.dish_type == "veg" ? "veg" : "non-veg"
+  def set_menu_type(food_item)
+    return food_item.recipe.dish_type == "veg" ? "veg" : "non-veg"
   end
 
   def set_cooing_today_type(cooking_today)
-    return cooking_today.dish.dish_type == "veg" ? "veg" : "non-veg"
+    return cooking_today.food_item.recipe.dish_type == "veg" ? "veg" : "non-veg"
   end
 
   def get_user_details
