@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
 
   def self.create_signature_menus(order, signature_dish, menus)
     ordered_menu = OrderedMenu.create(:order_id => order.id, :quantity => menus[:quantity],
-                                    :rate => signature_dish.price, :dish_id => signature_dish.id,
+                                    :rate => signature_dish.meal_info.hola_sell_price, :dish_id => signature_dish.id,
                                     :cheff_id => signature_dish.cheff_id)
     order.update_attributes(:total => ordered_menu.rate * ordered_menu.quantity)
   end

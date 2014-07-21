@@ -202,6 +202,6 @@
           </div>
         </div>
      </div> <!-- fluid container ends -->
-<%# @signature_dish = @recipe %>
-<%#= render 'cms/dishes/signature_modal', :signature_dish => @signature_dish if @signature_dish %>
+<% @signature_dish = @food_item %>
+<%= render 'cms/food_items/signature_modal', :signature_dish => @signature_dish if @signature_dish %>
 </div>
