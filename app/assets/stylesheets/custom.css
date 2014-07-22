@@ -663,7 +663,8 @@ margin-right: 3px;text-transform: lowercase;}
 ol.direction-list {width: 100%;float: left;display: block;margin: 10px 0 5px;list-style-type: decimal;padding-left: 20px;}
 ol.direction-list > li.text {line-height: 1.8em;color: #666}
 
-.direction-image {display: block;width: 100%;margin: 10px 0 5px;float: left;}
+
+.direction-image {display: block;width: 100%;margin: 10px 0 5px;}
 .direction-image img {width: 100%;}
 
 /****** =Responsive ****/
