@@ -6,6 +6,7 @@ class Cheff < ActiveRecord::Base
   has_many :cooking_todays
   has_many :ordered_menus
   has_many :food_items
+  has_many :my_favorite_chefs
   belongs_to :cuisine_geography
 
   has_many :taggings

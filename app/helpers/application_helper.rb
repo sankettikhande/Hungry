@@ -131,4 +131,15 @@ module ApplicationHelper
     end
 
   end
+
+  def add_filled_class(chef)
+    hola_user = HolaUser.find_by_phoneNumber(cookies[:user_mobile]) if !cookies[:user_mobile].blank?
+    fav_chef = MyFavoriteChef.where(:hola_user_id => hola_user.id, :cheff_id => chef.id)
+    if !fav_chef.blank?
+      return "filled"
+    else
+      return ""
+    end
+
+  end
 end
