@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>HolaChef</title>
+  <link rel="stylesheet" href="/assets/superslides.css">
+  <link rel="stylesheet" type="text/css" href="/assets/home.css">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+<ul class="upper-content">
+  <li class="site-logo"><img src="/assets/temp/logo.png" alt="Hola"></li>
+  <li class="greet-text">
+    Serving soon...
+				<span>
+					all that's worth craving for.
+				</span>
+  </li>
+  <li class="take-email">
+    <form name="store_email" method="post" id="store_email" accept-charset="UTF-8">
+				<span class="input-box">
+					<input type="email" class="form-control" id="get-email" onfocus="if(this.value == 'Please leave your email to know when we open.') {this.value = '';}"
+                           value="Please leave your email to know when we open." name="email" >
+				</span>
+                <span class="accept-btn"><button type="button" id="subs-email"class="btn-transparent" name="subscripe">Subscribe</button></span>
+    </form>
+
+  </li>
+  <li class="thank-msg"></li>
+  <div id="the-msg" style="display: none;">Please enter your email in proper format.</div>
+</ul>
+<div class="copy">
+  <p>Copyright 2014 Holachef | <a target="_blank" href="mailto:hungerbuds@holachef.com">Contact us</a> |  <a target="_blank" href="http://www.facebook.com/holachef" style="text-decoration:none"><img src="/assets/temp/FacebookIcon.png" style="vertical-align:bottom;"/></a> <a target="_blank" href="https://twitter.com/hola_chef" style="text-decoration:none"><img src="/assets/temp/TwitterIcon.png" style="vertical-align:bottom;"/></a></p>
+</div>
+<div id="slides">
+  <div class="slides-container">
+    <img src="/assets/temp/1.jpg" alt="Cinelli">
+    <img src="/assets/temp/2.jpg" alt="Cinelli">
+    <img src="/assets/temp/3.jpg" alt="Cinelli">
+    <img src="/assets/temp/4.jpg" alt="Cinelli">
+    <img src="/assets/temp/5.jpg" alt="Cinelli">
+    <img src="/assets/temp/6.jpg" alt="Cinelli">
+    <img src="/assets/temp/7.jpg" alt="Cinelli">
+    <img src="/assets/temp/8.jpg" alt="Cinelli">
+    <img src="/assets/temp/9.jpg" alt="Cinelli">
+
+
+  </div>
+  <nav class="slides-navigation">
+
+  </nav>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/assets/jquery.easing.1.3.js"></script>
+<script src="/assets/jquery.animate-enhanced.min.js"></script>
+<script src="/assets/hammer.min.js"></script>
+<script src="/assets/jquery.superslides.min.	js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(function() {
+        var $slides = $('#slides');
+
+        Hammer($slides[0]).on("swipeleft", function(e) {
+            $slides.data('superslides').animate('next');
+        });
+
+        Hammer($slides[0]).on("swiperight", function(e) {
+            $slides.data('superslides').animate('prev');
+        });
+
+        $slides.superslides({
+            hashchange: true
+        });
+    });
+    $(document).ready(function () {
+        $("#subs-email").click(function() {
+            if($('#get-email').val().match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i)){
+                $.ajax({
+                    url: "/email",
+                    data: $("#store_email").serialize(),
+                    type: 'POST',
+                    dataType: "script"
+                });
+                $(".thank-msg").css("display", "block");
+                $(".thank-msg").html("Thanks! We will get back to you soon.");
+                $('#get-email').val("");
+            }
+            else{
+                $(".thank-msg").css("display", "block");
+                $(".thank-msg").html("Please enter your email in proper format.");
+                $('#get-email').removeAttr('value');
+            }
+        });
+        $("#get-email").keypress(function(e) {
+            if (e.keyCode == 13){
+                e.preventDefault();
+                if($('#get-email').val().match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i)){
+                    $.ajax({
+                        url: "/email",
+                        data: $("#store_email").serialize(),
+                        type: 'POST',
+                        dataType: "script"
+                    });
+                    $(".thank-msg").css("display", "block");
+                    $(".thank-msg").html("Thanks! We will get back to you soon.");
+                    $('#get-email').val("");
+                }
+                else{
+                    e.preventDefault();
+                    $(".thank-msg").css("display", "block");
+                    $(".thank-msg").html("Please enter your email in proper format.");
+                    $('#get-email').removeAttr('value');
+                }
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>

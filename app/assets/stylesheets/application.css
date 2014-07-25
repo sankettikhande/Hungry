@@ -13,4 +13,6 @@
  *= require font-awesome.min
  *= require custom
  *= require_tree .
+ *= stub home
+ *= stub superslides
  */

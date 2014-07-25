@@ -1,0 +1,2 @@
+module TemporaryHomeHelper
+end

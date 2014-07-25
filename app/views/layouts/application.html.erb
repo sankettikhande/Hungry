@@ -21,8 +21,13 @@
         <%= render :partial => "/layouts/header" %>
         <div class="sliding-page row-offcanvas row-offcanvas-left">
 
+          <% hola_user = get_user_details %>
+
+          <% if hola_user %>
             <%= render 'layouts/side_menu' %>
-            <%= yield %>
+          <% end %>
+
+          <%= yield %>
 
         </div>
       <% if !@footer %>

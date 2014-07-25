@@ -40,10 +40,14 @@ Holachef::Application.routes.draw do
 
   match '/desktop' => 'home#desktop'
 
+  match '/mobile' => 'home#index', :as => :home
+
   match '/submit_payment_form'=> 'Cms::orders#submit_payment_form'
   post "orders/callback"=>'Cms::orders#callback'
 
   match '/home/index_call' =>'home#index_call'
+
+  post '/email' => 'temporary_home#send_mail'
 
   #end
 
@@ -96,7 +100,7 @@ Holachef::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  root :to => 'temporary_home#index'
 
   # See how all your routes lay out with "rake routes"
 
