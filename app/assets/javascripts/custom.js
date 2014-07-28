@@ -353,4 +353,13 @@ $(document).ready(function(){
             'dataType':'script'
         })
     })
+
+    $("#add_recipe_to_favorite").click(function(){
+        var recipe_id = $(this).attr("data-recipe_id");
+        $.ajax({
+            'url': '/add_recipe_to_favorite?recipe_id='+recipe_id,
+            'method': 'POST',
+            'dataType':'script'
+        })
+    })
 });
