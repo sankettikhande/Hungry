@@ -16,7 +16,9 @@
                           </li>
                         </ul>
                       </li>
-                      <li class="profile profile-heart"><div class="add-heart"></div></li>
+                      <li class="profile profile-heart">
+                        <div class="add-heart <%= add_recipe_filled_class(@food_item) %>" id="add_recipe_to_favorite" data-recipe_id="<%= @food_item.id %>"></div>
+                      </li>
                       <li class="profile profile-dp">
                         <%= image_tag(@food_item.meal_info.picture.image.url, :class => "img-responsive img-circle center-block" ) if @food_item.meal_info.picture %>
                       </li>

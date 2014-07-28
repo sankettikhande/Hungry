@@ -108,6 +108,11 @@ module ApplicationHelper
     return food_item.recipe.dish_type == "veg" ? "veg" : "non-veg"
   end
 
+  def set_menu_icon(food_item)
+    return food_item.recipe.dish_type == "veg" ? "pv-icon" : "nv-icon"
+  end
+
+
   def set_cooing_today_type(cooking_today)
     return cooking_today.food_item.recipe.dish_type == "veg" ? "veg" : "non-veg"
   end
@@ -130,5 +135,50 @@ module ApplicationHelper
       return select_tag "cuisines[]", (options_for_select(cuisine.siblings.collect{ |u| [u.name, u.id]}, :selected => cuisine)), :prompt => "Select Cuisine", :class => "cuisine"
     end
 
+  end
+
+  def add_chef_filled_class(chef)
+    hola_user = HolaUser.find_by_phoneNumber(cookies[:user_mobile]) if !cookies[:user_mobile].blank?
+    fav_chef = MyFavoriteChef.where(:hola_user_id => hola_user.id, :cheff_id => chef.id)  if hola_user
+    if !fav_chef.blank?
+      return "filled"
+    else
+      return ""
+    end
+  end
+
+  def add_recipe_filled_class(recipe)
+    hola_user = HolaUser.find_by_phoneNumber(cookies[:user_mobile]) if !cookies[:user_mobile].blank?
+    fav_chef = MyFavoriteRecipe.where(:hola_user_id => hola_user.id, :food_item_id => recipe.id) if hola_user
+    if !fav_chef.blank?
+      return "filled"
+    else
+      return ""
+    end
+  end
+
+  def chef_image(fav_chef)
+    if fav_chef.cheff
+      return fav_chef.cheff.picture.image.url
+    else
+      return "/assets/user-pic.jpg"
+    end
+  end
+
+  def set_fav_recipes()
+    fav_recipes = MyFavoriteRecipe.group(:food_item_id).count
+    max_fav = fav_recipes.values.max
+    fav_chart = {}
+    fav_recipes.each do |food_item_id, count|
+      fav_percent = (count.to_f/max_fav)*100
+      fav_chart[food_item_id] = fav_percent
+    end
+    p fav_chart
+    return fav_chart
+  end
+
+  def set_heart_value(recipe, fav_recipes)
+   percent = fav_recipes.fetch(recipe.id) if fav_recipes.has_key?(recipe.id)
+   return percent
   end
 end

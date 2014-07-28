@@ -2,6 +2,10 @@ Holachef::Application.routes.draw do
   namespace :cms  do content_blocks :food_items end
 
   resources :hola_users
+  match "/add_chef_to_favorite"=> "hola_users#add_chef_to_favorite"
+  match '/my_favorite_chefs'=>"hola_users#my_favorite_chefs"
+  match "/add_recipe_to_favorite"=> "hola_users#add_recipe_to_favorite"
+  match '/recipes'=> "hola_users#recipes"
 
   match "/cms" => "cms/dashboard#index"
   match '/review_order' => 'ordered_menus#checkout', :as => :review_order

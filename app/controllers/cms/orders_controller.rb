@@ -57,18 +57,16 @@ class Cms::OrdersController < Cms::ContentBlockController
       item.each do |item_id, item_attr|
         cooking_today  = CookingToday.find(item_id)
         food_item = cooking_today.food_item
-        if @order
+        if !@order.blank?
           menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id,
                                     :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
                                     :rate => item_attr['price'])
-
         end
       end
     end
     @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)), :order_status => "Waiting for Payment",
                              :name=>params[:orders][:name], :address=>params[:orders][:address],
                              :phone_no=>params[:orders][:phone_no])
-    #session[:cart] = []
     @footer = "false"
     @@cart_items = view_context.collect_items(session[:cart])
 
@@ -121,6 +119,10 @@ class Cms::OrdersController < Cms::ContentBlockController
       @@cart_items.each do |item_id, quantity|
         cooking_today  = CookingToday.find(item_id)
         cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
+      end
+      @order.ordered_menus.each do |menu|
+        food_item = FoodItem.find(menu.dish_id)
+        food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + menu.quantity.to_i)) if food_item
       end
       session[:cart] = []
     else

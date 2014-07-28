@@ -338,13 +338,28 @@ $(document).ready(function(){
             'data': {'paymentMode': paymentMode, 'orderId':orderId},
             'dataType':'script'
         })
-
-
-
     });
 
     $("#cover-title").fitText(1.2, {
         minFontSize:'16px',
         maxFontSize:'24px'
     });
+
+    $("#add_chef_to_favorite").click(function(){
+        var chef_id = $(this).attr("data-cheff_id");
+        $.ajax({
+            'url': '/add_chef_to_favorite?chef_id='+chef_id,
+            'method': 'POST',
+            'dataType':'script'
+        })
+    })
+
+    $("#add_recipe_to_favorite").click(function(){
+        var recipe_id = $(this).attr("data-recipe_id");
+        $.ajax({
+            'url': '/add_recipe_to_favorite?recipe_id='+recipe_id,
+            'method': 'POST',
+            'dataType':'script'
+        })
+    })
 });
