@@ -18,4 +18,9 @@
 //= require jquery-migrate-1.2.1.min
 //= require jquery.validationEngine
 //= require jquery.validationEngine-en
+//= stub hammer.min.js
+//= stub jquery.animate-enhanced.min.js
+//= stub jquery.easing.1.3.js
+//= stub jquery.superslides.js
+//= stub jquery.superslides.min.js
 //= require_tree .

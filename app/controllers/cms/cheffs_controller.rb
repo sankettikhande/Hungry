@@ -34,7 +34,7 @@ class Cms::CheffsController < Cms::ContentBlockController
     @total_receipes = FoodItem.count(:all, :conditions => {:cheff_id => @chef.id})
     @cooking_todays = @chef.cooking_todays.where(:date => Time.current.to_date)
     @signature_dishes = FoodItem.includes(:meal_info).where(:if_signature => true, :cheff_id => @chef.id)
-    @recipes = FoodItem.where(:cheff_id => @chef.id)
+    @recipes = FoodItem.where(:if_recipe => true, :cheff_id => @chef.id)
     respond_to do |format|
       format.html { render :layout => "application"}
     end

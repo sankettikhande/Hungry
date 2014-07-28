@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     else
       session[:on_desktop] = nil
       session[:on_mobile] = true
-      redirect_to "/?redirected=true" unless session[:on_mobile]
+      redirect_to "mobile/?redirected=true" unless session[:on_mobile]
     end
   end
 
