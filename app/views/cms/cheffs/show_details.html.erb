@@ -17,7 +17,7 @@
                       </ul>
                     </li>
                     <li class="profile profile-heart">
-                      <div class="add-heart <%= add_filled_class(@chef) %>" id="add_chef_to_favorite" data-cheff_id="<%= @chef.id %>"></div>
+                      <div class="add-heart <%= add_chef_filled_class(@chef) %>" id="add_chef_to_favorite" data-cheff_id="<%= @chef.id %>"></div>
                     </li>
                     <li class="profile profile-dp">
                       <%= image_tag @chef.picture.image.url, :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" if @chef.picture %>
