@@ -25,7 +25,11 @@
                     <li class="profile user-name"><%= @chef.chef_coordinate.name %></li>
                     <li class="profile user-level"><%= @chef.chef_profile.brand_represented if @chef.chef_profile %></li>
                     <li class="profile user-city">
-                      <span class="city"><%= @chef.chef_coordinate.city.camelize %></span>
+                      <span class="city">
+                        <% if @chef.chef_coordinate.locality.present? %>
+                          <%= @chef.chef_coordinate.locality.camelize %>,
+                        <% end %>
+                        <%= @chef.chef_coordinate.city.camelize %></span>
                       <!--<span class="city">Mumbai</span>-->
                     </li>
                   </ul>
