@@ -8,7 +8,8 @@
           </div>
         </div>
       </div>
-
+      <% fav_chefs = set_fav_chefs()  %>
+      <% max_fav = fav_chefs.values.max %>
       <div class="row">
         <div class="col-xs-12">
           <div class="hola-cards">
@@ -21,19 +22,34 @@
                             <%= image_tag chef_image(fav_chef), :class => "center-block" %>
                           </div>
                           <div class="entity-tag">
+                            <% percent = set_chef_heart_value(fav_chef.cheff, fav_chefs) %>
                             <ul class="entity-hearts">
-                              <li class="heart filled"></li>
-                              <li class="heart filled"></li>
-                              <li class="heart"></li>
+                              <% if percent && percent.between?(0, 35)%>
+                                  <li class="heart filled"></li>
+                                  <li class="heart"></li>
+                                  <li class="heart"></li>
+                              <% elsif percent && percent.between?(36,70) %>
+                                  <li class="heart filled"></li>
+                                  <li class="heart filled"></li>
+                                  <li class="heart"></li>
+                              <% elsif percent && percent.between?(71,100) %>
+                                  <li class="heart filled"></li>
+                                  <li class="heart filled"></li>
+                                  <li class="heart"></li>
+                              <% else %>
+                                  <li class="heart"></li>
+                                  <li class="heart"></li>
+                                  <li class="heart"></li>
+                              <% end %>
                             </ul>
                           </div>
                         </li>
-                        <li class="entity-name pv-icon">Paneer Bhurji</li>
-                        <li class="entity-by">Vivek Singh</li>
+                        <li class="entity-name pv-icon"><%#= fav_chef.chef_coordinate.name %></li>
+                        <li class="entity-by"><%= fav_chef.cheff.chef_coordinate.name %></li>
                         <li class="entity-cuisine">
-                          <span>Italian</span>
-                          <span>Goan</span>
-                          <span>Malwani</span>
+                          <% fav_chef.cheff.cuisine_styles.each do |cuisine| %>
+                              <span><%= cuisine.name %></span>
+                          <% end %>
                         </li>
                         <li class="entity-days">
                           today
@@ -42,122 +58,6 @@
                     </div>
                 <% end %>
             <% end %>
-            <div class="cuboid"><a href="#">
-
-              <ul class="square e-recipe">
-                <li class="entity-card">
-                  <div class="entity-image">
-                    <img class="center-block" src="assets/profile/user-1.jpg" alt="">
-                  </div>
-                  <div class="entity-tag">
-                    <ul class="entity-hearts">
-                      <li class="heart filled"></li>
-                      <li class="heart filled"></li>
-                      <li class="heart"></li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="entity-name pv-icon">Paneer Bhurji</li>
-                <li class="entity-by">Vivek Singh</li>
-                <li class="entity-cuisine">
-                  <span>Italian</span>
-                  <span>Goan</span>
-                  <span>Malwani</span>
-                </li>
-                <li class="entity-days">
-                  today
-                </li>
-              </ul></a>
-
-            </div>
-
-            <div class="cuboid"><a href="#">
-
-              <ul class="square e-recipe">
-                <li class="entity-card">
-                  <div class="entity-image">
-                    <img class="center-block" src="assets/profile/user-2.jpg" alt="">
-                  </div>
-                  <div class="entity-tag">
-                    <ul class="entity-hearts">
-                      <li class="heart filled"></li>
-                      <li class="heart filled"></li>
-                      <li class="heart"></li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="entity-name nv-icon">Chicken Tandoor</li>
-                <li class="entity-by">Vivek Singh</li>
-                <li class="entity-cuisine">
-                  <span>Italian</span>
-                  <span>Continental</span>
-                  <span>...</span>
-                </li>
-                <li class="entity-days">
-                  2 days ago
-                </li>
-              </ul></a>
-
-            </div>
-            <div class="cuboid"><a href="#">
-
-              <ul class="square e-recipe">
-                <li class="entity-card">
-                  <div class="entity-image">
-                    <img class="center-block" src="assets/profile/user-3.jpg" alt="">
-                  </div>
-                  <div class="entity-tag">
-                    <ul class="entity-hearts">
-                      <li class="heart filled"></li>
-                      <li class="heart filled"></li>
-                      <li class="heart"></li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="entity-name nv-icon">Chicken Tandoor</li>
-                <li class="entity-by">Vivek Singh</li>
-
-                <li class="entity-cuisine">
-                  <span>Italian</span>
-                  <span>Goan</span>
-                  <span>Malwani</span>
-                </li>
-                <li class="entity-days">
-                  today
-                </li>
-              </ul></a>
-
-            </div>
-
-            <div class="cuboid"><a href="#">
-
-              <ul class="square e-recipe">
-                <li class="entity-card">
-                  <div class="entity-image">
-                    <img class="center-block" src="assets/profile/user-4.jpg" alt="">
-                  </div>
-                  <div class="entity-tag">
-                    <ul class="entity-hearts">
-                      <li class="heart filled"></li>
-                      <li class="heart filled"></li>
-                      <li class="heart"></li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="entity-name nv-icon">Chicken Tandoor</li>
-                <li class="entity-by">Vivek Singh</li>
-
-                <li class="entity-cuisine">
-                  <span>Italian</span>
-                  <span>Goan</span>
-                  <span>Malwani</span>
-                </li>
-                <li class="entity-days">
-                  today
-                </li>
-              </ul></a>
-
-            </div>
           </div>
         </div>
       </div>

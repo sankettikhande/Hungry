@@ -46,18 +46,22 @@
             <div class="entity-tag">
               <% percent = set_heart_value(recipe, fav_recipes) %>
               <ul class="entity-hearts">
-                <% if percent.between?(0, 35)%>
+                <% if percent && percent.between?(0, 35)%>
                     <li class="heart filled"></li>
                     <li class="heart"></li>
                     <li class="heart"></li>
-                <% elsif percent.between?(36,70) %>
+                <% elsif percent && percent.between?(36,70) %>
+                    <li class="heart filled"></li>
+                    <li class="heart filled"></li>
+                    <li class="heart"></li>
+                <% elsif percent && percent.between?(71,100) %>
                     <li class="heart filled"></li>
                     <li class="heart filled"></li>
                     <li class="heart"></li>
                 <% else %>
-                    <li class="heart filled"></li>
-                    <li class="heart filled"></li>
-                    <li class="heart filled"></li>
+                    <li class="heart"></li>
+                    <li class="heart"></li>
+                    <li class="heart"></li>
                 <% end %>
               </ul>
             </div>
@@ -84,18 +88,22 @@
                 <div class="entity-tag">
                   <% percent = set_heart_value(recipe, fav_recipes) %>
                   <ul class="entity-hearts">
-                    <% if percent.between?(0, 35)%>
+                    <% if percent && percent.between?(0, 35)%>
                         <li class="heart filled"></li>
                         <li class="heart"></li>
                         <li class="heart"></li>
-                    <% elsif percent.between?(36,70) %>
+                    <% elsif percent &&  percent.between?(36,70) %>
                         <li class="heart filled"></li>
                         <li class="heart filled"></li>
                         <li class="heart"></li>
+                    <% elsif percent &&  percent.between?(71,100) %>
+                        <li class="heart filled"></li>
+                        <li class="heart filled"></li>
+                        <li class="heart filled"></li>
                     <% else %>
-                        <li class="heart filled"></li>
-                        <li class="heart filled"></li>
-                        <li class="heart filled"></li>
+                        <li class="heart"></li>
+                        <li class="heart"></li>
+                        <li class="heart"></li>
                     <% end %>
                   </ul>
                 </div>
@@ -125,18 +133,22 @@
                 <div class="entity-tag">
                   <% percent = set_heart_value(recipe, fav_recipes) %>
                   <ul class="entity-hearts">
-                    <% if percent.between?(0, 35)%>
+                    <% if percent && percent.between?(0, 35)%>
                         <li class="heart filled"></li>
                         <li class="heart"></li>
                         <li class="heart"></li>
-                    <% elsif percent.between?(36,70) %>
+                    <% elsif percent && percent.between?(36,70) %>
+                        <li class="heart filled"></li>
+                        <li class="heart filled"></li>
+                        <li class="heart"></li>
+                    <% elsif percent && percent.between?(71,100) %>
                         <li class="heart filled"></li>
                         <li class="heart filled"></li>
                         <li class="heart"></li>
                     <% else %>
-                        <li class="heart filled"></li>
-                        <li class="heart filled"></li>
-                        <li class="heart filled"></li>
+                        <li class="heart"></li>
+                        <li class="heart"></li>
+                        <li class="heart"></li>
                     <% end %>
                   </ul>
                 </div>
@@ -168,18 +180,22 @@
                 <div class="entity-tag">
                   <% percent = set_heart_value(fav_recipe.food_item, fav_recipes) %>
                   <ul class="entity-hearts">
-                    <% if percent.between?(0, 35)%>
+                    <% if percent && percent.between?(0, 35)%>
                         <li class="heart filled"></li>
                         <li class="heart"></li>
                         <li class="heart"></li>
-                    <% elsif percent.between?(36,70) %>
+                    <% elsif percent && percent.between?(36,70) %>
+                        <li class="heart filled"></li>
+                        <li class="heart filled"></li>
+                        <li class="heart"></li>
+                    <% elsif percent && percent.between?(36,70) %>
                         <li class="heart filled"></li>
                         <li class="heart filled"></li>
                         <li class="heart"></li>
                     <% else %>
-                        <li class="heart filled"></li>
-                        <li class="heart filled"></li>
-                        <li class="heart filled"></li>
+                        <li class="heart"></li>
+                        <li class="heart"></li>
+                        <li class="heart"></li>
                     <% end %>
                   </ul>
                 </div>
