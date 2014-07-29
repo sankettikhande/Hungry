@@ -158,7 +158,7 @@ module ApplicationHelper
   end
 
   def chef_image(fav_chef)
-    if fav_chef.cheff
+    if fav_chef.cheff && fav_chef.cheff.picture
       return fav_chef.cheff.picture.image.url
     else
       return "/assets/user-pic.jpg"
@@ -173,12 +173,27 @@ module ApplicationHelper
       fav_percent = (count.to_f/max_fav)*100
       fav_chart[food_item_id] = fav_percent
     end
-    p fav_chart
     return fav_chart
   end
 
   def set_heart_value(recipe, fav_recipes)
    percent = fav_recipes.fetch(recipe.id) if fav_recipes.has_key?(recipe.id)
    return percent
+  end
+
+  def set_fav_chefs()
+    fav_chefs = MyFavoriteChef.group(:cheff_id).count
+    max_fav = fav_chefs.values.max
+    fav_chart = {}
+    fav_chefs.each do |chef_id, count|
+      fav_percent = (count.to_f/max_fav)*100
+      fav_chart[chef_id] = fav_percent
+    end
+    return fav_chart
+  end
+
+  def set_chef_heart_value(chef, fav_chefs)
+    percent = fav_chefs.fetch(chef.id) if fav_chefs.has_key?(chef.id)
+    return percent
   end
 end
