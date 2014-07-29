@@ -173,7 +173,6 @@ module ApplicationHelper
       fav_percent = (count.to_f/max_fav)*100
       fav_chart[food_item_id] = fav_percent
     end
-    p fav_chart
     return fav_chart
   end
 
@@ -184,15 +183,12 @@ module ApplicationHelper
 
   def set_fav_chefs()
     fav_chefs = MyFavoriteChef.group(:cheff_id).count
-    p fav_chefs
     max_fav = fav_chefs.values.max
-    p max_fav
     fav_chart = {}
     fav_chefs.each do |chef_id, count|
       fav_percent = (count.to_f/max_fav)*100
       fav_chart[chef_id] = fav_percent
     end
-    p fav_chart
     return fav_chart
   end
 
