@@ -263,9 +263,18 @@ $(document).ready(function(){
 
 //        validation for cart select payment method
     if($("#u-name").val() == "" || $("#u-contact").val() == "" || $("#u-address").val() == "" ) {
-            $("#submit_order").validationEngine();
+            $("#submit_order").validationEngine('attach', {
+                validationEventTrigger: "keyup",
+                onFieldFailure: function(){
+                    $("#submit-order-button").addClass("text-grey")
+                },
+                onFieldSuccess: function(){
+                    if ($("#submit_order").validationEngine('validate')){
+                        $("#submit-order-button").removeClass("text-grey")
+                    }
+                }
+            });
     }
-
 
     $('.signature-modal').on('hide.bs.modal', function (e) {
        $(".modal-header p").html("Delivery on:");
