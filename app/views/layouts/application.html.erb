@@ -22,11 +22,7 @@
         <div class="sliding-page row-offcanvas row-offcanvas-left">
 
           <% hola_user = get_user_details %>
-
-          <% if hola_user %>
-            <%= render 'layouts/side_menu' %>
-          <% end %>
-
+          <%= render 'layouts/side_menu', hola_user: hola_user %>
           <%= yield %>
 
         </div>
