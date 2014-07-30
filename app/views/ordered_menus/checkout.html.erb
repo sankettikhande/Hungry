@@ -1,4 +1,4 @@
-<div class="container-fluid back-white">
+<div class="container-fluid back-white mb-4">
   <div class="row">
     <div class="col-xs-12">
       <div class="container">
@@ -86,7 +86,7 @@
   </div>
 </div>
 
-<div class="container-fluid back-white seperator-5">
+<div class="container-fluid back-white seperator-3">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -97,7 +97,7 @@
     </div>
   </div>
 </div>
-<div class="container-fluid back-white seperator-5">
+<div class="container-fluid back-white seperator-3">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -108,7 +108,7 @@
     </div>
   </div>
 </div>
-<div class="container-fluid back-white seperator-10">
+<div class="container-fluid back-white seperator-4">
   <div class="row">
     <div class="col-xs-12">
       <div class="container">
@@ -121,7 +121,7 @@
               <li class="del-d roboto"><input value="<%= hola_user.name if hola_user %>" class="lower-only active validate[required]" name="orders[name]" type="text" placeholder="Name" id="u-name" maxlength="50" data-prompt-position="topLeft:105"></li>
               <li class="del-d roboto"><input value="<%= hola_user.phoneNumber if hola_user %>" class="lower-only validate[required]" name="orders[phone_no]" type="tel" placeholder="Phone Number" id="u-contact" maxlength="10" data-prompt-position="topLeft:105"></li>
               <li class="del-d roboto"><input value="<%= hola_user.hola_user_addresses.last.address if hola_user && hola_user.hola_user_addresses %>" class="lower-only validate[required]" name="orders[address]" type="text" placeholder="Address" id="u-address" maxlength="250" data-prompt-position="topLeft:105"></li>
-              <li class="del-d check-mark roboto text-center">
+              <li class="del-d check-mark roboto text-center hola-ccbox">
                 <input class="css-checkbox" type="checkbox" id="save-del-details" checked="checked" name="save_user_details">
                 <label class="css-label roboto" for="save-del-details">Save my details</label></li>
           <% end -%>
