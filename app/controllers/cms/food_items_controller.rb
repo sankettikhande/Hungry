@@ -36,6 +36,7 @@ class Cms::FoodItemsController < Cms::ContentBlockController
 
   def create
     @food_item = FoodItem.new(params[:food_item])
+    @food_item.meal_info.is_signature = @food_item.if_signature
     if @food_item.save
       redirect_to '/cms/food_items', :notice => "Successfully created Food Item."
     else
@@ -45,6 +46,7 @@ class Cms::FoodItemsController < Cms::ContentBlockController
 
   def update
     @food_item = FoodItem.find(params[:id])
+    @food_item.meal_info.is_signature = ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(params[:food_item][:if_signature])
     if @food_item.update_attributes(params[:food_item])
       flash[:notice] = "Successfully updated Food Item."
       redirect_to '/cms/food_items', :notice => "Successfully created Food Item."
