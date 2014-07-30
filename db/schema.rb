@@ -98,19 +98,15 @@ ActiveRecord::Schema.define(:version => 20140728110341) do
 
   create_table "cheffs", :force => true do |t|
     t.integer  "version"
-    t.integer  "lock_version",             :default => 0
+    t.integer  "lock_version",     :default => 0
     t.string   "name"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.boolean  "published",                :default => false
-    t.boolean  "deleted",                  :default => false
-    t.boolean  "archived",                 :default => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "published",        :default => false
+    t.boolean  "deleted",          :default => false
+    t.boolean  "archived",         :default => false
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
-    t.string   "cheff_image_file_name"
-    t.string   "cheff_image_content_type"
-    t.integer  "cheff_image_file_size"
-    t.datetime "cheff_image_updated_at"
     t.string   "hotel_name"
     t.string   "address"
     t.date     "chef_acquired_on"
@@ -271,20 +267,16 @@ ActiveRecord::Schema.define(:version => 20140728110341) do
     t.integer  "portions"
     t.integer  "days_notice"
     t.text     "information"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.boolean  "published",               :default => false
-    t.boolean  "deleted",                 :default => false
-    t.boolean  "archived",                :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
     t.string   "version_comment"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "price"
     t.string   "dish_type"
-    t.string   "dish_image_file_name"
-    t.string   "dish_image_content_type"
-    t.integer  "dish_image_file_size"
-    t.datetime "dish_image_updated_at"
     t.integer  "cooking_time"
     t.integer  "serves"
     t.string   "cuisine"
@@ -782,19 +774,6 @@ ActiveRecord::Schema.define(:version => 20140728110341) do
     t.integer  "recipe_id"
   end
 
-  create_table "rails_admin_histories", :force => true do |t|
-    t.text     "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
-
   create_table "recipes", :force => true do |t|
     t.integer  "food_item_id"
     t.text     "garnishing_tips"
@@ -935,21 +914,21 @@ ActiveRecord::Schema.define(:version => 20140728110341) do
   add_index "user_group_memberships", ["user_id"], :name => "index_user_group_memberships_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.string   "login",                     :limit => 40
+    t.string   "first_name",                :limit => 40
+    t.string   "last_name",                 :limit => 40
+    t.string   "email",                     :limit => 40
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "expires_at"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
+    t.string   "reset_token"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["expires_at"], :name => "index_users_on_expires_at"
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end
