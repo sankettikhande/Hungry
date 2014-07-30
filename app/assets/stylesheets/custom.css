@@ -26,13 +26,13 @@
 
 @font-face {
   font-family: 'RobotoCondensed-Bold';
-  src: url('/assets/fonts/RobotoCondensed-Bold.eot?') format('eot'), 
-       url('/assets/fonts/RobotoCondensed-Bold.eot?#iefix') format('embedded-opentype'), 
-       url('/assets/fonts/RobotoCondensed-Bold.woff') format('woff'), 
+  src: url('/assets/fonts/RobotoCondensed-Bold.eot?') format('eot'),
+       url('/assets/fonts/RobotoCondensed-Bold.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/RobotoCondensed-Bold.woff') format('woff'),
        url('/assets/fonts/RobotoCondensed-Bold.ttf')  format('truetype'),
        url('/assets/fonts/RobotoCondensed-Bold.svg#RobotoCondensed-Bold') format('svg');
     font-weight: normal;
-    font-style: normal;       
+    font-style: normal;
 }
 
 
@@ -50,9 +50,9 @@
 
 @font-face {
   font-family: 'Roboto-Italic';
-  src: url('/assets/fonts/Roboto-Italic.eot?') format('eot'), 
+  src: url('/assets/fonts/Roboto-Italic.eot?') format('eot'),
        url('/assets/fonts/Roboto-Italic.eot?#iefix') format('embedded-opentype'),
-       url('/assets/fonts/Roboto-Italic.woff') format('woff'), 
+       url('/assets/fonts/Roboto-Italic.woff') format('woff'),
        url('/assets/fonts/Roboto-Italic.ttf')  format('truetype'),
        url('/assets/fonts/Roboto-Italic.svg#Roboto-Italic') format('svg');
     font-weight: normal;
@@ -61,9 +61,9 @@
 
 @font-face {
   font-family: 'Roboto-Medium';
-  src: url('/assets/fonts/Roboto-Medium.eot?') format('eot'), 
+  src: url('/assets/fonts/Roboto-Medium.eot?') format('eot'),
        url('/assets/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
-       url('/assets/fonts/Roboto-Medium.woff') format('woff'), 
+       url('/assets/fonts/Roboto-Medium.woff') format('woff'),
        url('/assets/fonts/Roboto-Medium.ttf')  format('truetype'),
        url('/assets/fonts/Roboto-Medium.svg#Roboto-Medium') format('svg');
     font-weight: normal;
@@ -71,8 +71,8 @@
 }
 @font-face {
   font-family: 'Roboto-Light';
-  src: url('/assets/fonts/Roboto-Light.eot?') format('eot'), 
-       url('/assets/fonts/Roboto-Light.woff') format('woff'), 
+  src: url('/assets/fonts/Roboto-Light.eot?') format('eot'),
+       url('/assets/fonts/Roboto-Light.woff') format('woff'),
        url('/assets/fonts/Roboto-Light.ttf')  format('truetype'),
        url('/assets/fonts/Roboto-Light.svg#Roboto-Light') format('svg');
 }
@@ -177,9 +177,12 @@ h1,h2,h3,h4,h5,h6,strong,b {font-weight: normal;}
 .seperator-1 {margin-top: 1px;}
 .seperator-2 {margin-top: 2px;}
 .seperator-3 {margin-top: 3px;}
+.seperator-4 {margin-top: 4px;}
 .seperator-5 {margin-top: 5px;}
 .seperator-10 {margin-top: 10px;}
 .seperator-15 {margin-top: 15px;}
+
+.mb-4 {margin-bottom: 4px}
 
 .seperator-25 {margin-top: 25px;}
 
@@ -291,14 +294,14 @@ fieldset[disabled] .btn-saffron.active {
 .no-container:after {clear: both;}
 
 /*********** Custom Checkbox **************/
-input[type=checkbox].css-checkbox {
+.hola-ccbox input[type=checkbox].css-checkbox {
 display: none;
-/*  position:absolute; z-index:-1000; top:-1000px;border:1px solid #f00;          -Scroll top Fix*/  
+/*  position:absolute; z-index:-1000; top:-1000px;border:1px solid #f00;          -Scroll top Fix*/
 }
 
-input[type=checkbox].css-checkbox + label.css-label, input[type=checkbox].css-checkbox + label.css-label.clr {
+.hola-ccbox input[type=checkbox].css-checkbox + label.css-label, .hola-ccbox input[type=checkbox].css-checkbox + label.css-label.clr {
   padding-left:23px;
-  height:18px; 
+  height:18px;
   display:inline-block;
   line-height:18px;
   background-repeat:no-repeat;
@@ -308,10 +311,10 @@ input[type=checkbox].css-checkbox + label.css-label, input[type=checkbox].css-ch
 
 }
 
-input[type=checkbox].css-checkbox:checked + label.css-label, input[type=checkbox].css-checkbox + label.css-label.chk {
+.hola-ccbox input[type=checkbox].css-checkbox:checked + label.css-label, .hola-ccbox input[type=checkbox].css-checkbox + label.css-label.chk {
   background-position: 0 -18px;
 }
-label.css-label {
+.hola-ccbox label.css-label {
   background-image:url('/assets/custom-checkbox.png');
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -321,14 +324,14 @@ label.css-label {
   user-select: none;
 }
 
-input[type=radio].css-checkbox {
+.hola-radio input[type=radio].css-checkbox {
               display: none;
 /*              position:absolute; z-index:-1000; top:-1000px;*/
 }
 
-input[type=radio].css-checkbox + label.css-label, input[type=radio].css-checkbox + label.css-label.clr {
+.hola-radio input[type=radio].css-checkbox + label.css-label, .hola-radio input[type=radio].css-checkbox + label.css-label.clr {
   padding-left:23px;
-  height:19px; 
+  height:19px;
   display:inline-block;
   line-height:18px;
   background-repeat:no-repeat;
@@ -339,10 +342,10 @@ input[type=radio].css-checkbox + label.css-label, input[type=radio].css-checkbox
 
 }
 
-input[type=radio].css-checkbox:checked + label.css-label, input[type=radio].css-checkbox + label.css-label.chk {
+.hola-radio input[type=radio].css-checkbox:checked + label.css-label, .hola-radio input[type=radio].css-checkbox + label.css-label.chk {
   background-position: 0 -18px;
 }
-label.css-label {
+.hola-radio label.css-label {
   margin-bottom: 0;
   background-image:url('/assets/style-radio.png');
   -webkit-touch-callout: none;
@@ -467,7 +470,7 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 #recipe-modal .modal-footer button.btn-link.text-orange {font-family: 'Roboto-Medium',Sans-serif}
 #recipe-modal .modal-form .form-control {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;text-align: center;margin:0 auto 10px;}
 
-#recipe-modal .modal-form .btn-orange.disabled {border-color:#ccc;} 
+#recipe-modal .modal-form .btn-orange.disabled {border-color:#ccc;}
 .form-control.looks-input {border:none;box-shadow: none}
 #recipe-modal .btn:focus,#recipe-modal .btn:active {outline: none;}
 
@@ -479,7 +482,7 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 .booked-orders {padding: 15px 0 20px;display: block;float:left;width: 100%;background: #fff}
 .booked-orders li.food-bill {display: block;width: 100%;font-family: 'robotobold',Sans-serif;padding: 0.5em 0 0;float: left;font-size: 1em;}
 .booked-orders li.food-bill:first-child span {font-family: 'robotoregular',Sans-serif;border-bottom: 3px double #d3c9b5;padding-bottom: 0.3em;}
-.booked-orders li.food-bill span {display: inline-block;float: left;padding-left: 3px;padding-right: 3px} 
+.booked-orders li.food-bill span {display: inline-block;float: left;padding-left: 3px;padding-right: 3px}
 .booked-orders li.food-bill span.item-name {width:61%;text-transform: capitalize;text-align: left;}
 .booked-orders li.food-bill span.item-qty {width:16.66666667%;text-align: right;}
 .booked-orders li.food-bill span.item-cost {width:16.66666667%;text-align: right;}
@@ -499,14 +502,14 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 .floral-block {background: url('/assets/floral.png')no-repeat;background-size: 100% auto;content: '';width: 150px;height:30px;display: block;margin:20px auto 5px; }
 
 .del-details li.del-d {width: 100%;float: left;display: inline-block;padding:6px 1px 3px}
-
+.del-details li.del-warning {font-size: 12px;}
 input.lower-only {border:none;border-bottom: 1px solid #bcbcbc;width: 100%;outline: none;padding: 2px 4px;background: url('/assets/grey-b.png') no-repeat,url('/assets/grey-b.png') no-repeat;background-position: left bottom, right bottom;background-size: 1px 4px;}
 input.lower-only.active {border-bottom:2px solid #0099cc;background: url('/assets/blue-b.png') no-repeat,url('/assets/blue-b.png') no-repeat;background-position: left bottom, right bottom;background-size: 2px 4px;}
 
 .del-details li.del-d label {font-weight: normal;vertical-align: top;font-family: 'robotoregular',Sans-serif;font-size: 1.125em}
 .del-details li.del-d label input[type="checkbox"] {margin-right: 4px;}
 
-input.lower-only::-webkit-input-placeholder {color: #333;}
+input.lower-only::-webkit-input-placeholder {color: #ccc;}
 
 .del-details li.del-header {border-bottom:3px double #d3c9b5;margin-bottom: 5px;}
 .del-details li.check-mark {padding-top: 12px;}
@@ -561,7 +564,7 @@ p.hola-text {color: #222222;}
 .chef-page .profile-details {display: table-cell;width: 100%;float: left;vertical-align: middle;}
 .chef-page .profile-details li.profile {display: inline-block;width: 100%;float: left;padding: 0;color: #333;text-align: center;}
 .chef-page .profile-details li.profile ul.cover-image {width: 100%;display: block;}
-.chef-page .profile-details li.profile ul.cover-image li.cover {width: 100%;display: block;float: left;} 
+.chef-page .profile-details li.profile ul.cover-image li.cover {width: 100%;display: block;float: left;}
 
 .chef-page .profile-details li.profile ul.cover-image li.cover-photo img {width: 100%;min-height: 180px;}
 .chef-page .profile-details li.profile ul.cover-image li.cover-text {text-align: center;padding: 15px 10px;min-height: 180px;}
@@ -583,7 +586,7 @@ ul.cover-image li.cover-text p {margin-top:8px;}
 .btn.btn-tweet {color: #00a7d3;border: 1px solid #9bc8db;background: #fff;outline: none;margin-top: -1px;overflow: hidden;}
 
 .block-3 {width: 100%;display: block;margin-top: 15px;overflow: hidden;}
-.block-3 li.each-block {display:inline-block;background: #fff;padding:5px 0;text-align: center;width: 31.9%;border:1px solid #fd8e10;color: #333333}
+.block-3 li.each-block {display:inline-block;background: #fff;padding:5px 0;text-align: center;width: 31.8%;border:1px solid #fd8e10;color: #333333}
 .block-3 li.each-block a {float: left;text-align: center;display: block;color: #333333;width: 100%}
 .block-3 li.each-block a:hover {text-decoration: none;}
 .block-3 li.each-block + li {margin-left: 1%;}
@@ -606,7 +609,7 @@ ul.cover-image li.cover-text p {margin-top:8px;}
 
 .signature-panel .item {cursor: default;}
 .signature-panel .square {border:none;padding: 0;margin-top: 0}
-.signature-panel .galcolumn {width: 100% !important;padding-bottom: 0 !important} 
+.signature-panel .galcolumn {width: 100% !important;padding-bottom: 0 !important}
 
 .signature-panel .square li.recipe-tags {display: none;}
 .signature-panel .square .add-lens,.signature-panel .square .add-heart {display: block;}
@@ -667,12 +670,12 @@ span.text {display: inline-block;line-height: 20px;margin-top: 1px}
 .icon-home {background: url('/assets/icons/icon-home.png')no-repeat left top;padding-top: 2px;}
 .icon-signature {background: url('/assets/icons/icon-signature.png')no-repeat left top}
 .icon-party-order {background: url('/assets/icons/icon-party-order.png')no-repeat left top}
-.icon-recipe {background: url('/assets/icons/icon-recipe.png')no-repeat left top} 
-.icon-favorite {background: url('/assets/icons/icon-favorite.png')no-repeat left top} 
+.icon-recipe {background: url('/assets/icons/icon-recipe.png')no-repeat left top}
+.icon-favorite {background: url('/assets/icons/icon-favorite.png')no-repeat left top}
 .icon-order-history {background: url('/assets/icons/icon-order-history.png')no-repeat left top}
 .icon-address {background: url('/assets/icons/icon-address.png')no-repeat left top}
 .icon-email {background: url('/assets/icons/icon-email.png')no-repeat left top}
-.icon-share {background: url('/assets/icons/icon-share.png')no-repeat left top} 
+.icon-share {background: url('/assets/icons/icon-share.png')no-repeat left top}
 .icon-gear {background: url('/assets/icons/icon-gear.png')no-repeat left top}
 
 
@@ -738,16 +741,16 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 
   .row-offcanvas-left
   .sidebar-offcanvas {
-    left: -80%; 
+    left: -80%;
   }
   .row-offcanvas-left.active {
-    left: 80%; 
+    left: 80%;
   }
 
   .sidebar-offcanvas {
     position: absolute;
     top: 0;
-    width: 80%; 
+    width: 80%;
     display: none;
     padding-right: 0;
     padding-left: 20px;
@@ -887,8 +890,9 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .radio-bar {padding: 10px 6px;margin-top: 10px;background: #fff;width: 100%;display: block;overflow: hidden;}
 .radio-bar label {font-weight: normal;}
 
-
+@media (max-width: 480px) {
 .make-resp {overflow-x: scroll;overflow-y: hidden;-webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;width: 100%;}
+}
 
 .width-radio {width: auto;display: inline-block;float: left;margin-left: 10px;}
 .long-bar {width: 360px;}

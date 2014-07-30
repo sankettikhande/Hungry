@@ -3,6 +3,11 @@
       border: 1px solid #cccccc;
       background: none;
   }
+  #cooking_today_cheff_id_container, #cooking_today_food_item_id, #cooking_today_food_item_id_container{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 200px;
+  }
 </style>
 <%#= f.cms_text_field :name %>
 <%= f.cms_drop_down :cheff_id, Cheff.all(:order => "id").map { |c| [c.name, c.id] },
