@@ -32,6 +32,7 @@ gem 'rails_config'
 group :development do
   gem 'capistrano', '2.15.4', require: false
   gem 'rvm-capistrano'
+  gem 'pry-rails'
 end
 gem 'exception_notification'
 

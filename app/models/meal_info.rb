@@ -4,6 +4,7 @@ class MealInfo < ActiveRecord::Base
   attr_accessible :name, :description, :preorder_time, :portion_size, :minimum_order_qty,
                   :hola_buy_price, :hola_sell_price, :picture_attributes, :tag_list
 
+  attr_accessor :is_signature
   has_many :taggings
   has_many :tags, through: :taggings
   acts_as_taggable_on :tags
@@ -11,5 +12,9 @@ class MealInfo < ActiveRecord::Base
   has_one :picture, :as => :picturable, :class_name => 'Picture', :dependent => :destroy
   accepts_nested_attributes_for :picture
 
-  validates_presence_of :name, :hola_buy_price, :hola_sell_price, :preorder_time, :portion_size, :minimum_order_qty
+  validates_presence_of :name, :hola_buy_price, :hola_sell_price
+  validates_presence_of :preorder_time, :portion_size, :minimum_order_qty, :if => :signature_dish?
+  def signature_dish?
+		self.is_signature
+  end
 end
