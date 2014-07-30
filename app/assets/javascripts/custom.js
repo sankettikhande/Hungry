@@ -262,7 +262,10 @@ $(document).ready(function(){
     });
 
 //        validation for cart select payment method
-    if($("#u-name").val() == "" || $("#u-contact").val() == "" || $("#u-address").val() == "" ) {
+    $(document).ready(function(){
+        if ($("#submit_order").validationEngine('validate')) {
+            $("#submit-order-button").removeClass("text-grey")
+        }
             $("#submit_order").validationEngine('attach', {
                 validationEventTrigger: "keyup",
                 onFieldFailure: function(){
@@ -274,7 +277,7 @@ $(document).ready(function(){
                     }
                 }
             });
-    }
+    })
 
     $('.signature-modal').on('hide.bs.modal', function (e) {
        $(".modal-header p").html("Delivery on:");
