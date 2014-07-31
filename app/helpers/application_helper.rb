@@ -196,4 +196,9 @@ module ApplicationHelper
     percent = fav_chefs.fetch(chef.id) if fav_chefs.has_key?(chef.id)
     return percent
   end
+
+  def alert_message message, options = {}
+    alert_class = options[:alert_class] || "alert alert-info text-center"
+    content_tag(:div, message, class: alert_class)
+  end
 end
