@@ -17,7 +17,7 @@
                   <div class="recipe-image hidden">
                     <div><%= link_to "","/recipe/#{@signature_dish.id}",:class => "add-lens" %></div>
                     <div class="add-heart"></div>
-                    <%= image_tag @signature_dish.meal_info.picture.image.url, :class => "img-responsive center-block" if @signature_dish && @signature_dish.meal_info.picture %>
+                    <%= image_tag @signature_dish.meal_info.picture.image.url, :class => "img-responsive dish-image center-block" if @signature_dish && @signature_dish.meal_info.picture %>
                   </div>
                 </div>
               </li>

@@ -9,8 +9,8 @@
                     <ul class="profile-details">
                       <li class="profile veg cover-block">
                         <ul class="cover-image">
-                          <li class="cover cover-photo hidden"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
-                          <li class="cover cover-text <%= set_menu_type(@food_item)%>">
+                          <li class="cover cover-photo hidden" id ="recipe-page-img"><%= image_tag(@food_item.meal_info.picture.image.url, :class => "img-responsive center-block recipe-img" ) if @food_item.meal_info.picture %>
+                          <li class="cover cover-text <%= set_menu_type(@food_item)%>" id = "recipe-page-txt">
                             <h1 class="lemon text-white" id="cover-title"><%= @food_item.meal_info.name %></h1>
                             <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
                           </li>
@@ -20,7 +20,7 @@
                         <div class="add-heart <%= add_recipe_filled_class(@food_item) %>" id="add_recipe_to_favorite" data-recipe_id="<%= @food_item.id %>"></div>
                       </li>
                       <li class="profile profile-dp">
-                        <%= image_tag(@food_item.meal_info.picture.image.url, :class => "img-responsive img-circle center-block" ) if @food_item.meal_info.picture %>
+                        <%= image_tag(@food_item.cheff.picture.image.url, :class => "img-responsive img-circle center-block" ) if @food_item.cheff.picture %>
                       </li>
                       <li class="profile user-name by"><%= @food_item.cheff.chef_coordinate.name if @food_item.cheff %></li>
                       <li class="profile user-level"><%#= @food_item.cheff.chef_coordinate.hotel_name if @food_item.cheff %></li>
@@ -126,7 +126,7 @@
                   </div>
 
                 </div>
-                <% if @food_item.if_signature %>
+
                 <div class="container">
                   <div class="hola-rating">
                     <ul class="rating-block">
@@ -141,6 +141,7 @@
                     </ul>
                   </div>
                 </div>
+                <% if @food_item.if_signature %>
                   <div class="container seperator-10">
                     <div class="normal-body">
                         <p class="text-6 text-center">This is a signature dish and can be made to order</p>

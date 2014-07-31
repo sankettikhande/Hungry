@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140728110341) do
+ActiveRecord::Schema.define(:version => 20140731114205) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_type_id"
@@ -547,7 +547,7 @@ ActiveRecord::Schema.define(:version => 20140728110341) do
     t.string   "name"
     t.text     "description"
     t.integer  "preorder_time"
-    t.integer  "portion_size"
+    t.string   "portion_size"
     t.integer  "minimum_order_qty"
     t.integer  "hola_buy_price"
     t.integer  "hola_sell_price"
