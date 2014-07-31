@@ -45,7 +45,7 @@ Holachef::Application.routes.draw do
 
   match '/desktop' => 'home#desktop'
 
-  match '/mobile' => 'home#index', :as => :home
+  match '/mobile' => 'home#mobile', :as => :home
 
   match '/submit_payment_form'=> 'Cms::orders#submit_payment_form'
   post "orders/callback"=>'Cms::orders#callback'
