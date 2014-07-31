@@ -16,7 +16,7 @@
         <li><a class="navbar-brand" href="/mobile">Hola</a></li>
         <li class="dropdown page-title">
           <a class="drop-icon" data-toggle="dropdown" href="#">
-            <%= set_drop_down_title(params[:controller], params[:action]) %>
+            <%= set_drop_down_title(params[:controller], params[:action], params[:id] ) %>
           </a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/mobile" id="here">Today's Menu</a></li>

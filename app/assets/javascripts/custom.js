@@ -263,20 +263,20 @@ $(document).ready(function(){
 
 //        validation for cart select payment method
     $(document).ready(function(){
+        $("#submit_order").validationEngine('attach', {
+            validationEventTrigger: "keyup",
+            onFieldFailure: function(){
+                $("#submit-order-button").addClass("text-grey")
+            },
+            onFieldSuccess: function(){
+                if ($("#submit_order").validationEngine('validate')){
+                    $("#submit-order-button").removeClass("text-grey")
+                }
+            }
+        });
         if ($("#submit_order").validationEngine('validate')) {
             $("#submit-order-button").removeClass("text-grey")
         }
-            $("#submit_order").validationEngine('attach', {
-                validationEventTrigger: "keyup",
-                onFieldFailure: function(){
-                    $("#submit-order-button").addClass("text-grey")
-                },
-                onFieldSuccess: function(){
-                    if ($("#submit_order").validationEngine('validate')){
-                        $("#submit-order-button").removeClass("text-grey")
-                    }
-                }
-            });
     })
 
     $('.signature-modal').on('hide.bs.modal', function (e) {
@@ -340,6 +340,15 @@ $(document).ready(function(){
             })
         }
     });
+    if ($(".dish-image").length > 0){
+        $(".recipe-image").removeClass('hidden')
+        $(".recipe-name").addClass('hidden')
+    }
+
+    if ($(".recipe-img").length > 0){
+        $("#recipe-page-img").removeClass('hidden')
+        $("#recipe-page-txt").addClass('hidden')
+    }
 
     $(".payment_mode").click(function(){
         var paymentMode = $(this).attr('data-paymentMode');

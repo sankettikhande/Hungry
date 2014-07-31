@@ -85,11 +85,14 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \'#{association}\', \'#{escape_javascript(fields)}\')")
   end
 
-  def set_drop_down_title(controller, action)
+  def set_drop_down_title(controller, action, id)
+    if controller == "cms/food_items" && action == "show_recipe"
+      item = FoodItem.find id
+    end
     case
     when controller == "ordered_menus" && action == "checkout"
       return "Review Order"
-    when controller == "cms/food_items" && action == "show_recipe"
+    when controller == "cms/food_items" && action == "show_recipe" && item.if_signature
       return "Recipe"
     when controller == "cms/food_items" && action == "signature_dishes"
       return "Signature Dish"
