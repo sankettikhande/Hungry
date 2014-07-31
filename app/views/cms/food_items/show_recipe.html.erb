@@ -50,6 +50,7 @@
                 <div class="col-xs-12">
                   <div class="normal-block">
                     <ul class="recipe-info">
+                      <li>1 Portion <span><%= @food_item.meal_info.portion_size %></span></li>
                       <li>Cooking time<span><%= @food_item.recipe.preparation_time %> min</span></li>
                       <li>Serves<span><%= @food_item.recipe.servings %></span></li>
                       <li>Cuisine<span class="comma"><%#= @food_item.cuisine %></span></li>
