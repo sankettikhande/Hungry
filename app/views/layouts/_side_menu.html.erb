@@ -1,22 +1,23 @@
 <div class="left-nav sidebar-offcanvas hola-sidemenu" id="sidebar" role="navigation">
   <div class="list-group">
+    <% if hola_user %>
     <a href="#" class="list-group-item">
-      <% hola_user = get_user_details %>
       <h4 class="list-group-item-heading active" id="user-name"><%= hola_user.name.camelize if hola_user %></h4>
       <p class="list-group-item-text " id="user-contact"><%= hola_user.phoneNumber if hola_user %></p></a>
+    <% end %>
     <a href="/mobile" class="list-group-item"><span class="icon-xs icon-home"></span><span class="text">Home</span></a>
     <a href="#" class="list-group-item"><span class="icon-xs icon-signature"></span> <span class="text">Signature Dishes</span></a>
-    <% if hola_user %>
-      <a href="#" class="list-group-item"><span class="icon-xs icon-party-order"></span> <span class="text">Party Orders</span></a>
-      <a href="/recipes" class="list-group-item"><span class="icon-xs icon-recipe"></span> <span class="text">Recipes</span></a>
-      <a href="/my_favorite_chefs" class="list-group-item"><span class="icon-xs icon-favorite"></span> <span class="text">Favorites</span></a>
-      <a href="#" class="list-group-item"><span class="icon-xs icon-order-history"></span> <span class="text">Order History</span></a>
-      <a href="#" class="list-group-item"><span class="icon-xs icon-address"></span> <span class="text">Addressbook</span></a>
-    <% end %>
+
+    <a href="#" class="list-group-item"><span class="icon-xs icon-party-order"></span> <span class="text">Party Orders</span></a>
+    <a href="/recipes" class="list-group-item"><span class="icon-xs icon-recipe"></span> <span class="text">Recipes</span></a>
+    <a href="/my_favorite_chefs" class="list-group-item"><span class="icon-xs icon-favorite"></span> <span class="text">Favorites</span></a>
+    <a href="#" class="list-group-item"><span class="icon-xs icon-order-history"></span> <span class="text">Order History</span></a>
+    <a href="#" class="list-group-item"><span class="icon-xs icon-address"></span> <span class="text">Addressbook</span></a>
+
     <a href="#" class="list-group-item"><span class="icon-xs icon-email"></span> <span class="text">Talk to us</span></a>
     <a href="#" class="list-group-item"><span class="icon-xs icon-share"></span> <span class="text">Love us?</span></a>
-    <% if hola_user %>
-      <a href="#" class="list-group-item"><span class="icon-xs icon-gear"></span> <span class="text">Settings</span></a>
-    <% end %>
+
+    <a href="#" class="list-group-item"><span class="icon-xs icon-gear"></span> <span class="text">Settings</span></a>
+
   </div>
 </div>
