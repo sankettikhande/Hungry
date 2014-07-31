@@ -17,6 +17,8 @@ class FoodItem < ActiveRecord::Base
 
   validates_presence_of :cheff_id
 
+  scope :signature_dish, where("if_signature = true")
+
   def name
     "Meal Name: #{self.meal_info.name} " if self.meal_info
   end

@@ -11,7 +11,7 @@ Holachef::Application.routes.draw do
   match '/review_order' => 'ordered_menus#checkout', :as => :review_order
 
   match '/recipe/:id'=>'Cms::food_items#show_recipe'
-  match '/signature/:dish_name'=> 'Cms::food_items#signature_dishes'
+  match '/signature/:dish_name'=> 'Cms::food_items#signature_dishes', :as => :signature_dish
   match '/update_ratings' => "Cms::food_items#update_ratings"
 
   match '/create_signature_order'=>"Cms::orders#create_signature_order"
