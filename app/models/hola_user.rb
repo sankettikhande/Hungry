@@ -31,7 +31,7 @@ class HolaUser < ActiveRecord::Base
   end
 
   def self.most_popular_recipes
-   return FoodItem.all(:conditions => ['dish_served >= ?', 20])
+     FoodItem.order("dish_served desc").limit(10)
   end
 
 end
