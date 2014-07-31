@@ -108,7 +108,7 @@
                   </ul>
                 </div>
               </li>
-              <li class="entity-name <%=set_menu_icon(recipe)%>"><%= link_to recipe.meal_info.name, signature_dish_url(recipe.id) %></li>
+              <li class="entity-name <%=set_menu_icon(recipe)%>"><%= recipe.meal_info.name %></li>
               <li class="entity-by"><%= recipe.cheff.chef_coordinate.name %></li>
               <li class="entity-cuisine">
                 <% recipe.cheff.cuisine_styles.each do |cuisine| %>
