@@ -84,7 +84,7 @@
                                   <span class="unit"><%= ingredient.unit %></span>
                                   <span class="name"><%= ingredient.ingredient_name %></span>
                                   <span class="google pull-right">
-                                    <%= link_to "Search", "https://www.google.co.in/?#q=#{ingredient.ingredient_name}", :target=>"_blank", :class=>"text-hide" %>
+                                    <%= link_to "Search", "https://www.google.co.in/search?q=#{ingredient.ingredient_name}", :target=>"_blank", :class=>"text-hide" %>
                                   </span>
                                 </li>
                               <% end %>
