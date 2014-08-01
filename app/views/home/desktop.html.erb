@@ -37,5 +37,13 @@
   <iframe class="desktop-iframe" sandbox="allow-same-origin allow-forms allow-scripts" seamless="seamless" src="//<%=request.host_with_port%>/mobile"></iframe>
 </div>
 <%= javascript_include_tag "application"%>
+<script type="text/javascript">
+function socail_click(url)
+ {
+      window.open(url,'Sharer','left=20,top=20,width=500,height=500,toolbar=1,resizable=0');
+      return false;
+}
+
+</script>
 </body>
 </html>

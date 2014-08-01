@@ -267,20 +267,40 @@ $(document).ready(function(){
 
 //        validation for cart select payment method
     $(document).ready(function(){
-        $("#submit_order").validationEngine('attach', {
-            validationEventTrigger: "keyup",
-            onFieldFailure: function(){
-                $("#submit-order-button").addClass("text-grey")
-            },
-            onFieldSuccess: function(){
-                if ($("#submit_order").validationEngine('validate')){
-                    $("#submit-order-button").removeClass("text-grey")
+        function checkvalidation(el){
+            $("#submit_order").validationEngine('attach', {
+                validationEventTrigger: "keyup",
+                onFieldFailure: function(){
+                    $("#submit-order-button").addClass("text-grey")
+                },
+                onFieldSuccess: function(){
+                    if ($("#submit_order").validationEngine('validate')){
+                        $("#submit-order-button").removeClass("text-grey")
+                    }else{
+                        hidePrompt(el)
+                    }
                 }
+            });
+        }
+        function hidePrompt(el){
+            if ($(el).get(0) === $("#u-name").get(0)){
+               $("#u-contact").validationEngine('hide')
+               $("#u-address").validationEngine('hide')
+            }else if($(el).get(0) === $("#u-contact").get(0)){
+                $("#u-name").validationEngine('hide')
+                $("#u-address").validationEngine('hide')
+            }else{
+                $("#u-contact").validationEngine('hide')
+                $("#u-name").validationEngine('hide')
             }
-        });
-        if ($("#submit_order").validationEngine('validate')) {
+        }
+        if($("#u-name").val() != "" && $("#u-contact").val() != "" && $("#u-address").val() != "" ) {
             $("#submit-order-button").removeClass("text-grey")
         }
+        $("#u-name, #u-contact, #u-address").blur(function(){
+            checkvalidation(this)
+        })
+
     })
 
     $('.signature-modal').on('hide.bs.modal', function (e) {
@@ -387,4 +407,16 @@ $(document).ready(function(){
             'dataType':'script'
         })
     })
+});
+
+$(document).ready(function(){
+  $('.set_default').click(function(){
+    var address_id = $(this).data("address-id");
+    $.ajax({
+      'url': '/hola_user_addresses/set_default',
+      'type': "POST",
+      'data' : {'address_id': address_id},
+      'dataType': 'script'
+    })
+  });
 });

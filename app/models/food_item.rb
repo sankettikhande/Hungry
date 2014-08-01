@@ -3,6 +3,7 @@ class FoodItem < ActiveRecord::Base
   attr_accessor :skip_callbacks
 
   belongs_to :cheff
+  has_many :ordered_menus
 
   attr_accessible :meal_info_attributes, :recipe_attributes, :review_attributes, :cooking_todays
 

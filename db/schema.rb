@@ -467,8 +467,16 @@ ActiveRecord::Schema.define(:version => 20140801094332) do
   create_table "hola_user_addresses", :force => true do |t|
     t.string   "address"
     t.integer  "hola_user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "address_type"
+    t.string   "name"
+    t.string   "building_name"
+    t.string   "street"
+    t.string   "city"
+    t.string   "pin"
+    t.string   "landmark"
+    t.boolean  "default",       :default => false
   end
 
   create_table "hola_users", :force => true do |t|
