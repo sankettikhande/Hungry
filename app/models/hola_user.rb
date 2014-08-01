@@ -2,6 +2,7 @@ class HolaUser < ActiveRecord::Base
   has_many :hola_user_addresses
   has_many :my_favorite_chefs
   has_many :my_favorite_recipes
+  has_many :orders
   attr_accessible :name, :phoneNumber
 
   validates :phoneNumber, :uniqueness => true

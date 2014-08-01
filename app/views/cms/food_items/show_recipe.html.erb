@@ -68,6 +68,7 @@
 
             <div class="container">
               <div class="row">
+                <% if @food_item.if_signature %>
                 <div class="col-xs-12">
                   <div class="normal-header">
                     <h2 class="roboto-l">Ingredients</h2>
@@ -114,20 +115,21 @@
                   </div>
 
                   <div class="normal-header">
-                    <h2 class="roboto-l">Tips</h2>
+                    <h2 class="roboto-l">Serving Tips</h2>
                   </div>
                   <div class="normal-body">
                     <div class="recipe-directions">
-                      <ol class="direction-list">
+                      <p><%= @food_item.recipe.serving_tips %></p>
+                     <!--  <ol class="direction-list">
                         <%# @food_item.tips.each do |recipe| %>
                             <li class="text"><%#= recipe.tips %></li>
                         <%# end %>
-                      </ol>
+                      </ol> -->
                     </div>
                   </div>
 
                 </div>
-
+                <% end %>
                 <div class="container">
                   <div class="hola-rating">
                     <ul class="rating-block">

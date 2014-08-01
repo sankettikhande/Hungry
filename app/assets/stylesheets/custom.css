@@ -692,7 +692,8 @@ span.comma+span.comma:before {content: ',';margin-right: 5px;}
 
 
 
-h3.dark-title{color: #000;font-family: 'robotobold',Sans-serif;font-size: 1.125em;margin-top: 10px;float: left;display: block;}
+h3.dark-title{color: #333;font-family: 'robotobold',Sans-serif;font-size: 1.125em;margin-top: 10px;float: left;display: block;}
+
 
 .recipe-ingredients ul.ingredients-list {width: 100%;float: left;display: block;margin-bottom: 5px;margin-top: 5px;}
 .recipe-ingredients ul.ingredients-list li.ingredient {width: 100%;display: block;float: left;color: #666;font-size: 1em;font-family: 'robotoregular',Sans-serif;}
