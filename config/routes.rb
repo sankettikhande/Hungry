@@ -32,7 +32,11 @@ Holachef::Application.routes.draw do
   end
 
   resources :social_shares do
+
   end
+
+  match '/tell_friends' => 'social_shares#tell_friends'
+  post '/send_referal_email' => 'social_shares#send_referal_email'
 
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'

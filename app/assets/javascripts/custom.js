@@ -241,6 +241,10 @@ $(document).ready(function(){
         }
     });
 
+    $('#friend_referal_submit').click(function(){
+      $("#friend_referal_form").validationEngine();
+    });
+
     $('#signature-submit').click(function(){
         var valid = $("#signature_form").validationEngine('validate');
         if(valid == true){
