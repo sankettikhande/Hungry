@@ -59,6 +59,9 @@ Holachef::Application.routes.draw do
   post '/email' => 'temporary_home#send_mail'
   post '/feedback' => 'home#feedback'
 
+  resources :hola_user_addresses, only: [:index, :create, :update]
+  match '/hola_user_addresses/set_default' =>'hola_user_addresses#set_default'
+
   #end
 
   # The priority is based upon order of creation:
