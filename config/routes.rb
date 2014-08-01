@@ -61,6 +61,7 @@ Holachef::Application.routes.draw do
 
   resources :hola_user_addresses, only: [:index, :create, :update]
   match '/hola_user_addresses/set_default' =>'hola_user_addresses#set_default'
+  resources :order_histories, only: [:index]
 
   #end
 

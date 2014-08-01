@@ -1,7 +1,7 @@
 class OrderedMenu < ActiveRecord::Base
 
   belongs_to :order
-  belongs_to :dish
+  belongs_to :food_item, foreign_key: :dish_id
   belongs_to :cheff
 
   attr_accessible :order_id, :dish_id, :cheff_id, :quantity, :rate
