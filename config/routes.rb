@@ -6,12 +6,14 @@ Holachef::Application.routes.draw do
   match '/my_favorite_chefs'=>"hola_users#my_favorite_chefs"
   match "/add_recipe_to_favorite"=> "hola_users#add_recipe_to_favorite"
   match '/recipes'=> "hola_users#recipes"
+  match '/signature_dishes'=> "hola_users#signature_dishes"
+  match '/talk_to_us'=> "hola_users#talk_to_us"
 
   match "/cms" => "cms/dashboard#index"
   match '/review_order' => 'ordered_menus#checkout', :as => :review_order
 
   match '/recipe/:id'=>'Cms::food_items#show_recipe'
-  match '/signature/:dish_name'=> 'Cms::food_items#signature_dishes'
+  match '/signature/:dish_name'=> 'Cms::food_items#signature_dishes', :as => :signature_dish
   match '/update_ratings' => "Cms::food_items#update_ratings"
 
   match '/create_signature_order'=>"Cms::orders#create_signature_order"
@@ -29,6 +31,9 @@ Holachef::Application.routes.draw do
     content_blocks :cuisine_styles
   end
 
+  resources :social_shares do
+  end
+
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
   post '/payment-method'=>"Cms::orders#payment_gateway"
@@ -44,7 +49,7 @@ Holachef::Application.routes.draw do
 
   match '/desktop' => 'home#desktop'
 
-  match '/mobile' => 'home#index', :as => :home
+  match '/mobile' => 'home#mobile', :as => :home
 
   match '/submit_payment_form'=> 'Cms::orders#submit_payment_form'
   post "orders/callback"=>'Cms::orders#callback'
@@ -52,6 +57,7 @@ Holachef::Application.routes.draw do
   match '/home/index_call' =>'home#index_call'
 
   post '/email' => 'temporary_home#send_mail'
+  post '/feedback' => 'home#feedback'
 
   resources :hola_user_addresses, only: [:index, :create, :update]
   match '/hola_user_addresses/set_default' =>'hola_user_addresses#set_default'

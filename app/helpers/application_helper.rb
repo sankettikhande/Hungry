@@ -85,11 +85,14 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \'#{association}\', \'#{escape_javascript(fields)}\')")
   end
 
-  def set_drop_down_title(controller, action)
+  def set_drop_down_title(controller, action, id)
+    if controller == "cms/food_items" && action == "show_recipe"
+      item = FoodItem.find id
+    end
     case
     when controller == "ordered_menus" && action == "checkout"
       return "Review Order"
-    when controller == "cms/food_items" && action == "show_recipe"
+    when controller == "cms/food_items" && action == "show_recipe" && item.if_signature
       return "Recipe"
     when controller == "cms/food_items" && action == "signature_dishes"
       return "Signature Dish"
@@ -195,5 +198,10 @@ module ApplicationHelper
   def set_chef_heart_value(chef, fav_chefs)
     percent = fav_chefs.fetch(chef.id) if fav_chefs.has_key?(chef.id)
     return percent
+  end
+
+  def alert_message message, options = {}
+    alert_class = options[:alert_class] || "alert alert-info text-center"
+    content_tag(:div, message, class: alert_class)
   end
 end

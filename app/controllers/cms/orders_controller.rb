@@ -50,8 +50,8 @@ class Cms::OrdersController < Cms::ContentBlockController
   end
 
   def payment_gateway
-    @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular')
     hola_user = Order.save_user(params)
+    @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular', :hola_user_id => hola_user.id)
     cookies[:user_mobile] = {:value => hola_user.phoneNumber} if hola_user
     session[:cart].each do |item|
       item.each do |item_id, item_attr|
@@ -156,8 +156,16 @@ class Cms::OrdersController < Cms::ContentBlockController
   def create_signature_order
     @signature_dish = FoodItem.find(params[:dish_id])
     date_diff = Order.check_signature_order_delivery_date(params[:order][:date])
+
+    min_order_quantity = @signature_dish.meal_info.minimum_order_qty
     if date_diff < @signature_dish.meal_info.preorder_time
     @error_msg = "Delivery date should be greater than #{@signature_dish.meal_info.preorder_time} days."
+    elsif params[:order][:quantity].to_i < min_order_quantity
+      @error_msg = "Quantity should not be less than #{min_order_quantity}."
+    elsif Date.today.strftime("%d/%m/%y") == params[:order][:date] && params[:order][:from_time] < DateTime.now.strftime("%I:%M%p")
+      @error_msg = "From time should not less than current time."
+    elsif params[:order][:from_time] >= params[:order][:upto_time]
+      @error_msg = "From time should be less than upto time."
     else
      order = Order.create(:date => params[:order][:date], :from_time => params[:order][:from_time],
                           :upto_time => params[:order][:upto_time], :order_type => "Pick Up")

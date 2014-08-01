@@ -17,7 +17,7 @@
                   <div class="recipe-image hidden">
                     <div><%= link_to "","/recipe/#{@signature_dish.id}",:class => "add-lens" %></div>
                     <div class="add-heart"></div>
-                    <%= image_tag @signature_dish.meal_info.picture.image.url, :class => "img-responsive center-block" if @signature_dish && @signature_dish.meal_info %>
+                    <%= image_tag @signature_dish.meal_info.picture.image.url, :class => "img-responsive dish-image center-block" if @signature_dish && @signature_dish.meal_info.picture %>
                   </div>
                 </div>
               </li>
@@ -46,7 +46,7 @@
 
             <div class="dish-info">
               <p><%= @signature_dish.meal_info.description.html_safe %> </p>
-              <!--<p><span class="portion">1</span><span id="portion-eqv">2 Baatis</span></p>-->
+              <p><span class="portion">1</span><span id="portion-eqv"><%= @signature_dish.meal_info.portion_size if @signature_dish %></span></p>
             </div>
 
             <div class="min-order-block">

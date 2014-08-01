@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
   serialize :payment_gateway_response, Hash
 
   has_many :ordered_menus
+  belongs_to :hola_user
 
   validates :date, :presence => true
 

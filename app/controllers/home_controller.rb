@@ -2,16 +2,18 @@
 class HomeController < ApplicationController
   include ApplicationHelper
 
-  before_filter :prepare_for_mobile
+  #before_filter :prepare_for_mobile
   before_filter :landing, :only => [:index]
-  skip_before_filter :prepare_for_mobile, :only => [:desktop]
+  #skip_before_filter :prepare_for_mobile, :only => [:desktop]
 
   def landing
     if session[:landing].nil?
       session[:landing] = "landing"
       respond_to do |format|
         format.html{render :template =>  'home/landing' ,:layout => 'landing'}
+
       end
+      #return if !session[:landing].nil?
     end
 
   end
@@ -25,8 +27,25 @@ class HomeController < ApplicationController
     end
   end
 
+  def mobile
+    @todays_menu = CookingToday.sorted_by_qty_left
+    update_cart(@todays_menu) if !@todays_menu.blank?
+
+    respond_to do |format|
+      format.html{render template: "home/index"}
+    end
+  end
+
   def desktop
     render :layout => false
+  end
+
+  def feedback
+    @feedback = Feedback.new(feedback: params[:feedback], email: params[:email])
+    flash[:notice] = "Thanks!! Feedback received." if @feedback.save
+    respond_to do |format|
+      format.html{ render :template => "hola_users/talk_to_us"}
+    end
   end
 
   private

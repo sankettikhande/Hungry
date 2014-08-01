@@ -9,8 +9,8 @@
                     <ul class="profile-details">
                       <li class="profile veg cover-block">
                         <ul class="cover-image">
-                          <li class="cover cover-photo hidden"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
-                          <li class="cover cover-text <%= set_menu_type(@food_item)%>">
+                          <li class="cover cover-photo hidden" id ="recipe-page-img"><%= image_tag(@food_item.meal_info.picture.image.url, :class => "img-responsive center-block recipe-img" ) if @food_item.meal_info.picture %>
+                          <li class="cover cover-text <%= set_menu_type(@food_item)%>" id = "recipe-page-txt">
                             <h1 class="lemon text-white" id="cover-title"><%= @food_item.meal_info.name %></h1>
                             <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
                           </li>
@@ -20,7 +20,7 @@
                         <div class="add-heart <%= add_recipe_filled_class(@food_item) %>" id="add_recipe_to_favorite" data-recipe_id="<%= @food_item.id %>"></div>
                       </li>
                       <li class="profile profile-dp">
-                        <%= image_tag(@food_item.meal_info.picture.image.url, :class => "img-responsive img-circle center-block" ) if @food_item.meal_info.picture %>
+                        <%= image_tag(@food_item.cheff.picture.image.url, :class => "img-responsive img-circle center-block" ) if @food_item.cheff.picture %>
                       </li>
                       <li class="profile user-name by"><%= @food_item.cheff.chef_coordinate.name if @food_item.cheff %></li>
                       <li class="profile user-level"><%#= @food_item.cheff.chef_coordinate.hotel_name if @food_item.cheff %></li>
@@ -50,6 +50,7 @@
                 <div class="col-xs-12">
                   <div class="normal-block">
                     <ul class="recipe-info">
+                      <li>1 Portion <span><%= @food_item.meal_info.portion_size %></span></li>
                       <li>Cooking time<span><%= @food_item.recipe.preparation_time %> min</span></li>
                       <li>Serves<span><%= @food_item.recipe.servings %></span></li>
                       <li>Cuisine<span class="comma"><%#= @food_item.cuisine %></span></li>
@@ -67,6 +68,7 @@
 
             <div class="container">
               <div class="row">
+                <% if @food_item.if_signature %>
                 <div class="col-xs-12">
                   <div class="normal-header">
                     <h2 class="roboto-l">Ingredients</h2>
@@ -113,20 +115,21 @@
                   </div>
 
                   <div class="normal-header">
-                    <h2 class="roboto-l">Tips</h2>
+                    <h2 class="roboto-l">Serving Tips</h2>
                   </div>
                   <div class="normal-body">
                     <div class="recipe-directions">
-                      <ol class="direction-list">
+                      <p><%= @food_item.recipe.serving_tips %></p>
+                     <!--  <ol class="direction-list">
                         <%# @food_item.tips.each do |recipe| %>
                             <li class="text"><%#= recipe.tips %></li>
                         <%# end %>
-                      </ol>
+                      </ol> -->
                     </div>
                   </div>
 
                 </div>
-
+                <% end %>
                 <div class="container">
                   <div class="hola-rating">
                     <ul class="rating-block">

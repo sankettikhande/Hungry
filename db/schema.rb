@@ -334,6 +334,13 @@ ActiveRecord::Schema.define(:version => 20140731132033) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "feedbacks", :force => true do |t|
+    t.text     "feedback",   :null => false
+    t.string   "email",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "file_block_versions", :force => true do |t|
     t.integer  "original_record_id"
     t.integer  "version"
@@ -555,7 +562,7 @@ ActiveRecord::Schema.define(:version => 20140731132033) do
     t.string   "name"
     t.text     "description"
     t.integer  "preorder_time"
-    t.integer  "portion_size"
+    t.string   "portion_size"
     t.integer  "minimum_order_qty"
     t.integer  "hola_buy_price"
     t.integer  "hola_sell_price"
@@ -662,6 +669,7 @@ ActiveRecord::Schema.define(:version => 20140731132033) do
     t.string   "addressState"
     t.string   "addressCountry"
     t.string   "addressZip"
+    t.integer  "hola_user_id"
   end
 
   create_table "page_route_options", :force => true do |t|
