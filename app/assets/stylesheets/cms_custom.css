@@ -170,6 +170,14 @@ form, .faux_form {
     font-weight: bold;
     margin: 8px 0;
 }
+
+.successMsg {
+    font-weight: bold;
+    margin: 8px 0;
+    color: green;
+    padding-left: 20px;
+    font-size: 12px;
+}
 .instructions {
     clear: left;
     color: #666666;
