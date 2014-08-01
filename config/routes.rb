@@ -31,6 +31,9 @@ Holachef::Application.routes.draw do
     content_blocks :cuisine_styles
   end
 
+  resources :social_shares do
+  end
+
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
   post '/payment-method'=>"Cms::orders#payment_gateway"
@@ -55,6 +58,9 @@ Holachef::Application.routes.draw do
 
   post '/email' => 'temporary_home#send_mail'
   post '/feedback' => 'home#feedback'
+
+  resources :hola_user_addresses, only: [:index, :create, :update]
+  match '/hola_user_addresses/set_default' =>'hola_user_addresses#set_default'
 
   #end
 

@@ -404,3 +404,15 @@ $(document).ready(function(){
         })
     })
 });
+
+$(document).ready(function(){
+  $('.set_default').click(function(){
+    var address_id = $(this).data("address-id");
+    $.ajax({
+      'url': '/hola_user_addresses/set_default',
+      'type': "POST",
+      'data' : {'address_id': address_id},
+      'dataType': 'script'
+    })
+  });
+});

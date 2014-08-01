@@ -33,85 +33,11 @@
                 <% fav_recipes = set_fav_recipes() %>
                 <% if @searched_dish %>
                   <% @searched_dish.each do |dish| %>
-                    <div class="cuboid"><a href="#">
-                      <ul class="square e-recipe">
-                        <li class="entity-card">
-                          <div class="entity-image">
-                            <%= image_tag dish.meal_info.picture.image.url, :class => "center-block", :alt => dish.meal_info.picture.image.url %>
-                          </div>
-                          <div class="entity-tag">
-                            <% percent = set_heart_value(dish, fav_recipes) %>
-                            <ul class="entity-hearts">
-                              <% if percent && percent.between?(0, 35)%>
-                                  <li class="heart filled"></li>
-                                  <li class="heart"></li>
-                                  <li class="heart"></li>
-                              <% elsif percent && percent.between?(36,70) %>
-                                  <li class="heart filled"></li>
-                                  <li class="heart filled"></li>
-                                  <li class="heart"></li>
-                              <% elsif percent && percent.between?(71,100) %>
-                                  <li class="heart filled"></li>
-                                  <li class="heart filled"></li>
-                                  <li class="heart"></li>
-                              <% else %>
-                                  <li class="heart"></li>
-                                  <li class="heart"></li>
-                                  <li class="heart"></li>
-                              <% end %>
-                            </ul>
-                          </div>
-                        </li>
-                        <li class="entity-name <%=set_menu_icon(dish)%>"><%= link_to dish.meal_info.name, signature_dish_url(dish.id) %></li>
-                        <li class="entity-by"><%= dish.cheff.chef_coordinate.name %></li>
-                        <li class="entity-cuisine">
-                          <% dish.cheff.cuisine_styles.each do |cuisine| %>
-                              <span><%= cuisine.name %></span>
-                          <% end %>
-                        </li>
-                      </ul></a>
-                    </div>
+                    <%= render "signature_dish", recipe: dish, fav_recipes: fav_recipes %>
                   <% end %>
                 <% else %>
                     <% @signature_dishes.each do |signature_dish| %>
-                      <div class="cuboid"><a href="#">
-                        <ul class="square e-recipe">
-                          <li class="entity-card">
-                            <div class="entity-image">
-                              <%= image_tag signature_dish.meal_info.picture.image.url, :class => "center-block", :alt => signature_dish.meal_info.picture.image.url %>
-                            </div>
-                            <div class="entity-tag">
-                              <% percent = set_heart_value(signature_dish, fav_recipes) %>
-                              <ul class="entity-hearts">
-                                <% if percent && percent.between?(0, 35)%>
-                                    <li class="heart filled"></li>
-                                    <li class="heart"></li>
-                                    <li class="heart"></li>
-                                <% elsif percent &&  percent.between?(36,70) %>
-                                    <li class="heart filled"></li>
-                                    <li class="heart filled"></li>
-                                    <li class="heart"></li>
-                                <% elsif percent &&  percent.between?(71,100) %>
-                                    <li class="heart filled"></li>
-                                    <li class="heart filled"></li>
-                                    <li class="heart filled"></li>
-                                <% else %>
-                                    <li class="heart"></li>
-                                    <li class="heart"></li>
-                                    <li class="heart"></li>
-                                <% end %>
-                              </ul>
-                            </div>
-                          </li>
-                          <li class="entity-name <%=set_menu_icon(signature_dish)%>"><%= link_to signature_dish.meal_info.name, signature_dish_url(signature_dish.id) %></li>
-                          <li class="entity-by"><%= signature_dish.cheff.chef_coordinate.name %></li>
-                          <li class="entity-cuisine">
-                            <% signature_dish.cheff.cuisine_styles.each do |cuisine| %>
-                                <span><%= cuisine.name %></span>
-                            <% end %>
-                          </li>
-                        </ul></a>
-                      </div>
+                      <%= render "signature_dish", recipe: signature_dish, fav_recipes: fav_recipes %>
                   <% end %>
                 <% end %>
               </div>
