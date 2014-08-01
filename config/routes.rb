@@ -31,6 +31,9 @@ Holachef::Application.routes.draw do
     content_blocks :cuisine_styles
   end
 
+  resources :social_shares do
+  end
+
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
   post '/payment-method'=>"Cms::orders#payment_gateway"
