@@ -343,7 +343,8 @@ ActiveRecord::Schema.define(:version => 20140801073500) do
   end
 
   create_table "feedbacks", :force => true do |t|
-    t.text     "feedback"
+    t.text     "feedback",   :null => false
+    t.string   "email",      :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

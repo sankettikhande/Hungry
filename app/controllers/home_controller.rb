@@ -41,8 +41,8 @@ class HomeController < ApplicationController
   end
 
   def feedback
-    @feedback = Feedback.new(feedback: params[:feedback])
-    @feedback.save
+    @feedback = Feedback.new(feedback: params[:feedback], email: params[:email])
+    flash[:notice] = "Thanks!! Feedback sent." if @feedback.save
     respond_to do |format|
       format.html{ render :template => "hola_users/talk_to_us"}
     end
