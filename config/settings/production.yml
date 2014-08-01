@@ -6,14 +6,3 @@ citrus_gateway:
   apikey : '573f85c0b61fdc202e3cff60b1c8333b5736a2e9' # as per citrus pay merchant setup
   action : 'http://103.13.97.227/orders/callback' # change it as required by your app...
   returnUrl : ' http://103.13.97.227/orders/callback'
-
-email_delivery:
-  delivery_method: :smtp
-  smtp_settings:
-    address: "smtp.gmail.com"
-    port: 587
-    authentication: :plain
-    enable_starttls_auto: true
-    domain: 'gmail.com'
-    user_name: 'dev.web.20140801'
-    password: 'abc12345#'
