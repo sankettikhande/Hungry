@@ -18,7 +18,7 @@
               <div class="address-container">
                 <% @addresses.each do |address| %>
                   <div class="address-card back-white">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#<%= address.address_type %>-add"><%= address.address_type.capitalize %></a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#<%= address.address_type %>-add"><%= address.address_type.try(:capitalize) %></a>
                       <div id="<%= address.address_type %>-add" class="collapse in">
                           <%= form_for address do |f| %>
                             <%= render "hola_user_addresses/form", f: f %>
