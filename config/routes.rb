@@ -7,6 +7,7 @@ Holachef::Application.routes.draw do
   match "/add_recipe_to_favorite"=> "hola_users#add_recipe_to_favorite"
   match '/recipes'=> "hola_users#recipes"
   match '/signature_dishes'=> "hola_users#signature_dishes"
+  match '/talk_to_us'=> "hola_users#talk_to_us"
 
   match "/cms" => "cms/dashboard#index"
   match '/review_order' => 'ordered_menus#checkout', :as => :review_order
@@ -53,6 +54,7 @@ Holachef::Application.routes.draw do
   match '/home/index_call' =>'home#index_call'
 
   post '/email' => 'temporary_home#send_mail'
+  post '/feedback' => 'home#feedback'
 
   #end
 
