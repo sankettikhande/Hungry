@@ -13,56 +13,60 @@
           <div class="col-xs-12">
 
             <div class="hola-cards">
-              <% @order_histories.each do |oh| %>
-                <div class="cuboid"><a href="#">
+              <% if @order_histories.blank?  %>
+                <%= alert_message "There are no favourite recipes." %>
+              <% else %>
+                <% @order_histories.each do |oh| %>
+                  <div class="cuboid"><a href="#">
 
-                  <ul class="square e-recipe">
-                    <li class="entity-card">
-                      <div class="entity-image">
-                        <%= link_to image_tag(oh.cheff.picture.image.url, :class => "img-responsive center-block"), "/chef-profile/#{oh.cheff.id}", :id => "chef_info", :alt => "Chef Picture" if !oh.cheff.picture.blank? %>
-                      </div>
-                      <div class="entity-tag">
-                        <% recipe = oh.food_item.try(:recipe) %>
-                        <% fav_recipes = set_fav_recipes %>
-                        <% percent = set_heart_value(recipe, fav_recipes) %>
-                        <ul class="entity-hearts">
-                          <% if percent && percent.between?(0, 35)%>
-                            <li class="heart filled"></li>
-                            <li class="heart"></li>
-                            <li class="heart"></li>
-                          <% elsif percent &&  percent.between?(36,70) %>
-                            <li class="heart filled"></li>
-                            <li class="heart filled"></li>
-                            <li class="heart"></li>
-                          <% elsif percent &&  percent.between?(71,100) %>
-                            <li class="heart filled"></li>
-                            <li class="heart filled"></li>
-                            <li class="heart filled"></li>
-                          <% else %>
-                            <li class="heart"></li>
-                            <li class="heart"></li>
-                            <li class="heart"></li>
-                          <% end %>
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="entity-name pv-icon"><%= oh.food_item.try(:meal_info).try(:name) %></li>
-                    <li class="entity-by"><%= oh.cheff.try(:chef_coordinate).try(:name) %></li>
-                    <li class="entity-cuisine">
-                      <% oh.cheff.cuisine_styles.each do |cs| %>
-                        <span><%= cs.name %></span>
-                      <% end %>
-                    </li>
-                    <li class="entity-days">
-                      <% if oh.order.date == Date.today %>
-                        today
-                      <% else %>
-                        <%= time_ago_in_words(oh.order.date) %> ago
-                      <% end %>
-                    </li>
-                  </ul></a>
+                    <ul class="square e-recipe">
+                      <li class="entity-card">
+                        <div class="entity-image">
+                          <%= link_to image_tag(oh.cheff.picture.image.url, :class => "img-responsive center-block"), "/chef-profile/#{oh.cheff.id}", :id => "chef_info", :alt => "Chef Picture" if !oh.cheff.picture.blank? %>
+                        </div>
+                        <div class="entity-tag">
+                          <% recipe = oh.food_item.try(:recipe) %>
+                          <% fav_recipes = set_fav_recipes %>
+                          <% percent = set_heart_value(recipe, fav_recipes) %>
+                          <ul class="entity-hearts">
+                            <% if percent && percent.between?(0, 35)%>
+                              <li class="heart filled"></li>
+                              <li class="heart"></li>
+                              <li class="heart"></li>
+                            <% elsif percent &&  percent.between?(36,70) %>
+                              <li class="heart filled"></li>
+                              <li class="heart filled"></li>
+                              <li class="heart"></li>
+                            <% elsif percent &&  percent.between?(71,100) %>
+                              <li class="heart filled"></li>
+                              <li class="heart filled"></li>
+                              <li class="heart filled"></li>
+                            <% else %>
+                              <li class="heart"></li>
+                              <li class="heart"></li>
+                              <li class="heart"></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </li>
+                      <li class="entity-name pv-icon"><%= oh.food_item.try(:meal_info).try(:name) %></li>
+                      <li class="entity-by"><%= oh.cheff.try(:chef_coordinate).try(:name) %></li>
+                      <li class="entity-cuisine">
+                        <% oh.cheff.cuisine_styles.each do |cs| %>
+                          <span><%= cs.name %></span>
+                        <% end %>
+                      </li>
+                      <li class="entity-days">
+                        <% if oh.order.date == Date.today %>
+                          today
+                        <% else %>
+                          <%= time_ago_in_words(oh.order.date) %> ago
+                        <% end %>
+                      </li>
+                    </ul></a>
 
-                </div>
+                  </div>
+                <% end %>
               <% end %>
 
             </div>
