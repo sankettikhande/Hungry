@@ -40,6 +40,14 @@ class HomeController < ApplicationController
     render :layout => false
   end
 
+  def feedback
+    @feedback = Feedback.new(feedback: params[:feedback])
+    @feedback.save
+    respond_to do |format|
+      format.html{ render :template => "hola_users/talk_to_us"}
+    end
+  end
+
   private
   def update_cart(todays_menu)
     return if todays_menu.blank?

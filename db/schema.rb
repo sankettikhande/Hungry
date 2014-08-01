@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140731114205) do
+ActiveRecord::Schema.define(:version => 20140801073500) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_type_id"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20140731114205) do
     t.string   "contact_email"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "chef_preferences", :force => true do |t|
+    t.integer  "cheff_id"
+    t.string   "cuisine_style"
+    t.string   "cuisine_tags"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "chef_profiles", :force => true do |t|
@@ -332,6 +340,12 @@ ActiveRecord::Schema.define(:version => 20140731114205) do
     t.datetime "delivered_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "feedbacks", :force => true do |t|
+    t.text     "feedback"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "file_block_versions", :force => true do |t|

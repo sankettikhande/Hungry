@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row row-offcanvas row-offcanvas-left">
+    <div class="col-xs-12">
+
+        <div class="container-fluid back-white seperator-10">
+            <h6 class="page-title">Feed Us Back</h6>
+        </div>
+        <% if @feedback && @feedback.errors.any? %>
+            <div id="errorExplanation" class="errorExplanation">
+              <ul>
+                <% @feedback.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <%= form_tag "/feedback" do |f| %>
+        <div class="row">
+          <div class="col-xs-12">
+          <div class="normal-body">
+            <div class="form-group talk-us">
+              <textarea class="form-control no-radius" rows="8" placeholder="Leave your feedback here..." name="feedback"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Submit" class="btn btn-saffron" />
+            </div>
+          </div>
+          </div>
+        </div>
+        <% end %>
+        <div class="seperator-25">
+            <div class="row">
+              <div class="col-xs-12">
+              <div class="normal-body back-white empty-labels">
+                <div class="row">
+                  <div class="col-xs-3"><strong class="text-dark">Email</strong></div>
+                  <div class="col-xs-9"><a target="_blank" href="mailto:feedus@holachef.com" class="text-orange">feedus@holachef.com</a></div>
+                </div>
+              </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="seperator-5">
+          <div class="row">
+            <div class="col-xs-12">
+            <div class="normal-body back-white empty-labels">
+              <div class="row">
+                <div class="col-xs-3"><strong class="text-dark">Call</strong></div>
+                <div class="col-xs-9"><a href="#" class="text-orange">808080HOLA</a></div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

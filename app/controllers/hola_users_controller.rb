@@ -49,4 +49,8 @@ class HolaUsersController < ApplicationController
     end
   end
 
+  def talk_to_us
+
+  end
+
 end
