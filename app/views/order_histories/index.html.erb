@@ -20,8 +20,8 @@
 
                   <ul class="square e-recipe">
                     <li class="entity-card">
-                      <div class="entity-image">
-                        <%= link_to image_tag(oh.food_item.meal_info.picture.image.url, :class => "img-responsive center-block"), "/chef-profile/#{oh.cheff.id}", :id => "chef_info", :alt => "Chef" if !oh.cheff.picture.blank? %>
+                      <div class="entity-image <%= dish_type_css oh.food_item %>">
+                        <%= link_to image_tag(oh.food_item.try(:meal_info).try(:picture).try(:image).try(:url), :class => "img-responsive center-block"), "/chef-profile/#{oh.cheff.id}", :id => "chef_info", :alt => "Chef" if !oh.cheff.picture.blank? %>
                       </div>
                       <div class="entity-tag">
                         <% recipe = oh.food_item.try(:recipe) %>
@@ -50,11 +50,6 @@
                     </li>
                     <li class="entity-name pv-icon"><%= oh.food_item.try(:meal_info).try(:name) %></li>
                     <li class="entity-by"><%= oh.cheff.try(:chef_coordinate).try(:name) %></li>
-                    <li class="entity-cuisine">
-                      <% oh.cheff.cuisine_styles.each do |cs| %>
-                        <span><%= cs.name %></span>
-                      <% end %>
-                    </li>
                     <li class="entity-days">
                       <% if oh.order.date == Date.today %>
                         today
@@ -63,7 +58,6 @@
                       <% end %>
                     </li>
                   </ul></a>
-
                 </div>
               <% end %>
 
@@ -73,6 +67,5 @@
 
       </div>
     </div>
-
 </div>
 <%= render 'layouts/dynamik_footer', message: "Tap to check availability" %>
