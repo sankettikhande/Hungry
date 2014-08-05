@@ -1,0 +1,9 @@
+<%= content_for :other_footer do %>
+  <% if session[:cart].blank? %>
+    <div id="other_footer">
+      <%= render 'layouts/other_footer', footer_message: message %>
+    </div>
+  <% else %>
+    <%= render 'layouts/footer' %>
+  <% end %>
+<% end %>
