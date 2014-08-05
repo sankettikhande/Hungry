@@ -527,7 +527,10 @@ input.lower-only::-webkit-input-placeholder {color: #ccc;}
 .card-body {padding: 10px 0 15px;background: #fff;display: block;}
 
 .input-card {background: #fff;padding: 10px;margin-bottom: 5px;display: block;}
+.input-card input.form-control {font-size: 1em;}
+.input-card p.help-block {font-size: 0.825em;}
 .msg-box-card {padding: 0;margin-bottom: 10px;background: #fff}
+.msg-box-card textarea.form-control {font-size: 1em;}
 
 p.hola-text {color: #222222;}
 
@@ -755,7 +758,7 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
     width: 80%;
     display: none;
     padding-right: 0;
-    padding-left: 20px;
+    padding-left: 0;
   }
 
 
@@ -827,8 +830,8 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .search-bar :-ms-input-placeholder { color:#333; }
 .search-bar input:-moz-placeholder { color:#333; }
 
-.cuboid .item {display: inline-block;float: left;padding: 5px 3px 0;background: none;overflow: hidden;}
-
+.cuboid .item {display: inline-block;float: left;padding: 0;background: none;overflow: hidden;}
+.cuboid .item .square {margin-top: 0;}
 
 .entity-card {position: relative;display: block;}
 .entity-card .entity-image {min-height: 100px;}

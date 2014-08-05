@@ -1,61 +1,57 @@
-<div class="container-fluid">
-  <div class="row row-offcanvas row-offcanvas-left">
+<div class="col-xs-12">
+  <div class="row">
     <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="touch-sides">
-            <ul class="tab-menubar">
-              <li class="<%= set_class_to_list(params)%>"><a href="/recipes" id = "recipe-search">Search</a></li>
-              <li class = "<%=params[:popular]%>"><a href="/recipes?popular=active" id = "recipe-popular">Most Popular</a></li>
-              <li class = "<%=params[:favorite]%>"><a href="/recipes?favorite=active" id = "recipe-favorite">Favourites</a></li>
-            </ul>
-            <span><a href="filters.html" class="btn-filter"></a></span>
-          </div>
+      <div class="touch-sides">
+        <ul class="tab-menubar">
+          <li class="<%= set_class_to_list(params)%>"><a href="/recipes" id = "recipe-search">Search</a></li>
+          <li class = "<%=params[:popular]%>"><a href="/recipes?popular=active" id = "recipe-popular">Most Popular</a></li>
+          <li class = "<%=params[:favorite]%>"><a href="/recipes?favorite=active" id = "recipe-favorite">Favourites</a></li>
+        </ul>
+        <span><a href="filters.html" class="btn-filter"></a></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="search-bar">
+        <div class="input-group">
+          <span class="input-group-addon">Search</span>
+          <%= form_tag "/recipes", :method => 'GET' do |f| %>
+          <input type="search" class="form-control" placeholder="Type to search..." name="recipe_name">
+          <% end %>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="search-bar">
-            <div class="input-group">
-              <span class="input-group-addon">Search</span>
-              <%= form_tag "/recipes", :method => 'GET' do |f| %>
-              <input type="search" class="form-control" placeholder="Type to search..." name="recipe_name">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="hola-cards">
+        <div class="tab-content">
+          <div class="tab-result active" id="tab-search">
+            <div class="hola-container cuboid">
+              <% fav_recipes = set_fav_recipes()  %>
+              <% max_fav = fav_recipes.values.max %>
+              <% if @searched_recipe %>
+                <% @searched_recipe.each do |recipe| %>
+                  <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
+                <% end %>
+              <% elsif @recipes %>
+                <% @recipes.each do |recipe| %>
+                  <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
+                <% end %>
+              <% else %>
+                <%= alert_message "There are no recipes for this category."%>
               <% end %>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="hola-cards">
-            <div class="tab-content">
-              <div class="tab-result active" id="tab-search">
-                <div class="hola-container cuboid">
-                  <% fav_recipes = set_fav_recipes()  %>
-                  <% max_fav = fav_recipes.values.max %>
-                  <% if @searched_recipe %>
-                    <% @searched_recipe.each do |recipe| %>
-                      <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
-                    <% end %>
-                  <% elsif @recipes %>
-                    <% @recipes.each do |recipe| %>
-                      <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
-                    <% end %>
-                  <% else %>
-                    <%= alert_message "There are no recipes for this category."%>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-    </div>
-
     </div>
   </div>
+
+
+</div>
+
