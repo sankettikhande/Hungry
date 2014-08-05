@@ -654,8 +654,7 @@ ul.cover-image li.cover-text p {margin-top:8px;}
 
 /******* =Side-bar *********/
 
-.hola-sidemenu:before {content: '';background: #fff;position: absolute;left: 0;top: 0;bottom: 0;width: 100%;float: left;z-index: -1;  margin-bottom: -99999px;
-    padding-bottom: 99999px;overflow: hidden;}
+.hola-sidemenu:before {content: '';background: #fff;position: absolute;left: 0;top: 0;bottom: 0;width: 100%;float: left;z-index: -1;overflow: hidden;}
 .hola-sidemenu {margin-top: -10px;height: 100%;border-right: 1px solid #ddd;width: 100%;}
 .hola-sidemenu .list-group {background: #fff;padding-bottom: 50px}
 .hola-sidemenu .list-group .list-group-item {border-radius:0;border-right: none;border-left: none;}
@@ -826,7 +825,10 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .search-bar :-ms-input-placeholder { color:#333; }
 .search-bar input:-moz-placeholder { color:#333; }
 
-.cuboid {width: 150px;display: inline-block;float: left;padding: 5px 3px 0;}
+/*.cuboid {width: 150px;display: inline-block;float: left;padding: 5px 3px 0;}
+*/
+.cuboid .item {display: inline-block;float: left;padding: 5px 3px 0;background: none;overflow: hidden;}
+
 
 .entity-card {position: relative;display: block;}
 .entity-card .entity-image img {width:100%;height: 135px;max-width: 100%;}
@@ -842,7 +844,7 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .entity-name .chef-rate li.star.filled {background: url('/assets/mini-star.png') no-repeat left top;width: 11px;height: 10px;background-size: 100%}
 
 .entity-cuisine {color: #339900;font-family: 'Roboto-Italic',Sans-serif;font-size: 0.825em;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: inline-block;}
-.entity-cuisine span {display: inline-block;}
+.entity-cuisine span {display: block;width: auto;float: left;}
 .entity-cuisine span+span:before {content: ', ';margin-left: -2px;display: inline-block;margin-right: 3px;}
 
 .entity-by {font-family: 'roboto',Sans-serif;color: #333333;font-size: 0.925;}
@@ -907,6 +909,12 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .filter-dd-box li a {color: #333;font-family: 'robotobold',Sans-serif;padding-left: 2px;width: 100%;display: block;}
 .filter-dd-box li a:hover {text-decoration: none;}
 
+#apply-btn .form-group {margin-bottom: 0}
+
+
+@media (max-width: 480px) {
+  .filter-dd-box {max-height:170px;}
+}
 /***  filter scrollbar ****/
 .filter-dropdown .mCSB_scrollTools {width: 10px !important}
 .filter-dropdown .mCSB_draggerContainer {margin-bottom: 10px;}

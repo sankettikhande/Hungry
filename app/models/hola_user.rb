@@ -35,4 +35,16 @@ class HolaUser < ActiveRecord::Base
      FoodItem.order("dish_served desc").limit(10)
   end
 
+  def self.most_popular_signature_dishes
+    FoodItem.where(:if_signature => true).order("dish_served desc").limit(10)
+  end
+
+  def favorite_signature_dishes
+    fav_dishes = []
+    self.my_favorite_recipes.each do |fav_recipe|
+      food_item = fav_recipe.food_item
+      fav_dishes << food_item if food_item.if_signature
+    end
+    return fav_dishes
+  end
 end

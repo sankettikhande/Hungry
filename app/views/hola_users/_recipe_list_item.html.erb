@@ -1,4 +1,4 @@
-<div class="cuboid"><a href="/recipe/<%= recipe.id %>">
+<div class="item"><a href="/recipe/<%= recipe.id %>">
 
             <ul class="square e-recipe">
               <li class="entity-card">
@@ -30,10 +30,5 @@
               </li>
               <li class="entity-name <%=set_menu_icon(recipe)%>"><%= recipe.meal_info.name %></li>
               <li class="entity-by"><%= recipe.cheff.chef_coordinate.name %></li>
-              <li class="entity-cuisine">
-                <% recipe.cheff.cuisine_styles.each do |cuisine| %>
-                    <span><%= cuisine.name %></span>
-                <% end %>
-              </li>
             </ul></a>
           </div>
