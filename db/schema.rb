@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(:version => 20140801094332) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "chef_preferences", :force => true do |t|
+    t.integer  "cheff_id"
+    t.string   "cuisine_style"
+    t.string   "cuisine_tags"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "chef_profiles", :force => true do |t|
     t.integer  "cheff_id"
     t.text     "about_me"

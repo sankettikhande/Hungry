@@ -1,0 +1,13 @@
+<div id="footer" class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <% if session[:cart].blank? %>
+            <div class="tap-text text-orange"><p class="text-center"><%= footer_message %></p></div>
+        <% else %>
+            <%= render :partial => 'cms/orders/checkout_details' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
