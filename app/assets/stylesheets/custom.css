@@ -504,7 +504,7 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 .del-details li.del-d {width: 100%;float: left;display: inline-block;padding:6px 1px 3px}
 .del-details li.del-warning {font-size: 12px;}
 input.lower-only {border:none;border-bottom: 1px solid #bcbcbc;width: 100%;outline: none;padding: 2px 4px;background: url('/assets/grey-b.png') no-repeat,url('/assets/grey-b.png') no-repeat;background-position: left bottom, right bottom;background-size: 1px 4px;}
-input.lower-only.active {border-bottom:2px solid #0099cc;background: url('/assets/blue-b.png') no-repeat,url('/assets/blue-b.png') no-repeat;background-position: left bottom, right bottom;background-size: 2px 4px;}
+input.lower-only.active,.input-card input:focus {border-bottom:2px solid #0099cc;background: url('/assets/blue-b.png') no-repeat,url('/assets/blue-b.png') no-repeat;background-position: left bottom, right bottom;background-size: 2px 4px;}
 
 .del-details li.del-d label {font-weight: normal;vertical-align: top;font-family: 'robotoregular',Sans-serif;font-size: 1.125em}
 .del-details li.del-d label input[type="checkbox"] {margin-right: 4px;}
@@ -526,6 +526,8 @@ input.lower-only::-webkit-input-placeholder {color: #ccc;}
 .card-header p{background: #fff;color: #999;text-transform: uppercase;display: block;margin-bottom: 3px}
 .card-body {padding: 10px 0 15px;background: #fff;display: block;}
 
+.input-card {background: #fff;padding: 10px;margin-bottom: 5px;display: block;}
+.msg-box-card {padding: 0;margin-bottom: 10px;background: #fff}
 
 p.hola-text {color: #222222;}
 

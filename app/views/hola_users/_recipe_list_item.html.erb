@@ -2,7 +2,7 @@
 
             <ul class="square e-recipe">
               <li class="entity-card">
-                <div class="entity-image">
+                <div class="entity-image <%= dish_type_css recipe %>">
                   <%= image_tag recipe.try(:meal_info).try(:picture).try(:image).try(:url), :class => "center-block", :alt =>"" %>
                 </div>
                 <div class="entity-tag">
