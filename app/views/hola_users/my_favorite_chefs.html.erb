@@ -1,87 +1,81 @@
-<div class="container-fluid">
-  <div class="row row-offcanvas row-offcanvas-left">
+<div class="col-xs-12">
+  <div class="row">
     <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="touch-sides">
-            <h6 class="page-title">My Favourites</h6>
-          </div>
-        </div>
+      <div class="touch-sides">
+        <h6 class="page-title">My Favourites</h6>
       </div>
-      <% fav_chefs = set_fav_chefs()  %>
-      <% max_fav = fav_chefs.values.max %>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="hola-cards">
-            <% if @favorite_chefs %>
-                <% @favorite_chefs.each do |fav_chef|%>
-                    <div class="cuboid"><a href="#">
-                      <ul class="square e-recipe">
-                        <li class="entity-card">
-                          <div class="entity-image">
-                            <%= image_tag chef_image(fav_chef), :class => "center-block" %>
-                          </div>
-                          <div class="entity-tag">
-                            <% percent = set_chef_heart_value(fav_chef.cheff, fav_chefs) %>
-                            <ul class="entity-hearts">
-                              <% if percent && percent.between?(0, 35)%>
-                                  <li class="heart filled"></li>
-                                  <li class="heart"></li>
-                                  <li class="heart"></li>
-                              <% elsif percent && percent.between?(36,70) %>
-                                  <li class="heart filled"></li>
-                                  <li class="heart filled"></li>
-                                  <li class="heart"></li>
-                              <% elsif percent && percent.between?(71,100) %>
-                                  <li class="heart filled"></li>
-                                  <li class="heart filled"></li>
-                                  <li class="heart"></li>
-                              <% else %>
-                                  <li class="heart"></li>
-                                  <li class="heart"></li>
-                                  <li class="heart"></li>
-                              <% end %>
-                            </ul>
-                          </div>
-                        </li>
-                        <li class="entity-name pv-icon"><%#= fav_chef.chef_coordinate.name %></li>
-                        <li class="entity-by"><%= fav_chef.cheff.chef_coordinate.name %></li>
-                        <li class="entity-cuisine">
-                          <% fav_chef.cheff.cuisine_styles.each do |cuisine| %>
-                              <span><%= cuisine.name %></span>
+    </div>
+  </div>
+  <% fav_chefs = set_fav_chefs()  %>
+  <% max_fav = fav_chefs.values.max %>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="hola-cards">
+        <% if @favorite_chefs %>
+          <div class='hola-container cuboid'>
+            <% @favorite_chefs.each do |fav_chef|%>
+                <div class="item"><a href="#">
+                  <ul class="square e-recipe">
+                    <li class="entity-card">
+                      <div class="entity-image">
+                        <%= image_tag chef_image(fav_chef), :class => "center-block" %>
+                      </div>
+                      <div class="entity-tag">
+                        <% percent = set_chef_heart_value(fav_chef.cheff, fav_chefs) %>
+                        <ul class="entity-hearts">
+                          <% if percent && percent.between?(0, 35)%>
+                              <li class="heart filled"></li>
+                              <li class="heart"></li>
+                              <li class="heart"></li>
+                          <% elsif percent && percent.between?(36,70) %>
+                              <li class="heart filled"></li>
+                              <li class="heart filled"></li>
+                              <li class="heart"></li>
+                          <% elsif percent && percent.between?(71,100) %>
+                              <li class="heart filled"></li>
+                              <li class="heart filled"></li>
+                              <li class="heart"></li>
+                          <% else %>
+                              <li class="heart"></li>
+                              <li class="heart"></li>
+                              <li class="heart"></li>
                           <% end %>
-                        </li>
-                        <li class="entity-days">
-                          today
-                        </li>
-                      </ul></a>
-                    </div>
-                <% end %>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="entity-by"><%= fav_chef.cheff.chef_coordinate.name %></li>
+                    <li class="entity-cuisine">
+                      <% fav_chef.cheff.cuisine_styles.each do |cuisine| %>
+                          <span><%= cuisine.name %></span>
+                      <% end %>
+                    </li>
+                  </ul></a>
+                </div>
             <% end %>
           </div>
-        </div>
-      </div>
-
-
-    </div>
-
-    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 sidebar-offcanvas hola-sidemenu" id="sidebar" role="navigation">
-      <div class="list-group">
-        <a href="#" class="list-group-item">
-          <h4 class="list-group-item-heading active" id="user-name">Abhishek Thakkar</h4>
-          <p class="list-group-item-text " id="user-contact">9876543210</p></a>
-        <a href="#" class="list-group-item"><span class="sprite icon-home"></span>Home</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-signature"></span>Signature Dishes</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-party-order"></span>Party Orders</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-recipe"></span>Recipes</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-favorite"></span>Favorites</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-order-history"></span>Order History</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-address"></span>Addressbook</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-email"></span>Talk to us</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-share"></span>Love us?</a>
-        <a href="#" class="list-group-item"><span class="sprite icon-gear"></span>Settings</a>
+        <% end %>
       </div>
     </div>
+  </div>
+
+
+</div>
+
+<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 sidebar-offcanvas hola-sidemenu" id="sidebar" role="navigation">
+  <div class="list-group">
+    <a href="#" class="list-group-item">
+      <h4 class="list-group-item-heading active" id="user-name">Abhishek Thakkar</h4>
+      <p class="list-group-item-text " id="user-contact">9876543210</p></a>
+    <a href="#" class="list-group-item"><span class="sprite icon-home"></span>Home</a>
+    <a href="#" class="list-group-item"><span class="sprite icon-signature"></span>Signature Dishes</a>
+    <a href="#" class="list-group-item"><span class="sprite icon-party-order"></span>Party Orders</a>
+    <a href="#" class="list-group-item"><span class="sprite icon-recipe"></span>Recipes</a>
+    <a href="#" class="list-group-item"><span class="sprite icon-favorite"></span>Favorites</a>
+    <a href="#" class="list-group-item"><span class="sprite icon-order-history"></span>Order History</a>
+    <a href="#" class="list-group-item"><span class="sprite icon-address"></span>Addressbook</a>
+    <a href="#" class="list-group-item"><span class="sprite icon-email"></span>Talk to us</a>
+    <a href="#" class="list-group-item"><span class="sprite icon-share"></span>Love us?</a>
+    <a href="#" class="list-group-item"><span class="sprite icon-gear"></span>Settings</a>
   </div>
 </div>
 <%= render 'layouts/dynamik_footer', message: "Tap to know more" %>

@@ -1,55 +1,51 @@
-<div class="container-fluid">
-  <div class="row row-offcanvas row-offcanvas-left">
+<div class="col-xs-12">
+  <div class="row">
     <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="touch-sides">
-            <ul class="tab-menubar" id= 'sign_tabs'>
-              <li class = "<%= set_class_to_list(params)%>"><a href="/signature_dishes" id= "dish-search">Search</a></li>
-              <li class = "<%=params[:popular]%>"><a href="/signature_dishes?popular=active" id= "dish-popular">Most Popular</a></li>
-              <li class = "<%=params[:favorite]%>"><a href="/signature_dishes?favorite=active" id= "dish-favorite">Favourites</a></li>
-            </ul>
-          </div>
+      <div class="touch-sides">
+        <ul class="tab-menubar" id= 'sign_tabs'>
+          <li class = "<%= set_class_to_list(params)%>"><a href="/signature_dishes" id= "dish-search">Search</a></li>
+          <li class = "<%=params[:popular]%>"><a href="/signature_dishes?popular=active" id= "dish-popular">Most Popular</a></li>
+          <li class = "<%=params[:favorite]%>"><a href="/signature_dishes?favorite=active" id= "dish-favorite">Favourites</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="search-bar">
+        <div class="input-group">
+          <span class="input-group-addon">Search</span>
+          <%= form_tag "/signature_dishes", :method => 'GET' do |f| %>
+              <input type="search" class="form-control" placeholder="Type to search..." name="dish" value="<%= params[:dish] %>">
+          <% end %>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="search-bar">
-            <div class="input-group">
-              <span class="input-group-addon">Search</span>
-              <%= form_tag "/signature_dishes", :method => 'GET' do |f| %>
-                  <input type="search" class="form-control" placeholder="Type to search..." name="dish" value="<%= params[:dish] %>">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="hola-cards">
+        <div class="tab-content">
+          <div class="tab-result active">
+            <div class="hola-container cuboid">
+              <% fav_recipes = set_fav_recipes() %>
+              <% if @searched_dish %>
+                <% @searched_dish.each do |dish| %>
+                  <%= render "signature_dish", recipe: dish, fav_recipes: fav_recipes %>
+                <% end %>
+              <% elsif @signature_dishes %>
+                  <% @signature_dishes.each do |signature_dish| %>
+                    <%= render "signature_dish", recipe: signature_dish, fav_recipes: fav_recipes %>
+                <% end %>
+              <% else %>
+                <%= alert_message "There are no dishes for this category." %>
               <% end %>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="hola-cards">
-            <div class="tab-content">
-              <div class="tab-result active">
-                <div class="hola-container cuboid">
-                  <% fav_recipes = set_fav_recipes() %>
-                  <% if @searched_dish %>
-                    <% @searched_dish.each do |dish| %>
-                      <%= render "signature_dish", recipe: dish, fav_recipes: fav_recipes %>
-                    <% end %>
-                  <% elsif @signature_dishes %>
-                      <% @signature_dishes.each do |signature_dish| %>
-                        <%= render "signature_dish", recipe: signature_dish, fav_recipes: fav_recipes %>
-                    <% end %>
-                  <% else %>
-                    <%= alert_message "There are no dishes for this category." %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
 <!--             </div> -->
-          </div>
-        </div>
       </div>
     </div>
   </div>
