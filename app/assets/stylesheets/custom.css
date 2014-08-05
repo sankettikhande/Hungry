@@ -827,13 +827,12 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .search-bar :-ms-input-placeholder { color:#333; }
 .search-bar input:-moz-placeholder { color:#333; }
 
-/*.cuboid {width: 150px;display: inline-block;float: left;padding: 5px 3px 0;}
-*/
 .cuboid .item {display: inline-block;float: left;padding: 5px 3px 0;background: none;overflow: hidden;}
 
 
 .entity-card {position: relative;display: block;}
-.entity-card .entity-image img {width:100%;height: 135px;max-width: 100%;}
+.entity-card .entity-image {min-height: 100px;}
+.entity-card .entity-image img {width:100%;height: 135px;max-width: 100%;min-height: 100px;}
 .entity-card .entity-tag {position: absolute;z-index: 2;top: 20px;right: 0;height: 30px;width: 47%;display: block;background: rgba(255,255,255,0.8);text-align: center;line-height: 30px;vertical-align: middle;float: right;}
 .entity-card .entity-tag .toque:before {background: url('/assets/toque.png') no-repeat left top;width: 20px;height: 15px;background-size: 100%;display: inline-block;content: '';margin-right: 2px;}
 .entity-card .entity-tag .toque {font-family: 'Roboto-Light', Sans-serif;color: #333;font-size: 1em;display: inline-block;}
@@ -849,7 +848,7 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .entity-cuisine span {display: block;width: auto;float: left;}
 .entity-cuisine span+span:before {content: ', ';margin-left: -2px;display: inline-block;margin-right: 3px;}
 
-.entity-by {font-family: 'roboto',Sans-serif;color: #333333;font-size: 0.925;}
+.entity-by {font-family: 'roboto',Sans-serif;color: #333333;font-size: 0.875em;}
 
 .nv-icon:after {content:'';display:inline-block;background: url('/assets/non-veg.png') no-repeat left top;width: 8px;height: 8px;background-size: 100%;margin-left: 4px;vertical-align: top;margin-top: 3px}
 .pv-icon:after {content:'';display:inline-block;background: url('/assets/pure-veg.png') no-repeat left top;width: 8px;height: 8px;background-size: 100%;margin-left: 4px;vertical-align: top;margin-top: 3px}
