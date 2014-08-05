@@ -4,8 +4,10 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="touch-sides">
-            <ul class="tab-menubar" role="tablist">
-              <li class="active"><a role="tab" data-toggle="tab" href="#tab-search">Search</a></li>
+            <ul class="tab-menubar" id= 'sign_tabs'>
+              <li class = "<%= set_class_to_list(params)%>"><a href="/signature_dishes" id= "dish-search">Search</a></li>
+              <li class = "<%=params[:popular]%>"><a href="/signature_dishes?popular=active" id= "dish-popular">Most Popular</a></li>
+              <li class = "<%=params[:favorite]%>"><a href="/signature_dishes?favorite=active" id= "dish-favorite">Favourites</a></li>
             </ul>
             <span><a href="filters.html" class="btn-filter"></a></span>
           </div>
@@ -29,18 +31,23 @@
         <div class="col-xs-12">
           <div class="hola-cards">
             <div class="tab-content">
-              <div class="tab-pane active" id="tab-search">
-                <% fav_recipes = set_fav_recipes() %>
-                <% if @searched_dish %>
-                  <% @searched_dish.each do |dish| %>
-                    <%= render "signature_dish", recipe: dish, fav_recipes: fav_recipes %>
+              <div class="tab-result active">
+                <div class="hola-container cuboid">
+                  <% fav_recipes = set_fav_recipes() %>
+                  <% if @searched_dish %>
+                    <% @searched_dish.each do |dish| %>
+                      <%= render "signature_dish", recipe: dish, fav_recipes: fav_recipes %>
+                    <% end %>
+                  <% elsif @signature_dishes %>
+                      <% @signature_dishes.each do |signature_dish| %>
+                        <%= render "signature_dish", recipe: signature_dish, fav_recipes: fav_recipes %>
+                    <% end %>
+                  <% else %>
+                    <%= alert_message "There are no dishes for this filter." %>
                   <% end %>
-                <% else %>
-                    <% @signature_dishes.each do |signature_dish| %>
-                      <%= render "signature_dish", recipe: signature_dish, fav_recipes: fav_recipes %>
-                  <% end %>
-                <% end %>
+                </div>
               </div>
+            </div>
             </div>
           </div>
         </div>

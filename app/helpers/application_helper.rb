@@ -204,4 +204,12 @@ module ApplicationHelper
     alert_class = options[:alert_class] || "alert alert-info text-center"
     content_tag(:div, message, class: alert_class)
   end
+
+  def set_class_to_list(params)
+    if params[:popular].present? || params[:favorite].present?
+      return ""
+    else
+      "active"
+    end
+  end
 end

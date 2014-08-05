@@ -4,10 +4,10 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="touch-sides">
-            <ul class="tab-menubar" role="tablist">
-              <li class="active"><a role="tab" data-toggle="tab" href="#tab-search">Search</a></li>
-              <li><a role="tab" data-toggle="tab" href="#tab-popular">Most Popular</a></li>
-              <li><a role="tab" data-toggle="tab" href="#tab-fav">Favourites</a></li>
+            <ul class="tab-menubar">
+              <li class="<%= set_class_to_list(params)%>"><a href="/recipes" id = "recipe-search">Search</a></li>
+              <li class = "<%=params[:popular]%>"><a href="/recipes?popular=active" id = "recipe-popular">Most Popular</a></li>
+              <li class = "<%=params[:favorite]%>"><a href="/recipes?favorite=active" id = "recipe-favorite">Favourites</a></li>
             </ul>
             <span><a href="filters.html" class="btn-filter"></a></span>
           </div>
@@ -31,36 +31,22 @@
         <div class="col-xs-12">
           <div class="hola-cards">
             <div class="tab-content">
-              <div class="tab-pane active" id="tab-search">
-                <% fav_recipes = set_fav_recipes()  %>
-                <% max_fav = fav_recipes.values.max %>
-                <% if @searched_recipe %>
-                  <% @searched_recipe.each do |recipe| %>
-                    <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
+              <div class="tab-result active" id="tab-search">
+                <div class="hola-container cuboid">
+                  <% fav_recipes = set_fav_recipes()  %>
+                  <% max_fav = fav_recipes.values.max %>
+                  <% if @searched_recipe %>
+                    <% @searched_recipe.each do |recipe| %>
+                      <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
+                    <% end %>
+                  <% elsif @recipes %>
+                    <% @recipes.each do |recipe| %>
+                      <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
+                    <% end %>
+                  <% else %>
+                    <%= alert_message "There are no recipes for this filter."%>
                   <% end %>
-                <% else %>
-                  <% @recipes.each do |recipe| %>
-                    <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="tab-pane" id="tab-popular">
-                <% if @most_popular_recipes %>
-                  <% @most_popular_recipes.each do |recipe| %>
-                    <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
-                  <% end %>
-                <% end %>
-              </div>
-
-
-              <div class="tab-pane" id="tab-fav">
-                <% if @favorite_recipes %>
-                  <% @favorite_recipes.each do |fav_recipe| %>
-                    <%= render 'recipe_list_item', recipe: recipe, fav_recipes: fav_recipes, max_fav: max_fav %>
-                  <% end %>
-                <% else %>
-                  <%= alert_message "There are no favourite recipes." %>
-                <% end %>
+                </div>
               </div>
             </div>
           </div>

@@ -1,39 +1,34 @@
-<div class="cuboid"><a href="<%= signature_dish_url(recipe.id) %>">
+<div class="item"><a href="<%= signature_dish_url(recipe.id) %>">
 
-            <ul class="square e-recipe">
-              <li class="entity-card">
-                <div class="entity-image">
-                  <%= image_tag recipe.try(:meal_info).try(:picture).try(:image).try(:url), :class => "center-block", :alt =>"" %>
-                </div>
-                <div class="entity-tag">
-                  <% percent = set_heart_value(recipe, fav_recipes) %>
-                  <ul class="entity-hearts">
-                    <% if percent && percent.between?(0, 35)%>
-                        <li class="heart filled"></li>
-                        <li class="heart"></li>
-                        <li class="heart"></li>
-                    <% elsif percent &&  percent.between?(36,70) %>
-                        <li class="heart filled"></li>
-                        <li class="heart filled"></li>
-                        <li class="heart"></li>
-                    <% elsif percent &&  percent.between?(71,100) %>
-                        <li class="heart filled"></li>
-                        <li class="heart filled"></li>
-                        <li class="heart filled"></li>
-                    <% else %>
-                        <li class="heart"></li>
-                        <li class="heart"></li>
-                        <li class="heart"></li>
-                    <% end %>
-                  </ul>
-                </div>
-              </li>
-              <li class="entity-name <%=set_menu_icon(recipe)%>"><%= recipe.meal_info.name %></li>
-              <li class="entity-by"><%= recipe.cheff.chef_coordinate.name %></li>
-              <li class="entity-cuisine">
-                <% recipe.cheff.cuisine_styles.each do |cuisine| %>
-                    <span><%= cuisine.name %></span>
-                <% end %>
-              </li>
-            </ul></a>
-          </div>
+  <ul class="square e-recipe">
+    <li class="entity-card">
+      <div class="entity-image">
+        <%= image_tag recipe.try(:meal_info).try(:picture).try(:image).try(:url), :class => "center-block", :alt =>"" %>
+      </div>
+      <div class="entity-tag">
+        <% percent = set_heart_value(recipe, fav_recipes) %>
+        <ul class="entity-hearts">
+          <% if percent && percent.between?(0, 35)%>
+              <li class="heart filled"></li>
+              <li class="heart"></li>
+              <li class="heart"></li>
+          <% elsif percent &&  percent.between?(36,70) %>
+              <li class="heart filled"></li>
+              <li class="heart filled"></li>
+              <li class="heart"></li>
+          <% elsif percent &&  percent.between?(71,100) %>
+              <li class="heart filled"></li>
+              <li class="heart filled"></li>
+              <li class="heart filled"></li>
+          <% else %>
+              <li class="heart"></li>
+              <li class="heart"></li>
+              <li class="heart"></li>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+    <li class="entity-name <%=set_menu_icon(recipe)%>"><%= recipe.meal_info.name %></li>
+    <li class="entity-by"><%= recipe.cheff.chef_coordinate.name %></li>
+  </ul></a>
+</div>

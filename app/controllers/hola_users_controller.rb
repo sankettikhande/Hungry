@@ -27,11 +27,15 @@ class HolaUsersController < ApplicationController
     hola_user = HolaUser.find_by_phoneNumber(cookies[:user_mobile]) if !cookies[:user_mobile].blank?
     if params[:recipe_name].present?
       @searched_recipe = FoodItem.joins("INNER JOIN meal_infos on meal_infos.food_item_id = food_items.id").where("meal_infos.name like ?", "%#{params[:recipe_name]}%") if params[:recipe_name]
+    elsif params[:favorite].present?
+      @recipes = hola_user.my_favorite_recipes if hola_user
+    elsif params[:popular].present?
+      @recipes = HolaUser.most_popular_recipes
     else
       @recipes = FoodItem.where(:if_recipe => true).includes(:meal_info)
     end
-    @favorite_recipes = hola_user.my_favorite_recipes if hola_user
-    @most_popular_recipes = HolaUser.most_popular_recipes  #if hola_user
+    # @favorite_recipes = hola_user.my_favorite_recipes if hola_user
+    # @most_popular_recipes = HolaUser.most_popular_recipes  #if hola_user
     respond_to do |format|
       format.html{ render :template => "hola_users/recipes"}
     end
@@ -41,6 +45,10 @@ class HolaUsersController < ApplicationController
     hola_user = HolaUser.find_by_phoneNumber(cookies[:user_mobile]) if !cookies[:user_mobile].blank?
     if params[:dish].present?
       @searched_dish = FoodItem.joins("INNER JOIN meal_infos on meal_infos.food_item_id = food_items.id").where("meal_infos.name like ?", "%#{params[:dish]}%") if params[:dish]
+    elsif params[:favorite].present?
+      @signature_dishes = hola_user.favorite_signature_dishes if hola_user
+    elsif params[:popular].present?
+      @signature_dishes = HolaUser.most_popular_signature_dishes
     else
       @signature_dishes = FoodItem.where(:if_recipe => true).signature_dish
     end
