@@ -827,8 +827,6 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .search-bar :-ms-input-placeholder { color:#333; }
 .search-bar input:-moz-placeholder { color:#333; }
 
-/*.cuboid {width: 150px;display: inline-block;float: left;padding: 5px 3px 0;}
-*/
 .cuboid .item {display: inline-block;float: left;padding: 5px 3px 0;background: none;overflow: hidden;}
 
 
