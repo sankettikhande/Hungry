@@ -102,6 +102,18 @@ module ApplicationHelper
       return "Thank You!"
     when controller == "cms/cheffs" && action == "show_details"
       return "Meet the Chef"
+    when controller == "hola_users" && action == "signature_dishes"
+      return "Signature Dishes"
+    when controller == "hola_users" && action == "recipes"
+      return "Recipes"
+    when controller == "hola_users" && action == "my_favorite_chefs"
+      return "Favourites"
+    when controller == "order_histories"
+      return "Order History"
+    when controller == "hola_user_addresses"
+      return "Address"
+    when controller == "hola_users" && action == "talk_to_us"
+      return "Talk To Us"
     else
       return "Today's Menu"
     end

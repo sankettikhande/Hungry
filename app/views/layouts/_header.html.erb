@@ -14,16 +14,22 @@
           <%= link_to 'Back', :back, :class => "btn-back text-hide" %>
         </li>
         <li><a class="navbar-brand" href="/mobile">Hola</a></li>
-        <li class="dropdown page-title">
-          <a class="drop-icon" data-toggle="dropdown" href="#">
+        <% if params[:controller] == "home" %>
+          <li class="dropdown page-title">
+            <a class="drop-icon" data-toggle="dropdown" href="#">
+              <%= set_drop_down_title(params[:controller], params[:action], params[:id] ) %>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/mobile" id="here">Today's Menu</a></li>
+              <li><a href="javascript:void(0)">Signature Orders</a></li>
+              <li><a href="javascript:void(0)">Party Orders</a></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="page-title">
             <%= set_drop_down_title(params[:controller], params[:action], params[:id] ) %>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/mobile" id="here">Today's Menu</a></li>
-            <li><a href="javascript:void(0)">Signature Orders</a></li>
-            <li><a href="javascript:void(0)">Party Orders</a></li>
-          </ul>
-        </li>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
