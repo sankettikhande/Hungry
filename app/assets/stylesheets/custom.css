@@ -84,11 +84,15 @@ body {
 }
 
 #wrap {
-/*  min-height: 100%;*/
+  min-height: 100%;
   height: auto;
-  margin: 0 auto -60px;
-  padding: 0 0 60px;
+  margin: 0 auto -50px;
+  padding: 0 0 50px;
+  display: block;
+  overflow: hidden;
 }
+.right-body {padding-bottom: 50px;overflow: hidden;display: block;min-height: 480px;}
+
 
 body {background: #e2e2e2;padding-top: 55px;font-family: 'robotoregular',Sans-serif}
 
@@ -435,10 +439,12 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 .modal-dialog {max-width:350px;margin-left:auto;margin-right:auto;}
 
 #recipe-modal .modal-dialog {margin-top: 5.2em}
-#recipe-modal .modal-content {border-color: #ff8800;border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0;}
-#recipe-modal .modal-header {border-bottom: 0;padding: 5px 10px;}
+#recipe-modal .modal-content {border-color: #ff8800;border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0;background: #fff;width: 100%;display: block;float: left;}
+#recipe-modal .modal-header {border-bottom: 0;padding: 5px 10px;float: left;width: 100%;}
+#recipe-modal .modal-body {float: left;width: 100%;display: block;}
 #recipe-modal .modal-body .square .recipe-image img{width:100%}
 
+#recipe-modal .modal-footer {float: left;display: block;width: 100%}
 .modal-alert .modal-header {padding:5px 10px !important}
 
 .user-profile {display: block;float: left;width: 100%;}
@@ -659,7 +665,8 @@ ul.cover-image li.cover-text p {margin-top:8px;}
 
 /******* =Side-bar *********/
 
-.hola-sidemenu:before {content: '';background: #fff;position: absolute;left: 0;top: 0;bottom: 0;width: 100%;float: left;z-index: -1;overflow: hidden;}
+/*.hola-sidemenu:before {content: '';background: #fff;position: absolute;left: 0;top: 0;bottom: 0;width: 100%;float: left;z-index: -1;overflow: hidden;}
+*/
 .hola-sidemenu {margin-top: -10px;height: 100%;border-right: 1px solid #ddd;width: 100%;}
 .hola-sidemenu .list-group {background: #fff;padding-bottom: 50px}
 .hola-sidemenu .list-group .list-group-item {border-radius:0;border-right: none;border-left: none;}
@@ -796,9 +803,6 @@ form {margin:0 !important;padding:0 !important;color:inherit !important;}.modal-
     cursor:pointer;
 }
 .st_twitter_custom:hover {opacity:0.7;}
-
-
-.right-body {padding-bottom: 50px;}
 
 
 

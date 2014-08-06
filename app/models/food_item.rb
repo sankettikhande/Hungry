@@ -24,4 +24,8 @@ class FoodItem < ActiveRecord::Base
     "Meal Name: #{self.meal_info.name} " if self.meal_info
   end
 
+  def has_picture?
+    meal_info.picture rescue nil
+  end
+
 end
