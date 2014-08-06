@@ -89,9 +89,8 @@ body {
   margin: 0 auto -50px;
   padding: 0 0 50px;
   display: block;
-  overflow: hidden;
 }
-.right-body {padding-bottom: 50px;overflow: hidden;display: block;min-height: 480px;}
+.right-body {padding-bottom: 50px;overflow: hidden;display: block;}
 
 
 body {background: #e2e2e2;padding-top: 55px;font-family: 'robotoregular',Sans-serif}
