@@ -114,6 +114,8 @@ module ApplicationHelper
       return "Address"
     when controller == "hola_users" && action == "talk_to_us"
       return "Talk To Us"
+    when controller == "social_shares" && action == "index" || action == "tell_friends"
+      return "Love Us"
     else
       return "Today's Menu"
     end

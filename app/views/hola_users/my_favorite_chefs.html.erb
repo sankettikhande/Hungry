@@ -45,9 +45,7 @@
                     </li>
                     <li class="entity-by"><%= fav_chef.cheff.chef_coordinate.name %></li>
                     <li class="entity-cuisine">
-                      <% fav_chef.cheff.cuisine_styles.each do |cuisine| %>
-                          <span><%= cuisine.name %></span>
-                      <% end %>
+                      <span><%= fav_chef.cheff.cuisine_styles.join(",").truncate(25)%></span>
                     </li>
                   </ul></a>
                 </div>
