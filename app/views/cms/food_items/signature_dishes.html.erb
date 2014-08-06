@@ -12,10 +12,10 @@
                 <div class="recipe-name">
                   <%= @signature_dish.meal_info.name if @signature_dish %>
                 </div>
-                <div class="add-heart"></div>
+
                 <div class="recipe-image hidden">
                   <div><%= link_to "","/recipe/#{@signature_dish.id}",:class => "add-lens" %></div>
-                  <div class="add-heart"></div>
+                  <div class="add-heart <%= add_recipe_filled_class(@signature_dish) %>" id="add_recipe_to_favorite" data-recipe_id="<%= @signature_dish.id %>"></div>
                   <%= image_tag @signature_dish.meal_info.picture.image.url, :class => "img-responsive dish-image center-block" if @signature_dish && @signature_dish.meal_info.picture %>
                 </div>
               </div>
