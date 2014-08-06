@@ -1,218 +1,215 @@
-<div class="right-body">
-    <div class="container-fluid seperator-10">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="chef-page">
-              <div class="row">
-                <div class="col-xs-12">
-                  <ul class="profile-details">
-                    <li class="profile veg cover-block">
-                      <ul class="cover-image">
-                        <li class="cover cover-photo"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
-                        <li class="cover cover-text hidden">
-                          <h1 class="lemon text-white">Dal Baati</h1>
-                          <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="profile profile-heart">
-                      <div class="add-heart <%= add_chef_filled_class(@chef) %>" id="add_chef_to_favorite" data-cheff_id="<%= @chef.id %>"></div>
-                    </li>
-                    <li class="profile profile-dp">
-                      <%= image_tag @chef.picture.image.url, :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" if @chef.picture %>
-                    </li>
-                    <li class="profile user-name"><%= @chef.chef_coordinate.name %></li>
-                    <li class="profile user-level"><%= @chef.chef_profile.brand_represented if @chef.chef_profile %></li>
-                    <li class="profile user-city">
-                      <span class="city">
-                        <% if @chef.chef_coordinate.locality.present? %>
-                          <%= @chef.chef_coordinate.locality.camelize %>,
-                        <% end %>
-                        <%= @chef.chef_coordinate.city.camelize %></span>
-                      <!--<span class="city">Mumbai</span>-->
+
+<div class="container-fluid seperator-10">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="chef-page">
+          <div class="row">
+            <div class="col-xs-12">
+              <ul class="profile-details">
+                <li class="profile veg cover-block">
+                  <ul class="cover-image">
+                    <li class="cover cover-photo"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
+                    <li class="cover cover-text hidden">
+                      <h1 class="lemon text-white">Dal Baati</h1>
+                      <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
                     </li>
                   </ul>
-                </div>
-              </div>
+                </li>
+                <li class="profile profile-heart">
+                  <div class="add-heart <%= add_chef_filled_class(@chef) %>" id="add_chef_to_favorite" data-cheff_id="<%= @chef.id %>"></div>
+                </li>
+                <li class="profile profile-dp">
+                  <%= image_tag @chef.picture.image.url, :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" if @chef.picture %>
+                </li>
+                <li class="profile user-name"><%= @chef.chef_coordinate.name %></li>
+                <li class="profile user-level"><%= @chef.chef_profile.brand_represented if @chef.chef_profile %></li>
+                <li class="profile user-city">
+                  <span class="city">
+                    <% if @chef.chef_coordinate.locality.present? %>
+                      <%= @chef.chef_coordinate.locality.camelize %>,
+                    <% end %>
+                    <%= @chef.chef_coordinate.city.camelize %></span>
+                  <!--<span class="city">Mumbai</span>-->
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="normal-header">
-              <h2 class="roboto-l">About</h2>
-            </div>
-            <div class="normal-block">
-              <p class="text-left text-6"><%= @chef.chef_profile.about_me %></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="text-center">
-              <button class="btn btn-fan" type="button" id="add-fan">Become a Fan</button>
-              <a class='st_twitter_custom' displayText='Tweet'><img src="/assets/twittie.png" alt="Tweet"></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> <!-- fluid container ends -->
-
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <ul class="block-3">
-            <li class="each-block">
-              <a href="#">
-                <span id="served-count" class="upper roboto-b"><%= @total_qty %></span>
-                <span class="lower text-uppercase">Dishes served</span>
-              </a>
-            </li>
-            <li class="each-block">
-              <a href="#">
-                <span id="recipe-count" class="upper roboto-b"><%= @total_receipes %></span>
-                <span class="lower text-uppercase">Recipes</span>
-              </a>
-            </li>
-            <li class="each-block">
-              <a href="#">
-                <span id="fan-count" class="upper roboto-b">253</span>
-                <span class="lower text-uppercase">Fans</span>
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="normal-header">
+          <h2 class="roboto-l">About</h2>
+        </div>
+        <div class="normal-block">
+          <p class="text-left text-6"><%= @chef.chef_profile.about_me %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="text-center">
+          <button class="btn btn-fan" type="button" id="add-fan">Become a Fan</button>
+          <a class='st_twitter_custom' displayText='Tweet'><img src="/assets/twittie.png" alt="Tweet"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- fluid container ends -->
 
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="normal-header">
-            <h3>Cooking Today:</h3>
-          </div>
-          <div class="normal-body">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="block-3">
+        <li class="each-block">
+          <a href="#">
+            <span id="served-count" class="upper roboto-b"><%= @total_qty %></span>
+            <span class="lower text-uppercase">Dishes served</span>
+          </a>
+        </li>
+        <li class="each-block">
+          <a href="#">
+            <span id="recipe-count" class="upper roboto-b"><%= @total_receipes %></span>
+            <span class="lower text-uppercase">Recipes</span>
+          </a>
+        </li>
+        <li class="each-block">
+          <a href="#">
+            <span id="fan-count" class="upper roboto-b">253</span>
+            <span class="lower text-uppercase">Fans</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-            <div id="hola-container">
-              <% @today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
-              <% if @cooking_todays %>
-                  <% @cooking_todays.each do |menu| %>
-                      <% @menu = menu %>
-                      <%= render :partial => "home/item", :locals => {:menu => menu, :today_menu => @today_menu } %>
-                  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="normal-header">
+        <h3>Cooking Today:</h3>
+      </div>
+      <div class="normal-body">
+
+        <div id="hola-container">
+          <% @today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
+          <% if @cooking_todays %>
+              <% @cooking_todays.each do |menu| %>
+                  <% @menu = menu %>
+                  <%= render :partial => "home/item", :locals => {:menu => menu, :today_menu => @today_menu } %>
               <% end %>
-            </div>
-
-          </div>
-
+          <% end %>
         </div>
+
       </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="normal-header">
-            <h3>Signature Dishes</h3>
-          </div>
-          <div class="normal-body">
-            <%= render 'signature_dishes', :locals => { :signature_dishes => @signature_dishes} %>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="normal-header">
-            <h3>Recipes:</h3>
-          </div>
-          <div class="normal-body">
-            <%= render 'receipes', :locals => {:recipes => @recipes} %>
-          </div>
-
-        </div>
-      </div>
-
 
     </div>
-    <div id="recipe-modal">
-      <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button data-dismiss="modal" class="btn-close pull-right">x</button>
-              <ul class="user-profile">
-                <li class="profile-pic">
-                  <%= link_to image_tag("/assets/user-pic.jpg", :class => "img-responsive center-block"), "/cheff/#{params[:cheff_id]}", :id => "chef_info" %>
-                </li>
-                <li class="user-name">
-                  <h3>Mrs. Sharma
-                    <span class="user-level">Hola Star</span></h3>
-                </li>
-              </ul>
-            </div>
-            <div class="modal-body"> <!-- below content changes from jquery -->
+  </div>
 
-              <ul class="square">
-                <li class="recipe-block veg">
-                  <div class="recipe-header">
-                    <div class="add-lens"></div>
-                    <div class="recipe-name">Cheese Loaded Nachos with Beans</div>
-                    <div class="add-heart"></div>
-                  </div>
-                  <div class="recipe-image hidden">
-                  </div>
-                </li>
-                <li class="recipe-title hidden"></li>
-                <li class="recipe-tags">
-                  <ul class="stock-value">
-                    <li class="recipe-stock"><span class="stock-count">10</span> left</li>
-                    <li class="recipe-price">180/-</li>
-                  </ul>
-                </li>
-              </ul>
-
-            </div>
-            <div class="modal-footer modal-form">
-              <div class="row">
-                <div class="col-xs-12 text-center">
-                  <div class="row">
-                    <div class="col-xs-3">
-                      <button class="btn btn-orange disabled" type="button" id="add-order-minus" disabled>-1</button>
-                    </div>
-                    <div class="col-xs-3">
-                      <p class="form-control looks-input" id="order-count">0</p>
-                    </div>
-                    <div class="col-xs-3">
-                      <button class="btn btn-orange" type="button" id="add-order-plus">+1</button>
-                    </div>
-                    <div class="col-xs-3">
-                      <button type="button" class="btn btn-link text-orange" data-dismiss="modal" id="order-done">Done</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="normal-header">
+        <h3>Signature Dishes</h3>
       </div>
-    </div> <!-- modal ends -->
-    <input type="hidden" id="total_price" value= <%= calculate_total_price() %> />
-    <%= content_for :cheff_footer do %>
-        <% if session[:cart].blank? %>
-            <div id="cheff_footer">
-                <%= render 'layouts/chef_footer' %>
-            </div>
-        <% else %>
-            <%= render 'layouts/footer' %>
-        <% end %>
-    <% end %>
+      <div class="normal-body">
+        <%= render 'signature_dishes', :locals => { :signature_dishes => @signature_dishes} %>
+      </div>
 
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="normal-header">
+        <h3>Recipes:</h3>
+      </div>
+      <div class="normal-body">
+        <%= render 'receipes', :locals => {:recipes => @recipes} %>
+      </div>
+
+    </div>
+  </div>
 
 
 </div>
+<div id="recipe-modal">
+  <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button data-dismiss="modal" class="btn-close pull-right">x</button>
+          <ul class="user-profile">
+            <li class="profile-pic">
+              <%= link_to image_tag("/assets/user-pic.jpg", :class => "img-responsive center-block"), "/cheff/#{params[:cheff_id]}", :id => "chef_info" %>
+            </li>
+            <li class="user-name">
+              <h3>Mrs. Sharma
+                <span class="user-level">Hola Star</span></h3>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-body"> <!-- below content changes from jquery -->
+
+          <ul class="square">
+            <li class="recipe-block veg">
+              <div class="recipe-header">
+                <div class="add-lens"></div>
+                <div class="recipe-name">Cheese Loaded Nachos with Beans</div>
+                <div class="add-heart"></div>
+              </div>
+              <div class="recipe-image hidden">
+              </div>
+            </li>
+            <li class="recipe-title hidden"></li>
+            <li class="recipe-tags">
+              <ul class="stock-value">
+                <li class="recipe-stock"><span class="stock-count">10</span> left</li>
+                <li class="recipe-price">180/-</li>
+              </ul>
+            </li>
+          </ul>
+
+        </div>
+        <div class="modal-footer modal-form">
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <div class="row">
+                <div class="col-xs-3">
+                  <button class="btn btn-orange disabled" type="button" id="add-order-minus" disabled>-1</button>
+                </div>
+                <div class="col-xs-3">
+                  <p class="form-control looks-input" id="order-count">0</p>
+                </div>
+                <div class="col-xs-3">
+                  <button class="btn btn-orange" type="button" id="add-order-plus">+1</button>
+                </div>
+                <div class="col-xs-3">
+                  <button type="button" class="btn btn-link text-orange" data-dismiss="modal" id="order-done">Done</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div> <!-- modal ends -->
+<input type="hidden" id="total_price" value= <%= calculate_total_price() %> />
+<%= content_for :cheff_footer do %>
+    <% if session[:cart].blank? %>
+        <div id="cheff_footer">
+            <%= render 'layouts/chef_footer' %>
+        </div>
+    <% else %>
+        <%= render 'layouts/footer' %>
+    <% end %>
+<% end %>
+

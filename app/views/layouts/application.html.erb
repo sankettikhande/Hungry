@@ -23,8 +23,9 @@
 
           <% hola_user = get_user_details %>
           <%= render 'layouts/side_menu', hola_user: hola_user %>
+          <div class="right-body">
           <%= yield %>
-
+          </div>
         </div>
       <% if !@footer %>
           <%= render 'layouts/content_footer' %>

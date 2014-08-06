@@ -1,98 +1,97 @@
-<div class="right-body">
- <div class="container seperator-10">
-  <div class="row">
-    <div class="col-xs-12">
-      <div id="hola-container">
-        <% today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
-        <% if @todays_menu %>
-            <% @todays_menu.each do |menu| %>
-                <% cart_menu = collect_cart_items(menu) if !menu.nil? %>
-                <% target = qty_left(menu) > 0 ? "#item-modal" : "#" %>
-                <div class="item" data-toggle="modal" data-target="<%=target %>" id="<%=menu.id%>">
-                  <input type="hidden" class="menu_price" value="<%=cart_menu[:price] if cart_menu %>" />
-                  <input type="hidden" class="menu_qty" value="<%= cart_menu[:quantity] if cart_menu  %>" />
-                  <input type="hidden" class="menu_max_qty" value="<%= qty_left(menu) %>"/>
-                  <input type="hidden" class="chef-profile-pic" value="<%= cart_menu[:cheff_image] if cart_menu  %>"/>
-                  <input type="hidden" class="chef-name" value="<%= cart_menu[:cheff_name] if cart_menu  %>"/>
-                  <input type="hidden" class="chef-id" value="<%= cart_menu[:cheff_id] if cart_menu  %>"/>
-                  <ul class="square">
-                    <li class="recipe-block <%=set_cooing_today_type(menu)%>">
-                      <% if qty_left(menu) <= 0 %>
-                          <div class="recipe-header not-available">
-                            <div class="add-lens"></div>
-                            <div class="recipe-name">
-                              <%= menu.food_item.meal_info.name %>
-                            </div>
-                            <div class="add-heart"></div>
+
+<div class="container seperator-10">
+<div class="row">
+  <div class="col-xs-12">
+    <div id="hola-container">
+      <% today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
+      <% if @todays_menu %>
+          <% @todays_menu.each do |menu| %>
+              <% cart_menu = collect_cart_items(menu) if !menu.nil? %>
+              <% target = qty_left(menu) > 0 ? "#item-modal" : "#" %>
+              <div class="item" data-toggle="modal" data-target="<%=target %>" id="<%=menu.id%>">
+                <input type="hidden" class="menu_price" value="<%=cart_menu[:price] if cart_menu %>" />
+                <input type="hidden" class="menu_qty" value="<%= cart_menu[:quantity] if cart_menu  %>" />
+                <input type="hidden" class="menu_max_qty" value="<%= qty_left(menu) %>"/>
+                <input type="hidden" class="chef-profile-pic" value="<%= cart_menu[:cheff_image] if cart_menu  %>"/>
+                <input type="hidden" class="chef-name" value="<%= cart_menu[:cheff_name] if cart_menu  %>"/>
+                <input type="hidden" class="chef-id" value="<%= cart_menu[:cheff_id] if cart_menu  %>"/>
+                <ul class="square">
+                  <li class="recipe-block <%=set_cooing_today_type(menu)%>">
+                    <% if qty_left(menu) <= 0 %>
+                        <div class="recipe-header not-available">
+                          <div class="add-lens"></div>
+                          <div class="recipe-name">
+                            <%= menu.food_item.meal_info.name %>
                           </div>
-                      <% elsif menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
-                          <div class="recipe-image append-cart">
-                            <div class="add-lens"></div>
-                            <div class="add-heart"></div>
-                            <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block" %>
-                            <% if today_menu && today_menu.has_key?(menu[:id]) %>
-                                <div class='add-cart'></div>
-                            <% end %>
+                          <div class="add-heart"></div>
+                        </div>
+                    <% elsif menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
+                        <div class="recipe-image append-cart">
+                          <div class="add-lens"></div>
+                          <div class="add-heart"></div>
+                          <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block" %>
+                          <% if today_menu && today_menu.has_key?(menu[:id]) %>
+                              <div class='add-cart'></div>
+                          <% end %>
+                        </div>
+                    <% else %>
+                        <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart">
+                          <div class="add-lens"></div>
+                          <div class="add-heart"></div>
+                          <div class="recipe-name">
+                            <%= menu.food_item.meal_info.name %>
                           </div>
-                      <% else %>
-                          <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart">
-                            <div class="add-lens"></div>
-                            <div class="add-heart"></div>
-                            <div class="recipe-name">
-                              <%= menu.food_item.meal_info.name %>
-                            </div>
-                            <% if today_menu && today_menu.has_key?(menu[:id]) %>
-                                <div class='add-cart'></div>
-                            <% end %>
-                          </div>
-                      <% end %>
-                    </li>
-                    <li class="recipe-title hidden"><%= menu.food_item.meal_info.name %></li>
-                    <% if  menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? && qty_left(menu) > 0 %>
-                        <li class="recipe-title"><%= menu.food_item.meal_info.name %></li>
+                          <% if today_menu && today_menu.has_key?(menu[:id]) %>
+                              <div class='add-cart'></div>
+                          <% end %>
+                        </div>
                     <% end %>
+                  </li>
+                  <li class="recipe-title hidden"><%= menu.food_item.meal_info.name %></li>
+                  <% if  menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? && qty_left(menu) > 0 %>
+                      <li class="recipe-title"><%= menu.food_item.meal_info.name %></li>
+                  <% end %>
 
-                    <li class="recipe-tags">
-                      <ul class="stock-value">
-                        <% if today_menu && today_menu.has_key?(menu[:id]) %>
-                            <li class="recipe-stock text-orange"><%= today_menu.fetch(menu[:id]) %> in cart</li>
-                        <% else %>
-                            <li class="recipe-stock"><%= qty_left(menu)>0 ? "#{qty_left(menu)} left" :  "SOLD OUT!" %></li>
-                        <% end %>
-                        <li class="recipe-price"><%= qty_left(menu)>0 ? "#{menu.food_item.meal_info.hola_sell_price}/-" : "SORRY :(" %></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-            <% end %>
-        <% end %>
-
-      </div>
-      <input type="hidden" id="total_price" value= <%= calculate_total_price() %> />
-      <div id="recipe-modal">
-        <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static">
-          <input type="hidden" id="selected_item" value="" />
-          <input type="hidden" id="total_price" value="0" />
-
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button data-dismiss="modal" class="btn-close pull-right">x</button>
-
+                  <li class="recipe-tags">
+                    <ul class="stock-value">
+                      <% if today_menu && today_menu.has_key?(menu[:id]) %>
+                          <li class="recipe-stock text-orange"><%= today_menu.fetch(menu[:id]) %> in cart</li>
+                      <% else %>
+                          <li class="recipe-stock"><%= qty_left(menu)>0 ? "#{qty_left(menu)} left" :  "SOLD OUT!" %></li>
+                      <% end %>
+                      <li class="recipe-price"><%= qty_left(menu)>0 ? "#{menu.food_item.meal_info.hola_sell_price}/-" : "SORRY :(" %></li>
+                    </ul>
+                  </li>
+                </ul>
               </div>
-              <div class="modal-body"> <!-- below content changes from jquery -->
-                <i class="modal-loading fa fa-spinner fa-spin"></i>
-                <p class="form-control looks-input hidden" id="order-count">0</p>
-              </div>
-              <div class="modal-footer modal-form">
+          <% end %>
+      <% end %>
 
-              </div>
+    </div>
+    <input type="hidden" id="total_price" value= <%= calculate_total_price() %> />
+    <div id="recipe-modal">
+      <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static">
+        <input type="hidden" id="selected_item" value="" />
+        <input type="hidden" id="total_price" value="0" />
+
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button data-dismiss="modal" class="btn-close pull-right">x</button>
 
             </div>
+            <div class="modal-body"> <!-- below content changes from jquery -->
+              <i class="modal-loading fa fa-spinner fa-spin"></i>
+              <p class="form-control looks-input hidden" id="order-count">0</p>
+            </div>
+            <div class="modal-footer modal-form">
+
+            </div>
+
           </div>
         </div>
-      </div> <!-- modal ends -->
-    </div>
+      </div>
+    </div> <!-- modal ends -->
   </div>
- </div>
+</div>
 </div>

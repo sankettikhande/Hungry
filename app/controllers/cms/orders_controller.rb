@@ -78,7 +78,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @footer = "false"
     @order = Order.find(params[:order_id])
-
+    session[:cart] = [] #if @order.
 
     respond_to do |format|
       format.html {render :layout => 'application'}
