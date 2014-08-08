@@ -1,8 +1,10 @@
 class HolaUserAddressesController < ApplicationController
   def index
     @hola_user = HolaUser.find_by_phoneNumber(cookies[:user_mobile]) if cookies[:user_mobile].present?
-    @addresses = @hola_user.blank? ? [] : @hola_user.hola_user_addresses.all
-    @new_address = @hola_user.hola_user_addresses.build unless @hola_user.blank?
+    if @hola_user.present?
+      @addresses = @hola_user.hola_user_addresses.all
+      @new_address = @hola_user.hola_user_addresses.build
+    end
   end
 
   def create
