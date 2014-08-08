@@ -1,0 +1,2 @@
+$(".dishes_list").empty();
+$(".dishes_list").html("<%= escape_javascript(render :partial => "cms/food_items/loded_dishes", :locals => {:food_items => @food_items} ,:inline => true) %>")

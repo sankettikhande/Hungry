@@ -1,5 +1,26 @@
+require 'will_paginate/array'
 class Cms::FoodItemsController < Cms::ContentBlockController
   skip_before_filter :login_required, :cms_access_required, :only => [:show_recipe, :signature_dishes, :update_ratings]
+
+  def index
+    if !params[:search].blank? && !params[:search][:term].blank?
+      @food_items = FoodItem.find(:all, :include => :meal_info, :conditions => ["meal_infos.name LIKE ?", "%#{params[:search][:term]}%"]).paginate(:per_page => 10, :page => params[:page])
+      if @food_items.blank?
+          @chef = Cheff.find(:first, :include => :chef_coordinate, :conditions => ["chef_coordinates.name LIKE ?", "%#{params[:search][:term]}%"])
+          @food_items = FoodItem.find(:all, :include => :cheff, :conditions => ["cheffs.id = ?", @chef.id]).paginate( :per_page => 10, :page => params[:page]) if @chef
+      end
+    else
+      @food_items = FoodItem.find(:all, :include => :cheff).paginate( :per_page => 10, :page => params[:page])
+    end
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def load_chef_dishes
+    @chef = Cheff.find(params[:cheff_id])
+    @food_items = FoodItem.find(:all, :include => :cheff, :conditions => ["cheffs.id = ?", @chef.id]) if @chef
+  end
 
   def show_recipe
     @footer = "false"
@@ -65,6 +86,16 @@ class Cms::FoodItemsController < Cms::ContentBlockController
         format.js
       end
     end
+  end
+
+  def delete_food_item
+    @food_item = FoodItem.find(params[:id])
+    if @food_item.destroy
+      flash[:notice] = "Deleted food items successfully."
+    else
+      flash[:notice] = "No food items found."
+    end
+    redirect_to "/cms/food_items"
   end
 
 end

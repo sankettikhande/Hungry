@@ -1,5 +1,4 @@
 Holachef::Application.routes.draw do
-  namespace :cms  do content_blocks :food_items end
 
   resources :hola_users
   match "/add_chef_to_favorite"=> "hola_users#add_chef_to_favorite"
@@ -15,11 +14,14 @@ Holachef::Application.routes.draw do
   match '/recipe/:id'=>'Cms::food_items#show_recipe'
   match '/signature/:dish_name'=> 'Cms::food_items#signature_dishes', :as => :signature_dish
   match '/update_ratings' => "Cms::food_items#update_ratings"
+  match '/cms/food_items/load_chef_dishes'=>'Cms::food_items#load_chef_dishes'
 
   match '/create_signature_order'=>"Cms::orders#create_signature_order"
 
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
+    match '/food_items/load_chef_dishes'=>'food_items#load_chef_dishes'
+    match '/food_items/delete'=> 'food_items#delete_food_item'
     match '/cuisine_geographies/load_sub_cuisines'=>'cuisine_geographies#load_sub_cuisines'
     match '/cuisine_geographies/load_parent_cuisine'=>'cuisine_geographies#load_parent_cuisine'
     match '/cuisine_geographies/delete/:id' =>'cuisine_geographies#delete_cuisine'
@@ -29,6 +31,7 @@ Holachef::Application.routes.draw do
     content_blocks :sub_menus
     content_blocks :cuisine_geographies
     content_blocks :cuisine_styles
+    content_blocks :food_items
   end
 
   resources :social_shares do

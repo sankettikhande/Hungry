@@ -31,6 +31,10 @@ class Cheff < ActiveRecord::Base
 
   accepts_nested_attributes_for :cuisine_geographies, :allow_destroy => true, :reject_if => :all_blank
 
+  def self.display_name
+    "Chef"
+  end
+
   def name
       self.chef_coordinate.name if self.chef_coordinate
   end
