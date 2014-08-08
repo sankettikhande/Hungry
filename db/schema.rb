@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140801094332) do
+ActiveRecord::Schema.define(:version => 20140808073720) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_type_id"
@@ -43,14 +43,6 @@ ActiveRecord::Schema.define(:version => 20140801094332) do
     t.string   "contact_email"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-  end
-
-  create_table "chef_preferences", :force => true do |t|
-    t.integer  "cheff_id"
-    t.string   "cuisine_style"
-    t.string   "cuisine_tags"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
   end
 
   create_table "chef_profiles", :force => true do |t|
@@ -680,6 +672,8 @@ ActiveRecord::Schema.define(:version => 20140801094332) do
     t.integer  "hola_user_id"
   end
 
+  add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"
+
   create_table "page_route_options", :force => true do |t|
     t.integer  "page_route_id"
     t.string   "type"
@@ -835,6 +829,7 @@ ActiveRecord::Schema.define(:version => 20140801094332) do
     t.integer  "ratings",      :default => 0
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.integer  "hola_user_id"
   end
 
   create_table "section_nodes", :force => true do |t|
