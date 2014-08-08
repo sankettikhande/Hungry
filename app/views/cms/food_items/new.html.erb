@@ -10,10 +10,10 @@
 <%= form_for @food_item , :html=>{:multipart => true }, :url => "/cms/food_items" do |f| %>
 
     <div class="fields text_fields">
-      <%= f.label :cheff %>
+      <%= f.label :chef %>
       <%= f.select :cheff_id, Cheff.find(:all,:order => 'name asc', :include => 'chef_coordinate').map { |s| [s.chef_coordinate.name, s.id] if s.chef_coordinate}.compact,
-                   :include_blank =>'Select Cheff', :label => "Cheff",
-                   :instructions => "Select Cheff for the dish." %>
+                   :include_blank =>'Select Chef', :label => "Chef",
+                   :instructions => "Select Chef for the dish." %>
     </div>
 
     <div class="fields text_fields" style="padding-bottom: 20px;">
