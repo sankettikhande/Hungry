@@ -79,7 +79,12 @@ class Cms::OrdersController < Cms::ContentBlockController
     @footer = "false"
     @order = Order.find(params[:order_id])
     session[:cart] = [] #if @order.
-
+    if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
+      @@cart_items.each do |item_id, quantity|
+        cooking_today  = CookingToday.find(item_id)
+        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
+      end
+    end
     respond_to do |format|
       format.html {render :layout => 'application'}
     end

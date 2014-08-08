@@ -8,8 +8,8 @@
   <div class="container-fluid back-white seperator-2">
 
       <ul class="pay-options">
-        <li class="payby"><%= link_to "Cash on Delivery", "/order-confirm/#{@order.id}" %></li>
-        <li class="payby"><%= link_to "Credit Card Swipe on Delivery", "/order-confirm/#{@order.id}" %></li>
+        <li class="payby"><%= link_to "Cash on Delivery", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" %></li>
+        <li class="payby"><%= link_to "Credit Card Swipe on Delivery", "/order-confirm/#{@order.id}?payment_mode=swipe_on_delivery" %></li>
         <li class="payby"><%= link_to "Netbanking", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'payment_mode' %></li>
         <li class="payby"><%= link_to "Prepaid Balance", "#", :data=>{:paymentMode => "DEBIT_CARD", :orderId => @order.id}, :class => 'payment_mode' %></li>
       </ul>
