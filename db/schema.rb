@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140808073720) do
+ActiveRecord::Schema.define(:version => 20140808124414) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_type_id"
@@ -826,9 +826,9 @@ ActiveRecord::Schema.define(:version => 20140808073720) do
     t.date     "review_date"
     t.string   "reviewer"
     t.text     "review"
-    t.integer  "ratings",      :default => 0
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.decimal  "ratings",      :precision => 2, :scale => 1, :default => 0.0
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.integer  "hola_user_id"
   end
 

@@ -356,7 +356,7 @@ $(document).ready(function(){
 
     $('#star').raty({
         path:'/assets/',
-        half:false,
+        half: true,
         scoreName: 'food_item[ratings]',
         score: function() {
             return $(this).attr('data-score');
@@ -365,7 +365,7 @@ $(document).ready(function(){
             $.ajax({
                 'url' : '/update_ratings',
                 'type' : 'POST',
-                'data' : {'food_item_id': parseInt($("#food_item_id").val()), 'food_item_ratings': parseInt($("input[name='food_item[ratings]']").val())},
+                'data' : {'food_item_id': parseInt($("#food_item_id").val()), 'food_item_ratings': $("input[name='food_item[ratings]']").val()},
                 'dataType' : 'script'
             })
         }
