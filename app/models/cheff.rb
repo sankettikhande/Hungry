@@ -31,6 +31,8 @@ class Cheff < ActiveRecord::Base
 
   accepts_nested_attributes_for :cuisine_geographies, :allow_destroy => true, :reject_if => :all_blank
 
+  CHEF_PROFILE_TYPES = ["Hola Newbie", "Hola Star", "Hola MasterChef"]
+
   def self.display_name
     "Chef"
   end

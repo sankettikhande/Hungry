@@ -1,6 +1,6 @@
 <div class="fields text_fields">
   <%= f.label :classification %>
-  <%= f.text_field :classification %> <br/>
+  <%= f.select :classification, Cheff::CHEF_PROFILE_TYPES, :include_blank => "Select Classification" %>
 </div>
 <div class="fields text_fields">
   <%= f.label :about_me %>
