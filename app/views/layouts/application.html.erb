@@ -21,8 +21,7 @@
         <%= render :partial => "/layouts/header" %>
         <div class="sliding-page row-offcanvas row-offcanvas-left">
 
-          <% hola_user = get_user_details %>
-          <%= render 'layouts/side_menu', hola_user: hola_user %>
+          <%= render 'layouts/side_menu' %>
           <div class="right-body">
           <%= yield %>
           </div>

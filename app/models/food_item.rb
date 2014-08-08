@@ -9,12 +9,13 @@ class FoodItem < ActiveRecord::Base
 
   has_one :meal_info, :dependent => :destroy
   has_one :recipe, :dependent => :destroy
-  has_one :review, :dependent => :destroy
+  # has_one :review, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
   has_many :cooking_todays
 
   accepts_nested_attributes_for :meal_info
   accepts_nested_attributes_for :recipe
-  accepts_nested_attributes_for :review
+  # accepts_nested_attributes_for :review
 
   validates_presence_of :cheff_id
 

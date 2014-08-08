@@ -1,9 +1,10 @@
 <div class="left-nav sidebar-offcanvas hola-sidemenu" id="sidebar" role="navigation">
   <div class="list-group">
-    <% if hola_user %>
-    <a href="#" class="list-group-item">
-      <h4 class="list-group-item-heading active" id="user-name"><%= hola_user.name.camelize if hola_user %></h4>
-      <p class="list-group-item-text " id="user-contact"><%= hola_user.phoneNumber if hola_user %></p></a>
+    <% if current_user %>
+      <a href="#" class="list-group-item">
+        <h4 class="list-group-item-heading active" id="user-name"><%= current_user.name.camelize %></h4>
+        <p class="list-group-item-text " id="user-contact"><%= current_user.phoneNumber %></p>
+      </a>
     <% end %>
     <a href="/mobile" class="list-group-item"><span class="icon-xs icon-home"></span><span class="text">Home</span></a>
     <a href="/signature_dishes" class="list-group-item"><span class="icon-xs icon-signature"></span> <span class="text">Signature Dishes</span></a>

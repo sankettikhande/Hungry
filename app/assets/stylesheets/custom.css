@@ -426,7 +426,7 @@ hyphens: auto;
 
 }
 
-.recipe-image img {max-height: 150px;}
+/*.recipe-image img {max-height: 150px;}*/
 #recipe-modal .recipe-image img {max-height: 200px;}
 
 

@@ -2,7 +2,14 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
 
+
+  helper_method :current_user
+
   private
+
+  def current_user
+    @current_user || HolaUser.find_by_phoneNumber(cookies.signed[:user_mobile])
+  end
 
   def mobile_device?
     if session[:mobile_param]

@@ -21,7 +21,7 @@ class Cms::FoodItemsController < Cms::ContentBlockController
     @food_item.build_recipe
     @food_item.recipe.sub_menus.build
     @food_item.build_meal_info
-    @food_item.build_review
+    # @food_item.build_review
     respond_to do |format|
       format.html
     end
@@ -57,7 +57,7 @@ class Cms::FoodItemsController < Cms::ContentBlockController
   end
 
   def update_ratings
-    food_item = FoodItem.find(params[:food_item_id])
+    food_item = FoodItem.find_or_create_by(food_item_id: params[:food_item_id], hola_user_id: current_user.id)
     if food_item
       food_item.review.update_attributes(:ratings => (food_item.review.ratings.to_i + params[:food_item_ratings].to_i))
       respond_to do |format|
