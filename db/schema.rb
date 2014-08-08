@@ -742,6 +742,15 @@ ActiveRecord::Schema.define(:version => 20140808124414) do
   add_index "pages", ["path"], :name => "index_pages_on_path"
   add_index "pages", ["version"], :name => "index_pages_on_version"
 
+  create_table "party_orders", :force => true do |t|
+    t.text     "details"
+    t.string   "name",       :null => false
+    t.string   "contact_no", :null => false
+    t.string   "email",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "permissions", :force => true do |t|
     t.string   "name"
     t.string   "full_name"
