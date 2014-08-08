@@ -172,8 +172,12 @@ $(document).ready(function(){
             'dataType': 'script'
         });
     });
-    $("#submit-order-button").click(function(){
-        $("#submit_order").submit();
+    $("#submit-order-button").click(function(e){
+        if($("#u-name").val() == "" || $("#u-contact").val() == "" || $("#u-address").val() == ""){
+            e.preventDefault();
+        }else{
+            $("#submit_order").submit();
+        }
     })
     $("#submit_order input").focus(function(){
         $("#submit_order input").removeClass('active');

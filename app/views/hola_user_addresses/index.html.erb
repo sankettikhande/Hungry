@@ -11,7 +11,7 @@
       <div class="col-xs-12">
         <% if @hola_user.blank? %>
           <br/>
-          <%= alert_message "There are no address added by you." %>
+          <%= alert_message "Could not identify you as a Hola User." %>
         <% else %>
           <div class="address-container">
             <% @addresses.each do |address| %>
