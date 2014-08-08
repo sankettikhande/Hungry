@@ -319,8 +319,8 @@ $(document).ready(function(){
     });
 
 //    Disable back button on Order Confirmation page
-
-    if (window.location.href.indexOf("orders") > -1) {
+    var href_url = window.location.href;
+    if (href_url.indexOf("orders") > -1 && href_url.indexOf("party_orders") == -1) {
         $(".btn-back").addClass("hidden");
         $('#footer').hide();
     }

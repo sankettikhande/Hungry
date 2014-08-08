@@ -116,6 +116,8 @@ module ApplicationHelper
       return "Talk To Us"
     when controller == "social_shares" && action == "index" || action == "tell_friends"
       return "Love Us"
+    when controller == "party_orders"
+      return "Party Orders"
     else
       return "Today's Menu"
     end
