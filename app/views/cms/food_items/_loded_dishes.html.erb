@@ -1,0 +1,17 @@
+<% if @food_items.blank? %>
+  <tr><td>Sorry, No items found for this chef.</td></tr>
+<% else %>
+    <% @food_items.each do |food_item|%>
+        <tr class="coupon_detail">
+          <td style=" padding-left: 8px;">
+            <%= food_item.meal_info.name %>
+          </td>
+          <td>
+            <%= link_to "Edit Detail", "/cms/food_items/#{food_item.id}/edit" %>
+          </td>
+          <td>
+            <%= link_to 'Delete', "/cms/food_items/delete?id=#{food_item.id}" %>
+          </td>
+        </tr>
+    <% end %>
+<% end %>

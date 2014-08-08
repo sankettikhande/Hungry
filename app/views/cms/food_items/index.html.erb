@@ -1,0 +1,110 @@
+<style>
+
+    .pagination {
+        font-size: 8pt;
+        margin: 15px 10px;
+    }
+    .pagination .info {
+        margin-right: 120px;
+        width: 200px;
+        float: left;
+    }
+    #first_page_link {
+        background: url("/assets/first.gif") no-repeat scroll 0 0 transparent;
+    }
+    .pagination .links a {
+        display: block;
+        float: left;
+        margin-right: 3px;
+        text-decoration: none;
+        width: 8px;
+    }
+    #previous_page_link {
+        background: url("/assets/previous.gif") no-repeat scroll 0 0 transparent;
+    }
+
+    .pagination .links span {
+        display: block;
+        float: left;
+        margin: -6px 10px 0 0;
+    }
+
+    .pagination form.current_page {
+        display: inline;
+        font-size: 8pt;
+    }
+
+    .pagination form.current_page input {
+        background: url("/assets/input.gif") no-repeat scroll 0 0 transparent;
+        border: medium none;
+        height: 20px;
+        margin: 0;
+        padding: 3px 0 0;
+        text-align: center;
+        width: 20px;
+    }
+
+    #next_page_link {
+        background: url("/assets/next.gif") no-repeat scroll 0 0 transparent;
+    }
+
+    #last_page_link {
+        background: url("/assets/last.gif") no-repeat scroll 0 0 transparent;
+    }
+</style>
+<div style="margin: 20px 0;">
+  <%= link_to "Add New Food Item","/cms/food_items/new", :style => "background-color: #396DAF;color: #FFFFFF;font-size: 15px;padding: 5px 15px;" %>
+  <% chefs = Cheff.find(:all, :include => :chef_coordinate) %>
+  Select Cheff:
+  <select name="cheff_id" id="load_chef_dishes">
+     <option value="">Please Select</option>
+      <% chefs.each do |chef| %>
+        <option value="<%=chef.id%>"><%= chef.chef_coordinate.name %></option>
+      <% end %>
+  </select>
+</div>
+<table id="blocks" class="data cms-content-table" data-plural_title="Coupon Contents" data-can_publish="true" data-versioned="false" data-content_type="coupon_contents">
+  <thead>
+  <th style="width: 60%;">
+    <div class="dividers">Name</div>
+  </th>
+  <th style="width: 19%;">
+    <div class="dividers">Edit</div>
+  </th>
+  <th style="width: 19%;">
+    <div class="dividers">Delete</div>
+  </th>
+  </thead>
+  <% if @food_items.blank? %>
+  <tr> <td>Sorry, No food items found with this search.</td> </tr>
+  <% else %>
+      <tbody class="dishes_list">
+          <% @food_items.each do |food_item|%>
+              <tr class="coupon_detail">
+                <td style=" padding-left: 8px;">
+                  <%= food_item.meal_info.name %>
+                </td>
+                <td>
+                  <%= link_to "Edit Detail", "/cms/food_items/#{food_item.id}/edit" %>
+                </td>
+                <td>
+                  <%= link_to 'Delete', "/cms/food_items/delete?id=#{food_item.id}" %>
+                </td>
+              </tr>
+          <% end %>
+      </tbody>
+  <% end %>
+
+</table>
+<%= render_pagination @food_items, :food_items %>
+<script>
+  $(document).ready(function(){
+      $("#load_chef_dishes").change(function(){
+          $.ajax({
+              type: 'GET',
+              url: '/cms/food_items/load_chef_dishes?cheff_id='+ $(this).val(),
+              dataType: 'script'
+          })
+      })
+  })
+</script>
