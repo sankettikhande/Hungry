@@ -30,7 +30,7 @@ class FoodItem < ActiveRecord::Base
   end
 
   def average_rating
-    reviews.count > 0 ? reviews.sum(:ratings)/reviews.count : 0
+    reviews.count > 0 ? (reviews.sum(:ratings)/reviews.count).round(1) : 0
   end
 
   def user_rating user

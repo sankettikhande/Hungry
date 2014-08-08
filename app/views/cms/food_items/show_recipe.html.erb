@@ -12,7 +12,7 @@
                         <li class="cover cover-photo hidden" id ="recipe-page-img"><%= image_tag(@food_item.meal_info.picture.image.url, :class => "img-responsive center-block recipe-img" ) if @food_item.meal_info.picture %>
                         <li class="cover cover-text <%= set_menu_type(@food_item)%>" id = "recipe-page-txt">
                           <h1 class="lemon text-white" id="cover-title"><%= @food_item.meal_info.name %></h1>
-                          <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
+                          <p class="text-white roboto-r">Cooked this dish? Upload a Photo</p>
                         </li>
                       </ul>
                     </li>
@@ -139,7 +139,7 @@
                       <div class="rating_msg" style="float: left"></div>
                     </li>
                     <li class="review-count">
-                      <span class="count"><%= @food_item.review.ratings if @food_item.review %></span>
+                      <span class="count" id="average_rating"><%= @food_item.average_rating %>/5</span>
                     </li>
                   </ul>
                 </div>

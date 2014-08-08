@@ -33,7 +33,7 @@
           <div class="hola-rating">
             <ul class="rating-block">
               <li class="five-stars">
-                <div id="star" style="float: left" data-score="<%= @signature_dish.user_rating(hola_current_user).ratings %>"></div>
+                <div id="star" style="float: left" data-score="<%= @signature_dish.user_rating(hola_current_user).try(:ratings) %>"></div>
                 <input type="hidden" name="food_item[id]" id = "food_item_id" value="<%= @signature_dish.id  if @signature_dish %>">
                 <div class="rating_msg" style="float: left"></div>
               </li>

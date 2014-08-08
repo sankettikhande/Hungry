@@ -94,6 +94,8 @@ module ApplicationHelper
       return "Review Order"
     when controller == "cms/food_items" && action == "show_recipe" && item.if_signature
       return "Recipe"
+    when controller == "cms/food_items" && action == "show_recipe" && !item.if_signature
+      return "About the dish"
     when controller == "cms/food_items" && action == "signature_dishes"
       return "Signature Dish"
     when controller == "cms/orders" && action == "payment_gateway"
