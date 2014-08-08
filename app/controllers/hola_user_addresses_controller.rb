@@ -1,6 +1,6 @@
 class HolaUserAddressesController < ApplicationController
   def index
-    @hola_user = current_user
+    @hola_user = hola_current_user
     if @hola_user.present?
       @addresses = @hola_user.hola_user_addresses.all
       @new_address = @hola_user.hola_user_addresses.build
@@ -14,7 +14,7 @@ class HolaUserAddressesController < ApplicationController
   end
 
   def set_default
-    hola_user = current_user
+    hola_user = hola_current_user
     hola_user.hola_user_addresses.each do |adds|
       adds.update_attribute(:default, false)
     end

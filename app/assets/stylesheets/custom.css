@@ -636,7 +636,7 @@ ul.cover-image li.cover-text p {margin-top:8px;}
 .rating-block > li.review-count {text-align: right;padding-top: 3px;}
 
 .rating-block > li.review-count span.count {font-family: 'Roboto-Light',Sans-serif;font-size: 0.95em; text-align: left;}
-.rating-block > li.review-count span.count:after {content: 'REVIEWS ';padding-left: 4px;}
+.rating-block > li.review-count span.count:after {padding-left: 4px;}
 .rating-block > li.review-count span.ask-rate:before {content: '| ';}
 .rating-block > li.review-count span.ask-rate a{font-family: 'Roboto-Medium',Sans-serif;color: #cc9900;text-decoration: underline;}
 .rating-block > li.review-count span.ask-rate a:hover {text-decoration: none;}

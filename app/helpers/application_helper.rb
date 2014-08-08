@@ -135,7 +135,7 @@ module ApplicationHelper
   end
 
   def get_user_details
-    user = current_user
+    user = hola_current_user
     return user if user
   end
 
@@ -155,7 +155,7 @@ module ApplicationHelper
   end
 
   def add_chef_filled_class(chef)
-    hola_user = current_user
+    hola_user = hola_current_user
     fav_chef = MyFavoriteChef.where(:hola_user_id => hola_user.id, :cheff_id => chef.id)  if hola_user
     if !fav_chef.blank?
       return "filled"
@@ -165,7 +165,7 @@ module ApplicationHelper
   end
 
   def add_recipe_filled_class(recipe)
-    hola_user = current_user
+    hola_user = hola_current_user
     fav_chef = MyFavoriteRecipe.where(:hola_user_id => hola_user.id, :food_item_id => recipe.id) if hola_user
     if !fav_chef.blank?
       return "filled"

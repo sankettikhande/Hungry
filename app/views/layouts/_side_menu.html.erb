@@ -1,9 +1,10 @@
 <div class="left-nav sidebar-offcanvas hola-sidemenu" id="sidebar" role="navigation">
   <div class="list-group">
-    <% if current_user %>
+    <% if hola_current_user %>
+
       <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading active" id="user-name"><%= current_user.name.camelize %></h4>
-        <p class="list-group-item-text " id="user-contact"><%= current_user.phoneNumber %></p>
+        <h4 class="list-group-item-heading active" id="user-name"><%= hola_current_user.name.camelize %></h4>
+        <p class="list-group-item-text " id="user-contact"><%= hola_current_user.phoneNumber %></p>
       </a>
     <% end %>
     <a href="/mobile" class="list-group-item"><span class="icon-xs icon-home"></span><span class="text">Home</span></a>

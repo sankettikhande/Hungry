@@ -57,9 +57,9 @@ class Cms::FoodItemsController < Cms::ContentBlockController
   end
 
   def update_ratings
-    food_item = FoodItem.find_or_create_by(food_item_id: params[:food_item_id], hola_user_id: current_user.id)
-    if food_item
-      food_item.review.update_attributes(:ratings => (food_item.review.ratings.to_i + params[:food_item_ratings].to_i))
+    food_item_review = Review.find_or_create_by_food_item_id_and_hola_user_id(params[:food_item_id], hola_current_user.id)
+    if food_item_review
+      food_item_review.update_attributes(ratings: params[:food_item_ratings].to_i, review_date: Date.today)
       respond_to do |format|
         format.js
       end

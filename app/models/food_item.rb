@@ -29,4 +29,12 @@ class FoodItem < ActiveRecord::Base
     meal_info.picture rescue nil
   end
 
+  def average_rating
+    reviews.count > 0 ? reviews.sum(:ratings)/reviews.count : 0
+  end
+
+  def user_rating user
+    reviews.where(hola_user_id: user.id).first
+  end
+
 end
