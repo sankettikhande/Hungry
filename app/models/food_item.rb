@@ -34,7 +34,7 @@ class FoodItem < ActiveRecord::Base
   end
 
   def user_rating user
-    reviews.where(hola_user_id: user.id).first
+    user.blank? ? nil : reviews.where(hola_user_id: user.id).first
   end
 
 end
