@@ -5,7 +5,7 @@
         <ul class="tab-menubar" id= 'sign_tabs'>
           <li class = "<%= set_class_to_list(params)%>"><a href="/signature_dishes" id= "dish-search">Search</a></li>
           <li class = "<%=params[:popular]%>"><a href="/signature_dishes?popular=active" id= "dish-popular">Most Popular</a></li>
-          <li class = "<%=params[:favorite]%>"><a href="/signature_dishes?favorite=active" id= "dish-favorite">Favourites</a></li>
+          <li class = "<%=params[:favorite]%>"><a href="/signature_dishes/favourites" id= "dish-favorite">Favourites</a></li>
         </ul>
       </div>
     </div>

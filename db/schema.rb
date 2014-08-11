@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20140808124414) do
     t.string   "brand_logo_content_type"
     t.integer  "brand_logo_file_size"
     t.datetime "brand_logo_updated_at"
+    t.text     "classification"
   end
 
   create_table "cheff_cuisine_geographies", :force => true do |t|
