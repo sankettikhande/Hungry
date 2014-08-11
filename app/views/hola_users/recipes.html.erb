@@ -5,7 +5,7 @@
         <ul class="tab-menubar">
           <li class="<%= set_class_to_list(params)%>"><a href="/recipes" id = "recipe-search">Search</a></li>
           <li class = "<%=params[:popular]%>"><a href="/recipes?popular=active" id = "recipe-popular">Most Popular</a></li>
-          <li class = "<%=params[:favorite]%>"><a href="/recipes?favorite=active" id = "recipe-favorite">Favourites</a></li>
+          <li class = "<%=params[:favorite]%>"><a href="/recipes/favourites" id = "recipe-favorite">Favourites</a></li>
         </ul>
         <span><a href="filters.html" class="btn-filter"></a></span>
       </div>

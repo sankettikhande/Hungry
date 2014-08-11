@@ -5,7 +5,10 @@ Holachef::Application.routes.draw do
   match '/my_favorite_chefs'=>"hola_users#my_favorite_chefs"
   match "/add_recipe_to_favorite"=> "hola_users#add_recipe_to_favorite"
   match '/recipes'=> "hola_users#recipes"
+  match '/recipes/favourites'=> "hola_users#favourite_recipes"
   match '/signature_dishes'=> "hola_users#signature_dishes"
+  match '/signature_dishes/favourites'=> "hola_users#favourite_signature_dishes"
+
   match '/talk_to_us'=> "hola_users#talk_to_us"
 
   match "/cms" => "cms/dashboard#index"
@@ -70,6 +73,8 @@ Holachef::Application.routes.draw do
   match '/hola_user_addresses/set_default' =>'hola_user_addresses#set_default'
   resources :order_histories, only: [:index]
   resources :party_orders, only: [:index, :create]
+
+  resources :hola_session, only: [:create]
 
   #end
 

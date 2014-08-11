@@ -1,6 +1,10 @@
-if (<%= @add_to_fav %>){
-    $("#add_chef_to_favorite").addClass("filled");
-}
-else{
-    $("#add_chef_to_favorite").removeClass("filled");
-}
+<% if hola_current_user %>
+  if (<%= @add_to_fav %>){
+      $("#add_chef_to_favorite").addClass("filled");
+  }
+  else{
+      $("#add_chef_to_favorite").removeClass("filled");
+  }
+<% else %>
+  $('#login_modal').modal('show')
+<% end %>

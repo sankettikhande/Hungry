@@ -407,6 +407,7 @@ $(document).ready(function(){
             'method': 'POST',
             'dataType':'script'
         })
+        return false;
     })
 
     $("#add_recipe_to_favorite").click(function(){
@@ -416,6 +417,7 @@ $(document).ready(function(){
             'method': 'POST',
             'dataType':'script'
         })
+        return false;
     })
 });
 

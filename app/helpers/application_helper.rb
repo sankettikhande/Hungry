@@ -238,4 +238,13 @@ module ApplicationHelper
       food_item.recipe.dish_type == "non-veg" ? "non-veg" : "veg"
     end
   end
+
+  def login_check
+    login_required_urls_suffix = ["order_histories", "my_favorite_chefs", "favourites"]
+    current_url_suffix = request.url.split("?").first.split("/").last
+    if !hola_current_user and login_required_urls_suffix.include? current_url_suffix
+      content_tag(:script, "$('#login_modal').modal('show')".html_safe)
+    end
+  end
+
 end
