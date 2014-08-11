@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140808124414) do
+ActiveRecord::Schema.define(:version => 20140811062844) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_type_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20140808124414) do
     t.string   "brand_logo_content_type"
     t.integer  "brand_logo_file_size"
     t.datetime "brand_logo_updated_at"
+    t.text     "classification"
   end
 
   create_table "cheff_cuisine_geographies", :force => true do |t|
@@ -469,6 +470,8 @@ ActiveRecord::Schema.define(:version => 20140808124414) do
     t.string   "pin"
     t.string   "landmark"
     t.boolean  "default",       :default => false
+    t.string   "mobile_no",                        :null => false
+    t.string   "landline_no"
   end
 
   create_table "hola_users", :force => true do |t|
@@ -671,8 +674,6 @@ ActiveRecord::Schema.define(:version => 20140808124414) do
     t.string   "addressZip"
     t.integer  "hola_user_id"
   end
-
-  add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"
 
   create_table "page_route_options", :force => true do |t|
     t.integer  "page_route_id"

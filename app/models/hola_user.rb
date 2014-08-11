@@ -47,4 +47,8 @@ class HolaUser < ActiveRecord::Base
     end
     return fav_dishes
   end
+
+  def get_default_address
+    hola_user_addresses.default_address.first
+  end
 end

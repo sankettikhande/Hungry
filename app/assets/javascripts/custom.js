@@ -173,8 +173,10 @@ $(document).ready(function(){
         });
     });
     $("#submit-order-button").click(function(e){
-        if($("#u-name").val() == "" || $("#u-contact").val() == "" || $("#u-address").val() == ""){
+        if($("#u-name").val() == "" || $("#u-contact").val() == "" || $("#u-building-name").val() == "" ||
+            $("#u-street").val() == "" || $("#u-city").val() == "" || $("#u-pin").val() == ""){
             e.preventDefault();
+          $("#submit-order-button").addClass("text-grey");
         }else{
             $("#submit_order").submit();
         }
@@ -300,10 +302,12 @@ $(document).ready(function(){
                 $("#u-name").validationEngine('hide')
             }
         }
-        if($("#u-name").val() != "" && $("#u-contact").val() != "" && $("#u-address").val() != "" ) {
+
+        if($("#u-name").val() != "" && $("#u-contact").val() != "" && $("#u-building-name").val() != "" &&
+          $("#u-street").val() != "" && $("#u-city").val() != "" && $("#u-pin").val() != "") {
             $("#submit-order-button").removeClass("text-grey")
         }
-        $("#u-name, #u-contact, #u-address").blur(function(){
+        $("#u-name, #u-contact, #u-landline, #u-building-name, #u-street, #u-city, #u-pin").blur(function(){
             checkvalidation(this)
         })
 

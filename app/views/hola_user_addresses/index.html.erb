@@ -8,33 +8,30 @@
     </div>
 
     <div class="row">
+      <% if flash[:notice] %>
+        <div class="successMsg"><%= flash[:notice] %></div>
+      <% end %>
       <div class="col-xs-12">
-        <% if @hola_user.blank? %>
-          <br/>
-          <%= alert_message "Could not identify you as a Hola User." %>
-        <% else %>
-          <div class="address-container">
-            <% @addresses.each do |address| %>
-              <div class="address-card back-white">
-                <a data-toggle="collapse" data-parent="#accordion" href="#<%= address.address_type %>-add"><%= address.address_type.try(:capitalize) %></a>
-                  <div id="<%= address.address_type %>-add" class="collapse in">
-                      <%= form_for address do |f| %>
-                        <%= render "hola_user_addresses/form", f: f %>
-                      <% end %>
-                  </div>
-               </div>
-             <% end %>
-
-             <div class="address-card back-white">
-              <a data-toggle="collapse" data-parent="#accordion" href="#add-1">+ Add Address</a>
-                <div id="add-1" class="collapse">
-                  <%= form_for @new_address, url: hola_user_addresses_path do |f| %>
-                    <%= render "hola_user_addresses/form", f: f %>
-                  <% end %>
+        <div class="address-container">
+          <% @addresses.each do |address| %>
+            <div class="address-card back-white">
+              <a data-toggle="collapse" data-parent="#accordion" href="#<%= address.address_type %>-add"><%= address.address_type.try(:capitalize) %></a>
+                <div id="<%= address.address_type %>-add" class="collapse in">
+                    <%= form_for address do |f| %>
+                      <%= render "hola_user_addresses/form", f: f %>
+                    <% end %>
                 </div>
-            </div>
-          <% end %>
+             </div>
+           <% end %>
 
+           <div class="address-card back-white">
+            <a data-toggle="collapse" data-parent="#accordion" href="#add-1">+ Add Address</a>
+              <div id="add-1" class="collapse">
+                <%= form_for @new_address, url: hola_user_addresses_path do |f| %>
+                  <%= render "hola_user_addresses/form", f: f %>
+                <% end %>
+              </div>
+          </div>
         </div>
       </div>
     </div>
