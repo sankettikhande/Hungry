@@ -1,0 +1,59 @@
+<div class="modal fade" id="login_modal" data-keyboard="false"  data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form data-async="true" data-target="msg" action= "/hola_session" method="post">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title text-center">Mobile Number Needed</h4>
+        </div>
+        <div class="modal-body">
+          <p class="text-center">We need you mobile number to show your data</p>
+            <div class="row">
+              <div class="col-xs-3 form-group">
+                <label class="control-label" style="vertical-align:middle;margin-bottom:-10px;">Name</label>
+              </div>
+              <div class="col-xs-9 form-group">
+                <%= text_field_tag :name, '', class: "form-control", placeholder: "Name" %>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col-xs-3 form-group">
+              <label class="control-label" style="vertical-align:middle;margin-bottom:-10px;">Mobile</label>
+            </div>
+            <div class="col-xs-9 form-group">
+              <%= text_field_tag :mobile, '', class: "form-control", placeholder:"10 digit mobile number" %>
+            </div>
+            <%= hidden_field :save_user_details, true %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+  $(document).ready(function(){
+    $('#login_modal').modal('show')
+    $('#login_modal').on('hidden.bs.modal', function () {
+      window.location = "/mobile"
+    })
+
+   $('form[data-async]').live('submit', function(event) {
+      var $form = $(this);
+      var $target = $($form.attr('data-target'));
+
+      $.ajax({
+        type: $form.attr('method'),
+        url: $form.attr('action'),
+        data: $form.serialize()
+      });
+
+      event.preventDefault();
+    });
+  })
+</script>
