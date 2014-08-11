@@ -5,8 +5,7 @@ class CookingToday < ActiveRecord::Base
   belongs_to :cheff
   belongs_to :food_item
 
-  validates :food_item_id, :presence => true
-  validates :cheff_id, :presence => true
+  validates_presence_of :cheff_id, :message => ": Chef's Name and Dish can't be blank"
   validates :date, :presence => true
 
   def name

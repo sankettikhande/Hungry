@@ -49,7 +49,7 @@
                       </div>
                     </li>
                     <li class="entity-name pv-icon"><%= oh.food_item.try(:meal_info).try(:name) %></li>
-                    <li class="entity-by"><%= oh.cheff.try(:chef_coordinate).try(:name) %></li>
+                    <li class="entity-by">By <%= oh.cheff.try(:chef_coordinate).try(:name) %></li>
                     <li class="entity-days">
                       <% if oh.order.date == Date.today %>
                         today

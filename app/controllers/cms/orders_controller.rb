@@ -66,7 +66,7 @@ class Cms::OrdersController < Cms::ContentBlockController
     end
     @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)), :order_status => "Waiting for Payment",
                              :name=>params[:orders][:name], :address=>params[:orders][:address],
-                             :phone_no=>params[:orders][:phone_no])
+                             :phone_no=>params[:orders][:mobile_no])
     @footer = "false"
     @@cart_items = view_context.collect_items(session[:cart])
 
