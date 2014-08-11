@@ -104,9 +104,9 @@ module ApplicationHelper
       return "Thank You!"
     when controller == "cms/cheffs" && action == "show_details"
       return "Meet the Chef"
-    when controller == "hola_users" && action == "signature_dishes"
+    when controller == "hola_users" && action == "signature_dishes" || action == "favourite_signature_dishes"
       return "Signature Dishes"
-    when controller == "hola_users" && action == "recipes"
+    when controller == "hola_users" && action == "recipes" || action == "favourite_recipes"
       return "Recipes"
     when controller == "hola_users" && action == "my_favorite_chefs"
       return "Favourites"
@@ -178,6 +178,10 @@ module ApplicationHelper
     end
   end
 
+  def set_class_active_favourite(action)
+    return "active" if action.split("_").first == "favourite"
+  end
+
   def chef_image(fav_chef)
     if fav_chef.cheff && fav_chef.cheff.picture
       return fav_chef.cheff.picture.image.url
@@ -224,7 +228,7 @@ module ApplicationHelper
   end
 
   def set_class_to_list(params)
-    if params[:popular].present? || params[:favorite].present?
+    if params[:popular].present? || params[:action].split("_").first == "favourite"
       return ""
     else
       "active"

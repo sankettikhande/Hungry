@@ -14,7 +14,7 @@
         <% if @favorite_chefs %>
           <div class='hola-container cuboid'>
             <% @favorite_chefs.each do |fav_chef|%>
-                <div class="item"><a href="#">
+                <div class="item"><a href="/chef-profile/<%= fav_chef.id %>">
                   <ul class="square e-recipe">
                     <li class="entity-card">
                       <div class="entity-image">
