@@ -18,15 +18,25 @@ class Order < ActiveRecord::Base
   end
 
   def self.save_user(params)
-    hola_user = HolaUser.find_by_phoneNumber(params[:orders][:phone_no])
+    hola_user = HolaUser.find_by_phoneNumber(params[:orders][:mobile_no])
     if params[:save_user_details]
       if hola_user
-        hola_user.update_attributes(:name => params[:orders][:name], :phoneNumber => params[:orders][:phone_no])
-        HolaUserAddress.create(:address => params[:orders][:address],
-                               :hola_user_id => hola_user.id) if !hola_user.hola_user_addresses.map(&:address).include?(params[:orders][:address].strip)
+        existing_adds = hola_user.hola_user_addresses.where(mobile_no: params[:orders][:mobile_no]).first
+        if existing_adds
+          existing_adds.update_attributes(params[:orders])
+        else
+          default = hola_user.hola_user_addresses.count == 0 ? true : false
+          adds = hola_user.hola_user_addresses.new(params[:orders])
+          adds.default = default
+          adds.address_type = 'Home'
+          adds.save
+        end
       else
-        hola_user = HolaUser.create(:name => params[:orders][:name], :phoneNumber => params[:orders][:phone_no])
-        HolaUserAddress.create(:address => params[:orders][:address].strip, :hola_user_id => hola_user.id)  if hola_user
+        hola_user = HolaUser.create(:name => params[:orders][:name], :phoneNumber => params[:orders][:mobile_no])
+        adds = hola_user.hola_user_addresses.new(params[:orders])
+        adds.default = true
+        adds.address_type = 'Home'
+        adds.save
       end
     end
     return hola_user
