@@ -26,8 +26,6 @@ class HolaUsersController < ApplicationController
   def recipes
     if params[:recipe_name].present?
       @searched_recipe = FoodItem.joins("INNER JOIN meal_infos on meal_infos.food_item_id = food_items.id").where("meal_infos.name like ?", "%#{params[:recipe_name]}%") if params[:recipe_name]
-    elsif params[:favorite].present?
-      @recipes = hola_user.my_favorite_recipes if hola_user
     elsif params[:popular].present?
       @recipes = HolaUser.most_popular_recipes
     else
@@ -48,8 +46,6 @@ class HolaUsersController < ApplicationController
     hola_user = hola_current_user
     if params[:dish].present?
       @searched_dish = FoodItem.joins("INNER JOIN meal_infos on meal_infos.food_item_id = food_items.id").where("meal_infos.name like ?", "%#{params[:dish]}%") if params[:dish]
-    elsif params[:favorite].present?
-      @signature_dishes = hola_user.favorite_signature_dishes if hola_user
     elsif params[:popular].present?
       @signature_dishes = HolaUser.most_popular_signature_dishes
     else
