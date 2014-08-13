@@ -173,13 +173,8 @@ $(document).ready(function(){
         });
     });
     $("#submit-order-button").click(function(e){
-        if($("#u-name").val() == "" || $("#u-contact").val() == "" || $("#u-building-name").val() == "" ||
-            $("#u-street").val() == "" || $("#u-city").val() == "" || $("#u-pin").val() == ""){
-            e.preventDefault();
-          $("#submit-order-button").addClass("text-grey");
-        }else{
-            $("#submit_order").submit();
-        }
+        $("#submit_order").submit();
+
     })
     $("#submit_order input").focus(function(){
         $("#submit_order input").removeClass('active');
@@ -275,42 +270,7 @@ $(document).ready(function(){
 
 //        validation for cart select payment method
     $(document).ready(function(){
-        function checkvalidation(el){
-            $("#submit_order").validationEngine('attach', {
-                validationEventTrigger: "keyup",
-                onFieldFailure: function(){
-                    $("#submit-order-button").addClass("text-grey")
-                },
-                onFieldSuccess: function(){
-                    if ($("#submit_order").validationEngine('validate')){
-                        $("#submit-order-button").removeClass("text-grey")
-                    }else{
-                        hidePrompt(el)
-                    }
-                }
-            });
-        }
-        function hidePrompt(el){
-            if ($(el).get(0) === $("#u-name").get(0)){
-               $("#u-contact").validationEngine('hide')
-               $("#u-address").validationEngine('hide')
-            }else if($(el).get(0) === $("#u-contact").get(0)){
-                $("#u-name").validationEngine('hide')
-                $("#u-address").validationEngine('hide')
-            }else{
-                $("#u-contact").validationEngine('hide')
-                $("#u-name").validationEngine('hide')
-            }
-        }
-
-        if($("#u-name").val() != "" && $("#u-contact").val() != "" && $("#u-building-name").val() != "" &&
-          $("#u-street").val() != "" && $("#u-city").val() != "" && $("#u-pin").val() != "") {
-            $("#submit-order-button").removeClass("text-grey")
-        }
-        $("#u-name, #u-contact, #u-landline, #u-building-name, #u-street, #u-city, #u-pin").blur(function(){
-            checkvalidation(this)
-        })
-
+        $("#submit_order").validationEngine()
     })
 
     $('.signature-modal').on('hide.bs.modal', function (e) {
