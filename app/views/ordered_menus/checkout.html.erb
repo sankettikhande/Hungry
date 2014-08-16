@@ -86,28 +86,32 @@
   </div>
 </div>
 
-<div class="container-fluid back-white seperator-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="show-promo">
-          <li class="promo">Just Mains, no sides?<span class="add-promo"><a href="#">Add now</a></span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-fluid back-white seperator-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="show-promo">
-          <li class="promo">What? No Dessert!<span class="add-promo"><a href="#">Add now</a></span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+
+<%= session[:cart] %>
+<% if !session[:cart].blank? %>
+    <% session[:cart].each do |cart_item| %>
+        <% cart_item.each do |order_id, item_attrs| %>
+            <div class="container-fluid back-white seperator-3" id="<%= order_id %>">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <ul class="show-promo">
+                          <li class="promo">Just <%= item_attrs['category'] %>, no sides?
+                            <span class="add-promo">
+                                <a href="#">Add now</a>
+                            </span>
+                          </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <% end %>
+    <% end %>
+
+<% end %>
+
 <div class="container-fluid back-white seperator-4">
   <div class="row">
     <div class="col-xs-12">

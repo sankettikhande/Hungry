@@ -12,9 +12,9 @@ class Cms::OrdersController < Cms::ContentBlockController
        session[:cart].each do |item|
          session[:cart].delete(item) if item.keys.flatten.include?(params[:item_id])
        end
-       session[:cart] << ({params[:item_id]=>{'quantity'=> params[:qty], 'price' => params[:price], 'date' => params[:date], 'dish_name' => params[:dish_name] }})
+       session[:cart] << ({params[:item_id]=>{'quantity'=> params[:qty], 'price' => params[:price], 'date' => params[:date], 'dish_name' => params[:dish_name],'category' => params[:category] }})
     else
-      session[:cart] << ({params[:item_id]=>{'quantity'=> params[:qty], 'price' => params[:price], 'date' => params[:date], 'dish_name' => params[:dish_name] }})
+      session[:cart] << ({params[:item_id]=>{'quantity'=> params[:qty], 'price' => params[:price], 'date' => params[:date], 'dish_name' => params[:dish_name],'category' => params[:category] }})
     end
     @total = 0
     if !session[:cart].nil?
