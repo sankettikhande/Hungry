@@ -37,4 +37,29 @@ class FoodItem < ActiveRecord::Base
     user.blank? ? nil : reviews.where(hola_user_id: user.id).first
   end
 
+  def in_cooking_today_list?
+    food_item_ids = CookingToday.sorted_by_qty_left.map(&:food_item_id)
+    food_item_ids.include?(self.id)
+  end
+
+  def has_ingredients?
+    ingredients = []
+    recipe.sub_menus.each do |sub_menu|
+      ingredients << sub_menu.ingredients
+    end
+    ingredients.flatten.present?
+  end
+
+  def has_preparation_steps?
+    preparation_steps = []
+    recipe.sub_menus.each do |sub_menu|
+      preparation_steps << sub_menu.prepration_steps
+    end
+    preparation_steps.flatten.present?
+  end
+
+  def has_serving_tips?
+    recipe.serving_tips.present?
+  end
+
 end
