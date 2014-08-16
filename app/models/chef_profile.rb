@@ -5,4 +5,5 @@ class ChefProfile < ActiveRecord::Base
                   :brand_info, :brand_banner, :classification
   validates_presence_of :about_me
   validates_presence_of :brand_represented
+  validates_presence_of :classification
 end
