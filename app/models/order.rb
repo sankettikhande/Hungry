@@ -1,13 +1,17 @@
 class Order < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
+  @@order_statuses = ["Created", "Confirmed", "Dispatched", "Damaged", "Delivered", "Canceled", "Returned", "Waiting for Payment"]
   attr_accessor :skip_callbacks
+  cattr_accessor :order_statuses
 
   serialize :payment_gateway_response, Hash
 
   has_many :ordered_menus
   belongs_to :hola_user
 
-  validates :date, :presence => true
+  validates :date, :order_status, :presence => true
+  validates :order_status, inclusion: {in: @@order_statuses}
+
 
 
   def self.create_signature_menus(order, signature_dish, menus)
@@ -18,7 +22,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.save_user(params)
-    hola_user = HolaUser.find_by_phoneNumber(params[:orders][:mobile_no])
+    hola_user = HolaUser.find_by_id(params[:hola_user_id])
     if params[:save_user_details]
       if hola_user
         existing_adds = hola_user.hola_user_addresses.where(mobile_no: params[:orders][:mobile_no]).first
@@ -49,5 +53,16 @@ class Order < ActiveRecord::Base
     return date_diff
   end
 
+  def bill_amount
+    ordered_menus.map(&:ordered_menu_bill).sum
+  end
+
+  def build_session
+    session_cart_items = []
+    ordered_menus.each do |menu|
+      session_cart_items << {"#{menu.dish_id}" =>{'quantity'=> menu.quantity, 'price' => menu.rate, 'date' => date, 'dish_name' => menu.food_item.name }}
+    end
+    session_cart_items
+  end
 
 end

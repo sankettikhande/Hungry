@@ -11,8 +11,13 @@
             <div class="hola-cards">
               <ul class="social-cards text-center">
 
-        	<li><a href="#" onclick="parent.socail_click('http://www.facebook.com/sharer.php?u=http://www.holachef.com')"><span><img class="img-responsive center-block" src="/assets/facebook-icon.png" alt="Facebook"></a></span></li>
-          <li><a href="#" onclick="parent.socail_click('https://twitter.com/intent/tweet?text=Check out this&url=http://www.holachef.com')"><span><img class="img-responsive center-block" src="/assets/twitter-icon.png" alt="Twitter"></a></span></li>
+        	<li class="in_browser" style="display:none"><a href="#" onclick="socail_click('http://www.facebook.com/sharer.php?u=http://www.holachef.com')"><span><img class="img-responsive center-block" src="/assets/facebook-icon.png" alt="Facebook"></a></span></li>
+
+          <li class="in_iframe" ><a href="#" onclick="parent.socail_click('http://www.facebook.com/sharer.php?u=http://www.holachef.com')"><span><img class="img-responsive center-block" src="/assets/facebook-icon.png" alt="Facebook"></a></span></li>
+
+          <li class="in_browser" style="display:none"><a href="#" onclick="socail_click('https://twitter.com/intent/tweet?text=Check out this&url=http://www.holachef.com')"><span><img class="img-responsive center-block" src="/assets/twitter-icon.png" alt="Twitter"></a></span></li>
+
+          <li class="in_iframe"><a href="#" onclick="parent.socail_click('https://twitter.com/intent/tweet?text=Check out this&url=http://www.holachef.com')"><span><img class="img-responsive center-block" src="/assets/twitter-icon.png" alt="Twitter"></a></span></li>
 	<li><a href="/tell_friends"><span><img class="img-responsive center-block" src="/assets/email-icon.png" alt="Email"></a></span></li>
           <li><a href="#"><span><img class="img-responsive center-block" src="/assets/cell-icon.png" alt="Call"></a></span></li>
         </ul>
@@ -24,3 +29,16 @@
 <%= render 'layouts/dynamik_footer', message: "Sharing is caring" %>
 </div>
 <!-- #wrap ends -->
+<%= content_for :bottom_content do %>
+  <script>
+    $("document").ready(function(){
+      if (window!=window.top){
+        $(".in_iframe").show()
+        $(".in_browser").hide()
+      }else{
+        $(".in_iframe").hide()
+        $(".in_browser").show()
+      }
+    })
+  </script>
+<% end %>

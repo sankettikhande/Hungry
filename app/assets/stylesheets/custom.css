@@ -494,7 +494,8 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 .booked-orders li.food-bill span.item-name {width:61%;text-transform: capitalize;text-align: left;}
 .booked-orders li.food-bill span.item-qty {width:16.66666667%;text-align: right;}
 .booked-orders li.food-bill span.item-cost {width:16.66666667%;text-align: right;}
-.booked-orders li.food-bill span.item-remove {width:5.66666667%;text-align: right;}
+.booked-orders li.food-bill span.item-edit {width:3%;text-align: right;}
+.booked-orders li.food-bill span.item-remove {width:2%;text-align: right;}
 .booked-orders li.food-bill span.item-remove a {color:#333;}
 
 

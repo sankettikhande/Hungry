@@ -1,7 +1,7 @@
 require "#{Rails.root}/lib/citrus_lib.rb"
 include ApplicationHelper
 class Cms::OrdersController < Cms::ContentBlockController
-  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm,
+  skip_before_filter :login_required,:cms_access_required, :only => [:email_invoice, :set_cart, :payment_gateway,:order_confirm,
                                                                      :remove_from_cart, :create_signature_order, :callback,
                                                                      :submit_payment_form]
   def set_cart
@@ -78,6 +78,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @footer = "false"
     @order = Order.find(params[:order_id])
+    @order.update_attribute(:order_status, "Confirmed")
     session[:cart] = [] #if @order.
     if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
       @@cart_items.each do |item_id, quantity|
@@ -114,9 +115,10 @@ class Cms::OrdersController < Cms::ContentBlockController
     @statusmsg="Forged access"
     params.delete("controller")
     params.delete("action")
+    @txstatus = params[:TxStatus]
     @order = Order.find(params[:TxId])
     if params[:TxStatus] == "SUCCESS"
-      @order.update_attributes(:order_status => "Payment Done", :payment_gateway_response => params,
+      @order.update_attributes(:order_status => "Confirmed", :payment_gateway_response => params,
                                :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
                                :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
                                :addressCity=>params[:addressCity], :addressState=>params[:addressState],
@@ -129,7 +131,6 @@ class Cms::OrdersController < Cms::ContentBlockController
         food_item = FoodItem.find(menu.dish_id)
         food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + menu.quantity.to_i)) if food_item
       end
-      session[:cart] = []
     else
       @order.update_attributes(:payment_gateway_response => params, :firstName => params[:firstName],
                                :lastName => params[:lastName],:email => params[:email],
@@ -141,6 +142,8 @@ class Cms::OrdersController < Cms::ContentBlockController
     if @status==true
       if @txstatus == 'CANCELED'
         @statusmsg=@txmsg
+        session[:cart] = @order.build_session
+        redirect_to "/review_order"
       elsif @txstatus == 'SUCCESS'
         ct = CitrusLib.new
         ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
@@ -150,12 +153,13 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           @statusmsg = 'Verified Response'
         end
+        respond_to do |format|
+          format.html {render :layout => 'application'}
+        end
       end
     end
 
-    respond_to do |format|
-      format.html {render :layout => 'application'}
-    end
+
   end
 
   def create_signature_order
@@ -180,6 +184,17 @@ class Cms::OrdersController < Cms::ContentBlockController
     end
     respond_to do |format|
       format.js
+    end
+  end
+
+  def email_invoice
+    email_details = {:from => "admin@holachef.com", :recepients => params[:email_to], :subject => "HolaChef Invoice Details"}
+    if params[:email_to].present? && Notifier.email_invoice_details(email_details, params[:order_id]).deliver
+      flash[:notice] = "Invoice has been sent to your email address."
+      redirect_to "/mobile"
+    else
+      flash[:error] = "Could not send invoice."
+      redirect_to "/order-confirm/#{params[:order_id]}"
     end
   end
 end
