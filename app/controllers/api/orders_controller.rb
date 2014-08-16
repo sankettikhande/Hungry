@@ -1,6 +1,6 @@
 class Api::OrdersController < ApiController
   def index
-    @orders = Order.where("hola_user_id IS NOT NULL")
+    @orders = Order.where("DATE(created_at) = '#{Date.today}'")
   end
 
   def show

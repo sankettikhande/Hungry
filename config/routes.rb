@@ -44,6 +44,7 @@ Holachef::Application.routes.draw do
 
   match '/tell_friends' => 'social_shares#tell_friends'
   post '/send_referal_email' => 'social_shares#send_referal_email'
+  post '/email_invoice/:order_id' => 'Cms::orders#email_invoice'
 
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
