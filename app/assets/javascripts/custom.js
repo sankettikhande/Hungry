@@ -396,4 +396,13 @@ $(document).ready(function(){
       'dataType': 'script'
     })
   });
+
+  $('#orders_address_type').change(function(){
+    $.ajax({
+      'url': '/get_address_by_type',
+      'type': "GET",
+      'data' : {'address_type': $(this).val()},
+      'dataType': 'script'
+    })
+  });
 });

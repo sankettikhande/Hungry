@@ -22,7 +22,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.save_user(params)
-    hola_user = HolaUser.find_by_phoneNumber(params[:orders][:mobile_no])
+    hola_user = HolaUser.find_by_id(params[:hola_user_id])
     if params[:save_user_details]
       if hola_user
         existing_adds = hola_user.hola_user_addresses.where(mobile_no: params[:orders][:mobile_no]).first
