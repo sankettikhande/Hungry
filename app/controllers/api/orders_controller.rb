@@ -1,4 +1,4 @@
-class Api::OrdersController < ApplicationController
+class Api::OrdersController < ApiController
   def index
     @orders = Order.where("hola_user_id IS NOT NULL")
   end
