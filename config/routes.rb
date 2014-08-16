@@ -76,6 +76,12 @@ Holachef::Application.routes.draw do
 
   resources :hola_session, only: [:create]
 
+  namespace :api do
+    resources :orders do
+      put :update_status
+    end
+  end
+
   #end
 
   # The priority is based upon order of creation:

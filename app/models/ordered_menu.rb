@@ -20,4 +20,8 @@ class OrderedMenu < ActiveRecord::Base
     end
     return total_price
   end
+
+  def ordered_menu_bill
+    rate * quantity
+  end
 end

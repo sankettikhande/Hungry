@@ -1,13 +1,17 @@
 class Order < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
+  @@order_statuses = ["Created", "Confirmed", "Dispatched", "Damaged", "Delivered", "Canceled", "Returned"]
   attr_accessor :skip_callbacks
+  cattr_accessor :order_statuses
 
   serialize :payment_gateway_response, Hash
 
   has_many :ordered_menus
   belongs_to :hola_user
 
-  validates :date, :presence => true
+  validates :date, :order_status, :presence => true
+  validates :order_status, inclusion: {in: @@order_statuses}
+
 
 
   def self.create_signature_menus(order, signature_dish, menus)
@@ -49,5 +53,8 @@ class Order < ActiveRecord::Base
     return date_diff
   end
 
+  def bill_amount
+    ordered_menus.map(&:ordered_menu_bill).sum
+  end
 
 end
