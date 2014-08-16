@@ -253,6 +253,10 @@ $(document).ready(function(){
       $("#friend_referal_form").validationEngine();
     });
 
+    $('#invoice-submit').click(function(){
+      $("#invoice-form").validationEngine();
+    });
+
     $('#signature-submit').click(function(){
         var valid = $("#signature_form").validationEngine('validate');
         if(valid == true){

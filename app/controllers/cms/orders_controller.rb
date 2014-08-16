@@ -1,7 +1,7 @@
 require "#{Rails.root}/lib/citrus_lib.rb"
 include ApplicationHelper
 class Cms::OrdersController < Cms::ContentBlockController
-  skip_before_filter :login_required,:cms_access_required, :only => [:set_cart, :payment_gateway,:order_confirm,
+  skip_before_filter :login_required,:cms_access_required, :only => [:email_invoice, :set_cart, :payment_gateway,:order_confirm,
                                                                      :remove_from_cart, :create_signature_order, :callback,
                                                                      :submit_payment_form]
   def set_cart
@@ -184,6 +184,17 @@ class Cms::OrdersController < Cms::ContentBlockController
     end
     respond_to do |format|
       format.js
+    end
+  end
+
+  def email_invoice
+    email_details = {:from => "admin@holachef.com", :recepients => params[:email_to], :subject => "HolaChef Invoice Details"}
+    if params[:email_to].present? && Notifier.email_invoice_details(email_details, params[:order_id]).deliver
+      flash[:notice] = "Invoice has been sent to your email address."
+      redirect_to "/mobile"
+    else
+      flash[:error] = "Could not send invoice."
+      redirect_to "/order-confirm/#{params[:order_id]}"
     end
   end
 end
