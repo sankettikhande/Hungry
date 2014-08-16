@@ -4,6 +4,12 @@
   <div class="col-xs-12">
     <div id="hola-container">
       <% today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
+      <% if flash[:notice] %>
+        <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:error] %>
+        <div class="alert alert-danger" role="alert"><%= flash[:notice] %></div>
+      <% end %>
       <% if @todays_menu %>
           <% @todays_menu.each do |menu| %>
               <% cart_menu = collect_cart_items(menu) if !menu.nil? %>

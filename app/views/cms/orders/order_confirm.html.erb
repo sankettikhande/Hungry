@@ -1,4 +1,4 @@
-
+  <meta http-equiv="refresh" content="10;url=/mobile" />
   <div class="container-fluid back-white">
     <div class="seperator-10 card-header">
       <p>Order Confirmation</p>
@@ -21,12 +21,16 @@
       <p>Need an invoice?</p>
     </div>
   </div> <!-- fluid container ends -->
-
-  <div class="container-fluid back-white seperator-2">
-    <div class="card-body">
-      <input type="email" class="lower-only active" placeholder="Enter email" id="u-email">
+  <%= form_tag "/email_invoice/#{@order.id}", id: "invoice-form" do |f| %>
+    <div class="container-fluid back-white seperator-2">
+      <div class="form-group card-body">
+        <input type="email" class="lower-only active validate[required]" name="email_to" placeholder="Enter email" id="u-email" data-prompt-Position = "topLeft:60" />
+      </div>
+      <div class="seperator-10">
+        <button class="btn btn-warning" type="submit" id="invoice-submit">Submit</button>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="container-fluid back-white seperator-10">
     <div class="seperator-10 card-header">
@@ -40,6 +44,14 @@
         on your next order..</p>
       <div class="seperator-10 text-center">
         <button class="btn btn-golden" type="button" id="tweet-hola">Tweet</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid back-white seperator-2">
+    <div class="card-body">
+      <div class="seperator-10">
+        <%= link_to "More Cravings", "/mobile", :class => "btn btn-warning" %>
       </div>
     </div>
   </div>
