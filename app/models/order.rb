@@ -57,4 +57,12 @@ class Order < ActiveRecord::Base
     ordered_menus.map(&:ordered_menu_bill).sum
   end
 
+  def build_session
+    session_cart_items = []
+    ordered_menus.each do |menu|
+      session_cart_items << {"#{menu.dish_id}" =>{'quantity'=> menu.quantity, 'price' => menu.rate, 'date' => date, 'dish_name' => menu.food_item.name }}
+    end
+    session_cart_items
+  end
+
 end

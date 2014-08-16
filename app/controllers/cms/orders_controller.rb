@@ -131,7 +131,6 @@ class Cms::OrdersController < Cms::ContentBlockController
         food_item = FoodItem.find(menu.dish_id)
         food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + menu.quantity.to_i)) if food_item
       end
-      session[:cart] = []
     else
       @order.update_attributes(:payment_gateway_response => params, :firstName => params[:firstName],
                                :lastName => params[:lastName],:email => params[:email],
@@ -143,7 +142,8 @@ class Cms::OrdersController < Cms::ContentBlockController
     if @status==true
       if @txstatus == 'CANCELED'
         @statusmsg=@txmsg
-        redirect_to "/"
+        session[:cart] = @order.build_session
+        redirect_to "/review_order"
       elsif @txstatus == 'SUCCESS'
         ct = CitrusLib.new
         ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
