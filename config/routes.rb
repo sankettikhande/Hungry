@@ -13,6 +13,7 @@ Holachef::Application.routes.draw do
 
   match "/cms" => "cms/dashboard#index"
   match '/review_order' => 'ordered_menus#checkout', :as => :review_order
+  match '/get_address_by_type' => 'ordered_menus#get_address_by_type'
 
   match '/recipe/:id'=>'Cms::food_items#show_recipe'
   match '/signature/:dish_name'=> 'Cms::food_items#signature_dishes', :as => :signature_dish
