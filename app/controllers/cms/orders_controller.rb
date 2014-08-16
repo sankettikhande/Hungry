@@ -78,6 +78,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @footer = "false"
     @order = Order.find(params[:order_id])
+    @order.update_attribute(:order_status, "Confirmed")
     session[:cart] = [] #if @order.
     if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
       @@cart_items.each do |item_id, quantity|
@@ -116,7 +117,7 @@ class Cms::OrdersController < Cms::ContentBlockController
     params.delete("action")
     @order = Order.find(params[:TxId])
     if params[:TxStatus] == "SUCCESS"
-      @order.update_attributes(:order_status => "Payment Done", :payment_gateway_response => params,
+      @order.update_attributes(:order_status => "Confirmed", :payment_gateway_response => params,
                                :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
                                :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
                                :addressCity=>params[:addressCity], :addressState=>params[:addressState],
