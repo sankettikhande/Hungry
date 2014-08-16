@@ -34,6 +34,7 @@
           <% end %>
           <% if @cooking_today.food_item.meal_info.picture && @cooking_today.food_item.meal_info.picture.image? %>
               <div><%= link_to "","/recipe/#{@cooking_today.food_item.meal_info.id}",:class => "add-lens" %></div>
+              <div class="recipe-name" style="display:none;"><%= cart_menu[:dish_name]%></div>
               <div class="add-heart"></div>
               <div class="recipe-image">
                 <%= image_tag @cooking_today.food_item.meal_info.picture.image.url, :alt=>"#{ @cooking_today.food_item.meal_info.name}", :class => "img-responsive center-block" %>

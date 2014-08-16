@@ -172,6 +172,11 @@ $(document).ready(function(){
             'dataType': 'script'
         });
     });
+
+    $("span.item-edit").live('click',function(){
+      $("span.item-name").click();
+    });
+
     $("#submit-order-button").click(function(e){
         $("#submit_order").submit();
 
