@@ -19,6 +19,9 @@
                         </span>
                         <span class="item-qty"><%= order_attrs['quantity'] %></span>
                         <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
+                        <span class="item-edit" style="cursor: pointer;">
+                          <i class="fa fa-edit"></i>
+                        </span>
                         <span class="item-remove">
                            <a href="#" data-item="<%= order_id %>"><i class="fa fa-times-circle"></i></a>
                         </span>
@@ -118,16 +121,17 @@
           <li class="del-d del-warning roboto">Orders are delivered in ~30min of placing order</li>
           <%# hola_user = get_user_details %>
           <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
-              <li class="del-d roboto"><input value="<%= @adds.name %>" class="lower-only active validate[required]" name="orders[name]" type="text" placeholder="Name" id="u-name" maxlength="50" data-prompt-position="topLeft:105"></li>
-              <li class="del-d roboto"><input value="<%= @adds.mobile_no %>" class="lower-only validate[required]" name="orders[mobile_no]" type="tel" placeholder="Mobile No" id="u-contact" maxlength="10" data-prompt-position="topLeft:105"></li>
-              <li class="del-d roboto"><input value="<%= @adds.landline_no %>" class="lower-only" name="orders[landline_no]" type="tel" placeholder="Landline No" id="u-landline" maxlength="12" data-prompt-position="topLeft:105"></li>
-              <li class="del-d roboto"><input value="<%= @adds.building_name %>" class="lower-only validate[required]" name="orders[building_name]" type="text" placeholder="Building Name" id="u-building-name" maxlength="50" data-prompt-position="topLeft:105"></li>
-              <li class="del-d roboto"><input value="<%= @adds.street %>" class="lower-only validate[required]" name="orders[street]" type="text" placeholder="Street" id="u-street" maxlength="50" data-prompt-position="topLeft:105"></li>
-              <li class="del-d roboto"><input value="<%= @adds.city %>" class="lower-only validate[required]" name="orders[city]" type="text" placeholder="City" id="u-city" maxlength="50" data-prompt-position="topLeft:105"></li>
-              <li class="del-d roboto"><input value="<%= @adds.pin %>" class="lower-only validate[required]" name="orders[pin]" type="text" placeholder="Pin" id="u-pin" maxlength="8" data-prompt-position="topLeft:105"></li>
-              <li class="del-d roboto"><input value="<%= @adds.landmark %>" class="lower-only" name="orders[landmark]" type="text" placeholder="Landmark" id="u-landmark" maxlength="50" data-prompt-position="topLeft:105"></li>
+              <% if @adds_types.present? %>
+                <li class="del-d roboto"><%= select_tag "orders[address_type]", options_for_select(@adds_types, @adds.address_type) %></li>
+              <% end %>
+              <div id="adds_fields">
+                <%= render :partial => "address_fields", :locals => {:adds => @adds} %>
+              </div>
 
               <li class="del-d check-mark roboto text-center hola-ccbox">
+                <% if @hola_user.present? %>
+                  <%= hidden_field_tag "hola_user_id", @hola_user.id %>
+                <% end %>
                 <input class="css-checkbox" type="checkbox" id="save-del-details" checked="checked" name="save_user_details">
                 <label class="css-label roboto" for="save-del-details">Save my details</label></li>
           <% end -%>

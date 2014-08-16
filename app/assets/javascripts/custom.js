@@ -172,6 +172,11 @@ $(document).ready(function(){
             'dataType': 'script'
         });
     });
+
+    $("span.item-edit").live('click',function(){
+      $("span.item-name").click();
+    });
+
     $("#submit-order-button").click(function(e){
         $("#submit_order").submit();
 
@@ -392,6 +397,15 @@ $(document).ready(function(){
       'url': '/hola_user_addresses/set_default',
       'type': "POST",
       'data' : {'address_id': address_id},
+      'dataType': 'script'
+    })
+  });
+
+  $('#orders_address_type').change(function(){
+    $.ajax({
+      'url': '/get_address_by_type',
+      'type': "GET",
+      'data' : {'address_type': $(this).val()},
       'dataType': 'script'
     })
   });

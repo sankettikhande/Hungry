@@ -11,7 +11,13 @@
         </li>
         <li class="user-name">
           <h3><%= link_to "#{cart_menu[:cheff_name]}", "/chef-profile/#{@cooking_today.cheff.id}" %>
-            <span class="user-level"><%= @cooking_today.cheff.chef_profile.brand_represented.camelize %></span></h3>
+            <span class="user-level">
+              <span class="comma"><%= @cooking_today.cheff.chef_profile.brand_represented %></span>
+              <% if @cooking_today.cheff.chef_profile.classification.present? %>
+                <span class="comma"><%= @cooking_today.cheff.chef_profile.classification %></span>
+              <% end %>
+            </span>
+          </h3>
         </li>
       </ul>
     </div>
@@ -28,6 +34,7 @@
           <% end %>
           <% if @cooking_today.food_item.meal_info.picture && @cooking_today.food_item.meal_info.picture.image? %>
               <div><%= link_to "","/recipe/#{@cooking_today.food_item.meal_info.id}",:class => "add-lens" %></div>
+              <div class="recipe-name" style="display:none;"><%= cart_menu[:dish_name]%></div>
               <div class="add-heart"></div>
               <div class="recipe-image">
                 <%= image_tag @cooking_today.food_item.meal_info.picture.image.url, :alt=>"#{ @cooking_today.food_item.meal_info.name}", :class => "img-responsive center-block" %>

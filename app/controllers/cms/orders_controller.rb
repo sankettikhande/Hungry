@@ -78,6 +78,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @footer = "false"
     @order = Order.find(params[:order_id])
+    @order.update_attribute(:order_status, "Confirmed")
     session[:cart] = [] #if @order.
     if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
       @@cart_items.each do |item_id, quantity|
@@ -114,9 +115,10 @@ class Cms::OrdersController < Cms::ContentBlockController
     @statusmsg="Forged access"
     params.delete("controller")
     params.delete("action")
+    @txstatus = params[:TxStatus]
     @order = Order.find(params[:TxId])
     if params[:TxStatus] == "SUCCESS"
-      @order.update_attributes(:order_status => "Payment Done", :payment_gateway_response => params,
+      @order.update_attributes(:order_status => "Confirmed", :payment_gateway_response => params,
                                :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
                                :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
                                :addressCity=>params[:addressCity], :addressState=>params[:addressState],
@@ -141,6 +143,7 @@ class Cms::OrdersController < Cms::ContentBlockController
     if @status==true
       if @txstatus == 'CANCELED'
         @statusmsg=@txmsg
+        redirect_to "/"
       elsif @txstatus == 'SUCCESS'
         ct = CitrusLib.new
         ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
@@ -150,12 +153,13 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           @statusmsg = 'Verified Response'
         end
+        respond_to do |format|
+          format.html {render :layout => 'application'}
+        end
       end
     end
 
-    respond_to do |format|
-      format.html {render :layout => 'application'}
-    end
+
   end
 
   def create_signature_order

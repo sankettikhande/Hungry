@@ -23,7 +23,12 @@
                   <%= image_tag @chef.picture.image.url, :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" if @chef.picture %>
                 </li>
                 <li class="profile user-name"><%= @chef.chef_coordinate.name %></li>
-                <li class="profile user-level"><%= @chef.chef_profile.brand_represented if @chef.chef_profile %></li>
+                <li class="profile user-level">
+                  <span class="comma"><%= @chef.chef_profile.brand_represented if @chef.chef_profile %></span>
+                  <% if @chef.chef_profile.classification.present?  %>
+                    <span class="comma"><%= @chef.chef_profile.classification if @chef.chef_profile %></span>
+                  <% end %>
+                </li>
                 <li class="profile user-city">
                   <span class="city">
                     <% if @chef.chef_coordinate.locality.present? %>
