@@ -19,6 +19,9 @@
                         </span>
                         <span class="item-qty"><%= order_attrs['quantity'] %></span>
                         <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
+                        <span class="item-edit" style="cursor: pointer;">
+                          <i class="fa fa-edit"></i>
+                        </span>
                         <span class="item-remove">
                            <a href="#" data-item="<%= order_id %>"><i class="fa fa-times-circle"></i></a>
                         </span>
