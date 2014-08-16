@@ -115,6 +115,7 @@ class Cms::OrdersController < Cms::ContentBlockController
     @statusmsg="Forged access"
     params.delete("controller")
     params.delete("action")
+    @txstatus = params[:TxStatus]
     @order = Order.find(params[:TxId])
     if params[:TxStatus] == "SUCCESS"
       @order.update_attributes(:order_status => "Confirmed", :payment_gateway_response => params,
@@ -142,6 +143,7 @@ class Cms::OrdersController < Cms::ContentBlockController
     if @status==true
       if @txstatus == 'CANCELED'
         @statusmsg=@txmsg
+        redirect_to "/"
       elsif @txstatus == 'SUCCESS'
         ct = CitrusLib.new
         ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
@@ -151,12 +153,13 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           @statusmsg = 'Verified Response'
         end
+        respond_to do |format|
+          format.html {render :layout => 'application'}
+        end
       end
     end
 
-    respond_to do |format|
-      format.html {render :layout => 'application'}
-    end
+
   end
 
   def create_signature_order
