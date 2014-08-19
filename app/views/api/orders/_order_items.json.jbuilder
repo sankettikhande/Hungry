@@ -1,3 +1,4 @@
+json.id order.id
 json.customer_name order.try(:hola_user).try(:name)
 json.customer_contact_number order.try(:hola_user).try(:phoneNumber)
 json.address do
