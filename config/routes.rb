@@ -80,7 +80,7 @@ Holachef::Application.routes.draw do
 
   namespace :api do
     resources :orders do
-      put :update_status
+      get :update_status
     end
   end
 
