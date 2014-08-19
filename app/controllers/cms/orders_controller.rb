@@ -65,8 +65,12 @@ class Cms::OrdersController < Cms::ContentBlockController
       end
     end
     @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)), :order_status => "Waiting for Payment",
-                             :name=>params[:orders][:name], :address=>params[:orders][:address],
-                             :phone_no=>params[:orders][:mobile_no])
+                              :name=>params[:orders][:name],
+                              :addressStreet1=>params[:orders][:building_name],
+                              :addressStreet2=>params[:orders][:street],
+                              :addressCity=>params[:orders][:city],
+                              :addressZip=>params[:orders][:pin],
+                              :phone_no=>params[:orders][:mobile_no])
     @footer = "false"
     @@cart_items = view_context.collect_items(session[:cart])
 
@@ -131,19 +135,13 @@ class Cms::OrdersController < Cms::ContentBlockController
         food_item = FoodItem.find(menu.dish_id)
         food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + menu.quantity.to_i)) if food_item
       end
-    else
-      @order.update_attributes(:payment_gateway_response => params, :firstName => params[:firstName],
-                               :lastName => params[:lastName],:email => params[:email],
-                               :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
-                               :addressCity=>params[:addressCity], :addressState=>params[:addressState],
-                               :addressCountry=>params[:addressCountry],:addressZip=>params[:addressZip])
     end
     @status=true
     if @status==true
       if @txstatus == 'CANCELED'
         @statusmsg=@txmsg
         session[:cart] = @order.build_session
-        redirect_to "/review_order"
+        render "payment_gateway", :layout => 'application'
       elsif @txstatus == 'SUCCESS'
         ct = CitrusLib.new
         ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
@@ -154,9 +152,12 @@ class Cms::OrdersController < Cms::ContentBlockController
           @statusmsg = 'Verified Response'
         end
         respond_to do |format|
-          format.html {render :layout => 'application'}
+          format.html {render 'order_confirm',:layout => 'application'}
         end
+      else
+        render "payment_gateway", :layout => 'application'
       end
+
     end
 
 
