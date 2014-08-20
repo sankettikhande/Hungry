@@ -89,31 +89,33 @@
   </div>
 </div>
 
-
-<%= session[:cart] %>
 <% if !session[:cart].blank? %>
+    <% categories = [] %>
     <% session[:cart].each do |cart_item| %>
-        <% cart_item.each do |order_id, item_attrs| %>
-            <div class="container-fluid back-white seperator-3" id="<%= order_id %>">
+        <% cart_item.each do |key, value| %>
+            <% categories << value["category"] %>
+        <% end %>
+    <% end %>
+     <% remaining_categories = get_remaining_category(categories) %>
+        <% remaining_categories.each do |remaining_categories| %>
+            <div class="container-fluid back-white seperator-3">
               <div class="container">
                 <div class="row">
                   <div class="col-xs-12">
                     <ul class="show-promo">
-                          <li class="promo">Just <%= item_attrs['category'] %>, no sides?
-                            <span class="add-promo">
-                                <a href="#">Add now</a>
-                            </span>
-                          </li>
+                      <li class="promo">Just this, no <%= remaining_categories %>?
+                                <span class="add-promo">
+                                    <a href="/add-dishes?category=<%= remaining_categories %>">Add now</a>
+                                </span>
+                      </li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
-
         <% end %>
-    <% end %>
-
 <% end %>
+
 
 <div class="container-fluid back-white seperator-4">
   <div class="row">

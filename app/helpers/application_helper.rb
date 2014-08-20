@@ -120,6 +120,8 @@ module ApplicationHelper
       return "Love Us"
     when controller == "party_orders"
       return "Party Orders"
+    when controller == "home" && action == "add_other_dishes"
+      return "Add #{params[:category]}"
     else
       return "Today's Menu"
     end
@@ -249,6 +251,12 @@ module ApplicationHelper
     if !hola_current_user and login_required_urls_suffix.include? current_url_suffix
       content_tag(:script, "$('#login_modal').modal('show')".html_safe)
     end
+  end
+
+  def get_remaining_category(categories)
+    all_categories = ["Main Course","Side Dish","Dessert"]
+    ordered_categories = categories
+    return remaining_categories = all_categories - ordered_categories
   end
 
 end

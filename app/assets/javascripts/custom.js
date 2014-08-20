@@ -312,6 +312,11 @@ $(document).ready(function(){
         $(".btn-back").addClass("hidden");
         $('#footer').hide();
     }
+
+//    refresh review order page on remove item
+    $("#remove_last_dish, #remove_dish").on('hide.bs.modal',function(){
+        location.reload();
+    })
 });
 
 // random splash on refresh

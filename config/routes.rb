@@ -60,6 +60,7 @@ Holachef::Application.routes.draw do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
 
   match '/desktop' => 'home#desktop'
+  match '/add-dishes' => 'home#add_other_dishes'
 
   match '/mobile' => 'home#mobile', :as => :home
 
