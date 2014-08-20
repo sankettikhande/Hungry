@@ -30,18 +30,18 @@ module ApplicationHelper
       session[:cart].each do |item|
        item.each do |item_id, item_attr|
         if menu.id == item_id.to_i
-          menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'],
+          menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'], :category => item_attr['category'],
           :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture) }
           return menu
         else
-          menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name,
+          menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
                   :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
           return menu
         end
        end
       end
     else
-      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name,
+      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
               :cheff_name  => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
       return menu
     end
@@ -54,17 +54,17 @@ module ApplicationHelper
       session[:cart].each do |item|
         item.each do |item_id, item_attr|
           if menu.id == item_id.to_i
-            menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'],
+            menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'], :category => item_attr['category'],
                     :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
             return menu
           end
         end
       end
-      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name,
+      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
                  :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url =>(menu.cheff.picture.image.url if menu.cheff.picture)}
          return menu
     else
-      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name,
+      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
               :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
       return menu
     end
@@ -130,6 +130,8 @@ module ApplicationHelper
       return "Love Us"
     when controller == "party_orders"
       return "Party Orders"
+    when controller == "home" && action == "add_other_dishes"
+      return "Add #{params[:category]}"
     else
       return "Today's Menu"
     end
@@ -259,6 +261,12 @@ module ApplicationHelper
     if !hola_current_user and login_required_urls_suffix.include? current_url_suffix
       content_tag(:script, "$('#login_modal').modal('show')".html_safe)
     end
+  end
+
+  def get_remaining_category(categories)
+    all_categories = ["Main Course","Side Dish","Dessert"]
+    ordered_categories = categories
+    return remaining_categories = all_categories - ordered_categories
   end
 
 end

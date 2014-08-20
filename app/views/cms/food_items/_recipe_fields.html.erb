@@ -20,19 +20,10 @@
     <%= f.select :dish_type, ["veg", "non-veg"], :include_blank => 'Select Veg/Non-Veg' %>
   </div>
 
-  <!--<div class="fields text_fields">-->
-    <!--<%#= f.label :cuisine %>-->
-    <!--<%#= f.select :cuisine, ["Select Cuisine","Punjabi","South Indian","Mughlai","Hyderabadi","Gujrati","Kashmiri","Mexican","American","Others"] %>-->
-  <!--</div>-->
-  <!--<div class="fields text_fields">-->
-    <!--<%#= f.label :category %>-->
-    <!--<%#= f.select :category, ["Select Category","Main Course","Salad","Side Dish","Entre", "Snack","Soup","Brunch","Dessert","Other"] %>-->
-  <!--</div>-->
-
-  <!--<div class="fields text_fields">-->
-    <!--<%#= f.label :treatment %>-->
-    <!--<%#= f.select :treatment, ["Select Treatment Method","Shallow Fried","Fried","Baked","Frozen","Steamed","Thaw","Preservation","Roast","Pressure Cook","Scaling","Skinning","Slow Cooked","Smoked","BBQ","Boil","Toast","Marination","Simmering","Shallow Poaching","Poaching","Well Done","Medium","Rare","Grilling","Blanching","Canning","Others"] %>-->
-  <!--</div>-->
+  <div class="fields text_fields">
+    <%= f.label :category %>
+    <%= f.select :category, ["Main Course","Side Dish","Dessert"], :include_blank => "Select Category" %>
+  </div>
 
   <div class="fields text_fields">
     <%= f.label :equipment_required %>
