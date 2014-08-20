@@ -123,8 +123,7 @@ $(document).ready(function(){
                 'dataType': 'script'
             })
         }
-
-
+        $('#footer').show();
     });
     var selected_review_id = "";
 
@@ -198,8 +197,11 @@ $(document).ready(function(){
             timer = setTimeout(function() {
                 window.location.href = host + "/mobile"}, 30000);
         })
+    }else if(path == "recipe"){
+        if ($("#total_price").val() == "0"){
+            $('#footer').hide();
+        }
     }
-
 
 
 //    Signature Dish Order
@@ -309,7 +311,6 @@ $(document).ready(function(){
 //    Disable back button on Order Confirmation page
     var href_url = window.location.href;
     if (href_url.indexOf("orders") > -1 && href_url.indexOf("party_orders") == -1) {
-        $(".btn-back").addClass("hidden");
         $('#footer').hide();
     }
 
