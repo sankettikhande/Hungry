@@ -14,6 +14,16 @@ module ApplicationHelper
     return today
   end
 
+  def back_actions(params)
+    if params[:controller] == "cms/orders" && params[:action] == "order_confirm" || params[:controller] == "ordered_menus" && params[:action] == "checkout"
+      "/mobile"
+    elsif params[:TxStatus] == "CANCELED"
+      "/review_order"
+    else
+      :back
+    end
+  end
+
   def collect_cart_items(menu)
     today = {}
     if !session[:cart].blank?
