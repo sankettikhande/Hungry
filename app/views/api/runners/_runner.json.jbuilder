@@ -1,0 +1,9 @@
+json.id runner.id
+json.name runner.name
+json.phone runner.phone
+json.address runner.address
+json.orders_pending runner.orders_pending.count
+json.amount_pending runner.amount_pending
+json.average_delivery_time runner.average_delivery_time
+json.damages runner.damaged_count
+json.returns runner.returned_count

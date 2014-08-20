@@ -11,7 +11,7 @@
           </button>
         </li>
         <li>
-          <%= link_to "Back", params[:controller] == "cms/orders" && params[:action] == "order_confirm" ? "/mobile" : :back, :class => "btn-back text-hide" %>
+          <%= link_to "Back", back_actions(params), :class => "btn-back text-hide" %>
         </li>
         <li><a class="navbar-brand" href="/mobile">Hola</a></li>
         <% if params[:controller] == "home" %>

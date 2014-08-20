@@ -23,8 +23,9 @@ class Cms::FoodItemsController < Cms::ContentBlockController
   end
 
   def show_recipe
-    @footer = "false"
+    # @footer = "false"
     @food_item = FoodItem.find(params[:id]) if !params[:id].blank?
+    @cooking_today = CookingToday.where(:food_item_id =>@food_item.id, :date => Date.today).first if @food_item
     respond_to do |format|
       format.html { render :layout=>'application' }
     end
