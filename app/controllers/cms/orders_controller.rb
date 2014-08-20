@@ -64,9 +64,13 @@ class Cms::OrdersController < Cms::ContentBlockController
         end
       end
     end
-    @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)), :order_status => "Waiting for Payment",
-                             :name=>params[:orders][:name], :address=>params[:orders][:address],
-                             :phone_no=>params[:orders][:mobile_no])
+    @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)),
+                              :name=>params[:orders][:name],
+                              :addressStreet1=>params[:orders][:building_name],
+                              :addressStreet2=>params[:orders][:street],
+                              :addressCity=>params[:orders][:city],
+                              :addressZip=>params[:orders][:pin],
+                              :phone_no=>params[:orders][:mobile_no])
     @footer = "false"
     @@cart_items = view_context.collect_items(session[:cart])
 
@@ -78,7 +82,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @footer = "false"
     @order = Order.find(params[:order_id])
-    @order.update_attribute(:order_status, "Confirmed")
+    @order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")
     session[:cart] = [] #if @order.
     if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
       @@cart_items.each do |item_id, quantity|
@@ -93,6 +97,7 @@ class Cms::OrdersController < Cms::ContentBlockController
 
   def submit_payment_form
     @order = Order.find(params[:orderId])
+    @order.update_attribute(:payment_mode, "Online")
     @paymentMode = params[:paymentMode]
     @flag=false
     @secSignature=''
@@ -118,7 +123,7 @@ class Cms::OrdersController < Cms::ContentBlockController
     @txstatus = params[:TxStatus]
     @order = Order.find(params[:TxId])
     if params[:TxStatus] == "SUCCESS"
-      @order.update_attributes(:order_status => "Confirmed", :payment_gateway_response => params,
+      @order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
                                :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
                                :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
                                :addressCity=>params[:addressCity], :addressState=>params[:addressState],
@@ -132,34 +137,29 @@ class Cms::OrdersController < Cms::ContentBlockController
         food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + menu.quantity.to_i)) if food_item
       end
     else
-      @order.update_attributes(:payment_gateway_response => params, :firstName => params[:firstName],
-                               :lastName => params[:lastName],:email => params[:email],
-                               :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
-                               :addressCity=>params[:addressCity], :addressState=>params[:addressState],
-                               :addressCountry=>params[:addressCountry],:addressZip=>params[:addressZip])
+      @order.update_attributes(:payment_status => "Payment Gateway Failed", :payment_gateway_response => params) unless @txstatus == 'CANCELED'
     end
-    @status=true
-    if @status==true
-      if @txstatus == 'CANCELED'
-        @statusmsg=@txmsg
-        session[:cart] = @order.build_session
-        redirect_to "/review_order"
-      elsif @txstatus == 'SUCCESS'
-        ct = CitrusLib.new
-        ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
-        secSignature = ct.getHmac(@data)
-        if secSignature != @signature    # post signature verification to prevent forgery
-          @status = false
-        else
-          @statusmsg = 'Verified Response'
-        end
-        respond_to do |format|
-          format.html {render :layout => 'application'}
-        end
+
+    if @txstatus == 'CANCELED'
+      @statusmsg=@txmsg
+      session[:cart] = @order.build_session
+      @order.update_attributes(:payment_status => "User Canceled", :payment_gateway_response => params)
+      render "payment_gateway", :layout => 'application'
+    elsif @txstatus == 'SUCCESS'
+      ct = CitrusLib.new
+      ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
+      secSignature = ct.getHmac(@data)
+      if secSignature != @signature    # post signature verification to prevent forgery
+        @status = false
+      else
+        @statusmsg = 'Verified Response'
       end
+      respond_to do |format|
+        format.html {render 'order_confirm',:layout => 'application'}
+      end
+    else
+      render "payment_gateway", :layout => 'application'
     end
-
-
   end
 
   def create_signature_order

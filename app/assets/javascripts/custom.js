@@ -188,6 +188,19 @@ $(document).ready(function(){
         $(this).addClass('active');
     })
 
+    var path = window.location.pathname.split('/')[1]
+    if (path == "order-confirm") {
+        var host = window.location.origin
+        timer = setTimeout(function() {
+            window.location.href = host + "/mobile"}, 10000);
+         $(document).click(function(){
+            clearTimeout(timer)
+            timer = setTimeout(function() {
+                window.location.href = host + "/mobile"}, 30000);
+        })
+    }
+
+
 
 //    Signature Dish Order
     var signature_cnt = 0;

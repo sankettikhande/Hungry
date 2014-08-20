@@ -48,7 +48,7 @@ Holachef::Application.routes.draw do
 
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
-  post '/payment-method'=>"Cms::orders#payment_gateway"
+  match '/payment-method'=>"Cms::orders#payment_gateway"
   match '/order-confirm/:order_id'=>"Cms::orders#order_confirm"
 
   match '/cooking_todays/get_review_order_details'=> 'Cms::cooking_todays#get_review_order_details'
@@ -80,7 +80,7 @@ Holachef::Application.routes.draw do
 
   namespace :api do
     resources :orders do
-      put :update_status
+      get :update_status
     end
   end
 

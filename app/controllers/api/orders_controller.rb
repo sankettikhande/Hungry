@@ -1,4 +1,11 @@
 class Api::OrdersController < ApiController
+  after_filter do |controller|
+    if controller.params[:callback] && controller.params[:format].to_s == 'json'
+      controller.response['Content-Type'] = 'application/javascript'
+      controller.response.body = "%s(%s)" % [controller.params[:callback], controller.response.body]
+    end
+  end
+
   def index
     @orders = Order.where("DATE(created_at) = '#{Date.today}'")
   end
