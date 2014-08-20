@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140816075333) do
+ActiveRecord::Schema.define(:version => 20140819160837) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -62,14 +62,6 @@ ActiveRecord::Schema.define(:version => 20140816075333) do
     t.string   "contact_email"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-  end
-
-  create_table "chef_preferences", :force => true do |t|
-    t.integer  "cheff_id"
-    t.string   "cuisine_style"
-    t.string   "cuisine_tags"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
   end
 
   create_table "chef_profiles", :force => true do |t|
@@ -718,6 +710,9 @@ ActiveRecord::Schema.define(:version => 20140816075333) do
     t.string   "addressCountry"
     t.string   "addressZip"
     t.integer  "hola_user_id"
+    t.string   "payment_mode"
+    t.string   "payment_status"
+    t.string   "order_status_history"
   end
 
   add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"

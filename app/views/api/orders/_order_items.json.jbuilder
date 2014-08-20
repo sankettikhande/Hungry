@@ -17,4 +17,7 @@ json.order_items do
 end
 json.bill_amount order.bill_amount
 json.order_status order.order_status
+json.order_progress order.order_status_history_string
+json.payment_status order.payment_status
+json.payment_mode order.payment_mode
 json.created_at order.created_at

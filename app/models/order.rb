@@ -1,10 +1,15 @@
 class Order < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
-  @@order_statuses = ["Created", "Confirmed", "Dispatched", "Damaged", "Delivered", "Canceled", "Returned", "Waiting for Payment"]
+
+  @@order_statuses = ["Created", "Confirmed", "Dispatched", "Damaged", "Delivered", "Canceled", "Returned"]
+  @@payment_status = ["Waiting for Payment", "Payment Gateway Failed", "Paid", "On Delivery", "User Canceled"]
   attr_accessor :skip_callbacks
   cattr_accessor :order_statuses
 
+
+
   serialize :payment_gateway_response, Hash
+  serialize :order_status_history, Array
 
   has_many :ordered_menus
   belongs_to :hola_user
@@ -12,7 +17,27 @@ class Order < ActiveRecord::Base
   validates :date, :order_status, :presence => true
   validates :order_status, inclusion: {in: @@order_statuses}
 
+  after_save :mark_paid, :if => :delivered?
+  before_save :build_order_status_history
 
+  def delivered?
+    order_status == "Delivered"
+  end
+
+  def mark_paid
+    if payment_status != "Paid"
+      update_column(:payment_status, "Paid")
+    end
+  end
+
+  def build_order_status_history
+
+    self.order_status_history << order_status if order_status_changed? and self.order_status_history.last != order_status
+  end
+
+  def order_status_history_string
+    order_status_history.join(", ")
+  end
 
   def self.create_signature_menus(order, signature_dish, menus)
     ordered_menu = OrderedMenu.create(:order_id => order.id, :quantity => menus[:quantity],
