@@ -19,6 +19,7 @@ class Order < ActiveRecord::Base
 
   after_save :mark_paid, :if => :delivered?
   before_save :build_order_status_history
+  before_save :ensure_hola_user_id
 
   def delivered?
     order_status == "Delivered"
@@ -31,12 +32,18 @@ class Order < ActiveRecord::Base
   end
 
   def build_order_status_history
-
     self.order_status_history << order_status if order_status_changed? and self.order_status_history.last != order_status
   end
 
   def order_status_history_string
     order_status_history.join(", ")
+  end
+
+  def ensure_hola_user_id
+    if hola_user_id.blank?
+      hola_user = HolaUser.find_by_phoneNumber self.phone_no
+      self.hola_user_id = hola_user.id unless hola_user.blank?
+    end
   end
 
   def self.create_signature_menus(order, signature_dish, menus)
@@ -47,7 +54,8 @@ class Order < ActiveRecord::Base
   end
 
   def self.save_user(params)
-    hola_user = HolaUser.find_by_id(params[:hola_user_id])
+    hola_user = HolaUser.find_by_id(params[:hola_user_id]) unless params[:hola_user_id].blank?
+    hola_user = HolaUser.find_by_phoneNumber params[:orders][:mobile_no] if hola_user.blank?
     if params[:save_user_details]
       if hola_user
         existing_adds = hola_user.hola_user_addresses.where(mobile_no: params[:orders][:mobile_no]).first
