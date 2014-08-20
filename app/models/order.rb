@@ -14,8 +14,9 @@ class Order < ActiveRecord::Base
   has_many :ordered_menus
   belongs_to :hola_user
 
-  validates :date, :order_status, :presence => true
+  validates :date, :order_status, presence: true
   validates :order_status, inclusion: {in: @@order_statuses}
+  validates :return_reason, presence: true, :if => Proc.new {|o| o.order_status == "Returned"}
 
   after_save :mark_paid, :if => :delivered?
   before_save :build_order_status_history
