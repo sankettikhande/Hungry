@@ -178,7 +178,10 @@
           <% if @food_item.in_cooking_today_list? %>
             <div class="row">
                 <div class="normal-body text-center">
-                  <button class="btn-golden" type="button"  data-toggle="modal" data-target="#sign-modal">Order Now</button>
+                  <% cart_menu = collect_cart_items(@cooking_today) if !@cooking_today.nil? %>
+
+                  <% target = qty_left(@cooking_today) > 0 ? "#item-modal" : "#" %>
+                  <button class="btn-golden item" type="button"  data-toggle="modal" data-target="<%=target %>" id="<%=@cooking_today.id%>">Order Now</button>
                 </div>
             </div>
           <% end %>
@@ -191,6 +194,29 @@
       </div>
     </div>
   </div> <!-- fluid container ends -->
+  <input type="hidden" id="total_price" value= <%= calculate_total_price() %> />
+  <div id="recipe-modal">
+      <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static">
+        <input type="hidden" id="selected_item" value="" />
+        <input type="hidden" id="total_price" value="0" />
+
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button data-dismiss="modal" class="btn-close pull-right">x</button>
+
+            </div>
+            <div class="modal-body"> <!-- below content changes from jquery -->
+              <i class="modal-loading fa fa-spinner fa-spin"></i>
+              <p class="form-control looks-input hidden" id="order-count">0</p>
+            </div>
+            <div class="modal-footer modal-form">
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
 <% @signature_dish = @food_item %>
 <%= render 'cms/food_items/signature_modal', :signature_dish => @signature_dish if @signature_dish %>
-
