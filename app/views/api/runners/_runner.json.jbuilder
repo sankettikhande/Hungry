@@ -1,0 +1,9 @@
+json.id runner.id
+json.name runner.name
+json.phone runner.phone
+json.address runner.address
+json.amount_pending "NA"
+json.orders_pending "NA"
+json.average_delivery_time "NA"
+json.damages 0
+json.returns 0
