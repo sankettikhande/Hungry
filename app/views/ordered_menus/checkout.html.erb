@@ -5,6 +5,7 @@
         <ul class="booked-orders">
           <li class="food-bill">
             <span class="item-name">Meal</span>
+            <span class="item-edit">&nbsp;</span>
             <span class="item-qty">Qty</span>
             <span class="item-cost">Cost</span>
             <span class="item-remove">&nbsp;</span>
@@ -17,11 +18,11 @@
                         <span class="item-name" data-toggle="modal" data-target="#item-modal" data-quantity="<%= order_attrs['quantity'] %>" style="cursor: pointer;" id="<%= order_id %>">
                           <%= order_attrs['dish_name'] %>
                         </span>
-                        <span class="item-qty"><%= order_attrs['quantity'] %></span>
-                        <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
                         <span class="item-edit" style="cursor: pointer;">
                           <i class="fa fa-edit"></i>
                         </span>
+                        <span class="item-qty"><%= order_attrs['quantity'] %></span>
+                        <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
                         <span class="item-remove">
                            <a href="#" data-item="<%= order_id %>"><i class="fa fa-times-circle"></i></a>
                         </span>

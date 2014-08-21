@@ -491,10 +491,10 @@ li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;p
 .booked-orders li.food-bill {display: block;width: 100%;font-family: 'robotobold',Sans-serif;padding: 0.5em 0 0;float: left;font-size: 1em;}
 .booked-orders li.food-bill:first-child span {font-family: 'robotoregular',Sans-serif;border-bottom: 3px double #d3c9b5;padding-bottom: 0.3em;}
 .booked-orders li.food-bill span {display: inline-block;float: left;padding-left: 3px;padding-right: 3px}
-.booked-orders li.food-bill span.item-name {width:61%;text-transform: capitalize;text-align: left;}
+.booked-orders li.food-bill span.item-name {width:59%;text-transform: capitalize;text-align: left;}
 .booked-orders li.food-bill span.item-qty {width:16.66666667%;text-align: right;}
 .booked-orders li.food-bill span.item-cost {width:16.66666667%;text-align: right;}
-.booked-orders li.food-bill span.item-edit {width:3%;text-align: right;}
+.booked-orders li.food-bill span.item-edit {width:5%;text-align: right;}
 .booked-orders li.food-bill span.item-remove {width:2%;text-align: right;}
 .booked-orders li.food-bill span.item-remove a {color:#333;}
 
