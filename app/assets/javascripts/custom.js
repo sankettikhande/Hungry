@@ -98,6 +98,7 @@ $(document).ready(function(){
         var dish_name = $("#"+$("#selected_item").val() +" ul li.recipe-title").html();
         var menu_qty = parseInt($("#order-count").html(),10);
         var menu_price = parseInt($(".modal-body li.recipe-price").html(),10);
+        var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
 
         if(cnt == 0){
             $(selected_id).html(parseInt($("#order-count").html(),10) +" in cart");
@@ -119,7 +120,7 @@ $(document).ready(function(){
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': cnt, 'price': menu_price, 'date': date, 'dish_name': dish_name },
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': cnt, 'price': menu_price, 'date': date, 'dish_name': dish_name, 'category' :category },
                 'dataType': 'script'
             })
         }
@@ -148,12 +149,13 @@ $(document).ready(function(){
         var date = new Date();
         var menu_qty = parseInt($("#order-count").html(),10);
         var menu_price = parseInt($(".modal-body li.recipe-price span").html(),10);
+        var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
 
         if(parseInt($("#order-count").html()) > 0){
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html() },
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html(), 'category' : category },
                 'dataType': 'script'
             })
             $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
@@ -323,6 +325,11 @@ $(document).ready(function(){
     if (href_url.indexOf("orders") > -1 && href_url.indexOf("party_orders") == -1) {
         $('#footer').hide();
     }
+
+//    refresh review order page on remove item
+    $("#remove_last_dish, #remove_dish").on('hide.bs.modal',function(){
+        location.reload();
+    })
 });
 
 // random splash on refresh

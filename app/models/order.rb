@@ -14,15 +14,19 @@ class Order < ActiveRecord::Base
   has_many :ordered_menus
   belongs_to :hola_user
 
-  validates :date, :order_status, :presence => true
+  validates :date, :order_status, presence: true
   validates :order_status, inclusion: {in: @@order_statuses}
+  validates :return_reason, presence: true, :if => Proc.new {|o| o.order_status == "Returned"}
 
   after_save :mark_paid, :if => :delivered?
   before_save :build_order_status_history
   before_save :ensure_hola_user_id
+  before_save :update_timestamps
 
-  def delivered?
-    order_status == "Delivered"
+  @@order_statuses.each do |s|
+    define_method "#{s.downcase}?" do
+      order_status == s
+    end
   end
 
   def mark_paid
@@ -37,6 +41,16 @@ class Order < ActiveRecord::Base
 
   def order_status_history_string
     order_status_history.join(", ")
+  end
+
+  def update_timestamps
+    self.dispatched_at = Time.now if self.dispatched?
+    self.delivered_at = Time.now if self.delivered?
+  end
+
+  def delivery_time
+    return nil if delivered_at.blank? or dispatched_at.blank?
+    (delivered_at - dispatched_at).to_i
   end
 
   def ensure_hola_user_id

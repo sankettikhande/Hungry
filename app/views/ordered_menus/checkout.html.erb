@@ -89,28 +89,28 @@
   </div>
 </div>
 
-<div class="container-fluid back-white seperator-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="show-promo">
-          <li class="promo">Just Mains, no sides?<span class="add-promo"><a href="#">Add now</a></span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-fluid back-white seperator-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="show-promo">
-          <li class="promo">What? No Dessert!<span class="add-promo"><a href="#">Add now</a></span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+<% if !session[:cart].blank? %>
+     <% remaining_categories = get_remaining_category(@categories) %>
+        <% remaining_categories.each do |remaining_categories| %>
+            <div class="container-fluid back-white seperator-3">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <ul class="show-promo">
+                      <li class="promo">Just this, no <%= remaining_categories %>?
+                                <span class="add-promo">
+                                    <a href="/add-dishes?category=<%= remaining_categories %>">Add now</a>
+                                </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+<% end %>
+
+
 <div class="container-fluid back-white seperator-4">
   <div class="row">
     <div class="col-xs-12">

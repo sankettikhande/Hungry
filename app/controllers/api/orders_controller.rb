@@ -10,6 +10,7 @@ class Api::OrdersController < ApiController
   def update_status
     @order = Order.find params[:order_id]
     @order.order_status = params[:status]
+    @order.return_reason = "#{params[:status]}- #{params[:reason]}" unless params[:reason].blank?
     if @order.save
       @message = "Order status updated"
       render "api/success"
