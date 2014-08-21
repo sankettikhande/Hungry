@@ -123,7 +123,7 @@
           <%# hola_user = get_user_details %>
           <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
               <% if @adds_types.present? %>
-                <li class="del-d roboto"><%= select_tag "orders[address_type]", options_for_select(@adds_types, @adds.address_type) %></li>
+                <li class="del-d roboto"><%= select_tag "orders[address_type]", options_for_select(@adds_types, @adds.address_type), :class => "width100P" %></li>
               <% end %>
               <div id="adds_fields">
                 <%= render :partial => "address_fields", :locals => {:adds => @adds} %>
