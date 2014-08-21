@@ -36,9 +36,22 @@
               <div class="recipe-name" style="display:none;"><%= cart_menu[:dish_name]%></div>
               <div class="add-heart"></div>
               <div class="recipe-image">
-                <%= image_tag @cooking_today.food_item.meal_info.picture.image.url, :alt=>"#{ @cooking_today.food_item.meal_info.name}", :class => "img-responsive center-block" %>
+                <%= image_tag @cooking_today.food_item.meal_info.picture.image.url, :alt=>"#{ @cooking_today.food_item.meal_info.name}", :class => "img-responsive center-block about-content" %>
               </div>
           <% end %>
+        </li>
+        <li class="recipe-about" style="display:none;">
+          <% if @cooking_today.food_item.meal_info.picture && @cooking_today.food_item.meal_info.picture.image? %>
+              <div class="recipe-image" style="position: relative;">
+                <%= image_tag @cooking_today.food_item.meal_info.picture.image.url, :alt=>"#{ @cooking_today.food_item.meal_info.name}", :class => "img-responsive center-block opacityimg" %>
+              <div class="opacitydivup">
+                <span class="bold-text">Description:</span> <br/><%= @cooking_today.food_item.meal_info.description %><br/><br/>
+                <span class="bold-text">1 portion:</span> <%= @cooking_today.food_item.meal_info.portion_size %>
+              </div>
+              </div>
+             
+          <% end %>
+
         </li>
         <li class="recipe-title hidden"></li>
         <li class="recipe-tags">
