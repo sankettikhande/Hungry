@@ -97,6 +97,7 @@ $(document).ready(function(){
         var date = new Date();
         var dish_name = $("#"+$("#selected_item").val() +" ul li.recipe-title").html();
         var menu_qty = parseInt($("#order-count").html(),10);
+        var cnt = parseInt($("#order-count").html(),10)
         var menu_price = parseInt($(".modal-body li.recipe-price").html(),10);
         var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
 
@@ -150,7 +151,6 @@ $(document).ready(function(){
         var menu_qty = parseInt($("#order-count").html(),10);
         var menu_price = parseInt($(".modal-body li.recipe-price span").html(),10);
         var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
-
         if(parseInt($("#order-count").html()) > 0){
             $.ajax({
                 'method': 'GET',
@@ -187,7 +187,7 @@ $(document).ready(function(){
     });
 
     $("span.item-edit").live('click',function(){
-      $("span.item-name").click();
+        $(this).closest('.review_order_list').find('span.item-name').click();
     });
 
     $("#submit-order-button").click(function(e){

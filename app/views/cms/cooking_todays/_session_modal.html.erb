@@ -45,7 +45,7 @@
               <div class="recipe-image" style="position: relative;">
                 <%= image_tag @cooking_today.food_item.meal_info.picture.image.url, :alt=>"#{ @cooking_today.food_item.meal_info.name}", :class => "img-responsive center-block opacityimg" %>
               <div class="opacitydivup">
-                <span class="bold-text">Description:</span> <br/><%= @cooking_today.food_item.meal_info.description %><br/><br/>
+                <span class="bold-text">Description:</span> <br/><%= @cooking_today.food_item.meal_info.short_description %><br/><br/>
                 <span class="bold-text">1 portion:</span> <%= @cooking_today.food_item.meal_info.portion_size %>
               </div>
               </div>
