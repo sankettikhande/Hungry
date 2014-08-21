@@ -1,6 +1,5 @@
 // grid-system
 $("#hola-container, .hola-container").gridalicious({
-    width: 150,
     gutter: 5,
     animate:true,
     animationOptions: {
@@ -33,6 +32,19 @@ $(document).ready(function(){
             'dataType': 'script'
         });
     });
+
+    $('.about-content').live('click', function(){
+      $(this).closest('.square').find(".recipe-block").hide();
+      $(".recipe-about").show();
+      return false;
+    });
+     $('.opacityimg').live('click', function(){
+      $(".recipe-about").hide();
+      $(this).closest('.square').find(".recipe-block").show();
+      return false;
+    });
+    
+    
 
 
 
