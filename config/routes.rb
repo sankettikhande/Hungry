@@ -83,6 +83,7 @@ Holachef::Application.routes.draw do
     resources :orders do
       get :update_status
       get :assign_runner
+      get :update_menu_item_status
     end
 
     resources :runners

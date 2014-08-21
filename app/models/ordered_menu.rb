@@ -1,4 +1,5 @@
 class OrderedMenu < ActiveRecord::Base
+  @@order_statuses = ["Ordered", "Delivered", "Canceled", "Damaged", "Returned"]
 
   belongs_to :order
   belongs_to :food_item, foreign_key: :dish_id
@@ -10,6 +11,7 @@ class OrderedMenu < ActiveRecord::Base
   validates :cheff_id, :presence => true
   validates :dish_id, :presence => true
   validates :quantity, :presence => true
+  validates :order_status, presence: true, inclusion: { in: @@order_statuses }
 
 
   def self.calculate_total(order)

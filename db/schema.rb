@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140821141504) do
+ActiveRecord::Schema.define(:version => 20140821142929) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -671,14 +671,15 @@ ActiveRecord::Schema.define(:version => 20140821141504) do
     t.integer  "dish_id"
     t.integer  "quantity"
     t.integer  "rate"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "name"
     t.boolean  "published",     :default => false
     t.boolean  "deleted",       :default => false
     t.boolean  "archived",      :default => false
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.string   "order_status",  :default => "Ordered"
   end
 
   create_table "orders", :force => true do |t|

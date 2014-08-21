@@ -19,6 +19,7 @@ class Order < ActiveRecord::Base
   validates :return_reason, presence: true, :if => Proc.new {|o| o.order_status == "Returned"}
 
   after_save :mark_paid, :if => :delivered?
+  after_save :mark_menu_items, :if => Proc.new { |o| ["Damaged", "Delivered", "Canceled", "Returned"].include? o.order_status }
   before_save :build_order_status_history
   before_save :ensure_hola_user_id
   before_save :update_timestamps
@@ -33,6 +34,10 @@ class Order < ActiveRecord::Base
     if payment_status != "Paid"
       update_column(:payment_status, "Paid")
     end
+  end
+
+  def mark_menu_items
+    ordered_menus.where(order_status: "Ordered").update_all("order_status = '#{self.order_status}'")
   end
 
   def build_order_status_history
@@ -101,7 +106,7 @@ class Order < ActiveRecord::Base
   end
 
   def bill_amount
-    ordered_menus.map(&:ordered_menu_bill).sum
+    ordered_menus.where(order_status: ["Ordered", "Delivered"]).map(&:ordered_menu_bill).sum
   end
 
   def build_session

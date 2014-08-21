@@ -32,4 +32,18 @@ class Api::OrdersController < ApiController
     end
   end
 
+  def update_menu_item_status
+    @order = Order.find params[:order_id]
+    @order_menu = @order.ordered_menus.find(params[:order_menu_id])
+    @order_menu.order_status = params[:status]
+
+    if @order_menu.save
+      @message = "Order menu status updated"
+      render "api/success"
+    else
+      @message = @order_menu.errors.full_messages
+      render "api/failure"
+    end
+  end
+
 end
