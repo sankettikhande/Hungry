@@ -10,8 +10,16 @@ class Runner < ActiveRecord::Base
     orders_pending.sum(:total)
   end
 
+  def cash_collected
+    orders.where(order_status: "Delivered").sum(&:total)
+  end
+
   def orders_pending
     orders.where(order_status: "Confirmed")
+  end
+
+  def orders_delivered
+    orders.where(order_status: "Delivered")
   end
 
   def damaged_count
