@@ -38,7 +38,7 @@ $(document).ready(function(){
       $(".recipe-about").show();
       return false;
     });
-     $('.opacityimg').live('click', function(){
+     $('.opacityimg,.opacityborder').live('click', function(){
       $(".recipe-about").hide();
       $(this).closest('.square').find(".recipe-block").show();
       return false;
