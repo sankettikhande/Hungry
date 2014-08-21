@@ -70,7 +70,8 @@ class Cms::OrdersController < Cms::ContentBlockController
                               :addressStreet2=>params[:orders][:street],
                               :addressCity=>params[:orders][:city],
                               :addressZip=>params[:orders][:pin],
-                              :phone_no=>params[:orders][:mobile_no])
+                              :phone_no=>params[:orders][:mobile_no],
+                              :landmark => params[:orders][:landmark])
     @footer = "false"
     @@cart_items = view_context.collect_items(session[:cart])
 

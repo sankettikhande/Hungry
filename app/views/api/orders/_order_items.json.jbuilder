@@ -6,6 +6,8 @@ json.address do
   json.address_line_2 order.addressStreet2
   json.address_city order.addressCity
   json.address_state order.addressState
+  json.pincode order.addressZip
+  json.landmark order.landmark
 end
 json.order_items  order.ordered_menus do |menu|
   json.dish_name menu.food_item.meal_info.name
