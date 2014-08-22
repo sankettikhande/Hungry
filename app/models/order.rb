@@ -13,6 +13,7 @@ class Order < ActiveRecord::Base
 
   has_many :ordered_menus
   belongs_to :hola_user
+  belongs_to :runner
 
   validates :date, :order_status, presence: true
   validates :order_status, inclusion: {in: @@order_statuses}
