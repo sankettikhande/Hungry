@@ -46,4 +46,21 @@ class Api::OrdersController < ApiController
     end
   end
 
+  def reorder
+    @order = Order.find params[:order_id]
+    new_order = @order.deep_clone include: :ordered_menus, validate: false
+    new_order.original_order_id = @order.id
+    new_order.order_status = "Confirmed"
+    new_order.order_status_history = ["Created", "Confirmed"]
+    new_order.original_order_id = @order.id
+    if new_order.save
+      @order.update_attributes(reorder_id: new_order.id, order_status: "Reordered")
+      @message = {"msg" => "New order placed", "order_id" => new_order.id}
+      render "api/success"
+    else
+      @message = new_order.errors.full_messages
+      render "api/failure"
+    end
+  end
+
 end

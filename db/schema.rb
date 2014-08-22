@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140821142929) do
+ActiveRecord::Schema.define(:version => 20140822073959) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -720,6 +720,8 @@ ActiveRecord::Schema.define(:version => 20140821142929) do
     t.datetime "delivered_at"
     t.string   "return_reason"
     t.string   "landmark"
+    t.integer  "reorder_id"
+    t.integer  "original_order_id"
   end
 
   add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"
