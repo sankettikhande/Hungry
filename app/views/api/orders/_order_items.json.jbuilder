@@ -29,5 +29,11 @@ end
 json.order_progress order.order_status_history_string
 json.payment_status order.payment_status
 json.payment_mode order.payment_mode
-json.runner_id order.runner_id
+
+json.runner do
+  json.id order.runner_id
+  json.name order.runner.name
+  json.phone order.runner.phone
+  json.address order.runner.address
+end
 json.created_at order.created_at
