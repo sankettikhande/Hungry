@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
 
-  @@order_statuses = ["Created", "Confirmed", "Dispatched", "Damaged", "Delivered", "Canceled", "Returned"]
+  @@order_statuses = ["Created", "Confirmed", "Dispatched", "Damaged", "Delivered", "Canceled", "Returned", "Reordered"]
   @@payment_status = ["Waiting for Payment", "Payment Gateway Failed", "Paid", "On Delivery", "User Canceled"]
   attr_accessor :skip_callbacks
   cattr_accessor :order_statuses
