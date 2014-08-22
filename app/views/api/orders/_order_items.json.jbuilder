@@ -32,8 +32,8 @@ json.payment_mode order.payment_mode
 
 json.runner do
   json.id order.runner_id
-  json.name order.runner.name
-  json.phone order.runner.phone
-  json.address order.runner.address
+  json.name order.runner.try(:name)
+  json.phone order.runner.try(:phone)
+  json.address order.runner.try(:address)
 end
 json.created_at order.created_at
