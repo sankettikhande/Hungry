@@ -3,7 +3,7 @@ require 'bundler/capistrano'
 require 'delayed/recipes'
 load 'deploy/assets'
 load 'config/recipes/db'
-load "config/recipes/delayed_job"
+# load "config/recipes/delayed_job"
 # default_run_options[:shell] = '/bin/bash'
 
 task :qa do
@@ -59,9 +59,6 @@ task :prod do
   set :git_shallow_clone, 1
   set :scm_verbose, true
   set :use_sudo, false
-  set :delayed_job_server_role, :worker
-  set :delayed_job_args, "-n 2"
-
 
   role :db, domain, :primary => true
 
