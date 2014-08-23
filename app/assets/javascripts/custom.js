@@ -309,6 +309,7 @@ $(document).ready(function(){
 //        validation for cart select payment method
     $(document).ready(function(){
         $("#submit_order").validationEngine('attach', { maxErrorsPerField:1})
+        $("#hola_session").validationEngine('attach', { maxErrorsPerField:1})
     })
 
     $('.signature-modal').on('hide.bs.modal', function (e) {
