@@ -5,7 +5,7 @@ class HolaUser < ActiveRecord::Base
   has_many :orders
   attr_accessible :name, :phoneNumber
 
-  validates :phoneNumber, :uniqueness => true
+  validates :phoneNumber, uniqueness: true, presence: true
 
   def self.add_to_favorite(hola_user, chef_id)
     fav_chef = MyFavoriteChef.where(:hola_user_id => hola_user.id, :cheff_id => chef_id)
