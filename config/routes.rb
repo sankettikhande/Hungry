@@ -1,4 +1,5 @@
 Holachef::Application.routes.draw do
+
   resources :hola_users
   match "/add_chef_to_favorite"=> "hola_users#add_chef_to_favorite"
   match '/my_favorite_chefs'=>"hola_users#my_favorite_chefs"
@@ -36,6 +37,7 @@ Holachef::Application.routes.draw do
     content_blocks :cuisine_styles
     content_blocks :food_items
     content_blocks :runners
+    content_blocks :chef_requests
   end
 
   resources :social_shares do
@@ -50,6 +52,7 @@ Holachef::Application.routes.draw do
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
   match '/payment-method'=>"Cms::orders#payment_gateway"
   match '/order-confirm/:order_id'=>"Cms::orders#order_confirm"
+  match '/add-address'=>"Cms::orders#add_address"
 
   match '/cooking_todays/get_review_order_details'=> 'Cms::cooking_todays#get_review_order_details'
   match '/cooking_todays/get_item_details'=> 'Cms::cooking_todays#get_item_details'
@@ -71,6 +74,9 @@ Holachef::Application.routes.draw do
 
   post '/email' => 'temporary_home#send_mail'
   post '/feedback' => 'home#feedback'
+
+  match '/become-a-chef' => 'Cms::chef_requests#become_chef'
+  match '/create_chef' => 'Cms::chef_requests#create_chef'
 
   resources :hola_user_addresses, only: [:index, :create, :update]
   match '/hola_user_addresses/set_default' =>'hola_user_addresses#set_default'

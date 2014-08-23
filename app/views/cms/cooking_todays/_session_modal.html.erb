@@ -63,7 +63,9 @@
           <% end %>
 
         </li>
-        <li class="recipe-title hidden"></li>
+        <% if  @cooking_today.food_item.meal_info.picture && @cooking_today.food_item.meal_info.picture.image? && qty_left(@cooking_today) > 0 %>
+          <li class="recipe-title"><%= @cooking_today.food_item.meal_info.name %></li>
+        <% end %>
         <li class="recipe-tags">
           <ul class="stock-value">
             <li class="recipe-stock"><span class="stock-count"><%= qty_left(@cooking_today).to_i - cart_menu[:quantity].to_i %></span> left</li>

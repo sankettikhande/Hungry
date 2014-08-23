@@ -132,6 +132,8 @@ module ApplicationHelper
       return "Party Orders"
     when controller == "home" && action == "add_other_dishes"
       return "Add #{params[:category]}"
+    when controller == "cms/chef_requests" && action == "become_chef"
+      return "Become a Chef"
     else
       return "Today's Menu"
     end
@@ -256,7 +258,7 @@ module ApplicationHelper
   end
 
   def login_check
-    login_required_urls_suffix = ["order_histories", "my_favorite_chefs", "favourites"]
+    login_required_urls_suffix = ["order_histories", "my_favorite_chefs", "favourites", "add-address"]
     current_url_suffix = request.url.split("?").first.split("/").last
     if !hola_current_user and login_required_urls_suffix.include? current_url_suffix
       content_tag(:script, "$('#login_modal').modal('show')".html_safe)
