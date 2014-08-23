@@ -132,6 +132,8 @@ module ApplicationHelper
       return "Party Orders"
     when controller == "home" && action == "add_other_dishes"
       return "Add #{params[:category]}"
+    when controller == "cms/chef_requests" && action == "become_chef"
+      return "Become a Chef"
     else
       return "Today's Menu"
     end

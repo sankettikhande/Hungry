@@ -213,7 +213,9 @@ $(document).ready(function(){
         if ($("#total_price").val() == "0"){
             $('#footer').hide();
         }
-    }
+    }else if(path == "become-a-chef"){
+            $('#footer').hide();
+        }
 
 
 //    Signature Dish Order
