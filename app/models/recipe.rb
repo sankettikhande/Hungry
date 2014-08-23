@@ -1,4 +1,5 @@
 class Recipe < ActiveRecord::Base
+  @@categories = ["Main Course", "Side Dish", "Dessert"]
   belongs_to :food_item
 
   attr_accessible :dish_type, :if_signature, :if_recipe, :cuisine, :category, :treatment, :garnishing_tips, :serving_tips, :storage_instructions, :shelf_life,
@@ -9,5 +10,6 @@ class Recipe < ActiveRecord::Base
   accepts_nested_attributes_for :sub_menus, :reject_if => :all_blank, :allow_destroy => true
 
   validates_presence_of :dish_type
-  validates_presence_of :category
+  validates :category, presence: true, inclusion: {in: @@categories}
+
 end

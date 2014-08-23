@@ -11,7 +11,9 @@
         <div class="alert alert-danger" role="alert"><%= flash[:notice] %></div>
       <% end %>
       <% if @todays_menu %>
-          <% @todays_menu.each do |menu| %>
+          <% @todays_menu.each do |category, menus| %>
+            <div class="item"><%= category %></div>
+            <% menus.each do |menu| %>
               <% cart_menu = collect_cart_items(menu) if !menu.nil? %>
               <% target = qty_left(menu) > 0 ? "#item-modal" : "#" %>
               <div class="item" data-toggle="modal" data-target="<%=target %>" id="<%=menu.id%>">
@@ -72,6 +74,7 @@
                 </ul>
               </div>
           <% end %>
+        <% end %>
       <% end %>
 
     </div>

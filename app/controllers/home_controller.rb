@@ -19,7 +19,7 @@ class HomeController < ApplicationController
   end
 
   def index
-    @todays_menu = CookingToday.sorted_by_qty_left
+    @todays_menu = CookingToday.grouped_by_category
     update_cart(@todays_menu) if !@todays_menu.blank?
 
     respond_to do |format|
@@ -28,7 +28,7 @@ class HomeController < ApplicationController
   end
 
   def mobile
-    @todays_menu = CookingToday.sorted_by_qty_left
+    @todays_menu = CookingToday.grouped_by_category
     update_cart(@todays_menu) if !@todays_menu.blank?
 
     respond_to do |format|
@@ -58,6 +58,7 @@ class HomeController < ApplicationController
   private
   def update_cart(todays_menu)
     return if todays_menu.blank?
+    todays_menu = todays_menu.values.flatten
     todays_ids = todays_menu.map(&:id)
     session[:cart] = [] if session[:cart].blank?
     cart_keys = session[:cart].collect{|item| item.keys}.flatten
