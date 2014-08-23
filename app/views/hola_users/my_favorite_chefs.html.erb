@@ -20,6 +20,7 @@
                       <div class="entity-image">
                         <%= image_tag chef_image(fav_chef), :class => "center-block" %>
                       </div>
+                      <% if false %>
                       <div class="entity-tag">
                         <% percent = set_chef_heart_value(fav_chef.cheff, fav_chefs) %>
                         <ul class="entity-hearts">
@@ -42,6 +43,7 @@
                           <% end %>
                         </ul>
                       </div>
+                      <% end %>
                     </li>
                     <li class="entity-by">By <%= fav_chef.cheff.chef_coordinate.name %></li>
                     <li class="entity-cuisine">

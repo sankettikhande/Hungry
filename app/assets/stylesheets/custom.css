@@ -90,10 +90,11 @@ body {
   padding: 0 0 50px;
   display: block;
 }
-.right-body {padding-bottom: 50px;overflow: hidden;display: block;}
+.right-body {overflow: hidden;display: block;}
+body.modal-open {overflow: visible;}
+.modal{ overflow-y: hidden !important; }
 
-
-body {background: #e2e2e2;padding-top: 55px;font-family: 'robotoregular',Sans-serif}
+body {background: #fff;padding-top: 55px;font-family: 'robotoregular',Sans-serif}
 
 /** =Overwrite Bootstrap **/
 
@@ -296,6 +297,8 @@ fieldset[disabled] .btn-saffron.active {
 }
 
 .width100P{width: 100%;}
+.imageItemFix{width: 100%;height: 195px !important;}
+.colorItemFix{width: 100%;height: 195px !important;}
 .no-container {width: 100%;display: block;}
 .no-container:after {clear: both;}
 
@@ -398,13 +401,15 @@ display: none;
 
 /** gridalicious alignment  **/
 
-.galcolumn:first-child {padding-left: 0 !important}
+.galcolumn:first-child {padding-left: 0 !important;}
+.galcolumn {width: 100% !important;}
 
 /******* item blocks *******/
 
-.item {background: #efefef;color: #333;cursor: pointer;}
-
-.square {background: #fff;padding: 5px ;border:1px solid #ff8904;width: 100%;height: auto;float: left;margin-bottom: 3px;margin-top: 3px;overflow: hidden;}
+.item {background: #fff;color: #333;cursor: pointer;display: inline-block;width: 100%;margin-bottom: 0 !important;}
+.item:not(:first-child):after {content: " ";display: block;border-top: 1px solid #e2e2e2; margin: 0 5px;}
+.square {background: #fff;padding-bottom: 5px ;width: 100%;height: auto;float: left;margin-bottom: 3px;margin-top: 10px;overflow: hidden;}
+.paddingLR0{padding-left: 0;padding-right: 0;}
 
 #recipe-modal .modal-body .square {border-color: #fff;}
 
@@ -434,6 +439,7 @@ hyphens: auto;
 
 
 li.recipe-title {font-family: 'RobotoCondensed-Bold',Sans-serif;font-size: 1em;padding-top: 3px;text-transform: capitalize;}
+li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 .stock-value li {width: 50%;float: left;color: #333;margin-top: 2px;font-size: 1.4rem;overflow: hidden;font-family: 'Roboto-Medium',Sans-serif}
 .stock-value li.recipe-stock {text-align: left;float: left;}
 .stock-value li.recipe-price {text-align: right;float: right;}

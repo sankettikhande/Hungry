@@ -23,6 +23,7 @@
                       <div class="entity-image <%= dish_type_css oh.food_item %>">
                         <%= link_to image_tag(oh.food_item.try(:meal_info).try(:picture).try(:image).try(:url), :class => "img-responsive center-block"), "/chef-profile/#{oh.cheff.id}", :id => "chef_info", :alt => "Chef" if !oh.cheff.picture.blank? %>
                       </div>
+                      <% if false %>
                       <div class="entity-tag">
                         <% recipe = oh.food_item.try(:recipe) %>
                         <% fav_recipes = set_fav_recipes %>
@@ -47,6 +48,7 @@
                           <% end %>
                         </ul>
                       </div>
+                      <% end %>
                     </li>
                     <li class="entity-name pv-icon"><%= oh.food_item.try(:meal_info).try(:name) %></li>
                     <li class="entity-by">By <%= oh.cheff.try(:chef_coordinate).try(:name) %></li>
