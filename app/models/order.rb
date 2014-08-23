@@ -19,8 +19,10 @@ class Order < ActiveRecord::Base
   validates :order_status, inclusion: {in: @@order_statuses}
   validates :return_reason, presence: true, :if => Proc.new {|o| o.order_status == "Returned"}
 
-  after_save :mark_paid, :if => :delivered?
+  after_save :mark_paid, :send_delivery_message, :if => :delivered?
   after_save :mark_menu_items, :if => Proc.new { |o| ["Damaged", "Delivered", "Canceled", "Returned"].include? o.order_status }
+  after_save :send_order_confirm_message, :if => :confirmed?
+  after_save :send_order_dispatched_message, :if => :dispatched?
   before_save :build_order_status_history
   before_save :ensure_hola_user_id
   before_save :update_timestamps
@@ -35,6 +37,25 @@ class Order < ActiveRecord::Base
     if payment_status != "Paid"
       update_column(:payment_status, "Paid")
     end
+  end
+
+  def send_order_confirm_message
+    invoice_url = Settings.iframe_domain_url + "/show_invoice/#{self.id}"
+    message = "Hola! Our chef has received your order and is on it already. Your order number is #{self.id} for Rs. #{self.total}.
+               See your invoice here #{invoice_url} ."
+    MessagingLib.send_messages(message, self.phone_no, "Transaction")
+  end
+
+  def send_order_dispatched_message
+    message = "Hola! Your HolaChef order has been dispatched. Our delivery service ELVIS is on its way. For Order feedback
+              message “Delighted” or “Disappointed” on 808080HOLA."
+    MessagingLib.send_messages(message, self.phone_no, "Transaction")
+  end
+
+  def send_delivery_message
+    message = "Hola! Hope you had an awesome experience with HolaChef, the only multi cuisine restaurant delivering food
+          from chefs to right at your doorsteps."
+    MessagingLib.delay(:run_at => 2.hours.from_now).send_messages(message, self.phone_no, "Transaction")
   end
 
   def mark_menu_items
