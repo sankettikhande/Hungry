@@ -43,8 +43,8 @@ $(document).ready(function(){
       $(this).closest('.square').find(".recipe-block").show();
       return false;
     });
-    
-    
+
+
 
 
 
@@ -308,7 +308,7 @@ $(document).ready(function(){
 
 //        validation for cart select payment method
     $(document).ready(function(){
-        $("#submit_order").validationEngine()
+        $("#submit_order").validationEngine('attach', { maxErrorsPerField:1})
     })
 
     $('.signature-modal').on('hide.bs.modal', function (e) {

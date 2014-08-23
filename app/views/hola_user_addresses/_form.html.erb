@@ -1,11 +1,9 @@
-<% if f.object.address_type.blank? %>
+
   <div class="form-group">
     <%= f.text_field :address_type, class: "form-control", placeholder: "Address Type", required: true %>
     <p class="help-block">Home, Work etc</p>
   </div>
-<% else %>
-  <%= f.hidden_field :address_type, required: true %>
-<% end %>
+
 <div class="form-group">
   <%= f.text_field :name, class: "form-control", placeholder: "Name", required: true %>
 </div>

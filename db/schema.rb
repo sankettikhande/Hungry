@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140822073959) do
+ActiveRecord::Schema.define(:version => 20140823072911) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -479,9 +479,9 @@ ActiveRecord::Schema.define(:version => 20140822073959) do
   create_table "hola_user_addresses", :force => true do |t|
     t.string   "address"
     t.integer  "hola_user_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.string   "address_type"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "address_type",  :default => "Home"
     t.string   "name"
     t.string   "building_name"
     t.string   "street"
@@ -489,7 +489,7 @@ ActiveRecord::Schema.define(:version => 20140822073959) do
     t.string   "pin"
     t.string   "landmark"
     t.boolean  "default",       :default => false
-    t.string   "mobile_no",                        :null => false
+    t.string   "mobile_no",                         :null => false
     t.string   "landline_no"
   end
 

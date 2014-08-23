@@ -1,9 +1,9 @@
 require "#{Rails.root}/lib/citrus_lib.rb"
 include ApplicationHelper
 class Cms::OrdersController < Cms::ContentBlockController
-  skip_before_filter :login_required,:cms_access_required, :only => [:email_invoice, :set_cart, :payment_gateway,:order_confirm,
+  skip_before_filter :login_required, :cms_access_required, :only => [:email_invoice, :set_cart, :payment_gateway,:order_confirm,
                                                                      :remove_from_cart, :create_signature_order, :callback,
-                                                                     :submit_payment_form]
+                                                                     :submit_payment_form, :add_address]
   def set_cart
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []
@@ -47,6 +47,18 @@ class Cms::OrdersController < Cms::ContentBlockController
     respond_to do |format|
       format.js
     end
+  end
+
+  def add_address
+    logger.info session.inspect
+    if hola_current_user
+      @adds = hola_current_user.hola_user_addresses.default_address.first
+      @adds = hola_current_user.hola_user_addresses.build(name: hola_current_user.name, mobile_no: hola_current_user.phoneNumber) unless @adds
+      @adds_types = hola_current_user.hola_user_addresses.collect{|ads| ads.address_type}.compact
+    else
+      @adds = HolaUserAddress.new
+    end
+    render layout: 'application'
   end
 
   def payment_gateway

@@ -28,6 +28,7 @@
             <a data-toggle="collapse" data-parent="#accordion" href="#add-1">+ Add Address</a>
               <div id="add-1" class="collapse">
                 <%= form_for @new_address, url: hola_user_addresses_path do |f| %>
+                  <% f.object.address_type = '' %>
                   <%= render "hola_user_addresses/form", f: f %>
                 <% end %>
               </div>

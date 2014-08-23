@@ -1,0 +1,33 @@
+<div class="container-fluid back-white seperator-4">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="container">
+        <ul class="del-details">
+          <li class="del-d del-header roboto">Delivery Details</li>
+          <li class="del-d del-warning roboto">Orders are delivered in ~30min of placing order</li>
+          <%# hola_user = get_user_details %>
+          <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
+              <% if @adds_types.present? %>
+                <li class="del-d roboto"><%= select_tag "orders[address_type]", options_for_select(@adds_types, @adds.address_type), :class => "width100P" %></li>
+              <% end %>
+              <div id="adds_fields">
+                <%= render :partial => "/ordered_menus/address_fields", :locals => {:adds => @adds} %>
+              </div>
+
+              <li class="del-d check-mark roboto text-center hola-ccbox">
+                <% if @hola_user.present? %>
+                  <%= hidden_field_tag "hola_user_id", @hola_user.id %>
+                <% end %>
+                <input class="css-checkbox" type="checkbox" id="save-del-details" checked="checked" name="save_user_details">
+                <label class="css-label roboto" for="save-del-details">Save my details</label></li>
+          <% end -%>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+</div> <!-- fluid container ends -->
+<% content_for :review_order_footer do %>
+    <%= render :partial => "/layouts/review_order_footer" %>
+<% end %>

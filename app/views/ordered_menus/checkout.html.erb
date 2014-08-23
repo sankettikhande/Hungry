@@ -1,4 +1,4 @@
-<div class="container-fluid back-white mb-4">
+  <div class="container-fluid back-white mb-4">
   <div class="row">
     <div class="col-xs-12">
       <div class="container">
@@ -112,11 +112,11 @@
 <% end %>
 
 
+<% if false %>
 <div class="container-fluid back-white seperator-4">
   <div class="row">
     <div class="col-xs-12">
       <div class="container">
-
         <ul class="del-details">
           <li class="del-d del-header roboto">Delivery Details</li>
           <li class="del-d del-warning roboto">Orders are delivered in ~30min of placing order</li>
@@ -143,10 +143,24 @@
     </div>
   </div>
 </div> <!-- fluid container ends -->
+<% end %>
 <div class="floral-block"></div>
 </div><!-- #wrap ends -->
 
 <%= javascript_include_tag "jquery-1.11.0.min" %>
 <% content_for :review_order_footer do %>
-    <%= render :partial => "/layouts/review_order_footer" %>
+    <%#= render :partial => "/layouts/review_order_footer" %>
+    <div id="footer" class="footer">
+      <div class='container'>
+        <div class='row'>
+          <div class='col-xs-12'>
+            <div class='tap-text'>
+              <p class='text-center' id="select_payment">
+                <a class='text-orange' id='submit-order-button' href='/add-address'>Provide Address</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>

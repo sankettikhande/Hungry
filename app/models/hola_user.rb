@@ -50,14 +50,12 @@ class HolaUser < ActiveRecord::Base
 
   def self.create_from_params options
     hola_user = HolaUser.find_by_phoneNumber(options[:phone_no])
-    if options[:save_user_details]
-      if hola_user
-        hola_user.update_attributes(:name => options[:name], :phoneNumber => [:phone_no])
-        #HolaUserAddress.create(:address => options[:address], :hola_user_id => hola_user.id) if !hola_user.hola_user_addresses.map(&:address).include?(options[:address].strip)
-      else
-        hola_user = HolaUser.create(:name => options[:name], :phoneNumber => options[:phone_no])
-        #HolaUserAddress.create(:address => options[:address].strip, :hola_user_id => hola_user.id)  if hola_user
-      end
+    if hola_user
+      hola_user.update_attributes(:name => options[:name], :phoneNumber => [:phone_no])
+      #HolaUserAddress.create(:address => options[:address], :hola_user_id => hola_user.id) if !hola_user.hola_user_addresses.map(&:address).include?(options[:address].strip)
+    else
+      hola_user = HolaUser.create(:name => options[:name], :phoneNumber => options[:phone_no])
+      #HolaUserAddress.create(:address => options[:address].strip, :hola_user_id => hola_user.id)  if hola_user
     end
     return hola_user
   end

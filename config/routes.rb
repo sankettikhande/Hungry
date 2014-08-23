@@ -50,6 +50,7 @@ Holachef::Application.routes.draw do
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
   match '/payment-method'=>"Cms::orders#payment_gateway"
   match '/order-confirm/:order_id'=>"Cms::orders#order_confirm"
+  match '/add-address'=>"Cms::orders#add_address"
 
   match '/cooking_todays/get_review_order_details'=> 'Cms::cooking_todays#get_review_order_details'
   match '/cooking_todays/get_item_details'=> 'Cms::cooking_todays#get_item_details'
