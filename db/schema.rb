@@ -316,6 +316,22 @@ ActiveRecord::Schema.define(:version => 20140823133301) do
     t.integer  "updated_by_id"
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0, :null => false
+    t.integer  "attempts",   :default => 0, :null => false
+    t.text     "handler",                   :null => false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "dish_versions", :force => true do |t|
     t.integer  "original_record_id"
     t.integer  "version"
@@ -646,6 +662,16 @@ ActiveRecord::Schema.define(:version => 20140823133301) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "short_description"
+  end
+
+  create_table "message_reports", :force => true do |t|
+    t.string   "message_type"
+    t.string   "numbers"
+    t.string   "status"
+    t.text     "message"
+    t.string   "message_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "my_favorite_chefs", :force => true do |t|

@@ -200,6 +200,13 @@ class Cms::OrdersController < Cms::ContentBlockController
     end
   end
 
+  def show_invoice
+    @order = Order.find(params[:order_id])
+    respond_to do |format|
+      format.html {render :partial => "cms/orders/invoice"}
+    end
+  end
+
   def email_invoice
     email_details = {:from => "admin@holachef.com", :recepients => params[:email_to], :subject => "HolaChef Invoice Details"}
     if params[:email_to].present? && Notifier.email_invoice_details(email_details, params[:order_id]).deliver

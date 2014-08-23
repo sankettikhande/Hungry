@@ -1,0 +1,2 @@
+messaging_default_url: "http://alerts.sinfini.com/api/web2sms.php?workingkey=16775ubj12184mkc53wat&sender=HLACHF"
+messaging_default_retrace_url: "http://alerts.sinfini.com/api/status.php?workingkey=16775ubj12184mkc53wat"
