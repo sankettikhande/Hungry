@@ -1,6 +1,5 @@
 // grid-system
 $("#hola-container, .hola-container").gridalicious({
-    width: 150,
     gutter: 5,
     animate:true,
     animationOptions: {
@@ -33,6 +32,19 @@ $(document).ready(function(){
             'dataType': 'script'
         });
     });
+
+    $('.about-content').live('click', function(){
+      $(this).closest('.square').find(".recipe-block").hide();
+      $(".recipe-about").show();
+      return false;
+    });
+     $('.opacityimg,.opacityborder').live('click', function(){
+      $(".recipe-about").hide();
+      $(this).closest('.square').find(".recipe-block").show();
+      return false;
+    });
+    
+    
 
 
 
@@ -85,7 +97,9 @@ $(document).ready(function(){
         var date = new Date();
         var dish_name = $("#"+$("#selected_item").val() +" ul li.recipe-title").html();
         var menu_qty = parseInt($("#order-count").html(),10);
+        var cnt = parseInt($("#order-count").html(),10)
         var menu_price = parseInt($(".modal-body li.recipe-price").html(),10);
+        var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
 
         if(cnt == 0){
             $(selected_id).html(parseInt($("#order-count").html(),10) +" in cart");
@@ -107,7 +121,7 @@ $(document).ready(function(){
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': cnt, 'price': menu_price, 'date': date, 'dish_name': dish_name },
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': cnt, 'price': menu_price, 'date': date, 'dish_name': dish_name, 'category' :category },
                 'dataType': 'script'
             })
         }
@@ -122,8 +136,7 @@ $(document).ready(function(){
                 'dataType': 'script'
             })
         }
-
-
+        $('#footer').show();
     });
     var selected_review_id = "";
 
@@ -137,12 +150,12 @@ $(document).ready(function(){
         var date = new Date();
         var menu_qty = parseInt($("#order-count").html(),10);
         var menu_price = parseInt($(".modal-body li.recipe-price span").html(),10);
-
+        var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
         if(parseInt($("#order-count").html()) > 0){
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html() },
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html(), 'category' : category },
                 'dataType': 'script'
             })
             $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
@@ -174,7 +187,7 @@ $(document).ready(function(){
     });
 
     $("span.item-edit").live('click',function(){
-      $("span.item-name").click();
+        $(this).closest('.review_order_list').find('span.item-name').click();
     });
 
     $("#submit-order-button").click(function(e){
@@ -185,6 +198,22 @@ $(document).ready(function(){
         $("#submit_order input").removeClass('active');
         $(this).addClass('active');
     })
+
+    var path = window.location.pathname.split('/')[1]
+    if (path == "order-confirm") {
+        var host = window.location.origin
+        timer = setTimeout(function() {
+            window.location.href = host + "/mobile"}, 10000);
+         $(document).click(function(){
+            clearTimeout(timer)
+            timer = setTimeout(function() {
+                window.location.href = host + "/mobile"}, 30000);
+        })
+    }else if(path == "recipe"){
+        if ($("#total_price").val() == "0"){
+            $('#footer').hide();
+        }
+    }
 
 
 //    Signature Dish Order
@@ -294,9 +323,13 @@ $(document).ready(function(){
 //    Disable back button on Order Confirmation page
     var href_url = window.location.href;
     if (href_url.indexOf("orders") > -1 && href_url.indexOf("party_orders") == -1) {
-        $(".btn-back").addClass("hidden");
         $('#footer').hide();
     }
+
+//    refresh review order page on remove item
+    $("#remove_last_dish, #remove_dish").on('hide.bs.modal',function(){
+        location.reload();
+    })
 });
 
 // random splash on refresh

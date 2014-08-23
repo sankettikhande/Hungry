@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140816075333) do
+ActiveRecord::Schema.define(:version => 20140822073959) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -62,14 +62,6 @@ ActiveRecord::Schema.define(:version => 20140816075333) do
     t.string   "contact_email"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-  end
-
-  create_table "chef_preferences", :force => true do |t|
-    t.integer  "cheff_id"
-    t.string   "cuisine_style"
-    t.string   "cuisine_tags"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
   end
 
   create_table "chef_profiles", :force => true do |t|
@@ -616,6 +608,7 @@ ActiveRecord::Schema.define(:version => 20140816075333) do
     t.integer  "hola_sell_price"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.string   "short_description"
   end
 
   create_table "my_favorite_chefs", :force => true do |t|
@@ -678,14 +671,15 @@ ActiveRecord::Schema.define(:version => 20140816075333) do
     t.integer  "dish_id"
     t.integer  "quantity"
     t.integer  "rate"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "name"
     t.boolean  "published",     :default => false
     t.boolean  "deleted",       :default => false
     t.boolean  "archived",      :default => false
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.string   "order_status",  :default => "Ordered"
   end
 
   create_table "orders", :force => true do |t|
@@ -718,6 +712,16 @@ ActiveRecord::Schema.define(:version => 20140816075333) do
     t.string   "addressCountry"
     t.string   "addressZip"
     t.integer  "hola_user_id"
+    t.string   "payment_mode"
+    t.string   "payment_status"
+    t.string   "order_status_history"
+    t.integer  "runner_id"
+    t.datetime "dispatched_at"
+    t.datetime "delivered_at"
+    t.string   "return_reason"
+    t.string   "landmark"
+    t.integer  "reorder_id"
+    t.integer  "original_order_id"
   end
 
   add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"
@@ -887,6 +891,37 @@ ActiveRecord::Schema.define(:version => 20140816075333) do
     t.datetime "created_at",                                                  :null => false
     t.datetime "updated_at",                                                  :null => false
     t.integer  "hola_user_id"
+  end
+
+  create_table "runner_versions", :force => true do |t|
+    t.integer  "original_record_id"
+    t.integer  "version"
+    t.string   "name"
+    t.string   "phone"
+    t.text     "address"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
+    t.string   "version_comment"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+  end
+
+  create_table "runners", :force => true do |t|
+    t.integer  "version"
+    t.integer  "lock_version",  :default => 0
+    t.string   "name"
+    t.string   "phone"
+    t.text     "address"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "published",     :default => false
+    t.boolean  "deleted",       :default => false
+    t.boolean  "archived",      :default => false
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   create_table "section_nodes", :force => true do |t|

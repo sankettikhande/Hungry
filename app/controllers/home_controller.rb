@@ -48,6 +48,13 @@ class HomeController < ApplicationController
     end
   end
 
+  def add_other_dishes
+    @remaining_categories = CookingToday.joins(food_item: :recipe).where('recipes.category' => params[:category]).sorted_by_qty_left
+    respond_to do |format|
+      format.html{render :layout => 'application'}
+    end
+  end
+
   private
   def update_cart(todays_menu)
     return if todays_menu.blank?

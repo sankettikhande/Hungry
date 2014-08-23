@@ -8,6 +8,12 @@ class OrderedMenusController < ApplicationController
     else
       @adds = HolaUserAddress.new
     end
+    categories = []
+    session[:cart].each do |cart_item|
+      cart_item.each do |key, value|
+            @categories = categories << value["category"]
+      end
+    end
     respond_to do |format|
       format.html {render :layout => 'application'}
     end

@@ -5,6 +5,7 @@
         <ul class="booked-orders">
           <li class="food-bill">
             <span class="item-name">Meal</span>
+            <span class="item-edit">&nbsp;</span>
             <span class="item-qty">Qty</span>
             <span class="item-cost">Cost</span>
             <span class="item-remove">&nbsp;</span>
@@ -17,11 +18,11 @@
                         <span class="item-name" data-toggle="modal" data-target="#item-modal" data-quantity="<%= order_attrs['quantity'] %>" style="cursor: pointer;" id="<%= order_id %>">
                           <%= order_attrs['dish_name'] %>
                         </span>
-                        <span class="item-qty"><%= order_attrs['quantity'] %></span>
-                        <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
                         <span class="item-edit" style="cursor: pointer;">
                           <i class="fa fa-edit"></i>
                         </span>
+                        <span class="item-qty"><%= order_attrs['quantity'] %></span>
+                        <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
                         <span class="item-remove">
                            <a href="#" data-item="<%= order_id %>"><i class="fa fa-times-circle"></i></a>
                         </span>
@@ -89,28 +90,28 @@
   </div>
 </div>
 
-<div class="container-fluid back-white seperator-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="show-promo">
-          <li class="promo">Just Mains, no sides?<span class="add-promo"><a href="#">Add now</a></span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-fluid back-white seperator-3">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="show-promo">
-          <li class="promo">What? No Dessert!<span class="add-promo"><a href="#">Add now</a></span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+<% if !session[:cart].blank? %>
+     <% remaining_categories = get_remaining_category(@categories) %>
+        <% remaining_categories.each do |remaining_categories| %>
+            <div class="container-fluid back-white seperator-3">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <ul class="show-promo">
+                      <li class="promo">Just this, no <%= remaining_categories %>?
+                                <span class="add-promo">
+                                    <a href="/add-dishes?category=<%= remaining_categories %>">Add now</a>
+                                </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+<% end %>
+
+
 <div class="container-fluid back-white seperator-4">
   <div class="row">
     <div class="col-xs-12">
@@ -122,7 +123,7 @@
           <%# hola_user = get_user_details %>
           <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
               <% if @adds_types.present? %>
-                <li class="del-d roboto"><%= select_tag "orders[address_type]", options_for_select(@adds_types, @adds.address_type) %></li>
+                <li class="del-d roboto"><%= select_tag "orders[address_type]", options_for_select(@adds_types, @adds.address_type), :class => "width100P" %></li>
               <% end %>
               <div id="adds_fields">
                 <%= render :partial => "address_fields", :locals => {:adds => @adds} %>

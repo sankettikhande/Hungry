@@ -9,4 +9,5 @@ class Recipe < ActiveRecord::Base
   accepts_nested_attributes_for :sub_menus, :reject_if => :all_blank, :allow_destroy => true
 
   validates_presence_of :dish_type
+  validates_presence_of :category
 end

@@ -17,6 +17,7 @@
               <div class="item" data-toggle="modal" data-target="<%=target %>" id="<%=menu.id%>">
                 <input type="hidden" class="menu_price" value="<%=cart_menu[:price] if cart_menu %>" />
                 <input type="hidden" class="menu_qty" value="<%= cart_menu[:quantity] if cart_menu  %>" />
+                <input type="hidden" id="menu_category_<%= menu.id %>" value="<%= menu.food_item.recipe.category  %>" />
                 <input type="hidden" class="menu_max_qty" value="<%= qty_left(menu) %>"/>
                 <input type="hidden" class="chef-profile-pic" value="<%= cart_menu[:cheff_image] if cart_menu  %>"/>
                 <input type="hidden" class="chef-name" value="<%= cart_menu[:cheff_name] if cart_menu  %>"/>
@@ -35,7 +36,7 @@
                         <div class="recipe-image append-cart">
                           <div class="add-lens"></div>
                           <div class="add-heart"></div>
-                          <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block" %>
+                          <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block width100P" %>
                           <% if today_menu && today_menu.has_key?(menu[:id]) %>
                               <div class='add-cart'></div>
                           <% end %>

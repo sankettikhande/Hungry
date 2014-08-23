@@ -1,5 +1,4 @@
 Holachef::Application.routes.draw do
-
   resources :hola_users
   match "/add_chef_to_favorite"=> "hola_users#add_chef_to_favorite"
   match '/my_favorite_chefs'=>"hola_users#my_favorite_chefs"
@@ -36,6 +35,7 @@ Holachef::Application.routes.draw do
     content_blocks :cuisine_geographies
     content_blocks :cuisine_styles
     content_blocks :food_items
+    content_blocks :runners
   end
 
   resources :social_shares do
@@ -48,7 +48,7 @@ Holachef::Application.routes.draw do
 
   match '/orders/set_cart'=> 'Cms::orders#set_cart'
   match '/orders/remove_from_cart'=> 'Cms::orders#remove_from_cart'
-  post '/payment-method'=>"Cms::orders#payment_gateway"
+  match '/payment-method'=>"Cms::orders#payment_gateway"
   match '/order-confirm/:order_id'=>"Cms::orders#order_confirm"
 
   match '/cooking_todays/get_review_order_details'=> 'Cms::cooking_todays#get_review_order_details'
@@ -60,6 +60,7 @@ Holachef::Application.routes.draw do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
 
   match '/desktop' => 'home#desktop'
+  match '/add-dishes' => 'home#add_other_dishes'
 
   match '/mobile' => 'home#mobile', :as => :home
 
@@ -80,8 +81,16 @@ Holachef::Application.routes.draw do
 
   namespace :api do
     resources :orders do
-      put :update_status
+      get :update_status
+      get :assign_runner
+      get :update_menu_item_status
+      get :reorder
     end
+
+    resources :runners do
+      get :orders
+    end
+
   end
 
   #end

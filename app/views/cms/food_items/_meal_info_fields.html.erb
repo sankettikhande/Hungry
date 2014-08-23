@@ -17,6 +17,11 @@
   </div>
 
   <div class="fields text_fields">
+    <%= f.label :short_description %>
+    <%= f.text_area :short_description, :class => 'recipe_text_area' %>
+  </div>
+
+  <div class="fields text_fields">
     <label for="meal_info_meal_image">Meal Image</label>
     <%= f.fields_for :picture, FoodItem.new do |i| %>
         <%= i.file_field :image, :class => 'meal_image' %>
