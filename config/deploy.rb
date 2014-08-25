@@ -1,8 +1,9 @@
 
 require 'bundler/capistrano'
+require 'delayed/recipes'
 load 'deploy/assets'
 load 'config/recipes/db'
-
+# load "config/recipes/delayed_job"
 # default_run_options[:shell] = '/bin/bash'
 
 task :qa do
@@ -29,6 +30,8 @@ task :qa do
   set :deploy_via, :remote_cache
   set :scm, 'git'
   set :branch, 'master'
+  set :delayed_job_server_role, :worker
+  set :delayed_job_args, "-n 2"
   set :git_shallow_clone, 1
   set :scm_verbose, true
   set :use_sudo, false
@@ -63,6 +66,7 @@ task :prod do
 
   after "deploy:update_code", "deploy:migrate"
   after "deploy:create_symlink", "deploy:change_permission_for_tmp"
+  after "deploy:restart", "delayed_job:restart"
 end
 
 

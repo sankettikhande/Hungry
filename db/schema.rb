@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140823072911) do
+ActiveRecord::Schema.define(:version => 20140823133301) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -84,6 +84,39 @@ ActiveRecord::Schema.define(:version => 20140823072911) do
     t.integer  "brand_logo_file_size"
     t.datetime "brand_logo_updated_at"
     t.text     "classification"
+  end
+
+  create_table "chef_request_versions", :force => true do |t|
+    t.integer  "original_record_id"
+    t.integer  "version"
+    t.string   "name"
+    t.integer  "mobile_number"
+    t.string   "email"
+    t.text     "description"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
+    t.string   "version_comment"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+  end
+
+  create_table "chef_requests", :force => true do |t|
+    t.integer  "version"
+    t.integer  "lock_version",  :default => 0
+    t.string   "name"
+    t.string   "mobile_number"
+    t.string   "email"
+    t.text     "description"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "published",     :default => false
+    t.boolean  "deleted",       :default => false
+    t.boolean  "archived",      :default => false
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   create_table "cheff_cuisine_geographies", :force => true do |t|
@@ -239,21 +272,25 @@ ActiveRecord::Schema.define(:version => 20140823072911) do
 
   create_table "cooking_todays", :force => true do |t|
     t.integer  "version"
-    t.integer  "lock_version",  :default => 0
+    t.integer  "lock_version",   :default => 0
     t.integer  "cheff_id"
     t.integer  "dish_id"
-    t.integer  "quantity",      :default => 0
-    t.integer  "ordered",       :default => 0
+    t.integer  "quantity",       :default => 0
+    t.integer  "ordered",        :default => 0
     t.date     "date"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "name"
-    t.boolean  "published",     :default => false
-    t.boolean  "deleted",       :default => false
-    t.boolean  "archived",      :default => false
+    t.boolean  "published",      :default => false
+    t.boolean  "deleted",        :default => false
+    t.boolean  "archived",       :default => false
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "food_item_id"
+    t.string   "meal_type"
+    t.time     "meal_from_time"
+    t.time     "meal_to_time"
+    t.string   "category"
   end
 
   create_table "cuisine_geographies", :force => true do |t|
@@ -278,6 +315,22 @@ ActiveRecord::Schema.define(:version => 20140823072911) do
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
   end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0, :null => false
+    t.integer  "attempts",   :default => 0, :null => false
+    t.text     "handler",                   :null => false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "dish_versions", :force => true do |t|
     t.integer  "original_record_id"
@@ -609,6 +662,16 @@ ActiveRecord::Schema.define(:version => 20140823072911) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "short_description"
+  end
+
+  create_table "message_reports", :force => true do |t|
+    t.string   "message_type"
+    t.string   "numbers"
+    t.string   "status"
+    t.text     "message"
+    t.string   "message_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "my_favorite_chefs", :force => true do |t|
