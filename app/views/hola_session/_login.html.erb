@@ -14,7 +14,7 @@
                 <label class="control-label" style="vertical-align:middle;margin-bottom:-10px;">Name</label>
               </div>
               <div class="col-xs-9 form-group">
-                <%= text_field_tag :name, '', class: "form-control validate[required]", placeholder: "Name"  %>
+                <%= text_field_tag :name, '', class: "form-control validate[required]", placeholder: "Name", "data-prompt-position" => "bottomLeft"  %>
               </div>
             </div>
           <div class="row">
@@ -22,7 +22,7 @@
               <label class="control-label" style="vertical-align:middle;margin-bottom:-10px;">Mobile</label>
             </div>
             <div class="col-xs-9 form-group">
-              <%= text_field_tag :mobile, '', class: "form-control validate[required,custom[integer],maxSize[11], minSize[10]]", placeholder:"10 digit mobile number", maxlength: 11 %>
+              <%= text_field_tag :mobile, '', class: "form-control validate[required,custom[integer],maxSize[11], minSize[10]]", placeholder:"10 digit mobile number", maxlength: 11, "data-prompt-position" => "bottomLeft" %>
             </div>
             <%= hidden_field :save_user_details, true %>
           </div>
