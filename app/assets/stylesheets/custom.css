@@ -391,7 +391,7 @@ display: none;
 .navbar-titlebar .page-title .dropdown-menu li {display: block;float:left;width: 100%;padding: 0;}
 .navbar-titlebar .page-title .dropdown-menu li+li {border-top: 1px solid #d7d7d7}
 .navbar-titlebar .page-title .dropdown-menu li a {color: #000;display: block;width: 100%;padding: 10px 20px;}
-.navbar-titlebar .page-title a.drop-icon {background: url('/assets/dropd-icon.png') no-repeat;background-size: 10px 10px;background-position: 100% 100%;min-width: 160px}
+/*.navbar-titlebar .page-title a.drop-icon {background: url('/assets/dropd-icon.png') no-repeat;background-size: 10px 10px;background-position: 100% 100%;min-width: 160px}*/
 
 /**** =Main Content *****/
 
@@ -479,7 +479,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 
 .add-lens, .add-heart {display: none;position: absolute;z-index: 1;width: 18px;height: 18px;cursor: pointer;}
 .add-lens {background: url('/assets/icon-eye.png') no-repeat left top;top: 3px;background-size: 100% 100%;right: 4px;}
-.add-heart {background: url('/assets/icon-heart.png') no-repeat left top;top: 100%;margin-top: -21px;background-size: 100% 100%;right: 4px;}
+/*.add-heart {background: url('/assets/icon-heart.png') no-repeat left top;top: 100%;margin-top: -21px;background-size: 100% 100%;right: 4px;}*/
 .add-cart {background: url('/assets/add-cart.png') no-repeat left top;top: 100%;margin-top: -41px;background-size: 100% 100%;right: 0;width: 40px;height: 41px;position: absolute;z-index: 1;cursor: pointer;}
 .add-heart.filled {background: url('/assets/icon-heart-filled.png')no-repeat left top;top: 100%;margin-top: -27px;background-size: 100% 100%;right: 4px;}
 
@@ -898,7 +898,7 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .social-cards li a {display: table;float: left;background: #ff8800;width: 100%;color: #fff;text-align: center;height: 100%;text-indent: -99999px;}
 .social-cards li a span {display: table-cell;vertical-align: middle;}
 
-.talk-us textarea.form-control {border:0;}
+.talk-us textarea.form-control {border:1px solid #ccc;resize: none;}
 
 .empty-labels {padding: 7px 10px;}
 
