@@ -71,19 +71,21 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <ul class="block-3">
+      <ul class="block-3 block-2">
         <li class="each-block">
           <a href="#">
             <span id="served-count" class="upper roboto-b"><%= @total_qty %></span>
             <span class="lower text-uppercase">Dishes served</span>
           </a>
         </li>
+        <% if false %>
         <li class="each-block">
           <a href="#">
             <span id="recipe-count" class="upper roboto-b"><%= @total_receipes %></span>
             <span class="lower text-uppercase">Recipes</span>
           </a>
         </li>
+         <% end; %>
         <li class="each-block">
           <a href="#">
             <span id="fan-count" class="upper roboto-b">253</span>
