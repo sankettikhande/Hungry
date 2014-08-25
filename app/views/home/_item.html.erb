@@ -23,7 +23,7 @@
           <div class="recipe-image append-cart">
             <div class="add-lens"></div>
             <div class="add-heart"></div>
-            <%= image_tag @menu.food_item.meal_info.picture.image.url, :alt=>"#{@menu.food_item.meal_info.name}", :class => "img-responsive center-block" %>
+            <%= image_tag @menu.food_item.meal_info.picture.image.url, :alt=>"#{@menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix" %>
             <% if @today_menu && @today_menu.has_key?(@menu[:id]) %>
                 <div class='add-cart'></div>
             <% end %>
