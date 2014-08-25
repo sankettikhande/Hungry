@@ -5,24 +5,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :hola_current_user
 
-  before_filter :set_hola_user
-
-
-
   private
 
   def hola_current_user
-    @hola_current_user = @hola_current_user || HolaUser.find_by_phoneNumber(cookies.signed[:user_mobile])
-  end
-
-  def set_hola_user
-    if @hola_current_user.blank?
-      unless session[:hola_user_id].blank?
-        hola_user = HolaUser.find session[:hola_user_id]
-        cookies.signed[:user_mobile] = {value: hola_user.phoneNumber, expires: 5.year.from_now} if hola_user
-        session.delete(:hola_user_id)
-      end
-    end
+    @hola_current_user || HolaUser.find_by_phoneNumber(cookies.signed[:user_mobile])
   end
 
   def mobile_device?
