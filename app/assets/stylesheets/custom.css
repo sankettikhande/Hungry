@@ -898,7 +898,7 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .social-cards li a {display: table;float: left;background: #ff8800;width: 100%;color: #fff;text-align: center;height: 100%;text-indent: -99999px;}
 .social-cards li a span {display: table-cell;vertical-align: middle;}
 
-.talk-us textarea.form-control {border:0;}
+.talk-us textarea.form-control {border:1px solid #ccc;resize: none;}
 
 .empty-labels {padding: 7px 10px;}
 
