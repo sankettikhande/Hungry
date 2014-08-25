@@ -16,7 +16,7 @@
         <li><a class="navbar-brand" href="/mobile">Hola</a></li>
         <% if params[:controller] == "home" %>
           <li class="dropdown page-title">
-            <a class="drop-icon" data-toggle="dropdown" href="#">
+            <a class="drop-icon" href="javascript:void(0)">
               <%= set_drop_down_title(params[:controller], params[:action], params[:id] ) %>
             </a>
             <ul class="dropdown-menu" role="menu">

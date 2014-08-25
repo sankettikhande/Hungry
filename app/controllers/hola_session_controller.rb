@@ -5,7 +5,9 @@ class HolaSessionController < ApplicationController
                                             })
     cookies.signed[:user_mobile] = {value: hola_user.phoneNumber, expires: 5.year.from_now} if hola_user
     respond_to do |format|
-      format.js
+      format.html{
+        redirect_to params[:redirect_to_url]
+      }
     end
   end
 end
