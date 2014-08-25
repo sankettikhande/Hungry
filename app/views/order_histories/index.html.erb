@@ -21,7 +21,7 @@
                   <ul class="square e-recipe">
                     <li class="entity-card">
                       <div class="entity-image <%= dish_type_css oh.food_item %>">
-                        <%= link_to image_tag(oh.food_item.try(:meal_info).try(:picture).try(:image).try(:url), :class => "img-responsive center-block"), "/chef-profile/#{oh.cheff.id}", :id => "chef_info", :alt => "Chef" if !oh.cheff.picture.blank? %>
+                        <%= link_to image_tag(oh.food_item.try(:meal_info).try(:picture).try(:image).try(:url), :class => "img-responsive center-block"), "/chef-profile/#{oh.cheff.id}", :id => "chef_info", :alt => "Chef" if oh.food_item.has_picture? %>
                       </div>
                       <% if false %>
                       <div class="entity-tag">
