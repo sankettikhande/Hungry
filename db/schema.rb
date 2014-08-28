@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140823133301) do
+ActiveRecord::Schema.define(:version => 20140827134136) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -288,8 +288,8 @@ ActiveRecord::Schema.define(:version => 20140823133301) do
     t.integer  "updated_by_id"
     t.integer  "food_item_id"
     t.string   "meal_type"
-    t.time     "meal_from_time"
-    t.time     "meal_to_time"
+    t.datetime "meal_from_time"
+    t.datetime "meal_to_time"
     t.string   "category"
   end
 

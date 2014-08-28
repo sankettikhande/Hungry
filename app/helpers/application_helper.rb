@@ -271,4 +271,12 @@ module ApplicationHelper
     return remaining_categories = all_categories - ordered_categories
   end
 
+  def meal_available? meal_type
+    meal_availability = CookingToday.meal_type_time_span[meal_type]
+    meal_availability_from_time = Time.zone.parse("#{Date.today} #{meal_availability[:from]}")
+    meal_availability_to_time = Time.zone.parse("#{Date.today} #{meal_availability[:to]}")
+    (Time.now < meal_availability_to_time)
+  end
+
 end
+
