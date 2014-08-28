@@ -3,16 +3,16 @@ Holachef::Application.configure do
   # config.cms.site_domain = "www.example.com"
 
   # Configure your mail server's address below
+# Configure your mail server's address below
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address        => 'smtp.gmail.com',
-    :port           => 587,
-    :domain         => 'gmail.com',
-    :authentication => :plain,
+    :address        => 'email-smtp.us-east-1.amazonaws.com',
+    :port           => 25,
     :enable_starttls_auto =>  true,
-    :user_name      => 'dev.web.20140801',
-    :password       => 'abc12345#'
+    :user_name      => 'AKIAIIIF2JD5T7CQ7H2A',
+    :password       => 'AgpZLp+CmUnmuKPUwL0TptxaD4mCV4ttXxKIs06zsRAg'
   }
+
 
   # Settings specified here will take precedence over those in config/application.rb
 
