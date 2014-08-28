@@ -75,26 +75,28 @@
       </ul>
 
     </div>
-    <div class="modal-footer modal-form">
-      <div class="row">
-        <div class="col-xs-12 text-center">
-          <div class="row">
-            <div class="col-xs-3">
-              <button class="btn btn-orange disabled" type="button" id="add-order-minus" disabled>-1</button>
-            </div>
-            <div class="col-xs-3">
-              <p class="form-control looks-input" id="order-count"><%= cart_menu[:quantity]%></p>
-            </div>
-            <div class="col-xs-3">
-              <button class="btn btn-orange" type="button" id="add-order-plus">+1</button>
-            </div>
-            <div class="col-xs-3">
-              <button type="button" class="btn btn-link text-orange" data-dismiss="modal" id="order-done">Done</button>
+    <% if @cooking_today.orderable? %>
+      <div class="modal-footer modal-form">
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <div class="row">
+              <div class="col-xs-3">
+                <button class="btn btn-orange disabled" type="button" id="add-order-minus" disabled>-1</button>
+              </div>
+              <div class="col-xs-3">
+                <p class="form-control looks-input" id="order-count"><%= cart_menu[:quantity]%></p>
+              </div>
+              <div class="col-xs-3">
+                <button class="btn btn-orange" type="button" id="add-order-plus">+1</button>
+              </div>
+              <div class="col-xs-3">
+                <button type="button" class="btn btn-link text-orange" data-dismiss="modal" id="order-done">Done</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
 
   </div>
 </div>
