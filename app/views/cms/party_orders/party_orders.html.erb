@@ -5,13 +5,13 @@
   <div class="container-fluid back-white seperator-10">
     <h6 class="page-title">Party Order Details</h6>
   </div>
-  <%= form_for @party_order do |f| %>
+  <%= form_for @party_order, :url => '/create_party_orders' do |f| %>
     <div class="row">
       <div class="col-xs-12">
         <div class="normal-body">
-          <div class="form-group talk-us">
-            <%= f.text_area :details, rows: 8, class: "form-control no-radius", placeholder: "Enter your order details...", required: true %>
-          </div>
+          <!--<div class="form-group talk-us">-->
+            <!--<%#= f.text_area :details, rows: 8, class: "form-control no-radius", placeholder: "Enter your order details...", required: true %>-->
+          <!--</div>-->
           <div class="input-card">
             <%= f.text_field :name, class: "lower-only", placeholder: "Name", required: true %>
           </div>

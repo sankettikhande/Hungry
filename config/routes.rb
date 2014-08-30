@@ -38,6 +38,7 @@ Holachef::Application.routes.draw do
     content_blocks :food_items
     content_blocks :runners
     content_blocks :chef_requests
+    content_blocks :party_orders
   end
 
   resources :social_shares do
@@ -79,10 +80,12 @@ Holachef::Application.routes.draw do
   match '/become-a-chef' => 'Cms::chef_requests#become_chef'
   match '/create_chef' => 'Cms::chef_requests#create_chef'
 
+  match '/party_orders' => 'Cms::party_orders#party_orders'
+  match '/create_party_orders' => 'Cms::party_orders#create_party_orders'
+
   resources :hola_user_addresses, only: [:index, :create, :update]
   match '/hola_user_addresses/set_default' =>'hola_user_addresses#set_default'
   resources :order_histories, only: [:index]
-  resources :party_orders, only: [:index, :create]
 
   resources :hola_session, only: [:create]
 
