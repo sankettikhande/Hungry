@@ -113,11 +113,12 @@ $(document).ready(function(){
         done_link = $(this).parent().parent().last().find("a")
         available_quantity = parseInt($(this).data("available-quantity"))
         quantity = parseInt(quantity_input.val()) + 1
-        if(available_quantity < quantity){
-            alert("Max quantity reached")
-        }else{
+        if(available_quantity >= quantity){
             quantity_input.val(quantity)
             $(done_link).data("quantity", quantity)
+
+        }else{
+            alert("Max quantity reached")
         }
 
     })
@@ -135,11 +136,12 @@ $(document).ready(function(){
 
     $(".update-cart").unbind("click").live('click',function(e){
         data_attribs = $(this).data()
+        console.log(data_attribs)
         url = (parseInt(data_attribs.quantity) > 0) ? "/orders/set_cart" : "/orders/remove_from_cart"
         $.ajax({
                 'method': 'GET',
-                'url': url,
-                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'date': Date.new, 'dish_name': data_attribs.dish_name, 'category' : data_attribs.category },
+                'url': url ,
+                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category },
                 'dataType': 'script'
             })
 

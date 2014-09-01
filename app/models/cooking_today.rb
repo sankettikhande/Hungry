@@ -56,6 +56,6 @@ class CookingToday < ActiveRecord::Base
     meal_availability = CookingToday.meal_type_time_span[meal_type]
     meal_availability_from_time = Time.zone.parse("#{Date.today} #{meal_availability[:from]}")
     meal_availability_to_time = Time.zone.parse("#{Date.today} #{meal_availability[:to]}")
-    (Time.now > meal_availability_from_time and Time.now < meal_availability_to_time)
+    (Time.now > meal_availability_from_time and Time.now < meal_availability_to_time and qty_left > 0)
   end
 end
