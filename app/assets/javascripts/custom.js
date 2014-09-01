@@ -76,6 +76,21 @@ $(document).ready(function(){
         }
     });
 
+    $('.add-order-plus').unbind("click").live('click', function(e) {
+        e.preventDefault();
+        $(".add-order-minus").removeClass("disabled");
+        $(".add-order-minus").removeAttr("disabled");
+        var max_qty = parseInt($("#item_max_qty").val(), 10);
+        if (cnt < parseInt(max_qty,10)){
+            cnt = parseInt($("#order-count").html(),10) + 1;
+            $("#order-count").html(cnt);
+        }
+        if (cnt == max_qty){
+            $("#add-order-plus").attr("disabled");
+            $("#add-order-plus").addClass("disabled");
+        }
+    });
+
     $('#add-order-minus').unbind("click").live('click',function(e){
         e.preventDefault();
         $("#add-order-plus").removeAttr("disabled");
@@ -445,4 +460,69 @@ $(document).ready(function(){
       'dataType': 'script'
     })
   });
+});
+
+
+
+
+/********************** STICKIES ************************/
+function stickyTitles(stickies) {
+
+    this.load = function() {
+
+        stickies.each(function(){
+
+            var thisSticky = jQuery(this).wrap('<div class="followWrap" />');
+            thisSticky.parent().height(thisSticky.outerHeight());
+            jQuery.data(thisSticky[0], 'pos', thisSticky.offset().top);
+
+        });
+    }
+
+    this.scroll = function() {
+
+        stickies.each(function(i){
+
+
+            var thisSticky = jQuery(this),
+                nextSticky = stickies.eq(i+1),
+                prevSticky = stickies.eq(i-1),
+                pos = jQuery.data(thisSticky[0], 'pos');
+
+
+            if ((pos - 70) <= jQuery(window).scrollTop()) {
+
+                thisSticky.addClass("fixed");
+
+                if (nextSticky.length > 0 && thisSticky.offset().top >= jQuery.data(nextSticky[0], 'pos') - thisSticky.outerHeight()) {
+                    thisSticky.addClass("absolute")//.css("top", jQuery.data(nextSticky[0], 'pos') - thisSticky.outerHeight());
+
+                }
+
+            } else {
+
+                thisSticky.removeClass("fixed");
+
+                if (prevSticky.length > 0 && jQuery(window).scrollTop() <= jQuery.data(thisSticky[0], 'pos')  - prevSticky.outerHeight()) {
+
+                    prevSticky.removeClass("absolute")//.removeAttr("style");
+
+                }
+
+            }
+            $("#pg_title").html($(".followMeBar.fixed").last().data("category"))
+        });
+    }
+}
+
+jQuery(document).ready(function(){
+
+    var newStickies = new stickyTitles(jQuery(".followMeBar"));
+    newStickies.load();
+
+    jQuery(window).on("scroll", function() {
+
+        newStickies.scroll();
+
+    });
 });
