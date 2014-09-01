@@ -16,7 +16,7 @@
             <%= f.text_field :name, class: "lower-only", placeholder: "Name", required: true %>
           </div>
           <div class="input-card">
-            <%= f.text_field :contact_no, class: "lower-only", placeholder: "Phone Number", required: true %>
+            <%= f.text_field :contact_no, class: "lower-only", placeholder: "Phone Number", required: true, maxlength: "13" %>
           </div>
           <div class="input-card">
             <%= f.email_field :email, class: "lower-only", placeholder: "Enter your email", required: true %>
