@@ -20,18 +20,18 @@ $(document).ready(function(){
     }
     var total = 0;
     var cnt = parseInt($("#order-count").html(),10);
-    $('.item').live('click', function(){
-        $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
-        $(".modal-footer").empty();
-        $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
-            "<p class='form-control looks-input hidden' id='order-count'>0</p>");
-        $.ajax({
-            'method': 'GET',
-            'url': '/cooking_todays/get_item_details',
-            'data': {'cooking_today_id': parseInt($(this).attr('id'))},
-            'dataType': 'script'
-        });
-    });
+    // $('.item').live('click', function(){
+    //     $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
+    //     $(".modal-footer").empty();
+    //     $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+    //         "<p class='form-control looks-input hidden' id='order-count'>0</p>");
+    //     $.ajax({
+    //         'method': 'GET',
+    //         'url': '/cooking_todays/get_item_details',
+    //         'data': {'cooking_today_id': parseInt($(this).attr('id'))},
+    //         'dataType': 'script'
+    //     });
+    // });
 
     $('.about-content').live('click', function(){
       $(this).closest('.square').find(".recipe-block").hide();
@@ -105,6 +105,47 @@ $(document).ready(function(){
             $("#add-order-minus").addClass("disabled");
         }
     });
+
+    /************************************* ADD REMOVE ITEMS TO CART ********************************/
+
+    $(".increase-order-item").on('click', function(){
+        quantity_input = $(this).parent().prev().find("input")
+        done_link = $(this).parent().parent().last().find("a")
+        available_quantity = parseInt($(this).data("available-quantity"))
+        quantity = parseInt(quantity_input.val()) + 1
+        if(available_quantity < quantity){
+            alert("Max quantity reached")
+        }else{
+            quantity_input.val(quantity)
+            $(done_link).data("quantity", quantity)
+        }
+
+    })
+
+    $(".decrease-order-item").on('click', function(){
+        quantity_input = $(this).parent().next().find("input")
+        done_link = $(this).parent().parent().last().find("a")
+        quantity = parseInt(quantity_input.val()) - 1
+        if(quantity >= 0){
+            quantity_input.val(quantity)
+            $(done_link).data("quantity", quantity)
+        }
+
+    })
+
+    $(".update-cart").unbind("click").live('click',function(e){
+        data_attribs = $(this).data()
+        url = (parseInt(data_attribs.quantity) > 0) ? "/orders/set_cart" : "/orders/remove_from_cart"
+        $.ajax({
+                'method': 'GET',
+                'url': url,
+                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'date': Date.new, 'dish_name': data_attribs.dish_name, 'category' : data_attribs.category },
+                'dataType': 'script'
+            })
+
+    })
+   /********************************************************************************************/
+
 
     $("#order-done").unbind("click").live('click',function(e){
         e.preventDefault();

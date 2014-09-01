@@ -6,7 +6,7 @@ class CookingToday < ActiveRecord::Base
 
   @@meal_type_time_span = {
                            "Lunch" => {from: "11:30 AM", to: "02:00 PM"},
-                           "Evening Snacks" => {from: "04:30 PM", to: "08:00 PM"},
+                           "Evening Snacks" => {from: "04:30 PM", to: "07:00 PM"},
                            "Dinner" => {from: "08:00 PM", to: "11:30 PM"}
                           }
 
@@ -49,7 +49,7 @@ class CookingToday < ActiveRecord::Base
   end
 
   def self.todays_menu_by_type meal_type
-    where(date: Date.today.to_s, meal_type: meal_type)
+    where(date: Date.today.to_s, meal_type: meal_type).sort_by(&:qty_left).reverse
   end
 
   def orderable?
