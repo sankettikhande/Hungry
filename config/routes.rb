@@ -87,7 +87,13 @@ Holachef::Application.routes.draw do
   match '/hola_user_addresses/set_default' =>'hola_user_addresses#set_default'
   resources :order_histories, only: [:index]
 
-  resources :hola_session, only: [:create]
+  resources :hola_session, only: [:create] do
+    collection do
+      post :confirm_with_otp
+      get :confirm_with_otp
+      get :regenerate_otp
+    end
+  end
 
   namespace :api do
     resources :orders do

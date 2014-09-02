@@ -1,1 +1,5 @@
-window.location.reload()
+$("#login_form").addClass("hidden")
+$("#otp_form").removeClass("hidden")
+$("#red_url_otp").val("<%= params[:redirect_to_url] %>")
+$("#pnx").val("<%= j Base64.encode64(@hola_user.phoneNumber) %>")
+

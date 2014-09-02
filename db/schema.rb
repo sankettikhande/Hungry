@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140827134136) do
+ActiveRecord::Schema.define(:version => 20140902070211) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -408,10 +408,17 @@ ActiveRecord::Schema.define(:version => 20140827134136) do
   end
 
   create_table "feedbacks", :force => true do |t|
-    t.text     "feedback",   :null => false
-    t.string   "email",      :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.text     "feedback",                         :null => false
+    t.string   "email",                            :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "name"
+    t.string   "contact_no"
+    t.boolean  "published",     :default => false
+    t.boolean  "deleted",       :default => false
+    t.boolean  "archived",      :default => false
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   create_table "file_block_versions", :force => true do |t|
@@ -550,8 +557,9 @@ ActiveRecord::Schema.define(:version => 20140827134136) do
     t.string   "name"
     t.string   "email"
     t.string   "phoneNumber"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "otp_secret_key"
   end
 
   create_table "html_block_versions", :force => true do |t|
@@ -859,11 +867,16 @@ ActiveRecord::Schema.define(:version => 20140827134136) do
 
   create_table "party_orders", :force => true do |t|
     t.text     "details"
-    t.string   "name",       :null => false
-    t.string   "contact_no", :null => false
-    t.string   "email",      :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",                             :null => false
+    t.string   "contact_no",                       :null => false
+    t.string   "email",                            :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "published",     :default => false
+    t.boolean  "deleted",       :default => false
+    t.boolean  "archived",      :default => false
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
   create_table "permissions", :force => true do |t|

@@ -906,21 +906,22 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .empty-labels {padding: 7px 10px;}
 
 
-
-.address-card {margin: 10px 0;padding: 7px 10px;border:1px solid #ff9900;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;}
+.address-card {margin: 10px 0;padding: 10px;border:1px solid #ccc;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;}
 .address-card a {color: #ff9900;font-family: 'robotobold',Sans-serif;font-size: 1em;}
 .address-card a:hover,.address-card a:focus,.address-card a:active {text-decoration: none;outline: none;}
-
-.address-form {border-top: 1px solid #ff9900;padding-top: 10px;}
-.address-form input.form-control {border:0;box-shadow: 0;border-bottom: 1px solid #ff9900;border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;width: 100%;outline: none;background: url('/assets/spacer-orange.png') no-repeat,url('/assets/spacer-orange.png') no-repeat;background-position: left bottom, right bottom;background-size: 1px 2px;box-shadow: none;}
 
 .address-form .form-group {margin-bottom: 5px;}
 .address-form .form-group .btn+.btn {margin-left: 15px;}
 
-.address-form ::-webkit-input-placeholder { color:#ff9900;}
-.address-form ::-moz-placeholder { color:#ff9900; }
-.address-form :-ms-input-placeholder { color:#ff9900; }
-.address-form input:-moz-placeholder { color:#ff9900; }
+
+.address-label {margin-top: 10px;}
+.address-label .address-btn {padding-top: 12px;padding-bottom: 12px;border:1px solid #ccc;overflow: hidden;text-align: left;padding-left: 18px;}
+
+.address-table {background: #fff;border-radius: 4px;border:1px solid #ccc;margin-bottom: 0}
+.address-table tbody td {border-top: 0;vertical-align: middle !important;}
+.address-table tbody td.a-radio {text-align: center;}
+.address-table tbody td label {vertical-align: middle; display: inline-block;font-weight: normal;margin-bottom: 0;}
+.address-table tbody td label p {margin-bottom: 0;}
 
 .radio-bar {padding: 10px 6px;margin-top: 10px;background: #fff;width: 100%;display: block;overflow: hidden;}
 .radio-bar label {font-weight: normal;}

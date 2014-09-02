@@ -1,0 +1,5 @@
+<% if @otp_authenticated %>
+  window.location = "/hola_session/confirm_with_otp?pnx=<%=j params[:pnx]%>&redirect_to_url=<%= j(params[:redirect_to_url]) %>"
+<% else %>
+  $("#msg").html("<span class='text-danger'>Invalid OTP. Please try again.</span>")
+<% end %>
