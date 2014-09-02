@@ -38,7 +38,6 @@ gem 'exception_notification'
 
 gem 'jquery-raty-rails'
 gem 'acts-as-taggable-on'
-gem 'rails_config'
 gem 'ancestry'
 gem 'will_paginate'
 gem 'jbuilder'
