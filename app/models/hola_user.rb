@@ -1,4 +1,5 @@
 class HolaUser < ActiveRecord::Base
+  has_one_time_password
   has_many :hola_user_addresses
   has_many :my_favorite_chefs
   has_many :my_favorite_recipes
@@ -49,11 +50,7 @@ class HolaUser < ActiveRecord::Base
   end
 
   def self.create_from_params options
-    hola_user = HolaUser.find_by_phoneNumber(options[:phone_no])
-    unless hola_user
-      hola_user = HolaUser.create(:name => options[:name], :phoneNumber => options[:phone_no])
-    end
-    return hola_user
+    HolaUser.find_by_phoneNumber(options[:phone_no]) || HolaUser.create(:name => options[:name], :phoneNumber => options[:phone_no])
   end
 
   def get_default_address

@@ -34,14 +34,14 @@ module ApplicationHelper
           :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture) }
           return menu
         else
-          menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 1, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
+          menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
                   :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
           return menu
         end
        end
       end
     else
-      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 1, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
+      menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
               :cheff_name  => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
       return menu
     end

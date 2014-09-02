@@ -58,11 +58,13 @@
         <li class="item-data">
           <ul class="info-row">
           <li class="width-dp">
-            <a href="#"><img src="http://www.placehold.it/80x80.png" alt=""></a>
+            <a href="/chef-profile/<%= menu.food_item.cheff_id %>">
+              <%= image_tag menu.food_item.cheff.picture.image.url, height: "80px", width: "80px" %>
+            </a>
           </li>
           <li class="width-dp-left">
             <ul class="n-dish-info">
-             <li class="n-dish-title"><a href="/recipe/<%= menu.food_item.recipe.id %>"><%= menu.food_item.meal_info.name %></a></li>
+             <li class="n-dish-title"><a href="#"><%= menu.food_item.meal_info.name %></a></li>
              <li class="n-chef-name"><a href="/chef-profile/<%= menu.food_item.cheff_id %>"><%= menu.food_item.cheff.name %></a></li>
              <li class="n-dish-type"><a href="#"><%= menu.food_item.dish_type.titleize %></a></li>
             </ul>
@@ -76,9 +78,9 @@
             <% if menu.orderable? %>
               <ul class="set-order">
                 <li class="order-less"><button type="button" class="decrease-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">-</button></li>
-                <li class="order-count"><input type="text" value="<%= cart_menu[:quantity].to_i %>" class="quantity" readonly></li>
+                <li class="order-count"><input type="text" value="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" class="quantity" readonly></li>
                 <li class="order-more"><button type="button" class="increase-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">+</button></li>
-                <li style="width:90%;"><a class="update-cart" data-quantity="<%= cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>">Done</a></li>
+                <li style="width:90%;"><a class="update-cart" data-quantity="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>">Done</a></li>
               </ul>
             <% end %>
           </div>
