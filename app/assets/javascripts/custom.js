@@ -386,6 +386,9 @@ $(document).ready(function(){
     if (href_url.indexOf("orders") > -1 && href_url.indexOf("party_orders") == -1) {
         $('#footer').hide();
     }
+    if (href_url.indexOf("order_histories") > -1){
+        $('#footer').hide();
+    }
 
 //    refresh review order page on remove item
     $("#remove_last_dish, #remove_dish").on('hide.bs.modal',function(){
