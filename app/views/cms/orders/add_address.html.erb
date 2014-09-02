@@ -1,33 +1,50 @@
-<div class="container-fluid back-white seperator-4">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="container">
-        <ul class="del-details">
-          <li class="del-d del-header roboto">Delivery Details</li>
-          <li class="del-d del-warning roboto">Orders are delivered in ~30min of placing order</li>
-          <%# hola_user = get_user_details %>
-          <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
-              <% if @adds_types.present? %>
-                <li class="del-d roboto"><%= select_tag "orders[address_type]", options_for_select(@adds_types, @adds.address_type), :class => "width100P" %></li>
-              <% end %>
-              <div id="adds_fields">
-                <%= render :partial => "/ordered_menus/address_fields", :locals => {:adds => @adds} %>
+<div class="container-fluid">
+          <div class="row">
+                <div class="col-xs-12">
+                  <div class="address-container">
+
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <div class="address-label">
+                            <a href="/new_address?src=o" class="btn back-white btn-block text-orange address-btn">
+                                <span class="glyphicon glyphicon-plus text-orange"></span> Add New Address
+                            </a>
+                          </div>
+                        </div>
+                        <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
+
+                          <% hola_current_user.hola_user_addresses.each_with_index do |address, index| %>
+                            <div class="form-group each-address">
+                              <table class="table address-table">
+                                  <colgroup><col class="col-xs-2 col-sm-1"><col class="col-xs-10 col-sm-11"></colgroup>
+                                  <tr>
+                                    <td class="a-radio">
+                                        <input type="radio" name="address_id" value="<%= address.id %>" class="validate[required]" data-errormessage="Please choose a address.">
+                                    </td>
+                                    <td>
+                                        <label for="addr-<%= index %>">
+                                          <p class="address-brief">
+                                            <% address.address_array.each do |addrs| %>
+                                              <span><%=addrs %><%= address.address_array.last == addrs ? "" : ", " %></span>
+                                            <% end %>
+                                          </p>
+                                        </label>
+                                    </td>
+                                  </tr>
+                              </table>
+                            </div>
+                          <% end %>
+
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+</div>
 
-              <li class="del-d check-mark roboto text-center hola-ccbox">
-                <% if @hola_user.present? %>
-                  <%= hidden_field_tag "hola_user_id", @hola_user.id %>
-                <% end %>
-                <input class="css-checkbox" type="checkbox" id="save-del-details" checked="checked" name="save_user_details">
-                <label class="css-label roboto" for="save-del-details">Save my details</label></li>
-          <% end -%>
-        </ul>
-
-      </div>
-
-    </div>
-  </div>
-</div> <!-- fluid container ends -->
+<!-- fluid container ends -->
 <% content_for :review_order_footer do %>
     <%= render :partial => "/layouts/review_order_footer" %>
 <% end %>

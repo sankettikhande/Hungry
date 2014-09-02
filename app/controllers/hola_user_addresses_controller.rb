@@ -1,4 +1,8 @@
 class HolaUserAddressesController < ApplicationController
+  def new
+    @address = HolaUserAddress.new
+  end
+
   def index
     @hola_user = hola_current_user
     if @hola_user.present?
@@ -11,19 +15,22 @@ class HolaUserAddressesController < ApplicationController
   end
 
   def create
-    if params[:hola_user_address][:hola_user_id].blank?
-      hola_user = HolaUser.find_by_phoneNumber(params[:hola_user_address][:mobile_no])
-      hola_user = HolaUser.create(:name => params[:hola_user_address][:name], :phoneNumber => params[:hola_user_address][:mobile_no]) unless hola_user
-      params[:hola_user_address][:hola_user_id] = hola_user.id
-      cookies.signed[:user_mobile] = { value: hola_user.phoneNumber, expires: 1.year.from_now }
-    else
-      hola_user = HolaUser.find(params[:hola_user_address][:hola_user_id])
-    end
-    params[:hola_user_address][:default] = true if hola_user.hola_user_addresses.count == 0
+    # if params[:hola_user_address][:hola_user_id].blank?
+    #   hola_user = HolaUser.find_by_phoneNumber(params[:hola_user_address][:mobile_no])
+    #   hola_user = HolaUser.create(:name => params[:hola_user_address][:name], :phoneNumber => params[:hola_user_address][:mobile_no]) unless hola_user
+    #   params[:hola_user_address][:hola_user_id] = hola_user.id
+    #   cookies.signed[:user_mobile] = { value: hola_user.phoneNumber, expires: 1.year.from_now }
+    # else
+    #   hola_user = HolaUser.find(params[:hola_user_address][:hola_user_id])
+    # end
+    params[:hola_user_address][:default] = true if hola_current_user.hola_user_addresses.count == 0
+    params[:hola_user_address][:mobile_no] = hola_current_user.phoneNumber
     hola_user_address = HolaUserAddress.new(params[:hola_user_address])
+    hola_user_address.hola_user_id = hola_current_user.id
     hola_user_address.save
-    flash[:notice] = "Address created successfully."
-    redirect_to hola_user_addresses_path
+    #   flash[:notice] = "Address created successfully."
+    # end
+    redirect_to params[:src].presence == "o" ? "/payment-method?address_id=#{hola_user_address.id}" : hola_user_addresses_path
   end
 
   def set_default

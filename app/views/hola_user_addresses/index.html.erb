@@ -1,39 +1,41 @@
 <div class="col-xs-12">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="touch-sides">
-            <h6 class="page-title">My Contact Address</h6>
-        </div>
-      </div>
-    </div>
+
 
     <div class="row">
       <% if flash[:notice] %>
         <div class="successMsg"><%= flash[:notice] %></div>
       <% end %>
       <div class="col-xs-12">
-        <div class="address-container">
-          <% @addresses.each do |address| %>
-            <div class="address-card back-white">
-              <a data-toggle="collapse" data-parent="#accordion" href="#<%= address.address_type %>-add"><%= address.address_type.try(:capitalize) %></a>
-                <div id="<%= address.address_type %>-add" class="collapse in">
-                    <%= form_for address do |f| %>
-                      <%= render "hola_user_addresses/form", f: f %>
-                    <% end %>
-                </div>
-             </div>
-           <% end %>
+        <div class="form-group">
+                          <div class="address-label">
+                            <a href="/new_address" class="btn back-white btn-block text-orange address-btn">
+                                <span class="glyphicon glyphicon-plus text-orange"></span> Add New Address
+                            </a>
+                          </div>
+                        </div>
+                          <% if hola_current_user %>
 
-           <div class="address-card back-white">
-            <a data-toggle="collapse" data-parent="#accordion" href="#add-1">+ Add Address</a>
-              <div id="add-1" class="collapse">
-                <%= form_for @new_address, url: hola_user_addresses_path do |f| %>
-                  <% f.object.address_type = '' %>
-                  <%= render "hola_user_addresses/form", f: f %>
-                <% end %>
-              </div>
-          </div>
-        </div>
+                          <% hola_current_user.hola_user_addresses.each_with_index do |address, index| %>
+                            <% puts address.inspect %>
+                            <div class="form-group each-address">
+                              <table class="table address-table">
+                                  <tr>
+
+                                    <td>
+                                        <label for="addr-<%= index %>">
+                                          <p class="address-brief">
+                                            <% address.address_array.each do |addrs| %>
+                                              <span><%=addrs %><%= address.address_array.last == addrs ? "" : ", " %></span>
+                                            <% end %>
+                                          </p>
+                                        </label>
+                                    </td>
+                                  </tr>
+                              </table>
+                            </div>
+                          <% end %>
+
+                        <% end %>
       </div>
     </div>
 </div>

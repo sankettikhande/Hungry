@@ -62,33 +62,34 @@ class Cms::OrdersController < Cms::ContentBlockController
   end
 
   def payment_gateway
-    hola_user = Order.save_user(params)
-    @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular', :hola_user_id => hola_user.id)
-    cookies.signed[:user_mobile] = {value: hola_user.phoneNumber, expires: 1.year.from_now} if hola_user
-    session[:cart].each do |item|
-      item.each do |item_id, item_attr|
-        cooking_today  = CookingToday.find(item_id)
-        food_item = cooking_today.food_item
-        if !@order.blank?
-          menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id,
-                                    :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
-                                    :rate => item_attr['price'])
+    hola_user = hola_current_user#Order.save_user(params)
+    hola_user_address = hola_user.hola_user_addresses.find_by_id(params[:address_id])
+    if hola_user_address.blank?
+      redirect_to "/add-address"
+    else
+      @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular',
+                            :hola_user_id => hola_user.id, :addressStreet1 => hola_user_address.building_name, :addressStreet2 => hola_user_address.street,
+                            :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name)
+
+      cookies.signed[:user_mobile] = {value: hola_user.phoneNumber, expires: 1.year.from_now} if hola_user
+      session[:cart].each do |item|
+        item.each do |item_id, item_attr|
+          cooking_today  = CookingToday.find(item_id)
+          food_item = cooking_today.food_item
+          if !@order.blank?
+            menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id,
+                                      :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
+                                      :rate => item_attr['price'])
+          end
         end
       end
-    end
-    @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)),
-                              :name=>params[:orders][:name],
-                              :addressStreet1=>params[:orders][:building_name],
-                              :addressStreet2=>params[:orders][:street],
-                              :addressCity=>params[:orders][:city],
-                              :addressZip=>params[:orders][:pin],
-                              :phone_no=>params[:orders][:mobile_no],
-                              :landmark => params[:orders][:landmark])
-    @footer = "false"
-    @@cart_items = view_context.collect_items(session[:cart])
+      @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)))
+      @footer = "false"
+      @@cart_items = view_context.collect_items(session[:cart])
 
-    respond_to do |format|
-      format.html {render :layout => 'application'}
+      respond_to do |format|
+        format.html {render :layout => 'application'}
+      end
     end
   end
 
