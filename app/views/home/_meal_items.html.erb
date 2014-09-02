@@ -56,36 +56,39 @@
           </ul>
         </li>
         <li class="item-data">
-          <ul class="info-row">
-          <li class="width-dp">
-            <a href="/chef-profile/<%= menu.food_item.cheff_id %>"><%= image_tag chef_image(menu.food_item) %></a>
-          </li>
-          <li class="width-dp-left">
-            <ul class="n-dish-info">
-             <li class="n-dish-title"><%= menu.food_item.meal_info.name %></li>
-             <li class="n-chef-name"><a href="/chef-profile/<%= menu.food_item.cheff_id %>"><%= menu.food_item.cheff.name %></a></li>
-             <li class="n-dish-type"><a href="#"><%= menu.food_item.dish_type.titleize %></a></li>
-            </ul>
-          </li>
-        </ul>
-        <div class="row action-row">
-          <div class="col-xs-3">
-            <p class="text-left n-item-cost">Rs. <%= cart_menu[:price] %></p>
-          </div>
-          <div class="col-xs-6">
-            <% if menu.orderable? %>
-              <ul class="set-order">
-                <li class="order-less"><button type="button" class="decrease-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">-</button></li>
-                <li class="order-count"><input type="text" value="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" class="quantity" readonly></li>
-                <li class="order-more"><button type="button" class="increase-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">+</button></li>
-                <li style="width:90%;"><a class="update-cart" data-quantity="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>">Done</a></li>
+          <div class="container-fluid">
+            <ul class="info-row">
+            <li class="width-dp">
+              <a href="/chef-profile/<%= menu.food_item.cheff_id %>"><%= image_tag chef_image(menu.food_item) %></a>
+            </li>
+            <li class="width-dp-left">
+              <ul class="n-dish-info">
+               <li class="n-dish-title"><%= menu.food_item.meal_info.name %></li>
+               <li class="n-chef-name"><a href="/chef-profile/<%= menu.food_item.cheff_id %>"><%= menu.food_item.cheff.name %></a></li>
+               <li class="n-dish-type"><a href="#"><%= menu.food_item.dish_type.titleize %></a></li>
               </ul>
-            <% end %>
+            </li>
+          </ul>
+          <div class="row action-row">
+            <div class="col-xs-3">
+              <p class="text-left n-item-cost">Rs. <%= cart_menu[:price] %></p>
+            </div>
+            <div class="col-xs-5">
+              <% if menu.orderable? %>
+                <ul class="set-order">
+                  <li class="order-less"><button type="button" class="decrease-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">-</button></li>
+                  <li class="order-count"><input type="text" value="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" class="quantity" readonly></li>
+                  <li class="order-more"><button type="button" class="increase-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">+</button></li>
+                  <li style="width:90%;"><a class="update-cart" data-quantity="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>">Done</a></li>
+                </ul>
+              <% end %>
+            </div>
+            <div class="col-xs-4">
+              <p class="text-right n-item-left"><%= qty_left(menu) > 0 ? "#{qty_left(menu).to_i - cart_menu[:quantity].to_i} left" :  "SOLD OUT!" %></p>
+            </div>
           </div>
-          <div class="col-xs-3">
-            <p class="text-right n-item-left"><%= qty_left(menu) > 0 ? "#{qty_left(menu).to_i - cart_menu[:quantity].to_i} left" :  "SOLD OUT!" %></p>
+
           </div>
-        </div>
       </li>
       </ul>
     </div>

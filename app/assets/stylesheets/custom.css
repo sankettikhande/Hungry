@@ -409,8 +409,8 @@ display: none;
 
 /******* item blocks *******/
 
-.item {background: #fff;color: #333;cursor: pointer;display: inline-block;width: 100%;margin-bottom: 0 !important;}
-.item-content+.item-content:before {content: " ";display: block;border-top: 1px solid #e2e2e2;margin: 0 5px;}
+.item {background: #fff;color: #333;cursor: pointer;display: inline-block;width: 100%;margin-bottom: 0 !important;float: left;}
+.item-content+.item-content:before {content: " ";display: block;border-top: 1px solid #e2e2e2;margin: 0 5px;margin-top:1px;}
 .square {background: #fff;padding-bottom: 5px ;width: 100%;height: auto;float: left;margin-bottom: 3px;margin-top: 10px;overflow: hidden;}
 .paddingLR0{padding-left: 0;padding-right: 0;}
 .catergoryHead{font-weight: bold;padding: 5px;font-size: 15px;color: #000;}
