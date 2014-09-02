@@ -1,6 +1,6 @@
 if (<%= session[:cart].blank? %>){
-    $("#footer .col-xs-12").empty();
-    $("#footer .col-xs-12").html("<div class='tap-text text-orange'><p class='text-center'>Tap on a Card to Add/Remove</p></div>");
+  $("#footer .col-xs-12").empty();
+  $("body #footer").addClass('hidden');
 }
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");

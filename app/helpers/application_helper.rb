@@ -207,7 +207,7 @@ module ApplicationHelper
     if fav_chef.cheff && fav_chef.cheff.picture
       return fav_chef.cheff.picture.image.url
     else
-      return "/assets/chef-icon.jpg"
+      return "/assets/chef-icon.png"
     end
   end
 
