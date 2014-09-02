@@ -124,7 +124,7 @@ module ApplicationHelper
       return "Order History"
     when controller == "hola_user_addresses"
       return "Address"
-    when controller == "hola_users" && action == "talk_to_us"
+    when controller == "cms/feedbacks" && action == "talk_to_us"
       return "Talk To Us"
     when controller == "social_shares" && action == "index" || action == "tell_friends"
       return "Love Us"

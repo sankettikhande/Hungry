@@ -9,8 +9,6 @@ Holachef::Application.routes.draw do
   match '/signature_dishes'=> "hola_users#signature_dishes"
   match '/signature_dishes/favourites'=> "hola_users#favourite_signature_dishes"
 
-  match '/talk_to_us'=> "hola_users#talk_to_us"
-
   match "/cms" => "cms/dashboard#index"
   match '/review_order' => 'ordered_menus#checkout', :as => :review_order
   match '/get_address_by_type' => 'ordered_menus#get_address_by_type'
@@ -38,6 +36,8 @@ Holachef::Application.routes.draw do
     content_blocks :food_items
     content_blocks :runners
     content_blocks :chef_requests
+    content_blocks :party_orders
+    content_blocks :feedbacks
   end
 
   resources :social_shares do
@@ -74,15 +74,18 @@ Holachef::Application.routes.draw do
   match '/home/index_call' =>'home#index_call'
 
   post '/email' => 'temporary_home#send_mail'
-  post '/feedback' => 'home#feedback'
+  post '/feedback' => 'Cms::feedbacks#feedback'
+  match '/talk_to_us'=> "Cms::feedbacks#talk_to_us"
 
   match '/become-a-chef' => 'Cms::chef_requests#become_chef'
   match '/create_chef' => 'Cms::chef_requests#create_chef'
 
+  match '/party_orders' => 'Cms::party_orders#party_orders'
+  match '/create_party_orders' => 'Cms::party_orders#create_party_orders'
+
   resources :hola_user_addresses, only: [:index, :create, :update]
   match '/hola_user_addresses/set_default' =>'hola_user_addresses#set_default'
   resources :order_histories, only: [:index]
-  resources :party_orders, only: [:index, :create]
 
   resources :hola_session, only: [:create]
 
