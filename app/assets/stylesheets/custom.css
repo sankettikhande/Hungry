@@ -376,12 +376,15 @@ display: none;
 .nav.navbar-nav li a,.nav.navbar-nav li a:hover {color: #fff;text-transform: capitalize;}
 .nav.navbar-nav li a:hover {text-decoration: underline;}
 
-.navbar-titlebar {width:100%;overflow: hidden;display: inline-block;}
+
+.navbar-titlebar {width:auto;overflow: hidden;display: inline-block;}
+
+.navbar-header .btn-back {float: right;display: block;background: url('/assets/icon-back.png') no-repeat left center;background-size: 12px 24px;width: 12px;height: 24px;margin:15px 16px  ;cursor: pointer;}
+
 .navbar-titlebar > li {display: inline-block;float: left;color: #fff;width: auto}
 .navbar-titlebar > li a {color: #fff;float: left;}
 .navbar-titlebar > li button.navbar-toggle {margin-right: 0}
 .navbar-titlebar > li button.navbar-toggle:focus {background: none;outline: none;}
-.navbar-titlebar .btn-back {float: left;display: block;background: url('/assets/icon-back.png') no-repeat left center;background-size: 12px 24px;width: 12px;height: 24px;margin:10px 5px 10px 3px;cursor: pointer;}
 .navbar-titlebar .side-menu-btn {margin-left: -10px}
 
 .navbar-titlebar .page-title  {font-size: 1.2em;font-family: 'robotoregular',Sans-serif;text-align: left;display: inline-block;line-height: 50px;margin:0;margin-left: 10px;position: absolute;}
@@ -953,3 +956,45 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 
 html{overflow-x:hidden}
 
+.item-data {width: 100%;}
+.info-row {width: 100%;float: left;display: block;margin-bottom: 5px;padding-top: 4px}
+.info-row>.width-dp {width: 70px;float: left;}
+.info-row>.width-dp img {width: 60px;height: 60px;max-width: 60px;display: block;}
+.info-row>.width-dp-left {width: 100%;overflow: hidden;margin-left:-70px;float: left;padding-left: 70px;padding-right: 5px;}
+.width-dp-left .n-dish-info {width: 100%;display: block;float: left;}
+.n-dish-info>li {width: 100%;float: none;font-size: 12px}
+
+.show-time {font-size: 14px;}
+.n-dish-title a{font-size: 12px;color: #333}
+.n-chef-name {font-size: 11px;color: #666}
+.n-dish-type {font-size: 9px;}
+
+.set-order {display:block;width: 87px;overflow: hidden;margin-right: auto;margin-left: auto;}
+.set-order>li {display: inline-block;text-align: center;width: auto;float: left;}
+.set-order>li button {border-radius: 50px;background: #fff;border:1px solid #000;color: #000;padding: 0;text-align: center;display: block;width: 23px;height: 23px;line-height: 0;outline: none;}
+.set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;}
+.set-order>li+li {margin-left: 5px;}
+
+
+
+.followMeBar {
+           background-color: #cfcfcf;
+    border-bottom: 1px solid #cfcfcf;
+    border-top: 1px solid #444;
+    color: #000000;
+    opacity: 0.8;
+    padding: 7px;
+    position: relative;
+    z-index: 1;
+    }
+    .followMeBar.fixed {
+        position: fixed;
+        top: 50px;
+        width: 82%;
+        z-index: 1;
+    }
+    .followMeBar.fixed.absolute {
+        position: absolute;
+        top: 50px;
+        width: 82%;
+    }

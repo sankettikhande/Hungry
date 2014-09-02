@@ -2,10 +2,9 @@ class CookingToday < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
   attr_accessor :skip_callbacks
   cattr_accessor :meal_types, :meal_type_time_span
-  @@meal_types = ["Breakfast", "Lunch", "Evening Snacks", "Dinner"]
+  @@meal_types = ["Lunch", "Evening Snacks", "Dinner"]
 
   @@meal_type_time_span = {
-                           "Breakfast" => {from: "07:30 AM", to: "11:00 AM"},
                            "Lunch" => {from: "11:30 AM", to: "02:00 PM"},
                            "Evening Snacks" => {from: "04:30 PM", to: "07:00 PM"},
                            "Dinner" => {from: "08:00 PM", to: "11:30 PM"}
@@ -50,13 +49,13 @@ class CookingToday < ActiveRecord::Base
   end
 
   def self.todays_menu_by_type meal_type
-    where(date: Date.today.to_s, meal_type: meal_type)
+    where(date: Date.today.to_s, meal_type: meal_type).sort_by(&:qty_left).reverse
   end
 
   def orderable?
     meal_availability = CookingToday.meal_type_time_span[meal_type]
     meal_availability_from_time = Time.zone.parse("#{Date.today} #{meal_availability[:from]}")
     meal_availability_to_time = Time.zone.parse("#{Date.today} #{meal_availability[:to]}")
-    (Time.now > meal_availability_from_time and Time.now < meal_availability_to_time)
+    (Time.now > meal_availability_from_time and Time.now < meal_availability_to_time and qty_left > 0)
   end
 end

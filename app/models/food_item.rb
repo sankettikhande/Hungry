@@ -62,4 +62,7 @@ class FoodItem < ActiveRecord::Base
     recipe.serving_tips.present?
   end
 
+  def dish_type
+    recipe.dish_type
+  end
 end

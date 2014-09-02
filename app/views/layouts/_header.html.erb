@@ -10,27 +10,16 @@
             <span class="icon-bar"></span>
           </button>
         </li>
-        <li>
-          <%= link_to "Back", back_actions(params), :class => "btn-back text-hide" %>
-        </li>
+
         <li><a class="navbar-brand" href="/mobile">Hola</a></li>
-        <% if params[:controller] == "home" %>
-          <li class="dropdown page-title">
-            <a class="drop-icon" href="javascript:void(0)">
-              <%= set_drop_down_title(params[:controller], params[:action], params[:id] ) %>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="/mobile" id="here">Today's Menu</a></li>
-              <li><a href="/signature_dishes">Signature Orders</a></li>
-              <li><a href="/party_orders">Party Orders</a></li>
-            </ul>
-          </li>
-        <% else %>
-          <li class="page-title">
-            <%= set_drop_down_title(params[:controller], params[:action], params[:id] ) %>
-          </li>
-        <% end %>
+        <li class="dropdown page-title" id="pg_title">
+          <%= set_drop_down_title(params[:controller], params[:action], params[:id] ) %>
+        </li>
       </ul>
+
+        <div class="pull-right">
+          <%= link_to "Back", back_actions(params), :class => "btn-back text-hide" %>
+        </div>
     </div>
   </div>
 </div> <!-- navbar ends -->

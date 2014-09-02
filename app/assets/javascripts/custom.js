@@ -20,18 +20,18 @@ $(document).ready(function(){
     }
     var total = 0;
     var cnt = parseInt($("#order-count").html(),10);
-    $('.item').live('click', function(){
-        $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
-        $(".modal-footer").empty();
-        $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
-            "<p class='form-control looks-input hidden' id='order-count'>0</p>");
-        $.ajax({
-            'method': 'GET',
-            'url': '/cooking_todays/get_item_details',
-            'data': {'cooking_today_id': parseInt($(this).attr('id'))},
-            'dataType': 'script'
-        });
-    });
+    // $('.item').live('click', function(){
+    //     $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
+    //     $(".modal-footer").empty();
+    //     $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+    //         "<p class='form-control looks-input hidden' id='order-count'>0</p>");
+    //     $.ajax({
+    //         'method': 'GET',
+    //         'url': '/cooking_todays/get_item_details',
+    //         'data': {'cooking_today_id': parseInt($(this).attr('id'))},
+    //         'dataType': 'script'
+    //     });
+    // });
 
     $('.about-content').live('click', function(){
       $(this).closest('.square').find(".recipe-block").hide();
@@ -76,6 +76,21 @@ $(document).ready(function(){
         }
     });
 
+    $('.add-order-plus').unbind("click").live('click', function(e) {
+        e.preventDefault();
+        $(".add-order-minus").removeClass("disabled");
+        $(".add-order-minus").removeAttr("disabled");
+        var max_qty = parseInt($("#item_max_qty").val(), 10);
+        if (cnt < parseInt(max_qty,10)){
+            cnt = parseInt($("#order-count").html(),10) + 1;
+            $("#order-count").html(cnt);
+        }
+        if (cnt == max_qty){
+            $("#add-order-plus").attr("disabled");
+            $("#add-order-plus").addClass("disabled");
+        }
+    });
+
     $('#add-order-minus').unbind("click").live('click',function(e){
         e.preventDefault();
         $("#add-order-plus").removeAttr("disabled");
@@ -90,6 +105,49 @@ $(document).ready(function(){
             $("#add-order-minus").addClass("disabled");
         }
     });
+
+    /************************************* ADD REMOVE ITEMS TO CART ********************************/
+
+    $(".increase-order-item").on('click', function(){
+        quantity_input = $(this).parent().prev().find("input")
+        done_link = $(this).parent().parent().last().find("a")
+        available_quantity = parseInt($(this).data("available-quantity"))
+        quantity = parseInt(quantity_input.val()) + 1
+        if(available_quantity >= quantity){
+            quantity_input.val(quantity)
+            $(done_link).data("quantity", quantity)
+
+        }else{
+            alert("Max quantity reached")
+        }
+
+    })
+
+    $(".decrease-order-item").on('click', function(){
+        quantity_input = $(this).parent().next().find("input")
+        done_link = $(this).parent().parent().last().find("a")
+        quantity = parseInt(quantity_input.val()) - 1
+        if(quantity >= 0){
+            quantity_input.val(quantity)
+            $(done_link).data("quantity", quantity)
+        }
+
+    })
+
+    $(".update-cart").unbind("click").live('click',function(e){
+        data_attribs = $(this).data()
+        console.log(data_attribs)
+        url = (parseInt(data_attribs.quantity) > 0) ? "/orders/set_cart" : "/orders/remove_from_cart"
+        $.ajax({
+                'method': 'GET',
+                'url': url ,
+                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category },
+                'dataType': 'script'
+            })
+
+    })
+   /********************************************************************************************/
+
 
     $("#order-done").unbind("click").live('click',function(e){
         e.preventDefault();
@@ -445,4 +503,69 @@ $(document).ready(function(){
       'dataType': 'script'
     })
   });
+});
+
+
+
+
+/********************** STICKIES ************************/
+function stickyTitles(stickies) {
+
+    this.load = function() {
+
+        stickies.each(function(){
+
+            var thisSticky = jQuery(this).wrap('<div class="followWrap" />');
+            thisSticky.parent().height(thisSticky.outerHeight());
+            jQuery.data(thisSticky[0], 'pos', thisSticky.offset().top);
+
+        });
+    }
+
+    this.scroll = function() {
+
+        stickies.each(function(i){
+
+
+            var thisSticky = jQuery(this),
+                nextSticky = stickies.eq(i+1),
+                prevSticky = stickies.eq(i-1),
+                pos = jQuery.data(thisSticky[0], 'pos');
+
+
+            if ((pos - 70) <= jQuery(window).scrollTop()) {
+
+                thisSticky.addClass("fixed");
+
+                if (nextSticky.length > 0 && thisSticky.offset().top >= jQuery.data(nextSticky[0], 'pos') - thisSticky.outerHeight()) {
+                    thisSticky.addClass("absolute")//.css("top", jQuery.data(nextSticky[0], 'pos') - thisSticky.outerHeight());
+
+                }
+
+            } else {
+
+                thisSticky.removeClass("fixed");
+
+                if (prevSticky.length > 0 && jQuery(window).scrollTop() <= jQuery.data(thisSticky[0], 'pos')  - prevSticky.outerHeight()) {
+
+                    prevSticky.removeClass("absolute")//.removeAttr("style");
+
+                }
+
+            }
+            $("#pg_title").html($(".followMeBar.fixed").last().data("category"))
+        });
+    }
+}
+
+jQuery(document).ready(function(){
+
+    var newStickies = new stickyTitles(jQuery(".followMeBar"));
+    newStickies.load();
+
+    jQuery(window).on("scroll", function() {
+
+        newStickies.scroll();
+
+    });
 });
