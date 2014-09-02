@@ -691,7 +691,7 @@ ul.cover-image li.cover-text p {margin-top:8px;}
 
 /*.hola-sidemenu:before {content: '';background: #fff;position: absolute;left: 0;top: 0;bottom: 0;width: 100%;float: left;z-index: -1;overflow: hidden;}
 */
-.hola-sidemenu {margin-top: -10px;height: 100%;border-right: 1px solid #ddd;width: 100%;}
+.hola-sidemenu {margin-top: -10px;height: 100%;border-right: 1px solid #ddd;width: 100%;z-index: 100}
 .hola-sidemenu .list-group {background: #fff;padding-bottom: 50px}
 .hola-sidemenu .list-group .list-group-item {border-radius:0;border-right: none;border-left: none;}
 .hola-sidemenu .list-group .list-group-item:first-child {padding-top: 20px;}
@@ -966,7 +966,7 @@ html{overflow-x:hidden}
 .n-dish-info>li {width: 100%;float: none;font-size: 12px}
 
 .show-time {font-size: 14px;}
-.n-dish-title a{font-size: 12px;color: #333}
+.n-dish-title {font-size: 12px; color: #333; cursor: default;}
 .n-chef-name {font-size: 11px;color: #666}
 .n-dish-type {font-size: 9px;}
 
@@ -1003,8 +1003,10 @@ html{overflow-x:hidden}
     .followMeBar.fixed {
         position: fixed;
         top: 50px;
-        width: 82%;
+        width: 100%;
         z-index: 1;
+        left:0;
+        right: 0;
     }
     .followMeBar.fixed.absolute {
         position: absolute;

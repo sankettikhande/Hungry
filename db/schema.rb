@@ -13,25 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20140902070211) do
 
-  create_table "backend_users", :force => true do |t|
-    t.string   "email",                  :default => "",             :null => false
-    t.string   "encrypted_password",     :default => "",             :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,              :null => false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "role",                   :default => "delivery_boy"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
-  end
-
-  add_index "backend_users", ["email"], :name => "index_backend_users_on_email", :unique => true
-  add_index "backend_users", ["reset_password_token"], :name => "index_backend_users_on_reset_password_token", :unique => true
-
   create_table "categories", :force => true do |t|
     t.integer  "category_type_id"
     t.integer  "parent_id"
@@ -62,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20140902070211) do
     t.string   "contact_email"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "chef_preferences", :force => true do |t|
+    t.integer  "cheff_id"
+    t.string   "cuisine_style"
+    t.string   "cuisine_tags"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "chef_profiles", :force => true do |t|
@@ -608,24 +597,6 @@ ActiveRecord::Schema.define(:version => 20140902070211) do
     t.integer  "recipe_id"
   end
 
-  create_table "installs", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-  end
-
-  add_index "installs", ["email"], :name => "index_installs_on_email", :unique => true
-  add_index "installs", ["reset_password_token"], :name => "index_installs_on_reset_password_token", :unique => true
-
   create_table "link_versions", :force => true do |t|
     t.integer  "original_record_id"
     t.integer  "version"
@@ -761,8 +732,8 @@ ActiveRecord::Schema.define(:version => 20140902070211) do
     t.integer  "total"
     t.date     "date"
     t.string   "order_status"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.string   "name"
     t.boolean  "published",                :default => false
     t.boolean  "deleted",                  :default => false
@@ -784,7 +755,7 @@ ActiveRecord::Schema.define(:version => 20140902070211) do
     t.string   "addressZip"
     t.integer  "hola_user_id"
     t.string   "payment_mode"
-    t.string   "payment_status"
+    t.string   "payment_status",           :default => "Waiting for Payment"
     t.string   "order_status_history"
     t.integer  "runner_id"
     t.datetime "dispatched_at"
@@ -794,8 +765,6 @@ ActiveRecord::Schema.define(:version => 20140902070211) do
     t.integer  "reorder_id"
     t.integer  "original_order_id"
   end
-
-  add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"
 
   create_table "page_route_options", :force => true do |t|
     t.integer  "page_route_id"
