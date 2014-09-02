@@ -78,9 +78,9 @@
             <% if menu.orderable? %>
               <ul class="set-order">
                 <li class="order-less"><button type="button" class="decrease-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">-</button></li>
-                <li class="order-count"><input type="text" value="<%= cart_menu[:quantity].to_i %>" class="quantity" readonly></li>
+                <li class="order-count"><input type="text" value="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" class="quantity" readonly></li>
                 <li class="order-more"><button type="button" class="increase-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">+</button></li>
-                <li style="width:90%;"><a class="update-cart" data-quantity="<%= cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>">Done</a></li>
+                <li style="width:90%;"><a class="update-cart" data-quantity="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>">Done</a></li>
               </ul>
             <% end %>
           </div>
