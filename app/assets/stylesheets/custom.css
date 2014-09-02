@@ -94,7 +94,7 @@ body {
 body.modal-open {overflow: visible;}
 .modal{ overflow-y: hidden !important; }
 
-body {background: #fff;padding-top: 55px;font-family: 'robotoregular',Sans-serif}
+body {background: #e2e2e2;padding-top: 55px;font-family: 'robotoregular',Sans-serif}
 
 /** =Overwrite Bootstrap **/
 
@@ -976,6 +976,18 @@ html{overflow-x:hidden}
 .set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;}
 .set-order>li+li {margin-left: 5px;}
 
+.prev-order-wrapper {margin-top: 10px;}
+.p-order-title {font-family: 'robotobold',Helvetica,Sans-serif;color: #535353;}
+.p-order-title .p-order-count:before {content: 'x';color: #535353;margin-left: 2px;margin-right: 2px;}
+.p-order-title .p-order-count {color: #000;}
+.p-order-title .p-order-chefname {display: block;color: #929292;text-transform: uppercase;font-size: 12px;text-align: left;}
+.p-total-cost {font-size: 18px;}
+.prev-order-wrapper .table-white {background: #fff;margin-bottom: 0}
+.table-white thead>tr>td {border-bottom: 1px solid #dbd8d0;}
+.table-white thead>tr>td:first-child {border-left: 6px solid #fff}
+.table-white thead>tr>td:last-child {border-right: 6px solid #fff;}
+.table-white tbody>tr>td {border-top: 0}
+
 
 
 .followMeBar {
@@ -999,3 +1011,4 @@ html{overflow-x:hidden}
         top: 50px;
         width: 82%;
     }
+
