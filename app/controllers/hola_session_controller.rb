@@ -27,7 +27,7 @@ class HolaSessionController < ApplicationController
   private
   def generate_and_send_opt
     otp_code = @hola_user.otp_code(time: (Time.now + 30.minutes))
-    message = "Hola! Our chef has received your order and is on it already. Your order number is 1 for Rs. 1. See your invoice here #{otp_code} ."
+    message = "Your OTP is #{otp_code} DO NOT DISCLOSE THIS OTP TO ANYONE BY ANY MEANS. Call on 808080HOLA if you have not asked for it."
     MessagingLib.send_messages(message, @hola_user.phoneNumber, "Transaction")
   end
 end
