@@ -6,16 +6,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Holachef</title>
-  <link rel="shortcut icon" href="assets/images/favicon.png">
+  <link rel="shortcut icon" href="assets/favicon.png">
   <!--[if lt IE 9]>
-  <script src="assets/js/html5shiv.js"></script>
+  <script src="assets/html5shiv.js"></script>
   <![endif]-->
-  <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+  <link rel="stylesheet" type="text/css" href="assets/desktop_custom.css">
 
-  var frame = document.getElementById(Id of frame).contentDocument.body;
+  <script>
+  var frame = document.getElementById("myframe").contentDocument.body;
   if(frame.offsetWidth > 800){
   frame.style.width = '800px';
   }
+  </script>
 
 </head>
 <body>
@@ -28,7 +30,7 @@
       <li><a data-scroll href="#how-it-works">How it works</a></li>
       <li><a href="#">blog</a></li>
     </ul>
-    <div class="site-logo"><a href="index.html"><img src="assets/images/hola-logo-new.png" alt=""></a></div>
+    <div class="site-logo"><a href="index.html"><img src="assets/hola-logo-new.png" alt=""></a></div>
   </header>
   <div class="table-bg" id="hungry">
     <div class="table-wrap">
@@ -38,10 +40,10 @@
         <div class="table-item spoon"></div>
         <div class="table-item iphone">
           <div class="iframe-container">
-            <iframe class="mobile-window" src="http://www.holachef.com/mobile" sandbox="allow-same-origin allow-forms allow-scripts" frameborder="0" seamless="seamless" style="width:358px;overflow: hidden; " ></iframe>
+            <iframe class="mobile-window" id="myframe" src="http://www.holachef.com/mobile" sandbox="allow-same-origin allow-forms allow-scripts" frameborder="0" seamless="seamless" style="width:358px;overflow: hidden; " ></iframe>
           </div>
         </div>
-        <div id="scroll-down"><p class="text-center">Scroll to know more</p><a data-scroll href="#choose-to"><img id="scroll-icon" src="assets/images/scroll-down-btn.png" alt="Scroll Down"></a></div>
+        <div id="scroll-down"><p class="text-center">Scroll to know more</p><a data-scroll href="#choose-to"><img id="scroll-icon" src="assets/scroll-down-btn.png" alt="Scroll Down"></a></div>
       </div>
     </div>
   </div>
@@ -84,9 +86,9 @@
   </div>
 
 </div>
-<script type="text/javascript" src="assets/js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="assets/js/smooth-scroll.js"></script>
+<script type="text/javascript" src="assets/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="assets/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="assets/smooth-scroll.js"></script>
 <script type="text/javascript">
     var didScroll;
     var lastScrollTop = 0;
