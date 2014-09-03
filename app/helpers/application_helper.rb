@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def flash_alert
+    content_tag(:div, flash[:alert], class: 'alert alert-warning') unless flash[:alert].blank?
+  end
+
   def qty_left(menu)
     qty = menu.quantity - menu.ordered if menu.quantity
     return  qty

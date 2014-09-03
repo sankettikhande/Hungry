@@ -74,6 +74,10 @@ class Cms::OrdersController < Cms::ContentBlockController
       session[:cart].each do |item|
         item.each do |item_id, item_attr|
           cooking_today  = CookingToday.find(item_id)
+          if cooking_today.not_orderable?
+            session[:cart] = nil
+            redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+          end
           food_item = cooking_today.food_item
           if !@order.blank?
             menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id,
@@ -100,6 +104,10 @@ class Cms::OrdersController < Cms::ContentBlockController
     if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
       @@cart_items.each do |item_id, quantity|
         cooking_today  = CookingToday.find(item_id)
+        if cooking_today.not_orderable?
+          session[:cart] = nil
+          redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+        end
         cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
       end
     end
@@ -174,6 +182,7 @@ class Cms::OrdersController < Cms::ContentBlockController
       render "payment_gateway", :layout => 'application'
     end
   end
+
 
   def create_signature_order
     @signature_dish = FoodItem.find(params[:dish_id])

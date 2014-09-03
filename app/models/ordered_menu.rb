@@ -26,4 +26,8 @@ class OrderedMenu < ActiveRecord::Base
   def ordered_menu_bill
     rate * quantity
   end
+
+  def cooking_today
+    CookingToday.where(date: Time.current.to_date, food_item_id: dish_id)
+  end
 end

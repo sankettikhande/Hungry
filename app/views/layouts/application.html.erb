@@ -20,10 +20,12 @@
     <div id="wrap">
         <%= render :partial => "/layouts/header" %>
         <div class="sliding-page row-offcanvas row-offcanvas-left">
-
           <%= render 'layouts/side_menu' %>
           <div class="right-body">
-          <%= yield %>
+            <div id="flsh" class="text-center">
+              <%= flash_alert %>
+            </div>
+            <%= yield %>
           </div>
         </div>
 
