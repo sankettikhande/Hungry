@@ -33,22 +33,19 @@ $(document).ready(function(){
     //     });
     // });
 
-    $('.about-content').live('click', function(){
+    $('.about-content').on('click', function(){
       $(this).closest('.square').find(".recipe-block").hide();
-      $(".recipe-about").show();
+      $(this).closest('.square').find(".recipe-about").show();
       return false;
     });
-     $('.opacityimg,.opacityborder').live('click', function(){
-      $(".recipe-about").hide();
+
+     $('.opacityimg,.opacityborder').on('click', function(){
+      $(this).closest('.square').find(".recipe-about").hide();
       $(this).closest('.square').find(".recipe-block").show();
       return false;
     });
 
-
-
-
-
-    $('li.food-bill span.item-name').live('click',function(){
+     $('li.food-bill span.item-name').live('click',function(){
         $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
         $(".modal-footer").empty();
         $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +

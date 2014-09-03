@@ -27,18 +27,58 @@
               <div class="recipe-image append-cart">
                 <div class="add-lens"></div>
                 <div class="add-heart"></div>
-                <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix" %>
+                <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix about-content" %>
                 <% if today_menu && today_menu.has_key?(menu[:id]) %>
                     <div class='add-cart'></div>
                 <% end %>
               </div>
           <% else %>
-              <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart colorItemFix">
+              <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart colorItemFix about-content">
                 <div class="add-lens"></div>
                 <div class="add-heart"></div>
-                <div class="recipe-name hidden">
+                <div class="recipe-name">
                   <%= menu.food_item.meal_info.name %>
                 </div>
+                <% if today_menu && today_menu.has_key?(menu[:id]) %>
+                    <div class='add-cart'></div>
+                <% end %>
+              </div>
+          <% end %>
+        </li>
+
+        <li class="recipe-about" style="display:none;">
+          <% if qty_left(menu) <= 0 %>
+              <div class="recipe-header not-available colorItemFix ">
+                <div class="add-lens"></div>
+                <div class="recipe-name">
+                  <%= menu.food_item.meal_info.name %>
+                </div>
+                <div class="add-heart"></div>
+              </div>
+          <% elsif menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
+              <div class="recipe-image append-cart" style="position: relative;">
+                <div class="add-lens"></div>
+                <div class="add-heart"></div>
+                <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix opacityimg" %>
+                <div class="opacitydivup">
+                <span class="bold-text">Description:</span> <br/><%= menu.food_item.meal_info.short_description %><br/><br/>
+                <span class="bold-text">1 portion:</span> <%= menu.food_item.meal_info.portion_size %>
+              </div>
+                <% if today_menu && today_menu.has_key?(menu[:id]) %>
+                    <div class='add-cart'></div>
+                <% end %>
+              </div>
+          <% else %>
+              <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart colorItemFix opacityborder">
+                <div class="add-lens"></div>
+                <div class="add-heart"></div>
+                <div class="recipe-name">
+                  <%= menu.food_item.meal_info.name %>
+                </div>
+                <div class="opacitydivup">
+                <span class="bold-text">Description:</span> <br/><%= menu.food_item.meal_info.short_description %><br/><br/>
+                <span class="bold-text">1 portion:</span> <%= menu.food_item.meal_info.portion_size %>
+              </div>
                 <% if today_menu && today_menu.has_key?(menu[:id]) %>
                     <div class='add-cart'></div>
                 <% end %>
