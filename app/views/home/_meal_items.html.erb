@@ -17,7 +17,9 @@
         <li class="recipe-block <%=set_cooing_today_type(menu)%>">
           <% if qty_left(menu) <= 0 %>
               <div class="recipe-header not-available colorItemFix ">
-                <div class="add-lens"></div>
+                <div class="add-lens">
+                  <p class="text-right"><%= qty_left(menu) > 0 ? "#{qty_left(menu).to_i - cart_menu[:quantity].to_i} left" :  "SOLD OUT!" %></p>
+                </div>
                 <div class="recipe-name">
                   <%= menu.food_item.meal_info.name %>
                 </div>
@@ -25,23 +27,24 @@
               </div>
           <% elsif menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
               <div class="recipe-image append-cart">
-                <div class="add-lens"></div>
+                <div class="add-lens">
+                  <p class="text-right"><%= qty_left(menu) > 0 ? "#{qty_left(menu).to_i - cart_menu[:quantity].to_i} left" :  "SOLD OUT!" %></p>
+                </div>
                 <div class="add-heart"></div>
-                <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix about-content" %>
-                <% if today_menu && today_menu.has_key?(menu[:id]) %>
-                    <div class='add-cart'></div>
-                <% end %>
+                <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix" %>
+                  <div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>
               </div>
           <% else %>
               <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart colorItemFix about-content">
-                <div class="add-lens"></div>
+              
+                <div class="add-lens">
+                  <p class="text-right"><%= qty_left(menu) > 0 ? "#{qty_left(menu).to_i - cart_menu[:quantity].to_i} left" :  "SOLD OUT!" %></p>
+                </div>
                 <div class="add-heart"></div>
                 <div class="recipe-name">
                   <%= menu.food_item.meal_info.name %>
                 </div>
-                <% if today_menu && today_menu.has_key?(menu[:id]) %>
-                    <div class='add-cart'></div>
-                <% end %>
+                <div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>
               </div>
           <% end %>
         </li>
@@ -112,22 +115,21 @@
             </li>
           </ul>
           <div class="row action-row">
-            <div class="col-xs-4">
+            <div class="col-xs-3">
               <p class="text-left n-item-cost">Rs. <%= cart_menu[:price] %></p>
             </div>
-            <div class="col-xs-4">
-              <% if menu.orderable? %>
-                <ul class="set-order">
-                  <li class="order-less"><button type="button" class="decrease-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">-</button></li>
-                  <li class="order-count"><input type="text" value="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" class="quantity" readonly></li>
-                  <li class="order-more"><button type="button" class="increase-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">+</button></li>
-                  <li style="width:90%;"><a class="update-cart" data-quantity="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>">Done</a></li>
-                </ul>
-              <% end %>
-            </div>
-            <div class="col-xs-4">
-              <p class="text-right n-item-left"><%= qty_left(menu) > 0 ? "#{qty_left(menu).to_i - cart_menu[:quantity].to_i} left" :  "SOLD OUT!" %></p>
-            </div>
+            <% if menu.orderable? %>
+              <div class="col-xs-6">
+                  <ul class="set-order">
+                    <li class="order-less ctrl-btn pull-left"><button type="button" class="decrease-order-item" data-available-quantity="<%= qty_left(menu).to_i %>">-</button></li>
+                    <li class="order-count"><input type="text" value="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" class="quantity" readonly></li>
+                    <li class="order-more ctrl-btn pull-right"><button type="button" class="increase-order-item" data-available-quantity="<%= qty_left(menu).to_i%>">+</button></li>
+                  </ul>
+              </div>
+              <div class="col-xs-3">
+                <a class="pull-right new-cart-icon update-cart" data-quantity="<%= cart_menu[:quantity].to_i == 0 ? 1 : cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>"><img src="assets/icon-cart.png" style="width:24px" alt="Cart"></a>
+              </div>
+            <% end %>
           </div>
 
           </div>

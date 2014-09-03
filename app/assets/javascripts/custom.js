@@ -107,12 +107,12 @@ $(document).ready(function(){
 
     $(".increase-order-item").on('click', function(){
         quantity_input = $(this).parent().prev().find("input")
-        done_link = $(this).parent().parent().last().find("a")
+        new_link = $($(this).parent().parent().parent().parent().find('.update-cart'))
         available_quantity = parseInt($(this).data("available-quantity"))
         quantity = parseInt(quantity_input.val()) + 1
         if(available_quantity >= quantity){
             quantity_input.val(quantity)
-            $(done_link).data("quantity", quantity)
+            $(new_link).data("quantity", quantity)
 
         }else{
             alert("Max quantity reached")
@@ -122,19 +122,23 @@ $(document).ready(function(){
 
     $(".decrease-order-item").on('click', function(){
         quantity_input = $(this).parent().next().find("input")
-        done_link = $(this).parent().parent().last().find("a")
+        new_link = $($(this).parent().parent().parent().parent().find('.update-cart'))
         quantity = parseInt(quantity_input.val()) - 1
         if(quantity >= 0){
             quantity_input.val(quantity)
-            $(done_link).data("quantity", quantity)
+            $(new_link).data("quantity", quantity)
         }
 
     })
 
     $(".update-cart").unbind("click").live('click',function(e){
         data_attribs = $(this).data()
-        console.log(data_attribs)
         url = (parseInt(data_attribs.quantity) > 0) ? "/orders/set_cart" : "/orders/remove_from_cart"
+        if (parseInt(data_attribs.quantity) > 0){
+            $(this).parents("ul.square").find('.add-cart').removeClass('hidden')
+        }else{
+            $(this).parents("ul.square").find('.add-cart').addClass('hidden')
+        }
         $.ajax({
                 'method': 'GET',
                 'url': url ,

@@ -31,18 +31,16 @@ module ApplicationHelper
   def collect_cart_items(menu)
     today = {}
     if !session[:cart].blank?
-      session[:cart].each do |item|
-       item.each do |item_id, item_attr|
-        if menu.id == item_id.to_i
-          menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'], :category => item_attr['category'],
-          :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture) }
-          return menu
-        else
-          menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
-                  :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
-          return menu
-        end
-       end
+      item = session[:cart].select{|x| x.has_key?(menu.id.to_s)}
+      unless item.blank?
+         item_attr = item.first.values.first
+        menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'], :category => item_attr['category'],
+        :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture) }
+        return menu
+      else
+        menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
+                :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture)}
+        return menu
       end
     else
       menu = {:price => menu.food_item.meal_info.hola_sell_price, :quantity => 0, :dish_name => menu.food_item.meal_info.name, :category => menu.food_item.recipe.category,
@@ -171,6 +169,12 @@ module ApplicationHelper
     messages.map do |message, sub_messages|
       render(message) + content_tag(:div, nested_messages(sub_messages), :class => "nested_messages")
     end.join.html_safe
+  end
+
+  def add_cart_view(today_menu,menu)
+    unless today_menu && today_menu.has_key?(menu[:id])
+      "hidden"
+    end
   end
 
   def render_parent_select_box(cuisine)
