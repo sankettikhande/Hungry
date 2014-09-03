@@ -5,6 +5,14 @@ load 'deploy/assets'
 load 'config/recipes/db'
 # load "config/recipes/delayed_job"
 # default_run_options[:shell] = '/bin/bash'
+set :repository,  "git@bitbucket.org:pravinhmhatre/holachef.git"
+set :application, 'holachef'
+set :deploy_via, :export
+set :scm, 'git'
+set :branch, 'master'
+set :git_shallow_clone, 1
+set :scm_verbose, true
+set :use_sudo, false
 
 task :qa do
   set :bundle_cmd, "/home/holachef/.gems/bin/bundle"
@@ -22,19 +30,12 @@ task :qa do
   # be sure to change these
   set :user, 'holachef'
   set :domain, 'qa.holachef.com'
-  set :application, 'holachef'
 
   # the rest should be good
   set :repository,  "https://pravinhmhatre@bitbucket.org/pravinhmhatre/holachef.git"
   set :deploy_to, "/home/#{user}/#{domain}"
-  set :deploy_via, :remote_cache
-  set :scm, 'git'
-  set :branch, 'master'
   set :delayed_job_server_role, :worker
   set :delayed_job_args, "-n 2"
-  set :git_shallow_clone, 1
-  set :scm_verbose, true
-  set :use_sudo, false
 
   server domain, :app, :web
   # role :db, domain, :primary => true
@@ -48,17 +49,9 @@ task :prod do
   # be sure to change these
   set :user, 'root'
   set :domain, '103.13.97.227'
-  set :application, 'holachef'
 
   # the rest should be good
-  set :repository,  "https://pravinhmhatre@bitbucket.org/pravinhmhatre/holachef.git"
   set :deploy_to, "/data/apps/#{application}"
-  set :deploy_via, :remote_cache
-  set :scm, 'git'
-  set :branch, 'master'
-  set :git_shallow_clone, 1
-  set :scm_verbose, true
-  set :use_sudo, false
 
   role :db, domain, :primary => true
 
