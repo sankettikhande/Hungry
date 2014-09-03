@@ -528,15 +528,13 @@ function stickyTitles(stickies) {
     this.scroll = function() {
 
         stickies.each(function(i){
-
-
             var thisSticky = jQuery(this),
                 nextSticky = stickies.eq(i+1),
                 prevSticky = stickies.eq(i-1),
                 pos = jQuery.data(thisSticky[0], 'pos');
 
 
-            if ((pos - 70) <= jQuery(window).scrollTop()) {
+            if ((pos) <= jQuery(window).scrollTop()) {
 
                 thisSticky.addClass("fixed");
 

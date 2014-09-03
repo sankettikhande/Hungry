@@ -1,5 +1,7 @@
 
-<div class="text-center show-time followMeBar" data-category="<%= category %>"><%= CookingToday.meal_type_time_span[category][:from] %> - <%= CookingToday.meal_type_time_span[category][:to] %></div>
+<div class="text-center show-time followMeBar" data-category="<%= category %> (<%= CookingToday.meal_type_time_span[category][:from] %> to <%= CookingToday.meal_type_time_span[category][:to] %>)" > </div>
+
+<div class="category_header"> <%= category %> </div>
   <% menus.each do |menu| %>
     <% cart_menu = collect_cart_items(menu) if !menu.nil? %>
     <% target = qty_left(menu) > 0 ? "#item-modal" : "#" %>
@@ -70,10 +72,10 @@
             </li>
           </ul>
           <div class="row action-row">
-            <div class="col-xs-3">
+            <div class="col-xs-4">
               <p class="text-left n-item-cost">Rs. <%= cart_menu[:price] %></p>
             </div>
-            <div class="col-xs-5">
+            <div class="col-xs-4">
               <% if menu.orderable? %>
                 <ul class="set-order">
                   <li class="order-less"><button type="button" class="decrease-order-item" data-available-quantity="<%= qty_left(menu).to_i - cart_menu[:quantity].to_i %>">-</button></li>

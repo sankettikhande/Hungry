@@ -12,6 +12,7 @@
                             </a>
                           </div>
                         </div>
+                        <% if hola_current_user %>
                         <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
 
                           <% hola_current_user.hola_user_addresses.each_with_index do |address, index| %>
@@ -36,6 +37,7 @@
                             </div>
                           <% end %>
 
+                        <% end %>
                         <% end %>
                       </div>
                     </div>

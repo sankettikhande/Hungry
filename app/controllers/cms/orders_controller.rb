@@ -50,7 +50,6 @@ class Cms::OrdersController < Cms::ContentBlockController
   end
 
   def add_address
-    logger.info session.inspect
     if hola_current_user
       @adds = hola_current_user.hola_user_addresses.default_address.first
       @adds = hola_current_user.hola_user_addresses.build(name: hola_current_user.name, mobile_no: hola_current_user.phoneNumber) unless @adds

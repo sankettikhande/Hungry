@@ -989,7 +989,7 @@ html{overflow-x:hidden}
 
 
 
-.followMeBar {
+/*.followMeBar {
            background-color: #cfcfcf;
     border-bottom: 1px solid #cfcfcf;
     border-top: 1px solid #444;
@@ -998,7 +998,9 @@ html{overflow-x:hidden}
     padding: 7px;
     position: relative;
     z-index: 1;
-    }
+    height: 15px;
+    margin-bottom: 10px;
+    }*/
     .followMeBar.fixed {
         position: fixed;
         top: 50px;
@@ -1012,4 +1014,13 @@ html{overflow-x:hidden}
         top: 50px;
         width: 82%;
     }
+
+.category_header{
+    display: inline-block;
+    height: 20px;
+    margin: 5px 5px 13px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
 
