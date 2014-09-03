@@ -387,7 +387,7 @@ display: none;
 .navbar-titlebar > li button.navbar-toggle:focus {background: none;outline: none;}
 .navbar-titlebar .side-menu-btn {margin-left: -10px}
 
-.navbar-titlebar .page-title  {font-size: 1.2em;font-family: 'robotoregular',Sans-serif;text-align: left;display: inline-block;line-height: 50px;margin:0;margin-left: 10px;position: absolute;}
+.navbar-titlebar .page-title  {font-size: 0.72em;font-family: 'robotoregular',Sans-serif;text-align: left;display: inline-block;line-height: 50px;margin:0;margin-left: 10px;position: absolute;}
 .navbar-titlebar .page-title a:hover,.navbar-titlebar .page-title a:focus,.navbar-titlebar .page-title a:active {text-decoration: none;outline: none;}
 
 .navbar-titlebar .page-title .dropdown-menu {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;background: #fff;padding-bottom: 0}

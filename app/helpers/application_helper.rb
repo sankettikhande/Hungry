@@ -139,12 +139,11 @@ module ApplicationHelper
     when controller == "cms/chef_requests" && action == "become_chef"
       return "Become a Chef"
     else
-
       meal_availability_hash = CookingToday.meal_type_time_span
       meal_availability_hash.each do |category, meal_availability|
         meal_availability_from_time = Time.zone.parse("#{Date.today} #{meal_availability[:from]}")
         meal_availability_to_time = Time.zone.parse("#{Date.today} #{meal_availability[:to]}")
-        return category if (Time.now > meal_availability_from_time and Time.now < meal_availability_to_time)
+        return "#{category} (#{meal_availability[:from]} - #{meal_availability[:to]})" if (Time.now > meal_availability_from_time and Time.now < meal_availability_to_time)
       end
       return "Today's Menu"
     end
