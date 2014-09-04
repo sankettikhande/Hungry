@@ -6,10 +6,9 @@ load 'config/recipes/db'
 # default_run_options[:shell] = '/bin/bash'
 set :repository,  "git@bitbucket.org:pravinhmhatre/holachef.git"
 set :application, 'holachef'
-set :deploy_via, :export
+set :deploy_via, :remote_cache
 set :scm, 'git'
 set :branch, 'master'
-set :git_shallow_clone, 1
 set :scm_verbose, true
 set :use_sudo, false
 set :rails_env, "production"
