@@ -12,6 +12,7 @@ set :branch, 'master'
 set :git_shallow_clone, 1
 set :scm_verbose, true
 set :use_sudo, false
+set :rails_env, "production"
 set :precompile_only_if_changed, true
 
 task :qa do
