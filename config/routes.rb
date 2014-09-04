@@ -64,6 +64,7 @@ Holachef::Application.routes.draw do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
 
   match '/desktop' => 'home#desktop'
+  match '/landing' => 'home#landing'
   match '/add-dishes' => 'home#add_other_dishes'
 
   match '/', to: 'home#mobile', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' && ['m', 'qam'].include?(r.subdomain)}
@@ -163,7 +164,7 @@ Holachef::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'temporary_home#index'
+  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

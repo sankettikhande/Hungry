@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
 
   helper_method :hola_current_user
+  helper_method :mobile_device?
+  helper_method :is_mobile?
 
   private
 
@@ -18,7 +20,13 @@ class ApplicationController < ActionController::Base
       request.user_agent =~ /Mobile|webOS/
     end
   end
-  helper_method :mobile_device?
+
+  def is_mobile?
+    request.user_agent =~ /Mobile|webOS/
+  end
+
+
+
 
   def prepare_for_mobile
 

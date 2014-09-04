@@ -1,29 +1,39 @@
-
 class HomeController < ApplicationController
   include ApplicationHelper
 
   #before_filter :prepare_for_mobile
-  before_filter :landing, :only => [:index]
+  # before_filter :landing, :only => [:index]
   #skip_before_filter :prepare_for_mobile, :only => [:desktop]
 
+
   def landing
-    if session[:landing].nil?
-      session[:landing] = "landing"
-      respond_to do |format|
-        format.html{render :template =>  'home/landing' ,:layout => 'landing'}
 
-      end
-      #return if !session[:landing].nil?
-    end
+    # if session[:landing].nil?
+    #   session[:landing] = "landing"
+    #   respond_to do |format|
+    #     format.html{render :template =>  'home/landing' ,:layout => 'landing'}
 
+    #   end
+    #   #return if !session[:landing].nil?
+    # end
+    render layout: 'landing'
   end
 
   def index
-    @todays_menu = CookingToday.grouped_by_category
-    update_cart(@todays_menu) if !@todays_menu.blank?
-
-    respond_to do |format|
-      format.html
+    if is_mobile?
+      if cookies.signed[:returning_user]
+        redirect_to "/mobile"
+      else
+        cookies.signed[:returning_user] = true
+        redirect_to "/landing"
+      end
+    else
+      if cookies.signed[:returning_user]
+        cookies.signed[:returning_user] = true
+        redirect_to "/desktop"
+      else
+        redirect_to "/landing"
+      end
     end
   end
 
