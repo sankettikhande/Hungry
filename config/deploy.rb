@@ -1,9 +1,7 @@
 
 require 'bundler/capistrano'
 require 'delayed/recipes'
-load 'deploy/assets'
 load 'config/recipes/db'
-set :precompile_only_if_changed, true
 # load "config/recipes/delayed_job"
 # default_run_options[:shell] = '/bin/bash'
 set :repository,  "git@bitbucket.org:pravinhmhatre/holachef.git"
@@ -14,6 +12,7 @@ set :branch, 'master'
 set :git_shallow_clone, 1
 set :scm_verbose, true
 set :use_sudo, false
+set :precompile_only_if_changed, true
 
 task :qa do
   set :bundle_cmd, "/home/holachef/.gems/bin/bundle"
@@ -85,6 +84,5 @@ namespace :deploy do
 end
 
 after "deploy:update_code", "db:symlink"
-before "deploy:assets:update_asset_mtimes", "db:symlink"
 
 
