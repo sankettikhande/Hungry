@@ -1,36 +1,45 @@
-  *{margin:0;padding: 0;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
-  body {text-align:center;font-family:Arial,Helvetica,Sans-serif;color:#fff;}
-  .upper-content {margin:0;padding: 0;margin-top: 38px;list-style-type: none;color: #fff;display: block;overflow: hidden;width:100%;max-width: 630px;margin-left: auto;margin-right: auto;text-align:center;position: fixed;z-index: 99999;left: 0;right: 0;top: 0}
-  .upper-content li {width: 100%;text-align: left;float: left;}
-  .upper-content li.site-logo img{width: 95px;height: 118px;text-align: left;}
-  .upper-content li.greet-text {font-size: 78px;}
-  .upper-content li.greet-text span {display: block;font-size: 44px;}
-  .upper-content li.take-email span {display: inline-block;margin-top: 5px;}
-  .upper-content li.take-email span:first-child {width: 78%;float: left;}
-  .upper-content li.take-email span:last-child {width: 20%;float: left;margin-left: 1%}
-  .take-email input.form-control {width: 100%;height: 39px;background: transparent;border:1px solid rgba(255,255,255,0.6);font-size: 15px;color: #fff;padding: 6px 10px;outline: 0}
-  .take-email input:focus.form-control,.take-email input:active.form-control {border:1px solid #fff;outline: none;}
+@font-face {
+    font-family: 'HelveticaNeueLTStd-Bd';
+    src: url('../fonts/HelveticaNeueLTStd-Bd.eot?') format('eot'),
+    url('../fonts/HelveticaNeueLTStd-Bd.otf')  format('opentype'),
+    url('../fonts/HelveticaNeueLTStd-Bd.woff') format('woff'),
+    url('../fonts/HelveticaNeueLTStd-Bd.ttf')  format('truetype'),
+    url('../fonts/HelveticaNeueLTStd-Bd.svg#HelveticaNeueLTStd-Bd') format('svg');
+}
 
-  .btn-transparent {background: transparent;color: #fff;border:1px solid rgba(255,255,255,0.6);width: 100%;height: 39px;font-size:16px;}
-  .btn-transparent:hover,.btn-transparent:active,.btn-transparent:focus {background: rgba(255,255,255,0.34);border:1px solid rgba(255,255,255,0.34);transition:all 0.2s ease;cursor: pointer;}
+*{margin:0;padding: 0;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+body {text-align:center;font-family:'HelveticaNeueLTStd-Bd', Arial,Helvetica,Sans-serif;color:#fff;}
+.upper-content {margin:0;padding: 0;margin-top: 38px;list-style-type: none;color: #fff;display: block;overflow: hidden;width:100%;max-width: 630px;margin-left: auto;margin-right: auto;text-align:center;position: fixed;z-index: 99999;left: 0;right: 0;top: 0}
+.upper-content li {width: 100%;text-align: left;float: left;}
+.upper-content li.site-logo img{width: 95px;height: 118px;text-align: left;}
+.upper-content li.greet-text {font-size: 78px;}
+.upper-content li.greet-text span {display: block;font-size: 44px;}
+.upper-content li.take-email span {display: inline-block;margin-top: 5px;}
+.upper-content li.take-email span:first-child {width: 78%;float: left;}
+.upper-content li.take-email span:last-child {width: 20%;float: left;margin-left: 1%}
+.take-email input.form-control {width: 100%;height: 39px;background: transparent;border:1px solid rgba(255,255,255,0.6);font-size: 15px;color: #fff;padding: 6px 10px;outline: 0}
+.take-email input:focus.form-control,.take-email input:active.form-control {border:1px solid #fff;outline: none;}
 
-  .thank-msg {color: #fff;font-size: 14px;display: none;margin-top: 7px;}
-	::-webkit-input-placeholder {
-	   color: #fff;
-	}
-	:-moz-placeholder { /* Firefox 18- */
-	   color: #fff;  
-	}
-	::-moz-placeholder {  /* Firefox 19+ */
-	   color: #fff;  
-	}
-	:-ms-input-placeholder {  
-	   color: #fff;  
-	}
+.btn-transparent {background: transparent;color: #fff;border:1px solid rgba(255,255,255,0.6);width: 100%;height: 39px;font-size:16px;}
+.btn-transparent:hover,.btn-transparent:active,.btn-transparent:focus {background: rgba(255,255,255,0.34);border:1px solid rgba(255,255,255,0.34);transition:all 0.2s ease;cursor: pointer;}
 
-.copy {position: absolute;bottom: 15px;left: 0;right: 0;display: block;width: 100%;z-index: 99999;font-family:Arial,Helvetica,Sans-serif;}
-.copy p{font-size: 14px;text-align: center;color: #fff;font-family:Arial,Helvetica,Sans-serif;}
-.copy a{text-decoration: none;color: #fff;font-family:Arial,Helvetica,Sans-serif;}
-.copy a:hover {text-decoration: underline;font-family:Arial,Helvetica,Sans-serif;}
+.thank-msg {color: #fff;font-size: 14px;display: none;margin-top: 7px;}
+::-webkit-input-placeholder {
+    color: #fff;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #fff;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #fff;
+}
+:-ms-input-placeholder {
+    color: #fff;
+}
+
+.copy {position: absolute;bottom: 15px;left: 0;right: 0;display: block;width: 100%;z-index: 99999;font-family: 'HelveticaNeueLTStd',Arial,Helvetica,Sans-serif;}
+.copy p{font-size: 14px;text-align: center;color: #fff;font-family: 'HelveticaNeueLTStd',Arial,Helvetica,Sans-serif;}
+.copy a{text-decoration: none;color: #fff;font-family: 'HelveticaNeueLTStd',Arial,Helvetica,Sans-serif;}
+.copy a:hover {text-decoration: underline;font-family: 'HelveticaNeueLTStd',Arial,Helvetica,Sans-serif;}
 
 .slides-pagination {display: none;}
