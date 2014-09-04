@@ -39,6 +39,6 @@ class OrderedMenu < ActiveRecord::Base
   end
 
   def add_back_quantity
-    cooking_today.update_attribute(:quantity, (cooking_today.quantity + quantity))
+    cooking_today.update_attributes(ordered: (cooking_today.ordered - self.quantity))
   end
 end
