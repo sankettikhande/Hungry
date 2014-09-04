@@ -424,6 +424,10 @@ $(document).ready(function(){
     $('.navbar-header .navbar-toggle').click(function(){
         $('#sidebar').fadeToggle();
     });
+    // Sidemenu for desktop fix
+    $('.navbar-header .navbar-brand').click(function(){
+        $('#sidebar').fadeToggle();
+    });
 
     $('#star').raty({
         path:'/assets/',
