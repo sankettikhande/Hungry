@@ -66,6 +66,8 @@ Holachef::Application.routes.draw do
   match '/desktop' => 'home#desktop'
   match '/add-dishes' => 'home#add_other_dishes'
 
+  match '/', to: 'home#mobile', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' && ['m', 'qam'].include?(r.subdomain)}
+
   match '/mobile' => 'home#mobile', :as => :home
 
   match '/submit_payment_form'=> 'Cms::orders#submit_payment_form'
