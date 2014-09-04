@@ -3,6 +3,7 @@ require 'bundler/capistrano'
 require 'delayed/recipes'
 load 'deploy/assets'
 load 'config/recipes/db'
+set :precompile_only_if_changed, true
 # load "config/recipes/delayed_job"
 # default_run_options[:shell] = '/bin/bash'
 set :repository,  "git@bitbucket.org:pravinhmhatre/holachef.git"
@@ -77,11 +78,8 @@ namespace :deploy do
   end
 
   namespace :assets do
-    desc 'Run the precompile task locally and rsync with shared'
     task :precompile, :roles => :web, :except => { :no_release => true } do
-      %x{bundle exec rake assets:precompile}
-      %x{rsync --recursive --times --rsh=ssh --compress --human-readable --progress public/assets #{user}@#{domain}:#{shared_path}}
-      %x{bundle exec rake assets:clean}
+      logger.info "Skipping asset pre-compilation because there were no asset changes"
     end
   end
 end
