@@ -22,10 +22,10 @@
                                   <colgroup><col class="col-xs-2 col-sm-1"><col class="col-xs-10 col-sm-11"></colgroup>
                                   <tr>
                                     <td class="a-radio">
-                                        <input type="radio" name="address_id" value="<%= address.id %>" class="validate[required]" data-errormessage="Please choose a address.">
+                                        <input type="radio" name="address_id" value="<%= address.id %>" id= '<%="address-#{address.id}"%>' class="validate[required]" data-errormessage="Please choose a address.">
                                     </td>
                                     <td>
-                                        <label for="addr-<%= index %>">
+                                        <label for='<%="address-#{address.id}"%>' style="cursor: hand">
                                           <p class="address-brief">
                                             <% address.address_array.each do |addrs| %>
                                               <span><%=addrs %><%= address.address_array.last == addrs ? "" : ", " %></span>
