@@ -1,14 +1,5 @@
-@font-face {
-    font-family: 'HelveticaNeueLTStd-Bd';
-    src: url('../fonts/HelveticaNeueLTStd-Bd.eot?') format('eot'),
-    url('../fonts/HelveticaNeueLTStd-Bd.otf')  format('opentype'),
-    url('../fonts/HelveticaNeueLTStd-Bd.woff') format('woff'),
-    url('../fonts/HelveticaNeueLTStd-Bd.ttf')  format('truetype'),
-    url('../fonts/HelveticaNeueLTStd-Bd.svg#HelveticaNeueLTStd-Bd') format('svg');
-}
-
 *{margin:0;padding: 0;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
-body {text-align:center;font-family:'HelveticaNeueLTStd-Bd', Arial,Helvetica,Sans-serif;color:#fff;}
+/*body {text-align:center;font-family:'HelveticaNeueLTStd-Bd', Arial,Helvetica,Sans-serif;color:#fff;}*/
 .upper-content {margin:0;padding: 0;margin-top: 38px;list-style-type: none;color: #fff;display: block;overflow: hidden;width:100%;max-width: 630px;margin-left: auto;margin-right: auto;text-align:center;position: fixed;z-index: 99999;left: 0;right: 0;top: 0}
 .upper-content li {width: 100%;text-align: left;float: left;}
 .upper-content li.site-logo img{width: 95px;height: 118px;text-align: left;}
@@ -37,9 +28,9 @@ body {text-align:center;font-family:'HelveticaNeueLTStd-Bd', Arial,Helvetica,San
     color: #fff;
 }
 
-.copy {position: absolute;bottom: 15px;left: 0;right: 0;display: block;width: 100%;z-index: 99999;font-family: 'HelveticaNeueLTStd',Arial,Helvetica,Sans-serif;}
-.copy p{font-size: 14px;text-align: center;color: #fff;font-family: 'HelveticaNeueLTStd',Arial,Helvetica,Sans-serif;}
-.copy a{text-decoration: none;color: #fff;font-family: 'HelveticaNeueLTStd',Arial,Helvetica,Sans-serif;}
-.copy a:hover {text-decoration: underline;font-family: 'HelveticaNeueLTStd',Arial,Helvetica,Sans-serif;}
+.copy {position: absolute;bottom: 15px;left: 0;right: 0;display: block;width: 100%;z-index: 99999;font-family:Arial,Helvetica,Sans-serif;}
+.copy p{font-size: 14px;text-align: center;color: #fff;font-family:Arial,Helvetica,Sans-serif;}
+.copy a{text-decoration: none;color: #fff;font-family:Arial,Helvetica,Sans-serif;}
+.copy a:hover {text-decoration: underline;font-family:Arial,Helvetica,Sans-serif;}
 
 .slides-pagination {display: none;}
