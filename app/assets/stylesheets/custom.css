@@ -981,7 +981,7 @@ html{overflow-x:hidden}
 .set-order>li.order-less button {float: left;}
 .set-order>li.order-more button {float: right;}
 .set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 25px;}
-.new-cart-icon img {width: 24px;float: right;}
+.new-cart-icon img {width: 60px;float: right;}
 
 
 .prev-order-wrapper {margin-top: 10px;}
@@ -1033,3 +1033,4 @@ html{overflow-x:hidden}
     width: 100%;
 }
 
+.recipe-header {position: relative;}
