@@ -16,6 +16,7 @@
                         <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
 
                           <% hola_current_user.hola_user_addresses.each_with_index do |address, index| %>
+                            <% next if address.address_array.blank? %>
                             <div class="form-group each-address">
                               <table class="table address-table">
                                   <colgroup><col class="col-xs-2 col-sm-1"><col class="col-xs-10 col-sm-11"></colgroup>

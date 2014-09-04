@@ -59,7 +59,7 @@ class Order < ActiveRecord::Base
   end
 
   def mark_menu_items
-    ordered_menus.where(order_status: "Ordered").update_all("order_status = '#{self.order_status}'")
+    ordered_menus.where(order_status: "Ordered").map {|om| om.update_attribute(:order_status, order_status)}
   end
 
   def build_order_status_history

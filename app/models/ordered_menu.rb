@@ -13,6 +13,13 @@ class OrderedMenu < ActiveRecord::Base
   validates :quantity, :presence => true
   validates :order_status, presence: true, inclusion: { in: @@order_statuses }
 
+  after_save :add_back_quantity, :if => :canceled?
+
+  @@order_statuses.each do |s|
+    define_method "#{s.downcase}?" do
+      order_status == s
+    end
+  end
 
   def self.calculate_total(order)
     menus = order.ordered_menus
@@ -28,6 +35,10 @@ class OrderedMenu < ActiveRecord::Base
   end
 
   def cooking_today
-    CookingToday.where(date: Time.current.to_date, food_item_id: dish_id)
+    CookingToday.where(date: Time.current.to_date, food_item_id: dish_id).first
+  end
+
+  def add_back_quantity
+    cooking_today.update_attribute(:quantity, (cooking_today.quantity + quantity))
   end
 end

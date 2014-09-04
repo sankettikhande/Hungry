@@ -33,7 +33,7 @@ module ApplicationHelper
     if !session[:cart].blank?
       item = session[:cart].select{|x| x.has_key?(menu.id.to_s)}
       unless item.blank?
-         item_attr = item.first.values.first
+        item_attr = item.first.values.first
         menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'], :category => item_attr['category'],
         :cheff_name => menu.cheff.chef_coordinate.name, :cheff_id => menu.cheff.id, :cheff_image_url => (menu.cheff.picture.image.url if menu.cheff.picture) }
         return menu
