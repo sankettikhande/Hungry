@@ -11,6 +11,7 @@ set :scm, 'git'
 set :branch, 'master'
 set :scm_verbose, true
 set :use_sudo, false
+set :keep_releases, 2
 set :rails_env, "production"
 set :precompile_only_if_changed, true
 
