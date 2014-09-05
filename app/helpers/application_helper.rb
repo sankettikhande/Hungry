@@ -50,6 +50,11 @@ module ApplicationHelper
 
   end
 
+  def select_food_item_having_image(chef)
+    item = chef.food_items.includes(meal_info: :picture).select{|item| item.meal_info.picture}.first.meal_info
+    return item
+  end
+
   def collect_cart(menu)
     today = {}
     if session[:cart]

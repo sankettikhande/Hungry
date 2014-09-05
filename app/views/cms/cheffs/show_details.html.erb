@@ -9,7 +9,8 @@
               <ul class="profile-details">
                 <li class="profile veg cover-block">
                   <ul class="cover-image">
-                    <li class="cover cover-photo"><%= image_tag @chef.food_items.first.meal_info.picture.image.url, :alt=>"#{@chef.food_items.first.meal_info.name}", :class => "img-responsive center-block" if @chef.food_items.first.meal_info.picture %></li>
+                    <% image_item = select_food_item_having_image(@chef) %>
+                    <li class="cover cover-photo"><%= image_tag image_item.picture.image.url, :alt=>"#{image_item.name}", :class => "img-responsive center-block" if image_item%></li>
                     <li class="cover cover-text hidden">
                       <h1 class="lemon text-white">Dal Baati</h1>
                       <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
