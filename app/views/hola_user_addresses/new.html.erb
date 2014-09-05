@@ -9,24 +9,24 @@
                     <div class="address-card back-white">
                           <%= form_for @address do |f| %>
                             <div class="form-group">
-                              <%= f.text_field :building_name, class: "form-control validate[required]", placeholder: "Flat/ Building" %>
+                              <%= f.text_field :building_name, class: "form-control", placeholder: "Flat/ Building", required: true %>
                               <!-- <input type="text" class="form-control validate[required]" placeholder="Flat/ Building"> -->
                             </div>
                             <div class="form-group">
-                              <%= f.text_field :street, class: "form-control validate[required]", placeholder: "Street" %>
+                              <%= f.text_field :street, class: "form-control", placeholder: "Street", required: true %>
                               <!-- <input type="text" class="form-control" placeholder="Street"> -->
                             </div>
                             <div class="form-group">
                               <!-- <input type="text" class="form-control" placeholder="Landmark"> -->
-                              <%= f.text_field :landmark, class: "form-control validate[required]", placeholder: "Landmark" %>
+                              <%= f.text_field :landmark, class: "form-control", placeholder: "Landmark", required: true %>
                             </div>
                             <div class="form-group">
                               <!-- <input type="text" class="form-control" placeholder="Pincode"> -->
-                              <%= f.text_field :pin, class: "form-control validate[required]", placeholder: "Pincode" %>
+                              <%= f.text_field :pin, class: "form-control", placeholder: "Pincode" %>
                             </div>
                             <%= hidden_field_tag :src, params[:src] %>
                             <div class="form-group text-center seperator-25">
-                              <button class="btn btn-saffron btn-xs" type="submit">Save</button>
+                              <button class="btn btn-saffron btn-xs" type="submit" id= "address_submit_button">Save</button>
                               <!-- <button class="btn btn-saffron btn-xs" type="button">Set Default</button> -->
                             </div>
                           <% end %>
