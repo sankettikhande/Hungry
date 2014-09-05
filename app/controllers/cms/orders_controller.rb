@@ -217,7 +217,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   end
 
   def email_invoice
-    email_details = {:from => "admin@holachef.com", :recepients => params[:email_to], :subject => "HolaChef Invoice Details"}
+    email_details = {:recepients => params[:email_to], :subject => "HolaChef Invoice Details"}
     if params[:email_to].present? && Notifier.email_invoice_details(email_details, params[:order_id]).deliver
       flash[:notice] = "Invoice has been sent to your email address."
       redirect_to "/mobile"
