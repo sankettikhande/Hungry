@@ -9,7 +9,7 @@
               <ul class="profile-details">
                 <li class="profile veg cover-block">
                   <ul class="cover-image">
-                    <li class="cover cover-photo"><img class="img-responsive center-block" src="/assets/chef-cover.jpg" alt=""></li>
+                    <li class="cover cover-photo"><%= image_tag @chef.food_items.first.meal_info.picture.image.url, :alt=>"#{@chef.food_items.first.meal_info.name}", :class => "img-responsive center-block" if @chef.food_items.first.meal_info.picture %></li>
                     <li class="cover cover-text hidden">
                       <h1 class="lemon text-white">Dal Baati</h1>
                       <p class="text-white roboto-r">Cooked this dish ? Upload a Photo</p>
@@ -59,10 +59,10 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <div class="text-center">
+        <!-- <div class="text-center">
           <button class="btn btn-fan" type="button" id="add-fan">Become a Fan</button>
           <a class='st_twitter_custom' displayText='Tweet'><img src="/assets/twittie.png" alt="Tweet"></a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <ul class="block-3 block-2">
+      <ul class="block-3 block-1">
         <li class="each-block">
           <a href="#">
             <span id="served-count" class="upper roboto-b"><%= @total_qty %></span>
@@ -86,12 +86,12 @@
           </a>
         </li>
          <% end; %>
-        <li class="each-block">
+        <!-- <li class="each-block">
           <a href="#">
             <span id="fan-count" class="upper roboto-b">253</span>
             <span class="lower text-uppercase">Fans</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

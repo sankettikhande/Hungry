@@ -629,7 +629,7 @@ ul.cover-image li.cover-text p {margin-top:8px;}
 .block-3 li.each-block span:first-child {font-family: 'robotobold',Sans-serif;font-size: 1.2em;}
 .block-3 li.each-block span:last-child {font-family: 'robotoregular',Sans-serif;font-size: 1em;}
 .block-2 li.each-block {width: 49%;}
-
+.block-1 li.each-block {width: 100%;}
 .normal-header {margin-top: 15px;width: 100%;float: left;margin-bottom: 5px;}
 .normal-header h3,.normal-header h2 {color: #666666;margin: 0;padding: 0;font-family: 'Roboto-Medium',Sans-serif;}
 .normal-header h3 {font-size: 1.125em;}

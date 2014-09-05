@@ -16,12 +16,12 @@
       <ul class="square">
         <li class="recipe-block <%=set_cooing_today_type(menu)%>">
           <% if menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
-              <div class="recipe-image append-cart <%= 'opac' if qty_left(menu) <= 0 %>">
+              <div class="recipe-image append-cart">
                 <div class="add-lens">
                   <p class="text-right"><%= qty_left(menu) > 0 ? "#{qty_left(menu).to_i - cart_menu[:quantity].to_i} left" :  "SOLD OUT!" %></p>
                 </div>
                 <div class="add-heart"></div>
-                <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix" %>
+                <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix about-content" %>
                   <div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>
               </div>
           <% else %>
