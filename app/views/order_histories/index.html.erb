@@ -10,7 +10,7 @@
       </div>
 
       <% if @order_histories.blank?  %>
-          <%= alert_message "There are no favourite recipes." %>
+          <%= alert_message "No order history found." %>
       <% else %>
           <% @order_histories.each do |order| %>
               <div class="row prev-order-wrapper">
