@@ -450,7 +450,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 
 .modal-dialog {max-width:350px;margin-left:auto;margin-right:auto;}
 
-#recipe-modal .modal-dialog {margin-top: 5.2em}
+.modal-dialog {margin-top: 5.2em}
 #recipe-modal .modal-content {border-color: #ff8800;border-radius: 0; -webkit-border-radius: 0; -moz-border-radius: 0;background: #fff;width: 100%;display: block;float: left;}
 #recipe-modal .modal-header,#content-modal .modal-header {border-bottom: 0;padding: 5px 10px;float: left;width: 100%;}
 #recipe-modal .modal-body {float: left;width: 100%;display: block;}

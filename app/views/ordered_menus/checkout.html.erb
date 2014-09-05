@@ -41,29 +41,27 @@
         </ul>
 
       </div>
-      <div id="recipe-modal">
-        <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button data-dismiss="modal" class="btn-close pull-right">x</button>
-              </div>
-              <div class="modal-body"> <!-- below content changes from jquery -->
-                <i class="modal-loading fa fa-spinner fa-spin"></i>
-                <p class="form-control looks-input hidden" id="order-count">0</p>
-              </div>
-              <div class="modal-footer modal-form">
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div> <!-- modal ends -->
     </div>
   </div>
 </div> <!-- fluid container ends -->
+<div id="recipe-modal">
+  <div class="modal fade" id="item-modal" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button data-dismiss="modal" class="btn-close pull-right">x</button>
+        </div>
+        <div class="modal-body"> <!-- below content changes from jquery -->
+          <i class="modal-loading fa fa-spinner fa-spin"></i>
+          <p class="form-control looks-input hidden" id="order-count">0</p>
+        </div>
+        <div class="modal-footer modal-form">
+        </div>
 
-<div class="modal fade bs-example-modal-sm" id="remove_dish" tabindex="-1">
+      </div>
+    </div>
+  </div>
+<div class="modal fade bs-example-modal-sm" data-backdrop="false" id="remove_dish" tabindex="-1">
   <div class="modal-dialog modal-sm modal-alert">
     <div class="modal-content">
       <div class="modal-header">
@@ -77,7 +75,7 @@
   </div>
 </div>
 
-<div class="modal fade bs-example-modal-sm" id="remove_last_dish" tabindex="-1">
+<div class="modal fade bs-example-modal-sm" id="remove_last_dish" tabindex="-1" data-backdrop="false" >
   <div class="modal-dialog modal-sm modal-alert">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,6 +88,7 @@
     </div>
   </div>
 </div>
+</div> <!-- modal ends -->
 
 <% if !session[:cart].blank? %>
 <!--
