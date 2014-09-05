@@ -7,7 +7,7 @@ class SocialSharesController < ApplicationController
   end
 
   def send_referal_email
-    email_details = {:from => params[:from_email], :recepients => params[:to_email], :subject => params[:subject], :email_body => params[:body]}
+    email_details = {:recepients => params[:to_email], :subject => params[:subject], :email_body => params[:body]}
     flash[:notice] = "Email sent successfully!!!" if Notifier.send_referal_emails(email_details).deliver
     respond_to do |format|
       format.html{ render :template => "social_shares/tell_friends"}
