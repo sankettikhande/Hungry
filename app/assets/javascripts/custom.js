@@ -45,6 +45,9 @@ $(document).ready(function(){
       return false;
     });
 
+      $("#talk-us-form,#new_chef_request,#new_party_order").validationEngine({promptPosition : "topLeft"});
+      $("#new_hola_user_address").validationEngine({promptPosition : "bottomLeft"});
+
      $('li.food-bill span.item-name').live('click',function(){
         $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
         $(".modal-footer").empty();
@@ -318,6 +321,8 @@ $(document).ready(function(){
             $("#signature-minus-order").addClass("disabled");
         }
     });
+
+    
 
     $("#signature_form").validationEngine({
         'custom_error_messages': {

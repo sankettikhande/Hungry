@@ -9,16 +9,16 @@
                     <div class="address-card back-white">
                           <%= form_for @address do |f| %>
                             <div class="form-group">
-                              <%= f.text_field :building_name, class: "form-control", placeholder: "Flat/ Building", required: true %>
+                              <%= f.text_field :building_name, class: "form-control validate[required]", placeholder: "Flat/ Building" %>
                               <!-- <input type="text" class="form-control validate[required]" placeholder="Flat/ Building"> -->
                             </div>
                             <div class="form-group">
-                              <%= f.text_field :street, class: "form-control", placeholder: "Street", required: true %>
+                              <%= f.text_field :street, class: "form-control validate[required]", placeholder: "Street" %>
                               <!-- <input type="text" class="form-control" placeholder="Street"> -->
                             </div>
                             <div class="form-group">
                               <!-- <input type="text" class="form-control" placeholder="Landmark"> -->
-                              <%= f.text_field :landmark, class: "form-control", placeholder: "Landmark", required: true %>
+                              <%= f.text_field :landmark, class: "form-control validate[required]", placeholder: "Landmark" %>
                             </div>
                             <div class="form-group">
                               <!-- <input type="text" class="form-control" placeholder="Pincode"> -->

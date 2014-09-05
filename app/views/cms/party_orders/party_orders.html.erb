@@ -13,13 +13,13 @@
             <!--<%#= f.text_area :details, rows: 8, class: "form-control no-radius", placeholder: "Enter your order details...", required: true %>-->
           <!--</div>-->
           <div class="input-card">
-            <%= f.text_field :name, class: "lower-only", placeholder: "Name", required: true %>
+            <%= f.text_field :name, class: "lower-only validate[required]", placeholder: "Name" %>
           </div>
           <div class="input-card">
-            <%= f.text_field :contact_no, class: "lower-only", placeholder: "Phone Number", required: true, maxlength: "13" %>
+            <%= f.text_field :contact_no, class: "lower-only validate[required]", placeholder: "Phone Number", maxlength: "13" %>
           </div>
           <div class="input-card">
-            <%= f.email_field :email, class: "lower-only", placeholder: "Enter your email", required: true %>
+            <%= f.email_field :email, class: "lower-only validate[required]", placeholder: "Enter your email" %>
           </div>
           <div class="form-group seperator-15">
             <%= f.submit "Submit", class: "btn btn-saffron" %>

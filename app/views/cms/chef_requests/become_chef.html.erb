@@ -7,16 +7,16 @@
       <div class="col-xs-12">
         <div class="normal-body">
           <div class="input-card">
-            <%= f.text_field :name, class: "lower-only", placeholder: "Enter your Name", required: true %>
+            <%= f.text_field :name, class: "lower-only validate[required]", placeholder: "Enter your Name" %>
           </div>
           <div class="input-card">
-            <%= f.text_field :mobile_number, class: "lower-only", placeholder: "Enter your mobile number", required: true %>
+            <%= f.text_field :mobile_number, class: "lower-only validate[required]", placeholder: "Enter your mobile number" %>
           </div>
           <div class="input-card">
-            <%= f.email_field :email, class: "lower-only", placeholder: "Enter your email", required: true %>
+            <%= f.email_field :email, class: "lower-only validate[required]", placeholder: "Enter your email" %>
           </div>
           <div class="form-group talk-us">
-            <%= f.text_area :description, :rows => 8, class: "form-control no-radius", placeholder: "Enter Description", required: true %>
+            <%= f.text_area :description, :rows => 8, class: "form-control no-radius validate[required]", placeholder: "Enter Description" %>
           </div>
 
           <div class="form-group seperator-15">
