@@ -40,7 +40,7 @@ class Order < ActiveRecord::Base
   end
 
   def send_order_confirm_message
-    invoice_url = Settings.iframe_domain_url + "/show_invoice/#{self.id}"
+    # invoice_url = Settings.iframe_domain_url + "/show_invoice/#{self.id}"
     message = "Hola! Our chef has received your order and is on it already. Your order number is #{self.id} for Rs. #{self.total}."
     MessagingLib.send_messages(message, self.phone_no, "Transaction")
   end
