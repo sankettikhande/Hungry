@@ -76,6 +76,12 @@ $(document).ready(function(){
         }
     });
 
+    $("#login_form").find('#hola_session').submit(function(){
+        if ($(this).validationEngine('validate')){
+            $('#login_otp_sms_button').attr("disabled", true)
+        }
+    })
+
     $('.add-order-plus').unbind("click").live('click', function(e) {
         e.preventDefault();
         $(".add-order-minus").removeClass("disabled");
