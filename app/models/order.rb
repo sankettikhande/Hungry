@@ -45,6 +45,14 @@ class Order < ActiveRecord::Base
     MessagingLib.send_messages(message, self.phone_no, "Transaction")
   end
 
+  def order_details
+    order_details = []
+    self.ordered_menus.includes(food_item: :meal_info).each do |om|
+      order_details << "#{om.food_item.meal_info.name} - #{om.quantity}"
+    end
+    return order_details 
+  end
+
   def send_order_dispatched_message
     message = "Hola! Your HolaChef order has been dispatched. Our delivery service ELVIS is on its way. For Order feedback
               message Delighted or Disappointed on 808080HOLA."
