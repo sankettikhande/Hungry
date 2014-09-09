@@ -80,6 +80,7 @@ class Order < ActiveRecord::Base
   def update_timestamps
     self.dispatched_at = Time.now if self.dispatched?
     self.delivered_at = Time.now if self.delivered?
+    self.confirmed_at = Time.now if self.confirmed?
   end
 
   def delivery_time

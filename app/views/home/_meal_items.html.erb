@@ -18,7 +18,13 @@
           <% if menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
               <div class="recipe-image append-cart <%= 'opac' if qty_left(menu) <= 0 %>">
                 <div class="add-lens">
-                  <p class="text-right"><%= qty_left(menu) > 0 ? "#{qty_left(menu).to_i - cart_menu[:quantity].to_i} left" :  "SOLD OUT!" %></p>
+                  <p class="text-center">
+                    <% if qty_left(menu) > 0 %>
+                      <span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span></br><span class='text-leftitem'>Left</span>
+                    <% else %>
+                      <span class='text-leftitem'>Sold</span></br><span class='text-leftitem'>Out!</span>
+                    <% end %>
+                  </p>
                 </div>
                 <div class="add-heart"></div>
                 <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix about-content" %>
@@ -28,7 +34,13 @@
               <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart colorItemFix about-content">
 
                 <div class="add-lens">
-                  <p class="text-right"><%= qty_left(menu) > 0 ? "#{qty_left(menu).to_i - cart_menu[:quantity].to_i} left" :  "SOLD OUT!" %></p>
+                  <p class="text-center">
+                    <% if qty_left(menu) > 0 %>
+                      <span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span></br><span class='text-leftitem'>Left</span>
+                    <% else %>
+                      <span class='text-leftitem'>Sold</span></br><span class='text-leftitem'>Out!</span>
+                    <% end %>
+                  </p>
                 </div>
                 <div class="add-heart"></div>
                 <div class="recipe-name">
@@ -42,7 +54,6 @@
         <li class="recipe-about" style="display:none;">
           <% if qty_left(menu) <= 0 %>
               <div class="recipe-header not-available colorItemFix ">
-                <div class="add-lens"></div>
                 <div class="recipe-name">
                   <%= menu.food_item.meal_info.name %>
                 </div>
@@ -50,7 +61,6 @@
               </div>
           <% elsif menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
               <div class="recipe-image append-cart" style="position: relative;">
-                <div class="add-lens"></div>
                 <div class="add-heart"></div>
                 <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix opacityimg" %>
                 <div class="opacitydivup">
@@ -63,7 +73,6 @@
               </div>
           <% else %>
               <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart colorItemFix opacityborder">
-                <div class="add-lens"></div>
                 <div class="add-heart"></div>
                 <div class="recipe-name">
                   <%= menu.food_item.meal_info.name %>
@@ -100,13 +109,18 @@
               <ul class="n-dish-info">
                <li class="n-dish-title"><%= menu.food_item.meal_info.name %></li>
                <li class="n-chef-name"><a href="/chef-profile/<%= menu.food_item.cheff_id %>"><%= menu.food_item.cheff.name %></a></li>
-               <li class="n-dish-type"><%= menu.food_item.dish_type.titleize %></li>
+               <!-- <li class="n-dish-type"><%#= menu.food_item.dish_type.titleize %></li> -->
               </ul>
+            </li>
+            <li class="pull-right m_type_mark">
+              <span>
+                <img src="assets/<%= set_cooing_today_type(menu) %>.png" alt="Cart">
+              </span>
             </li>
           </ul>
           <div class="row action-row">
             <div class="col-xs-3">
-              <p class="text-left n-item-cost">Rs. <%= cart_menu[:price] %></p>
+              <p class="text-left n-item-cost rate">Rs. <%= cart_menu[:price] %></p>
             </div>
             <% if menu.orderable? %>
               <div class="col-xs-6">
