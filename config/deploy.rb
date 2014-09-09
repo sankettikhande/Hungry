@@ -16,31 +16,23 @@ set :rails_env, "production"
 set :precompile_only_if_changed, true
 
 task :qa do
-  set :bundle_cmd, "/home/holachef/.gems/bin/bundle"
-  set :default_environment, {
-
-    'PATH' => "$PATH:/home/holachef/ruby/bin",
-    'GEM_HOME'        => "/home/holachef/.gems",
-    'GEM_PATH'        => "/home/holachef/.gems",
-    'BUNDLE_PATH'     => "/home/holachef/.gems"
-  }
-
   default_run_options[:pty] = true
 
 
   # be sure to change these
-  set :user, 'holachef'
-  set :domain, 'qa.holachef.com'
+  set :user, 'root'
+  set :domain, '103.13.97.227'
 
   # the rest should be good
-  set :repository,  "https://pravinhmhatre@bitbucket.org/pravinhmhatre/holachef.git"
-  set :deploy_to, "/home/#{user}/#{domain}"
-  set :delayed_job_server_role, :worker
-  set :delayed_job_args, "-n 2"
+  set :deploy_to, "/data/apps/#{application}-qa"
+
+  role :db, domain, :primary => true
 
   server domain, :app, :web
-  # role :db, domain, :primary => true
-  after "deploy:create_symlink", "deploy:change_permission_for_fcgi"
+
+  after "deploy:update_code", "deploy:migrate"
+  after "deploy:create_symlink", "deploy:change_permission_for_tmp"
+  after "deploy:restart", "delayed_job:restart"
 end
 
 task :prod do
