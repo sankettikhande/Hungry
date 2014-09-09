@@ -481,7 +481,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 #recipe-modal .modal-body .recipe-header .recipe-name {font-size: 1.4em;padding: 1.8em 0.25em}
 
 .add-heart {display: none;position: absolute;z-index: 1;width: 18px;height: 18px;cursor: pointer;}
-.add-lens {background: rgba(255, 255, 255, 0.7);top: 3px;right: 0px;padding: 5px 15px;position: absolute;display: block;float: right;font-size: 14px;color: #000;z-index: 100;text-align: center;height: 31px;}
+.add-lens {top: 3px; right: 0px; padding: 5px 15px; position: absolute; display: block; float: right; font-size: 14px; color: #ff8800; z-index: 100; text-align: center; height: 65px; border-radius: 50%; background: #fff; border: 2px solid #ff8800; font-weight: bold; font-family: MyriadProRegular; font-size: 18px;}
 /*.add-heart {background: url('/assets/icon-heart.png') no-repeat left top;top: 100%;margin-top: -21px;background-size: 100% 100%;right: 4px;}*/
 .add-cart {background: url('/assets/add-cart.png') no-repeat left top;top: 100%;margin-top: -41px;background-size: 100% 100%;right: 0;width: 40px;height: 41px;position: absolute;z-index: 1;cursor: pointer;}
 .add-heart.filled {background: url('/assets/icon-heart-filled.png')no-repeat left top;top: 100%;margin-top: -27px;background-size: 100% 100%;right: 4px;}
@@ -978,14 +978,15 @@ html{overflow-x:hidden}
 
 .item-data {width: 100%;}
 .info-row {width: 100%;float: left;display: block;margin-bottom: 5px;padding-top: 4px}
-.info-row>.width-dp {width: 70px;float: left;}
+.info-row>.width-dp {width: 65px;float: left;}
 .info-row>.width-dp img {width: 60px;height: 60px;max-width: 60px;display: block;}
-.info-row>.width-dp-left {width: 100%;overflow: hidden;margin-left:-70px;float: left;padding-left: 70px;padding-right: 5px;}
+.info-row>.width-dp-left {width: 70%;overflow: hidden;float: left;padding-right: 5px;}
+.info-row>.m_type_mark{width: 20px;}
 .width-dp-left .n-dish-info {width: 100%;display: block;float: left;}
 .n-dish-info>li {width: 100%;float: none;font-size: 12px}
 
 .show-time {font-size: 14px;}
-.n-dish-title {font-size: 12px; color: #333; cursor: default;}
+.n-dish-title {font-size: 16px !important; color: #525252; cursor: default; font-weight: bold;}
 .n-chef-name {font-size: 11px;color: #666}
 .n-dish-type {font-size: 9px;}
 
@@ -997,7 +998,7 @@ html{overflow-x:hidden}
 
 .set-order {display:block;width: 120px;overflow: hidden;margin-right: auto;margin-left: auto;}
 .set-order>li {display: inline-block;text-align: center;width: 33%;float: left;}
-.set-order>li button {border-radius: 50%;background: #fff;border:2px solid #333;color: #000;padding: 0 0 3px;text-align: center;display: block;width: 20px;height: 20px;line-height: 0;outline: none;margin-top: 2px}
+.set-order>li button {border-radius: 50%; background: #fff; border: 2px solid #cccccc; color: #ff8800; padding: 0 0 3px; text-align: center; display: block; width: 20px; height: 20px; line-height: 0; outline: none; margin-top: 2px; font-weight: bold;}
 .set-order>li.order-less button {float: left;}
 .set-order>li.order-more button {float: right;}
 .set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 25px;}
@@ -1051,7 +1052,11 @@ html{overflow-x:hidden}
     padding: 5px;
     text-align: center;
     width: 100%;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .recipe-header {position: relative;}
 .opac img {opacity: 0.11}
+.text-leftitem{text-transform: uppercase;font-size:15px;}
+.rate{color:#ff8800;font-weight:bold;font-size:16px;}

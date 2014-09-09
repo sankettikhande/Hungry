@@ -15,7 +15,7 @@ class MealInfo < ActiveRecord::Base
   validates_presence_of :name, :hola_buy_price, :hola_sell_price, :description, :portion_size, :short_description
   validates_presence_of :preorder_time, :minimum_order_qty, :if => :signature_dish?
   validates :hola_sell_price, :hola_buy_price, numericality: { only_integer: true }
-  validates_length_of :short_description, :maximum => 100
+  # validates_length_of :short_description, :maximum => 100
   validates :preorder_time, :minimum_order_qty, numericality: { only_integer: true}, if: :signature_dish?
 
   def signature_dish?

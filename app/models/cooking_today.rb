@@ -21,13 +21,20 @@ class CookingToday < ActiveRecord::Base
 
   # before_save :set_meal_time
   before_save :set_category
+  before_destroy :check_destroyability
 
+  def check_destroyability
+    if self.date == Date.today && self.published
+      errors.add(:base, "Today's published item can't be deleted.")
+      return false
+    end
+  end
   def name
     "Chef: #{self.cheff.chef_coordinate.name} | Dish: #{self.food_item.meal_info.name} " if self.cheff && self.food_item
   end
 
   def self.sorted_by_qty_left
-    CookingToday.where(:date =>Time.current.to_date).where("meal_from_time > '#{Time.now.to_s(:db)}'").sort_by(&:qty_left).reverse
+    CookingToday.published.where(:date =>Time.current.to_date).where("meal_from_time > '#{Time.now.to_s(:db)}'").sort_by(&:qty_left).reverse
   end
 
   def self.grouped_by_category
@@ -50,7 +57,7 @@ class CookingToday < ActiveRecord::Base
   end
 
   def self.todays_menu_by_type meal_type
-    where(date: Date.today.to_s, meal_type: meal_type).sort_by(&:qty_left).reverse
+    where(date: Date.today.to_s, meal_type: meal_type, published: true).sort_by(&:qty_left).reverse
   end
 
   def orderable?
