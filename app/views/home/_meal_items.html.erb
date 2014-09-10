@@ -2,6 +2,7 @@
 <div class="text-center show-time followMeBar" data-category="<%= category %> (<%= CookingToday.meal_type_time_span[category][:from] %> to <%= CookingToday.meal_type_time_span[category][:to] %>)" > </div>
 
 <div class="category_header"> <%= category %> </div>
+<div class="category_header2"> <%= CookingToday.meal_type_time_span[category][:from] %> - <%= CookingToday.meal_type_time_span[category][:to] %> </div>
   <% menus.each do |menu| %>
     <% cart_menu = collect_cart_items(menu) if !menu.nil? %>
     <% target = qty_left(menu) > 0 ? "#item-modal" : "#" %>
