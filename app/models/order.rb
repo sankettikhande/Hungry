@@ -21,11 +21,11 @@ class Order < ActiveRecord::Base
 
   after_save :mark_paid, :send_delivery_message, :if => :delivered?
   after_save :mark_menu_items, :if => Proc.new { |o| ["Damaged", "Delivered", "Canceled", "Returned"].include? o.order_status }
-  after_save :send_order_confirm_message, :if => :confirmed?
-  after_save :send_order_dispatched_message, :if => :dispatched?
+  after_save :send_order_confirm_message, :if => :confirmed?, :if => :order_status_changed?
+  after_save :send_order_dispatched_message, :if => :dispatched?, :if => :order_status_changed?
   before_save :build_order_status_history
   before_save :ensure_hola_user_id
-  before_save :update_timestamps
+  before_save :update_timestamps, :if => :order_status_changed?
 
   @@order_statuses.each do |s|
     define_method "#{s.downcase}?" do
@@ -78,9 +78,9 @@ class Order < ActiveRecord::Base
   end
 
   def update_timestamps
+    self.confirmed_at = Time.now if self.confirmed?
     self.dispatched_at = Time.now if self.dispatched?
     self.delivered_at = Time.now if self.delivered?
-    self.confirmed_at = Time.now if self.confirmed?
   end
 
   def delivery_time
