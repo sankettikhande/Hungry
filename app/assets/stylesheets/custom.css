@@ -998,10 +998,10 @@ html{overflow-x:hidden}
 
 .set-order {display:block;width: 120px;overflow: hidden;margin-right: auto;margin-left: auto;}
 .set-order>li {display: inline-block;text-align: center;width: 33%;float: left;}
-.set-order>li button {border-radius: 50%; background: #fff; border: 2px solid #cccccc; color: #ff8800; padding: 0 0 3px; text-align: center; display: block; width: 30px; height: 40px; line-height: 0; outline: none; margin-top: 2px; font-weight: bold;font-size: 25px;}
+.set-order>li button {border-radius: 50%; background: #fff; border: 2px solid #cccccc; color: #ff8800; padding: 0 0 3px; text-align: center; display: block; width: 30px; height: 30px; line-height: 0; outline: none; margin-top: 2px; font-weight: bold;font-size: 25px;}
 .set-order>li.order-less button {float: left;}
 .set-order>li.order-more button {float: right;}
-.set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 25px;}
+.set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 30px;}
 .new-cart-icon img {width: 60px;float: right;}
 
 
@@ -1054,6 +1054,7 @@ html{overflow-x:hidden}
     width: 100%;
     font-size: 16px;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 .recipe-header {position: relative;}
