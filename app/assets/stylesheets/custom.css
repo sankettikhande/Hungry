@@ -481,7 +481,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 #recipe-modal .modal-body .recipe-header .recipe-name {font-size: 1.4em;padding: 1.8em 0.25em}
 
 .add-heart {display: none;position: absolute;z-index: 1;width: 18px;height: 18px;cursor: pointer;}
-.add-lens {top: 3px; right: 0px; padding: 5px 15px; position: absolute; display: block; float: right; font-size: 14px; color: #ff8800; z-index: 100; text-align: center; height: 65px; border-radius: 50%; background: #fff; border: 2px solid #ff8800; font-weight: bold; font-size: 18px;}
+.add-lens {top: 3px; right: 0px; padding: 3px 8px; position: absolute; display: block; float: right; font-size: 13px; color: #ff8800; z-index: 100; text-align: center; height: 50px; border-radius: 50%; background: #fff; border: 2px solid #ff8800; font-weight: bold;opacity:0.8;}
 /*.add-heart {background: url('/assets/icon-heart.png') no-repeat left top;top: 100%;margin-top: -21px;background-size: 100% 100%;right: 4px;}*/
 .add-cart {background: url('/assets/add-cart.png') no-repeat left top;top: 100%;margin-top: -41px;background-size: 100% 100%;right: 0;width: 40px;height: 41px;position: absolute;z-index: 1;cursor: pointer;}
 .add-heart.filled {background: url('/assets/icon-heart-filled.png')no-repeat left top;top: 100%;margin-top: -27px;background-size: 100% 100%;right: 4px;}
@@ -1001,8 +1001,8 @@ html{overflow-x:hidden}
 .set-order>li button {border-radius: 50%; background: #fff; border: 2px solid #cccccc; color: #ff8800; padding: 0 0 3px; text-align: center; display: block; width: 30px; height: 30px; line-height: 0; outline: none; margin-top: 2px; font-weight: bold;font-size: 25px;}
 .set-order>li.order-less button {float: left;}
 .set-order>li.order-more button {float: right;}
-.set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 30px;}
-.new-cart-icon img {width: 60px;float: right;}
+.set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 30px;margin-top: 2px;}
+.new-cart-icon img {float: right;margin-top: 3px;}
 
 
 .prev-order-wrapper {margin-top: 10px;}
