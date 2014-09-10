@@ -36,4 +36,7 @@ json.runner do
   json.phone order.runner.try(:phone)
   json.address order.runner.try(:address)
 end
+json.confirmed_at order.confirmed_at
+json.dispatched_at order.dispatched_at
+json.delivered_at order.delivered_at
 json.created_at order.created_at
