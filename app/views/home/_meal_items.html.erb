@@ -64,7 +64,7 @@
                 <div class="add-heart"></div>
                 <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix opacityimg" %>
                 <div class="opacitydivup">
-                <span class="bold-text">Description:</span> <br/><%= menu.food_item.meal_info.short_description %><br/><br/>
+                <span class="bold-text">Description:</span> <br/><%= truncate(menu.food_item.meal_info.short_description, length: 250) %><br/><br/>
                 <span class="bold-text">1 portion:</span> <%= menu.food_item.meal_info.portion_size %>
               </div>
                 <% if today_menu && today_menu.has_key?(menu[:id]) %>
@@ -78,7 +78,7 @@
                   <%= menu.food_item.meal_info.name %>
                 </div>
                 <div class="opacitydivup">
-                <span class="bold-text">Description:</span> <br/><%= menu.food_item.meal_info.short_description %><br/><br/>
+                <span class="bold-text">Description:</span> <br/><%= truncate(menu.food_item.meal_info.short_description, length: 250) %><br/><br/>
                 <span class="bold-text">1 portion:</span> <%= menu.food_item.meal_info.portion_size %>
               </div>
                 <% if today_menu && today_menu.has_key?(menu[:id]) %>
