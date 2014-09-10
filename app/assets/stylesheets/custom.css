@@ -3,9 +3,9 @@
     font-family: 'robotobold';
     src: url('/assets/fonts/roboto-bold-webfont.eot');
     src: url('/assets/fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/roboto-bold-webfont.woff') format('woff'),
-         url('/assets/fonts/roboto-bold-webfont.ttf') format('truetype'),
-         url('/assets/fonts/roboto-bold-webfont.svg#robotobold') format('svg');
+    url('/assets/fonts/roboto-bold-webfont.woff') format('woff'),
+    url('/assets/fonts/roboto-bold-webfont.ttf') format('truetype'),
+    url('/assets/fonts/roboto-bold-webfont.svg#robotobold') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -16,21 +16,21 @@
     font-family: 'robotoregular';
     src: url('/assets/fonts/roboto-regular-webfont.eot');
     src: url('/assets/fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/roboto-regular-webfont.woff') format('woff'),
-         url('/assets/fonts/roboto-regular-webfont.ttf') format('truetype'),
-         url('/assets/fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
+    url('/assets/fonts/roboto-regular-webfont.woff') format('woff'),
+    url('/assets/fonts/roboto-regular-webfont.ttf') format('truetype'),
+    url('/assets/fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
 
 @font-face {
-  font-family: 'RobotoCondensed-Bold';
-  src: url('/assets/fonts/RobotoCondensed-Bold.eot?') format('eot'),
-       url('/assets/fonts/RobotoCondensed-Bold.eot?#iefix') format('embedded-opentype'),
-       url('/assets/fonts/RobotoCondensed-Bold.woff') format('woff'),
-       url('/assets/fonts/RobotoCondensed-Bold.ttf')  format('truetype'),
-       url('/assets/fonts/RobotoCondensed-Bold.svg#RobotoCondensed-Bold') format('svg');
+    font-family: 'RobotoCondensed-Bold';
+    src: url('/assets/fonts/RobotoCondensed-Bold.eot?') format('eot'),
+    url('/assets/fonts/RobotoCondensed-Bold.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/RobotoCondensed-Bold.woff') format('woff'),
+    url('/assets/fonts/RobotoCondensed-Bold.ttf')  format('truetype'),
+    url('/assets/fonts/RobotoCondensed-Bold.svg#RobotoCondensed-Bold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -40,55 +40,55 @@
     font-family: 'lemonregular';
     src: url('/assets/fonts/lemon_regular-webfont.eot');
     src: url('/assets/fonts/lemon_regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/lemon_regular-webfont.woff') format('woff'),
-         url('/assets/fonts/lemon_regular-webfont.ttf') format('truetype'),
-         url('/assets/fonts/lemon_regular-webfont.svg#lemonregular') format('svg');
+    url('/assets/fonts/lemon_regular-webfont.woff') format('woff'),
+    url('/assets/fonts/lemon_regular-webfont.ttf') format('truetype'),
+    url('/assets/fonts/lemon_regular-webfont.svg#lemonregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
 
 @font-face {
-  font-family: 'Roboto-Italic';
-  src: url('/assets/fonts/Roboto-Italic.eot?') format('eot'),
-       url('/assets/fonts/Roboto-Italic.eot?#iefix') format('embedded-opentype'),
-       url('/assets/fonts/Roboto-Italic.woff') format('woff'),
-       url('/assets/fonts/Roboto-Italic.ttf')  format('truetype'),
-       url('/assets/fonts/Roboto-Italic.svg#Roboto-Italic') format('svg');
+    font-family: 'Roboto-Italic';
+    src: url('/assets/fonts/Roboto-Italic.eot?') format('eot'),
+    url('/assets/fonts/Roboto-Italic.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Roboto-Italic.woff') format('woff'),
+    url('/assets/fonts/Roboto-Italic.ttf')  format('truetype'),
+    url('/assets/fonts/Roboto-Italic.svg#Roboto-Italic') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-  font-family: 'Roboto-Medium';
-  src: url('/assets/fonts/Roboto-Medium.eot?') format('eot'),
-       url('/assets/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
-       url('/assets/fonts/Roboto-Medium.woff') format('woff'),
-       url('/assets/fonts/Roboto-Medium.ttf')  format('truetype'),
-       url('/assets/fonts/Roboto-Medium.svg#Roboto-Medium') format('svg');
+    font-family: 'Roboto-Medium';
+    src: url('/assets/fonts/Roboto-Medium.eot?') format('eot'),
+    url('/assets/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+    url('/assets/fonts/Roboto-Medium.woff') format('woff'),
+    url('/assets/fonts/Roboto-Medium.ttf')  format('truetype'),
+    url('/assets/fonts/Roboto-Medium.svg#Roboto-Medium') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-  font-family: 'Roboto-Light';
-  src: url('/assets/fonts/Roboto-Light.eot?') format('eot'),
-       url('/assets/fonts/Roboto-Light.woff') format('woff'),
-       url('/assets/fonts/Roboto-Light.ttf')  format('truetype'),
-       url('/assets/fonts/Roboto-Light.svg#Roboto-Light') format('svg');
+    font-family: 'Roboto-Light';
+    src: url('/assets/fonts/Roboto-Light.eot?') format('eot'),
+    url('/assets/fonts/Roboto-Light.woff') format('woff'),
+    url('/assets/fonts/Roboto-Light.ttf')  format('truetype'),
+    url('/assets/fonts/Roboto-Light.svg#Roboto-Light') format('svg');
 }
 
 
 html,
 body {
-  height: 100%;
+    height: 100%;
 }
 
 #wrap {
-  min-height: 100%;
-  height: auto;
-  margin: 0 auto -50px;
-  padding: 0 0 50px;
-  display: block;
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -50px;
+    padding: 0 0 50px;
+    display: block;
 }
 .right-body {overflow: hidden;display: block;}
 body.modal-open {overflow: visible;}
@@ -148,8 +148,8 @@ body {background: #e2e2e2;padding-top: 55px;font-family: 'robotoregular',Sans-se
 .col-sm-12,
 .col-md-12,
 .col-lg-12 {
-  padding-right: 10px;
-  padding-left: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 
@@ -214,27 +214,27 @@ h1,h2,h3,h4,h5,h6,strong,b {font-weight: normal;}
 .btn-flat {-webkit-border-radius: 0 !important;border-radius: 0 !important;-moz-border-radius: 0 !important;-o-border-radius:0 !important;}
 
 .btn-orange {
-  color: #ff8800;
-  background-color: #ffffff;
-  border-color: #ff8800;
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -o-border-radius: 0;
+    color: #ff8800;
+    background-color: #ffffff;
+    border-color: #ff8800;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
 }
 .btn-orange:hover,
 .btn-orange:focus,
 .btn-orange:active,
 .btn-orange.active,
 .open .dropdown-toggle.btn-orange {
-  color: #000;
-  background-color: #ffffff;
-  border-color: #ff8800;
+    color: #000;
+    background-color: #ffffff;
+    border-color: #ff8800;
 }
 .btn-orange:active,
 .btn-orange.active,
 .open .dropdown-toggle.btn-orange {
-  background-image: none;
+    background-image: none;
 }
 .btn-orange.disabled,
 .btn-orange[disabled],
@@ -251,16 +251,16 @@ fieldset[disabled] .btn-orange:active,
 .btn-orange.disabled.active,
 .btn-orange[disabled].active,
 fieldset[disabled] .btn-orange.active {
-  background-color: #ffffff;
-  border-color: #ff8800;
+    background-color: #ffffff;
+    border-color: #ff8800;
 }
 
 .btn-saffron {
-  color: #fff;
-  background-color: #ff9900;
-  border-color: #ff9900;
-  font-family: 'robotoregular',Sans-serif;
-  font-size: 16px;
+    color: #fff;
+    background-color: #ff9900;
+    border-color: #ff9900;
+    font-family: 'robotoregular',Sans-serif;
+    font-size: 16px;
 }
 
 .btn-saffron:hover,
@@ -268,14 +268,14 @@ fieldset[disabled] .btn-orange.active {
 .btn-saffron:active,
 .btn-saffron.active,
 .open .dropdown-toggle.btn-saffron {
-  color: #fff;
-  background-color: #e39014;
-  border-color: #ff9900;
+    color: #fff;
+    background-color: #e39014;
+    border-color: #ff9900;
 }
 .btn-saffron:active,
 .btn-saffron.active,
 .open .dropdown-toggle.btn-saffron {
-  background-image: none;
+    background-image: none;
 }
 .btn-saffron.disabled,
 .btn-saffron[disabled],
@@ -292,8 +292,8 @@ fieldset[disabled] .btn-saffron:active,
 .btn-saffron.disabled.active,
 .btn-saffron[disabled].active,
 fieldset[disabled] .btn-saffron.active {
-  background-color: #ff9900;
-  border-color: #ff9900;
+    background-color: #ff9900;
+    border-color: #ff9900;
 }
 
 .width100P{width: 100%;}
@@ -304,65 +304,65 @@ fieldset[disabled] .btn-saffron.active {
 
 /*********** Custom Checkbox **************/
 .hola-ccbox input[type=checkbox].css-checkbox {
-display: none;
-/*  position:absolute; z-index:-1000; top:-1000px;border:1px solid #f00;          -Scroll top Fix*/
+    display: none;
+    /*  position:absolute; z-index:-1000; top:-1000px;border:1px solid #f00;          -Scroll top Fix*/
 }
 
 .hola-ccbox input[type=checkbox].css-checkbox + label.css-label, .hola-ccbox input[type=checkbox].css-checkbox + label.css-label.clr {
-  padding-left:23px;
-  height:18px;
-  display:inline-block;
-  line-height:18px;
-  background-repeat:no-repeat;
-  background-position: 0 0;
-  vertical-align:middle;
-  cursor:pointer;
+    padding-left:23px;
+    height:18px;
+    display:inline-block;
+    line-height:18px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    vertical-align:middle;
+    cursor:pointer;
 
 }
 
 .hola-ccbox input[type=checkbox].css-checkbox:checked + label.css-label, .hola-ccbox input[type=checkbox].css-checkbox + label.css-label.chk {
-  background-position: 0 -18px;
+    background-position: 0 -18px;
 }
 .hola-ccbox label.css-label {
-  background-image:url('/assets/custom-checkbox.png');
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    background-image:url('/assets/custom-checkbox.png');
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .hola-radio input[type=radio].css-checkbox {
-              display: none;
-/*              position:absolute; z-index:-1000; top:-1000px;*/
+    display: none;
+    /*              position:absolute; z-index:-1000; top:-1000px;*/
 }
 
 .hola-radio input[type=radio].css-checkbox + label.css-label, .hola-radio input[type=radio].css-checkbox + label.css-label.clr {
-  padding-left:23px;
-  height:19px;
-  display:inline-block;
-  line-height:18px;
-  background-repeat:no-repeat;
-  background-position: 0 0;
-  font-size:1em;
-  vertical-align:middle;
-  cursor:pointer;
+    padding-left:23px;
+    height:19px;
+    display:inline-block;
+    line-height:18px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    font-size:1em;
+    vertical-align:middle;
+    cursor:pointer;
 
 }
 
 .hola-radio input[type=radio].css-checkbox:checked + label.css-label, .hola-radio input[type=radio].css-checkbox + label.css-label.chk {
-  background-position: 0 -18px;
+    background-position: 0 -18px;
 }
 .hola-radio label.css-label {
-  margin-bottom: 0;
-  background-image:url('/assets/style-radio.png');
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    margin-bottom: 0;
+    background-image:url('/assets/style-radio.png');
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /***** =Navbar *****/
@@ -387,7 +387,7 @@ display: none;
 .navbar-titlebar > li button.navbar-toggle:focus {background: none;outline: none;}
 .navbar-titlebar .side-menu-btn {margin-left: -10px}
 
-.navbar-titlebar .page-title  {font-size: 0.72em;font-family: 'robotoregular',Sans-serif;text-align: left;display: inline-block;line-height: 50px;margin:0;margin-left: 10px;position: absolute;}
+.navbar-titlebar .page-title  {font-size: 0.72em;font-family: 'robotoregular',Sans-serif;text-align: left;display: inline-block;line-height: 50px;margin:0;margin-left: 10px;position: absolute;text-transform: uppercase;}
 .navbar-titlebar .page-title a:hover,.navbar-titlebar .page-title a:focus,.navbar-titlebar .page-title a:active {text-decoration: none;outline: none;}
 
 .navbar-titlebar .page-title .dropdown-menu {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;background: #fff;padding-bottom: 0}
@@ -411,7 +411,7 @@ display: none;
 
 .item {background: #fff;color: #333;cursor: pointer;display: inline-block;width: 100%;margin-bottom: 0 !important;float: left;}
 .item-content+.item-content:before {content: " ";display: block;border-top: 1px solid #e2e2e2;margin: 0 5px;margin-top:1px;}
-.square {background: #fff;padding-bottom: 5px ;width: 100%;height: auto;float: left;margin-bottom: 3px;margin-top: 10px;overflow: hidden;}
+.square {background: #fff;padding-bottom: 5px ;width: 100%;height: auto;float: left;margin-bottom: 3px;overflow: hidden;}
 .paddingLR0{padding-left: 0;padding-right: 0;}
 .catergoryHead{font-weight: bold;padding: 5px;font-size: 15px;color: #000;}
 
@@ -428,13 +428,13 @@ display: none;
 
 .recipe-header .recipe-name {text-transform: capitalize;color: #fff;font-size: 1.4em;text-align: center;padding: 1em 0.25em;font-family: 'lemonregular',Sans-serif;}
 .recipe-header .recipe-name {display: table-cell;vertical-align: middle;-webkit-hyphens: auto;
-word-wrap:break-word;
--ms-word-break: break-all;
-word-break: break-all;
-word-break:break-word;
--moz-hyphens: auto;
--ms-hyphens: auto;
-hyphens: auto;
+    word-wrap:break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break:break-word;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 
 }
 
@@ -734,7 +734,7 @@ h3.dark-title{color: #333;font-family: 'robotobold',Sans-serif;font-size: 1.125e
 .recipe-ingredients ul.ingredients-list li.ingredient {width: 100%;display: block;float: left;color: #666;font-size: 1em;font-family: 'robotoregular',Sans-serif;}
 .recipe-ingredients ul.ingredients-list li.ingredient span {min-width:15px;}
 .recipe-ingredients ul.ingredients-list li.ingredient span.quantity,.recipe-ingredients ul.ingredients-list li.ingredient span.unit,.recipe-ingredients ul.ingredients-list li.ingredient span.name {
-margin-right: 3px;text-transform: lowercase;}
+    margin-right: 3px;text-transform: lowercase;}
 .recipe-ingredients ul.ingredients-list li.ingredient span.google a {background: url('/assets/icon-lens-g.png') no-repeat left top;background-size: 16px 16px;width: 16px;height: 16px;display:block;float: right;}
 
 .recipe-directions {width: 100%;float: left;display: block;}
@@ -748,42 +748,42 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 /****** =Responsive ****/
 
 @media (min-width: 768px) {
-  .navbar > .container .navbar-brand {margin-left: 0}
+    .navbar > .container .navbar-brand {margin-left: 0}
 
-  .navbar-header {width: 100%;}
-  .navbar-toggle {
-    display: block;
-    margin-right:0;}
+    .navbar-header {width: 100%;}
+    .navbar-toggle {
+        display: block;
+        margin-right:0;}
 
 }
 
 @media (max-width: 380px) {
 
-.block-3 li.each-block span:first-child {font-size: 1em;}
-.block-3 li.each-block span:last-child {font-size: 0.8em;}
-.recipe-header .recipe-name {font-size: 1.2em}
+    .block-3 li.each-block span:first-child {font-size: 1em;}
+    .block-3 li.each-block span:last-child {font-size: 0.8em;}
+    .recipe-header .recipe-name {font-size: 1.2em}
 
 }
 
 /*******  =Offcanvas ************/
 
-  .row-offcanvas {
+.row-offcanvas {
     position: relative;
     left: 0;
     z-index: 1;
-  }
+}
 
-  .row-offcanvas-left
-  .sidebar-offcanvas {
+.row-offcanvas-left
+.sidebar-offcanvas {
     left: -80%;
     display: block;
-  }
-  .row-offcanvas-left.active {
+}
+.row-offcanvas-left.active {
     left: 0;
     display: block;
-  }
+}
 
-  .sidebar-offcanvas {
+.sidebar-offcanvas {
     position: fixed;
     top: 0;
     width: 80%;
@@ -802,11 +802,11 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
     -o-transform: translate(0%,0px);
     transform: translate(0%,0px);
     padding-top: 60px;
-  }
+}
 .row-offcanvas-left.active .sidebar-offcanvas {
-  display: block !important;
-  opacity: 1 !important;
-  left: 0%
+    display: block !important;
+    opacity: 1 !important;
+    left: 0%
 }
 
 /*.row-offcanvas-left .list-group {position: fixed;width:100%;}
@@ -826,7 +826,7 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 }
 
 @media (max-width:480px) {
-  .rating_msg {display:none !important}
+    .rating_msg {display:none !important}
 }
 
 .modal-sm {max-width:300px;width: 80%;margin-left: auto;margin-right: auto;}
@@ -946,7 +946,7 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .radio-bar label {font-weight: normal;}
 
 @media (max-width: 480px) {
-.make-resp {overflow-x: scroll;overflow-y: hidden;-webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;width: 100%;}
+    .make-resp {overflow-x: scroll;overflow-y: hidden;-webkit-overflow-scrolling: touch;-ms-overflow-style: -ms-autohiding-scrollbar;width: 100%;}
 }
 
 .width-radio {width: auto;display: inline-block;float: left;margin-left: 10px;}
@@ -965,7 +965,7 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 
 
 @media (max-width: 480px) {
-  .filter-dd-box {max-height:170px;}
+    .filter-dd-box {max-height:170px;}
 }
 /***  filter scrollbar ****/
 .filter-dropdown .mCSB_scrollTools {width: 10px !important}
@@ -986,8 +986,8 @@ html{overflow-x:hidden}
 .n-dish-info>li {width: 100%;float: none;font-size: 12px}
 
 .show-time {font-size: 14px;}
-.n-dish-title {font-size: 16px !important; color: #525252; cursor: default; font-weight: bold;}
-.n-chef-name {font-size: 11px;color: #666}
+.n-dish-title {font-size: 16px !important; color: #525252; cursor: default;text-transform: uppercase;}
+.n-chef-name {font-size: 12px;color: #525252;text-transform: uppercase;}
 .n-dish-type {font-size: 9px;}
 
 
@@ -998,10 +998,10 @@ html{overflow-x:hidden}
 
 .set-order {display:block;width: 120px;overflow: hidden;margin-right: auto;margin-left: auto;}
 .set-order>li {display: inline-block;text-align: center;width: 33%;float: left;}
-.set-order>li button {border-radius: 50%; background: #fff; border: 2px solid #cccccc; color: #ff8800; padding: 0 0 3px; text-align: center; display: block; width: 20px; height: 20px; line-height: 0; outline: none; margin-top: 2px; font-weight: bold;}
+.set-order>li button {border-radius: 50%; background: #fff; border: 2px solid #cccccc; color: #ff8800; padding: 0 0 3px; text-align: center; display: block; width: 30px; height: 30px; line-height: 0; outline: none; margin-top: 2px; font-weight: bold;font-size: 25px;}
 .set-order>li.order-less button {float: left;}
 .set-order>li.order-more button {float: right;}
-.set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 25px;}
+.set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 30px;}
 .new-cart-icon img {width: 60px;float: right;}
 
 
@@ -1031,19 +1031,19 @@ html{overflow-x:hidden}
     height: 15px;
     margin-bottom: 10px;
     }*/
-    .followMeBar.fixed {
-        position: fixed;
-        top: 50px;
-        width: 100%;
-        z-index: 1;
-        left:0;
-        right: 0;
-    }
-    .followMeBar.fixed.absolute {
-        position: absolute;
-        top: 50px;
-        width: 82%;
-    }
+.followMeBar.fixed {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 1;
+    left:0;
+    right: 0;
+}
+.followMeBar.fixed.absolute {
+    position: absolute;
+    top: 50px;
+    width: 82%;
+}
 
 .category_header{
     display: inline-block;
@@ -1054,6 +1054,7 @@ html{overflow-x:hidden}
     width: 100%;
     font-size: 16px;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 .recipe-header {position: relative;}
