@@ -1048,11 +1048,23 @@ html{overflow-x:hidden}
 .category_header{
     display: inline-block;
     height: 20px;
-    margin: 5px 5px 13px;
+    margin: 5px 5px 1px;
     padding: 5px;
     text-align: center;
     width: 100%;
     font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.category_header2{
+    display: inline-block;
+    height: 20px;
+    margin: 5px 5px 13px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
 }
