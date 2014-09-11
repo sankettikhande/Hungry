@@ -1,7 +1,7 @@
 iframe_domain_url: "http://www.holachef.com"
 citrus_gateway:
   gateway_env : 'production'     # options - sandbox, staging or production
-  pmturl : 'h5omh3rcch'	# as per citrus pay merchant setup
+  pmturl : '1v938m8ebs'	# as per citrus pay merchant setup
   accesskey : 'ZKBR3KKSUMDHGCMBRRR3' # as per citrus pay merchant setup
   apikey : '047f4fa190d0f4927d8eafafabe4d628a63bd295' # as per citrus pay merchant setup
   action : 'http://www.holachef.com/orders/callback' # change it as required by your app...
