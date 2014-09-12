@@ -18,7 +18,7 @@
       </ul>
 
         <div class="pull-right">
-          <%= link_to "Back", back_actions(params), :class => "btn-back text-hide" %>
+          <%= link_to "Back", back_actions(params), :class => "btn-back text-hide" unless params[:controller] == "home" && params[:action] == "mobile" %>
         </div>
     </div>
   </div>
