@@ -54,7 +54,7 @@ class Order < ActiveRecord::Base
   end
 
   def send_order_dispatched_message
-    message = 'Hola! Your HolaChef order has been dispatched. Our delivery service ELVIS is on its way. For Order feedback message "Delighted" or "Disappointed" on 8080804652'
+    message = "Hola! Your HolaChef order has been dispatched. Our delivery service ELVIS is on its way. For Order feedback message 'Delighted' or 'Disappointed' on 8080804652"
     MessagingLib.send_messages(message, self.phone_no, "Transaction")
   end
 
