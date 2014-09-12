@@ -22,7 +22,12 @@
                                   <colgroup><col class="col-xs-2 col-sm-1"><col class="col-xs-10 col-sm-11"></colgroup>
                                   <tr>
                                     <td class="a-radio">
-                                        <input type="radio" name="address_id" value="<%= address.id %>" id= '<%="address-#{address.id}"%>' class="validate[required]" data-errormessage="Please choose a address.">
+                                        <% if HolaUserAddress.pin_codes.include?(address.pin) %>
+                                          <input type="radio" name="address_id" value="<%= address.id %>" id= '<%="address-#{address.id}"%>' class="validate[required]" data-errormessage="Please choose a address." >
+                                        <% else %>
+                                          <input type="radio" name="address_id" value="<%= address.id %>" id= '<%="address-#{address.id}"%>' class="validate[required]" data-errormessage="Please choose a address." disabled />
+
+                                        <% end %>
                                     </td>
                                     <td>
                                         <label for='<%="address-#{address.id}"%>' style="cursor: hand">
@@ -32,6 +37,10 @@
                                             <% end %>
                                           </p>
                                         </label>
+                                        <% unless HolaUserAddress.pin_codes.include?(address.pin) %>
+                                          <br/>
+                                          <small class="alert-warning">Sorry! we are currently not delivering to this address</small>
+                                        <% end %>
                                     </td>
                                   </tr>
                               </table>

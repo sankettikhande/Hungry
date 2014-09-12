@@ -1,6 +1,9 @@
 class HolaUserAddress < ActiveRecord::Base
-  belongs_to :hola_user
+  @@pin_codes = ["400076", "400078", "400072"]
+  cattr_accessor :pin_codes
   attr_accessible :address, :hola_user_id, :address_type, :name, :building_name, :street, :city, :pin, :landmark, :default, :mobile_no, :landline_no
+
+  belongs_to :hola_user
 
   scope :default_address, where(default: true)
 
