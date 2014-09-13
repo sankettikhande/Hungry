@@ -94,7 +94,7 @@ body {
 body.modal-open {overflow: visible;}
 .modal{ overflow-y: hidden !important; }
 
-body {background: #e2e2e2;padding-top: 55px;font-family: 'robotoregular',Sans-serif;padding-bottom: 60px !important;}
+body {background: #fff;padding-top: 55px;font-family: 'robotoregular',Sans-serif;padding-bottom: 60px !important;}
 
 /** =Overwrite Bootstrap **/
 
@@ -409,7 +409,7 @@ fieldset[disabled] .btn-saffron.active {
 
 /******* item blocks *******/
 
-.item {background: #fff;color: #333;cursor: pointer;display: inline-block;width: 100%;margin-bottom: 0 !important;float: left;}
+.item {background: #fff;color: #333;cursor: pointer;display: inline-block;width: 100%;float: left;margin-top: 5px;border-bottom: 1px solid #ddd;margin-bottom: 5px;}
 .item-content+.item-content:before {content: " ";display: block;border-top: 1px solid #e2e2e2;margin: 0 5px;margin-top:1px;}
 .square {background: #fff;padding-bottom: 5px ;width: 100%;height: auto;float: left;margin-bottom: 3px;overflow: hidden;}
 .paddingLR0{padding-left: 0;padding-right: 0;}
@@ -986,8 +986,10 @@ html{overflow-x:hidden}
 .n-dish-info>li {width: 100%;float: none;font-size: 12px}
 
 .show-time {font-size: 14px;}
-.n-dish-title {font-size: 16px !important; color: #525252; cursor: default;text-transform: uppercase;}
+.n-dish-title {font-size: 14px !important; color: #525252; cursor: default;text-transform: uppercase;}
 .n-chef-name {font-size: 12px;color: #525252;text-transform: uppercase;}
+.n-chef-name a {color: #000;}
+
 .n-dish-type {font-size: 9px;}
 
 
@@ -1047,29 +1049,32 @@ html{overflow-x:hidden}
 
 .category_header{
     display: inline-block;
-    height: 20px;
+    /*height: 20px;
     margin: 5px 5px 1px;
-    padding: 5px;
+    padding: 5px;*/
     text-align: center;
     width: 100%;
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
+    background: #e2e2e2;
 }
 
 .category_header2{
     display: inline-block;
     height: 20px;
-    margin: 5px 5px 13px;
-    padding: 5px;
+    /*margin: 5px 5px 13px;
+    padding: 5px;*/
     text-align: center;
     width: 100%;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 13px;
+    /*font-weight: bold;*/
     text-transform: uppercase;
+    background: #e2e2e2;
+    padding-top: 1px;
 }
 
 .recipe-header {position: relative;}
 .opac img {opacity: 0.11}
 .text-leftitem{text-transform: uppercase;font-size:15px;}
-.rate{color:#ff8800;font-weight:bold;font-size:16px;}
+.rate{color:#ff8800;	font-size:18px;margin: 4px 0px;}
