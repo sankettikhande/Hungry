@@ -20,7 +20,7 @@ Ext.Loader.setConfig({
 
 Ext.application({
 
-    dataUrl: 'http://103.13.97.227/api/',
+    dataUrl: 'http://qa.holachef.com/api/',
     name: 'HolaChef',
     OrdersArry: [],
     PageSize: 5,
