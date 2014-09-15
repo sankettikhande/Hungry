@@ -13,6 +13,7 @@ class CookingToday < ActiveRecord::Base
 
   belongs_to :cheff
   belongs_to :food_item
+  has_many :ordered_menus
 
   validates_presence_of :cheff_id, :message => ": Chef's Name and Dish can't be blank"
   validates :date, :presence => true

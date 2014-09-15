@@ -80,7 +80,7 @@ class Cms::OrdersController < Cms::ContentBlockController
           end
           food_item = cooking_today.food_item
           if !@order.blank?
-            menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id,
+            menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
                                       :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
                                       :rate => item_attr['price'])
           end
