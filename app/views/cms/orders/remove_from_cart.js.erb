@@ -1,3 +1,4 @@
+$("body").append("<%= j render(:partial => 'layouts/footer') %>");
 if (<%= session[:cart].blank? %>){
   $("#footer .col-xs-12").empty();
   $("body #footer").addClass('hidden');

@@ -25,6 +25,8 @@ class Order < ActiveRecord::Base
   after_save :send_order_dispatched_message, :if => Proc.new {|o| o.order_status_changed? and o.dispatched?}
   before_save :build_order_status_history
   before_save :ensure_hola_user_id
+  before_save :ensure_order_not_canceled, :if => Proc.new {|o| o.order_status_changed? and o.order_status_was == "Canceled"}
+  before_save :ensure_order_not_dispatched, :if => Proc.new {|o| o.order_status_changed? and o.order_status_was == "Dispatched"}
   before_save :update_timestamps, :if => :order_status_changed?
 
   @@order_statuses.each do |s|
@@ -90,6 +92,18 @@ class Order < ActiveRecord::Base
     if hola_user_id.blank?
       hola_user = HolaUser.find_by_phoneNumber self.phone_no
       self.hola_user_id = hola_user.id unless hola_user.blank?
+    end
+  end
+
+  def ensure_order_not_canceled
+    errors.add(:base, "Order once Canceled cant be dispatched/confirmed again.")
+    return false
+  end
+
+  def ensure_order_not_dispatched
+    if self.order_status == "Canceled"
+      errors.add(:base, "Order has been dispatched. So cant be Canceled.")
+      return false
     end
   end
 

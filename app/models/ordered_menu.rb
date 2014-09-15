@@ -4,8 +4,9 @@ class OrderedMenu < ActiveRecord::Base
   belongs_to :order
   belongs_to :food_item, foreign_key: :dish_id
   belongs_to :cheff
+  belongs_to :cooking_today
 
-  attr_accessible :order_id, :dish_id, :cheff_id, :quantity, :rate
+  attr_accessible :order_id, :dish_id, :cheff_id, :quantity, :rate, :cooking_today_id
 
   validates :order_id, :presence => true
   validates :cheff_id, :presence => true
@@ -32,10 +33,6 @@ class OrderedMenu < ActiveRecord::Base
 
   def ordered_menu_bill
     rate * quantity
-  end
-
-  def cooking_today
-    CookingToday.where(date: Time.current.to_date, food_item_id: dish_id).first
   end
 
   def add_back_quantity
