@@ -52,11 +52,17 @@ class Api::OrdersController < ApiController
   def reorder
     @order = Order.find params[:order_id]
     new_order = @order.deep_clone include: :ordered_menus, validate: false
-    new_order.original_order_id = @order.id
     new_order.order_status = "Confirmed"
     new_order.order_status_history = ["Created", "Confirmed"]
     new_order.original_order_id = @order.id
+    new_order.ordered_menus = new_order.ordered_menus.select{|om| om.order_status != "Canceled"}
     if new_order.save
+      new_order.ordered_menus.each do |om|
+        cooking_today = om.cooking_today
+        if cooking_today && (cooking_today.ordered.to_i + om.quantity.to_i) <= cooking_today.quantity
+          cooking_today.update_attribute(:ordered, (cooking_today.ordered.to_i + om.quantity.to_i))
+        end
+      end
       @order.update_attributes(reorder_id: new_order.id, order_status: "Reordered")
       @message = {"msg" => "New order placed", "order_id" => new_order.id}
       render "api/success"
