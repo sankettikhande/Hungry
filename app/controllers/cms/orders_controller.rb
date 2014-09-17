@@ -164,7 +164,7 @@ class Cms::OrdersController < Cms::ContentBlockController
       # end
       @order.ordered_menus.each do |ordered_menu|
         cooking_today  = ordered_menu.cooking_today
-        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
+        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
       end
 
       @order.ordered_menus.each do |menu|
