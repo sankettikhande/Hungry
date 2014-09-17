@@ -88,7 +88,7 @@ class Cms::OrdersController < Cms::ContentBlockController
       end
       @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)))
       @footer = "false"
-      @@cart_items = view_context.collect_items(session[:cart])
+      #@@cart_items = view_context.collect_items(session[:cart])
 
       respond_to do |format|
         format.html {render :layout => 'application'}
@@ -102,14 +102,23 @@ class Cms::OrdersController < Cms::ContentBlockController
     @order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")
     session[:cart] = [] #if @order.
     if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
-      @@cart_items.each do |item_id, quantity|
-        cooking_today  = CookingToday.find(item_id)
+      @order.ordered_menus.each do |ordered_menu|
+        cooking_today  = ordered_menu.cooking_today
+        # raise cooking_today.inspect
         if cooking_today.not_orderable?
           session[:cart] = nil
           redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
         end
-        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
+        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
       end
+      # @@cart_items.each do |item_id, quantity|
+      #   cooking_today  = CookingToday.find(item_id)
+      #   if cooking_today.not_orderable?
+      #     session[:cart] = nil
+      #     redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+      #   end
+      #   cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
+      # end
     end
     respond_to do |format|
       format.html {render :layout => 'application'}
@@ -149,10 +158,15 @@ class Cms::OrdersController < Cms::ContentBlockController
                                :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
                                :addressCity=>params[:addressCity], :addressState=>params[:addressState],
                                :addressCountry=>params[:addressCountry],:addressZip=>params[:addressZip])
-      @@cart_items.each do |item_id, quantity|
-        cooking_today  = CookingToday.find(item_id)
-        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
+      # @@cart_items.each do |item_id, quantity|
+      #   cooking_today  = CookingToday.find(item_id)
+      #   cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
+      # end
+      @order.ordered_menus.each do |ordered_menu|
+        cooking_today  = ordered_menu.cooking_today
+        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
       end
+
       @order.ordered_menus.each do |menu|
         food_item = FoodItem.find(menu.dish_id)
         food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + menu.quantity.to_i)) if food_item
