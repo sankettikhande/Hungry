@@ -109,7 +109,7 @@ class Cms::OrdersController < Cms::ContentBlockController
           session[:cart] = nil
           redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
         end
-        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
+        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
       end
       # @@cart_items.each do |item_id, quantity|
       #   cooking_today  = CookingToday.find(item_id)
