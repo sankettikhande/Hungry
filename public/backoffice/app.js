@@ -20,7 +20,7 @@ Ext.Loader.setConfig({
 
 Ext.application({
 
-    dataUrl: 'http://qa.holachef.com/api/',
+    dataUrl: 'http://www.holachef.com/api/',
     name: 'HolaChef',
     OrdersArry: [],
     PageSize: 5,
@@ -33,7 +33,7 @@ Ext.application({
     RunnerId: '',
     models: [
     'OrderModel'
-       
+
     ],
 
     views: [
@@ -41,7 +41,7 @@ Ext.application({
         'MainPage',
         'OrderView',
         'ManageRunner'
-      
+
     ],
 
     controllers: [
@@ -59,7 +59,7 @@ Ext.application({
         Ext.Viewport.setMasked({ xtype: 'loadmask', message: 'Hang On..', style: 'z-index:500' }, false);
         this.ShowHideLoader(false);
         Ext.create('HolaChef.view.MainView', { fullscreen: true });
-        
+
     },
     ShowHideLoader: function (flag, msg) {
         if (arguments.length == 1)
