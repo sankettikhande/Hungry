@@ -14,7 +14,7 @@ class OrderedMenu < ActiveRecord::Base
   validates :quantity, :presence => true
   validates :order_status, presence: true, inclusion: { in: @@order_statuses }
 
-  after_save :add_back_quantity, :if => :canceled?
+  after_save :add_back_quantity, :if => Proc.new {|o| o.order_status_changed? and o.canceled? }
 
   @@order_statuses.each do |s|
     define_method "#{s.downcase}?" do
