@@ -1,9 +1,9 @@
 class Api::OrdersController < ApiController
   def index
     @orders = Order.includes(:runner, :hola_user, {:ordered_menus => {:food_item => :meal_info}}).order("id desc")
-    @orders = @orders.where("created_at >= ? ", params[:from_date]) if !params[:from_date].blank?
-    @orders = @orders.where("created_at <= ? ", params[:to_date]) if !params[:to_date].blank?
-    @orders = @orders.where("created_at >= ? ", DateTime.now.beginning_of_day) if (params[:from_date].blank? && params[:to_date].blank?)
+    @orders = @orders.where("DATE(created_at) >= ? ", params[:from_date]) if !params[:from_date].blank?
+    @orders = @orders.where("DATE(created_at) <= ? ", params[:to_date]) if !params[:to_date].blank?
+    @orders = @orders.where("DATE(created_at) >= ? ", Date.today) if (params[:from_date].blank? && params[:to_date].blank?)
   end
 
   def show
@@ -59,6 +59,7 @@ class Api::OrdersController < ApiController
     if new_order.save
       new_order.ordered_menus.each do |om|
         cooking_today = om.cooking_today
+        om.update_attribute(:order_status, "Ordered")
         if cooking_today && (cooking_today.ordered.to_i + om.quantity.to_i) <= cooking_today.quantity
           cooking_today.update_attribute(:ordered, (cooking_today.ordered.to_i + om.quantity.to_i))
         end
