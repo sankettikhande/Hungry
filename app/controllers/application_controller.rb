@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sunday_redirect
-    if (true)
+    if (false)
       respond_to do |format|
         format.html{render action: "closed", layout: false}
       end

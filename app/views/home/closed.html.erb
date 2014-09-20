@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Hola</title>
-  <%= stylesheet_link_tag "application" %>
-  <link rel="shortcut icon" href="/assets/favicon.png">
-  <!--[if lt IE 9]><script src="/assets/ie8-responsive-file-warning.js"></script><![endif]-->
-  <!--[if lt IE 9]>
-  <script src="/assets/html5shiv.js"></script>
-  <script src="/assets/respond.min.js"></script>
-  <![endif]-->
-  <%#= render :partial => "layouts/social_scripts" %>
-</head>
-<body>
 <div id="wrap">
   <div class="sliding-page row-offcanvas row-offcanvas-left">
     <%= render 'layouts/side_menu' %>
@@ -33,20 +14,3 @@
   </div>
 
 </div><!-- #wrap ends -->
-<% if !@footer %>
-    <%= render 'layouts/content_footer' %>
-<% end %>
-<%= javascript_include_tag "application"%>
-<%= render 'hola_session/login' %>
-<%= login_check %>
-<script type="text/javascript">
-    function socail_click(url)
-    {
-        window.open(url,'Sharer','left=20,top=20,width=500,height=500,toolbar=1,resizable=0');
-        return false;
-    }
-
-</script>
-<%= yield :bottom_content %>
-</body>
-</html>
