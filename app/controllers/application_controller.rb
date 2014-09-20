@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery
 
+  before_filter :sunday_redirect
+
 
   helper_method :hola_current_user
   helper_method :mobile_device?
@@ -18,6 +20,15 @@ class ApplicationController < ActionController::Base
       session[:mobile_param] == "1"
     else
       request.user_agent =~ /Mobile|webOS/
+    end
+  end
+
+  def sunday_redirect
+    if (true)
+      respond_to do |format|
+        format.html{render action: "closed", layout: false}
+      end
+      return true
     end
   end
 
