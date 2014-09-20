@@ -33,7 +33,7 @@ task :qa do
 
   after "deploy:update_code", "deploy:migrate"
   after "deploy:create_symlink", "deploy:change_permission_for_tmp"
-  after "deploy:restart", "delayed_job:restart"
+  ##after "deploy:restart", "delayed_job:restart"
 end
 
 task :prod do
@@ -54,7 +54,7 @@ task :prod do
 
   after "deploy:update_code", "deploy:migrate"
   after "deploy:create_symlink", "deploy:change_permission_for_tmp"
-  after "deploy:restart", "delayed_job:restart"
+  ##after "deploy:restart", "delayed_job:restart"
 end
 
 
