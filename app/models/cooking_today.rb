@@ -35,7 +35,8 @@ class CookingToday < ActiveRecord::Base
   end
 
   def self.sorted_by_qty_left
-    CookingToday.published.where(:date =>Time.current.to_date).where("meal_from_time > '#{Time.now.to_s(:db)}'").sort_by(&:qty_left).reverse
+    # CookingToday.published.where(:date =>Time.current.to_date).where("meal_from_time > '#{Time.now.to_s(:db)}'").sort_by(&:qty_left).reverse
+    CookingToday.published.where(:date =>Time.current.to_date).sort_by(&:qty_left).reverse
   end
 
   def self.grouped_by_category

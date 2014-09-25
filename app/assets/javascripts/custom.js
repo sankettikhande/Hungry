@@ -33,6 +33,11 @@ $(document).ready(function(){
     //     });
     // });
 
+    $('.time-slots span').click(function(){
+      $(this).parent().find('.o-time').removeClass('selected');
+      $(this).addClass('selected');
+    });
+
     // $('.about-content').on('click', function(){
     //   $(this).closest('.square').find(".recipe-block").hide();
     //   $(this).closest('.square').find(".recipe-about").show();
@@ -155,7 +160,7 @@ $(document).ready(function(){
         $.ajax({
                 'method': 'GET',
                 'url': url ,
-                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category },
+                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
                 'dataType': 'script'
             })
 
@@ -331,7 +336,6 @@ $(document).ready(function(){
             $("#signature-minus-order").addClass("disabled");
         }
     });
-
 
 
     $("#signature_form").validationEngine({
