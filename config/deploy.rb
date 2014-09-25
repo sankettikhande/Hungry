@@ -8,7 +8,7 @@ set :repository,  "git@bitbucket.org:pravinhmhatre/holachef.git"
 set :application, 'holachef'
 set :deploy_via, :remote_cache
 set :scm, 'git'
-set :branch, 'master'
+
 set :scm_verbose, true
 set :use_sudo, false
 set :keep_releases, 2
@@ -17,11 +17,12 @@ set :precompile_only_if_changed, true
 
 task :qa do
   default_run_options[:pty] = true
-
+  set :branch, 'QA'
 
   # be sure to change these
   set :user, 'root'
   set :domain, '103.13.97.227'
+  set :deploy_env, 'qa'
 
   # the rest should be good
   set :deploy_to, "/data/apps/#{application}-qa"
@@ -32,16 +33,17 @@ task :qa do
 
   after "deploy:update_code", "deploy:migrate"
   after "deploy:create_symlink", "deploy:change_permission_for_tmp"
-  after "deploy:restart", "delayed_job:restart"
+  ##after "deploy:restart", "delayed_job:restart"
 end
 
 task :prod do
   default_run_options[:pty] = true
-
+  set :branch, 'master'
 
   # be sure to change these
   set :user, 'root'
   set :domain, '103.13.97.227'
+  set :deploy_env, 'prod'
 
   # the rest should be good
   set :deploy_to, "/data/apps/#{application}"
@@ -52,7 +54,7 @@ task :prod do
 
   after "deploy:update_code", "deploy:migrate"
   after "deploy:create_symlink", "deploy:change_permission_for_tmp"
-  after "deploy:restart", "delayed_job:restart"
+  ##after "deploy:restart", "delayed_job:restart"
 end
 
 
@@ -74,8 +76,17 @@ namespace :deploy do
       logger.info "Skipping asset pre-compilation because there were no asset changes"
     end
   end
+
+  task :switch_backoffice do
+    run "cp #{current_path}/public/backoffice/app.js.#{deploy_env} #{current_path}/public/backoffice/app.js "
+  end
 end
 
 after "deploy:update_code", "db:symlink"
+after "deploy:update", "deploy:cleanup"
+
+after "deploy:cleanup", "deploy:switch_backoffice"
+
+
 
 
