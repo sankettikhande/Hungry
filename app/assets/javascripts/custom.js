@@ -33,16 +33,20 @@ $(document).ready(function(){
     //     });
     // });
 
-    $('.about-content').on('click', function(){
-      $(this).closest('.square').find(".recipe-block").hide();
-      $(this).closest('.square').find(".recipe-about").show();
-      return false;
-    });
+    // $('.about-content').on('click', function(){
+    //   $(this).closest('.square').find(".recipe-block").hide();
+    //   $(this).closest('.square').find(".recipe-about").show();
+    //   return false;
+    // });
 
-     $('.opacityimg,.opacityborder').on('click', function(){
-      $(this).closest('.square').find(".recipe-about").hide();
-      $(this).closest('.square').find(".recipe-block").show();
-      return false;
+    //  $('.opacityimg,.opacityborder').on('click', function(){
+    //   $(this).closest('.square').find(".recipe-about").hide();
+    //   $(this).closest('.square').find(".recipe-block").show();
+    //   return false;
+    // });
+
+    $('.recipe-block').on('click', function(){
+        $(this).find('.dark-overlay').toggle()
     });
 
       $("#talk-us-form,#new_chef_request,#new_party_order").validationEngine({promptPosition : "topLeft"});
@@ -328,7 +332,7 @@ $(document).ready(function(){
         }
     });
 
-    
+
 
     $("#signature_form").validationEngine({
         'custom_error_messages': {

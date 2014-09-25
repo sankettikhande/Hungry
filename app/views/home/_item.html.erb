@@ -51,7 +51,7 @@
         <% if @today_menu && @today_menu.has_key?(@menu[:id]) %>
             <li class="recipe-stock text-orange"><%= @today_menu.fetch(@menu[:id]) %> in cart</li>
         <% else %>
-            <li class="recipe-stock"><%= qty_left(@menu)>0 ? "#{qty_left(@menu)} left" :  "SOLD OUT!" %></li>
+            <li class="recipe-stock"><%= qty_left(@menu)>0 ? "" :  "SOLD OUT!" %></li>
         <% end %>
         <li class="recipe-price"><%= qty_left(@menu)>0 ? "#{@menu.food_item.meal_info.hola_sell_price}/-" : "SORRY :(" %></li>
       </ul>

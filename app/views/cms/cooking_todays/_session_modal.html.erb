@@ -4,7 +4,7 @@
 <div class="modal-dialog modal-sm">
   <div class="modal-content">
     <div class="modal-header">
-      <button data-dismiss="modal" class="btn-close pull-right">x</button>
+      <button data-dismiss="modal" class="btn-close pull-right">&times;</button>
       <ul class="user-profile">
         <li class="profile-pic">
           <%= link_to image_tag(@cooking_today.cheff.picture.image.url, :class => "img-responsive center-block"), "/chef-profile/#{@cooking_today.cheff.id}", :id => "chef_info" if !@cooking_today.cheff.picture.blank? %>
@@ -46,17 +46,17 @@
                 <div class="recipe-name"><%= cart_menu[:dish_name]%></div>
                 <div class="add-heart"></div>
                  <div class="opacitydivup">
-                <span class="bold-text">Description:</span> <br/><%= @cooking_today.food_item.meal_info.short_description %><br/><br/>
-                <span class="bold-text">1 portion:</span> <%= @cooking_today.food_item.meal_info.portion_size %>
+                <div class="o-item-descr roboto-b">Description:</div><%= @cooking_today.food_item.meal_info.short_description %>
+                <div class="o-item-portion roboto-b">1 portion: <%= @cooking_today.food_item.meal_info.portion_size %></div>
               </div>
               </div>
           <% end %>
           <% if @cooking_today.food_item.meal_info.picture && @cooking_today.food_item.meal_info.picture.image? %>
               <div class="recipe-image" style="position: relative;">
-                <%= image_tag @cooking_today.food_item.meal_info.picture.image.url, :alt=>"#{ @cooking_today.food_item.meal_info.name}", :class => "img-responsive center-block opacityimg" %>
+                <%= image_tag @cooking_today.food_item.meal_info.picture.image.url, :alt=>"#{ @cooking_today.food_item.meal_info.name}", :class => "img-responsive center-block" %>
               <div class="opacitydivup">
-                <span class="bold-text">Description:</span> <br/><%= @cooking_today.food_item.meal_info.short_description %><br/><br/>
-                <span class="bold-text">1 portion:</span> <%= @cooking_today.food_item.meal_info.portion_size %>
+                <div class="o-item-descr roboto-b">Description:</div><%= @cooking_today.food_item.meal_info.short_description %>
+                <div class="o-item-portion roboto-b">1 portion: <%= @cooking_today.food_item.meal_info.portion_size %></div>
               </div>
               </div>
 

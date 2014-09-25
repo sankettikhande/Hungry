@@ -10,8 +10,12 @@
   <!--[if lt IE 9]>
   <script src="assets/html5shiv.js"></script>
   <![endif]-->
-  <link rel="stylesheet" type="text/css" href="desktop_custom.css">
-
+  <link rel="stylesheet" type="text/css" href="assets/desktop_custom.css">
+   <link rel="stylesheet" type="text/css" href="assets/bootstrap.min.css">
+    <script type="text/javascript" src="assets/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="assets/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="assets/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/smooth-scroll.js"></script>
   <script>
   var frame = document.getElementById("myframe").contentDocument.body;
   if(frame.offsetWidth > 800){
@@ -20,105 +24,408 @@
   </script>
 
 </head>
-<body>
-<div id="wrap">
-  <header id="header">
-    <ul class="site-menu">
-      <li class="active"><a data-scroll href="#hungry">I am hungry</a></li>
-      <li><a data-scroll href="#i-m-chef">I am chef</a></li>
-      <li><a data-scroll href="#i-m-chef">Contact us</a></li>
-      <li><a data-scroll href="#how-it-works">How it works</a></li>
-      <li><a href="#">blog</a></li>
-    </ul>
-    <div class="site-logo"><a href="#"><img src="assets/hola-logo-new.png" alt=""></a></div>
-  </header>
-  <div id="choose-to" class="section-ht gradient-half">
-    <div class="table-wrap">
-      <div class="table-top">
-        <div class="table-item iphone"></div>
-        <div class="i-m-hungry-text pull-left top-50"><a class="side-text orange-text" data-scroll href="#hungry">I'm hungry</a></div>
-        <div class="i-m-chef-text pull-right top-50"><a class="side-text white-text" data-scroll href="#i-m-chef">I'm a chef</a></div>
-      </div>
-    </div>
-  </div>
-  <div class="table-bg" id="hungry">
-    <div class="table-wrap">
-      <div class="table-top lg-phone">
-        <div class="table-item fork"></div>
-        <div class="table-item knife"></div>
-        <div class="table-item spoon"></div>
-        <div class="table-item iphone">
-          <div class="iframe-container">
-            <iframe class="mobile-window" id="myframe" src="http://www.holachef.com/mobile" sandbox="allow-same-origin allow-forms allow-scripts" frameborder="0" seamless="seamless" style="width:358px;overflow: hidden; " ></iframe>
+  <body class="hola-body">
+<header id="header">
+       <div class="navbar hola-lg-navbar navbar-static-top">
+         <div class="container">
+               <div class="navbar-header">
+                 <a class="navbar-brand" href="index.html"><img src="assets/hola-logo-new.png" alt=""></a>
+               </div>
+               <ul class="nav navbar-nav navbar-right top-nav">
+                 <li><a href="#hungry">I'm hungry</a></li>
+                 <li><a href="#">How it works?</a></li>
+                 <li><a target="_blank" href="https://play.google.com/store/apps/details?id=com.holachef" class="playstore-icon"><img src="assets/playstore-logo.png" alt="Download"></a></li>             
+               </ul>
+         </div>
+       </div>
+    </header> 
+    <section class="welcome-section">
+      <div class="carousel slide" id="welcome-slider" data-ride="carousel" data-interval="5000">
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="assets/banner/banner-1.jpg" class="full-width" alt="">
           </div>
-        </div>
-        <div id="scroll-down"><p class="text-center">Scroll to know more</p><a data-scroll href="#choose-to"><img id="scroll-icon" src="assets/scroll-down-btn.png" alt="Scroll Down"></a></div>
-      </div>
-    </div>
-  </div>
-  <div id="how-it-works" class="section-ht gradient-qrt-r">
-    <div class="table-wrap">
-      <div class="table-top">
-        <div class="table-item iphone-details"></div>
-        <a href="#i-m-chef" data-scroll><div class="table-item imchef"></div></a>
-        <div class="i-m-hungry-text pull-left top-50"><a class="side-text orange-text" data-scroll href="#hungry">I'm hungry</a></div>
-      </div>
-    </div>
-  </div>
-  <div id="i-m-chef" class="section-ht gradient-qrt-l">
-    <div class="table-wrap">
-      <div class="table-top">
-        <div class="table-item iphone-menu"></div>
-        <a data-scroll href="#hungry"><div class="table-item imhungry"></div></a>
-        <div class="i-m-chef-text pull-right"><a class="side-text orange-text" data-scroll href="#i-m-chef">I'm a chef</a>
-          <p>If your home is always packed with guests because they can't get enough of your food; if you're always the one manning the barbecue at any pool party; If here's nothing more tempting for your children than what you whip  up in minutes, then you have  every quality we are looking for.</p>
-          <strong>I want to join Holachef</strong>
-          <div class="form-group orange-input">
-            <input type="text" placeholder="Name">
-            <input type="tel" placeholder="Mobile">
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder="I can cook..">
-            <button type="button" class="btn-submit">Submit</button>
+          <div class="item">
+            <img src="assets/banner/banner-2.jpg" class="full-width" alt="">
+          </div>
+          <div class="item">
+            <img src="assets/banner/banner-3.jpg" class="full-width" alt="">
+          </div>
+          <div class="item">
+            <img src="assets/banner/banner-4.jpg" class="full-width" alt="">
+          </div>
+          <div class="item">
+            <img src="assets/banner/banner-5.jpg" class="full-width" alt="">
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+    <section class="table-container">
+             <div class="table-wrap">
+            <div class="table-top lg-phone">
+              <div class="table-item fork"></div>
+              <div class="table-item knife"></div>
+              <div class="table-item spoon"></div>
+              <div id="hungry" class="table-item iphone">
+                <div class="iframe-container">
+                    <iframe id="chk" class="mobile-window" src="http://qa.holachef.com/mobile" sandbox="allow-same-origin allow-forms allow-scripts" frameborder="0" seamless="seamless" ></iframe>        
+                </div>
+              </div>
+          </div>
+    </section>
+    <section class="social-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="orange-text text-center">People talk about Us</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="carousel slide" id="testimo-slider" data-ride="carousel" data-interval="5000">
+              <div class="carousel-inner text-center">
+                <div class="item active">
+                  <figure class="user-testimo">
+                    <img src="assets/chef-mini.png" class="tt-user-dp center-block">
+                    <figcaption class="testimo-text">
+                      <h6>This is just amazing. I can’t express my happiness in words.</h6>
+                      <p>Jamie Oliver, Chembur, Mumbai</p>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div class="item">
+                  <figure class="user-testimo">
+                    <img src="assets/chef-mini.png" class="tt-user-dp center-block">
+                    <figcaption class="testimo-text">
+                      <h6>This is just amazing. I can’t express my happiness in words.</h6>
+                      <p>Jamie Oliver, Chembur, Mumbai</p>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div class="item">
+                  <figure class="user-testimo">
+                    <img src="assets/chef-mini.png" class="tt-user-dp center-block">
+                    <figcaption class="testimo-text">
+                      <h6>This is just amazing. I can’t express my happiness in words.</h6>
+                      <p>Jamie Oliver, Chembur, Mumbai</p>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+              <a class="carousel-control left" href="#testimo-slider" data-slide="prev"><i class="fa fa-angle-double-left"></i></a>
+              <a class="carousel-control right" href="#testimo-slider" data-slide="next"><i class="fa fa-angle-double-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="stars-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="stars-caption">
+              <div class="row">
+<!--                 <div class="col-xs-10 col-xs-offset-2">
+                  <h1 class="orange-text">HOLA STARS</h1>
+                  <p class="text-italic">
+                    “Great food is no less than art. And like any other art form, it is about talent, practice and creativity that makes every morsel Worth Craving For. What makes our chefs unique is that they come from all walks of life. Their common passion for great and authentic food is what we look for in all chefs and that is what makes them Hola Stars !”                  
+                  </p>
+                  <p class="credit-text">-<strong> CHEF,</strong> Bean Therapy, Mumbai</p>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <ul class="chef-list">
+                        <li><img class="chef-circle" src="assets/chef-mini.png" alt=""></li>
+                        <li><img class="chef-circle" src="assets/chef-mini.png" alt=""></li>
+                        <li><img class="chef-circle" src="assets/chef-mini.png" alt=""></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-xs-12">
+                <div class="carousel slide" id="star-carousel" data-ride="carousel" data-interval="3000">
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="assets/chef-1.jpg" class="img-responsive pull-right" alt="">
+                      <div class="carousel-caption">
+                        <p class="text-italic">
+                          “Great food is no less than art. And like any other art form, it is about talent, practice and creativity that makes every morsel Worth Craving For. What makes our chefs unique is that they come from all walks of life. Their common passion for great and authentic food is what we look for in all chefs and that is what makes them Hola Stars !”                  
+                        </p>
+                        <p class="credit-text">-<strong> CHEF,</strong> Bean Therapy, Mumbai</p>                        
+                      </div>
+                    </div>
+                    <div class="item">
+                      <img src="assets/chef-2.jpg" class="img-responsive pull-right" alt="">
+                      <div class="carousel-caption">
+                        <p class="text-italic">
+                          “Great food is no less than art. And like any other art form, it is about talent, practice and creativity that makes every morsel Worth Craving For. What makes our chefs unique is that they come from all walks of life. Their common passion for great and authentic food is what we look for in all chefs and that is what makes them Hola Stars !”                  
+                        </p>
+                        <p class="credit-text">-<strong> CHEF,</strong> Bean Therapy, Mumbai</p>                        
+                      </div>                      
+                    </div>
+                    <div class="item">
+                      <img src="assets/chef-1.jpg" class="img-responsive pull-right" alt="">
+                      <div class="carousel-caption">
+                        <p class="text-italic">
+                          “Great food is no less than art. And like any other art form, it is about talent, practice and creativity that makes every morsel Worth Craving For. What makes our chefs unique is that they come from all walks of life. Their common passion for great and authentic food is what we look for in all chefs and that is what makes them Hola Stars !”                  
+                        </p>
+                        <p class="credit-text">-<strong> CHEF,</strong> Bean Therapy, Mumbai</p>                        
+                      </div>                      
+                    </div>
+                  </div>
+                  <div class="fixed-text">
+                      <h1 class="orange-text">HOLA STARS</h1>
+                  </div>
+                  <ol class="carousel-indicators">
+                    <li data-target="#star-carousel" data-slide-to="0" class="active">
+                      <img src="assets/chef-1.jpg" alt=""></li>
+                    <li data-target="#star-carousel" data-slide-to="1">
+                      <img src="assets/chef-2.jpg" alt=""></li>
+                    <li data-target="#star-carousel" data-slide-to="2">
+                      <img src="assets/chef-2.jpg" alt="">
+                    </li>
+                  </ol>
+                </div>                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="hola-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-5">
+              <ul class="social-icons">
+                <li><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a target="_blank" href="#"><i class="fa fa-linkedin-square"></i></a></li>
+                <li><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a target="_blank" href="#"><i class="fa fa-pinterest"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-xs-7">
+              <ul class="nav navbar-nav footer-nav navbar-right">
+                <li><a data-target="#contact-modal" data-toggle="modal" class="hand-cursor">Contact</a></li>
+                <li><a data-target="#faq-modal" data-toggle="modal" class="hand-cursor">Faq</a></li>
+                <li><a href="http://blog.holachef.com/" target="_blank">Blog</a></li>
+                <li><a data-target="#party-modal" data-toggle="modal" class="hand-cursor">Party Orders</a></li>
+                <li><a data-target="#policy-modal" data-toggle="modal" class="hand-cursor">Privacy Policy</a></li>
+                <li><a href="#">How it works?</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+        <p class="text-right">©  2014 Holachef. All Rights Reserved.</p>
+            </div>
+          </div>          
+        </div>
+    </section>
+    <!-- hola modals -->
+    <article>
+      <div class="modal fade hc-modal" id="contact-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal" type="button">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="contact-form">
+                <h4 class="modal-title lato-i">contact us</h4>            
+                <p class="form-title">Please feel free to contact us.</p>
+                <div class="form-group">
+                  <input id="name" type="text" onKeyPress="return VinCheck(event);" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group">
+                  <input id="phno" type="tel" maxlength="12" onkeypress="return isNumberKey(event)" class="form-control" placeholder="Phone Number">
+                </div>
+                <div class="form-group">
+                  <input id="email" type="email" class="form-control" placeholder="Enter your Email Id">
+                </div>
+                            <div class="checkbox"><label><input type="checkbox">I'm Chef and want to work with Holachef.</label></div>
+                <div class="form-group">
+                  <textarea id="msg" class="form-control" rows="5" placeholder="Your Message"></textarea>
+                </div>
+                <div class="form-group text-center">
+                  <button type="button" class="btn btn-saffron" id="cform-submit-con" onclick="CheckContact();">Send Message</button>
+                </div>
+              </div>
+              <div class="success-msg text-center">
+                <div class="v-parent">
+                  <div class="v-child">
+                    <h3 class="text-saffron">Thank you <span class="text-dark">for contacting us !</span></h3>
+                    <p class="lato-i">We will get in touch with you shortly .</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <p class="text-right">...or you can call us at <span class="text-saffron">+91-808080-4652</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="modal fade hc-modal" id="howitwork-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal" type="button">&times;</button>
+            </div>
+            <div class="modal-body">
+              
+              <img src="assets/How it works_2.jpg" width="500px" height="500px;"/>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="modal fade hc-modal" id="party-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal" type="button">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="contact-form">
+                <h4 class="modal-title lato-r">Party?  Meeting?</h4>            
+                <p class="form-title">Please complete the form for requirements.
+                <span class="make-block text-light">*For orders of 10 people or more.</span></p>
+                <div class="form-group">
+                  <input id="name1" type="text" onKeyPress="return VinCheck(event);" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group">
+                  <input id="phno1" onkeypress="return isNumberKey(event)" maxlength="12" type="tel" class="form-control" placeholder="Phone Number">
+                </div>
+                <div class="form-group">
+                  <input id="email1" type="email" class="form-control" placeholder="Enter your Email Id">
+                </div>
+                <div class="form-group">
+                  <textarea id="msg1" class="form-control" rows="5" placeholder="Special Instructions"></textarea>
+                </div>
+                <div class="form-group text-center">
+                  <button type="button" class="btn btn-saffron" id="cform-submit" onclick="CheckParty();">Submit</button>
+                </div>
+              </div>
+              <div class="success-msg text-center">
+                <div class="v-parent">
+                  <div class="v-child">
+                    <h3 class="text-saffron">Thank you <span class="text-dark">for contacting us !</span></h3>
+                    <p class="lato-i">We will get in touch with you shortly .</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <p class="text-right">...or you can call us at <span class="text-saffron">+91-808080-4652</span></p>
+            </div>
+          </div>
+        </div>
+      </div>      
+      <div class="modal fade hc-modal" id="faq-modal">
+        <div class="modal-dialog wide-modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal" type="button">&times;</button>
+            </div>
+            <div class="modal-body">
+              <h4 class="modal-title lato-r">frequently asked questions</h4>            
+              <ul class="ques-list">
+                <li class="ques-item">Do I have to order in advance ?
+                  <span class="ques-ans">
+                    No, we function on real-time. order when you’re hungry and we’ll make sure your meal is delivered while it’s still hot.
+                  </span>
+                </li>
+                <li class="ques-item">Can I see the week's menu in advance?
+                  <span class="ques-ans"> 
+                  No, we source the freshest ingredients daily which then inspire our chef to decide the specials.
+                  </span>
+                </li>
+                <li class="ques-item">Can I see the week's menu in advance?
+                  <span class="ques-ans"> 
+                  No, we source the freshest ingredients daily which then inspire our chef to decide the specials.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade hc-modal" id="policy-modal">
+        <div class="modal-dialog wide-modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal" type="button">&times;</button>
+            </div>
+            <div class="modal-body">
+              <h4 class="modal-title lato-r">privacy policy</h4>            
+              <ul class="ques-list">
+                <li class="ques-item">Thank you for visiting our website!
+                  <span class="ques-ans">
+                    This privacy policy tells you how we use personal information collected at this site. Please read this 
+                  privacy policy before using the site or submitting any personal information. By using the site, you are 
+                  accepting the practices described in this privacy policy. These practices may be changed, but any 
+                  changes will only apply to activities and information on  a going forward, not retroactive basis. You are
+                   encouraged to review the privacy policy  whenever you visit the site to make sure that you understand 
+                  how any personal information you provide will be used.
+                  </span>
+                </li>
+                <li class="ques-item">Collection of Information
+                  <span class="ques-ans"> 
+                  We collect personally identifiable information, like names, postal addresses, email addresses, etc., when voluntarily submitted by our visitors.
+                  </span>
+                </li>
+                <li class="ques-item">Collection of Information
+                  <span class="ques-ans"> 
+                  We collect personally identifiable information, like names, postal addresses, email addresses, etc., when voluntarily submitted by our visitors.
 
-</div>
-<script type="text/javascript" src="assets/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="assets/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="assets/smooth-scroll.js"></script>
-<script type="text/javascript">
-    var didScroll;
-    var lastScrollTop = 0;
-    var delta = 5;
-    var navbarHeight = $('header').outerHeight();
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </article>
 
-    $(window).scroll(function(event){
-        didScroll = true;
-    });
+    <script type="text/javascript">
+     var didScroll;
+     var lastScrollTop = 0;
+     var delta = 5;
+     var navbarHeight = $('header').outerHeight();
 
-    setInterval(function() {
-        if (didScroll) {
-            hasScrolled();
-            didScroll = false;
-        }
-    }, 250);
-    function hasScrolled() {
-        var st = $(this).scrollTop();
-        if(Math.abs(lastScrollTop - st) <= delta)
-            return;
-        if (st > lastScrollTop && st > navbarHeight){
-            $('header').removeClass('nav-down').addClass('nav-up');
-        } else {
-            if(st + $(window).height() < $(document).height()) {
-                $('header').removeClass('nav-up').addClass('nav-down');
-            }
-        }
-        lastScrollTop = st;
-    }
-    smoothScroll.init();
-</script>
-</body>
+     $(window).scroll(function(event){
+         didScroll = true;
+     });
+
+     setInterval(function() {
+         if (didScroll) {
+             hasScrolled();
+             didScroll = false;
+         }
+     }, 250);
+     function hasScrolled() {
+         var st = $(this).scrollTop();
+             if(Math.abs(lastScrollTop - st) <= delta)
+             return;
+         if (st > lastScrollTop && st > navbarHeight){
+             $('.hola-lg-navbar').removeClass('navbar-fixed-top').addClass('navbar-static-top');
+             $('.hola-body').css("padding-top","0");
+         } else {
+             if(st + $(window).height() < $(document).height()) {
+                 $('.hola-lg-navbar').removeClass('navbar-static-top').addClass('navbar-fixed-top');
+                 $('.hola-body').css("padding-top","57px");
+             }
+         }    
+         lastScrollTop = st;
+     }
+       smoothScroll.init();        
+   </script>
+  </body>
 </html>
+  
