@@ -1,9 +1,10 @@
-<div class="col-xs-12">
-
-    <div class="container-fluid back-white seperator-10">
-        <h6 class="page-title">Tell Your Friends</h6>
+ <div class="container-fluid">
+    <div class="grey-header">
+        <h4 class="text-center text-uppercase">Tell Your friends !</h4>
     </div>
-    <% if flash[:notice] %>
+  </div>
+  <div class="container-fluid">
+        <% if flash[:notice] %>
       <div class="successMsg"><%= flash[:notice] %></div>
     <% elsif @feedback && @feedback.errors.any? %>
       <div id="errorExplanation" class="errorExplanation">
@@ -19,20 +20,25 @@
         <div class="col-xs-12">
         <div class="normal-body">
           <div class="input-card">
-              <input type="email" class="lower-only validate[required]" placeholder="From Email" name="from_email" data-prompt-Position = "topLeft">
+              <input type="email" class="form-control validate[required]" placeholder="From Email" name="from_email" data-prompt-Position = "topLeft">
           </div>
           <div class="input-card">
-              <input type="email" class="lower-only validate[required]" multiple="multiple" placeholder="To Emails" name="to_email[]" data-prompt-Position = "topLeft">
+              <input type="email" class="form-control validate[required]" multiple="multiple" placeholder="To Emails" name="to_email[]" data-prompt-Position = "topLeft">
               <p class="help-block roboto-i">for multiple friends, enter emails separated by comma(,).</p>
           </div>
           <div class="input-card">
-                  <input type="text" class="lower-only" name="subject" value="Join HolaChef" readonly>
+                  <input type="text" class="form-control" name="subject" value="Join HolaChef" readonly>
           </div>
-          <div class="msg-box-card">
-            <div class="talk-us">
-                <textarea class="form-control no-radius validate[required]" rows="5" placeholder="Write Email" name="body" data-prompt-Position = "topLeft"></textarea>
-            </div>
+          <div class="input-card">
+                <textarea class="form-control validate[required]" rows="5" placeholder="Write Email" name="body" data-prompt-Position = "topLeft"></textarea>
           </div>
+
+          <!--
+          ************************************************   check design *************************************************
+                - this below submit should be placed in footer, as per design.
+          -->
+
+
           <div class="form-group">
             <input type="submit" value="Send Email" class="btn btn-saffron" id="friend_referal_submit" />
           </div>

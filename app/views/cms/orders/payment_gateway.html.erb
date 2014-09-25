@@ -1,17 +1,37 @@
 
   <div class="container-fluid back-white">
-    <div class="seperator-10 card-header">
-      <p>Options</p>
-    </div>
+      <div class="grey-header">
+          <h4 class="text-uppercase text-center grey-text">Choose your option</h4>
+      </div>
   </div> <!-- fluid container ends -->
 
   <div class="container-fluid back-white seperator-2">
 
-      <ul class="pay-options">
-        <li class="payby"><%= link_to "Cash/Card on Delivery", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" %></li>
-        <li class="payby"><%= link_to "Netbanking", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'payment_mode' %></li>
-        <!--<li class="payby"><%#= link_to "Prepaid Balance", "#", :data=>{:paymentMode => "DEBIT_CARD", :orderId => @order.id}, :class => 'payment_mode' %></li>&ndash;&gt;-->
+   
+        <ul class="pay-options-radio">
+        <li class="orange-check">
+              <input name="pay-by" id="radio-cod" class="css-checkbox" type="radio">
+              <%= link_to "Cash/Card on Delivery", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" %>
+        </li>
+        <li class="orange-check">
+              <input name="pay-by" id="radio-nbanking" class="css-checkbox" type="radio">
+              <%= link_to "Netbanking", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'payment_mode' %>
+        </li>
       </ul>
+
+<!--
+<ul class="pay-options-radio">
+        <li class="orange-check">
+              <input name="pay-by" id="radio-cod" class="css-checkbox" type="radio">
+              <label for="radio-cod" class="css-label">Card/Cash on Delivery</label>
+        </li>
+        <li class="orange-check">
+              <input name="pay-by" id="radio-nbanking" class="css-checkbox" type="radio">
+              <label for="radio-nbanking" class="css-label">Net Banking</label>
+        </li>
+      </ul>
+
+    -->  
     <div class="payment_form"></div>
 
 

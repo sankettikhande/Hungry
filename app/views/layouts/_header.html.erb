@@ -13,7 +13,7 @@
 
         <li><a class="navbar-brand" data-toggle="offcanvas" data-target="#sidebar" href="javascript:void(0)">Hola</a></li>
         <li class="dropdown page-title" id="pg_title">
-          <%= set_drop_down_title(params[:controller], params[:action], params[:id] ) %>
+          <%= set_drop_down_title(params[:controller], params[:action], params[:id] ).html_safe %>
         </li>
       </ul>
 

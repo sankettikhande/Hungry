@@ -4,22 +4,7 @@
 <div class="modal-dialog modal-sm">
   <div class="modal-content">
     <div class="modal-header">
-      <button data-dismiss="modal" class="btn-close pull-right">x</button>
-      <ul class="user-profile">
-        <li class="profile-pic">
-          <%= link_to image_tag(@cooking_today.cheff.picture.image.url, :class => "img-responsive center-block"), "/chef-profile/#{@cooking_today.cheff.id}", :id => "chef_info" if !@cooking_today.cheff.picture.blank? %>
-        </li>
-        <li class="user-name">
-          <h3><%= link_to "#{cart_menu[:cheff_name]}", "/chef-profile/#{@cooking_today.cheff.id}" %>
-            <span class="user-level">
-              <span class="comma"><%= @cooking_today.cheff.chef_profile.brand_represented %></span>
-              <% if @cooking_today.cheff.chef_profile.classification.present? %>
-                <span class="comma"><%= @cooking_today.cheff.chef_profile.classification %></span>
-              <% end %>
-            </span>
-          </h3>
-        </li>
-      </ul>
+      <button data-dismiss="modal" class="btn-close pull-right">&times;</button>
     </div>
     <div class="modal-body"> <!-- below content changes from jquery -->
 
@@ -49,10 +34,19 @@
           </ul>
         </li>
       </ul>
-
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 text-center">
+                  <ul class="set-order">
+                    <li class="order-less ctrl-btn pull-left"><button type="button" class="decrease-order-item" id="add-order-minus">-</button></li>
+                    <li class="order-count"> <p class="form-control looks-input" id="order-count"><%= cart_menu[:quantity].to_i %></p></li>
+                    <li class="order-more ctrl-btn pull-right"><button type="button" class="increase-order-item" id="add-order-plus">+</button></li>
+                  </ul>
+                  <p class="charged-cost">Rs. <span class="charged-value"><%= cart_menu[:price].to_i * cart_menu[:quantity].to_i %></p>
+        </div>
+      </div>
     </div>
     <div class="modal-footer modal-form">
-      <div class="row">
+     <!-- <div class="row">
         <div class="col-xs-12 text-center">
           <div class="row">
             <div class="col-xs-3">
@@ -68,8 +62,12 @@
               <button type="button" class="btn btn-link text-orange" data-dismiss="modal" id="review-order-done">Done</button>
             </div>
           </div>
+          
         </div>
-      </div>
+      </div>-->
+      <div class="form-group text-center">
+              <button type="button" class="btn btn-saffron" id="review-order-done">UPDATE ORDER</button>
+          </div>
     </div>
 
   </div>
