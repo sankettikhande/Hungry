@@ -38,7 +38,7 @@ ul,ol,dd,menu {margin: 0;padding: 0;list-style-type: none;}
 
 body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 
-.container {width: 1170px !important;max-width: 1170px;min-width: 1170px;}
+/*.container {width: 1170px !important;max-width: 1170px;min-width: 1170px;}*/
 
 .hola-lg-navbar {background: #fff;margin-bottom: 0;height: 57px;box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-webkit-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-moz-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-o-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-ms-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);}
 .hola-lg-navbar .container {position: relative;}
