@@ -11,7 +11,13 @@ class Runner < ActiveRecord::Base
   end
 
   def cash_collected
-    orders.where(order_status: "Delivered").sum(&:total)
+    orders.where(order_status: "Delivered").sum do |order|
+      if !order.total.blank?
+        order.total
+      else
+        0
+      end
+    end
   end
 
   def orders_pending
