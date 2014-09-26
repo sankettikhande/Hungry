@@ -18,9 +18,9 @@
         <li class="recipe-block <%=set_cooing_today_type(menu)%>">
           <% if menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
               <div class="recipe-image append-cart">
-			  
+
 			  <% if qty_left(menu) > 0 %>
-                    
+
                     <!--  <span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span><span class='text-leftitem'>&nbsp;Left</span>-->
                     <% else %>
 					<div class="add-lens">
@@ -29,7 +29,7 @@
 						</p>
 					</div>
                     <% end %>
-                
+
                 <div class="add-heart"></div>
                 <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix about-content" %>
                   <div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>
@@ -157,7 +157,7 @@
                   </ul>
               </div>
               <div class="col-xs-3 col-hola-3">
-                <a class="pull-right new-cart-icon update-cart" data-quantity="<%= cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>"><img src="assets/done-button.png" alt="Cart"></a>
+                <a class="pull-right new-cart-icon update-cart" data-quantity="<%= cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>" data-meal-type="<%= category %>"><img src="assets/done-button.png" alt="Cart"></a>
               </div>
             <%# end %>
           </div>
