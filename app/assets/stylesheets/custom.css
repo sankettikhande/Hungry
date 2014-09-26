@@ -1148,6 +1148,7 @@ html{overflow-x:hidden}
 
 .recipe-header {position: relative;}
 .opac img {opacity: 0.11}
+
 .rate{color:#ff8800;	font-size:18px;margin: 4px 0px;}
 
 
@@ -1171,3 +1172,7 @@ html{overflow-x:hidden}
   vertical-align: middle;
   width: 100%;
 }
+
+/*.text-leftitem{text-transform: uppercase;font-size:15px;}
+.rate{color:#ff8800;  font-size:18px;margin: 4px 0px;}*/
+
