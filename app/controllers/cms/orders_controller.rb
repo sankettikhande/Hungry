@@ -50,6 +50,9 @@ class Cms::OrdersController < Cms::ContentBlockController
   end
 
   def add_address
+    session[:lt] = params[:lt] == 'undefined' ? nil : params[:lt]
+    session[:dt] = params[:dt] == 'undefined' ? nil : params[:dt]
+    session[:et] = params[:et] == 'undefined' ? nil : params[:et]
     if hola_current_user
       @adds = hola_current_user.hola_user_addresses.default_address.first
       @adds = hola_current_user.hola_user_addresses.build(name: hola_current_user.name, mobile_no: hola_current_user.phoneNumber) unless @adds
@@ -60,32 +63,95 @@ class Cms::OrdersController < Cms::ContentBlockController
     render layout: 'application'
   end
 
-  def payment_gateway
-    hola_user = hola_current_user#Order.save_user(params)
-    hola_user_address = hola_user.hola_user_addresses.find_by_id(params[:address_id])
-    if hola_user_address.blank?
-      redirect_to "/add-address"
-    else
-      @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular',
+  def create_multi_meal_order cart_meal_types, hola_user, hola_user_address
+    @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'MultiMeal',
                             :hola_user_id => hola_user.id, :addressStreet1 => hola_user_address.building_name, :addressStreet2 => hola_user_address.street,
                             :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name)
 
-      cookies.signed[:user_mobile] = {value: hola_user.phoneNumber, expires: 1.year.from_now} if hola_user
+    @orders_by_meal_type = {}
+
+    cart_meal_types.each do |meal_type|
+
+      time_slot = case meal_type
+      when 'Lunch'
+      session['lt']
+      when 'Evening Snacks'
+        session['et']
+      when 'Dinner'
+        session['dt']
+      else
+        'Now'
+      end
+      order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular',
+                        :hola_user_id => hola_user.id, :addressStreet1 => hola_user_address.building_name, :addressStreet2 => hola_user_address.street,
+                        :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no,
+                        :name => hola_user.name, parent_order_id: @order.id, delivery_slot: time_slot)
+
+
       session[:cart].each do |item|
         item.each do |item_id, item_attr|
+          next if item_attr['meal_type'] != meal_type
           cooking_today  = CookingToday.find(item_id)
-          if cooking_today.not_orderable?
-            session[:cart] = nil
-            redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
-          end
+          # if cooking_today.not_orderable?
+          #   return "NotOrderableItem" #clean_up_orders(orders_by_meal_type)
+          # end
           food_item = cooking_today.food_item
-          if !@order.blank?
-            menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
+          if !order.blank?
+            menu = OrderedMenu.create(:order_id => order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
                                       :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
                                       :rate => item_attr['price'])
+
           end
         end
       end
+      order.update_attributes(:total => (OrderedMenu.calculate_total(order)))
+      @orders_by_meal_type.merge!(meal_type => order)
+
+    end
+    "OK"
+  end
+
+  def payment_gateway
+
+    hola_user = hola_current_user#Order.save_user(params)
+    hola_user_address = hola_user.hola_user_addresses.find_by_id(params[:address_id])
+    if hola_user_address.blank?
+      redirect_to "/add-address" and return
+    else
+      cart_meal_types = session[:cart].collect{|i| i.values.collect{|v| v['meal_type']}}.flatten.uniq
+      if cart_meal_types.length > 1
+        response = create_multi_meal_order(cart_meal_types, hola_user, hola_user_address)
+        if response != "OK"
+          @orders_by_meal_type.each do |meal_type, order|
+            order.destroy
+          end
+          @order.destroy
+          session[:cart] = []
+          redirect_to("/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now.") and return
+        end
+      else
+        @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular',
+                            :hola_user_id => hola_user.id, :addressStreet1 => hola_user_address.building_name, :addressStreet2 => hola_user_address.street,
+                            :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name)
+
+        session[:cart].each do |item|
+          item.each do |item_id, item_attr|
+            cooking_today  = CookingToday.find(item_id)
+            if cooking_today.not_orderable?
+              session[:cart] = nil
+              redirect_to("/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now.") and return
+            end
+            food_item = cooking_today.food_item
+            if !@order.blank?
+              menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
+                                        :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
+                                        :rate => item_attr['price'])
+            end
+          end
+        end
+      end
+      cookies.signed[:user_mobile] = {value: hola_user.phoneNumber, expires: 1.year.from_now} if hola_user
+
       @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)))
       @footer = "false"
       #@@cart_items = view_context.collect_items(session[:cart])
@@ -111,14 +177,6 @@ class Cms::OrdersController < Cms::ContentBlockController
         end
         cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
       end
-      # @@cart_items.each do |item_id, quantity|
-      #   cooking_today  = CookingToday.find(item_id)
-      #   if cooking_today.not_orderable?
-      #     session[:cart] = nil
-      #     redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
-      #   end
-      #   cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
-      # end
     end
     respond_to do |format|
       format.html {render :layout => 'application'}

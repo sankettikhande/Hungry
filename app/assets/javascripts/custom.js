@@ -36,6 +36,7 @@ $(document).ready(function(){
     $('.time-slots span').click(function(){
       $(this).parent().find('.o-time').removeClass('selected');
       $(this).addClass('selected');
+      $("#"+$(this).data('meal_type')).val($(this).html())
     });
 
     // $('.about-content').on('click', function(){
@@ -269,7 +270,6 @@ $(document).ready(function(){
 
     $("#submit-order-button").click(function(e){
         $("#submit_order").submit();
-
     })
     $("#submit_order input").focus(function(){
         $("#submit_order input").removeClass('active');

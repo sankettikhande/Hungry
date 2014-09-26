@@ -28,6 +28,7 @@ class Order < ActiveRecord::Base
   before_save :ensure_order_not_canceled, :if => Proc.new {|o| o.order_status_changed? and o.order_status_was == "Canceled"}
   before_save :ensure_order_not_dispatched, :if => Proc.new {|o| o.order_status_changed? and o.order_status_was == "Dispatched"}
   before_save :update_timestamps, :if => :order_status_changed?
+  after_save :mark_sub_orders, :if => Proc.new {|o| o.order_type == "MultiMeal" and o.order_status_changed? and o.confirmed?}
 
   @@order_statuses.each do |s|
     define_method "#{s.downcase}?" do
@@ -104,6 +105,12 @@ class Order < ActiveRecord::Base
     if self.order_status == "Canceled"
       errors.add(:base, "Order has been dispatched. So cant be Canceled.")
       return false
+    end
+  end
+
+  def mark_sub_orders
+    Order.where(parent_order_id: self.id).each do |o|
+      o.update_attributes(status: "Confirmed")
     end
   end
 

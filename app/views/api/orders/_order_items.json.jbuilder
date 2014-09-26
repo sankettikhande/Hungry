@@ -41,3 +41,4 @@ json.dispatched_at order.dispatched_at
 json.delivered_at order.delivered_at
 json.since_confirmed order.confirmed_at ? ((Time.now - order.confirmed_at)/60).floor : nil
 json.created_at order.created_at
+json.order_type order.order_type
