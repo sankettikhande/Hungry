@@ -92,9 +92,9 @@ class Cms::OrdersController < Cms::ContentBlockController
         item.each do |item_id, item_attr|
           next if item_attr['meal_type'] != meal_type
           cooking_today  = CookingToday.find(item_id)
-          # if cooking_today.not_orderable?
-          #   return "NotOrderableItem" #clean_up_orders(orders_by_meal_type)
-          # end
+          if cooking_today.not_orderable?
+            return "NotOrderableItem" #clean_up_orders(orders_by_meal_type)
+          end
           food_item = cooking_today.food_item
           if !order.blank?
             menu = OrderedMenu.create(:order_id => order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
