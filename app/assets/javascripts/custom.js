@@ -33,16 +33,26 @@ $(document).ready(function(){
     //     });
     // });
 
-    $('.about-content').on('click', function(){
-      $(this).closest('.square').find(".recipe-block").hide();
-      $(this).closest('.square').find(".recipe-about").show();
-      return false;
+    $('.time-slots span').click(function(){
+      $(this).parent().find('.o-time').removeClass('selected');
+      $(this).addClass('selected');
+      $("#"+$(this).data('meal_type')).val($(this).html())
     });
 
-     $('.opacityimg,.opacityborder').on('click', function(){
-      $(this).closest('.square').find(".recipe-about").hide();
-      $(this).closest('.square').find(".recipe-block").show();
-      return false;
+    // $('.about-content').on('click', function(){
+    //   $(this).closest('.square').find(".recipe-block").hide();
+    //   $(this).closest('.square').find(".recipe-about").show();
+    //   return false;
+    // });
+
+    //  $('.opacityimg,.opacityborder').on('click', function(){
+    //   $(this).closest('.square').find(".recipe-about").hide();
+    //   $(this).closest('.square').find(".recipe-block").show();
+    //   return false;
+    // });
+
+    $('.recipe-block').on('click', function(){
+        $(this).find('.dark-overlay').toggle()
     });
 
       $("#talk-us-form,#new_chef_request,#new_party_order").validationEngine({promptPosition : "topLeft"});
@@ -151,7 +161,7 @@ $(document).ready(function(){
         $.ajax({
                 'method': 'GET',
                 'url': url ,
-                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category },
+                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
                 'dataType': 'script'
             })
 
@@ -260,7 +270,6 @@ $(document).ready(function(){
 
     $("#submit-order-button").click(function(e){
         $("#submit_order").submit();
-
     })
     $("#submit_order input").focus(function(){
         $("#submit_order input").removeClass('active');
@@ -328,7 +337,6 @@ $(document).ready(function(){
         }
     });
 
-    
 
     $("#signature_form").validationEngine({
         'custom_error_messages': {

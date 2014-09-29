@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140915110335) do
+ActiveRecord::Schema.define(:version => 20140926153232) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -795,6 +795,8 @@ ActiveRecord::Schema.define(:version => 20140915110335) do
     t.integer  "reorder_id"
     t.integer  "original_order_id"
     t.datetime "confirmed_at"
+    t.string   "delivery_slot"
+    t.integer  "parent_order_id"
   end
 
   add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"

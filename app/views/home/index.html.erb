@@ -12,9 +12,8 @@
       <% end %>
       <% if @todays_menu %>
           <% CookingToday.meal_types.each do |meal_type| %>
-            <% next unless meal_available? (meal_type) %>
+            <%# next unless meal_available? (meal_type) %>
             <% meals_available = CookingToday.todays_menu_by_type(meal_type) %>
-
             <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
           <% end %>
 

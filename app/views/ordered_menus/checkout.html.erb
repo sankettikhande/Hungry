@@ -1,49 +1,41 @@
-  <div class="container-fluid back-white mb-4">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="container">
-        <ul class="booked-orders">
-          <li class="food-bill">
-            <span class="item-name">Meal</span>
-            <span class="item-edit">&nbsp;</span>
-            <span class="item-qty">Qty</span>
-            <span class="item-cost">Cost</span>
-            <span class="item-remove">&nbsp;</span>
-          </li>
-          <% total = [] %>
-          <% if session[:cart] %>
-              <% session[:cart].each do |todays_item| %>
-                  <% todays_item.each do |order_id, order_attrs| %>
-                      <li class="food-bill review_order_list" id="<%= order_id %>">
-                        <input type="hidden" id="menu_category_<%= order_id %>" value="<%= order_attrs['category']  %>" />
-                        <span class="item-name" data-toggle="modal" data-target="#item-modal" data-quantity="<%= order_attrs['quantity'] %>" style="cursor: pointer;" id="<%= order_id %>">
-                          <%= order_attrs['dish_name'] %>
-                        </span>
-                        <span class="item-edit" style="cursor: pointer;">
-                          <i class="fa fa-edit"></i>
-                        </span>
-                        <span class="item-qty"><%= order_attrs['quantity'] %></span>
-                        <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
-                        <span class="item-remove">
-                           <a href="#" data-item="<%= order_id %>"><i class="fa fa-times-circle"></i></a>
-                        </span>
-                        <% total << order_attrs['quantity'].to_i * order_attrs['price'].to_i %>
-
-                      </li>
-                  <% end %>
-              <% end %>
-          <% end %>
-          <li class="food-bill">
-            <span class="item-name">&nbsp;</span>
-            <span class="item-qty">Total</span>
-            <span class="item-cost" id="review_order_total"><%= total.inject(:+) %></span>
-          </li>
-        </ul>
-
-      </div>
-    </div>
+<div class="right-body">
+  <div class="container-fluid back-white seperator-b10 nopadding">
+    <ul class="booked-orders heading">
+      <li class="food-bill" style="border:0">
+        <span class="item-name">Meal</span>
+        <span class="item-qty">Qty</span>
+        <span class="item-cost">Cost</span>
+        <span class="item-remove">&nbsp;</span>
+      </li>
+    </ul>
   </div>
-</div> <!-- fluid container ends -->
+  <% total = [] %>
+  <% lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
+  <%= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "Now", slot_2: "12PM - 1PM", slot_3: "1PM - 2PM", slot_4: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
+
+  <% snack_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Evening Snacks"]}).compact %>
+  <%= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", slot_4: "6PM - 7PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
+
+  <% dinner_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Dinner"]}).compact %>
+  <%= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "7PM - 8PM", slot_2: "8PM - 9PM", slot_3: "9PM - 10PM", slot_4: "10PM - 11PM", total: total, default_slot: "7PM - 8PM"  if dinner_items.present? %>
+
+  <%# all_time_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["All Time Available"]}).compact %>
+  <%#= render "checkout_items", meal_type: "All Time Available", items: all_time_items, slot_1: "", slot_2: "", slot_3: "", slot_4: "", total: total  if all_time_items.present? %>
+
+
+  <ul class="booked-orders">
+                  <li class="food-bill">
+          <span class="item-name">&nbsp;</span>
+          <span class="item-qty">Total</span>
+          <span class="item-cost" id="review_order_total"><%= total.inject(:+) %></span>
+        </li>
+
+
+                </ul>
+
+</div> <!-- right-body div ends -->
+
+
 <div id="recipe-modal">
   <div class="modal fade" id="item-modal" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-sm">
@@ -158,11 +150,20 @@
           <div class='col-xs-12'>
             <div class='tap-text'>
               <p class='text-center' id="select_payment">
-                <a class='text-orange' id='submit-order-button' href='/add-address'>Continue</a>
+                <a class='text-orange' id='submit-order-button1' href='#'>Continue</a>
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      $("#submit-order-button1").click(function(){
+        // $(this).attr('href', "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val())
+        window.location = "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val()
+
+      })
+    </script>>
 <% end %>
+
+
