@@ -1,5 +1,12 @@
 var phoneRX = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
 var emailRX = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+var customUrl = "";
+
+if(window.location.host == "www.holachef.com" || window.location.host == "holachef.com")
+	customUrl = "http://reports.holachef.com/holachef.php";
+else
+	customUrl = "http://reports.holachef.com/qa/holachef.php";
+
 function validatefield(id,filterEX) {
     var a = document.getElementById(id).value;
     var filter = filterEX;
@@ -33,7 +40,7 @@ $( document ).ready(function() {
 	else {
 
 			 $.ajax({
-                      url: "http://reports.holachef.com/holachef.php",
+                      url: customUrl,
                       type : "post",
                       data: {
                                 name: name.val(),
@@ -79,7 +86,7 @@ $( document ).ready(function() {
 	else {
 			
 			$.ajax({
-                      url: "http://reports.holachef.com/holachef.php",
+                      url: customUrl,
                       type : "post",
                       data: {
                                 name: name.val(),
