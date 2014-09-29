@@ -16,6 +16,7 @@
     <script type="text/javascript" src="assets/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="assets/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/smooth-scroll.js"></script>
+    <script type="text/javascript" src="assets/desktop.js"></script>
   <script>
   var frame = document.getElementById("myframe").contentDocument.body;
   if(frame.offsetWidth > 800){
@@ -240,20 +241,20 @@
                 <h4 class="modal-title lato-i">contact us</h4>            
                 <p class="form-title">Please feel free to contact us.</p>
                 <div class="form-group">
-                  <input id="name" type="text" onKeyPress="return VinCheck(event);" class="form-control" placeholder="Name">
+                  <input id="cust_name" type="text"  class="form-control" placeholder="Name"> 
                 </div>
                 <div class="form-group">
-                  <input id="phno" type="tel" maxlength="12" onkeypress="return isNumberKey(event)" class="form-control" placeholder="Phone Number">
+                  <input id="cust_phno" type="tel" maxlength="12" class="form-control" placeholder="Phone Number">
                 </div>
                 <div class="form-group">
-                  <input id="email" type="email" class="form-control" placeholder="Enter your Email Id">
+                  <input id="cust_email" type="email" class="form-control" placeholder="Enter your Email Id">
                 </div>
-                            <div class="checkbox"><label><input type="checkbox">I'm Chef and want to work with Holachef.</label></div>
+                <div class="checkbox"><label><input type="checkbox" id="cust_chef">I'm Chef and want to work with Holachef.</label></div>
                 <div class="form-group">
-                  <textarea id="msg" class="form-control" rows="5" placeholder="Your Message"></textarea>
+                  <textarea id="cust_msg" class="form-control" rows="5" placeholder="Your Message"></textarea>
                 </div>
                 <div class="form-group text-center">
-                  <button type="button" class="btn btn-saffron" id="cform-submit-con" onclick="CheckContact();">Send Message</button>
+                  <button type="button" class="btn btn-saffron" id="cform-submit-con" >Send Message</button>
                 </div>
               </div>
               <div class="success-msg text-center">
@@ -297,19 +298,19 @@
                 <p class="form-title">Please complete the form for requirements.
                 <span class="make-block text-light">*For orders of 10 people or more.</span></p>
                 <div class="form-group">
-                  <input id="name1" type="text" onKeyPress="return VinCheck(event);" class="form-control" placeholder="Name">
+                  <input id="party_name" type="text" class="form-control" placeholder="Name">
                 </div>
                 <div class="form-group">
-                  <input id="phno1" onkeypress="return isNumberKey(event)" maxlength="12" type="tel" class="form-control" placeholder="Phone Number">
+                  <input id="party_phone" maxlength="12" type="tel" class="form-control" placeholder="Phone Number">
                 </div>
                 <div class="form-group">
-                  <input id="email1" type="email" class="form-control" placeholder="Enter your Email Id">
+                  <input id="party_email" type="email" class="form-control" placeholder="Enter your Email Id">
                 </div>
                 <div class="form-group">
-                  <textarea id="msg1" class="form-control" rows="5" placeholder="Special Instructions"></textarea>
+                  <textarea id="party_msg" class="form-control" rows="5" placeholder="Special Instructions"></textarea>
                 </div>
                 <div class="form-group text-center">
-                  <button type="button" class="btn btn-saffron" id="cform-submit" onclick="CheckParty();">Submit</button>
+                  <button type="button" class="btn btn-saffron" id="cform-submit" >Submit</button>
                 </div>
               </div>
               <div class="success-msg text-center">
