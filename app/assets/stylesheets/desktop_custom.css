@@ -44,7 +44,7 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 .hola-lg-navbar .container {position: relative;}
 .hola-lg-navbar .navbar-header {width:780px !important;float: left;position: absolute;left: 0}
 .navbar-brand {padding: 0;margin-left: 15px;}
-.top-nav {padding-top: 10px;width: 370px;left: 800px;position: absolute;}
+.top-nav {padding-top: 10px;width: 390px;left: 800px;position: absolute;}
 .top-nav li a {padding: 0 15px;line-height: 34px;color: #2b2a28;font-size: 16.49px;float: left;display: block;width: auto;}
 .nav>li>a:hover, .nav>li>a:focus {background: none;}
 .playstore-icon {width: 101px;height: 36px;margin-top: 0;padding-top: 0}
