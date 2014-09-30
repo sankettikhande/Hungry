@@ -21,8 +21,9 @@ $( document ).ready(function() {
 
 	var j = $(window).height();
 	$("#hungry").css("height", j);
+	$("#hungry").css("background-size", "100% "+j+"px");
 	$("#chk").css("width", $("#hungry").width()- 27);
-	$("#chk").css("height", $("#hungry").height() - 150);
+	$("#chk").css("height", $("#hungry").height() - 118);
 
 	$( "#cform-submit-con" ).click(function() {
 	var name = $("#cust_name");
