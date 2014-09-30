@@ -35,7 +35,7 @@
                </div>
                <ul class="nav navbar-nav navbar-right top-nav">
                  <li><a href="#hungry">I'm hungry</a></li>
-                 <li><a href="#">How it works?</a></li>
+                 <li><a data-target="#howitwork-modal" data-toggle="modal" class="hand-cursor">How it works?</a></li>
                  <li><a target="_blank" href="https://play.google.com/store/apps/details?id=com.holachef" class="playstore-icon"><img src="assets/playstore-logo.png" alt="Download"></a></li>             
                </ul>
          </div>
@@ -188,7 +188,7 @@
                 <li><a href="http://blog.holachef.com/" target="_blank">Blog</a></li>
                 <li><a data-target="#party-modal" data-toggle="modal" class="hand-cursor">Party Orders</a></li>
                 <li><a data-target="#policy-modal" data-toggle="modal" class="hand-cursor">Privacy Policy</a></li>
-                <li><a href="#">How it works?</a></li>
+                <li><a data-target="#howitwork-modal" data-toggle="modal" class="hand-cursor">How it works?</a></li>
               </ul>
             </div>
           </div>
@@ -243,16 +243,15 @@
           </div>
         </div>
       </div>
-        <div class="modal fade hc-modal" id="howitwork-modal">
+       <div class="modal fade hc-modal1" id="howitwork-modal">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <button class="close" data-dismiss="modal" type="button">&times;</button>
-            </div>
+            
             <div class="modal-body">
-              
-              <img src="assets/How it works_2.jpg" width="500px" height="500px;"/>
+              <button style="position: absolute;z-index: 1;margin-left: 97%;" class="close" data-dismiss="modal" type="button">×</button>
+              <img src="assets/HowitWork.png">
             </div>
+                    
             
           </div>
         </div>

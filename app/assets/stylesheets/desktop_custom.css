@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'latolight';
-    src: url('fonts/lato-lig-webfont.eot');
-    src: url('fonts/lato-lig-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/lato-lig-webfont.woff2') format('woff2'),
-         url('fonts/lato-lig-webfont.woff') format('woff'),
-         url('fonts/lato-lig-webfont.ttf') format('truetype'),
-         url('fonts/lato-lig-webfont.svg#latolight') format('svg');
+    src: url('../fonts/lato-lig-webfont.eot');
+    src: url('../fonts/lato-lig-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/lato-lig-webfont.woff2') format('woff2'),
+         url('../fonts/lato-lig-webfont.woff') format('woff'),
+         url('../fonts/lato-lig-webfont.ttf') format('truetype'),
+         url('../fonts/lato-lig-webfont.svg#latolight') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -13,12 +13,12 @@
 
 @font-face {
     font-family: 'latoregular';
-    src: url('fonts/lato-reg-webfont.eot');
-    src: url('fonts/lato-reg-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/lato-reg-webfont.woff2') format('woff2'),
-         url('fonts/lato-reg-webfont.woff') format('woff'),
-         url('fonts/lato-reg-webfont.ttf') format('truetype'),
-         url('fonts/lato-reg-webfont.svg#latoregular') format('svg');
+    src: url('../fonts/lato-reg-webfont.eot');
+    src: url('../fonts/lato-reg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/lato-reg-webfont.woff2') format('woff2'),
+         url('../fonts/lato-reg-webfont.woff') format('woff'),
+         url('../fonts/lato-reg-webfont.ttf') format('truetype'),
+         url('../fonts/lato-reg-webfont.svg#latoregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -38,11 +38,13 @@ ul,ol,dd,menu {margin: 0;padding: 0;list-style-type: none;}
 
 body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 
+.container {width: 1170px !important;max-width: 1170px;min-width: 1170px;}
+
 .hola-lg-navbar {background: #fff;margin-bottom: 0;height: 57px;box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-webkit-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-moz-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-o-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-ms-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);}
 .hola-lg-navbar .container {position: relative;}
 .hola-lg-navbar .navbar-header {width:780px !important;float: left;position: absolute;left: 0}
 .navbar-brand {padding: 0;margin-left: 15px;}
-.top-nav {/*padding-top: 10px;width: 370px;*/left: 800px;position: absolute;}
+.top-nav {padding-top: 10px;width: 370px;left: 800px;position: absolute;}
 .top-nav li a {padding: 0 15px;line-height: 34px;color: #2b2a28;font-size: 16.49px;float: left;display: block;width: auto;}
 .nav>li>a:hover, .nav>li>a:focus {background: none;}
 .playstore-icon {width: 101px;height: 36px;margin-top: 0;padding-top: 0}
@@ -72,11 +74,11 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 .carousel-control.left,.carousel-control.right {background-image: none;width: 20px;}
 
 .iframe-container {position: relative;}
-.mobile-window {position: absolute;top: 57px;left: 14px;width: 478px;height: 744px;}
+.mobile-window {position: absolute;top: 57px;left:14px;width: 478px;height: 744px;}
 
 .table-container .table-top.lg-phone {height: 933px;}
 
-.table-container .table-top.lg-phone .iphone {background: url('iphone.png')no-repeat left top;width: 350px;height: 917px;left: 0;right: 0;z-index: 100;background-size: contain;margin-left: auto;margin-right: auto}
+.table-container .table-top.lg-phone .iphone {background: url('iphone.png')no-repeat left top;width: 320px;height: 557px;left: 0;right: 0;z-index: 100;background-size: contain;margin-left: auto;margin-right: auto}
 
 .social-wrapper {background: #fff;height: 309px;width: 100%;padding-top: 32px;}
 .social-wrapper h2 {font-size: 32px;margin-top: 0;font-family: 'latolight','Lato',Helvetica,Arial,Sans-serif;}
@@ -84,8 +86,8 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 h1 {font-size: 36px;margin: 0;font-family: 'latoregular','Lato',Helvetica,Arial,Sans-serif;}
 
 .testimo-text h6 {margin: 0;font-size: 22px;color: #2b2a28;margin-bottom: 24px;font-family: 'latolight','Lato',Helvetica,Arial,Sans-serif;}
-.testimo-text h6:before {content: '"';font-family: 'Lato',Arial, Helvetica, Sans-serif;padding-right: 4px;}
-.testimo-text h6:after {content: '"';font-family: 'Lato',Arial, Helvetica, Sans-serif;padding-left: 4px}
+.testimo-text h6:before {content: 'â€œ';font-family: 'Lato',Arial, Helvetica, Sans-serif;padding-right: 4px;}
+.testimo-text h6:after {content: 'â€';font-family: 'Lato',Arial, Helvetica, Sans-serif;padding-left: 4px}
 .testimo-text p {color: #6a6968;font-size: 18px;}
 
 
@@ -204,3 +206,32 @@ bottom: 0;
 .ques-list li.ques-item {display: block;width: 100%;font-size: 16px;color: #181818;line-height: 18px;}
 .ques-item span.ques-ans {width: 100%;display: block;font-size: 12px;color: #3b3b3b;margin-top: 8px;margin-bottom: 20px;}
 
+
+
+
+.validate{color:#f36c36;}
+
+.hc-modal1 {color: #414141}
+.hc-modal1 .modal-title {font-size: 30px;text-align: center;margin-bottom: 20px;}
+.hc-modal1 .modal-header {padding: 10px 15px 0;overflow: hidden;}
+.hc-modal1 .modal-body {padding:0;min-height: 497px;}
+.hc-modal1 .modal-dialog {width: 590px;margin: 30px auto;}
+.hc-modal1 .modal-dialog.wide-modal {width: 591px;}
+.hc-modal1 .modal-content {background: #c6c6c5;border-radius: 0;webkit-border-radius: 0;moz-border-radius: 0;-o-border-radius: 0;-ms-border-radius: 0;border:0;padding: 0 0px;}
+.hc-modal1 .modal-content .modal-header,.hc-modal .modal-content .modal-body,.hc-modal .modal-content .modal-footer {border:0;}
+.hc-modal1 .modal-footer {padding:10px 15px;border-top: none;}
+
+.hc-modal1 .modal-footer p {margin: 0;font-size: 15px;}
+
+.hc-modal1  .close {color: #262626;text-shadow:none;-webkit-text-shadow:none;-moz-text-shadow:none;-o-text-shadow:none;-ms-text-shadow:none;font-size: 26px;font-weight: normal;opacity: 1;filter:alpha(opacity=100);}
+
+
+.hc-modal1 .form-group {margin-bottom: 20px;}
+
+.hc-modal1 .btn {border-radius: 0;webkit-border-radius: 0;moz-border-radius: 0;-o-border-radius: 0;-ms-border-radius: 0;font-size: 20px;}
+
+.hc-modal1 .form-control {background:#e0dfdf;border-radius: 0;webkit-border-radius: 0;moz-border-radius: 0;-o-border-radius: 0;-ms-border-radius: 0;}
+
+.hc-modal1 input.form-control {height: 38px;}
+
+.hc-modal1 .checkbox {margin-top: 0;margin-bottom: 20px}
