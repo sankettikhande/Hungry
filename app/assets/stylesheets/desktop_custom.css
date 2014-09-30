@@ -86,8 +86,8 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 h1 {font-size: 36px;margin: 0;font-family: 'latoregular','Lato',Helvetica,Arial,Sans-serif;}
 
 .testimo-text h6 {margin: 0;font-size: 22px;color: #2b2a28;margin-bottom: 24px;font-family: 'latolight','Lato',Helvetica,Arial,Sans-serif;}
-.testimo-text h6:before {content: 'â€œ';font-family: 'Lato',Arial, Helvetica, Sans-serif;padding-right: 4px;}
-.testimo-text h6:after {content: 'â€';font-family: 'Lato',Arial, Helvetica, Sans-serif;padding-left: 4px}
+.testimo-text h6:before {content: '"';font-family: 'Lato',Arial, Helvetica, Sans-serif;padding-right: 4px;}
+.testimo-text h6:after {content: '"';font-family: 'Lato',Arial, Helvetica, Sans-serif;padding-left: 4px}
 .testimo-text p {color: #6a6968;font-size: 18px;}
 
 
