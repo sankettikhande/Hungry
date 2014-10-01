@@ -1,2 +1,2 @@
-messaging_default_url: "http://alerts.sinfini.com/api/web2sms.php?workingkey=16775ubj12184mkc53wat&sender=HLACHF"
+messaging_default_url: "http://enterprise.smsgupshup.com/GatewayAPI/rest?method=SendMessage&msg_type=TEXT&userid=2000111909&auth_scheme=plain&password=egHDJq&v=1.1&format=text"
 messaging_default_retrace_url: "http://alerts.sinfini.com/api/status.php?workingkey=16775ubj12184mkc53wat"
