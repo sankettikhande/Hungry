@@ -1064,9 +1064,9 @@ html{overflow-x:hidden}
 .n-dish-info>li {width: 100%;float: none;font-size: 0.75em;}
 
 .show-time {font-size:0.875em;}
-.n-dish-info .n-dish-title {font-size: 0.875em; color: #010101; cursor: default;text-transform: uppercase;line-height: 16px}
+.n-dish-info .n-dish-title {font-size: 0.875em; color: #010101; cursor: default;text-transform: capitalize;line-height: 16px}
 .n-dish-info .n-chef-name {font-size: 0.75em;color: #8d8d8d;text-transform: uppercase;line-height: 18px;}
-.n-dish-info .n-chef-name a {color: #8d8d8d;}
+.n-dish-info .n-chef-name a {color: #8d8d8d;text-transform: capitalize;}
 
 .n-dish-type {font-size: 0.5625em;}
 
@@ -1134,16 +1134,15 @@ html{overflow-x:hidden}
     font-size: 1em;
     font-weight: bold;
     text-transform: uppercase;
-    background: #e2e2e2;
+    color: #727171;
 }
 
 .category_header2{
     display: block;
     text-align: center;
     width: 100%;
-    font-size: 0.85em;
+    font-size: 0.80em;
     text-transform: uppercase;
-    background: #e2e2e2;
 }
 
 .recipe-header {position: relative;}
