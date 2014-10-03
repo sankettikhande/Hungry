@@ -59,10 +59,10 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 .table-wrap {width: 735px;margin-left: auto;margin-right: auto;position: relative;}
 .table-top {position: relative;top: 100px;right: 0;left: 0;width: 100%;height: 585px;}
 .table-item {position: absolute;right: auto;bottom: auto;top: 0}
-.iphone {background: url('iphone.png')no-repeat left top;width: 327px;height: 579px;margin-left: auto;margin-right: auto;left: 0;right: 0;z-index: 100}
-.fork {background: url('fork-img.png')no-repeat left top;width: 79px;height: 612px;left: 0;top: 60px;}
-.knife {background: url('knife-img.png')no-repeat left top;width: 71px;height: 648px;right: 0;top: 60px;}
-.spoon {background: url('spoon-img.png')no-repeat left top;width: 133px;height: 626px;top: 60px;right:-160px;}
+.iphone {background: url('/assets/iphone_new.png')no-repeat left top;width: 327px;height: 579px;margin-left: auto;margin-right: auto;left: 0;right: 0;z-index: 100}
+.fork {background: url('/assets/fork-img.png')no-repeat left top;width: 79px;height: 612px;left: 0;top: 60px;}
+.knife {background: url('/assets/knife-img.png')no-repeat left top;width: 71px;height: 648px;right: 0;top: 60px;}
+.spoon {background: url('/assets/spoon-img.png')no-repeat left top;width: 133px;height: 626px;top: 60px;right:-160px;}
 
 #testimo-slider {margin-top: 20px;}
 #testimo-slider {width: 790px;margin-left: auto;margin-right: auto;}
@@ -78,7 +78,7 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 
 .table-container .table-top.lg-phone {height: 933px;}
 
-.table-container .table-top.lg-phone .iphone {background: url('iphone.png')no-repeat left top;width: 370px;height: 557px;left: 0;right: 0;z-index: 100;background-size: contain;margin-left: auto;margin-right: auto}
+.table-container .table-top.lg-phone .iphone {background: url('/assets/iphone_new.png')no-repeat left top;width: 370px;height: 557px;left: 0;right: 0;z-index: 100;background-size: contain;margin-left: auto;margin-right: auto}
 
 .social-wrapper {background: #fff;height: 309px;width: 100%;padding-top: 32px;}
 .social-wrapper h2 {font-size: 32px;margin-top: 0;font-family: 'latolight','Lato',Helvetica,Arial,Sans-serif;}
