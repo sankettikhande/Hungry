@@ -12,7 +12,9 @@
  *= require bootstrap.min
  *= require font-awesome.min
  *= require custom
- *= require_tree .
- *= stub home
- *= stub superslides
+ *= require validationEngine.jquery
+ *= require jquery.tagit
+ *= require cms_custom
+ *= require jquery.mCustomScrollbar
+ *= require tagit.ui-zendesk
  */
