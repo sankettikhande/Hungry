@@ -25,11 +25,15 @@ $( document ).ready(function() {
 	$("#hungry").css("background-size", j*0.5658+"px "+j+"px");
 
 
-	$("#chk").css("width", $("#hungry").width()-(j*0.641*19/286));
-	$("#chk").css("height", 413*j/509);
+	$("#chk,.image-order").css("width", $("#hungry").width()-(j*0.641*19/286));
+	$("#chk,.image-order").css("height", 413*j/509);
 
-	$("#chk").css("left", (10*j/509)+"px");
-	$("#chk").css("top", (48*j/509)+"px");
+	$("#chk,.image-order").css("left", (12*j/509)+"px");
+	$("#chk,.image-order").css("top", (50*j/509)+"px");
+
+	$(".image-order").click(function() {
+		$(this).hide();
+	});
 
 	$( "#cform-submit-con" ).click(function() {
 	var name = $("#cust_name");
