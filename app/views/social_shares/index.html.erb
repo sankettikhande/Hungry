@@ -24,7 +24,10 @@
           <li class="in_iframe"><a href="#" onclick="parent.socail_click('https://twitter.com/intent/tweet?text=Check out this&url=http://www.holachef.com')"><i class="fa fa-twitter"></i></a></li>
 
         	<li><a href="/tell_friends"><i class="fa fa-envelope-o"></i></a></li>
-          <li><a href="/tell_friends"><i class="fa fa-pinterest"></i></a></li>
+          <li class="in_iframe" ><a href="#" onclick="parent.socail_click('http://www.pinterest.com/pin/create/button/?url=http://www.holachef.com&media=http://www.holachef.com/assets/hola-logo-xs.png&description=Holachef worth craving for')"><i class="fa fa-pinterest"></i></a></li>
+
+          <li class="in_browser" style="display:none"><a href="#" onclick="socail_click('http://www.pinterest.com/pin/create/button/?url=http://www.holachef.com&media=http://www.holachef.com/assets/hola-logo-xs.png&description=Holachef worth craving for')"><i class="fa fa-pinterest"></i></a></li>
+          
           <li><a href="/tell_friends"><i class="fa fa-instagram"></i></a></li>
 
 <!--           <li><a href="#"><span><img class="img-responsive center-block" src="/assets/cell-icon.png" alt="Call"></span></a></li>
@@ -34,7 +37,7 @@
     </div>
   </div>
 
-<%= render 'layouts/dynamik_footer', message: "Sharing is caring" %>
+<%= render 'layouts/dynamik_footer', message: "SHARING IS CARING !" %>
 </div>
 <!-- #wrap ends -->
 <%= content_for :bottom_content do %>

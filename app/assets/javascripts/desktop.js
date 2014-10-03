@@ -21,9 +21,15 @@ $( document ).ready(function() {
 
 	var j = $(window).height();
 	$("#hungry").css("height", j);
-	$("#hungry").css("background-size", "100% "+j+"px");
-	$("#chk").css("width", $("#hungry").width()- 27);
-	$("#chk").css("height", $("#hungry").height() - 118);
+	$("#hungry").css("width", j*0.5658);
+	$("#hungry").css("background-size", j*0.5658+"px "+j+"px");
+
+
+	$("#chk").css("width", $("#hungry").width()-(j*0.641*19/286));
+	$("#chk").css("height", 413*j/509);
+
+	$("#chk").css("left", (10*j/509)+"px");
+	$("#chk").css("top", (48*j/509)+"px");
 
 	$( "#cform-submit-con" ).click(function() {
 	var name = $("#cust_name");

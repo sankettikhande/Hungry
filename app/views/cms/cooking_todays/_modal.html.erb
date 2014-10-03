@@ -26,8 +26,8 @@
               </div>
           <% end %>
         </li>
-        <li class="recipe-title hidden"></li>
-        <li class="recipe-tags">
+        <li class="recipe-title"><%= @cooking_today.food_item.meal_info.name %> <img src="assets/<%= set_cooing_today_type(cooking_today) %>.png" alt="Cart" style="position: absolute;right: 10px;"></li>
+        <li class="recipe-tags hidden">
           <ul class="stock-value">
             <li class="recipe-stock"><span class="stock-count"><%= qty_left(@cooking_today).to_i - cart_menu[:quantity].to_i %></span> left</li>
             <li class="recipe-price"><span><%= cart_menu[:price] %></span>/-</li>
@@ -37,9 +37,9 @@
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1 text-center">
                   <ul class="set-order">
-                    <li class="order-less ctrl-btn pull-left"><button type="button" class="decrease-order-item" id="add-order-minus">-</button></li>
+                    <li class="order-less ctrl-btn pull-left"><button type="button" class="decrease-order-item" id="add-order-minus"><i class="fa fa-minus"></i></button></li>
                     <li class="order-count"> <p class="form-control looks-input" id="order-count"><%= cart_menu[:quantity].to_i %></p></li>
-                    <li class="order-more ctrl-btn pull-right"><button type="button" class="increase-order-item" id="add-order-plus">+</button></li>
+                    <li class="order-more ctrl-btn pull-right"><button type="button" class="increase-order-item" id="add-order-plus"><i class="fa fa-plus"></i></button></li>
                   </ul>
                   <p class="charged-cost">Rs. <span class="charged-value"><%= cart_menu[:price].to_i * cart_menu[:quantity].to_i %></p>
         </div>

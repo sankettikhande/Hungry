@@ -78,7 +78,7 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 
 .table-container .table-top.lg-phone {height: 933px;}
 
-.table-container .table-top.lg-phone .iphone {background: url('iphone.png')no-repeat left top;width: 320px;height: 557px;left: 0;right: 0;z-index: 100;background-size: contain;margin-left: auto;margin-right: auto}
+.table-container .table-top.lg-phone .iphone {background: url('iphone.png')no-repeat left top;width: 370px;height: 557px;left: 0;right: 0;z-index: 100;background-size: contain;margin-left: auto;margin-right: auto}
 
 .social-wrapper {background: #fff;height: 309px;width: 100%;padding-top: 32px;}
 .social-wrapper h2 {font-size: 32px;margin-top: 0;font-family: 'latolight','Lato',Helvetica,Arial,Sans-serif;}
@@ -235,3 +235,4 @@ bottom: 0;
 .hc-modal1 input.form-control {height: 38px;}
 
 .hc-modal1 .checkbox {margin-top: 0;margin-bottom: 20px}
+.ques-list{height:400px;overflow-y:scroll;}

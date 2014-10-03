@@ -21,7 +21,8 @@
 
 			  <% if qty_left(menu) > 0 %>
 
-                    <!--  <span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span><span class='text-leftitem'>&nbsp;Left</span>-->
+                   <div class="add-lens"><p class="text-center"><span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span><span class="text-leftitem">Left</span></p></div>
+
                     <% else %>
 					<div class="add-lens">
 						<p class="text-center">
@@ -50,7 +51,7 @@
                 <div class="add-lens">
                   <p class="text-center">
                     <% if qty_left(menu) > 0 %>
-                      <span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span><span class='text-leftitem'>Left</span>
+                      <div class="add-lens"><p class="text-center"><span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span><span class="text-leftitem">Left</span></p></div>
                     <% else %>
                       <span class='text-leftitem'>Sold</span><span class='text-leftitem'>Out!</span>
                     <% end %>
@@ -151,9 +152,9 @@
             <%# if menu.orderable? %>
               <div class="col-xs-6 col-hola-2">
                   <ul class="set-order">
-                    <li class="order-less ctrl-btn pull-left"><button type="button" class="decrease-order-item" data-available-quantity="<%= qty_left(menu).to_i %>">-</button></li>
+                    <li class="order-less ctrl-btn pull-left"><button type="button" class="decrease-order-item" data-available-quantity="<%= qty_left(menu).to_i %>"><i class="fa fa-minus"></i></button></li>
                     <li class="order-count"><input type="text" value="<%= cart_menu[:quantity].to_i %>" class="quantity" readonly></li>
-                    <li class="order-more ctrl-btn pull-right"><button type="button" class="increase-order-item" data-available-quantity="<%= qty_left(menu).to_i%>">+</button></li>
+                    <li class="order-more ctrl-btn pull-right"><button type="button" class="increase-order-item" data-available-quantity="<%= qty_left(menu).to_i%>"><i class="fa fa-plus"></i></button></li>
                   </ul>
               </div>
               <div class="col-xs-3 col-hola-3">
