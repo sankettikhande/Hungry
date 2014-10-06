@@ -2,9 +2,9 @@
   <div class="container-fluid back-white seperator-b10 nopadding">
     <ul class="booked-orders heading">
       <li class="food-bill" style="border:0">
-        <span class="item-name">Meal</span>
-        <span class="item-qty">Qty</span>
-        <span class="item-cost">Cost</span>
+        <span class="item-name">MEAL</span>
+        <span class="item-qty">QTY</span>
+        <span class="item-cost">COST</span>
         <span class="item-remove">&nbsp;</span>
       </li>
     </ul>
@@ -23,15 +23,35 @@
   <%#= render "checkout_items", meal_type: "All Time Available", items: all_time_items, slot_1: "", slot_2: "", slot_3: "", slot_4: "", total: total  if all_time_items.present? %>
 
 
-  <ul class="booked-orders">
-                  <li class="food-bill">
-          <span class="item-name">&nbsp;</span>
-          <span class="item-qty">Total</span>
-          <span class="item-cost" id="review_order_total"><%= total.inject(:+) %></span>
-        </li>
-
-
-                </ul>
+<ul class="booked-orders backgroundLight">
+<li class="food-bill">
+<span class="item-name item-nameP">&nbsp;</span>
+<span class="item-qty item-qtyP text-total">Total</span>
+<span class="item-cost text-total1" id="review_order_total"><%= total.inject(:+) %></span>
+</li>
+</ul>
+<ul class="booked-orders backgroundLight2 top-Space">
+<li class="food-bill">
+        <input type="text" class="discountCoupon" placeholder="Enter new coupon code" value="">
+        <button type="submit" class="btn btn-saffron discountCouponBtn">Apply</button>
+    </div>
+</li>
+</ul>
+<ul class="booked-orders backgroundLight1 opaK top-Space">
+<li class="food-bill">
+<span class="item-name item-nameP">&nbsp;</span>
+<span class="item-qty item-qtyP text-total">Discounted Amount</span>
+<span class="item-cost text-total1" id="review_order_total">250</span>
+<span class="item-edit" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>
+</li>
+</ul>
+<ul class="booked-orders backgroundLight1 top-Space">
+<li class="food-bill">
+<span class="item-name item-nameP">&nbsp;</span>
+<span class="item-qty item-qtyP text-total opaK">Total Amount to be Paid</span>
+<span class="item-cost text-total text-bold" id="review_order_total">250</span>
+</li>
+</ul>
 
 </div> <!-- right-body div ends -->
 
@@ -163,7 +183,7 @@
         window.location = "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val()
 
       })
-    </script>>
+    </script>
 <% end %>
 
 

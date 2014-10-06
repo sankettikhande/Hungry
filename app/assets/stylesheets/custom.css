@@ -544,17 +544,27 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 
 
 /**** Review Orders Page *******/
-
+.opaK{opacity: 0.8;}
+.backgroundLight{background-color: #d4d3d3 !important;padding: 0px 20px !important;}
+.backgroundLight1{background-color: #d4d3d3 !important;padding: 0px 20px !important;}
+.backgroundLight2{background-color: #fff !important;padding: 0px 20px !important;}
+.text-total{color: #6a6969;text-transform: uppercase;font-size: 1.1em;}
+.text-total1{color: #8d8d8d !important;text-transform: uppercase;font-size: 1.1em;}
+.top-Space{margin-top: 15px;}
+.discountCoupon{width: 90%;outline: none;padding: 5px;box-shadow: none;border:1px solid #d3c9b5;height: 35px;}
 .booked-orders {padding: 15px 0 20px;display: block;float:left;width: 100%;background: #fff}
-.booked-orders li.food-bill {display: block;width: 100%;font-family: 'robotobold',Sans-serif;padding: 0.5em 0 0;float: left;font-size: 1em;}
-.booked-orders li.food-bill:first-child span {font-family: 'robotoregular',Sans-serif;border-bottom: 3px double #d3c9b5;padding-bottom: 0.3em;}
+.booked-orders li.food-bill {display: block;width: 100%;font-family: Sans-serif;padding: 0.5em 0 0;float: left;font-size: 1em;}
+.booked-orders li.food-bill {border-top:2px solid #d3c9b5;}
+.booked-orders li.food-bill:first-child {border:none;padding-bottom: 0.3em;}
 .booked-orders li.food-bill span {display: inline-block;float: left;padding-left: 3px;padding-right: 3px}
-.booked-orders li.food-bill span.item-name {width:59%;text-transform: capitalize;text-align: left;}
-.booked-orders li.food-bill span.item-qty {width:16.66666667%;text-align: right;}
-.booked-orders li.food-bill span.item-cost {width:16.66666667%;text-align: right;}
-.booked-orders li.food-bill span.item-edit {width:5%;text-align: right;}
+.booked-orders li.food-bill span.item-name {width:59%;text-transform: capitalize;text-align: left;color: #6a6969;text-transform: uppercase;font-size: 1.1em;}
+.booked-orders li.food-bill span.item-qty {width:16.66666667%;text-align: right;color: #6a6969;}
+.booked-orders li.food-bill span.item-cost {width:16.66666667%;text-align: right;color: #6a6969;}
+.booked-orders li.food-bill span.item-edit {width:5%;text-align: right;color: #ff8800;}
 .booked-orders li.food-bill span.item-remove {width:2%;text-align: right;}
-.booked-orders li.food-bill span.item-remove a {color:#333;}
+.booked-orders li.food-bill span.item-remove a {color:#ff8800;}
+li.time-zone span.order-when,li.time-zone span.order-what {color: #6a6969;font-size: 1.2em;font-weight: bold;}
+li.time-slots span.o-time{color: #6a6969;font-size: 1.1em;font-weight: bold;}
 
 .booked-orders.heading {padding:0 10px;background: #d4d3d3;}
 .booked-orders.heading li.food-bill:first-child span {border-bottom: 0}
@@ -569,18 +579,7 @@ li.time-slots {background: #d4d3d3;color: #6a6969;font-size: 0.8em;padding: 4px 
 li.time-slots span {width: 25%;float: left;display: inline-block;cursor: pointer;padding: 0 2px;}
 li.time-slots span.selected {color: #2b2a29;}
 li.time-slots span+span {border-left: 1px solid #6a6969;}
-
-
-
-
-
-
-
-
-
 .text-bold{font-weight: bold;}
-.booked-orders li.food-bill:last-child {border-top:3px double #d3c9b5;margin-top: 5px;}
-
 .show-promo {width: 100%;float: left;display: block;}
 .show-promo li.promo {width: 100%;text-align: left;color: #333;font-family: 'robotobold',Sans-serif;padding: 6px 0;margin-top: 2px;margin-bottom: 2px;background: #fff}
 .show-promo li.promo span.add-promo {text-align: right;float: right;}
@@ -825,6 +824,11 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
         display: block;
         margin-right:0;}
 
+}
+@media (max-width: 768px) {
+    .discountCoupon {width: 80%;}
+    .booked-orders li.food-bill span.item-nameP {width: 0px;}
+    .booked-orders li.food-bill span.item-qtyP {width: 70%;}
 }
 
 @media (max-width: 380px) {
