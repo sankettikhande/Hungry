@@ -41,7 +41,7 @@
 <li class="food-bill">
 <span class="item-name item-nameP">&nbsp;</span>
 <span class="item-qty item-qtyP text-total">Discounted Amount</span>
-<span class="item-cost text-total1" id="review_order_total">250</span>
+<span class="item-cost text-total1" id="review_order_total">100</span>
 <span class="item-edit" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>
 </li>
 </ul>
@@ -49,7 +49,7 @@
 <li class="food-bill">
 <span class="item-name item-nameP">&nbsp;</span>
 <span class="item-qty item-qtyP text-total opaK">Total Amount to be Paid</span>
-<span class="item-cost text-total text-bold" id="review_order_total">250</span>
+<span class="item-cost text-total text-bold" id="review_order_total"><%= total.inject(:+) %></span>
 </li>
 </ul>
 

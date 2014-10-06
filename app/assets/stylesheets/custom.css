@@ -554,7 +554,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 .discountCoupon{width: 90%;outline: none;padding: 5px;box-shadow: none;border:1px solid #d3c9b5;height: 35px;}
 .booked-orders {padding: 15px 0 20px;display: block;float:left;width: 100%;background: #fff}
 .booked-orders li.food-bill {display: block;width: 100%;font-family: Sans-serif;padding: 0.5em 0 0;float: left;font-size: 1em;}
-.booked-orders li.food-bill {border-top:2px solid #d3c9b5;}
+.booked-orders li.food-bill {border-top:1px solid #d3c9b5;}
 .booked-orders li.food-bill:first-child {border:none;padding-bottom: 0.3em;}
 .booked-orders li.food-bill span {display: inline-block;float: left;padding-left: 3px;padding-right: 3px}
 .booked-orders li.food-bill span.item-name {width:59%;text-transform: capitalize;text-align: left;color: #6a6969;text-transform: uppercase;font-size: 1.1em;}
