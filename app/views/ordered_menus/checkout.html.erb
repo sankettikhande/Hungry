@@ -11,7 +11,7 @@
   </div>
   <% total = [] %>
   <% lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
-  <%= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "Now", slot_2: "12PM - 1PM", slot_3: "1PM - 2PM", slot_4: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
+  <%= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "11AM - 12PM", slot_2: "12PM - 1PM", slot_3: "1PM - 2PM", slot_4: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
 
   <% snack_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Evening Snacks"]}).compact %>
   <%= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", slot_4: "6PM - 7PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
@@ -182,8 +182,6 @@
         // $(this).attr('href', "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val())
         window.location = "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val()
 
-      })
+      });
     </script>
 <% end %>
-
-

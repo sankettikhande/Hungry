@@ -564,7 +564,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 .booked-orders li.food-bill span.item-remove {width:2%;text-align: right;}
 .booked-orders li.food-bill span.item-remove a {color:#ff8800;}
 li.time-zone span.order-when,li.time-zone span.order-what {color: #6a6969;font-size: 1.2em;font-weight: bold;}
-li.time-slots span.o-time{color: #6a6969;font-size: 1.1em;font-weight: bold;}
+li.time-slots span.o-time{color: #6a6969;font-size: 1.1em;font-weight: bold;padding: 5px 0;}
 
 .booked-orders.heading {padding:0 10px;background: #d4d3d3;}
 .booked-orders.heading li.food-bill:first-child span {border-bottom: 0}
@@ -575,9 +575,9 @@ li.time-zone .order-what {margin-left: 2px;}
 .open-bracket:before {content: '(';}
 .close-bracket:after {content: ')'}
 li.time-set {color: #2b2a29;font-size: 0.78em;padding:2px 0 5px;}
-li.time-slots {background: #d4d3d3;color: #6a6969;font-size: 0.8em;padding: 4px 0;overflow: hidden;}
+li.time-slots {background: #d4d3d3;color: #6a6969;font-size: 0.8em;padding: 0;overflow: hidden;}
 li.time-slots span {width: 25%;float: left;display: inline-block;cursor: pointer;padding: 0 2px;}
-li.time-slots span.selected {color: #2b2a29;}
+li.time-slots span.selected {color: #2b2a29;background-color: #ff8800;}
 li.time-slots span+span {border-left: 1px solid #6a6969;}
 .text-bold{font-weight: bold;}
 .show-promo {width: 100%;float: left;display: block;}
