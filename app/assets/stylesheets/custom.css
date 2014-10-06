@@ -826,9 +826,9 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 
 }
 @media (max-width: 768px) {
-    .discountCoupon {width: 80%;}
+    .discountCoupon {width: 73%;}
     .booked-orders li.food-bill span.item-nameP {width: 0px;}
-    .booked-orders li.food-bill span.item-qtyP {width: 70%;}
+    .booked-orders li.food-bill span.item-qtyP {width: 75%;}
 }
 
 @media (max-width: 380px) {
