@@ -237,8 +237,8 @@ bottom: 0;
 .hc-modal1 .checkbox {margin-top: 0;margin-bottom: 20px}
 .ques-list{height:400px;overflow-y:scroll;}
 .image-order{position: absolute;cursor: pointer;}
-.overlayMouse {position: fixed;width: 100%;height: 100%;margin: 0;top: 0;left: 0;color: #fff;z-index: 999999999;background-color: #f36c36;display: none;}
-.overlayMouse .hola-lg-navbar { background: #f36c36;border: none;box-shadow:none;}
+.overlayMouse {position: fixed;width: 100%;height: 100%;margin: 0;top: 0;left: 0;color: #fff;z-index: 999999999;background-color: #ff8800;display: none;opacity: 0.8;filter: alpha(opacity=80);}
+.overlayMouse .hola-lg-navbar { background: #ff8800;border: none;box-shadow:none;}
 .overlayMouse .overlayContent { margin-top: 150px;margin-left: 35%;}
 .overlayMouse .fa-phone { color: #f36c36;}
 .callText{margin-top: 25px;margin-left: 10px;font-family: 'latolight','Lato',Helvetica,Arial,Sans-serif;}
