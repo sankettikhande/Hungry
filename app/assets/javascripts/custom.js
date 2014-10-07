@@ -276,6 +276,11 @@ $(document).ready(function(){
         $(this).addClass('active');
     })
 
+    $('.discountEdit').on('click', function(){
+        $('.discountCoupon').val('');
+        $('.discountEditBox').show();
+    });
+
     var path = window.location.pathname.split('/')[1]
     if (path == "order-confirm") {
         var host = window.location.origin

@@ -112,7 +112,6 @@ class Cms::OrdersController < Cms::ContentBlockController
   end
 
   def payment_gateway
-
     hola_user = hola_current_user#Order.save_user(params)
     hola_user_address = hola_user.hola_user_addresses.find_by_id(params[:address_id])
     if hola_user_address.blank?
@@ -145,7 +144,7 @@ class Cms::OrdersController < Cms::ContentBlockController
             if !@order.blank?
               menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
                                         :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
-                                        :rate => item_attr['price'])
+                                        :rate => item_attr['discount_amount'])
             end
           end
         end
