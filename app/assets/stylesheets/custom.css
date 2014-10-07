@@ -1175,6 +1175,12 @@ html{overflow-x:hidden}
   vertical-align: middle;
   width: 100%;
 }
+.discount_ul{
+    display:none;
+}
+#coupon_validate_msg{
+    color: #f00
+}
 
 /*.text-leftitem{text-transform: uppercase;font-size:15px;}
 .rate{color:#ff8800;  font-size:18px;margin: 4px 0px;}*/
