@@ -20,6 +20,7 @@ Holachef::Application.routes.draw do
   match '/cms/food_items/load_chef_dishes'=>'Cms::food_items#load_chef_dishes'
 
   match '/create_signature_order'=>"Cms::orders#create_signature_order"
+  match '/check_coupon' => "ordered_menus#check_coupon_code", :as => :check_coupon
 
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
