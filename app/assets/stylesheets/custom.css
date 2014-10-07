@@ -1175,7 +1175,7 @@ html{overflow-x:hidden}
   vertical-align: middle;
   width: 100%;
 }
-.discount_ul{
+.discountEditBox{
     display:none;
 }
 #coupon_validate_msg{
