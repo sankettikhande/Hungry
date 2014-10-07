@@ -26,22 +26,25 @@
 <ul class="booked-orders backgroundLight">
 <li class="food-bill">
 <span class="item-name item-nameP">&nbsp;</span>
-<span class="item-qty item-qtyP text-total">Total</span>
+<span class="item-qty item-qtyP text-total">Total</span> <%#=total%>
 <span class="item-cost text-total1" id="review_order_total"><%= total.inject(:+) %></span>
 </li>
 </ul>
+
+
 <ul class="booked-orders backgroundLight2 top-Space">
 <li class="food-bill">
-        <input type="text" class="discountCoupon" placeholder="Enter new coupon code" value="">
-        <button type="submit" class="btn btn-saffron discountCouponBtn">Apply</button>
-    </div>
+  <div id ="coupon_validate_msg"></div>
+  <%= text_field_tag "discount_code",nil, placeholder: "Enter new coupon code",  class: "discountCoupon" %>
+  <%= submit_tag "Apply", id: "check_coupon", class: "btn btn-saffron discountCouponBtn"  %>
 </li>
 </ul>
-<ul class="booked-orders backgroundLight1 opaK top-Space">
+
+<ul class="booked-orders backgroundLight1 opaK top-Space discount_ul">
 <li class="food-bill">
 <span class="item-name item-nameP">&nbsp;</span>
 <span class="item-qty item-qtyP text-total">Discounted Amount</span>
-<span class="item-cost text-total1" id="review_order_total">100</span>
+<span class="item-cost text-total1 discount_span" id="review_order_total">200</span>
 <span class="item-edit" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>
 </li>
 </ul>
@@ -49,7 +52,7 @@
 <li class="food-bill">
 <span class="item-name item-nameP">&nbsp;</span>
 <span class="item-qty item-qtyP text-total opaK">Total Amount to be Paid</span>
-<span class="item-cost text-total text-bold" id="review_order_total"><%= total.inject(:+) %></span>
+<span class="item-cost text-total text-bold total_amount" id="review_order_total"><%= total.inject(:+) %></span>
 </li>
 </ul>
 
@@ -180,8 +183,25 @@
     <script type="text/javascript">
       $("#submit-order-button1").click(function(){
         // $(this).attr('href', "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val())
-        window.location = "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val()
+        window.location = "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val()+"&cc="+$("#discount_code").val()
 
       });
+       $("#check_coupon").click(function(){
+           if($("#review_order_total").text()==""){
+                alert("There is no item in cart.Please add item");
+           }
+           if($("#discount_code").val()==""){
+               $("#coupon_validate_msg").html("Please Enter the coupon code")
+           }
+           else{
+               var coupon_code = $("#discount_code").val();
+               var total_amt = $("#review_order_total").text();
+               $.ajax({
+                   url: "/check_coupon",
+                   data: {coupon_code: coupon_code, total_amount: total_amt }
+               });
+           }
+
+       })
     </script>
 <% end %>
