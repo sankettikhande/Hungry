@@ -20,7 +20,7 @@ class OrderedMenusController < ApplicationController
     if !params[:coupon_code].blank? && !params[:total_amount].blank?
       coupon = Coupon.find_by_coupon_code(params[:coupon_code])
       if coupon.blank?
-        @msg = "Wrong coupon code"
+        @msg = "Invalid coupon code"
       else
         ## check (coupon.no_of_coupons == coupon.no_of_used_coupons)
         discount = coupon.flat.blank? ? coupon.percentage : coupon.flat
