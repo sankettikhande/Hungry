@@ -4,6 +4,7 @@ class HolaUser < ActiveRecord::Base
   has_many :my_favorite_chefs
   has_many :my_favorite_recipes
   has_many :orders
+  has_and_belongs_to_many :coupons, :join_table => "hola_user_coupons", :foreign_key => "hola_user_id"
   attr_accessible :name, :phoneNumber
 
   validates :phoneNumber, uniqueness: true, presence: true

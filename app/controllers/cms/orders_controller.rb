@@ -145,6 +145,12 @@ class Cms::OrdersController < Cms::ContentBlockController
               menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
                                         :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
                                         :rate => item_attr['discount_amount'])
+              coupon = Coupon.find_by_id(item_attr["coupon_id"])
+              if !coupon.blank?
+               used_count = coupon.no_of_used_coupons.to_i + 1
+               Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
+               coupon.hola_users << hola_user
+              end
             end
           end
         end
