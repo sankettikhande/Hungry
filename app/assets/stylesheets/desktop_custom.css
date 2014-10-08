@@ -42,7 +42,7 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 
 .hola-lg-navbar {background: #fff;margin-bottom: 0;height: 57px;box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-webkit-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-moz-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-o-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-ms-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);}
 .hola-lg-navbar .container {position: relative;}
-.hola-lg-navbar .navbar-header {width:780px !important;float: left;position: absolute;left: 0}
+.hola-lg-navbar .navbar-header {width:780px !important;float: left;position: fixed;}
 .navbar-brand {padding: 0;margin-left: 15px;}
 .top-nav {padding-top: 10px;width: 505px;left: 750px;position: absolute;}
 .top-nav li a {padding: 0 15px;line-height: 34px;color: #2b2a28;font-size: 16.49px;float: left;display: block;width: auto;}
