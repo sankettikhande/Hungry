@@ -35,6 +35,15 @@ $( document ).ready(function() {
 		$(this).hide();
 	});
 
+	$('body').on({
+
+	'mouseenter':function(){
+	$('.overlayMouse').stop().fadeOut();
+	},'mouseleave':function(){
+	$('.overlayMouse').stop().fadeIn();
+	}
+	});
+
 	$( "#cform-submit-con" ).click(function() {
 	var name = $("#cust_name");
 	var phone = $("#cust_phno");

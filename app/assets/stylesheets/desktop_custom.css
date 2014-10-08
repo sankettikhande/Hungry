@@ -237,3 +237,11 @@ bottom: 0;
 .hc-modal1 .checkbox {margin-top: 0;margin-bottom: 20px}
 .ques-list{height:400px;overflow-y:scroll;}
 .image-order{position: absolute;cursor: pointer;}
+.overlayMouse {position: fixed;width: 100%;height: 100%;margin: 0;top: 0;left: 0;color: #fff;z-index: 999999999;background-color: #ff8800;display: none;}
+.overlayMouse .hola-lg-navbar { background: #ff8800;border: none;box-shadow:none;}
+.overlayMouse .overlayContent { margin-top: 150px;margin-left: 35%;}
+.overlayMouse .fa-phone { color: #ff8800;}
+.callText{margin-top: 25px;margin-left: 10px;font-family: 'latolight','Lato',Helvetica,Arial,Sans-serif;}
+.callText1{font-size: 15px;}
+.callText2{font-size: 30px;}
+.callText3{font-size: 15px;}
