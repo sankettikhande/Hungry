@@ -33,10 +33,11 @@ class OrderedMenusController < ApplicationController
           end
           @paid_amount = params[:total_amount].to_i -  @discount_amount.to_i
           @msg = "Valid coupon code"
-        end
-        session[:cart].each do |cart_item|
-          cart_item.each do |key, value|
-            value["discount_amount"] = @paid_amount
+          session[:cart].each do |cart_item|
+            cart_item.each do |key, value|
+              value["discount_amount"] = @paid_amount
+              value["coupon_id"]= coupon.id
+            end
           end
         end
       end
