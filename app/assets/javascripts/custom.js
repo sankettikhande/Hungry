@@ -54,6 +54,10 @@ $(document).ready(function(){
     $('.recipe-block').on('click', function(){
         $(this).find('.dark-overlay').toggle()
     });
+    $('.foodDesp').on('click', function(){
+        $(this).closest('.square').find('.dark-overlay').toggle()
+    });
+
 
       $("#talk-us-form,#new_chef_request,#new_party_order").validationEngine({promptPosition : "topLeft"});
       $("#new_hola_user_address").validationEngine({promptPosition : "bottomLeft"});
@@ -480,8 +484,8 @@ $(document).ready(function(){
     }
 
     $(".payment_mode").click(function(){
-        var paymentMode = $(this).attr('data-paymentMode');
-        var orderId = $(this).attr('data-orderId');
+        var paymentMode = $(this).attr('data-paymentmode');
+        var orderId = $(this).attr('data-orderid');
         $.ajax({
             'url' : '/submit_payment_form',
             'method': 'POST',

@@ -11,11 +11,11 @@
         <ul class="pay-options-radio">
         <li class="orange-check">
               <input name="pay-by" id="radio-cod" class="css-checkbox" type="radio">
-              <%= link_to "Cash/Card on Delivery", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" %>
+              <%= link_to "Cash/ Card on Delivery", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" , :class => 'payment_mode_color' %>
         </li>
         <li class="orange-check">
               <input name="pay-by" id="radio-nbanking" class="css-checkbox" type="radio">
-              <%= link_to "Netbanking", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'payment_mode' %>
+              <%= link_to "Netbanking", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'payment_mode payment_mode_color' %>
         </li>
       </ul>
 

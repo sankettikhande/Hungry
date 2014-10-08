@@ -95,7 +95,7 @@ body.modal-open {overflow: visible;}
 /*.modal{ overflow-y: hidden !important; } */
 
 body {background: #fff;padding-top: 54px;font-family: 'robotoregular',Sans-serif;padding-bottom: 60px !important;}
-
+.cursorP{cursor: pointer;}
 /** =Overwrite Bootstrap **/
 
 .container,.container-fluid {padding-left: 10px;padding-right: 10px}
@@ -544,6 +544,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 
 
 /**** Review Orders Page *******/
+.payment_mode_color,.payment_mode_color:hover{color: #6a6969;text-transform: uppercase;font-size: 1.1em;}
 .opaK{opacity: 0.8;}
 .backgroundLight{background-color: #d4d3d3 !important;padding: 0px 20px !important;}
 .backgroundLight1{background-color: #d4d3d3 !important;padding: 0px 20px !important;}
@@ -909,7 +910,7 @@ form {margin:0 !important;padding:0 !important;color:inherit !important;}
 
 #review_page_modal_logo{width: 50px;padding-top:5px;}
 
-#remove_dish .modal-body, #remove_last_dish .modal-body {color: #fe8802;text-align: center;}
+#remove_dish .modal-body, #remove_last_dish .modal-body, #holaAlert .modal-body {color: #fe8802;text-align: center;}
 form {margin:0 !important;padding:0 !important;color:inherit !important;}
 
 .st_twitter_custom{
@@ -921,12 +922,6 @@ form {margin:0 !important;padding:0 !important;color:inherit !important;}
     cursor:pointer;
 }
 .st_twitter_custom:hover {opacity:0.7;}
-
-
-
-
-
-
 
 .touch-sides {display: block;padding: 0 10px;margin: 0 -10px;background: #fff;overflow: hidden;}
 .tab-menubar {background: #fff;overflow: hidden;display: block;padding: 0;margin: 0;height: 39px;float: left;}
@@ -1068,7 +1063,7 @@ html{overflow-x:hidden}
 .n-dish-info>li {width: 100%;float: none;font-size: 0.75em;}
 
 .show-time {font-size:0.875em;}
-.n-dish-info .n-dish-title {font-size: 0.875em; color: #010101; cursor: default;text-transform: capitalize;line-height: 16px}
+.n-dish-info .n-dish-title {font-size: 0.875em; color: #010101; cursor: pointer;text-transform: capitalize;line-height: 16px}
 .n-dish-info .n-chef-name {font-size: 0.75em;color: #8d8d8d;text-transform: uppercase;line-height: 18px;}
 .n-dish-info .n-chef-name a {color: #8d8d8d;text-transform: capitalize;}
 
