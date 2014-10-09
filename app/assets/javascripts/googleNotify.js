@@ -1,7 +1,6 @@
 var pushNotification;
 
             function onDeviceReady() {  
-                alert("1");          
                 try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
@@ -49,7 +48,7 @@ var pushNotification;
             }
             // handle GCM notifications for Android
             function onNotification(e){
-                alert("3");
+                //alert("3");
                 switch( e.event )
                 {
                     case 'registered':
@@ -60,23 +59,25 @@ var pushNotification;
                         else
                             var customUrl = "http://reports.holachef.com/qa/android/register.php";
 
-                       alert(customUrl);
+                       //alert(customUrl);
                        var sendData ={}; 
                        sendData['regId'] =  e.regid;
                        if(document.cookie.indexOf('user_mobile') != -1)
                             sendData['mobile'] = getCookie('user_mobile');
 
-                        alert("ajax"+e.regid);
+                        //alert("ajax"+e.regid);
 
                         $.ajax({
                         type: "POST",
                         url: customUrl,
                         data: sendData,
                         success: function(data){
-                            alert(data);
+                            //alert(data);
+                            window.location='/mobile'
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown){
-                            alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                            //alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                            window.location='/mobile'
                         }
                         }); 
 					}
