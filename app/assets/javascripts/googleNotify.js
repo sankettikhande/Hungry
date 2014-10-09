@@ -57,19 +57,24 @@ var pushNotification;
                             var customUrl = "http://reports.holachef.com/android/register.php";
                         else
                             var customUrl = "http://reports.holachef.com/qa/android/register.php";
+
+                       alert(customUrl);
                        var sendData ={}; 
                        sendData['regId'] =  e.regid;
                        if(document.cookie.indexOf('user_mobile') != -1)
                             sendData['mobile'] = getCookie('user_mobile');
+
+                        alert("ajax"+e.regid);
+
                         $.ajax({
                         type: "POST",
                         url: customUrl,
                         data: sendData,
                         success: function(data){
-                            console.log(data);
+                            alert(data);
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown){
-                            console.log("Status: " + textStatus); alert("Error: " + errorThrown); 
+                            alert("Status: " + textStatus); alert("Error: " + errorThrown); 
                         }
                         }); 
 					}
