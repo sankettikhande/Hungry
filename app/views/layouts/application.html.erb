@@ -34,7 +34,10 @@
       <% if !@footer %>
           <%= render 'layouts/content_footer' %>
       <% end %>
+    <script type="text/javascript" src="assets/cordova.js"></script>  
     <%= javascript_include_tag "application"%>
+    <script type="text/javascript" src="assets/PushNotification.js"></script>
+    <script type="text/javascript" src="assets/googleNotify.js"></script>
     <%= render 'hola_session/login' %>
     <%= login_check %>
     <script type="text/javascript">
