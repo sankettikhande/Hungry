@@ -69,7 +69,7 @@ class Cms::OrdersController < Cms::ContentBlockController
                             :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name)
 
     @orders_by_meal_type = {}
-
+     meal_type_length = cart_meal_types.length
     cart_meal_types.each do |meal_type|
 
       time_slot = case meal_type
@@ -100,11 +100,19 @@ class Cms::OrdersController < Cms::ContentBlockController
             menu = OrderedMenu.create(:order_id => order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
                                       :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
                                       :rate => item_attr['price'])
-
+            coupon = Coupon.find_by_id(item_attr["coupon_id"])
+            if !coupon.blank?
+              @discount_amount = item_attr['discount_amount']
+              used_count = coupon.no_of_used_coupons.to_i + 1
+              Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
+              coupon.hola_users << hola_user
+            else
+              @discount_amount = 0
+            end
           end
         end
       end
-      order.update_attributes(:total => (OrderedMenu.calculate_total(order)))
+      order.update_attributes(:total => (OrderedMenu.calculate_total(order, @discount_amount, meal_type_length)))
       @orders_by_meal_type.merge!(meal_type => order)
 
     end
@@ -118,6 +126,8 @@ class Cms::OrdersController < Cms::ContentBlockController
       redirect_to "/add-address" and return
     else
       cart_meal_types = session[:cart].collect{|i| i.values.collect{|v| v['meal_type']}}.flatten.uniq
+      meal_type_length = cart_meal_types.length
+
       if cart_meal_types.length > 1
         response = create_multi_meal_order(cart_meal_types, hola_user, hola_user_address)
         if response != "OK"
@@ -142,18 +152,17 @@ class Cms::OrdersController < Cms::ContentBlockController
             end
             food_item = cooking_today.food_item
             if !@order.blank?
+              menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
+                                        :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
+                                        :rate => item_attr['price'])
               coupon = Coupon.find_by_id(item_attr["coupon_id"])
               if !coupon.blank?
-                menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
-                                          :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
-                                          :rate => item_attr['discount_amount'])
-               used_count = coupon.no_of_used_coupons.to_i + 1
-               Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
-               coupon.hola_users << hola_user
+                @discount_amount = item_attr['discount_amount']
+                used_count = coupon.no_of_used_coupons.to_i + 1
+                Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
+                coupon.hola_users << hola_user
               else
-                menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
-                                          :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
-                                          :rate => item_attr['price'])
+                @discount_amount = 0
               end
             end
           end
@@ -161,7 +170,7 @@ class Cms::OrdersController < Cms::ContentBlockController
       end
       cookies.signed[:user_mobile] = {value: hola_user.phoneNumber, expires: 1.year.from_now} if hola_user
 
-      @order.update_attributes(:total => (OrderedMenu.calculate_total(@order)))
+      @order.update_attributes(:total => (OrderedMenu.calculate_total(@order, @discount_amount, meal_type_length)))
       @footer = "false"
       #@@cart_items = view_context.collect_items(session[:cart])
 
