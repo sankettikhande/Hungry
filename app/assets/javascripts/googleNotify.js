@@ -53,13 +53,17 @@ var pushNotification;
                     case 'registered':
 					if ( e.regid.length > 0 )
 					{
+                        if(window.location.host == "www.holachef.com" || window.location.host == "holachef.com")
+                            var customUrl = "http://reports.holachef.com/android/register.php";
+                        else
+                            var customUrl = "http://reports.holachef.com/qa/android/register.php";
                        var sendData ={}; 
                        sendData['regId'] =  e.regid;
                        if(document.cookie.indexOf('user_mobile') != -1)
                             sendData['mobile'] = getCookie('user_mobile');
                         $.ajax({
                         type: "POST",
-                        url: 'http://reports.holachef.com/qa/android/register.php',
+                        url: customUrl,
                         data: sendData,
                         success: function(data){
                             console.log(data);
