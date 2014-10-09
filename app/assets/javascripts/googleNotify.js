@@ -1,6 +1,7 @@
 var pushNotification;
 
-            function onDeviceReady() {  
+            function onDeviceReady() { 
+                navigator.splashscreen.show(); 
                 try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
@@ -73,10 +74,12 @@ var pushNotification;
                         data: sendData,
                         success: function(data){
                             //alert(data);
+                            navigator.splashscreen.hide();
                             window.location='/mobile'
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown){
                             //alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                            navigator.splashscreen.hide();
                             window.location='/mobile'
                         }
                         }); 
