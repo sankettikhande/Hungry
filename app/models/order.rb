@@ -110,7 +110,7 @@ class Order < ActiveRecord::Base
 
   def mark_sub_orders
     Order.where(parent_order_id: self.id).each do |o|
-      o.update_attributes(status: "Confirmed")
+      o.update_attributes(order_status: "Confirmed")
     end
   end
 
