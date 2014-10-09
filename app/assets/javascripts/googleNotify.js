@@ -1,6 +1,7 @@
 var pushNotification;
 
-            function onDeviceReady() {            
+            function onDeviceReady() {  
+                alert("1");          
                 try 
 				{ 
                 	pushNotification = window.plugins.pushNotification;
@@ -14,7 +15,7 @@ var pushNotification;
 				{ 
 					txt="There was an error on this page.\n\n"; 
 					txt+="Error description: " + err.message + "\n\n"; 
-					console.log(txt); 
+					alert(txt); 
 				} 
             }
             
@@ -48,6 +49,7 @@ var pushNotification;
             }
             // handle GCM notifications for Android
             function onNotification(e){
+                alert("3");
                 switch( e.event )
                 {
                     case 'registered':
