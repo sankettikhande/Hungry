@@ -26,7 +26,7 @@
                     <% else %>
 					<div class="add-lens">
 						<p class="text-center">
-							<span class='text-leftitem'>Sold</span><span class='text-leftitem'>Out!</span>
+							<span class='text-leftitem'>Sold </span><span class='text-leftitem'>Out</span>
 						</p>
 					</div>
                     <% end %>
@@ -53,7 +53,7 @@
                     <% if qty_left(menu) > 0 %>
                       <div class="add-lens"><p class="text-center"><span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span><span class="text-leftitem">Left</span></p></div>
                     <% else %>
-                      <span class='text-leftitem'>Sold</span><span class='text-leftitem'>Out!</span>
+                      <span class='text-leftitem'>Sold </span><span class='text-leftitem'>Out</span>
                     <% end %>
                   </p>
                 </div>

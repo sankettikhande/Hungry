@@ -603,7 +603,7 @@ li.time-slots span+span {border-left: 1px solid #6a6969;}
 
 .del-details li.del-d {width: 100%;float: left;display: inline-block;padding:6px 1px 3px}
 .del-details li.del-warning {font-size: 12px;}
-input.lower-only{border: 1px solid #bcbcbc;width: 100%;outline: none;padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;font-size: 14px;}
+input.lower-only{border: 1px solid #ccc;width: 100%;outline: none;padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;font-size: 14px;}
 input.lower-only:focus {border-color:#8b8a89;}
 .del-details li.del-d label {font-weight: normal;vertical-align: top;font-family: 'robotoregular',Sans-serif;font-size: 1.125em}
 .del-details li.del-d label input[type="checkbox"] {margin-right: 4px;}
@@ -652,8 +652,8 @@ p.text-orangeS{color: #ff9900;font-size: 1.2em;font-weight: bold;}
 
 .footer {position: fixed;bottom: 0;left: 0;right: 0;border-top: 1px solid #ffbb33;height: 50px;background: #ff8800;z-index: 10;width: 100%;}
 .footer a {color: #fff !important;}
-.footer .tap-text p{font-size: 1.4em;line-height: 50px;font-family: 'robotoregular',Sans-serif;}
-.footer .tap-text p a {cursor: pointer}
+.footer .tap-text p{font-size: 1.4em;line-height: 50px;font-family: 'robotoregular',Sans-serif;font-weight: normal;}
+.footer .tap-text p a {cursor: pointer;text-transform: uppercase;}
 
 .footer .tap-text p a:hover {text-decoration: none;}
 
@@ -1027,7 +1027,7 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .address-table tbody td {border-top: 0;vertical-align: middle !important;}
 .address-table tbody td.a-radio {text-align: center;}
 /*.address-table tbody td label {vertical-align: middle; display: inline-block;font-weight: normal;margin-bottom: 0;}
-*/.address-table tbody td label p {margin-bottom: 0;}
+*/.address-table tbody td label p {margin-bottom: 0;color: #8d8d8d;}
 
 .radio-bar {padding: 10px 6px;margin-top: 10px;background: #fff;width: 100%;display: block;overflow: hidden;}
 .radio-bar label {font-weight: normal;}
@@ -1096,7 +1096,7 @@ html{overflow-x:hidden}
 .set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 30px;margin-top: 2px;}
 .new-cart-icon img {float: right;margin-top: 3px;}
 
-.charged-cost {margin: 15px 0 5px;color: #ff9900;font-family: 'robotobold',Helvetica,Sans-serif;font-size: 1.3em;}
+.charged-cost {margin:0;color: #ff9900;font-family: 'robotobold',Helvetica,Sans-serif;font-size: 1.3em;}
 
 .order-count {font-weight: bold;}
 .prev-order-wrapper {margin-top: 10px;}
@@ -1176,9 +1176,6 @@ html{overflow-x:hidden}
   display: inline-block;
   vertical-align: middle;
   width: 100%;
-}
-.discountEditBox{
-    display:none;
 }
 #coupon_validate_msg{
     color: #f00

@@ -11,7 +11,7 @@ class Cms::PartyOrdersController < Cms::ContentBlockController
   def create_party_orders
     @party_order = PartyOrder.new(params[:party_order])
     if @party_order.save
-      redirect_to "/party_orders", notice: "Thanks, We have received your request, Our executive will reach you out with in next 24 Hrs."
+      redirect_to "/party_orders", notice: "Thanks for your query ! We will get in touch with you very soon."
     else
       render 'party_orders'
     end
