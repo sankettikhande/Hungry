@@ -232,6 +232,7 @@ $(document).ready(function(){
         var date = new Date();
         var menu_qty = parseInt($("#order-count").html(),10);
         var menu_price = parseInt($(".modal-body li.recipe-price span").html(),10);
+        var discount = $(".discount_span").html(0);
         var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
         if(parseInt($("#order-count").html()) > 0){
             $.ajax({
