@@ -17,7 +17,8 @@
       <ul class="booked-orders">
         <% items.each do |todays_item| %>
           <% todays_item.each do |order_id, order_attrs| %>
-            <li class="food-bill review_order_list" id="<%= order_id %>">
+            <%= hidden_field_tag "#{meal_type.downcase.gsub(' ', '_')}_slot", "#{meal_type}_slot" %>
+            <li class="food-bill review_order_list item_<%= order_id %>" id="<%= order_id %>">
               <input type="hidden" id="menu_category_<%= order_id %>" value="<%= order_attrs['category']  %>" />
               <span class="item-name" data-toggle="modal" data-target="#item-modal" data-quantity="<%= order_attrs['quantity'] %>" style="cursor: pointer;" id="<%= order_id %>">
                 <%= order_attrs['dish_name'] %>
