@@ -5,14 +5,14 @@
         <form data-async="true" data-target="msg" action= "/hola_session" method="post" id="hola_session">
           <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title text-center">Mobile Number Needed</h4>
+            <button data-dismiss="modal" class="btn-close pull-right">×</button>
           </div>
           <div class="modal-body">
-            <p class="text-center">We need your mobile number</p>
+            <h4 class="modal-titleA text-center">SIGN IN</h4>
+            <p class="modal-titleB text-center">We need your Mobile Number</p>
               <div class="row">
                 <div class="col-xs-3 form-group">
-                  <label class="control-label" style="vertical-align:middle;margin-bottom:-10px;">Name</label>
+                  <label class="control-label text-6" style="vertical-align:middle;margin-bottom:-10px;">Name</label>
                 </div>
                 <div class="col-xs-9 form-group">
                   <%= text_field_tag :name, '', class: "form-control validate[required]", placeholder: "Name", "data-prompt-position" => "bottomLeft"  %>
@@ -20,7 +20,7 @@
               </div>
             <div class="row">
               <div class="col-xs-3 form-group">
-                <label class="control-label" style="vertical-align:middle;margin-bottom:-10px;">Mobile</label>
+                <label class="control-label text-6" style="vertical-align:middle;margin-bottom:-10px;">Mobile</label>
               </div>
               <div class="col-xs-9 form-group">
                 <%= text_field_tag :mobile, '', class: "form-control validate[required,custom[integer],maxSize[11], minSize[10]]", placeholder:"10 digit mobile number", maxlength: 11, "data-prompt-position" => "bottomLeft" %>
@@ -30,8 +30,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="submit" id="login_otp_sms_button" class="btn btn-primary">Submit</button>
+           <!--  <button type="button" class="btn btn-saffron" data-dismiss="modal">Cancel</button> -->
+            <button type="submit" id="login_otp_sms_button" class="btn btn-saffron">Submit</button>
           </div>
         </form>
       </div>
@@ -39,19 +39,15 @@
         <form data-async="true" data-target="msg" action= "/hola_session/confirm_with_otp.js" method="post" id="hola_session">
           <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title text-center">OTP</h4>
+           <button data-dismiss="modal" class="btn-close pull-right">×</button>
           </div>
           <div class="modal-body">
+              <h4 class="modal-titleB text-center">Please enter OTP you received</h4>
               <div class="row">
-                <div class="col-xs-3 form-group">
-                  <label class="control-label" style="vertical-align:middle;margin-bottom:-10px;">OTP</label>
-                </div>
-                <div class="col-xs-9 form-group">
+                <div class="col-xs-12 form-group">
                   <%= text_field_tag :otp, '', class: "form-control validate[required]", placeholder: "OTP", "data-prompt-position" => "bottomLeft"  %>
                 </div>
               </div>
-              <div id="msg">Please enter OTP you received.</div>
               <%= link_to "Didn't received OTP? Request again", "javascript:void(0)", id: "resend-otp" %><span id="loader" style="display:none"><%= image_tag 'ajax-loader.gif' %></span>
             <div class="row">
               <%= hidden_field :save_user_details, true %>
@@ -60,8 +56,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+            <button type="submit" class="btn btn-saffron">Submit</button>
           </div>
 
         </form>

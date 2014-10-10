@@ -489,7 +489,17 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 
 .modal-dialog.modal-sm {max-width:300px;width: 80%;margin-left:auto;margin-right:auto;margin-top: 5.2em;margin-bottom: 80px;overflow: hidden;}
 
+#login_modal .modal-header {border-bottom: none;}
+#login_modal .modal-footer {border-top: none;}
+#login_modal .modal-body .modal-titleA {color: #6a6969;font-size: 1.2em;font-weight: bold;}
+#login_modal .modal-body .modal-titleB {color: #6a6969;font-size: 1em;}
+#login_modal .modal-body {padding: 0 20px;}
+#login_modal .modal-footer { padding: 0 20px 20px; text-align: center !important;}
+.NoOrder{margin-top: 150px;}
+.NoOrder1{border: solid 1px #6a6969;background-color:#ccc;color: #6a6969;font-size: 1em;padding: 20px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; }
 
+#otp_form .modal-body .modal-titleB {color: #6a6969;font-size: 1.2em;}
+#otp_form #resend-otp {color: #ff9900;font-size: 1em;}
 
 #recipe-modal .modal-content {border-color: #c0c2c2;border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px;background: #fff;width: 100%;display: block;float: left;box-shadow:none;-webkit-box-shadow:none;}
 #recipe-modal .modal-header,#content-modal .modal-header {border-bottom: 0;padding: 5px 10px;float: left;width: 100%;}
@@ -629,7 +639,9 @@ input.lower-only::-webkit-input-placeholder {color: #ccc;}
 
 .btn-stroke {background: transparent;border:1px solid #e1e0e0;color: #8d8d8d;font-size: 0.9em;padding: 10px 0;}
 .btn-stroke:active,.btn-stroke:focus,.btn-stroke:hover {color: #ff8800;}
-p.hola-text {color: #222222;}
+p.hola-text {color: #6a6969;font-size: 1.2em;font-weight: bold;}
+p.hola-text1 {color: #6a6969;font-size: 1.2em;}
+p.text-orangeS{color: #ff9900;font-size: 1.2em;font-weight: bold;}
 
 .btn-golden {background: #ffd699;border:none;border-bottom: 1px solid #c4a476;border-right: 1px solid #c4a476;border-radius: 2px;-webkit-border-radius: 2px;-moz-border-radius: 2px;padding: 5px 30px;color: #333;outline: none !important;}
 
