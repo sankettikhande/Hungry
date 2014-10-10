@@ -2,6 +2,11 @@ class OrderedMenusController < ApplicationController
   def checkout
     @hola_user = hola_current_user
     categories = []
+    
+    if session[:cart].blank?
+      redirect_to("/mobile") and return
+    end
+
     session[:cart].each do |cart_item|
       cart_item.each do |key, value|
             @categories = categories << value["category"]
@@ -33,6 +38,9 @@ class OrderedMenusController < ApplicationController
           end
           @paid_amount = params[:total_amount].to_i -  @discount_amount.to_i
           @msg = "Valid coupon code"
+          session[:discountAmount] = @discount_amount
+          session[:paidAmount] = params[:total_amount].to_i
+          session[:netAmount] = @paid_amount
           session[:cart].each do |cart_item|
             cart_item.each do |key, value|
               value["discount_amount"] = @discount_amount

@@ -39,12 +39,34 @@
   <%= submit_tag "Apply", id: "check_coupon", class: "btn btn-saffron discountCouponBtn"  %>
 </li>
 </ul>
+<%
+discountC = 0;
+discountAmt = 0;
 
+if total.inject(:+) == session[:paidAmount] 
+discountC = session[:discountAmount];
+discountAmt = session[:netAmount];
+
+else 
+session.delete(:paidAmount);
+session.delete(:discountAmount);
+session.delete(:netAmount);
+
+session[:cart].each do |cart_item|
+  cart_item.each do |key, value|
+    value["discount_amount"] = 0
+    value["coupon_id"]= ""
+  end
+end
+
+discountAmt = total.inject(:+);
+end
+%>
 <ul class="booked-orders backgroundLight1 opaK top-Space " >
 <li class="food-bill">
 <span class="item-name item-nameP">&nbsp;</span>
 <span class="item-qty item-qtyP text-total">Discounted Amount</span>
-<span class="item-cost text-total1 discount_span" id="review_order_total">0</span>
+<span class="item-cost text-total1 discount_span" id="review_order_total"><%= discountC %></span>
 <span class="item-edit discountEdit" style="cursor: pointer;"></span>
 </li>
 </ul>
@@ -52,7 +74,7 @@
 <li class="food-bill">
 <span class="item-name item-nameP">&nbsp;</span>
 <span class="item-qty item-qtyP text-total opaK">Total Amount to be Paid</span>
-<span class="item-cost text-total text-bold total_amount" id="review_order_total"><%= total.inject(:+) %></span>
+<span class="item-cost text-total text-bold total_amount" id="review_order_total"><%= discountAmt %></span>
 </li>
 </ul>
 

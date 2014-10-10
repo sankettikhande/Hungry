@@ -78,6 +78,7 @@ Holachef::Application.routes.draw do
   post "orders/callback"=>'Cms::orders#callback'
 
   match '/home/index_call' =>'home#index_call'
+  match '/logout' =>'home#logout'
 
   post '/email' => 'temporary_home#send_mail'
   post '/feedback' => 'Cms::feedbacks#feedback'

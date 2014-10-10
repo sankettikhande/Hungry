@@ -19,12 +19,9 @@
           <% if menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
               <div class="recipe-image append-cart">
 
-			  <% if qty_left(menu) > 0 %>
+			  <% if qty_left(menu) == 0 %>
 
-                   <div class="add-lens"><p class="text-center"><span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span><span class="text-leftitem">Left</span></p></div>
-
-                    <% else %>
-					<div class="add-lens">
+         	<div class="add-lens">
 						<p class="text-center">
 							<span class='text-leftitem'>Sold </span><span class='text-leftitem'>Out</span>
 						</p>
@@ -50,9 +47,7 @@
 
                 <div class="add-lens">
                   <p class="text-center">
-                    <% if qty_left(menu) > 0 %>
-                      <div class="add-lens"><p class="text-center"><span><%="#{qty_left(menu).to_i - cart_menu[:quantity].to_i}"%></span><span class="text-leftitem">Left</span></p></div>
-                    <% else %>
+                    <% if qty_left(menu) == 0 %>
                       <span class='text-leftitem'>Sold </span><span class='text-leftitem'>Out</span>
                     <% end %>
                   </p>

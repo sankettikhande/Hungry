@@ -65,6 +65,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def logout
+   session.clear
+   cookies.delete :user_mobile
+   redirect_to("/mobile") and return
+  end
+
   private
   def update_cart(todays_menu)
     return if todays_menu.blank?

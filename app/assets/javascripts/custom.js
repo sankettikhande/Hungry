@@ -116,11 +116,11 @@ $(document).ready(function(){
         $("#add-order-plus").removeAttr("disabled");
         $("#add-order-plus").removeClass("disabled");
         cnt = parseInt($("#order-count").html(),10)
-        if(cnt >=  0){
+        if(cnt >=  2){
             cnt = cnt - 1;
             $("#order-count").html(cnt);
         }
-        if (cnt == 0){
+        if (cnt == 2){
             $("#add-order-minus").attr("disabled");
             $("#add-order-minus").addClass("disabled");
         }
