@@ -6,3 +6,4 @@ if (<%= session[:cart].blank? %>){
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
 $("#review_order_total").html("<%=@total%>");
+$(".total_amount").html("<%=@total%>");

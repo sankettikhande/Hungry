@@ -228,6 +228,9 @@ $(document).ready(function(){
 
     $("#review-order-done").unbind("click").live('click',function(e){
         e.preventDefault();
+        if(parseInt($("#order-count").html()) < 0){
+           alert("Quantity should be negative")
+        }
         var selected_id = "#"+$("#selected_item").val()+" li.recipe-stock";
         var date = new Date();
         var menu_qty = parseInt($("#order-count").html(),10);
