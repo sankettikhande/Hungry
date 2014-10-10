@@ -234,11 +234,13 @@ $(document).ready(function(){
         var menu_price = parseInt($(".modal-body li.recipe-price span").html(),10);
         var discount = $(".discount_span").html(0);
         var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
+        var meal_type = $("li.item_"+selected_review_id).siblings('input[type="hidden"][id$="_slot"]').val();
+        meal_type = meal_type.split("_")[0]
         if(parseInt($("#order-count").html()) > 0){
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html(), 'category' : category },
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html(), 'category' : category, 'meal_type' : meal_type },
                 'dataType': 'script'
             })
             $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
