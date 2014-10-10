@@ -1,5 +1,5 @@
 
-<div class="text-center show-time followMeBar" data-category="<%= category %> (<%= CookingToday.meal_type_time_span[category][:fromDisplay] %> to <%= CookingToday.meal_type_time_span[category][:toDisplay] %>)" > </div>
+<div class="text-center show-time followMeBar" data-category="<%= category %> <span class='time-block'> (<%= CookingToday.meal_type_time_span[category][:fromDisplay] %> to <%= CookingToday.meal_type_time_span[category][:toDisplay] %>)</span>" > </div>
 
 <div class="category_header"> <%= category %> </div>
 <div class="category_header2">( <%= CookingToday.meal_type_time_span[category][:fromDisplay] %> - <%= CookingToday.meal_type_time_span[category][:toDisplay] %> )</div>
