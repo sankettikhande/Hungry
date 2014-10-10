@@ -18,4 +18,3 @@
 //= require jquery-migrate-1.2.1.min
 //= require jquery.validationEngine
 //= require jquery.validationEngine-en
-//= require_tree .
