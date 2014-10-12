@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'latolight';
-    src: url('../fonts/lato-lig-webfont.eot');
-    src: url('../fonts/lato-lig-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/lato-lig-webfont.woff2') format('woff2'),
-         url('../fonts/lato-lig-webfont.woff') format('woff'),
-         url('../fonts/lato-lig-webfont.ttf') format('truetype'),
-         url('../fonts/lato-lig-webfont.svg#latolight') format('svg');
+    src: url('/assets/lato-lig-webfont.eot');
+    src: url('/assets/lato-lig-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/lato-lig-webfont.woff2') format('woff2'),
+         url('/assets/lato-lig-webfont.woff') format('woff'),
+         url('/assets/lato-lig-webfont.ttf') format('truetype'),
+         url('/assets/lato-lig-webfont.svg#latolight') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -13,12 +13,12 @@
 
 @font-face {
     font-family: 'latoregular';
-    src: url('../fonts/lato-reg-webfont.eot');
-    src: url('../fonts/lato-reg-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/lato-reg-webfont.woff2') format('woff2'),
-         url('../fonts/lato-reg-webfont.woff') format('woff'),
-         url('../fonts/lato-reg-webfont.ttf') format('truetype'),
-         url('../fonts/lato-reg-webfont.svg#latoregular') format('svg');
+    src: url('/assets/lato-reg-webfont.eot');
+    src: url('/assets/lato-reg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/lato-reg-webfont.woff2') format('woff2'),
+         url('/assets/lato-reg-webfont.woff') format('woff'),
+         url('/assets/lato-reg-webfont.ttf') format('truetype'),
+         url('/assets/lato-reg-webfont.svg#latoregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
