@@ -13,6 +13,7 @@ class Order < ActiveRecord::Base
   has_one :parent_order, :primary_key => "parent_order_id", :foreign_key => "id", :class_name => "Order"
   belongs_to :hola_user
   belongs_to :runner
+  has_one :coupon
 
   validates :date, :order_status, presence: true
   validates :order_status, inclusion: {in: @@order_statuses}
