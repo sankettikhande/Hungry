@@ -6,8 +6,6 @@ class Order < ActiveRecord::Base
   attr_accessor :skip_callbacks
   cattr_accessor :order_statuses
 
-
-
   serialize :payment_gateway_response, Hash
   serialize :order_status_history, Array
 
@@ -62,8 +60,8 @@ class Order < ActiveRecord::Base
   end
 
   def send_delivery_message
-    message = "Hola! Hope you had an awesome experience with us. We hope to serve your cravings again soon. With Love, Holachef!"
-    MessagingLib.delay(:run_at => 2.hours.from_now).send_messages(message, self.phone_no, "Transaction")
+    #message = "Hola! Hope you had an awesome experience with us. We hope to serve your cravings again soon. With Love, Holachef!"
+    #MessagingLib.delay(:run_at => 2.hours.from_now).send_messages(message, self.phone_no, "Transaction")
   end
 
   def mark_menu_items
