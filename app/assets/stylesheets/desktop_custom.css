@@ -2,10 +2,10 @@
     font-family: 'latolight';
     src: url('../fonts/lato-lig-webfont.eot');
     src: url('../fonts/lato-lig-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/lato-lig-webfont.woff2') format('woff2'),
-         url('../fonts/lato-lig-webfont.woff') format('woff'),
-         url('../fonts/lato-lig-webfont.ttf') format('truetype'),
-         url('../fonts/lato-lig-webfont.svg#latolight') format('svg');
+    url('../fonts/lato-lig-webfont.woff2') format('woff2'),
+    url('../fonts/lato-lig-webfont.woff') format('woff'),
+    url('../fonts/lato-lig-webfont.ttf') format('truetype'),
+    url('../fonts/lato-lig-webfont.svg#latolight') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -15,10 +15,10 @@
     font-family: 'latoregular';
     src: url('../fonts/lato-reg-webfont.eot');
     src: url('../fonts/lato-reg-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/lato-reg-webfont.woff2') format('woff2'),
-         url('../fonts/lato-reg-webfont.woff') format('woff'),
-         url('../fonts/lato-reg-webfont.ttf') format('truetype'),
-         url('../fonts/lato-reg-webfont.svg#latoregular') format('svg');
+    url('../fonts/lato-reg-webfont.woff2') format('woff2'),
+    url('../fonts/lato-reg-webfont.woff') format('woff'),
+    url('../fonts/lato-reg-webfont.ttf') format('truetype'),
+    url('../fonts/lato-reg-webfont.svg#latoregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -42,7 +42,7 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 
 .hola-lg-navbar {background: #fff;margin-bottom: 0;height: 57px;box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-webkit-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-moz-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-o-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-ms-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);}
 .hola-lg-navbar .container {position: relative;}
-.hola-lg-navbar .navbar-header {width:780px !important;float: left;position: fixed;}
+.hola-lg-navbar .navbar-header {width:780px !important;float: left;position: absolute;left: 0}
 .navbar-brand {padding: 0;margin-left: 15px;}
 .top-nav {padding-top: 10px;width: 505px;left: 750px;position: absolute;}
 .top-nav li a {padding: 0 15px;line-height: 34px;color: #2b2a28;font-size: 16.49px;float: left;display: block;width: auto;}
@@ -59,10 +59,10 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 .table-wrap {width: 735px;margin-left: auto;margin-right: auto;position: relative;}
 .table-top {position: relative;top: 100px;right: 0;left: 0;width: 100%;height: 585px;}
 .table-item {position: absolute;right: auto;bottom: auto;top: 0}
-.iphone {background: url('iphone.png')no-repeat left top;width: 327px;height: 579px;margin-left: auto;margin-right: auto;left: 0;right: 0;z-index: 100}
-.fork {background: url('fork-img.png')no-repeat left top;width: 79px;height: 612px;left: 0;top: 60px;}
-.knife {background: url('knife-img.png')no-repeat left top;width: 71px;height: 648px;right: 0;top: 60px;}
-.spoon {background: url('spoon-img.png')no-repeat left top;width: 133px;height: 626px;top: 60px;right:-160px;}
+.iphone {background: url('/assets/iphone_new.png')no-repeat left top;width: 327px;height: 579px;margin-left: auto;margin-right: auto;left: 0;right: 0;z-index: 100}
+.fork {background: url('/assets/fork-img.png')no-repeat left top;width: 79px;height: 612px;left: 0;top: 60px;}
+.knife {background: url('/assets/knife-img.png')no-repeat left top;width: 71px;height: 648px;right: 0;top: 60px;}
+.spoon {background: url('/assets/spoon-img.png')no-repeat left top;width: 133px;height: 626px;top: 60px;right:-160px;}
 
 #testimo-slider {margin-top: 20px;}
 #testimo-slider {width: 790px;margin-left: auto;margin-right: auto;}
@@ -78,7 +78,7 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 
 .table-container .table-top.lg-phone {height: 933px;}
 
-.table-container .table-top.lg-phone .iphone {background: url('iphone.png')no-repeat left top;width: 370px;height: 557px;left: 0;right: 0;z-index: 100;background-size: contain;margin-left: auto;margin-right: auto}
+.table-container .table-top.lg-phone .iphone {background: url('/assets/iphone_new.png')no-repeat left top;width: 370px;height: 557px;left: 0;right: 0;z-index: 100;background-size: contain;margin-left: auto;margin-right: auto}
 
 .social-wrapper {background: #fff;height: 309px;width: 100%;padding-top: 32px;}
 .social-wrapper h2 {font-size: 32px;margin-top: 0;font-family: 'latolight','Lato',Helvetica,Arial,Sans-serif;}
@@ -105,15 +105,15 @@ h1 {font-size: 36px;margin: 0;font-family: 'latoregular','Lato',Helvetica,Arial,
 .stars-caption .fixed-text {position: absolute;top: 100px;left: 60px}
 .stars-caption .carousel-caption {color: #000;top: 160px;text-shadow:none;-webkit-text-shadow:none;-moz-text-shadow:none;-o-text-shadow:none;-ms-text-shadow:none;text-align: left;bottom: auto;left: 0;margin-left: 60px;width: 511px;}
 .stars-caption .carousel-indicators {position: absolute;
-top:  460px;
-left: 0;
-z-index: 15;
-width: 100%;
-padding-left: 0;
-margin-left: 60px;
-text-align: left;
-list-style: none;
-bottom: 0;
+    top:  460px;
+    left: 0;
+    z-index: 15;
+    width: 100%;
+    padding-left: 0;
+    margin-left: 60px;
+    text-align: left;
+    list-style: none;
+    bottom: 0;
 }
 .stars-caption .carousel-indicators li,.stars-caption .carousel-indicators li.active {width: 65px;height: 65px;margin: 0;border-radius: 50%;}
 .stars-caption .carousel-indicators li img,.stars-caption .carousel-indicators li.active img {width: 65px;height: 65px;border-radius: 50%;margin: 0 auto;max-width: 65px;display: block;border:2px solid #7f7f7f;}
@@ -237,10 +237,10 @@ bottom: 0;
 .hc-modal1 .checkbox {margin-top: 0;margin-bottom: 20px}
 .ques-list{height:400px;overflow-y:scroll;}
 .image-order{position: absolute;cursor: pointer;}
-.overlayMouse {position: fixed;width: 100%;height: 100%;margin: 0;top: 0;left: 0;color: #fff;z-index: 999999999;background-color: #ff8800;display: none;}
+.overlayMouse {position: fixed;width: 100%;height: 100%;margin: 0;top: 0;left: 0;color: #fff;z-index: 999999999;background-color: #ff8800;display: none;opacity: 0.8;filter: alpha(opacity=80);}
 .overlayMouse .hola-lg-navbar { background: #ff8800;border: none;box-shadow:none;}
 .overlayMouse .overlayContent { margin-top: 150px;margin-left: 35%;}
-.overlayMouse .fa-phone { color: #ff8800;}
+.overlayMouse .fa-phone { color: #f36c36;}
 .callText{margin-top: 25px;margin-left: 10px;font-family: 'latolight','Lato',Helvetica,Arial,Sans-serif;}
 .callText1{font-size: 15px;}
 .callText2{font-size: 30px;}

@@ -4,9 +4,27 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+
   <title>Holachef</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="Powai food, food cravings, order food in Powai, Eat Hearty, Eat Better" >
+  <meta name="description" content="Eat Hearty, Eat Better! Everyday. Holachef brings the best taste, variety and convenience of ordering-in hearty, wholesome meals from the best chefs around. Download Holachef App from Google Play store or call now ?+91-8080804652? to order.? Service area currently restricted to Powai, Chandivali, Andheri East, JVLR, Vikhroli, Bhandup!">
+  <!--FACEBOOK-->
+  <meta property="og:title" content="Eat Hearty, Eat Better! Everyday." >
+  <meta property="og:site_name" content="Holachef">
+  <meta property="og:url" content="www.holachef.com" >
+  <meta property="og:description" content="Eat Hearty, Eat Better! Everyday. Holachef brings the best taste, variety and convenience of ordering-in hearty, wholesome meals from the best chefs around. Download Holachef App from Google Play store or call now ?+91-8080804652? to order.? Service area currently restricted to Powai, Chandivali, Andheri East, JVLR, Vikhroli, Bhandup!" >
+  <meta property="og:image" content="" >
+  <meta property="og:type" content="website" >
+  <meta property="og:locale" content="" >
+  <!--TWITTER-->
+  <meta property="twitter:card" content="summary" >
+  <meta property="twitter:title" content="Eat Hearty, Eat Better! Everyday." >
+  <meta property="twitter:description" content="Eat Hearty, Eat Better! Everyday. Holachef brings the best taste, variety and convenience of ordering-in hearty, wholesome meals from the best chefs around. Download Holachef App from Google Play store or call now ?+91-8080804652? to order.? Service area currently restricted to Powai, Chandivali, Andheri East, JVLR, Vikhroli, Bhandup!" >
+  <meta property="twitter:creator" content="@" >
+  <meta property="twitter:url" content="www.holachef.com" >
+  <meta property="twitter:image" content="" >
+
   <%= stylesheet_link_tag "application" %>
   <link rel="shortcut icon" href="/assets/favicon.png">
   <!--[if lt IE 9]><script src="/assets/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -16,24 +34,29 @@
   <![endif]-->
   <%#= render :partial => "layouts/social_scripts" %>
   <%= render 'layouts/add_roll_script' %>
+  <%= yield :header_content %>
 </head>
 <body>
-    <div id="wrap">
-        <%= render :partial => "/layouts/header" %>
-        <div class="sliding-page row-offcanvas row-offcanvas-left">
-          <%= render 'layouts/side_menu' %>
-          <div class="right-body">
-            <div id="flsh" class="text-center">
-              <%= flash_alert %>
-            </div>
-            <%= yield %>
-          </div>
-        </div>
+<div id="wrap">
+  <%= render :partial => "/layouts/header" %>
+  <div class="sliding-page row-offcanvas row-offcanvas-left">
+    <%= render 'layouts/side_menu' %>
+    <div class="right-body">
+      <div id="flsh" class="text-center">
+        <%= flash_alert %>
+      </div>
+      <% if (Time.now.sunday?) %>
+           <div style="vertical-align:middle; height:550px;text-align: center;padding-top: 399px;background: url(/assets/splash.jpg);background-repeat: no-repeat;background-size: 320px 569px;background-position: center;">Sorry, we are closed today. <br/>Do visit us tomorrow and have #WorthCravingFor meals.</div>
+      <% else %>
+          <%= yield %>
+      <% end %>
+    </div>
+  </div>
 
     </div><!-- #wrap ends -->
-      <% if !@footer %>
-          <%= render 'layouts/content_footer' %>
-      <% end %>
+  <% if !@footer %>
+      <%= render 'layouts/content_footer' %>
+  <% end %>
     <%= javascript_include_tag "application"%>
     <%= render 'hola_session/login' %>
     <%= login_check %>
