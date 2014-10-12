@@ -27,30 +27,7 @@
 
 </head>
   <body class="hola-body">
-    <div class="overlayMouse">
-<header id="header">
-       <div class="navbar hola-lg-navbar navbar-static-top">
-         <div class="container">
-               <div class="navbar-header">
-                 <a class="navbar-brand" href="/desktop"><img src="assets/hola-logo-new.png" alt=""></a>
-               </div>
-         </div>
-       </div>
-    </header>
-    <div class="overlayContent">
-      <div class="pull-left">
-        <span class="fa-stack fa-5x">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <i class="fa fa-phone fa-stack-1x fa-inverse ringEvent"></i>
-</span>
-      </div>
-      <div class="pull-left callText">
-        <div class="callText1">Call Us at</div>
-        <div class="callText2">+91 - 8080804652</div>
-        <div class="callText3">AND WE WILL HELP YOU ORDER !</div>
-      </div>
-    </div>
-  </div>
+<!--    <div class="overlayMouse">-->
 <header id="header">
        <div class="navbar hola-lg-navbar navbar-static-top">
          <div class="container">
@@ -1059,32 +1036,7 @@ post or access and for your conduct on and off the Site.
           return false;
     }
 
-     $(window).scroll(function(event){
-         didScroll = true;
-     });
-
-     setInterval(function() {
-         if (didScroll) {
-             hasScrolled();
-             didScroll = false;
-         }
-     }, 250);
-     function hasScrolled() {
-         var st = $(this).scrollTop();
-             if(Math.abs(lastScrollTop - st) <= delta)
-             return;
-         if (st > lastScrollTop && st > navbarHeight){
-             $('.hola-lg-navbar').removeClass('navbar-fixed-top').addClass('navbar-static-top');
-             $('.hola-body').css("padding-top","0");
-         } else {
-             if(st + $(window).height() < $(document).height()) {
-                 $('.hola-lg-navbar').removeClass('navbar-static-top').addClass('navbar-fixed-top');
-                 $('.hola-body').css("padding-top","57px");
-             }
-         }    
-         lastScrollTop = st;
-     }
-       smoothScroll.init();        
+    
    </script>
   </body>
 </html>
