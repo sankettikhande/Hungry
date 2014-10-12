@@ -692,9 +692,9 @@ OldBtnHandler: function () {
             if (DiffMins > 5 && dispat == null)
                  str += '<tr class="datarow5" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
             else if(i % 2 == 0)
-                 str += '<tr class="datarow2">';
+                 str += '<tr class="datarow2" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
             else
-                str += '<tr class="datarow1">';
+                str += '<tr class="datarow1" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
 
             var j = i + 1;
 
