@@ -1,9 +1,10 @@
 class Api::OrdersController < ApiController
   def index
-    @orders = Order.includes(:runner, :hola_user, {:ordered_menus => {:food_item => :meal_info}}).order("id desc")
-    @orders = @orders.where("DATE(created_at) >= ? ", params[:from_date]) if !params[:from_date].blank?
-    @orders = @orders.where("DATE(created_at) <= ? ", params[:to_date]) if !params[:to_date].blank?
-    @orders = @orders.where("DATE(created_at) >= ? ", Date.today) if (params[:from_date].blank? && params[:to_date].blank?)
+    @orders = Order.includes(:runner, :hola_user, {:ordered_menus => [:cooking_today, {:food_item => :meal_info}]}).order("orders.id desc")
+    @orders = @orders.where("DATE(orders.created_at) >= ? ", params[:from_date]) if !params[:from_date].blank?
+    @orders = @orders.where("DATE(orders.created_at) <= ? ", params[:to_date]) if !params[:to_date].blank?
+    @orders = @orders.where("DATE(orders.created_at) >= ? ", Date.today) if (params[:from_date].blank? && params[:to_date].blank?)
+    @orders = @orders.where("exists (select 1 from ordered_menus where ordered_menus.order_id = orders.id)")
   end
 
   def show

@@ -43,10 +43,10 @@ class HomeController < ApplicationController
     update_cart(@todays_menu) if !@todays_menu.blank?
 
     respond_to do |format|
-      if (Time.now.sunday? || !@sunday_override.blank?)
-        format.html{render template: "home/sunday"}
-      else
+      if (!Time.now.sunday? || !@sunday_override.blank?)
         format.html{render template: "home/index"}
+      else
+        format.html{render template: "home/sunday"}
       end
     end
   end

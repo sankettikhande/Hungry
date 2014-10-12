@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
   serialize :order_status_history, Array
 
   has_many :ordered_menus
+  has_one :parent_order, :primary_key => "parent_order_id", :foreign_key => "id", :class_name => "Order"
   belongs_to :hola_user
   belongs_to :runner
 
@@ -19,8 +20,8 @@ class Order < ActiveRecord::Base
 
   after_save :mark_paid, :send_delivery_message, :if => Proc.new {|o| o.order_status_changed? and o.delivered?}
   after_save :mark_menu_items, :if => Proc.new { |o| ["Damaged", "Delivered", "Canceled", "Returned"].include? o.order_status }
-  after_save :send_order_confirm_message, :if => Proc.new {|o| o.order_status_changed? and o.confirmed?}
-  after_save :send_order_dispatched_message, :if => Proc.new {|o| o.order_status_changed? and o.dispatched?}
+  after_save :send_order_confirm_message, :if => Proc.new {|o| o.order_status_changed? and o.confirmed? and o.parent_order_id.blank?}
+  after_save :send_order_dispatched_message, :if => Proc.new {|o| o.order_status_changed? and o.dispatched? }
   before_save :build_order_status_history
   before_save :ensure_hola_user_id
   before_save :ensure_order_not_canceled, :if => Proc.new {|o| o.order_status_changed? and o.order_status_was == "Canceled"}

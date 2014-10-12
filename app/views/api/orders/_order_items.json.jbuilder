@@ -16,6 +16,7 @@ json.order_items  order.ordered_menus do |menu|
   json.rate     menu.rate
   json.menu_item_total (menu.quantity * menu.rate)
   json.order_status menu.order_status
+  json.meal_type menu.cooking_today.meal_type if menu.cooking_today
 end
 
 json.bill_amount order.bill_amount
@@ -28,7 +29,7 @@ unless order.original_order_id.blank?
 end
 json.order_progress order.order_status_history_string
 json.payment_status order.payment_status
-json.payment_mode order.payment_mode
+json.payment_mode (order.parent_order.blank? ? order.payment_mode : order.parent_order.payment_mode)
 
 json.runner do
   json.id order.runner_id

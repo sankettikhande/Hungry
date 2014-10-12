@@ -681,20 +681,21 @@ OldBtnHandler: function () {
         HolaChef.app.ShowHideLoader(true);
         var ref = this;
         var str = '';
-        str += '<div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Order No</th><th>Name</th><th>Mobile</th><th>Payment</th><th>Progress</th><th>Order Time</th></tr></thead><tbody>';
+        str += '<div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Order No</th><th>Name</th><th>Mobile</th><th>Payment</th><th>Progress</th><th>Meal Type</th><th>Order Time</th></tr></thead><tbody>';
         for (var i = 0; i < records.length; i++) {
             var date= records[i]["confirmed_at"];
             var dispat= records[i]["dispatched_at"];
             
             var timeNow = new Date(date);
             var DiffMins = (new Date()-timeNow)/(1000*60);
+            var id = records[i]["id"];
             if (DiffMins > 5 && dispat == null)
-                 str += '<tr class="datarow5">';
+                 str += '<tr class="datarow5" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
             else if(i % 2 == 0)
                  str += '<tr class="datarow2">';
             else
                 str += '<tr class="datarow1">';
-            var id = records[i]["id"];
+
             var j = i + 1;
 
             var innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> View</a>';
@@ -712,8 +713,8 @@ OldBtnHandler: function () {
             else if (status == "Canceled" || status == "Delivered" || status == "Returned" || status == "Reordered")
                 innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
             
-            
-            str += '<td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + String(id) + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_name"] + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_contact_number"] + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["payment_mode"] + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["order_progress"] + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["confirmed_at"] + '</td>';
+            str += '<td>' + String(id) + '</td><td> ' + records[i]["customer_name"] + '</td><td> ' + records[i]["customer_contact_number"] + '</td><td>' + records[i]["payment_mode"] + '</td><td> ' + records[i]["order_progress"] + '</td>';
+            str += '<td>' + (records[i]["order_items"][0] == undefined ? "" : records[i]["order_items"][0]["meal_type"]) + '</td><td>' + records[i]["confirmed_at"] + '</td>';
             str += '</tr>';
         }
 
