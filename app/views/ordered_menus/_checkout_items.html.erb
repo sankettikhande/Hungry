@@ -5,7 +5,7 @@
 
 <% current_time = Time.now
 
-    if ((!(11..15).include?(current_time.hour) && meal_type = "Lunch" )|| (!(15..19).include?(current_time.hour) && meal_type = "Evening Snacks" ) || (!(19..23).include?(current_time.hour) && meal_type != "Dinner" ))  %>
+    if ((!(11..15).include?(current_time.hour) && meal_type == "Lunch" )|| (!(15..19).include?(current_time.hour) && meal_type == "Evening Snacks" ) || (!(19..23).include?(current_time.hour) && meal_type == "Dinner" ))  %>
         <li class="time-slots">
           <span class="o-time selected" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_1 %></span>
           <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_2 %></span>
