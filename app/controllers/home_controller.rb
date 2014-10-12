@@ -39,6 +39,7 @@ class HomeController < ApplicationController
 
   def mobile
     @todays_menu = CookingToday.grouped_by_category
+    @sunday_override = params[:sunday_override]
     update_cart(@todays_menu) if !@todays_menu.blank?
 
     respond_to do |format|
