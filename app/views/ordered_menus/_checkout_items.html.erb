@@ -1,7 +1,7 @@
 <div class="container-fluid back-white seperator-b10 nopadding">
   <ul class="order-timing">
     <li class="time-zone"><span class="order-when">Today </span><span class="order-what open-bracket close-bracket"><%= meal_type %></span></li>
-    <li class="time-set open-bracket close-bracket"><%= CookingToday.meal_type_time_span["#{meal_type}"][:from] %> - <%= CookingToday.meal_type_time_span["#{meal_type}"][:to] %></li>
+    <li class="time-set open-bracket close-bracket"><%= CookingToday.meal_type_time_span["#{meal_type}"][:fromDisplay] %> - <%= CookingToday.meal_type_time_span["#{meal_type}"][:toDisplay] %></li>
 
 <% current_time = Time.now
 
