@@ -27,24 +27,28 @@ class OrderedMenusController < ApplicationController
       if coupon.blank?
         @msg = "Invalid coupon code"
       else
-        ## check (coupon.no_of_coupons == coupon.no_of_used_coupons)
-        discount = coupon.flat.blank? ? coupon.percentage : coupon.flat
-        discount_type = coupon.flat.blank? ? "percentage" : "flat"
-        if !discount.blank?
-          if discount_type== "flat"
-            @discount_amount = discount
-          else
-            @discount_amount = Coupon.calculate_percentage(params[:total_amount],discount)
-          end
-          @paid_amount = params[:total_amount].to_i -  @discount_amount.to_i
-          @msg = "Valid coupon code"
-          session[:discountAmount] = @discount_amount
-          session[:paidAmount] = params[:total_amount].to_i
-          session[:netAmount] = @paid_amount
-          session[:cart].each do |cart_item|
-            cart_item.each do |key, value|
-              value["discount_amount"] = @discount_amount
-              value["coupon_id"]= coupon.id
+        ## check coupon validity added check only for 1U1T
+        @msg = coupon.check_coupons_validity(hola_current_user.id)
+        if @msg.blank?
+          discount = coupon.flat.blank? ? coupon.percentage : coupon.flat
+          discount_type = coupon.flat.blank? ? "percentage" : "flat"
+          if !discount.blank?
+            if discount_type== "flat"
+              @discount_amount = discount
+            else
+              @discount_amount = Coupon.calculate_percentage(params[:total_amount],discount)
+            end
+            puts @discount_amount
+            @msg ="Valid coupon code"
+            @paid_amount = params[:total_amount].to_i -  @discount_amount.to_i
+            session[:discountAmount] = @discount_amount
+            session[:paidAmount] = params[:total_amount].to_i
+            session[:netAmount] = @paid_amount
+            session[:cart].each do |cart_item|
+              cart_item.each do |key, value|
+                value["discount_amount"] = @discount_amount
+                value["coupon_id"]= coupon.id
+              end
             end
           end
         end
