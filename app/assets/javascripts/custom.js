@@ -228,12 +228,16 @@ $(document).ready(function(){
 
     $("#review-order-done").unbind("click").live('click',function(e){
         e.preventDefault();
+        if(parseInt($("#order-count").html()) < 0){
+           alert("Quantity should be negative")
+        }
         var selected_id = "#"+$("#selected_item").val()+" li.recipe-stock";
         var date = new Date();
         var menu_qty = parseInt($("#order-count").html(),10);
         var menu_price = parseInt($(".modal-body li.recipe-price span").html(),10);
         var discount = $(".discount_span").html(0);
         var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
+        var item_model= $('#item-modal').addClass("item-model-"+selected_review_id)
         var meal_type = $("li.item_"+selected_review_id).siblings('input[type="hidden"][id$="_slot"]').val();
         meal_type = meal_type.split("_")[0]
         if(parseInt($("#order-count").html()) > 0){
@@ -258,7 +262,15 @@ $(document).ready(function(){
             $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
             $("#"+selected_review_id+" span.item-qty").html($("#order-count").html() )
             $("#"+selected_review_id+" span.item-cost").html(parseInt($("#order-count").html(),10)*menu_price );
-            $("#"+selected_review_id).remove();
+        }
+        if($(".item-model-"+selected_review_id).hasClass('in')== true){
+            $(this).ajaxStop(function () {
+                item_model.modal('hide');
+                $('#item-modal').removeClass("item-model-"+selected_review_id)
+                if(parseInt($("#order-count").html()) == 0){
+                    $("#"+selected_review_id).remove();
+                }
+            });
         }
     });
 

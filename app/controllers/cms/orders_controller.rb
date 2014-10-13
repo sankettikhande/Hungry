@@ -100,19 +100,29 @@ class Cms::OrdersController < Cms::ContentBlockController
             menu = OrderedMenu.create(:order_id => order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
                                       :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
                                       :rate => item_attr['price'])
-            coupon = Coupon.find_by_id(item_attr["coupon_id"])
-            if !coupon.blank?
-              @discount_amount = item_attr['discount_amount']
-              used_count = coupon.no_of_used_coupons.to_i + 1
+
+            @coupon = Coupon.find_by_id(item_attr["coupon_id"])
+            if !@coupon.blank?
+              @coupon_id = item_attr["coupon_id"]
+              used_count = @coupon.no_of_used_coupons.to_i + 1
               Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
-              coupon.hola_users << hola_user
+              @coupon.hola_users << hola_user
             else
               @discount_amount = 0
+              @coupon_id = 0
             end
           end
         end
       end
-      order.update_attributes(:total => (OrderedMenu.calculate_total(order, @discount_amount, meal_type_length)))
+      mrp = OrderedMenu.calculate_mrp(order)
+      if !@coupon.blank?
+        discount = @coupon.flat.blank? ? @coupon.percentage : @coupon.flat
+        discount_type = @coupon.flat.blank? ? "percentage" : "flat"
+        discount_amount = (@discount_type=='flat') ? discount : Coupon.calculate_percentage(mrp, discount)
+      else
+        discount_amount = 0
+      end
+      order.update_attributes(:total => (OrderedMenu.calculate_total(order, discount_amount, meal_type_length)), :coupon_id => @coupon_id, :mrp=> mrp )
       @orders_by_meal_type.merge!(meal_type => order)
 
     end
@@ -155,22 +165,29 @@ class Cms::OrdersController < Cms::ContentBlockController
               menu = OrderedMenu.create(:order_id => @order.id,:dish_id => food_item.id, :cooking_today_id => cooking_today.id,
                                         :cheff_id => food_item.cheff.id, :quantity => item_attr['quantity'],
                                         :rate => item_attr['price'])
-              coupon = Coupon.find_by_id(item_attr["coupon_id"])
-              if !coupon.blank?
-                @discount_amount = item_attr['discount_amount']
-                used_count = coupon.no_of_used_coupons.to_i + 1
+              @coupon = Coupon.find_by_id(item_attr["coupon_id"])
+              if !@coupon.blank?
+                used_count = @coupon.no_of_used_coupons.to_i + 1
                 Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
-                coupon.hola_users << hola_user
+                @coupon.hola_users << hola_user
+                @coupon_id = item_attr["coupon_id"]
               else
-                @discount_amount = 0
+                @coupon_id = 0
               end
             end
           end
         end
       end
       cookies.signed[:user_mobile] = {value: hola_user.phoneNumber, expires: 1.year.from_now} if hola_user
-
-      @order.update_attributes(:total => (OrderedMenu.calculate_total(@order, @discount_amount, meal_type_length)))
+      mrp = OrderedMenu.calculate_mrp(@order)
+      if !@coupon.blank?
+        discount = @coupon.flat.blank? ? @coupon.percentage : @coupon.flat
+        discount_type = @coupon.flat.blank? ? "percentage" : "flat"
+        discount_amount = (@discount_type=='flat') ? discount : Coupon.calculate_percentage(mrp, discount)
+      else
+        discount_amount = 0
+      end
+      @order.update_attributes(:total => (OrderedMenu.calculate_total(@order, discount_amount, meal_type_length)), :coupon_id => @coupon_id, :mrp => mrp)
       @footer = "false"
       #@@cart_items = view_context.collect_items(session[:cart])
 

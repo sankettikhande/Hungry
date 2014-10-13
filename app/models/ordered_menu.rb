@@ -28,13 +28,9 @@ class OrderedMenu < ActiveRecord::Base
       total_price = 0
       if !order.blank?
         order.each do |order|
-          menus = order.ordered_menus
-          menus.each do |menu|
-            total_price = total_price + (menu.rate * menu.quantity)
-          end
+            total_price = total_price + (order.total)
         end
       end
-      total_price = total_price.to_i - dis_amt.to_i  if !dis_amt.blank?
       return  total_price
     else
       menus = order.ordered_menus
@@ -42,9 +38,18 @@ class OrderedMenu < ActiveRecord::Base
       menus.each do |menu|
         total_price = total_price + (menu.rate * menu.quantity)
       end
-      total_price = total_price.to_i - dis_amt.to_i  if (!dis_amt.blank?  &&  meal_length == 1)
+      total_price = total_price.to_i - dis_amt.to_i  if (!dis_amt.blank? )
       return total_price
     end
+  end
+
+  def self.calculate_mrp(order)
+      menus = order.ordered_menus
+      total_price = 0
+      menus.each do |menu|
+        total_price = total_price + (menu.rate * menu.quantity)
+      end
+      return total_price
   end
 
   def ordered_menu_bill
