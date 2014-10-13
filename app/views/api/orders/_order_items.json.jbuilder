@@ -29,6 +29,8 @@ unless order.original_order_id.blank?
 end
 json.order_progress order.order_status_history_string
 json.payment_status order.payment_status
+json.payment_value order.total
+json.couponID order.coupon_id
 json.payment_mode (order.parent_order.blank? ? order.payment_mode : order.parent_order.payment_mode)
 
 json.runner do

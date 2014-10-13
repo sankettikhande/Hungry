@@ -855,7 +855,7 @@ function viewordetail(id,from)
             }
 
         
-            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td style="width:40%;"><textarea rows="10" cols="36" style= "width:100%;border: 1px solid black">Order History and Comments</textarea></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr></table></td></tr></table></div>';
+            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"><textarea rows="10" cols="36" style= "width:100%;border: 1px solid black">Order History and Comments</textarea></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Coupon Id : ' + records["couponID"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Payable Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
             var obj = Ext.getCmp('OrderViewpanel');            
             obj.setHtml(html);
             HolaChef.app.ShowHideLoader(false);
