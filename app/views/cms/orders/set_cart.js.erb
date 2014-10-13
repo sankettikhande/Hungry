@@ -1,7 +1,8 @@
-$("body").append("<%= j render(:partial => 'layouts/footer') %>");
+if (<%= !"#{request.referer}".include?('review_order')%>) {
+		$("body").append("<%= j render(:partial => 'layouts/footer') %>");
+	}
 $("#cheff_footer #footer div.col-xs-12 ul").removeClass("hidden");
-
-   if (<%= !"#{request.referer}".include?('review_order')%>) {
+if (<%= !"#{request.referer}".include?('review_order')%>) {
        $("#footer .col-xs-12").empty();
        $("#footer .col-xs-12").html("<%= escape_javascript(render :partial => 'checkout_details' )%>");
    }

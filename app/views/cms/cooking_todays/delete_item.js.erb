@@ -2,8 +2,7 @@ $("ul.booked-orders li#<%= @item_id%>").remove();
 $("#review_order_total").html("<%=calculate_total_price()%>");
 
 if (<%= session[:cart].blank? %>){
-    $("#select_payment").html(" <a class='text-orange text-grey' href='#'>Select Payment Method</a>");
-    $('#remove_last_dish').modal('show');
+    window.location='/mobile';
 }
 else{
     $('#remove_dish').modal('show');
