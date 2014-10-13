@@ -827,7 +827,7 @@ function viewordetail(id,from)
             html += '<tr><td>' + pin + '</td></tr>';
             html += '<tr><td>' + land + '</td></tr>';
 
-            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td >Order progress : </td><td style="width:60%"> ' + records["order_progress"] + '</td></tr><tr><td>Payment : </td><td>' + records["payment_mode"] + '</td></tr>';
+            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td >Order progress : </td><td style="width:60%"> ' + records["order_progress"] + '</td></tr><tr><td>Payment : </td><td>' + records["payment_mode"] + '</td></tr><tr><td>Delivery Time : </td><td>' + records["deliverySlot"] + '</td></tr>';
 
             if (from == "Dispatched") {
                 var runner = records["runner"];
