@@ -64,12 +64,25 @@ class Cms::OrdersController < Cms::ContentBlockController
   end
 
   def create_multi_meal_order cart_meal_types, hola_user, hola_user_address
+    meal_type_length = cart_meal_types.length
+    time_slot = ""
+    if cart_meal_types.count == 1
+      time_slot = case meal_type
+      when 'Lunch'
+      session['lt']
+      when 'Evening Snacks'
+        session['et']
+      when 'Dinner'
+        session['dt']
+      else
+        'Now'
+      end
+    end  
+
     @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'MultiMeal',
                             :hola_user_id => hola_user.id, :addressStreet1 => hola_user_address.building_name, :addressStreet2 => hola_user_address.street,
-                            :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name)
-
+                            :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name, :delivery_slot => time_slot)
     @orders_by_meal_type = {}
-     meal_type_length = cart_meal_types.length
     cart_meal_types.each do |meal_type|
 
       time_slot = case meal_type
