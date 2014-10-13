@@ -424,7 +424,7 @@ label.orange-check-label {display: block;width: 100%;float: left;}
 .navbar-titlebar .page-title a:hover,.navbar-titlebar .page-title a:focus,.navbar-titlebar .page-title a:active {text-decoration: none;outline: none;}
 
 .page-title span.time-block {display: block;line-height: 10px;}
-.navbar-titlebar .dropdown.page-title {line-height: 18px;padding-top: 8px;}
+.navbar-titlebar .dropdown.page-title {line-height: 18px;padding-top: 16px;font-size: 1.5em;}
 
 .navbar-titlebar .page-title .dropdown-menu {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;background: #fff;padding-bottom: 0}
 .navbar-titlebar .page-title .dropdown-menu li {display: block;float:left;width: 100%;padding: 0;}
