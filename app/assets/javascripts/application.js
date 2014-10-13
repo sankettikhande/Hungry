@@ -22,7 +22,6 @@
 //= require offcanvas
 //= require jquery.raty
 //= require jquery.fittext
-//= require css-checkbox
 //= require ie8-responsive-file-warning
 //= require tag-it.min
 
