@@ -73,14 +73,13 @@ function onNotification(e){
                     data: sendData,
                     success: function(data){
                         alert(data);
-                        window.location='/mobile'
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){
                         alert("Status: " + textStatus); alert("Error: " + errorThrown);
-                        window.location='/mobile'
                     }
                 });
                 alert("beforeajax");
+                window.location='/mobile'
             }
             break;
 
