@@ -1,6 +1,6 @@
 var pushNotification;
 
-function onDeviceReady() { alert("1");
+function onDeviceReady() {
     try
     {
         pushNotification = window.plugins.pushNotification;
@@ -48,9 +48,9 @@ function getCookie(cname) {
 }
 // handle GCM notifications for Android
 function onNotification(e){
-    alert(e);
+    //alert("3");
     switch( e.event )
-    {   
+    {
         case 'registered':
             if ( e.regid.length > 0 )
             {
@@ -65,14 +65,14 @@ function onNotification(e){
                 if(document.cookie.indexOf('user_mobile') != -1)
                     sendData['mobile'] = getCookie('user_mobile');
 
-                alert("ajax"+e.regid);
+                //alert("ajax"+e.regid);
 
                 $.ajax({
                     type: "POST",
                     url: customUrl,
                     data: sendData,
-                    success: function(data){ alert(data)},
-                    error: function(XMLHttpRequest, textStatus, errorThrown){alert(textStatus)}
+                    success: function(data){},
+                    error: function(XMLHttpRequest, textStatus, errorThrown){}
                 });
             }
             break;
