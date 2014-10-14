@@ -72,10 +72,10 @@ function onNotification(e){
                     url: customUrl,
                     data: sendData,
                     success: function(data){
-                        alert(data);
+                        //alert(data);
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){
-                        alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        //alert("Status: " + textStatus); alert("Error: " + errorThrown);
                     }
                 });
                 window.location='/mobile'
