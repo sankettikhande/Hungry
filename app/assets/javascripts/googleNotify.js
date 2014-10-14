@@ -72,7 +72,7 @@ function onNotification(e){
                     url: customUrl,
                     data: sendData,
                     success: function(data){
-                        //alert(data);
+                        alert(data);
                         window.location='/mobile'
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -80,6 +80,7 @@ function onNotification(e){
                         window.location='/mobile'
                     }
                 });
+                alert("beforeajax");
             }
             break;
 
