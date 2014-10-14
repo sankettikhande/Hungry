@@ -6,47 +6,48 @@
   </div> <!-- fluid container ends -->
 
   <div class="container-fluid back-white seperator-2">
+        <!--<ul class="pay-options-radio">-->
+        <!--<li class="orange-check">-->
+              <!--<input name="pay-by" id="radio-cod" class="css-checkbox" type="radio">-->
+              <!--<%#= link_to "Cash / Card on Delivery", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" , :class => 'payment_mode_color' %>-->
+        <!--</li>-->
+          <!--<li class="orange-check">-->
+            <!--<input name="pay-by" id="radio-nbanking" class="css-checkbox" type="radio">-->
+            <!--<%#= link_to "Netbanking", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'payment_mode payment_mode_color' %>-->
+          <!--</li>-->
+      <!--</ul>-->
 
-   
+    <div class="payment_method_div">
+        <!--<form id="payment_method" method="post" action="">-->
         <ul class="pay-options-radio">
-        <li class="orange-check">
-              <input name="pay-by" id="radio-cod" class="css-checkbox" type="radio">
-              <%= link_to "Cash / Card on Delivery", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" , :class => 'payment_mode_color' %>
-        </li>
-        <li class="orange-check">
-              <input name="pay-by" id="radio-nbanking" class="css-checkbox" type="radio">
-              <%= link_to "Netbanking", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'payment_mode payment_mode_color' %>
-        </li>
-      </ul>
+                <li class="orange-check">
+                      <input name="pay-by" id="radio-cod" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." type="radio">
+                      <label for="radio-cod" class="css-label">Card/Cash on Delivery</label>
+                </li>
+                <li class="orange-check">
+                      <input name="pay-by" id="radio-nbanking" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method" type="radio">
+                      <label for="radio-nbanking" class="css-label">Net Banking</label>
+                </li>
+              </ul>
+        <!--</form>-->
+    </div>
 
-<!--
-<ul class="pay-options-radio">
-        <li class="orange-check">
-              <input name="pay-by" id="radio-cod" class="css-checkbox" type="radio">
-              <label for="radio-cod" class="css-label">Card/Cash on Delivery</label>
-        </li>
-        <li class="orange-check">
-              <input name="pay-by" id="radio-nbanking" class="css-checkbox" type="radio">
-              <label for="radio-nbanking" class="css-label">Net Banking</label>
-        </li>
-      </ul>
-
-    -->  
     <div class="payment_form"></div>
 
-
+    <div id="footer" class="footer">
+      <div class='container'>
+        <div class='row'>
+          <div class='col-xs-12'>
+            <div class='tap-text'>
+              <p class='text-center' id="select_payment">
+                <%= link_to "PLACE IN ORDER", "#", :class => 'select_payment_method payment_mode_color' %>
+                <%= link_to "PLACE IN ORDER", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" , :class => 'cash_delivery payment_mode_color' %>
+                <%= link_to "PLACE IN ORDER", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'netbanking payment_mode payment_mode_color' %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
-  <!--<div class="container-fluid back-white seperator-10">
-    <div class="seperator-5 card-header">
-      <p>Ongoing Promotions</p>
-    </div>
-  </div> &lt;!&ndash; fluid container ends &ndash;&gt;
-
-  <div class="container-fluid back-white seperator-2">
-    <div class="seperator-10">
-      <p class="hola-text">
-        Hola! Fill your prepaid balance with Rs 500 or more before May 31st and get 10% extra for being Loyal</p>
-    </div>
-  </div>
--->
