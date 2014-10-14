@@ -66,7 +66,7 @@ end
 <li class="food-bill">
 <span class="item-name item-nameP">&nbsp;</span>
 <span class="item-qty item-qtyP text-total">Discounted Amount</span>
-<span class="item-cost text-total1 discount_span" id="review_order_total"><%= discountC %></span>
+<span class="item-cost discount_span" id="review_order_total"><%= discountC %></span>
 <span class="item-edit discountEdit" style="cursor: pointer;"></span>
 </li>
 </ul>
@@ -235,6 +235,11 @@ end
         else
         window.location = "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val()+"&cc="+$("#discount_code").val()
       });
+
+      if($("#discount_code").val()==""){
+          $(".discount_span").html(0);
+          $(".total_amount").html($(".text-total1").html());
+      }
        $("#check_coupon").click(function(){
            if($("#review_order_total").text()==""){
                 alert("There is no item in cart.Please add item");

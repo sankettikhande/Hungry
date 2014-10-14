@@ -1,6 +1,4 @@
-
 $("#cheff_footer #footer div.col-xs-12 ul").removeClass("hidden");
-
    if (<%= !"#{request.referer}".include?('review_order')%>) {
        $("body").append("<%= j render(:partial => 'layouts/footer') %>");
        $("#footer .col-xs-12").empty();
@@ -10,3 +8,4 @@ $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
 $("#review_order_total").html("<%=@total%>");
 $(".total_amount").html("<%=@total%>");
+
