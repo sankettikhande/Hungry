@@ -293,5 +293,20 @@ module ApplicationHelper
     (Time.now < meal_availability_to_time)
   end
 
+
+  def get_time_slot(meal_type)
+    case meal_type
+      when 'Lunch'
+        session['lt']
+      when 'Evening Snacks'
+        session['et']
+      when 'Dinner'
+        session['dt']
+      else
+        'Now'
+    end
+
+  end
+
 end
 
