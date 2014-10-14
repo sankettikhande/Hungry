@@ -121,5 +121,10 @@ function successHandler (result) {}
 
 function errorHandler (error) {}
 
-document.addEventListener('deviceready', onDeviceReady, true);
-window.location='/mobile';
+if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+  alert("mobile");  
+  document.addEventListener("deviceready", onDeviceReady, false);
+} else {
+  alert("NOTmobile");  
+  onDeviceReady(); //this is the browser
+}
