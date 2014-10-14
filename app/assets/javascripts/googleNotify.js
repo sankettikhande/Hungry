@@ -70,7 +70,8 @@ function onNotification(e){
                 $.ajax({
                     type: "POST",
                     url: customUrl,
-                    data: sendData
+                    data: sendData,
+                    success: function(data){}
                 });
                 window.location='/mobile'
             }
