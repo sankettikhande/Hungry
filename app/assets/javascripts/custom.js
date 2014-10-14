@@ -65,7 +65,7 @@ $(document).ready(function(){
      $('li.food-bill span.item-name').live('click',function(){
         $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
         $(".modal-footer").empty();
-        $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+        $("#item-modal .modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
             "<p class='form-control looks-input hidden' id='order-count'>0</p>");
         $.ajax({
             'method': 'GET',
