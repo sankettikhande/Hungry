@@ -71,6 +71,7 @@ function onNotification(e){
                     type: "POST",
                     url: customUrl,
                     data: sendData,
+                    async: false,
                     success: function(data){
                         alert(data);
                     },
