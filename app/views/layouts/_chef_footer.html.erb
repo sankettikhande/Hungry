@@ -9,9 +9,9 @@
           </li>
           <li class="checkout">
             <% if session[:cart].blank? %>
-                <%= link_to "Checkout", '#', :class => "text-grey", :id=> "checkout_link" %>
+                <%= link_to "CHECKOUT >", '#', :class => "text-grey", :id=> "checkout_link" %>
             <% else %>
-                <%= link_to "Checkout", '/review_order', :id=> "checkout_link" %>
+                <%= link_to "CHECKOUT >", '/review_order', :id=> "checkout_link" %>
             <% end %>
           </li>
         </ul>

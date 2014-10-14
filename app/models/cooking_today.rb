@@ -2,13 +2,17 @@ class CookingToday < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
   attr_accessor :skip_callbacks
   cattr_accessor :meal_types, :meal_type_time_span
-  @@meal_types = ["Lunch", "Evening Snacks", "Dinner", "All Time Available"]
+  @@meal_types = ["Lunch", 
+                  #"Evening Snacks",
+                  "Dinner"
+                  #, "All Time Available"
+                  ]
 
   @@meal_type_time_span = {
-                           "Lunch" => {from: "11:30 AM", to: "02:00 PM"},
-                           "Evening Snacks" => {from: "04:30 PM", to: "07:00 PM"},
-                           "Dinner" => {from: "07:30 PM", to: "11:30 PM"},
-                           "All Time Available" => {from: "12:00 AM", to: "11:59 PM"}
+                           "Lunch" => {from: "00:01 AM", to: "03:00 PM",fromDisplay: "11:30 AM", toDisplay: "03:00 PM"},
+                           #"Evening Snacks" => {from: "00:01 AM", to: "07:00 PM",fromDisplay: "04:30 PM", toDisplay: "07:00 PM"},
+                           "Dinner" => {from: "00:01 AM", to: "11:30 PM",fromDisplay: "07:30 PM", toDisplay: "11:30 PM"}
+                           #,"All Time Available" => {from: "12:00 AM", to: "11:59 PM"}
                           }
 
   belongs_to :cheff
@@ -35,7 +39,8 @@ class CookingToday < ActiveRecord::Base
   end
 
   def self.sorted_by_qty_left
-    CookingToday.published.where(:date =>Time.current.to_date).where("meal_from_time > '#{Time.now.to_s(:db)}'").sort_by(&:qty_left).reverse
+    # CookingToday.published.where(:date =>Time.current.to_date).where("meal_from_time > '#{Time.now.to_s(:db)}'").sort_by(&:qty_left).reverse
+    CookingToday.published.where(:date =>Time.current.to_date).sort_by(&:qty_left).reverse
   end
 
   def self.grouped_by_category

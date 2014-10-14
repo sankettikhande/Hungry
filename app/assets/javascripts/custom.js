@@ -33,17 +33,31 @@ $(document).ready(function(){
     //     });
     // });
 
-    $('.about-content').on('click', function(){
-      $(this).closest('.square').find(".recipe-block").hide();
-      $(this).closest('.square').find(".recipe-about").show();
-      return false;
+    $('.time-slots span').click(function(){
+      $(this).parent().find('.o-time').removeClass('selected');
+      $(this).addClass('selected');
+      $("#"+$(this).data('meal_type')).val($(this).html())
     });
 
-     $('.opacityimg,.opacityborder').on('click', function(){
-      $(this).closest('.square').find(".recipe-about").hide();
-      $(this).closest('.square').find(".recipe-block").show();
-      return false;
+    // $('.about-content').on('click', function(){
+    //   $(this).closest('.square').find(".recipe-block").hide();
+    //   $(this).closest('.square').find(".recipe-about").show();
+    //   return false;
+    // });
+
+    //  $('.opacityimg,.opacityborder').on('click', function(){
+    //   $(this).closest('.square').find(".recipe-about").hide();
+    //   $(this).closest('.square').find(".recipe-block").show();
+    //   return false;
+    // });
+
+    $('.recipe-block').on('click', function(){
+        $(this).find('.dark-overlay').toggle()
     });
+    $('.foodDesp').on('click', function(){
+        $(this).closest('.square').find('.dark-overlay').toggle()
+    });
+
 
       $("#talk-us-form,#new_chef_request,#new_party_order").validationEngine({promptPosition : "topLeft"});
       $("#new_hola_user_address").validationEngine({promptPosition : "bottomLeft"});
@@ -51,7 +65,7 @@ $(document).ready(function(){
      $('li.food-bill span.item-name').live('click',function(){
         $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
         $(".modal-footer").empty();
-        $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
+        $("#item-modal .modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
             "<p class='form-control looks-input hidden' id='order-count'>0</p>");
         $.ajax({
             'method': 'GET',
@@ -102,11 +116,11 @@ $(document).ready(function(){
         $("#add-order-plus").removeAttr("disabled");
         $("#add-order-plus").removeClass("disabled");
         cnt = parseInt($("#order-count").html(),10)
-        if(cnt >=  0){
+        if(cnt >=  2){
             cnt = cnt - 1;
             $("#order-count").html(cnt);
         }
-        if (cnt == 0){
+        if (cnt == 2){
             $("#add-order-minus").attr("disabled");
             $("#add-order-minus").addClass("disabled");
         }
@@ -151,7 +165,7 @@ $(document).ready(function(){
         $.ajax({
                 'method': 'GET',
                 'url': url ,
-                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category },
+                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
                 'dataType': 'script'
             })
 
@@ -214,16 +228,23 @@ $(document).ready(function(){
 
     $("#review-order-done").unbind("click").live('click',function(e){
         e.preventDefault();
+        if(parseInt($("#order-count").html()) < 0){
+           alert("Quantity should be negative")
+        }
         var selected_id = "#"+$("#selected_item").val()+" li.recipe-stock";
         var date = new Date();
         var menu_qty = parseInt($("#order-count").html(),10);
         var menu_price = parseInt($(".modal-body li.recipe-price span").html(),10);
+        var discount = $(".discount_span").html(0);
         var category = $("#menu_category_"+parseInt($("#selected_item").val(),10)).val();
+        var item_model= $('#item-modal').addClass("item-model-"+selected_review_id)
+        var meal_type = $("li.item_"+selected_review_id).siblings('input[type="hidden"][id$="_slot"]').val();
+        meal_type = meal_type.split("_")[0]
         if(parseInt($("#order-count").html()) > 0){
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html(), 'category' : category },
+                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html(), 'category' : category, 'meal_type' : meal_type },
                 'dataType': 'script'
             })
             $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
@@ -241,7 +262,15 @@ $(document).ready(function(){
             $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
             $("#"+selected_review_id+" span.item-qty").html($("#order-count").html() )
             $("#"+selected_review_id+" span.item-cost").html(parseInt($("#order-count").html(),10)*menu_price );
-            $("#"+selected_review_id).remove();
+        }
+        if($(".item-model-"+selected_review_id).hasClass('in')== true){
+            $(this).ajaxStop(function () {
+                item_model.modal('hide');
+                $('#item-modal').removeClass("item-model-"+selected_review_id)
+                if(parseInt($("#order-count").html()) == 0){
+                    $("#"+selected_review_id).remove();
+                }
+            });
         }
     });
 
@@ -260,7 +289,6 @@ $(document).ready(function(){
 
     $("#submit-order-button").click(function(e){
         $("#submit_order").submit();
-
     })
     $("#submit_order input").focus(function(){
         $("#submit_order input").removeClass('active');
@@ -328,7 +356,6 @@ $(document).ready(function(){
         }
     });
 
-    
 
     $("#signature_form").validationEngine({
         'custom_error_messages': {
@@ -467,8 +494,8 @@ $(document).ready(function(){
     }
 
     $(".payment_mode").click(function(){
-        var paymentMode = $(this).attr('data-paymentMode');
-        var orderId = $(this).attr('data-orderId');
+        var paymentMode = $(this).attr('data-paymentmode');
+        var orderId = $(this).attr('data-orderid');
         $.ajax({
             'url' : '/submit_payment_form',
             'method': 'POST',
@@ -522,65 +549,4 @@ $(document).ready(function(){
       'dataType': 'script'
     })
   });
-});
-
-
-
-
-/********************** STICKIES ************************/
-function stickyTitles(stickies) {
-
-    this.load = function() {
-
-        stickies.each(function(){
-
-            var thisSticky = jQuery(this).wrap('<div class="followWrap" />');
-            thisSticky.parent().height(thisSticky.outerHeight());
-            jQuery.data(thisSticky[0], 'pos', thisSticky.offset().top);
-
-        });
-    }
-
-    this.scroll = function() {
-
-        stickies.each(function(i){
-            var thisSticky = jQuery(this),
-                nextSticky = stickies.eq(i+1),
-                prevSticky = stickies.eq(i-1),
-                pos = jQuery.data(thisSticky[0], 'pos');
-            if ((pos) <= jQuery(window).scrollTop()-$('.square').height()) {
-
-                thisSticky.addClass("fixed");
-
-                if (nextSticky.length > 0 && thisSticky.offset().top >= jQuery.data(nextSticky[0], 'pos') - thisSticky.outerHeight()) {
-                    thisSticky.addClass("absolute")//.css("top", jQuery.data(nextSticky[0], 'pos') - thisSticky.outerHeight());
-
-                }
-
-            } else {
-
-                thisSticky.removeClass("fixed");
-
-                if (prevSticky.length > 0 && jQuery(window).scrollTop() <= jQuery.data(thisSticky[0], 'pos')  - prevSticky.outerHeight()) {
-
-                    prevSticky.removeClass("absolute")//.removeAttr("style");
-
-                }
-
-            }
-            $("#pg_title").html($(".followMeBar.fixed").last().data("category"))
-        });
-    }
-}
-
-jQuery(document).ready(function(){
-
-    var newStickies = new stickyTitles(jQuery(".followMeBar"));
-    newStickies.load();
-
-    jQuery(window).on("scroll", function() {
-
-        newStickies.scroll();
-
-    });
 });

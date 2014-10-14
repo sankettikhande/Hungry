@@ -18,4 +18,10 @@
 //= require jquery-migrate-1.2.1.min
 //= require jquery.validationEngine
 //= require jquery.validationEngine-en
-//= require_tree .
+//= require bootstrap-datetimepicker.min
+//= require offcanvas
+//= require jquery.raty
+//= require jquery.fittext
+//= require ie8-responsive-file-warning
+//= require tag-it.min
+

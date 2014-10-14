@@ -129,8 +129,10 @@ module ApplicationHelper
       return "Favourites"
     when controller == "order_histories"
       return "Order History"
-    when controller == "hola_user_addresses"
+    when controller == "hola_user_addresses" && action != "new"
       return "Address"
+    when controller == "hola_user_addresses"  && action == "new"
+      return "Your Address"
     when controller == "cms/feedbacks" && action == "talk_to_us"
       return "Talk To Us"
     when controller == "social_shares" && action == "index" || action == "tell_friends"
@@ -142,12 +144,6 @@ module ApplicationHelper
     when controller == "cms/chef_requests" && action == "become_chef"
       return "Become a Chef"
     else
-      meal_availability_hash = CookingToday.meal_type_time_span
-      meal_availability_hash.each do |category, meal_availability|
-        meal_availability_from_time = Time.zone.parse("#{Date.today} #{meal_availability[:from]}")
-        meal_availability_to_time = Time.zone.parse("#{Date.today} #{meal_availability[:to]}")
-        return "#{category} (#{meal_availability[:from]} - #{meal_availability[:to]})" if (Time.now > meal_availability_from_time and Time.now < meal_availability_to_time)
-      end
       return "Today's Menu"
     end
   end
@@ -295,6 +291,21 @@ module ApplicationHelper
     meal_availability_from_time = Time.zone.parse("#{Date.today} #{meal_availability[:from]}")
     meal_availability_to_time = Time.zone.parse("#{Date.today} #{meal_availability[:to]}")
     (Time.now < meal_availability_to_time)
+  end
+
+
+  def get_time_slot(meal_type)
+    case meal_type
+      when 'Lunch'
+        session['lt']
+      when 'Evening Snacks'
+        session['et']
+      when 'Dinner'
+        session['dt']
+      else
+        'Now'
+    end
+
   end
 
 end

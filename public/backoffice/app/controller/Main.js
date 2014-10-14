@@ -681,20 +681,21 @@ OldBtnHandler: function () {
         HolaChef.app.ShowHideLoader(true);
         var ref = this;
         var str = '';
-        str += '<div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Order No</th><th>Name</th><th>Mobile</th><th>Payment</th><th>Progress</th><th>Order Time</th></tr></thead><tbody>';
+        str += '<div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Order No</th><th>Name</th><th>Mobile</th><th>Payment</th><th>Progress</th><th>Meal Type</th><th>Order Time</th></tr></thead><tbody>';
         for (var i = 0; i < records.length; i++) {
             var date= records[i]["confirmed_at"];
             var dispat= records[i]["dispatched_at"];
             
             var timeNow = new Date(date);
             var DiffMins = (new Date()-timeNow)/(1000*60);
-            if (DiffMins > 5 && dispat == null)
-                 str += '<tr class="datarow5">';
-            else if(i % 2 == 0)
-                 str += '<tr class="datarow2">';
-            else
-                str += '<tr class="datarow1">';
             var id = records[i]["id"];
+            if (DiffMins > 5 && dispat == null)
+                 str += '<tr class="datarow5" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
+            else if(i % 2 == 0)
+                 str += '<tr class="datarow2" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
+            else
+                str += '<tr class="datarow1" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
+
             var j = i + 1;
 
             var innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> View</a>';
@@ -712,8 +713,8 @@ OldBtnHandler: function () {
             else if (status == "Canceled" || status == "Delivered" || status == "Returned" || status == "Reordered")
                 innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
             
-            
-            str += '<td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + String(id) + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_name"] + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_contact_number"] + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["payment_mode"] + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["order_progress"] + '</td><td onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["confirmed_at"] + '</td>';
+            str += '<td>' + String(id) + '</td><td> ' + records[i]["customer_name"] + '</td><td> ' + records[i]["customer_contact_number"] + '</td><td>' + records[i]["payment_mode"] + '</td><td> ' + records[i]["order_progress"] + '</td>';
+            str += '<td>' + (records[i]["order_items"][0] == undefined ? "" : records[i]["order_items"][0]["meal_type"]) + '</td><td>' + records[i]["confirmed_at"] + '</td>';
             str += '</tr>';
         }
 
@@ -826,7 +827,7 @@ function viewordetail(id,from)
             html += '<tr><td>' + pin + '</td></tr>';
             html += '<tr><td>' + land + '</td></tr>';
 
-            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td >Order progress : </td><td style="width:60%"> ' + records["order_progress"] + '</td></tr><tr><td>Payment : </td><td>' + records["payment_mode"] + '</td></tr>';
+            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td >Order progress : </td><td style="width:60%"> ' + records["order_progress"] + '</td></tr><tr><td>Payment : </td><td>' + records["payment_mode"] + '</td></tr><tr><td>Delivery Time : </td><td>' + records["deliverySlot"] + '</td></tr>';
 
             if (from == "Dispatched") {
                 var runner = records["runner"];
@@ -854,7 +855,7 @@ function viewordetail(id,from)
             }
 
         
-            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td style="width:40%;"><textarea rows="10" cols="36" style= "width:100%;border: 1px solid black">Order History and Comments</textarea></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr></table></td></tr></table></div>';
+            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"><textarea rows="10" cols="36" style= "width:100%;border: 1px solid black">Order History and Comments</textarea></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Coupon Id : ' + records["couponID"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Payable Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
             var obj = Ext.getCmp('OrderViewpanel');            
             obj.setHtml(html);
             HolaChef.app.ShowHideLoader(false);

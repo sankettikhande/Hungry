@@ -1,9 +1,10 @@
 class Api::OrdersController < ApiController
   def index
-    @orders = Order.includes(:runner, :hola_user, {:ordered_menus => {:food_item => :meal_info}}).order("id desc")
-    @orders = @orders.where("created_at >= ? ", params[:from_date]) if !params[:from_date].blank?
-    @orders = @orders.where("created_at <= ? ", params[:to_date]) if !params[:to_date].blank?
-    @orders = @orders.where("created_at >= ? ", DateTime.now.beginning_of_day) if (params[:from_date].blank? && params[:to_date].blank?)
+    @orders = Order.includes(:runner, :hola_user, {:ordered_menus => [:cooking_today, {:food_item => :meal_info}]}).order("orders.id desc")
+    @orders = @orders.where("DATE(orders.created_at) >= ? ", params[:from_date]) if !params[:from_date].blank?
+    @orders = @orders.where("DATE(orders.created_at) <= ? ", params[:to_date]) if !params[:to_date].blank?
+    @orders = @orders.where("DATE(orders.created_at) >= ? ", Date.today) if (params[:from_date].blank? && params[:to_date].blank?)
+    @orders = @orders.where("exists (select 1 from ordered_menus where ordered_menus.order_id = orders.id)")
   end
 
   def show
@@ -52,11 +53,18 @@ class Api::OrdersController < ApiController
   def reorder
     @order = Order.find params[:order_id]
     new_order = @order.deep_clone include: :ordered_menus, validate: false
-    new_order.original_order_id = @order.id
     new_order.order_status = "Confirmed"
     new_order.order_status_history = ["Created", "Confirmed"]
     new_order.original_order_id = @order.id
+    new_order.ordered_menus = new_order.ordered_menus.select{|om| om.order_status != "Canceled"}
     if new_order.save
+      new_order.ordered_menus.each do |om|
+        cooking_today = om.cooking_today
+        om.update_attribute(:order_status, "Ordered")
+        if cooking_today && (cooking_today.ordered.to_i + om.quantity.to_i) <= cooking_today.quantity
+          cooking_today.update_attribute(:ordered, (cooking_today.ordered.to_i + om.quantity.to_i))
+        end
+      end
       @order.update_attributes(reorder_id: new_order.id, order_status: "Reordered")
       @message = {"msg" => "New order placed", "order_id" => new_order.id}
       render "api/success"

@@ -172,11 +172,9 @@ form, .faux_form {
 }
 
 .successMsg {
-    font-weight: bold;
     margin: 8px 0;
-    color: green;
-    padding-left: 20px;
-    font-size: 12px;
+    color: #6a6969;
+    font-size: 13px;
 }
 .instructions {
     clear: left;

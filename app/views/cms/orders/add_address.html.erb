@@ -1,17 +1,14 @@
 <div class="container-fluid">
+  <div class="grey-header">
+        <a href="/new_address?src=o" class="btn btn-block address-btn">
+            <span class="glyphicon glyphicon-plus"></span> ADD NEW ADDRESS
+        </a>
+  </div>
           <div class="row">
                 <div class="col-xs-12">
                   <div class="address-container">
-
                     <div class="row">
                       <div class="col-xs-12">
-                        <div class="form-group">
-                          <div class="address-label">
-                            <a href="/new_address?src=o" class="btn back-white btn-block text-orange address-btn">
-                                <span class="glyphicon glyphicon-plus text-orange"></span> Add New Address
-                            </a>
-                          </div>
-                        </div>
                         <% if hola_current_user %>
                         <%= form_tag "/payment-method", :method => "POST", :name => "orders", :id => "submit_order" do %>
 
@@ -21,14 +18,27 @@
                               <table class="table address-table">
                                   <colgroup><col class="col-xs-2 col-sm-1"><col class="col-xs-10 col-sm-11"></colgroup>
                                   <tr>
-                                    <td class="a-radio">
+                                <!--    <td class="a-radio">
                                         <% if HolaUserAddress.pin_codes.include?(address.pin) %>
                                           <input type="radio" name="address_id" value="<%= address.id %>" id= '<%="address-#{address.id}"%>' class="validate[required]" data-errormessage="Please choose a address." >
                                         <% else %>
                                           <input type="radio" name="address_id" value="<%= address.id %>" id= '<%="address-#{address.id}"%>' class="validate[required]" data-errormessage="Please choose a address." disabled />
-
+	
                                         <% end %>
-                                    </td>
+                                    </td> -->
+									
+									<td class="text-center orange-check">
+									<% if HolaUserAddress.pin_codes.include?(address.pin) %>
+                                            <input name="address_id" type="radio" value="<%= address.id %>" id= '<%="address-#{address.id}"%>' class="css-checkbox validate[required]" data-errormessage="Please choose a address." >
+											 <label for='<%="address-#{address.id}"%>' class="css-label"></label>
+										 <% else %>	
+										 <input type="radio" name="address_id" value="<%= address.id %>" id= '<%="address-#{address.id}"%>' class="validate[required]" data-errormessage="Please choose a address." disabled />
+
+                                            <label for='<%="address-#{address.id}"%>' class="css-label"></label> 
+										<% end %>	
+                                      </td>
+									
+									
                                     <td>
                                         <label for='<%="address-#{address.id}"%>' style="cursor: hand">
                                           <p class="address-brief">
@@ -42,7 +52,25 @@
                                           <small class="alert-warning">Sorry! we are currently not delivering to this address</small>
                                         <% end %>
                                     </td>
+									
+									
+									
+									
+									
                                   </tr>
+                                 <!-- <tr> 
+                                      <td class="text-center orange-check">
+                                            <input name="address_id" id="radio4" class="css-checkbox" type="radio">
+                                            <label for="radio4" class="css-label"></label> 
+                                      </td>
+                                      <td class="orange-check">
+                                            <label for="radio4" class="orange-check-label">
+                                              <p class="address-brief">
+                                                Sodel Apartments, flat no 114, MBP, Mahape
+                                              </p>
+                                            </label>
+                                      </td>
+                                    </tr>-->
                               </table>
                             </div>
                           <% end %>

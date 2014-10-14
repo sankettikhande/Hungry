@@ -13,13 +13,13 @@
 
         <li><a class="navbar-brand" data-toggle="offcanvas" data-target="#sidebar" href="javascript:void(0)">Hola</a></li>
         <li class="dropdown page-title" id="pg_title">
-          <%= set_drop_down_title(params[:controller], params[:action], params[:id] ) %>
+          <%= set_drop_down_title(params[:controller], params[:action], params[:id] ).html_safe %>
         </li>
       </ul>
 
         <div class="pull-right">
-          <%= link_to "Back", back_actions(params), :class => "btn-back text-hide" unless params[:controller] == "home" && params[:action] == "mobile" %>
-        </div>
+            <%= link_to_if(request.env['PATH_INFO'] == '/add-address', "", "/review_order", :class => "btn-back text-hide") {link_to "Back", back_actions(params), :class => "btn-back text-hide" unless params[:controller] == "home" && params[:action] == "mobile"} %>
+          </div>
     </div>
   </div>
 </div> <!-- navbar ends -->

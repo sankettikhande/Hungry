@@ -1,0 +1,53 @@
+<div class="container-fluid back-white seperator-b10 nopadding">
+  <ul class="order-timing">
+    <li class="time-zone"><span class="order-when">Today </span><span class="order-what open-bracket close-bracket"><%= meal_type %></span></li>
+    <li class="time-set open-bracket close-bracket"><%= CookingToday.meal_type_time_span["#{meal_type}"][:fromDisplay] %> - <%= CookingToday.meal_type_time_span["#{meal_type}"][:toDisplay] %></li>
+
+<% current_time = Time.now
+
+    if ((!(11..15).include?(current_time.hour) && meal_type == "Lunch" )|| (!(15..19).include?(current_time.hour) && meal_type == "Evening Snacks" ) || (!(19..23).include?(current_time.hour) && meal_type == "Dinner" ))  %>
+        <li class="time-slots">
+          <span class="o-time selected" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_1 %></span>
+          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_2 %></span>
+          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_3 %></span>
+          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_4 %></span>
+        </li>
+     <% else%>   
+     <li class="time-slots">
+      <span class="o-time selected" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot">NOW</span>
+     </li>
+<% end %>
+
+
+  </ul>
+  <%= hidden_field_tag "#{meal_type.downcase.gsub(' ', '_')}_slot", slot_1 %>
+</div> <!-- container-fluid ends -->
+<div class="row">
+  <div class="col-xs-12">
+    <div class="container">
+      <ul class="booked-orders">
+        <% items.each do |todays_item| %>
+          <% todays_item.each do |order_id, order_attrs| %>
+            <%= hidden_field_tag "#{meal_type.downcase.gsub(' ', '_')}_slot", "#{meal_type}_slot" %>
+            <li class="food-bill review_order_list item_<%= order_id %>" id="<%= order_id %>">
+              <input type="hidden" id="menu_category_<%= order_id %>" value="<%= order_attrs['category']  %>" />
+              <span class="item-name" data-toggle="modal" data-target="#item-modal" data-quantity="<%= order_attrs['quantity'] %>" style="cursor: pointer;" id="<%= order_id %>">
+                <%= order_attrs['dish_name'] %>
+              </span>
+              <span class="item-edit" style="cursor: pointer;">
+                <i class="fa fa-pencil"></i>
+              </span>
+              <span class="item-qty"><%= order_attrs['quantity'] %></span>
+              <span class="item-cost"><%= order_attrs['quantity'].to_i * order_attrs['price'].to_i %></span>
+              <span class="item-remove">
+                 <a href="#" data-item="<%= order_id %>"><i class="fa fa-times"></i></a>
+              </span>
+              <% total << order_attrs['quantity'].to_i * order_attrs['price'].to_i %>
+            </li>
+          <% end %>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</div>

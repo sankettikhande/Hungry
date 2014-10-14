@@ -39,10 +39,15 @@ class HomeController < ApplicationController
 
   def mobile
     @todays_menu = CookingToday.grouped_by_category
+    @sunday_override = params[:sunday_override]
     update_cart(@todays_menu) if !@todays_menu.blank?
 
     respond_to do |format|
-      format.html{render template: "home/index"}
+      if (!Time.now.sunday? || !@sunday_override.blank?)
+        format.html{render template: "home/index"}
+      else
+        format.html{render template: "home/sunday"}
+      end
     end
   end
 
@@ -63,6 +68,12 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.html{render :layout => 'application'}
     end
+  end
+
+  def logout
+   session.clear
+   cookies.delete :user_mobile
+   redirect_to("/mobile") and return
   end
 
   private

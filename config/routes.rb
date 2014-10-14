@@ -1,5 +1,6 @@
 Holachef::Application.routes.draw do
 
+
   resources :hola_users
   match "/add_chef_to_favorite"=> "hola_users#add_chef_to_favorite"
   match '/my_favorite_chefs'=>"hola_users#my_favorite_chefs"
@@ -19,6 +20,7 @@ Holachef::Application.routes.draw do
   match '/cms/food_items/load_chef_dishes'=>'Cms::food_items#load_chef_dishes'
 
   match '/create_signature_order'=>"Cms::orders#create_signature_order"
+  match '/check_coupon' => "ordered_menus#check_coupon_code", :as => :check_coupon
 
   namespace :cms  do
     match '/cheffs/load_dishes'=>'cheffs#load_dishes'
@@ -38,6 +40,7 @@ Holachef::Application.routes.draw do
     content_blocks :chef_requests
     content_blocks :party_orders
     content_blocks :feedbacks
+    content_blocks :coupons
   end
 
   resources :social_shares do
@@ -75,6 +78,7 @@ Holachef::Application.routes.draw do
   post "orders/callback"=>'Cms::orders#callback'
 
   match '/home/index_call' =>'home#index_call'
+  match '/logout' =>'home#logout'
 
   post '/email' => 'temporary_home#send_mail'
   post '/feedback' => 'Cms::feedbacks#feedback'

@@ -6,14 +6,14 @@ class Order < ActiveRecord::Base
   attr_accessor :skip_callbacks
   cattr_accessor :order_statuses
 
-
-
   serialize :payment_gateway_response, Hash
   serialize :order_status_history, Array
 
   has_many :ordered_menus
+  has_one :parent_order, :primary_key => "parent_order_id", :foreign_key => "id", :class_name => "Order"
   belongs_to :hola_user
   belongs_to :runner
+  has_one :coupon
 
   validates :date, :order_status, presence: true
   validates :order_status, inclusion: {in: @@order_statuses}
@@ -21,13 +21,14 @@ class Order < ActiveRecord::Base
 
   after_save :mark_paid, :send_delivery_message, :if => Proc.new {|o| o.order_status_changed? and o.delivered?}
   after_save :mark_menu_items, :if => Proc.new { |o| ["Damaged", "Delivered", "Canceled", "Returned"].include? o.order_status }
-  after_save :send_order_confirm_message, :if => Proc.new {|o| o.order_status_changed? and o.confirmed?}
-  after_save :send_order_dispatched_message, :if => Proc.new {|o| o.order_status_changed? and o.dispatched?}
+  after_save :send_order_confirm_message, :if => Proc.new {|o| o.order_status_changed? and o.confirmed? and o.parent_order_id.blank?}
+  after_save :send_order_dispatched_message, :if => Proc.new {|o| o.order_status_changed? and o.dispatched? }
   before_save :build_order_status_history
   before_save :ensure_hola_user_id
   before_save :ensure_order_not_canceled, :if => Proc.new {|o| o.order_status_changed? and o.order_status_was == "Canceled"}
   before_save :ensure_order_not_dispatched, :if => Proc.new {|o| o.order_status_changed? and o.order_status_was == "Dispatched"}
   before_save :update_timestamps, :if => :order_status_changed?
+  after_save :mark_sub_orders, :if => Proc.new {|o| o.order_type == "MultiMeal" and o.order_status_changed? and o.confirmed?}
 
   @@order_statuses.each do |s|
     define_method "#{s.downcase}?" do
@@ -61,8 +62,8 @@ class Order < ActiveRecord::Base
   end
 
   def send_delivery_message
-    message = "Hola! Hope you had an awesome experience with us. We hope to serve your cravings again soon. With Love, Holachef!"
-    MessagingLib.delay(:run_at => 2.hours.from_now).send_messages(message, self.phone_no, "Transaction")
+    #message = "Hola! Hope you had an awesome experience with us. We hope to serve your cravings again soon. With Love, Holachef!"
+    #MessagingLib.delay(:run_at => 2.hours.from_now).send_messages(message, self.phone_no, "Transaction")
   end
 
   def mark_menu_items
@@ -104,6 +105,12 @@ class Order < ActiveRecord::Base
     if self.order_status == "Canceled"
       errors.add(:base, "Order has been dispatched. So cant be Canceled.")
       return false
+    end
+  end
+
+  def mark_sub_orders
+    Order.where(parent_order_id: self.id).each do |o|
+      o.update_attributes(order_status: "Confirmed")
     end
   end
 

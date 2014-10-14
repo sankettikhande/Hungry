@@ -6,6 +6,9 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="normal-body">
+          <% if flash[:notice] %>
+            <div class="successMsg"><%= flash[:notice] %></div>
+          <% end %>
           <div class="input-card">
             <%= f.text_field :name, class: "lower-only validate[required]", placeholder: "Enter your Name" %>
           </div>
@@ -22,9 +25,6 @@
           <div class="form-group seperator-15">
             <%= f.submit "Submit", class: "btn btn-saffron" %>
           </div>
-          <% if flash[:notice] %>
-            <div class="successMsg"><%= flash[:notice] %></div>
-          <% end %>
         </div>
       </div>
     </div>
