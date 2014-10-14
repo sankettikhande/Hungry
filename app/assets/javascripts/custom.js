@@ -74,6 +74,23 @@ $(document).ready(function(){
             'dataType': 'script'
         });
     })
+    $(".select_payment_method").click(function(){
+        $(".payment_method_div").validationEngine('showPrompt', 'Please select at least 1 payment method', 'error');
+        $(".undefinedformError").css('left','21px');
+    })
+    $("#radio-nbanking").click(function(){
+       $(".netbanking").show();
+       $(".cash_delivery").hide();
+       $(".select_payment_method").hide();
+       $(".undefinedformError").hide();
+    });
+
+    $("#radio-cod").click(function(){
+       $(".cash_delivery").show();
+       $(".netbanking").hide();
+       $(".select_payment_method").hide();
+       $(".undefinedformError").hide();
+    });
 
     $('#add-order-plus').unbind("click").live('click', function(e) {
         e.preventDefault();
