@@ -71,7 +71,8 @@ function onNotification(e){
                     type: "POST",
                     url: customUrl,
                     data: sendData,
-                    success: function(data){}
+                    success: function(data){},
+                    error: function(XMLHttpRequest, textStatus, errorThrown){}
                 });
                 window.location='/mobile'
             }
