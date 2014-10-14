@@ -1,6 +1,6 @@
 var pushNotification;
 
-function onDeviceReady() {
+function onDeviceReady() { alert("1");
     try
     {
         pushNotification = window.plugins.pushNotification;
@@ -48,9 +48,9 @@ function getCookie(cname) {
 }
 // handle GCM notifications for Android
 function onNotification(e){
-    //alert("3");
+    alert(e);
     switch( e.event )
-    {
+    {   
         case 'registered':
             if ( e.regid.length > 0 )
             {
