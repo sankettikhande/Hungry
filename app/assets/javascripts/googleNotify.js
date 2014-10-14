@@ -76,7 +76,7 @@ function onNotification(e){
                         window.location='/mobile'
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){
-                        //alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        alert("Status: " + textStatus); alert("Error: " + errorThrown);
                         window.location='/mobile'
                     }
                 });
@@ -123,4 +123,3 @@ function successHandler (result) {}
 function errorHandler (error) {}
 
 document.addEventListener('deviceready', onDeviceReady, true);
-window.location='/mobile';
