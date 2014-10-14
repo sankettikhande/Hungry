@@ -70,16 +70,8 @@ function onNotification(e){
                 $.ajax({
                     type: "POST",
                     url: customUrl,
-                    data: sendData,
-                    async: false,
-                    success: function(data){
-                        alert(data);
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown){
-                        alert("Status: " + textStatus); alert("Error: " + errorThrown);
-                    }
+                    data: sendData
                 });
-                alert("beforeajax");
                 window.location='/mobile'
             }
             break;
