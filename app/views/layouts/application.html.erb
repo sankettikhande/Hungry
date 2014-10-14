@@ -54,11 +54,11 @@
   <% end %>
     <%= javascript_include_tag "application"%>
      <script type="text/javascript">
-      if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+      /*if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
           document.write("<script src='/assets/cordova.js'><\/script>");
           document.write("<script src='/assets/PushNotification.js'><\/script>");
           document.write("<script src='/assets/googleNotify.js'><\/script>");
-      }
+      }*/
     </script>    
     <%= render 'hola_session/login' %>
     <%= login_check %>
