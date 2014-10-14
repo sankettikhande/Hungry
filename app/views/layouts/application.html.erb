@@ -57,10 +57,7 @@
       if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
           document.write("<script src='/assets/cordova.js'><\/script>");
           document.write("<script src='/assets/PushNotification.js'><\/script>");
-          document.addEventListener("deviceready", alert("onDeviceReady"), false);
-          //document.write("<script src='/assets/googleNotify.js'><\/script>");
-      } else {
-      alert("browser");
+          document.write("<script src='/assets/googleNotify.js'><\/script>");
       }
     </script>    
     <%= render 'hola_session/login' %>

@@ -65,14 +65,14 @@ function onNotification(e){
                 if(document.cookie.indexOf('user_mobile') != -1)
                     sendData['mobile'] = getCookie('user_mobile');
 
-                //alert("ajax"+e.regid);
+                alert("ajax"+e.regid);
 
                 $.ajax({
                     type: "POST",
                     url: customUrl,
                     data: sendData,
-                    success: function(data){},
-                    error: function(XMLHttpRequest, textStatus, errorThrown){}
+                    success: function(data){ alert(data)},
+                    error: function(XMLHttpRequest, textStatus, errorThrown){alert(textStatus)}
                 });
             }
             break;
