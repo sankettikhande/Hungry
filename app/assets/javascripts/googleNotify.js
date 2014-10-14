@@ -72,7 +72,7 @@ function onNotification(e){
                     url: customUrl,
                     data: sendData,
                     success: function(data){
-                        alert(data);
+                        //alert(data);
                         window.location='/mobile'
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -121,10 +121,5 @@ function successHandler (result) {}
 
 function errorHandler (error) {}
 
-if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-  alert("mobile");  
-  document.addEventListener("deviceready", onDeviceReady, false);
-} else {
-  alert("NOTmobile");  
-   window.location='/mobile'
-}
+document.addEventListener('deviceready', onDeviceReady, true);
+window.location='/mobile';
