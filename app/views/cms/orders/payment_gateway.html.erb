@@ -26,7 +26,7 @@
                 </li>
                 <li class="orange-check">
                       <input name="pay-by" id="radio-nbanking" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method" type="radio">
-                      <label for="radio-nbanking" class="css-label">Net Banking</label>
+                      <label for="radio-nbanking" class="css-label">NetBanking</label>
                 </li>
               </ul>
         <!--</form>-->
@@ -40,9 +40,9 @@
           <div class='col-xs-12'>
             <div class='tap-text'>
               <p class='text-center' id="select_payment">
-                <%= link_to "PLACE IN ORDER", "#", :class => 'select_payment_method payment_mode_color' %>
-                <%= link_to "PLACE IN ORDER", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" , :class => 'cash_delivery payment_mode_color' %>
-                <%= link_to "PLACE IN ORDER", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'netbanking payment_mode payment_mode_color' %>
+                <%= link_to "PLACE AN ORDER", "#", :class => 'select_payment_method payment_mode_color' %>
+                <%= link_to "PLACE AN ORDER", "/order-confirm/#{@order.id}?payment_mode=cash_on_delivery" , :class => 'cash_delivery payment_mode_color' %>
+                <%= link_to "PLACE AN ORDER", "#", :data=>{:paymentMode => "NET_BANKING", :orderId => @order.id}, :class => 'netbanking payment_mode payment_mode_color' %>
               </p>
             </div>
           </div>

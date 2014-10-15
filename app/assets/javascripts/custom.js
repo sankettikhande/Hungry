@@ -75,7 +75,7 @@ $(document).ready(function(){
         });
     })
     $(".select_payment_method").click(function(){
-        $(".payment_method_div").validationEngine('showPrompt', 'Please select at least 1 payment method', 'error');
+        $(".payment_method_div").validationEngine('showPrompt', ' Please select a payment method', 'error');
         $(".undefinedformError").css('left','21px');
     })
     $("#radio-nbanking").click(function(){
