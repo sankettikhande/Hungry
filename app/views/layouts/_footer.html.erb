@@ -1,11 +1,13 @@
-<% if session[:cart].present? %>
-  <div id="footer" class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <%= render :partial => 'cms/orders/checkout_details' %>
+<% if session[:cart].present?  %>
+  <% if request.referer && !request.url.include?('/talk_to_us') %>
+      <div id="footer" class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <%= render :partial => 'cms/orders/checkout_details' %>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+  <% end %>
 <% end %>
