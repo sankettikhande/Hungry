@@ -143,7 +143,7 @@ class Cms::OrdersController < Cms::ContentBlockController
       else
         @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular',
                             :hola_user_id => hola_user.id, :addressStreet1 => hola_user_address.building_name, :addressStreet2 => hola_user_address.street,
-                            :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name )
+                            :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name, delivery_slot:  get_time_slot(cart_meal_types) )
 
         session[:cart].each do |item|
           item.each do |item_id, item_attr|
