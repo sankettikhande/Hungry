@@ -1,7 +1,8 @@
 class HolaSessionController < ApplicationController
   def create
     @hola_user = HolaUser.create_from_params({ phone_no: params[:mobile],
-                                              name: params[:name]
+                                              name: params[:name],
+                                              email: params[:email]
                                             })
     generate_and_send_opt
   end
@@ -22,6 +23,10 @@ class HolaSessionController < ApplicationController
   def regenerate_otp
     @hola_user = HolaUser.create_from_params({phone_no: Base64.decode64(params[:pnx])})
     generate_and_send_opt
+  end
+
+  def get_sign_in_details
+    @hola_user = HolaUser.find_by_phoneNumber(params[:mobile_no])
   end
 
   private
