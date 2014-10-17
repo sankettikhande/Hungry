@@ -100,6 +100,7 @@ Holachef::Application.routes.draw do
       post :confirm_with_otp
       get :confirm_with_otp
       get :regenerate_otp
+      get :get_sign_in_details
     end
   end
 

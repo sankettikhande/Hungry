@@ -1,0 +1,7 @@
+<% if @hola_user.blank? %>
+    $("#name").val("");
+    $("#email").val("");
+<% else %>
+    $("#name").val("<%= @hola_user.name %>")
+    $("#email").val("<%= @hola_user.email%>")
+<% end %>

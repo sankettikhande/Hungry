@@ -5,7 +5,7 @@ class HolaUser < ActiveRecord::Base
   has_many :my_favorite_recipes
   has_many :orders
   has_and_belongs_to_many :coupons, :join_table => "hola_user_coupons", :foreign_key => "hola_user_id"
-  attr_accessible :name, :phoneNumber
+  attr_accessible :name, :email, :phoneNumber
 
   validates :phoneNumber, uniqueness: true, presence: true
 
@@ -51,7 +51,7 @@ class HolaUser < ActiveRecord::Base
   end
 
   def self.create_from_params options
-    HolaUser.find_by_phoneNumber(options[:phone_no]) || HolaUser.create(:name => options[:name], :phoneNumber => options[:phone_no])
+    HolaUser.find_by_phoneNumber(options[:phone_no]) || HolaUser.create(:name => options[:name], :phoneNumber => options[:phone_no], :email => options[:email])
   end
 
   def get_default_address
