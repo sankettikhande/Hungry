@@ -31,7 +31,7 @@
                   <label class="control-label text-6" style="vertical-align:middle;margin-bottom:-10px;">Email</label>
                 </div>
                 <div class="col-xs-9 form-group">
-                  <%= text_field_tag :email, '', class: "form-control validate[required]", placeholder: "Email", "data-prompt-position" => "bottomLeft"  %>
+                  <%= text_field_tag :email, '', class: "form-control validate[required, custom[email]]", placeholder: "Email", "data-prompt-position" => "bottomLeft"  %>
                 </div>
               </div>
 
