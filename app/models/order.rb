@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
   validates :order_status, inclusion: {in: @@order_statuses}
   validates :return_reason, presence: true, :if => Proc.new {|o| o.order_status == "Returned"}
 
-  after_save :mark_paid, :send_delivery_message, :if => Proc.new {|o| o.order_status_changed? and o.delivered?}
+  after_save :mark_paid, :send_delivery_message, :send_delivery_mail, :if => Proc.new {|o| o.order_status_changed? and o.delivered?}
   after_save :mark_menu_items, :if => Proc.new { |o| ["Damaged", "Delivered", "Canceled", "Returned"].include? o.order_status }
   after_save :send_order_confirm_message, :if => Proc.new {|o| o.order_status_changed? and o.confirmed? and o.parent_order_id.blank?}
   after_save :send_order_dispatched_message, :if => Proc.new {|o| o.order_status_changed? and o.dispatched? }
@@ -64,6 +64,13 @@ class Order < ActiveRecord::Base
   def send_delivery_message
     #message = "Hola! Hope you had an awesome experience with us. We hope to serve your cravings again soon. With Love, Holachef!"
     #MessagingLib.delay(:run_at => 2.hours.from_now).send_messages(message, self.phone_no, "Transaction")
+  end
+
+  def send_delivery_mail
+    if !self.hola_user.email.blank?
+      email_details = {:recepients => self.hola_user.email, :subject => "HolaChef Invoice Details"}
+      #Notifier.email_invoice_details(email_details, self.id).deliver
+    end
   end
 
   def mark_menu_items

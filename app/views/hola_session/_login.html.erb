@@ -31,7 +31,7 @@
                   <label class="control-label text-6" style="vertical-align:middle;margin-bottom:-10px;">Email</label>
                 </div>
                 <div class="col-xs-9 form-group">
-                  <%= text_field_tag :email, '', class: "form-control validate[required]", placeholder: "Email", "data-prompt-position" => "bottomLeft"  %>
+                  <%= text_field_tag :email, '', class: "form-control validate[required, custom[email]]", placeholder: "Email", "data-prompt-position" => "bottomLeft"  %>
                 </div>
               </div>
 
@@ -105,19 +105,31 @@
         }
       })
    })
-    $("#mobile").on('keyup', function(){
-      var mobile_no = $("#mobile").val();
-      if(mobile_no.length == 10){
+
+      $("#name").on('click', function(){
+         getDetails();
+      });
+      $("#mobile").on('keyup', function(){
+          getDetails();
+      });
+
+      $("#mobile").on('select', function(){
+          getDetails();
+      });
+
+      function getDetails() {
+          var mobile_no = $("#mobile").val();
+          if(mobile_no.length == 10){
               $.ajax({
                   url: "/hola_session/get_sign_in_details.js",
                   data: {'mobile_no': mobile_no}
 
               })
           }
-        else{
-            $("#name").val("");
-            $("#email").val("");
-        }
-      });
+          else{
+              $("#name").val("");
+              $("#email").val("");
+          }
+      }
   })
 </script>

@@ -4,6 +4,7 @@ class HolaSessionController < ApplicationController
                                               name: params[:name],
                                               email: params[:email]
                                             })
+    @hola_user.update_attributes(:email => params[:email])  if @hola_user.email.blank?
     generate_and_send_opt
   end
 
