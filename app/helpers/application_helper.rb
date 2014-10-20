@@ -273,7 +273,7 @@ module ApplicationHelper
   end
 
   def login_check
-    login_required_urls_suffix = ["order_histories", "my_favorite_chefs", "favourites", "add-address", "hola_user_addresses", "new_address"]
+    login_required_urls_suffix = ["order_histories", "my_favorite_chefs", "favourites", "add-address", "hola_user_addresses", "new_address", "review_order"]
     current_url_suffix = request.url.split("?").first.split("/").last
     if !hola_current_user and login_required_urls_suffix.include? current_url_suffix
       content_tag(:script, "$('#login_modal').modal('show')".html_safe)
