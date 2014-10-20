@@ -45,7 +45,7 @@
 <!-- Google Code for Order-Confirm Conversion Page -->
 <script type="text/javascript">
     /* <![CDATA[ */
-
+    try{
     _gaq.push(['_addTrans',
         '<%= @order.id %>',           // transaction ID - required
         'HolaChef', // affiliation or store name
@@ -67,7 +67,7 @@
     ]);
     <% end %>
      _gaq.push(['_trackTrans']);
-
+     } catch(err) {}
     var google_conversion_id = 976088152;
     var google_conversion_language = "en";
     var google_conversion_format = "3";
