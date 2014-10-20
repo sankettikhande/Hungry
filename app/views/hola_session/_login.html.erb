@@ -105,11 +105,16 @@
         }
       })
    })
-    $("#mobile").on('keyup', function(){
-         getDetails();
-      });
+
       $("#name").on('click', function(){
          getDetails();
+      });
+      $("#mobile").on('keyup', function(){
+          getDetails();
+      });
+
+      $("#mobile").on('select', function(){
+          getDetails();
       });
 
       function getDetails() {
