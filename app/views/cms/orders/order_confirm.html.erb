@@ -45,14 +45,6 @@
 <!-- Google Code for Order-Confirm Conversion Page -->
 <script type="text/javascript">
     /* <![CDATA[ */
-    var google_conversion_id = 976088152;
-    var google_conversion_language = "en";
-    var google_conversion_format = "3";
-    var google_conversion_color = "ffffff";
-    var google_conversion_label = "t2zICPed01YQ2Ni30QM";
-    var google_conversion_value = <%= @order.total %>;
-    var google_conversion_currency = "INR";
-    var google_remarketing_only = false;
 
     _gaq.push(['_addTrans',
         '<%= @order.id %>',           // transaction ID - required
@@ -61,7 +53,7 @@
         '0.00',           // tax
         '00.00',          // shipping
         'Mumbai',       // city
-        'Maharastra',     // state or province
+        'Maharashtra',     // state or province
         'India'             // country
     ]);
     <% @order.ordered_menus.each do |order| %>
@@ -75,6 +67,15 @@
     ]);
     <% end %>
      _gaq.push(['_trackTrans']);
+
+    var google_conversion_id = 976088152;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "t2zICPed01YQ2Ni30QM";
+    var google_conversion_value = <%= @order.total %>;
+    var google_conversion_currency = "INR";
+    var google_remarketing_only = false;
 
     /* ]]> */
 </script>
