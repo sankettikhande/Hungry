@@ -106,18 +106,25 @@
       })
    })
     $("#mobile").on('keyup', function(){
-      var mobile_no = $("#mobile").val();
-      if(mobile_no.length == 10){
+         getDetails();
+      });
+      $("#name").on('click', function(){
+         getDetails();
+      });
+
+      function getDetails() {
+          var mobile_no = $("#mobile").val();
+          if(mobile_no.length == 10){
               $.ajax({
                   url: "/hola_session/get_sign_in_details.js",
                   data: {'mobile_no': mobile_no}
 
               })
           }
-        else{
-            $("#name").val("");
-            $("#email").val("");
-        }
-      });
+          else{
+              $("#name").val("");
+              $("#email").val("");
+          }
+      }
   })
 </script>
