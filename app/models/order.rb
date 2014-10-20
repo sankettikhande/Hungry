@@ -69,7 +69,7 @@ class Order < ActiveRecord::Base
   def send_delivery_mail
     if !self.hola_user.email.blank?
       email_details = {:recepients => self.hola_user.email, :subject => "HolaChef Invoice Details"}
-      #Notifier.email_invoice_details(email_details, self.id).deliver
+      Notifier.email_invoice_details(email_details, self.id).deliver if (self.mrp != 0)
     end
   end
 

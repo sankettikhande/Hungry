@@ -26,8 +26,16 @@
          <%end%></td>
       </tr>
       <tr>
-        <td style="width:105px">Total Cost:</td>
-        <td>Rs<%= @order.total %>/-</td>
+        <td style="width:105px">MRP:</td>
+        <td>Rs <%= @order.mrp %>/-</td>
+      </tr>
+      <tr>
+        <td style="width:105px">Discount:</td>
+        <td><%= @coupon.blank? ? 0 : (@coupon.flat.blank?  ? "#{@coupon.percentage}% OFF" : "#{@coupon.flat} Rs.")   %></td>
+      </tr>
+      <tr>
+        <td style="width:105px">Discount Amount:</td>
+        <td>Rs <%= @order.total %>/-</td>
       </tr>
       <tr>
         <td style="width:105px">Name:</td>
