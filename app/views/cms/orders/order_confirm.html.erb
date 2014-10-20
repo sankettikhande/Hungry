@@ -53,6 +53,29 @@
     var google_conversion_value = <%= @order.total %>;
     var google_conversion_currency = "INR";
     var google_remarketing_only = false;
+
+    _gaq.push(['_addTrans',
+        '<%= @order.id %>',           // transaction ID - required
+        'HolaChef', // affiliation or store name
+        '<%= @order.total %>',          // total - required
+        '0.00',           // tax
+        '00.00',          // shipping
+        'Mumbai',       // city
+        'Maharastra',     // state or province
+        'India'             // country
+    ]);
+    <% @order.ordered_menus.each do |order| %>
+     _gaq.push(['_addItem',
+        '<%= @order.id %>',           // transaction ID - necessary to associate item with transaction
+        '<%= order.id %>',           // SKU/code - required
+        '<%= order.food_item %>',        // product name
+        '<%= order.cooking_today.meal_type if order.cooking_today%>',   // category or variation
+        '<%= order.rate %>',          // unit price - required
+        '<%= order.quantity %>'               // quantity - required
+    ]);
+    <% end %>
+     _gaq.push(['_trackTrans']);
+
     /* ]]> */
 </script>
 <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
