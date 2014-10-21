@@ -51,6 +51,11 @@ class CookingToday < ActiveRecord::Base
     return (self.quantity - self.ordered)
   end
 
+  def check_ordered_quantity ordered_quantity
+    valid_quantity = ordered_quantity.to_i < qty_left.to_i ? false : true
+    return valid_quantity
+  end
+
   def set_meal_time
     meal_timing = @@meal_type_time_span[self.meal_type]
     today = DateTime.today
