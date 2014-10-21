@@ -84,7 +84,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         item.each do |item_id, item_attr|
           next if item_attr['meal_type'] != meal_type
           cooking_today  = CookingToday.find(item_id)
-          if cooking_today.not_orderable?
+          if cooking_today.not_orderable?  || cooking_today.check_ordered_quantity(item_attr["quantity"])
             return "NotOrderableItem" #clean_up_orders(orders_by_meal_type)
           end
           food_item = cooking_today.food_item
@@ -147,12 +147,11 @@ class Cms::OrdersController < Cms::ContentBlockController
 
         session[:cart].each do |item|
           item.each do |item_id, item_attr|
-
             @order.delivery_slot = get_time_slot(item_attr["meal_type"])
             @order.save
 
             cooking_today  = CookingToday.find(item_id)
-            if cooking_today.not_orderable?
+            if cooking_today.not_orderable? || cooking_today.check_ordered_quantity(item_attr["quantity"])
               session[:cart] = nil
               redirect_to("/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now.") and return
             end
