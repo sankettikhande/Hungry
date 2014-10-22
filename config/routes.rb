@@ -48,6 +48,8 @@ Holachef::Application.routes.draw do
   end
 
   match '/tell_friends' => 'social_shares#tell_friends'
+  match '/how_it_works' => 'social_shares#how_it_works'
+  match '/service_areas' => 'social_shares#service_areas'
   post '/send_referal_email' => 'social_shares#send_referal_email'
   post '/email_invoice/:order_id' => 'Cms::orders#email_invoice'
 
