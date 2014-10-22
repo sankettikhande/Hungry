@@ -35,7 +35,8 @@ class OrderedMenusController < ApplicationController
           if !discount.blank?
             if discount_type== "flat"
               @discount_amount = discount
-              if meal_data.length == 1
+              meal_data = params[:meal_data]
+              if meal_data && meal_data.length == 1
                 @paid_amount = params[:total_amount].to_i -  @discount_amount.to_i
               else
                 @lunch_total = meal_data["0"][1]  if meal_data["0"][0]== "grand_total_Lunch"
