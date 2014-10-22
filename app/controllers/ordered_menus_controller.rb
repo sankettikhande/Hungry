@@ -35,12 +35,20 @@ class OrderedMenusController < ApplicationController
           if !discount.blank?
             if discount_type== "flat"
               @discount_amount = discount
+              if meal_data.length == 1
+                @paid_amount = params[:total_amount].to_i -  @discount_amount.to_i
+              else
+                @lunch_total = meal_data["0"][1]  if meal_data["0"][0]== "grand_total_Lunch"
+                @dinner_total = meal_data["1"][1].to_i - meal_data["0"][1].to_i  if meal_data["1"][0]== "grand_total_Dinner"
+                @paid_amount = ((@lunch_total.to_i - @discount_amount.to_i)  + (@dinner_total.to_i- @discount_amount.to_i))
+              end
             else
               @discount_amount = Coupon.calculate_percentage(params[:total_amount],discount)
+              @paid_amount = params[:total_amount].to_i -  @discount_amount.to_i
             end
             puts @discount_amount
             @msg ="Valid coupon code"
-            @paid_amount = params[:total_amount].to_i -  @discount_amount.to_i
+
             session[:discountAmount] = @discount_amount
             session[:paidAmount] = params[:total_amount].to_i
             session[:netAmount] = @paid_amount

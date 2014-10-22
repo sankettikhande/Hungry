@@ -250,9 +250,16 @@ end
            else{
                var coupon_code = $("#discount_code").val();
                var total_amt = $("#review_order_total").text();
+               var dataArray = new Array();
+               $('input[type="hidden"][id^="grand_total"]').each( function( index, element ){
+                   var meal_type = $(this).attr("id");
+                   var grand_total = $(this).val();
+                   var data = new Array(meal_type, grand_total);
+                   dataArray.push(data);
+               });
                $.ajax({
                    url: "/check_coupon",
-                   data: {coupon_code: coupon_code, total_amount: total_amt }
+                   data: {coupon_code: coupon_code, total_amount: total_amt, meal_data: dataArray }
                });
            }
 
