@@ -858,7 +858,7 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 .row-offcanvas {
     position: relative;
     left: 0;
-    z-index: 1;
+    z-index: 11;
 }
 
 .row-offcanvas-left
