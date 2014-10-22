@@ -110,7 +110,7 @@ class Cms::OrdersController < Cms::ContentBlockController
       if !@coupon.blank?
         discount = @coupon.flat.blank? ? @coupon.percentage : @coupon.flat
         discount_type = @coupon.flat.blank? ? "percentage" : "flat"
-        discount_amount = (discount_type=='flat') ? discount : Coupon.calculate_percentage(mrp, discount)
+        discount_amount = (discount_type=='flat') ? (discount.to_i/2).to_i : Coupon.calculate_percentage(mrp, discount)
       else
         discount_amount = 0
       end
@@ -178,7 +178,7 @@ class Cms::OrdersController < Cms::ContentBlockController
       if !@coupon.blank?
         discount = @coupon.flat.blank? ? @coupon.percentage : @coupon.flat
         discount_type = @coupon.flat.blank? ? "percentage" : "flat"
-        discount_amount = (discount_type=='flat') ? discount : Coupon.calculate_percentage(mrp, discount)
+        discount_amount = (discount_type=='flat') ? (discount.to_i/2).to_i : Coupon.calculate_percentage(mrp, discount)
       else
         discount_amount = 0
       end
