@@ -25,7 +25,7 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="container">
-      <ul class="booked-orders">
+      <ul class="booked-orders ordered_ul">
         <% items.each do |todays_item| %>
           <% todays_item.each do |order_id, order_attrs| %>
             <%= hidden_field_tag "#{meal_type.downcase.gsub(' ', '_')}_slot", "#{meal_type}_slot" %>
@@ -46,7 +46,6 @@
             </li>
           <% end %>
         <% end %>
-
       </ul>
     </div>
   </div>

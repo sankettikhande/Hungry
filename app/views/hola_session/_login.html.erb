@@ -55,7 +55,7 @@
               <h4 class="modal-titleB text-center">Please enter OTP you received</h4>
               <div class="row">
                 <div class="col-xs-12 form-group">
-                  <%= text_field_tag :otp, '', class: "form-control validate[required]", placeholder: "OTP", "data-prompt-position" => "bottomLeft"  %>
+                  <%= number_field_tag :otp, '', class: "form-control validate[required]", placeholder: "OTP", onkeypress: "return isNumber(event)", "data-prompt-position" => "bottomLeft"  %>
                 </div>
               </div>
               <%= link_to "Didn't received OTP? Request again", "javascript:void(0)", id: "resend-otp" %><span id="loader" style="display:none"><%= image_tag 'ajax-loader.gif' %></span>
@@ -77,6 +77,15 @@
 </div><!-- /.modal -->
 
 <script>
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+
   $(document).ready(function(){
     $('#login_modal').on('hidden.bs.modal', function () {
       window.history.back()

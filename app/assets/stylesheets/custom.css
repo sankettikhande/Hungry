@@ -858,7 +858,7 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 .row-offcanvas {
     position: relative;
     left: 0;
-    z-index: 1;
+    z-index: 11;
 }
 
 .row-offcanvas-left
@@ -1138,12 +1138,19 @@ html{overflow-x:hidden}
     top: 50px;
     width: 82%;
 }
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
 .category_header{
     display: block;
     text-align: center;
     width: 100%;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: bold;
     text-transform: uppercase;
     color: #727171;
