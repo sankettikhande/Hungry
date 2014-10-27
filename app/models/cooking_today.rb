@@ -2,14 +2,14 @@ class CookingToday < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
   attr_accessor :skip_callbacks
   cattr_accessor :meal_types, :meal_type_time_span
-  @@meal_types = ["Lunch", 
+  @@meal_types = ["Lunch",
                   #"Evening Snacks",
                   "Dinner"
                   #, "All Time Available"
                   ]
 
   @@meal_type_time_span = {
-                           "Lunch" => {from: "00:01 AM", to: "03:00 PM",fromDisplay: "11:30 AM", toDisplay: "03:00 PM"},
+                           "Lunch" => {from: "00:01 AM", to: "04:00 PM",fromDisplay: "11:30 AM", toDisplay: "04:00 PM"},
                            #"Evening Snacks" => {from: "00:01 AM", to: "07:00 PM",fromDisplay: "04:30 PM", toDisplay: "07:00 PM"},
                            "Dinner" => {from: "00:01 AM", to: "11:30 PM",fromDisplay: "07:30 PM", toDisplay: "11:30 PM"}
                            #,"All Time Available" => {from: "12:00 AM", to: "11:59 PM"}
