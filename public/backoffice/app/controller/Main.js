@@ -690,11 +690,11 @@ OldBtnHandler: function () {
             var DiffMins = (new Date()-timeNow)/(1000*60);
             var id = records[i]["id"];
             if (DiffMins > 5 && dispat == null)
-                 str += '<tr class="datarow5" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
+                 str += '<tr class="datarow5">';
             else if(i % 2 == 0)
-                 str += '<tr class="datarow2" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
+                 str += '<tr class="datarow2">';
             else
-                str += '<tr class="datarow1" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">';
+                str += '<tr class="datarow1">';
 
             var j = i + 1;
 
@@ -713,8 +713,8 @@ OldBtnHandler: function () {
             else if (status == "Canceled" || status == "Delivered" || status == "Returned" || status == "Reordered")
                 innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
             
-            str += '<td>' + String(id) + '</td><td> ' + records[i]["customer_name"] + '</td><td> ' + records[i]["customer_contact_number"] + '</td><td>' + records[i]["payment_mode"] + '</td><td> ' + records[i]["order_progress"] + '</td>';
-            str += '<td>' + (records[i]["order_items"][0] == undefined ? "" : records[i]["order_items"][0]["meal_type"]) + '</td><td>' + records[i]["confirmed_at"] + '</td>';
+            str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + String(id) + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_name"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_contact_number"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["payment_mode"] + '</a></td><td> <a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["order_progress"] + '</a></td>';
+            str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + (records[i]["order_items"][0] == undefined ? "" : records[i]["order_items"][0]["meal_type"]) + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["confirmed_at"] + '</td></a>';
             str += '</tr>';
         }
 
