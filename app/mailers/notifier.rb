@@ -8,6 +8,7 @@ class Notifier < ActionMailer::Base
 
   def email_invoice_details(email_details, order_id)
     @order = Order.find(order_id)
+    @coupon = Coupon.find_by_id(@order.coupon_id) if (@order.coupon_id != 0)
     mail( from: "info@holachef.com", to: email_details[:recepients], subject: email_details[:subject], :content_type => "text/html") do | format |
       format.html { render :partial => "cms/orders/invoice" }
     end
