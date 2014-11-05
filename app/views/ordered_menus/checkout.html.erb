@@ -11,16 +11,13 @@
   </div>
   <% total = [] %>
   <% lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
-  <%= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "11AM - 12PM", slot_2: "12PM - 1PM", slot_3: "1PM - 2PM", slot_4: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
+  <%= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "12PM - 1PM", slot_2: "1PM - 2PM", slot_3: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
 
   <% snack_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Evening Snacks"]}).compact %>
-  <%= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", slot_4: "6PM - 7PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
+  <%= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
 
   <% dinner_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Dinner"]}).compact %>
-  <%= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "7PM - 8PM", slot_2: "8PM - 9PM", slot_3: "9PM - 10PM", slot_4: "10PM - 11PM", total: total, default_slot: "7PM - 8PM"  if dinner_items.present? %>
-
-  <%# all_time_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["All Time Available"]}).compact %>
-  <%#= render "checkout_items", meal_type: "All Time Available", items: all_time_items, slot_1: "", slot_2: "", slot_3: "", slot_4: "", total: total  if all_time_items.present? %>
+  <%= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "8PM - 9PM", slot_2: "9PM - 10PM", slot_3: "10PM - 11PM", total: total, default_slot: "8PM - 9PM"  if dinner_items.present? %>
 
 
 <ul class="booked-orders backgroundLight">
