@@ -64,7 +64,7 @@ namespace :deploy do
   end
 
   task :copy_newrelic do
-    run "cp #{current_path}/config/newrelic.yml.#{deploy_env} #{current_path}/config/newrelic.yml"
+    run "cp #{release_path}/config/newrelic.yml.#{deploy_env} #{release_path}/config/newrelic.yml"
   end
 
   task :change_permission_for_fcgi do
