@@ -222,7 +222,7 @@ OldBtnHandler: function () {
         var task = setInterval(function () {
                    OpenOrderDetails();
 
-                }, 10000);
+                }, 60000);
                 var ls = Ext.getStore("LocalStore");
                 var item = ls.getAt(0);
                 item.set('task', task);
