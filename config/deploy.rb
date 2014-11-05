@@ -63,6 +63,10 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
 
+  task :copy_newrelic do
+    run "cp #{current_path}/config/newrelic.yml.#{deploy_env} #{current_path}/config/newrelic.yml"
+  end
+
   task :change_permission_for_fcgi do
     run "chmod +x #{current_path}/public/dispatch.fcgi"
   end
@@ -82,7 +86,7 @@ namespace :deploy do
   end
 end
 
-after "deploy:update_code", "db:symlink", "newrelic:symlink"
+after "deploy:update_code", "db:symlink", "deploy:copy_newrelic"
 after "deploy:update", "deploy:cleanup"
 
 after "deploy:cleanup", "deploy:switch_backoffice"
