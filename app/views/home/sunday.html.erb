@@ -1,3 +1,9 @@
-<div style="vertical-align:middle; height:550px;text-align: center;padding-top: 399px;background: url(/assets/splash.jpg);background-repeat: no-repeat;background-size: 320px 569px;background-position: center;">Sorry,
-  we are closed today. <br/>Do visit us tomorrow and have #WorthCravingFor meals.
-</div>
+<% if Date.today == Date.parse('2014-10-23')%>
+ <div style="vertical-align:middle; height:550px;text-align: center;padding-top: 399px;background: url(/assets/diwali.jpg);background-repeat: no-repeat;background-size: 320px 569px;background-position: center;">Sorry,
+   we are closed today. <br/>Do visit us tomorrow and have #WorthCravingFor meals.
+ </div>
+<% else %>
+ <div style="vertical-align:middle; height:550px;text-align: center;padding-top: 399px;background: url(/assets/splash.jpg);background-repeat: no-repeat;background-size: 320px 569px;background-position: center;">Sorry,
+   we are closed today. <br/>Do visit us tomorrow and have #WorthCravingFor meals.
+ </div>
+<% end %>

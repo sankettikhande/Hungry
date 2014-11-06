@@ -33,7 +33,7 @@ class OrderedMenusController < ApplicationController
           discount = coupon.flat.blank? ? coupon.percentage : coupon.flat
           discount_type = coupon.flat.blank? ? "percentage" : "flat"
           if !discount.blank?
-            if discount_type== "flat"
+            if discount_type == "flat"
               @discount_amount = discount
             else
               @discount_amount = Coupon.calculate_percentage(params[:total_amount],discount)

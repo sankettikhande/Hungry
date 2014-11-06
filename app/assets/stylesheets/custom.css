@@ -588,7 +588,7 @@ li.time-zone .order-what {margin-left: 2px;}
 .close-bracket:after {content: ')'}
 li.time-set {color: #2b2a29;font-size: 0.78em;padding:2px 0 5px;}
 li.time-slots {background: #d4d3d3;color: #6a6969;font-size: 0.8em;padding: 0;overflow: hidden;}
-li.time-slots span {width: 25%;float: left;display: inline-block;cursor: pointer;padding: 0 2px;}
+li.time-slots span {width: 33%;float: left;display: inline-block;cursor: pointer;padding: 0 2px;}
 li.time-slots span.selected {color: #2b2a29;background-color: #ff8800;}
 li.time-slots span+span {border-left: 1px solid #6a6969;}
 .text-bold{font-weight: bold;}
