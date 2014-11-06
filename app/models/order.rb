@@ -162,7 +162,7 @@ class Order < ActiveRecord::Base
   end
 
   def bill_amount
-    ordered_menus.where(order_status: ["Ordered", "Delivered"]).map(&:ordered_menu_bill).sum
+    ordered_menus.select{|a| ["Ordered", "Delivered"].include?(a.order_status)}.map(&:ordered_menu_bill).sum
   end
 
   def build_session
