@@ -80,16 +80,10 @@ namespace :deploy do
       logger.info "Skipping asset pre-compilation because there were no asset changes"
     end
   end
-
-  task :switch_backoffice do
-    run "cp #{current_path}/public/backoffice/app.js.#{deploy_env} #{current_path}/public/backoffice/app.js "
-  end
 end
 
 after "deploy:update_code", "db:symlink", "deploy:copy_newrelic"
 after "deploy:update", "deploy:cleanup"
-
-after "deploy:cleanup", "deploy:switch_backoffice"
 
 
 

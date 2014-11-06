@@ -20,7 +20,7 @@ Ext.Loader.setConfig({
 
 Ext.application({
 
-    dataUrl: 'http://qa.holachef.com/api/',
+    dataUrl: '/api/',
     name: 'HolaChef',
     OrdersArry: [],
     PageSize: 5,
@@ -32,7 +32,7 @@ Ext.application({
     RunnerArry: [],
     RunnerId: '',
     models: [
-    'OrderModel'
+        'OrderModel'
 
     ],
 
@@ -49,7 +49,7 @@ Ext.application({
     ],
 
     stores: [
-    'OrderStore'
+        'OrderStore'
 
     ],
 
