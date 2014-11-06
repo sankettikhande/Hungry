@@ -13,13 +13,7 @@
         </li>
      <% else    
         
-        if (((12..13).include?(current_time.hour) && meal_type == "Lunch" )) %>
-          <li class="time-slots">
-          <span class="o-time selected" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_1 %></span>
-          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_2 %></span>
-          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_3 %></span>
-          </li>
-      <% elsif (((13..14).include?(current_time.hour) && meal_type == "Lunch" )) %> 
+        if (((13..14).include?(current_time.hour) && meal_type == "Lunch" )) %>
          <li class="time-slots">
           <span class="o-time selected" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_2 %></span>
           <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_3 %></span>
@@ -33,7 +27,7 @@
           <span class="o-time selected" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_2 %></span>
           <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_3 %></span>
           </li>
-       <% elsif (((22..23).include?(current_time.hour) && meal_type == "Lunch" )) %> 
+       <% elsif (((22..23).include?(current_time.hour) && meal_type == "Dinner" )) %>
          <li class="time-slots">
           <span class="o-time selected" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_3 %></span>
           </li>      
