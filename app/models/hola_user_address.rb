@@ -1,5 +1,5 @@
 class HolaUserAddress < ActiveRecord::Base
-  @@pin_codes = ["400059","400076", "400078", "400072","400079","400087","400093","400096"]
+  @@pin_codes = ["400042", "400059", "400060", "400076", "400078", "400072","400079", "400086", "400087","400093","400096"]
   cattr_accessor :pin_codes
   attr_accessible :address, :hola_user_id, :address_type, :name, :building_name, :street, :city, :pin, :landmark, :default, :mobile_no, :landline_no
 

@@ -46,6 +46,7 @@ gem 'deep_cloneable', '~> 2.0.0'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'active_model_otp'
+gem "newrelic_rpm", :require=>'newrelic_rpm'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

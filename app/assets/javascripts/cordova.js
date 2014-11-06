@@ -464,7 +464,7 @@ function include(parent, objects, clobber, merge) {
             include(result, obj.children, clobber, merge);
           }
         } catch(e) {
-          utils.alert('Exception building cordova JS globals: ' + e + ' for key "' + key + '"');
+//          utils.alert('Exception building cordova JS globals: ' + e + ' for key "' + key + '"');
         }
     });
 }
@@ -5123,7 +5123,7 @@ function Device() {
             channel.onCordovaInfoReady.fire();
         },function(e) {
             me.available = false;
-            utils.alert("[ERROR] Error initializing Cordova: " + e);
+//            utils.alert("[ERROR] Error initializing Cordova: " + e);
         });
     });
 }
@@ -6300,11 +6300,11 @@ module.exports = {
      * @param {String} title                Title of the alert dialog (default: Alert)
      * @param {String} buttonLabel          Label of the close button (default: OK)
      */
-    alert: function(message, completeCallback, title, buttonLabel) {
-        var _title = (title || "Alert");
-        var _buttonLabel = (buttonLabel || "OK");
-        exec(completeCallback, null, "Notification", "alert", [message, _title, _buttonLabel]);
-    },
+//    alert: function(message, completeCallback, title, buttonLabel) {
+//        var _title = (title || "Alert");
+//        var _buttonLabel = (buttonLabel || "OK");
+//        exec(completeCallback, null, "Notification", "alert", [message, _title, _buttonLabel]);
+//    },
 
     /**
      * Open a native confirm dialog, with a customizable title and button text.
