@@ -7,38 +7,32 @@ class Runner < ActiveRecord::Base
   validates :name, :phone, :address, presence: true
 
   def amount_pending
-    orders_pending.sum(:total)
+    orders_pending.collect{|a| a.total.to_i}.reduce(:+)
   end
 
   def cash_collected
-    orders.where(order_status: "Delivered").sum do |order|
-      if !order.total.blank?
-        order.total
-      else
-        0
-      end
-    end
+    orders_delivered.collect{|a| a.total.to_i}.reduce(:+)
   end
 
   def orders_pending
-    orders.where(order_status: "Confirmed")
+    orders.select{|a| a.order_status == "Confirmed"}.compact
   end
 
   def orders_delivered
-    orders.where(order_status: "Delivered")
+    orders.select{|a| a.order_status == "Delivered"}.compact
   end
 
   def damaged_count
-    orders.where(order_status: "Damaged").count
+    orders.select{|a| a.order_status == "Damaged"}.compact.count
   end
 
   def returned_count
-    orders.where(order_status: "Returned").count
+    orders.select{|a| a.order_status == "Returned"}.compact.count
   end
 
   def average_delivery_time
     delivery_times = []
-    orders.where(order_status: "Delivered").each do |o|
+    orders_delivered.each do |o|
       delivery_times << o.delivery_time.to_i
     end
     return "" if delivery_times.blank?

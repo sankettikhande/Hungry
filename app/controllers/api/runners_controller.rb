@@ -1,6 +1,6 @@
 class Api::RunnersController < ApiController
   def index
-    @runners = Runner.all
+    @runners = Runner.includes(:orders).all
   end
 
   def orders
