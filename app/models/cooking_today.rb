@@ -52,7 +52,7 @@ class CookingToday < ActiveRecord::Base
   end
 
   def check_ordered_quantity ordered_quantity
-    valid_quantity = ordered_quantity.to_i < qty_left.to_i ? false : true
+    valid_quantity = ordered_quantity.to_i <= qty_left.to_i ? false : true
     return valid_quantity
   end
 
