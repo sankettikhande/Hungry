@@ -278,7 +278,7 @@ class Cms::OrdersController < Cms::ContentBlockController
     params.delete("action")
     @txstatus = params[:TxStatus]
     @order = Order.find(params[:TxId])
-    orders = Order.where(:parent_order_id => params[:order_id])
+    orders = Order.where(:parent_order_id => params[:order_id]) if params[:order_id]
     if params[:TxStatus] == "SUCCESS"
       if !orders.blank?
         orders.each do |order|
