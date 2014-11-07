@@ -84,7 +84,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         item.each do |item_id, item_attr|
           next if item_attr['meal_type'] != meal_type
           cooking_today  = CookingToday.find(item_id)
-          if cooking_today.not_orderable?
+          if (cooking_today.not_orderable? && cooking_today.date == Date.today.to_s) || cooking_today.check_ordered_quantity(item_attr["quantity"])
             return "NotOrderableItem" #clean_up_orders(orders_by_meal_type)
           end
           food_item = cooking_today.food_item
@@ -152,7 +152,7 @@ class Cms::OrdersController < Cms::ContentBlockController
             @order.save
 
             cooking_today  = CookingToday.find(item_id)
-            if cooking_today.not_orderable?
+            if (cooking_today.not_orderable?  && cooking_today.date == Date.today.to_s) || cooking_today.check_ordered_quantity(item_attr["quantity"])
               session[:cart] = nil
               redirect_to("/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now.") and return
             end
@@ -196,17 +196,54 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @footer = "false"
     @order = Order.find(params[:order_id])
-    @order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")
+    orders = Order.where(:parent_order_id => params[:order_id])
+    cart_quantity = []
+    if !orders.blank?
+      orders.each do |order|
+        menus = order.ordered_menus
+        menus.each do |menu|
+          @cart_quantity = cart_quantity << menu.quantity.to_i
+        end
+      end
+    else
+      menus = @order.ordered_menus
+      menus.each do |menu|
+        @cart_quantity = cart_quantity << menu.quantity.to_i
+      end
+    end
+    @cart_quantity = @cart_quantity ?  @cart_quantity.inject{|sum,x| sum + x } : 0
     session[:cart] = [] #if @order.
     if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
+      if !orders.blank?
+        orders.each do |order|
+          menus = order.ordered_menus
+          menus.each do  |ordered_menu|
+            cooking_today  = ordered_menu.cooking_today
+            # raise cooking_today.inspect
+            if (cooking_today.not_orderable? && cooking_today.date == Date.today.to_s)
+              session[:cart] = nil
+              redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+              @confirm = false
+            else
+              cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
+              order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")
+              @confirm = true
+            end
+          end
+        end
+        @order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")  if @confirm == true
+      else
       @order.ordered_menus.each do |ordered_menu|
         cooking_today  = ordered_menu.cooking_today
         # raise cooking_today.inspect
-        if cooking_today.not_orderable?
+        if (cooking_today.not_orderable?  && cooking_today.date == Date.today.to_s)
           session[:cart] = nil
           redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+        else
+          cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
+          @order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")
         end
-        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
+      end
       end
     end
     respond_to do |format|
@@ -241,8 +278,32 @@ class Cms::OrdersController < Cms::ContentBlockController
     params.delete("action")
     @txstatus = params[:TxStatus]
     @order = Order.find(params[:TxId])
+    orders = Order.where(:parent_order_id => params[:order_id])
     if params[:TxStatus] == "SUCCESS"
-      @order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
+      if !orders.blank?
+        orders.each do |order|
+          menus = order.ordered_menus
+          menus.each do  |ordered_menu|
+            cooking_today  = ordered_menu.cooking_today
+            cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
+            food_item = FoodItem.find(ordered_menu.dish_id)
+            food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + ordered_menu.quantity.to_i)) if food_item
+          end
+          order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
+                                  :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
+                                  :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
+                                  :addressCity=>params[:addressCity], :addressState=>params[:addressState],
+                                  :addressCountry=>params[:addressCountry],:addressZip=>params[:addressZip])
+
+        end
+        @order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
+                                 :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
+                                 :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
+                                 :addressCity=>params[:addressCity], :addressState=>params[:addressState],
+                                 :addressCountry=>params[:addressCountry],:addressZip=>params[:addressZip])
+
+      else
+        @order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
                                :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
                                :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
                                :addressCity=>params[:addressCity], :addressState=>params[:addressState],
@@ -254,11 +315,9 @@ class Cms::OrdersController < Cms::ContentBlockController
       @order.ordered_menus.each do |ordered_menu|
         cooking_today  = ordered_menu.cooking_today
         cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
+        food_item = FoodItem.find(ordered_menu.dish_id)
+        food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + ordered_menu.quantity.to_i)) if food_item
       end
-
-      @order.ordered_menus.each do |menu|
-        food_item = FoodItem.find(menu.dish_id)
-        food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + menu.quantity.to_i)) if food_item
       end
     else
       @order.update_attributes(:payment_status => "Payment Gateway Failed", :payment_gateway_response => params) unless @txstatus == 'CANCELED'
