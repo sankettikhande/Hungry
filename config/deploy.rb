@@ -17,7 +17,7 @@ set :precompile_only_if_changed, true
 
 task :qa do
   default_run_options[:pty] = true
-  set :branch, 'QA'
+  set :branch, 'paymentcodeMaster'
 
   # be sure to change these
   set :user, 'root'
