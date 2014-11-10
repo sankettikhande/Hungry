@@ -67,6 +67,10 @@ namespace :deploy do
     run "cp #{release_path}/config/newrelic.yml.#{deploy_env} #{release_path}/config/newrelic.yml"
   end
 
+  task :copy_global do
+    run "cp #{release_path}/config/initializers/global.rb.#{deploy_env} #{release_path}/config/initializers/global.rb"
+  end
+
   task :change_permission_for_fcgi do
     run "chmod +x #{current_path}/public/dispatch.fcgi"
   end
@@ -82,7 +86,7 @@ namespace :deploy do
   end
 end
 
-after "deploy:update_code", "db:symlink", "deploy:copy_newrelic"
+after "deploy:update_code", "db:symlink", "deploy:copy_newrelic" , "deploy:copy_global"
 after "deploy:update", "deploy:cleanup"
 
 
