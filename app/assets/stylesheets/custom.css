@@ -1078,6 +1078,7 @@ html{overflow-x:hidden}
 .show-time {font-size:0.875em;}
 .n-dish-info .n-dish-title {font-size: 0.875em; color: #010101; cursor: pointer;text-transform: capitalize;line-height: 16px}
 .n-dish-info .n-chef-name {font-size: 0.75em;color: #8d8d8d;text-transform: uppercase;line-height: 18px;}
+.n-dish-spec{font-size: 0.875em;color: #8d8d8d;line-height: 14px;}
 .n-dish-info .n-chef-name a {color: #8d8d8d;text-transform: capitalize;}
 
 .n-dish-type {font-size: 0.5625em;}
