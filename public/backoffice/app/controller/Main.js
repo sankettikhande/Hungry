@@ -3,9 +3,9 @@ Ext.define('HolaChef.controller.Main', {
 
     config: {
         refs: {
-            
+
             MainView: '#mainView',
-            
+
             DefectPageHtmlRef: '#DefectPageHtmlID',
             btnrunnercnfrm: 'button[action=runnercnfrm]',
             btnreasonsubmmit: 'button[action=reasonsubmit]',
@@ -29,8 +29,8 @@ Ext.define('HolaChef.controller.Main', {
             RefbtnRunnerinfo: '#btnRunnerinfo',
             Refbtnorders: '#btnorders',
             RefRunnerOrderDetail: '#RunnerOrderDetail',
-            
-            
+
+
         },
 
         control: {
@@ -58,11 +58,11 @@ Ext.define('HolaChef.controller.Main', {
     init: function () {
         this.Orderid = '';
     },
- 
+
 
 //    Runner start
-OldBtnHandler: function () {
-    
+    OldBtnHandler: function () {
+
         if (!this.managerunner)
             this.managerunner = Ext.create('HolaChef.view.ManageRunner');
         this.getMainView().push(this.managerunner);
@@ -75,9 +75,9 @@ OldBtnHandler: function () {
         this.ManageRunnerGridData();
     },
     ManageRunnerGridData: function () {
-  
+
         HolaChef.app.ShowHideLoader(true);
-        var ref = this;        
+        var ref = this;
         Ext.data.JsonP.request({
             url: HolaChef.app.dataUrl + 'runners.json',
             params: {
@@ -86,9 +86,9 @@ OldBtnHandler: function () {
                 callback: 'callback'
             },
             success: function (records) {
-             
+
                 HolaChef.app.RunnerArry = records
-                var str = '';                
+                var str = '';
                 str += '<div>Manage Runner</div><div>&nbsp;</div><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead>';
                 str += '<tr class="headerrow"><th>Name</th><th>Order delivered</th><th>cash collected</th><th>orders to Deliver</th><th>Average Delivery Time</th></tr>';
                 for (var i = 0; i < records.length; i++) {
@@ -118,7 +118,7 @@ OldBtnHandler: function () {
         if (this.runnerinfo)
             this.runnerinfo = null;
         if (!this.runnerinfo)
-            this.runnerinfo = Ext.create('HolaChef.view.Runnerinfo');            
+            this.runnerinfo = Ext.create('HolaChef.view.Runnerinfo');
         this.getMainView().push(this.runnerinfo);
         this.setRunnerinfo(id);
     },
@@ -127,7 +127,7 @@ OldBtnHandler: function () {
         this.setRunnerinfo(HolaChef.app.RunnerId);
     },
     setRunnerinfo: function (id) {
-    
+
         var runnerary = HolaChef.app.RunnerArry;
         Ext.getCmp("lblRunnerinfo").setHidden(false);
         this.getRefbtnRunnerinfo().setHidden(true);
@@ -150,15 +150,15 @@ OldBtnHandler: function () {
         HolaChef.app.ShowHideLoader(false);
     },
     onrefbtnordersclick: function () {
-        
+
         var ref = this;
 
         this.getRefbtnRunnerinfo().setHidden(false);
         Ext.getCmp("lblRunnerinfo").setHidden(true);
 
         Ext.getCmp("lblorders").setHidden(false);
-        this.getRefbtnorders().setHidden(true);        
-        
+        this.getRefbtnorders().setHidden(true);
+
 
         HolaChef.app.ShowHideLoader(true);
         Ext.data.JsonP.request({
@@ -169,7 +169,7 @@ OldBtnHandler: function () {
                 callback: 'callback'
             },
             success: function (records) {
-                
+
                 ref.getRefRunnerOrderDetail().setHtml("");
                 var str = '';
                 str += '<div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Order No</th><th>Amount</th><th>Payment Mode</th><th>Order Status</th><th>Card Number</th><th>Delivered In</th><th>Action</th></tr></thead><tbody>';
@@ -192,7 +192,7 @@ OldBtnHandler: function () {
                 ref.getRefRunnerOrderDetail().setHidden(false);
 
                 HolaChef.app.ShowHideLoader(false);
-                
+
             },
             failure: function (response) {
                 HolaChef.app.ShowHideLoader(false);
@@ -214,22 +214,24 @@ OldBtnHandler: function () {
 //    },
 //Runner End
 
-    NewBtnHandler: function () {
-      OpenOrderDetails();
+    NewBtnHandler: function (i) {
+        OpenOrderDetails();
         if (!this.OrderView)
-            this.OrderView = Ext.create('HolaChef.view.OrderView');        
+            this.OrderView = Ext.create('HolaChef.view.OrderView');
         this.getMainView().push(this.OrderView);
         var task = setInterval(function () {
-                   OpenOrderDetails();
+            OpenOrderDetails();
 
-                }, 60000);
-                var ls = Ext.getStore("LocalStore");
-                var item = ls.getAt(0);
-                item.set('task', task);
-                ls.sync();
+        }, 60000);
+        var ls = Ext.getStore("LocalStore");
+        var item = ls.getAt(0);
+        if(ls.getAllCount() > 0){
+            item.set('task', task);
+            ls.sync();
+        }
     },
     onbtnstatusgo: function () {
-     
+
         var ddlstatusval = Ext.getCmp("AllStatusList").getValue();
         var Dataarry = HolaChef.app.OrdersArry;
         var finaldata_Ary = new Array();
@@ -242,7 +244,7 @@ OldBtnHandler: function () {
         }
         else {
             var flag = true;
-            for (var i = 0; i < Dataarry.length; i++) {                
+            for (var i = 0; i < Dataarry.length; i++) {
                 if (Dataarry[i]["order_status"].search(ddlstatusval) != -1) {
                     flag = false;
                     finaldata_Ary.push(Dataarry[i]);
@@ -265,7 +267,7 @@ OldBtnHandler: function () {
         btnsatusobj.setHidden(false);
         Ext.getCmp("btnbydate").setHidden(false);
     },
-    onbtnstatus: function () {        
+    onbtnstatus: function () {
         var obj = Ext.getCmp("StatusPanel");
         var btnsatusobj = Ext.getCmp("btnfilStatus");
         obj.setHidden(false);
@@ -278,21 +280,21 @@ OldBtnHandler: function () {
         var enddate_obj = Ext.getCmp("Dtenddate").getPicker()._value;
 
         var startdate = startdate_obj.year + "-" + startdate_obj.month + "-" + startdate_obj.day;
-        var enddate = enddate_obj.year + "-" + enddate_obj.month + "-" + enddate_obj.day;        
+        var enddate = enddate_obj.year + "-" + enddate_obj.month + "-" + enddate_obj.day;
 
         $.ajax({
             type: "GET",
             url: HolaChef.app.dataUrl + 'orders.json?from_date=' + startdate + '&to_date='+ enddate,
-            
+
             contentType: 'application/json; charset=utf-8',
             dataType: "jsonp",
-            success: function (response) {//On Successfull service call       
-                
+            success: function (response) {//On Successfull service call
+
                 ref.setOrderList(response);
                 ref.onclosebydate();
                 ref.onbtnstausclose();
                 Ext.getCmp('Filtersdetailpanel').hide();
-               // Ext.getCmp('Filtersdetailpanel').hide();
+                // Ext.getCmp('Filtersdetailpanel').hide();
             },
             failure: function (response) {
                 alert(response);
@@ -319,7 +321,7 @@ OldBtnHandler: function () {
         Ext.getCmp("btnfilStatus").setHidden(false);
     },
     GetFilters: function () {
-       
+
         var ref = this;
         if (!this.Filters) {
             this.Filters = Ext.Viewport.add({
@@ -348,151 +350,151 @@ OldBtnHandler: function () {
                 height: '60%',
                 scrollable: true,
                 items: [
-                        {
+                    {
 
-                            items: [
-                                {
-                                    xtype: 'button',
-                                    text: 'Close',
-                                    docked: 'right',
-                                    listeners: {
-                                        tap: function () {
-                                            ref.onclosebydate();
-                                            ref.onbtnstausclose();                                            
-                                            Ext.getCmp('Filtersdetailpanel').hide();
-                                            
-                                        }
+                        items: [
+                            {
+                                xtype: 'button',
+                                text: 'Close',
+                                docked: 'right',
+                                listeners: {
+                                    tap: function () {
+                                        ref.onclosebydate();
+                                        ref.onbtnstausclose();
+                                        Ext.getCmp('Filtersdetailpanel').hide();
+
                                     }
-                                }]
+                                }
+                            }]
+                    },
+                    {
+                        xtype: 'container',
+                        id: 'Filtersdetailcontainer',
+                        title: '',
+                        layout: {
+                            type: 'vbox',
+                            align: 'center'
                         },
+                        items: [
                             {
-                                xtype: 'container',
-                                id: 'Filtersdetailcontainer',
-                                title: '',
-                                layout: {
-                                    type: 'vbox',
-                                    align: 'center'
-                                },
+                                xtype: 'label',
+                                html: 'Search By :',
+                                style: 'margin-top: 0.60em;'
+                            },
+                            { xtype: 'spacer', style: 'padding:10px;' },
+                            {
+                                xtype: 'button',
+                                text: 'Date',
+                                id: 'btnbydate'
+                            },
+                            {
+                                layout: { width:'100%',type: 'vbox' },
+                                id: 'Bydatepanel',
+                                hidden: true,
+                                style: 'margin-top: 0.60em;',
                                 items: [
-					{
-					    xtype: 'label',
-					    html: 'Search By :',
-					    style: 'margin-top: 0.60em;'
-					},
-                    { xtype: 'spacer', style: 'padding:10px;' },
-					{
-					    xtype: 'button',
-					    text: 'Date',					    					    
-					    id: 'btnbydate'					    
-					},
-                    {
-                        layout: { width:'100%',type: 'vbox' },
-                        id: 'Bydatepanel',
-                        hidden: true,
-                        style: 'margin-top: 0.60em;',
-                        items: [
-                                {
-                                    xtype: 'spacer',
-                                    style: 'margin: 0.20em;padding-left:5px;'
-                                },                                
-                                {
-                                    xtype: 'datepickerfield',
-                                    label: 'Start date',
-                                    name: 'strdate',
-                                    id:'Dtstartdate',
-                                    picker: {
-                                        yearFrom: 2010, // Note: can have helper function
-                                        yearTo: parseInt(getMaxYear())
-                                    }
+                                    {
+                                        xtype: 'spacer',
+                                        style: 'margin: 0.20em;padding-left:5px;'
+                                    },
+                                    {
+                                        xtype: 'datepickerfield',
+                                        label: 'Start date',
+                                        name: 'strdate',
+                                        id:'Dtstartdate',
+                                        picker: {
+                                            yearFrom: 2010, // Note: can have helper function
+                                            yearTo: parseInt(getMaxYear())
+                                        }
 
-                                },
-                                {
-                                    xtype: 'datepickerfield',
-                                    label: 'End date',
-                                    name: 'enddate',
-                                    id: 'Dtenddate',
-                                    picker: {
-                                        yearFrom: 2010, // Note: can have helper function
-                                        yearTo: parseInt(getMaxYear())
-                                    }
+                                    },
+                                    {
+                                        xtype: 'datepickerfield',
+                                        label: 'End date',
+                                        name: 'enddate',
+                                        id: 'Dtenddate',
+                                        picker: {
+                                            yearFrom: 2010, // Note: can have helper function
+                                            yearTo: parseInt(getMaxYear())
+                                        }
 
-                                },
-                                {
-                                    xtype: 'button',
-                                    text: 'Submit',                                    
-                                    height: '1.6em',
-                                    width: '120px',
-                                    style: 'margin:10px;margin-top:15px;',
-                                    id: 'btndatesubmit'
-                                },
-                                {
-                                    xtype: 'button',
-                                    text: 'Close',                                    
-                                    height: '1.6em',
-                                    width: '120px',
-                                    style: 'margin:10px;margin-top:15px;',
-                                    id: 'btndateback'
-                                },
-                        ]
-
-                    },
-                    {xtype:'spacer',style:'padding:10px;'},
-                    {
-                        xtype: 'button',
-                        text: 'Status',					    
-                        cls: 'locationbtn locationbtngap',
-                        id: 'btnfilStatus',
-                        action:'filterstatus'
-                    },
-                    {
-                        layout: { type: 'hbox',width:'100%' },
-                        id: 'StatusPanel',
-                        hidden: true,
-                        style: 'margin-top: 0.60em;',
-                        items: [
-                            {
-                                xtype: 'spacer',
-                                style: 'margin: 0.20em;'
-                            },                            
-                            {
-                                xtype: 'selectfield',
-                                id: "AllStatusList",
-                                style: 'border:1px solid #000;margin-top:5px;margin-bottom:5px;',
-                                options: [
-                                    { value: 'All', text: 'All' },
-                                    {value: 'Created', text: 'Created'},
-                                    { value: 'Confirmed', text: 'Confimed' },
-                                    {value:'Canceled',text:'Canceled'},
-                                    {value: 'Dispatched', text: 'Dispatched'},
-                                    {value: 'Delivered', text: 'Delivered'},
-                                    { value: 'Damaged', text: 'Damaged' },
-                                    { value: 'Reordered', text: 'Reordered' },
-                                    { value: 'Returned', text: 'Returned' },
-
+                                    },
+                                    {
+                                        xtype: 'button',
+                                        text: 'Submit',
+                                        height: '1.6em',
+                                        width: '120px',
+                                        style: 'margin:10px;margin-top:15px;',
+                                        id: 'btndatesubmit'
+                                    },
+                                    {
+                                        xtype: 'button',
+                                        text: 'Close',
+                                        height: '1.6em',
+                                        width: '120px',
+                                        style: 'margin:10px;margin-top:15px;',
+                                        id: 'btndateback'
+                                    },
                                 ]
 
                             },
+                            {xtype:'spacer',style:'padding:10px;'},
                             {
                                 xtype: 'button',
-                                text: 'Submit',                                
-                                height: '1.6em',
-                                width: '120px',
-                                style: 'margin:10px;margin-top:15px;',
-                                id: 'btnstatusgo'
+                                text: 'Status',
+                                cls: 'locationbtn locationbtngap',
+                                id: 'btnfilStatus',
+                                action:'filterstatus'
                             },
                             {
-                                xtype: 'button',
-                                text: 'Close',                                
-                                height: '1.6em',
-                                width: '120px',
-                                style: 'margin:10px;margin-top:15px;',
-                                id: 'btnstatusclose'
-                            },
-                        ]
-                    }
-					
+                                layout: { type: 'hbox',width:'100%' },
+                                id: 'StatusPanel',
+                                hidden: true,
+                                style: 'margin-top: 0.60em;',
+                                items: [
+                                    {
+                                        xtype: 'spacer',
+                                        style: 'margin: 0.20em;'
+                                    },
+                                    {
+                                        xtype: 'selectfield',
+                                        id: "AllStatusList",
+                                        style: 'border:1px solid #000;margin-top:5px;margin-bottom:5px;',
+                                        options: [
+                                            { value: 'All', text: 'All' },
+                                            {value: 'Created', text: 'Created'},
+                                            { value: 'Confirmed', text: 'Confimed' },
+                                            {value:'Canceled',text:'Canceled'},
+                                            {value: 'Dispatched', text: 'Dispatched'},
+                                            {value: 'Delivered', text: 'Delivered'},
+                                            { value: 'Damaged', text: 'Damaged' },
+                                            { value: 'Reordered', text: 'Reordered' },
+                                            { value: 'Returned', text: 'Returned' },
+
+                                        ]
+
+                                    },
+                                    {
+                                        xtype: 'button',
+                                        text: 'Submit',
+                                        height: '1.6em',
+                                        width: '120px',
+                                        style: 'margin:10px;margin-top:15px;',
+                                        id: 'btnstatusgo'
+                                    },
+                                    {
+                                        xtype: 'button',
+                                        text: 'Close',
+                                        height: '1.6em',
+                                        width: '120px',
+                                        style: 'margin:10px;margin-top:15px;',
+                                        id: 'btnstatusclose'
+                                    },
                                 ]
                             }
+
+                        ]
+                    }
 
                 ]
 
@@ -501,7 +503,7 @@ OldBtnHandler: function () {
         this.Filters.show();
     },
     onsearchclick: function () {
-        
+
         var txtobj = Ext.getCmp("txtsearch");
         if (txtobj.getValue() != "") {
             var searchval = txtobj.getValue();
@@ -514,7 +516,7 @@ OldBtnHandler: function () {
                     flag = false;
                     finaldata_Ary.push(Dataarry[i]);
                 }
-                if (Dataarry[i]["customer_name"].search(searchval) != -1) {
+                if (Dataarry[i]["customer_name"].toLowerCase().search(searchval.toLowerCase()) != -1) {
                     flag = false;
                     finaldata_Ary.push(Dataarry[i]);
                 }
@@ -528,8 +530,100 @@ OldBtnHandler: function () {
         else
             Ext.Msg.alert("Info", "Please Enter Value...!");
     },
+    onsearch2click: function () {
+
+        var txtobj = Ext.getCmp("mealtype");
+        var statusfilterRef = Ext.getCmp("statusfilter");
+        var Dataarry = HolaChef.app.OrdersArry;
+        var finaldata_Ary = new Array();
+        var flag = true;
+        if (txtobj.getValue() != "") {
+            var searchval = txtobj.getValue();
+            for (var i = 0; i < Dataarry.length; i++) {
+
+                if(Dataarry[i]["order_items"] !="")
+                {
+                    var id = String(Dataarry[i]["order_items"][0].meal_type);
+                    var id2 = String(Dataarry[i]["order_status"]);
+                    if(statusfilterRef.getValue() != "All")
+                    {
+                        if (id.indexOf(searchval) != -1 && id2.indexOf(statusfilterRef.getValue()) != -1) {
+                            flag = false;
+                            finaldata_Ary.push(Dataarry[i]);
+                        }
+                    }
+                    else{
+                        if (id.indexOf(searchval) != -1) {
+                            flag = false;
+                            finaldata_Ary.push(Dataarry[i]);
+                        }
+
+                    }
+                }
+                if(Ext.getCmp("mealtype").getValue() =="All")
+                {
+
+                    this.setOrderList(Dataarry);
+                }
+                else
+                    this.setOrderList(finaldata_Ary);
+
+            }
+        }else{
+            Ext.Msg.alert("No Records Found");
+        }
+
+    },
+    onsearch3click: function () {
+
+        var txtobj = Ext.getCmp("statusfilter");
+        var statusfilterRef = Ext.getCmp("mealtype");
+
+        if (txtobj.getValue() != "") {
+            var searchval = txtobj.getValue();
+            var Dataarry = HolaChef.app.OrdersArry;
+            var finaldata_Ary = new Array();
+            var flag = true;
+            for (var i = 0; i < Dataarry.length; i++) {
+                if(Dataarry[i]["order_items"] !="")
+                {
+                    var id = String(Dataarry[i]["order_status"]);
+                    var id2 = String(Dataarry[i]["order_items"][0].meal_type);
+                    if(statusfilterRef.getValue() != "All")
+                    {
+                        if (id.indexOf(searchval) != -1 && id2.indexOf(statusfilterRef.getValue()) != -1) {
+                            flag = false;
+                            finaldata_Ary.push(Dataarry[i]);
+                        }
+                    }
+                    else
+                    {
+                        if (id.indexOf(searchval) != -1) {
+                            flag = false;
+                            finaldata_Ary.push(Dataarry[i]);
+                        }
+                    }
+
+                }
+                if(Ext.getCmp("statusfilter").getValue() =="All")
+                {
+
+                    this.setOrderList(Dataarry);
+                }
+            }
+            if (flag)
+            {
+                /*Ext.Msg.alert("Info", "No Record found...!");*/
+            }
+            else {
+                this.setOrderList(finaldata_Ary);
+            }
+        }
+        else
+            Ext.Msg.alert("Info", "No Record found...!");
+    },
     onbtrefreshclick: function () {
-   
+        HolaChef.app.Orderidfilter='0';
         HolaChef.app.getController("Main").GetDefectGridData();
     },
     onbtndamagerefund: function () {
@@ -537,7 +631,7 @@ OldBtnHandler: function () {
         var id = HolaChef.app.Orderid;
         if (HolaChef.app.MenuOrder)
         {
-            var obj = Ext.getCmp("DamageOrder");            
+            var obj = Ext.getCmp("DamageOrder");
             obj.hide();
             obj = null;
             var menuid = fetchmenuid();
@@ -549,7 +643,7 @@ OldBtnHandler: function () {
                 url: HolaChef.app.dataUrl + 'orders/' + id + '/update_status.json?status=Refunded',
                 contentType: 'application/json; charset=utf-8',
                 dataType: "jsonp",
-                success: function (response) {//On Successfull service call                
+                success: function (response) {//On Successfull service call
                     var obj = Ext.getCmp("DamageOrder");
                     var id = HolaChef.app.Orderid;
                     obj.hide();
@@ -565,11 +659,11 @@ OldBtnHandler: function () {
         }
     },
     onbtnbtndamagereorder: function () {
-       
+
         var id = HolaChef.app.Orderid;
         var ref = this;
         if (HolaChef.app.MenuOrder) {
-            var obj = Ext.getCmp("DamageOrder");            
+            var obj = Ext.getCmp("DamageOrder");
             obj.hide();
             obj = null;
             //var menuid = fetchmenuid();
@@ -581,7 +675,7 @@ OldBtnHandler: function () {
                 url: HolaChef.app.dataUrl + 'orders/' + id + '/reorder.json?status=Reordered',
                 contentType: 'application/json; charset=utf-8',
                 dataType: "jsonp",
-                success: function (response) {//On Successfull service call                
+                success: function (response) {//On Successfull service call
                     var obj = Ext.getCmp("DamageOrder");
                     var id = HolaChef.app.Orderid;
                     obj.hide();
@@ -606,21 +700,21 @@ OldBtnHandler: function () {
             //OrderdetailPopup(HolaChef.app.Orderid, 'dispatch', HolaChef.app.ViewOrderid);
             //return;
             $.ajax({
-             
+
                 type: "GET",
                 url: HolaChef.app.dataUrl + 'orders/' + id + '/assign_runner.json?runner_id=' + ddlrunner,
                 contentType: 'application/json; charset=utf-8',
                 dataType: "jsonp",
-                success: function (response) {//On Successfull service call 
-                     
+                success: function (response) {//On Successfull service call
+
                     var obj = response;
                     $.ajax({
                         type: "GET",
                         url: HolaChef.app.dataUrl + 'orders/' + id + '/update_status.json?status=Dispatched',
                         contentType: 'application/json; charset=utf-8',
                         dataType: "jsonp",
-                        success: function (response) {//On Successfull service call                
-                            
+                        success: function (response) {//On Successfull service call
+
                             OrderdetailPopup(HolaChef.app.Orderid, 'Dispatched');
                         },
                         failure: function (response) {
@@ -639,14 +733,14 @@ OldBtnHandler: function () {
     onbtnreasonsubmit: function () {
         var obj = Ext.getCmp("ReturneOrder")
         var id = HolaChef.app.Orderid;
-        obj.hide();        
-        var txtobj = this.getRefreturnreason();            
+        obj.hide();
+        var txtobj = this.getRefreturnreason();
         $.ajax({
             type: "GET",
             url: HolaChef.app.dataUrl + 'orders/' + id + '/update_status.json?status=Returned&reason=' + txtobj.getValue(),
             contentType: 'application/json; charset=utf-8',
             dataType: "jsonp",
-            success: function (response) {//On Successfull service call                
+            success: function (response) {//On Successfull service call
                 OrderdetailPopup(HolaChef.app.Orderid, 'Returned');
             },
             failure: function (response) {
@@ -657,7 +751,7 @@ OldBtnHandler: function () {
     GetDefectGridData: function () {
 
         var ref = this;
-        //this.getDefectPageHtmlRef().setHtml("");                 
+        //this.getDefectPageHtmlRef().setHtml("");
         Ext.data.JsonP.request({
             url: HolaChef.app.dataUrl + 'orders.json',
             params: {
@@ -666,65 +760,128 @@ OldBtnHandler: function () {
                 callback: 'callback'
             },
             success: function (response) {
-                
-                HolaChef.app.OrdersArry = response;                
-                ref.setOrderList(response);
+
+                HolaChef.app.OrdersArry = response;
+                var mealfilterRef = Ext.getCmp("mealtype");
+                var statusfilterRef = Ext.getCmp("statusfilter");
+                if (mealfilterRef.getValue() == "All" && statusfilterRef.getValue() == "All")
+                {
+                    ref.setOrderList(response);
+                    Ext.getCmp('mealtype').setValue('All');
+                    Ext.getCmp('statusfilter').setValue('All');
+                }
+                else{
+
+                    HolaChef.app.getController("Main").onsearch2click();
+                }
+
             },
             failure: function (response) {
                 Ext.Msg.alert('Alert', 'Please check internet connectivity !');
             }
         });
-        
+
     },
     setOrderList: function (records) {
-    
+
         HolaChef.app.ShowHideLoader(true);
         var ref = this;
         var str = '';
-        str += '<div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Order No</th><th>Name</th><th>Mobile</th><th>Payment</th><th>Progress</th><th>Meal Type</th><th>Order Time</th></tr></thead><tbody>';
-        for (var i = 0; i < records.length; i++) {
-            var date= records[i]["confirmed_at"];
-            var dispat= records[i]["dispatched_at"];
-            
-            var timeNow = new Date(date);
-            var DiffMins = (new Date()-timeNow)/(1000*60);
-            var id = records[i]["id"];
-            if (DiffMins > 5 && dispat == null)
-                 str += '<tr class="datarow5">';
-            else if(i % 2 == 0)
-                 str += '<tr class="datarow2">';
-            else
-                str += '<tr class="datarow1">';
+        str += '<div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th onclick="orderidfilter()">Order No</th><th>Delivery Slot</th><th>Name</th><th>Mobile</th><th>Payment</th><th>Progress</th><th>Meal Type</th><th onclick="orderidfilter()">Order Time</th></tr></thead><tbody>';
+        if(HolaChef.app.Orderidfilter != 0)
+            records.sort(predicatBy('id'));
 
-            var j = i + 1;
+        if(HolaChef.app.Orderidfilter != 2)
+        {
 
-            var innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> View</a>';
-            var status = records[i]["order_status"];
-            if (records[i]["order_progress"] == "Created" && records[i]["order_status"] == "Created")
-                innhtml = '';
-            else if (status == "Confirmed") {
-                if (records[i]["original_order_id"])
-                    innhtml = '<a href="#" onclick="ondispatch(\'' + String(id) + '\');">Dispatch</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'ReNewOrder\');"> View</a>';
+            for (var i = 0; i < records.length; i++) {
+                var date= records[i]["confirmed_at"];
+                var dispat= records[i]["dispatched_at"];
+
+                var timeNow = new Date(date);
+                var DiffMins = (new Date()-timeNow)/(1000*60);
+                var id = records[i]["id"];
+                if (DiffMins > 5 && dispat == null)
+                    str += '<tr class="datarow5">';
+                else if(i % 2 == 0)
+                    str += '<tr class="datarow2">';
                 else
-                    innhtml = '<a href="#" onclick="ondispatch(\'' + String(id) + '\');">Dispatch</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> View</a>';
+                    str += '<tr class="datarow1">';
+
+                var j = i + 1;
+
+                var innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> View</a>';
+                var status = records[i]["order_status"];
+                if (records[i]["order_progress"] == "Created" && records[i]["order_status"] == "Created")
+                    innhtml = '';
+                else if (status == "Confirmed") {
+                    if (records[i]["original_order_id"])
+                        innhtml = '<a href="#" onclick="ondispatch(\'' + String(id) + '\');">Dispatch</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'ReNewOrder\');"> View</a>';
+                    else
+                        innhtml = '<a href="#" onclick="ondispatch(\'' + String(id) + '\');">Dispatch</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> View</a>';
+                }
+                else if (status == "Dispatched")
+                    innhtml = '<a href="#" onclick="ondeliverd(\'' + String(id) + '\');">Delivered</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
+                else if (status == "Canceled" || status == "Delivered" || status == "Returned" || status == "Reordered")
+                    innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
+
+                str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + String(id) + '</a></td><td>' + records[i]["deliverySlot"] + '</td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_name"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_contact_number"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["payment_mode"] + '</a></td><td> <a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["order_progress"] + '</a></td>';
+                str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + (records[i]["order_items"][0] == undefined ? "" : records[i]["order_items"][0]["meal_type"]) + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["confirmed_at"] + '</td></a>';
+                str += '</a>';
+
+                str += '</tr>';
             }
-            else if (status == "Dispatched")
-                innhtml = '<a href="#" onclick="ondeliverd(\'' + String(id) + '\');">Delivered</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
-            else if (status == "Canceled" || status == "Delivered" || status == "Returned" || status == "Reordered")
-                innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
-            
-            str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + String(id) + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_name"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_contact_number"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["payment_mode"] + '</a></td><td> <a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["order_progress"] + '</a></td>';
-            str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + (records[i]["order_items"][0] == undefined ? "" : records[i]["order_items"][0]["meal_type"]) + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["confirmed_at"] + '</td></a>';
-            str += '</tr>';
         }
+        else
+        {
+            for (var i = records.length-1; i >= 0; i--) {
+                var date= records[i]["confirmed_at"];
+                var dispat= records[i]["dispatched_at"];
+
+                var timeNow = new Date(date);
+                var DiffMins = (new Date()-timeNow)/(1000*60);
+                var id = records[i]["id"];
+                if (DiffMins > 5 && dispat == null)
+                    str += '<tr class="datarow5">';
+                else if(i % 2 == 0)
+                    str += '<tr class="datarow2">';
+                else
+                    str += '<tr class="datarow1">';
+
+                var j = i + 1;
+
+                var innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> View</a>';
+                var status = records[i]["order_status"];
+                if (records[i]["order_progress"] == "Created" && records[i]["order_status"] == "Created")
+                    innhtml = '';
+                else if (status == "Confirmed") {
+                    if (records[i]["original_order_id"])
+                        innhtml = '<a href="#" onclick="ondispatch(\'' + String(id) + '\');">Dispatch</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'ReNewOrder\');"> View</a>';
+                    else
+                        innhtml = '<a href="#" onclick="ondispatch(\'' + String(id) + '\');">Dispatch</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> View</a>';
+                }
+                else if (status == "Dispatched")
+                    innhtml = '<a href="#" onclick="ondeliverd(\'' + String(id) + '\');">Delivered</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
+                else if (status == "Canceled" || status == "Delivered" || status == "Returned" || status == "Reordered")
+                    innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
+
+                str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + String(id) + '</a></td><td>' + records[i]["deliverySlot"] + '</td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_name"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_contact_number"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["payment_mode"] + '</a></td><td> <a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["order_progress"] + '</a></td>';
+                str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + (records[i]["order_items"][0] == undefined ? "" : records[i]["order_items"][0]["meal_type"]) + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["confirmed_at"] + '</td></a>';
+                str += '</a>';
+
+                str += '</tr>';
+            }
+
+        }
+
 
         str += '</tbody></table></div>';
         ref.getDefectPageHtmlRef().setHtml(str);
         HolaChef.app.ShowHideLoader(false);
     },
     GetOrderDetail: function () {
-        
-        var ref = this;        
+
+        var ref = this;
         if (!this.OredrDetails) {
             this.OredrDetails = Ext.Viewport.add({
                 xtype: 'panel',
@@ -752,33 +909,33 @@ OldBtnHandler: function () {
                 height: '85%',
                 scrollable: true,
                 items: [
-                        {
+                    {
 
-                            items: [
-                                {
-                                    xtype: 'button',
-                                    text: 'Close',
-                                    docked: 'right',
-                                    listeners: {
-                                        tap: function () {
-                                            HolaChef.app.OrdersArry = null;
-                                            HolaChef.app.Orderid = '';
-                                            HolaChef.app.MenuOrder = false;
-                                            HolaChef.app.MenuOrderStatus = '';
-                                            ref.GetDefectGridData();
-                                            Ext.getCmp('OredrDetailspanel').setHtml("");
-                                            Ext.getCmp('OredrDetailspanel').hide();                                            
-                                        }
-                                    }
-                                }]
-                        },
+                        items: [
                             {
-                                xtype: 'container',
-                                id: 'OrderViewpanel',
-                                html: ''
-                            }
+                                xtype: 'button',
+                                text: 'Close',
+                                docked: 'right',
+                                listeners: {
+                                    tap: function () {
+                                        HolaChef.app.OrdersArry = null;
+                                        HolaChef.app.Orderid = '';
+                                        HolaChef.app.MenuOrder = false;
+                                        HolaChef.app.MenuOrderStatus = '';
+                                        ref.GetDefectGridData();
+                                        Ext.getCmp('OredrDetailspanel').setHtml("");
+                                        Ext.getCmp('OredrDetailspanel').hide();
+                                    }
+                                }
+                            }]
+                    },
+                    {
+                        xtype: 'container',
+                        id: 'OrderViewpanel',
+                        html: ''
+                    }
 
-                        ]
+                ]
 
             });
         }
@@ -787,7 +944,7 @@ OldBtnHandler: function () {
 });
 function OrderdetailPopup(id, from) {
 
-    HolaChef.app.getController("Main").GetOrderDetail();      
+    HolaChef.app.getController("Main").GetOrderDetail();
     viewordetail(id, from);
 }
 function viewordetail(id,from)
@@ -802,7 +959,7 @@ function viewordetail(id,from)
             callback: 'callback'
         },
         success: function (records) {
-          
+
             html += '<div style="padding:20px"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
             if (from == "Dispatched")
                 html += '<div style="float: left; width: 30%"><button onclick="ondeliverd(\'' + String(records["id"]) + '\')">Delivered</button><button onclick="onreturnd(\'' + String(records["id"]) + '\')">Returned</button><button onclick="ondamage(\'' + String(records["id"]) + '\');">Damage</button><button onclick="oncancelbtn(\'' + String(records["id"]) + '\')">Cancel</button></div>';
@@ -811,8 +968,8 @@ function viewordetail(id,from)
             else if (from == "Returned" || from == "Canceled" || from == "Reordered")
                 html += '';
             else
-                html += '<div style="float: left; width: 30%"><button onclick="ondispatch(\'' + String(records["id"]) + '\',\'' + HolaChef.app.ViewOrderid + '\');">Dispatched</button><button onclick="ondamage(\'' + String(records["id"]) + '\');">Damage</button><button onclick="oncancelbtn(\'' + String(records["id"]) + '\')">Cancel</button></div>';
-            
+                html += '<div style="float: left; width: 30%"><button onclick="ondeliverd(\'' + String(records["id"]) + '\')">Delivered</button><button onclick="ondispatch(\'' + String(records["id"]) + '\',\'' + HolaChef.app.ViewOrderid + '\');">Dispatched</button><button onclick="ondamage(\'' + String(records["id"]) + '\');">Damage</button><button onclick="oncancelbtn(\'' + String(records["id"]) + '\')">Cancel</button></div>';
+
             html+='</td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td>' + records["customer_name"] + '</td></tr><tr><td>' + records["customer_contact_number"] + '</td></tr>';
             var address = records["address"];
             var add1 = address.address_line_1 == null ? "" : address.address_line_1;
@@ -827,7 +984,7 @@ function viewordetail(id,from)
             html += '<tr><td>' + pin + '</td></tr>';
             html += '<tr><td>' + land + '</td></tr>';
 
-            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td >Order progress : </td><td style="width:60%"> ' + records["order_progress"] + '</td></tr><tr><td>Payment : </td><td>' + records["payment_mode"] + '</td></tr><tr><td>Delivery Time : </td><td>' + records["deliverySlot"] + '</td></tr>';
+            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td >Order progress : </td><td style="width:60%"> ' + records["order_progress"] + '</td></tr><tr><td>Payment : </td><td>' + records["payment_mode"] + '</td></tr><tr><td>Delivery Time : </td><td>' + records["deliverySlot"] + '</td></tr><tr><td>Runner Name :</td><td>' + records["runner"].name + '</td></tr>';
 
             if (from == "Dispatched") {
                 var runner = records["runner"];
@@ -845,18 +1002,18 @@ function viewordetail(id,from)
             html += '</table></td></tr></table></td></tr><tr><td><div style="float: right; width: 30%"><select id="ddlaction"><option value="0">Select Action</option><option value="Canceled">Canceled</option><option value="Damaged">Damaged</option>';
             //<option value="Ordered">Ordered</option><option value="Returned">Returned</option>
             html += '</select><button onclick="onbtnaction(\'' + String(records["id"]) + '\');">Submit</button></div></td></tr><tr><td><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Select</th><th>Item ID</th><th>Name</th><th>Box No</th><th>Qty</th><th>Unit Price</th><th>Row Total</th><th>Status</th></tr></thead><tbody>';
-            
+
             var orders = records["order_items"];
             for (var i = 0; i < orders.length; i++)
             {
-                
+
                 html += '<tr class="datarow2"><td><input type="checkbox" value="' + orders[i].menu_item_id + '" id="orderchkbox_' + String(i) + '" /></td><td>1</td><td>' + orders[i].dish_name + '</td><td>1</td><td>' + orders[i].quantity + '</td><td>' + orders[i].rate + '</td><td>' + orders[i].menu_item_total + '</td><td>' + orders[i].order_status + '</td></tr>';
-                
+
             }
 
-        
+
             html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"><textarea rows="10" cols="36" style= "width:100%;border: 1px solid black">Order History and Comments</textarea></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Coupon Id : ' + records["couponID"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Payable Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
-            var obj = Ext.getCmp('OrderViewpanel');            
+            var obj = Ext.getCmp('OrderViewpanel');
             obj.setHtml(html);
             HolaChef.app.ShowHideLoader(false);
         },
@@ -867,7 +1024,7 @@ function viewordetail(id,from)
 }
 function ondispatch(id) {
 
-    HolaChef.app.Orderid = id;    
+    HolaChef.app.Orderid = id;
     var ref = this;
     HolaChef.app.ShowHideLoader(true);
 
@@ -890,33 +1047,33 @@ function ondispatch(id) {
                 duration: 250,
                 easing: 'ease-out',
                 listeners:
+                {
+                    animationend: function (evt, obj)
                     {
-                        animationend: function (evt, obj)
-                        {
-                            $.ajax({
-                                type: "GET",
+                        $.ajax({
+                            type: "GET",
 
-                                url: HolaChef.app.dataUrl + 'runners.json',
-                                contentType: 'application/json; charset=utf-8',
-                                dataType: "jsonp",
-                                success: function (response) {//On Successfull service call
-                                    var obj = document.getElementById("ddlpanel");
-                                    obj.innerHTML = "";
-                                    var html = '<select id="AllRunnerList" style="border:1px solid #000;margin-top:5px;margin-bottom:5px;">';
-                                    html += '<option value ="Select">Select</option>';
-                                    for (var k = 0; k < response.length; k++) {                                        
-                                        html += '<option value ="' + response[k]["id"] + '">' + response[k]["name"] + '</option>';
-                                    }
-                                    html += '</select>'                                    
-                                    obj.innerHTML = html;
-
-                                    HolaChef.app.ShowHideLoader(false);
-                                },
-                                failure: function (response) {
-                                    alert(response);
+                            url: HolaChef.app.dataUrl + 'runners.json',
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: "jsonp",
+                            success: function (response) {//On Successfull service call
+                                var obj = document.getElementById("ddlpanel");
+                                obj.innerHTML = "";
+                                var html = '<select id="AllRunnerList" style="border:1px solid #000;margin-top:5px;margin-bottom:5px;">';
+                                html += '<option value ="Select">Select</option>';
+                                for (var k = 0; k < response.length; k++) {
+                                    html += '<option value ="' + response[k]["id"] + '">' + response[k]["name"] + '</option>';
                                 }
-                            });                            
-                        }
+                                html += '</select>'
+                                obj.innerHTML = html;
+
+                                HolaChef.app.ShowHideLoader(false);
+                            },
+                            failure: function (response) {
+                                alert(response);
+                            }
+                        });
+                    }
                 }
             },
             hideAnimation: {
@@ -928,62 +1085,62 @@ function ondispatch(id) {
                         ref.RunnerDetails = null;
                     }
                 }
-            },            
+            },
             centered: true,
             width: '50%',
             height: '60%',
             scrollable: true,
             items: [
+                {
+
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: 'Close',
+                            docked: 'right',
+                            listeners: {
+                                tap: function () {
+                                    Ext.getCmp('RunnerDetails').hide();
+                                }
+                            }
+                        }]
+                },
+                {
+                    xtype: 'container',
+                    id: 'dispatchpanel',
+                    items: [{
+                        layout: {
+                            type: 'hbox',
+                            align: 'center'
+                        },
+
+                        items: [
+                            {
+                                xtype: 'label',
+                                html: 'Select Delivery Boy :',
+                                style: 'margin-top: 0.60em;'
+                            },
+                            {
+                                xtype: 'label',
+                                id : 'ddlpanel',
+                                html: 'asdasdasdasd'
+
+                            }]
+                    },
                         {
 
-                            items: [
-                                {
-                                    xtype: 'button',
-                                    text: 'Close',
-                                    docked: 'right',
-                                    listeners: {
-                                        tap: function () {                                            
-                                            Ext.getCmp('RunnerDetails').hide();
-                                        }
-                                    }
-                                }]
-                        },
-                            {
-                                xtype: 'container',
-                                id: 'dispatchpanel',
-                                items: [{
-                                    layout: {
-                                        type: 'hbox',
-                                        align: 'center'
-                                    },
+                            xtype: 'button',
+                            text: 'Confirm',
+                            height: '1.6em',
+                            width: '120px',
+                            style: 'margin:10px;margin-top:15px;float:right',
+                            id: 'btncnfrm',
+                            action: 'runnercnfrm'
+                        }
 
-                                    items: [
-					                    {
-					                        xtype: 'label',
-					                        html: 'Select Delivery Boy :',
-					                        style: 'margin-top: 0.60em;'
-					                    },
-                                        {
-                                            xtype: 'label',
-                                            id : 'ddlpanel',
-                                            html: 'asdasdasdasd'
-                                            
-                                        }]
-                                },
-                                {
+                    ]
 
-                                    xtype: 'button',
-                                    text: 'Confirm',
-                                    height: '1.6em',
-                                    width: '120px',
-                                    style: 'margin:10px;margin-top:15px;float:right',
-                                    id: 'btncnfrm',
-                                    action: 'runnercnfrm'
-                                }
-
-                                ]
-
-                            }
+                }
 
             ]
 
@@ -993,13 +1150,13 @@ function ondispatch(id) {
 }
 function ondeliverd(id, viewid)
 {
-    HolaChef.app.Orderid = id;    
+    HolaChef.app.Orderid = id;
     $.ajax({
         type: "GET",
         url: HolaChef.app.dataUrl + 'orders/' + id + '/update_status.json?status=Delivered',
         contentType: 'application/json; charset=utf-8',
         dataType: "jsonp",
-        success: function (response) {//On Successfull service call            
+        success: function (response) {//On Successfull service call
             HolaChef.app.getController("Main").GetDefectGridData();
             OrderdetailPopup(HolaChef.app.Orderid, 'Delivered');
         },
@@ -1041,55 +1198,55 @@ function ondamage(id) {
             height: '25%',
             scrollable: true,
             items: [
+                {
+
+                    items: [
                         {
-
-                            items: [
-                                {
-                                    xtype: 'button',
-                                    text: 'Close',
-                                    docked: 'right',
-                                    listeners: {
-                                        tap: function () {
-                                            Ext.getCmp('DamageOrder').hide();
-                                        }
-                                    }
-                                }]
-                        },
-                            {
-                                xtype: 'container',
-                                id: 'dispatchpanel',
-                                items: [{
-                                    layout: {
-                                        type: 'hbox',
-                                        align: 'center'
-                                    },
-
-                                    items: [
-
-                                     {
-
-                                         xtype: 'button',
-                                         text: 'Reorder',
-                                         height: '1.6em',
-                                         width: '120px',
-                                         style: 'margin:10px;margin-top:15px;',
-                                         id: 'btnreorder',
-                                         action: 'Damagereorder'
-                                     },
-                                         {
-
-                                             xtype: 'button',
-                                             text: 'Refund',
-                                             height: '1.6em',
-                                             width: '120px',
-                                             style: 'margin:10px;margin-top:15px;',
-                                             id: 'btnrefund',
-                                             action: 'DamageRefund'
-                                         }
-                                    ]
-
-                                }]
+                            xtype: 'button',
+                            text: 'Close',
+                            docked: 'right',
+                            listeners: {
+                                tap: function () {
+                                    Ext.getCmp('DamageOrder').hide();
+                                }
                             }
+                        }]
+                },
+                {
+                    xtype: 'container',
+                    id: 'dispatchpanel',
+                    items: [{
+                        layout: {
+                            type: 'hbox',
+                            align: 'center'
+                        },
+
+                        items: [
+
+                            {
+
+                                xtype: 'button',
+                                text: 'Reorder',
+                                height: '1.6em',
+                                width: '120px',
+                                style: 'margin:10px;margin-top:15px;',
+                                id: 'btnreorder',
+                                action: 'Damagereorder'
+                            },
+                            {
+
+                                xtype: 'button',
+                                text: 'Refund',
+                                height: '1.6em',
+                                width: '120px',
+                                style: 'margin:10px;margin-top:15px;',
+                                id: 'btnrefund',
+                                action: 'DamageRefund'
+                            }
+                        ]
+
+                    }]
+                }
 
             ]
 
@@ -1130,56 +1287,56 @@ function onreturnd(id) {
             height: '50%',
             scrollable: true,
             items: [
+                {
+
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: 'Close',
+                            docked: 'right',
+                            listeners: {
+                                tap: function () {
+                                    Ext.getCmp('ReturneOrder').hide();
+                                }
+                            }
+                        }]
+                },
+                {
+                    xtype: 'container',
+                    id: 'dispatchpanel',
+                    items: [{
+                        layout: {
+                            type: 'vbox',
+                            align: 'center'
+                        },
+
+                        items: [
+                            {
+                                xtype: 'label',
+                                html: 'Return Reason :',
+                                style: 'margin-top: 0.60em;'
+                            },
+                            {
+                                xtype: 'textareafield',
+                                id:'txtreturnreason',
+                                resize: 'none',
+                                height: '6.5em'
+                            }]
+                    },
                         {
 
-                            items: [
-                                {
-                                    xtype: 'button',
-                                    text: 'Close',
-                                    docked: 'right',
-                                    listeners: {
-                                        tap: function () {
-                                            Ext.getCmp('ReturneOrder').hide();
-                                        }
-                                    }
-                                }]
-                        },
-                            {
-                                xtype: 'container',
-                                id: 'dispatchpanel',
-                                items: [{
-                                    layout: {
-                                        type: 'vbox',
-                                        align: 'center'
-                                    },
+                            xtype: 'button',
+                            text: 'Submit',
+                            height: '1.6em',
+                            width: '120px',
+                            style: 'margin:10px;margin-top:15px;float:right',
+                            id: 'btnsubmit',
+                            action: 'reasonsubmit'
+                        }
 
-                                    items: [
-					                    {
-					                        xtype: 'label',
-					                        html: 'Return Reason :',
-					                        style: 'margin-top: 0.60em;'
-					                    },
-					                    {
-					                        xtype: 'textareafield',
-                                            id:'txtreturnreason',
-					                        resize: 'none',
-					                        height: '6.5em'
-					                    }]
-                                },
-                                {
+                    ]
 
-                                    xtype: 'button',
-                                    text: 'Submit',
-                                    height: '1.6em',
-                                    width: '120px',
-                                    style: 'margin:10px;margin-top:15px;float:right',
-                                    id: 'btnsubmit',
-                                    action: 'reasonsubmit'
-                                }
-
-                                ]
-
-                            }
+                }
 
             ]
 
@@ -1189,15 +1346,15 @@ function onreturnd(id) {
     this.ReturneOrder.show();
 }
 function oncancelbtn(id) {
-   
-    HolaChef.app.Orderid = id;    
+
+    HolaChef.app.Orderid = id;
     $.ajax({
         type: "GET",
         url: HolaChef.app.dataUrl + 'orders/' + id + '/update_status.json?status=Canceled',
         contentType: 'application/json; charset=utf-8',
         dataType: "jsonp",
         success: function (response) {//On Successfull service call
-          
+
             var obj = Ext.getCmp("OredrDetailspanel");
             obj.hide();
             HolaChef.app.getController("Main").GetDefectGridData();
@@ -1252,7 +1409,7 @@ function UpdateMenueItemStatus(id, val, menuid) {
         contentType: 'application/json; charset=utf-8',
         dataType: "jsonp",
         success: function (response) {//On Successfull service call
-           
+
             var obj = Ext.getCmp("OredrDetailspanel");
             obj.hide();
             HolaChef.app.getController("Main").GetDefectGridData();
@@ -1277,5 +1434,44 @@ function RunnerDetail(id) {
 function OpenOrderDetails()
 {
 
-HolaChef.app.getController("Main").GetDefectGridData();
+    HolaChef.app.getController("Main").GetDefectGridData();
 }
+
+function changemealtype()
+{
+    HolaChef.app.getController("Main").onsearch2click();
+
+}
+function changeordertatus()
+{
+    HolaChef.app.getController("Main").onsearch3click();
+
+}
+function orderidfilter()
+{
+    if(HolaChef.app.Orderidfilter == '1'){
+        HolaChef.app.Orderidfilter='2';
+    }
+    else
+        HolaChef.app.Orderidfilter='1';
+    HolaChef.app.getController("Main").NewBtnHandler();
+
+}
+function predicatBy(prop){
+    return function(a,b){
+        if( a[prop] > b[prop]){
+            return 1;
+        }else if( a[prop] < b[prop] ){
+            return -1;
+        }
+        return 0;
+    }
+}
+Ext.override(Ext.MessageBox, {
+    hide:  function() {
+        if (this.activeAnimation && this.activeAnimation._onEnd) {
+            this.activeAnimation._onEnd();
+        }
+        return this.callParent(arguments);
+    }
+});

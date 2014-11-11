@@ -26,13 +26,15 @@ Ext.application({
     PageSize: 5,
     PageCounter: 1,
     Orderid: '',
+    Orderidfilter:'0',
     ViewOrderid: '',
     MenuOrder: false,
     MenuOrderStatus: '',
     RunnerArry: [],
     RunnerId: '',
     models: [
-        'OrderModel'
+        'OrderModel',
+        "LocalStore",
 
     ],
 
@@ -49,8 +51,8 @@ Ext.application({
     ],
 
     stores: [
-        'OrderStore'
-
+        'LocalStore',
+        'OrderStore',
     ],
 
     launch: function () {
