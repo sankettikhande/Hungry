@@ -60,7 +60,7 @@ class HolaUser < ActiveRecord::Base
 
   def self.confirm_orders_last_3_days(hola_user_id)
     hola_user = HolaUser.find_by_id(hola_user_id)
-    return hola_user.orders.confirm_orders.where("date >= ? and date <= ?",3.days.ago, Date.today).count
+    return if hola_user ? hola_user.orders.confirm_orders.where("date >= ? and date <= ?",3.days.ago, Date.today).count : 0
   end
 
 end
