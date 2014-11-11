@@ -104,6 +104,7 @@ $(document).ready(function(){
         if (cnt == max_qty){
             $("#add-order-plus").attr("disabled");
             $("#add-order-plus").addClass("disabled");
+            alert("Max quantity reached")
         }
     });
 
