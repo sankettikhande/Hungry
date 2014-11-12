@@ -18,7 +18,7 @@ class Coupon < ActiveRecord::Base
     return if coupon.blank?
     return "You can not use this coupon. validity Reached"  if  !coupon.blank? && (coupon.no_of_coupons == coupon.no_of_used_coupons)
     if coupon.coupon_type == '1U1T'
-      user_coupon = HolaUserCoupon.where(:coupon_id => coupon.id, hola_user_id => user_id).first
+      user_coupon = HolaUserCoupon.where(:coupon_id => coupon.id, :hola_user_id => user_id).first
       return user_coupon.blank? ? "" : "#{self.coupon_code} coupon already used."
     end
     if coupon.coupon_type == '3D'
