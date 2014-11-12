@@ -1,4 +1,5 @@
-iframe_domain_url: "http://localhost:3000"
+messaging_default_url: "http://enterprise.smsgupshup.com/GatewayAPI/rest?method=SendMessage&msg_type=TEXT&userid=2000111909&auth_scheme=plain&password=egHDJq&v=1.1&format=text"
+messaging_default_retrace_url: "http://alerts.sinfini.com/api/status.php?workingkey=16775ubj12184mkc53wat"
 citrus_gateway:
   gateway_env : 'sandbox'     # options - sandbox, staging or production
   pmturl : 'h5omh3rcch'	# as per citrus pay merchant setup
@@ -17,3 +18,4 @@ email_delivery:
     domain: 'gmail.com'
     user_name: 'dev.web.20140801'
     password: 'abc12345#'
+server: "local"

@@ -45,7 +45,6 @@ class Order < ActiveRecord::Base
   end
 
   def send_order_confirm_message
-    # invoice_url = Settings.iframe_domain_url + "/show_invoice/#{self.id}"
     if self.order_status_was == 'Created' && self.created_at >= 1.hour.ago
       message = "Hola! Our chef has received your order and is on it already. Your order number is #{self.id} for Rs. #{self.total}."
       MessagingLib.send_messages(message, self.phone_no, "Transaction")

@@ -1,4 +1,5 @@
-iframe_domain_url: "http://qa.holachef.com"
+messaging_default_url: "http://enterprise.smsgupshup.com/GatewayAPI/rest?method=SendMessage&msg_type=TEXT&userid=2000111909&auth_scheme=plain&password=egHDJq&v=1.1&format=text"
+messaging_default_retrace_url: "http://alerts.sinfini.com/api/status.php?workingkey=16775ubj12184mkc53wat"
 citrus_gateway:
   gateway_env : 'production'     # options - sandbox, staging or production
   pmturl : '1v938m8ebs'	# as per citrus pay merchant setup
@@ -6,3 +7,4 @@ citrus_gateway:
   apikey : '047f4fa190d0f4927d8eafafabe4d628a63bd295' # as per citrus pay merchant setup
   action : 'http://qa.holachef.com/orders/callback' # change it as required by your app...
   returnUrl : ' http://qa.holachef.com/orders/callback'
+server: "qa"
