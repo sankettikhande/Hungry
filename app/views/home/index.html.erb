@@ -11,14 +11,27 @@
         <div class="alert alert-danger" role="alert"><%= flash[:notice] %></div>
       <% end %>
       <% if @todays_menu %>
+          <ul class="nav nav-tabs nav-justified layout-tabbed">
           <% CookingToday.meal_types.each do |meal_type| %>
             <% next unless meal_available? (meal_type) %>
             <% meals_available = CookingToday.todays_menu_by_type(meal_type) %>
-
-            <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
+                <li id= "li_<%= meal_type %>" class= <%= (meal_type == "Lunch") ?  "active" :  meal_available?("Lunch") ? "" : "active" %>><a href="#<%= meal_type %>" data-toggle="tabs">
+                   <div class="text-center show-time followMeBar" data-category="<%= meal_type %> <span class='time-block'> (<%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> to <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %>)</span>" > </div>
+                   <div class="category_header"> <%= meal_type %> </div>
+                  <div class="category_header2">( <%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> - <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %> )</div>
+                </a></li>
           <% end %>
-
-      <% end %>
+         </ul>
+          <div class="tab-content">
+             <% CookingToday.meal_types.each do |meal_type| %>
+             <% next unless meal_available? (meal_type) %>
+             <div class="tab-pane <%= meal_type == "Lunch" ? "active" : meal_available?("Lunch") ? "" : "active"  %> fade in" id="<%= meal_type %>">
+               <% meals_available = CookingToday.todays_menu_by_type(meal_type) %>
+               <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
+             </div>
+             <% end%>
+          </div>
+    <% end %>
 
     </div>
     <input type="hidden" id="total_price" value= <%= calculate_total_price() %> />

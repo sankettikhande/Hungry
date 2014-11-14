@@ -1,9 +1,4 @@
-
-<div class="text-center show-time followMeBar" data-category="<%= category %> <span class='time-block'> (<%= CookingToday.meal_type_time_span[category][:fromDisplay] %> to <%= CookingToday.meal_type_time_span[category][:toDisplay] %>)</span>" > </div>
-
-<div class="category_header"> <%= category %> </div>
-<div class="category_header2">( <%= CookingToday.meal_type_time_span[category][:fromDisplay] %> - <%= CookingToday.meal_type_time_span[category][:toDisplay] %> )</div>
-  <% menus.each do |menu| %>
+ <% menus.each do |menu| %>
     <% cart_menu = collect_cart_items(menu) if !menu.nil? %>
     <% target = qty_left(menu) > 0 ? "#item-modal" : "#" %>
     <div class="item item-content" id="<%=menu.id%>">
@@ -160,7 +155,7 @@
                     <li class="order-more ctrl-btn pull-right"><button type="button" class="increase-order-item" data-available-quantity="<%= qty_left(menu).to_i%>"><i class="fa fa-plus"></i></button></li>
                   </ul>
               </div>
-              <div class="col-xs-3 col-hola-3">
+              <div class="col-xs-3 col-hola-3" style="display:none">
                 <a class="pull-right new-cart-icon update-cart" data-quantity="<%= cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>" data-meal-type="<%= category %>"><img src="assets/done-button.png" alt="Cart"></a>
               </div>
               <% end %>

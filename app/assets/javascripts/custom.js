@@ -158,7 +158,7 @@ $(document).ready(function(){
             cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) +1;
             $(".navbar-header div.pull-right a").text(cart_quantity);
             $(new_link).data("quantity", quantity)
-
+            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
 
         }else{
             alert("Max quantity reached")
@@ -177,12 +177,36 @@ $(document).ready(function(){
             cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) -1;
             $(".navbar-header div.pull-right a").text(cart_quantity);
             $(new_link).data("quantity", quantity)
+            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
         }
 
     })
+    $(".layout-tabbed li").on("click",function(){
+        $(this).addClass("active");
+        if ($(this).attr("class") == ""){
+            $("#Lunch").removeClass("active");
+            meal_type= $(this).find("a").attr("href").replace("#",'');
+            $("#"+meal_type).addClass("active");
+        }
+        else{
+            meal_type= $(this).find("a").attr("href").replace("#",'');
+            $("#"+meal_type).addClass("active");
+            if (meal_type == "Lunch") {
+                $("#Dinner").removeClass("active");
+                $("#li_Dinner").removeClass("active");
+            }
+            else {
+                $("#Lunch").removeClass("active");
+                $("#li_Lunch").removeClass("active");
+            }
 
-    $(".update-cart").unbind("click").live('click',function(e){
-        data_attribs = $(this).data()
+        }
+    })
+
+
+    function update_cart(data_attribs){
+//    $(".update-cart").unbind("click").live('click',function(e){
+//        data_attribs = $(this).data()
         url = (parseInt(data_attribs.quantity) > 0) ? "/orders/set_cart" : "/orders/remove_from_cart"
         if (parseInt(data_attribs.quantity) > 0){
             $(this).parents("ul.square").find('.add-cart').removeClass('hidden')
@@ -196,7 +220,8 @@ $(document).ready(function(){
                 'dataType': 'script'
             })
 
-    })
+//    })
+    }
    /********************************************************************************************/
 
 
