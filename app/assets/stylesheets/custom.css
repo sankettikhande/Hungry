@@ -432,6 +432,12 @@ label.orange-check-label {display: block;width: 100%;float: left;}
 .navbar-titlebar .page-title .dropdown-menu li a {color: #000;display: block;width: 100%;padding: 10px 20px;}
 /*.navbar-titlebar .page-title a.drop-icon {background: url('/assets/dropd-icon.png') no-repeat;background-size: 10px 10px;background-position: 100% 100%;min-width: 160px}*/
 
+/*** cart-bag **/
+.bag-count {background: url('/assets/cart-bag.png')no-repeat left top;width: 36px;height: 34px;display: inline-block;text-align: center;margin-top: 6px;color: #000;padding-top: 14px;background-size: 100% 100%;text-indent: -4px}
+.bag-count:hover {text-decoration: none;}
+
+
+
 /**** =Main Content *****/
 
 .body-content {margin-top: 5px;}

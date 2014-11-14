@@ -151,9 +151,13 @@ $(document).ready(function(){
         new_link = $($(this).parent().parent().parent().parent().find('.update-cart'))
         available_quantity = parseInt($(this).data("available-quantity"))
         quantity = parseInt(quantity_input.val()) + 1
+
         if(available_quantity >= quantity){
             quantity_input.val(quantity)
+            cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) +1;
+            $(".navbar-header div.pull-right a").text(cart_quantity);
             $(new_link).data("quantity", quantity)
+
 
         }else{
             alert("Max quantity reached")
@@ -167,6 +171,8 @@ $(document).ready(function(){
         quantity = parseInt(quantity_input.val()) - 1
         if(quantity >= 0){
             quantity_input.val(quantity)
+            cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) -1;
+            $(".navbar-header div.pull-right a").text(cart_quantity);
             $(new_link).data("quantity", quantity)
         }
 
