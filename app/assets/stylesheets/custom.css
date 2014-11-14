@@ -436,7 +436,9 @@ label.orange-check-label {display: block;width: 100%;float: left;}
 .bag-count {background: url('/assets/cart-bag.png')no-repeat left top;width: 36px;height: 34px;display: inline-block;text-align: center;margin-top: 6px;color: #000;padding-top: 14px;background-size: 100% 100%;text-indent: -4px}
 .bag-count:hover {text-decoration: none;}
 
-
+/*** next-icon **/
+.icon-next:after {content: '';background: url('/assets/icon-next.png') no-repeat left top;background-size: 100% auto;display: inline-block;width: 12px;height: 24px;}
+.checkout .icon-next:after {width: 8px;height: 16px;margin-left: 5px;}
 
 /**** =Main Content *****/
 
@@ -557,6 +559,21 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 #recipe-modal .btn:focus,#recipe-modal .btn:active {outline: none;}
 
 .btn-close {color: #fb9b04;outline: none;display: block;padding: 0;font-weight: bold;background: #fff;border:0;font-size: 20px;}
+.recipe-image {min-height:125px;}
+
+.recipe-block .prod-carted {position: absolute;display:block;top:auto;bottom: 0;left: 0;right: 0;text-align: center;transition:all 0.3s ease;-webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;}
+
+.prod-carted .carted-text {margin:0;padding:0;display: none;font-size: 16px;text-transform: uppercase;}
+.prod-carted {background: #188223;padding:2px 0;color: #fff;}
+
+.added-2-cart .prod-carted {height: auto;padding: 8px 0}
+.added-2-cart .prod-carted .carted-text {display: block;}
+.added-2-cart .veg .prod-carted {background-color: #188223; background-color: rgba(29,126,34,0.7);}
+.added-2-cart .non-veg .prod-carted {background-color: #ab0303;background-color: rgba(179,26,26,0.7);}
+
+.veg .prod-carted {background-color: #188223;}
+.non-veg .prod-carted {background-color: #ab0303;}
+
 
 
 /**** Review Orders Page *******/
@@ -667,7 +684,7 @@ p.text-orangeS{color: #ff9900;font-size: 1.2em;font-weight: bold;}
 .footer ul.chosen-options li {width: 50%;display: inline-block;float: left;font-size: 1.4em;font-family: 'robotoregular',Sans-serif;line-height: 50px}
 .footer ul.chosen-options li.billing {text-align: left;color: #fff;}
 .footer ul.chosen-options li.billing a{color: #666666;}
-.footer ul.chosen-options li.billing:before {background: url('/assets/icon-cart.png')no-repeat left center;content:'';background-size: 24px 20px;width: 24px;height: 20px;padding-left: 24px;margin-right: 4px}
+.footer ul.chosen-options li.billing:before {background: url('/assets/icon-cart.png')no-repeat left center;content:'\00a0 \f156';background-size: 24px 20px;width: 28px;height: 20px;padding-left: 24px;margin-right: 4px;font-family: 'fontawesome';}
 .footer ul.chosen-options li.checkout {text-align: right;color: #ff8800;}
 .footer ul.chosen-options li.checkout a {color: #ff8800;}
 
@@ -858,6 +875,25 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
     .recipe-header .recipe-name {font-size: 1.2em}
 
 }
+@media (max-width: 360px) {
+.booked-orders li.food-bill span.item-name {width:50%;}
+.booked-orders li.food-bill span.item-qty {width:8%;}
+.booked-orders li.food-bill span.item-date {width:21%;}
+.booked-orders li.food-bill span.item-cost {width:15%;}
+.booked-orders li.food-bill span.item-edit {width:4%;}
+.booked-orders li.food-bill span.item-remove {width:2%;}
+.text-total {font-size: 14px;}
+}
+
+@media (max-width: 767px) {
+.bag-count {margin-right: 25px;}
+.bag-count + .btn-back {margin-left: 0px;}
+.booked-orders li.food-bill span.item-name {font-size: 12px}
+.booked-orders.heading li.food-bill span.item-qty {width: 16%;}
+.booked-orders.heading li.food-bill span.item-qty {width: 20%;}
+}
+
+
 
 /*******  =Offcanvas ************/
 

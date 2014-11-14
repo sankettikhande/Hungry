@@ -30,7 +30,7 @@
 
                 <div class="add-heart"></div>
                 <%= image_tag menu.food_item.meal_info.picture.image.url, :alt=>"#{menu.food_item.meal_info.name}", :class => "img-responsive center-block imageItemFix about-content" %>
-                  <div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>
+                  <!--<div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>-->
                   <div class="dark-overlay">
                     <div class="overlay-inner">
                       <div class="parent-middle">
@@ -42,6 +42,9 @@
                     </div>
                   </div>
             </div>
+              <div class="prod-carted">
+                <h5 class="carted-text"><span></span> in your cart</h5>
+              </div>
           <% else %>
               <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart colorItemFix about-content">
 
@@ -56,7 +59,7 @@
                 <div class="recipe-name">
                   <%= menu.food_item.meal_info.name %>
                 </div>
-                <div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>
+                <!--<div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>-->
                 <div class="dark-overlay">
                    <div class="overlay-inner">
                     <div class="parent-middle">
@@ -67,6 +70,9 @@
                       </div>
                   </div>
                 </div>
+              </div>
+              <div class="prod-carted">
+                <h5 class="carted-text"><span></span> in your cart</h5>
               </div>
           <% end %>
         </li>
