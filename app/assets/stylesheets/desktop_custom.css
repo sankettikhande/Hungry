@@ -1,4 +1,10 @@
-@font-face {
+@media (min-width:992px) and (max-width: 1024px) {
+    .hidden-ipad {display: none;}
+}
+
+@media (min-width: 1025px) {
+
+    @font-face {
     font-family: 'latolight';
     src: url('/assets/lato-lig-webfont.eot');
     src: url('/assets/lato-lig-webfont.eot?#iefix') format('embedded-opentype'),
@@ -245,3 +251,4 @@ bottom: 0;
 .callText1{font-size: 15px;}
 .callText2{font-size: 30px;}
 .callText3{font-size: 15px;}
+}
