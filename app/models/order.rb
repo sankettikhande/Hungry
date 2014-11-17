@@ -12,6 +12,7 @@ class Order < ActiveRecord::Base
   has_many :ordered_menus
   has_one :parent_order, :primary_key => "parent_order_id", :foreign_key => "id", :class_name => "Order"
   belongs_to :hola_user
+  belongs_to :delivery_address, class_name: "HolaUserAddress"
   belongs_to :runner
   has_one :coupon
 
@@ -174,6 +175,34 @@ class Order < ActiveRecord::Base
       session_cart_items << {"#{menu.dish_id}" =>{'quantity'=> menu.quantity, 'price' => menu.rate, 'date' => date, 'dish_name' => menu.food_item.name }}
     end
     session_cart_items
+  end
+
+  def addressStreet1
+    delivery_address.blank? ? attributes["addressStreet1"] : delivery_address.building_name
+  end
+
+  def addressStreet2
+    delivery_address.blank? ? attributes["addressStreet2"] : delivery_address.street
+  end
+
+  def addressCity
+    delivery_address.blank? ? attributes["addressCity"] : delivery_address.city
+  end
+
+  def area
+    delivery_address.blank? ? attributes["area"] : delivery_address.area
+  end
+
+  def sub_area
+    delivery_address.blank? ? attributes["area"] : delivery_address.sub_area
+  end
+
+  def landmark
+    delivery_address.blank? ? attributes["landmark"] : delivery_address.landmark
+  end
+
+  def addressZip
+    delivery_address.blank? ? attributes["addressZip"] : delivery_address.pin
   end
 
 end

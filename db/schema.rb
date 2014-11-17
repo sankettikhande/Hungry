@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140926153232) do
+ActiveRecord::Schema.define(:version => 20141117070930) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -293,6 +293,45 @@ ActiveRecord::Schema.define(:version => 20140926153232) do
     t.string   "category"
   end
 
+  create_table "coupon_versions", :force => true do |t|
+    t.integer  "original_record_id"
+    t.integer  "version"
+    t.string   "coupon_code"
+    t.string   "coupon_type"
+    t.integer  "no_of_coupons",      :default => 0
+    t.integer  "no_of_used_coupons", :default => 0
+    t.integer  "percentage"
+    t.integer  "flat"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "name"
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
+    t.string   "version_comment"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+  end
+
+  create_table "coupons", :force => true do |t|
+    t.integer  "version"
+    t.integer  "lock_version",       :default => 0
+    t.string   "coupon_code"
+    t.string   "coupon_type"
+    t.integer  "no_of_coupons",      :default => 0
+    t.integer  "no_of_used_coupons", :default => 0
+    t.integer  "percentage"
+    t.integer  "flat"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "name"
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+  end
+
   create_table "cuisine_geographies", :force => true do |t|
     t.string   "name"
     t.string   "ancestry"
@@ -551,7 +590,18 @@ ActiveRecord::Schema.define(:version => 20140926153232) do
     t.boolean  "default",       :default => false
     t.string   "mobile_no",                         :null => false
     t.string   "landline_no"
+    t.string   "area"
+    t.string   "sub_area"
   end
+
+  create_table "hola_user_coupons", :force => true do |t|
+    t.integer  "hola_user_id"
+    t.integer  "coupon_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "hola_user_coupons", ["hola_user_id", "coupon_id"], :name => "index_hola_user_coupons_on_hola_user_id_and_coupon_id"
 
   create_table "hola_users", :force => true do |t|
     t.string   "name"
@@ -667,9 +717,10 @@ ActiveRecord::Schema.define(:version => 20140926153232) do
     t.integer  "minimum_order_qty"
     t.integer  "hola_buy_price"
     t.integer  "hola_sell_price"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "short_description"
+    t.string   "speciality_of_dish"
   end
 
   create_table "message_reports", :force => true do |t|
@@ -797,6 +848,11 @@ ActiveRecord::Schema.define(:version => 20140926153232) do
     t.datetime "confirmed_at"
     t.string   "delivery_slot"
     t.integer  "parent_order_id"
+    t.integer  "coupon_id"
+    t.integer  "mrp"
+    t.string   "area"
+    t.string   "sub_area"
+    t.integer  "delivery_address_id"
   end
 
   add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"
