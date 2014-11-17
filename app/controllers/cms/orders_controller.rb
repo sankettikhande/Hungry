@@ -67,14 +67,14 @@ class Cms::OrdersController < Cms::ContentBlockController
     meal_type_length = cart_meal_types.length
 
     @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'MultiMeal',
-                            :hola_user_id => hola_user.id, :address_id => hola_user_address.id, :phone_no => hola_user_address.mobile_no, :name => hola_user.name)
+                            :hola_user_id => hola_user.id, :delivery_address_id => hola_user_address.id, :phone_no => hola_user_address.mobile_no, :name => hola_user.name)
     @orders_by_meal_type = {}
     cart_meal_types.each do |meal_type|
 
       time_slot = get_time_slot(meal_type)
 
       order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular',
-                        :hola_user_id => hola_user.id, :address_id => hola_user_address.id, :phone_no => hola_user_address.mobile_no,
+                        :hola_user_id => hola_user.id, :delivery_address_id => hola_user_address.id, :phone_no => hola_user_address.mobile_no,
                         :name => hola_user.name, parent_order_id: @order.id, delivery_slot: time_slot)
 
 
@@ -140,7 +140,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         end
       else
         @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular',
-                            :hola_user_id => hola_user.id, :address_id => hola_user_address.id, :phone_no => hola_user_address.mobile_no, :name => hola_user.name, delivery_slot:  get_time_slot(cart_meal_types) )
+                            :hola_user_id => hola_user.id, :delivery_address_id => hola_user_address.id, :phone_no => hola_user_address.mobile_no, :name => hola_user.name, delivery_slot:  get_time_slot(cart_meal_types) )
 
         session[:cart].each do |item|
           item.each do |item_id, item_attr|
