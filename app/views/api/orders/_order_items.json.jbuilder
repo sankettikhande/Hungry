@@ -8,8 +8,8 @@ json.address do
   json.address_state order.addressState
   json.pincode order.addressZip
   json.landmark order.landmark
-  json.landmark order.area
-  json.landmark order.sub_area
+  json.area order.area
+  json.sub_area order.sub_area
 end
 json.order_items  order.ordered_menus do |menu|
   json.menu_item_id menu.id

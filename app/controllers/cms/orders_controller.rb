@@ -67,16 +67,14 @@ class Cms::OrdersController < Cms::ContentBlockController
     meal_type_length = cart_meal_types.length
 
     @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'MultiMeal',
-                            :hola_user_id => hola_user.id, :addressStreet1 => hola_user_address.building_name, :addressStreet2 => hola_user_address.street,
-                            :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name)
+                            :hola_user_id => hola_user.id, :address_id => hola_user_address.id, :phone_no => hola_user_address.mobile_no, :name => hola_user.name)
     @orders_by_meal_type = {}
     cart_meal_types.each do |meal_type|
 
       time_slot = get_time_slot(meal_type)
 
       order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular',
-                        :hola_user_id => hola_user.id, :addressStreet1 => hola_user_address.building_name, :addressStreet2 => hola_user_address.street,
-                        :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no,
+                        :hola_user_id => hola_user.id, :address_id => hola_user_address.id, :phone_no => hola_user_address.mobile_no,
                         :name => hola_user.name, parent_order_id: @order.id, delivery_slot: time_slot)
 
 
@@ -142,8 +140,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         end
       else
         @order = Order.create(:date => Time.now, :order_status => "Created", :order_type => 'Regular',
-                            :hola_user_id => hola_user.id, :addressStreet1 => hola_user_address.building_name, :addressStreet2 => hola_user_address.street,
-                            :landmark => hola_user_address.landmark, :addressZip => hola_user_address.pin, :phone_no => hola_user_address.mobile_no, :name => hola_user.name, delivery_slot:  get_time_slot(cart_meal_types) )
+                            :hola_user_id => hola_user.id, :address_id => hola_user_address.id, :phone_no => hola_user_address.mobile_no, :name => hola_user.name, delivery_slot:  get_time_slot(cart_meal_types) )
 
         session[:cart].each do |item|
           item.each do |item_id, item_attr|
@@ -290,24 +287,15 @@ class Cms::OrdersController < Cms::ContentBlockController
             food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + ordered_menu.quantity.to_i)) if food_item
           end
           order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
-                                  :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
-                                  :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
-                                  :addressCity=>params[:addressCity], :addressState=>params[:addressState],
-                                  :addressCountry=>params[:addressCountry],:addressZip=>params[:addressZip])
+                                  :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email])
 
         end
         @order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
-                                 :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
-                                 :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
-                                 :addressCity=>params[:addressCity], :addressState=>params[:addressState],
-                                 :addressCountry=>params[:addressCountry],:addressZip=>params[:addressZip])
+                                 :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email])
 
       else
         @order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
-                               :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email],
-                               :addressStreet1=>params[:addressStreet1],:addressStreet2=>params[:addressStreet2],
-                               :addressCity=>params[:addressCity], :addressState=>params[:addressState],
-                               :addressCountry=>params[:addressCountry],:addressZip=>params[:addressZip])
+                               :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email])
       # @@cart_items.each do |item_id, quantity|
       #   cooking_today  = CookingToday.find(item_id)
       #   cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
