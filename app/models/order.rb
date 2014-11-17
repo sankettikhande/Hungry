@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
   scope :confirm_orders, where("order_status in (?) ", ['Confirmed', 'Dispatched', 'Delivered'])
 
   after_save :mark_paid, :send_delivery_message, :send_delivery_mail, :if => Proc.new {|o| o.order_status_changed? and o.delivered?}
-  after_save :mark_menu_items, :if => Proc.new { |o| ["Damaged", "Delivered", "Canceled", "Returned"].include? o.order_status }
+  after_save :mark_menu_items, :if => Proc.new { |o| ["Damaged", "Delivered", "Canceled", "Returned"].include? o.order_status_changed? and o.order_status }
   after_save :send_order_confirm_message, :if => Proc.new {|o| o.order_status_changed? and o.confirmed? and o.parent_order_id.blank?}
   after_save :send_order_dispatched_message, :if => Proc.new {|o| o.order_status_changed? and o.dispatched? }
   before_save :build_order_status_history
