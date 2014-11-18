@@ -39,11 +39,7 @@
 <script>
     $(document).ready(function() {
         window.setTimeout(function() {
-          <% if is_mobile? %>
             window.location.href = '/mobile';
-          <% else %>
-            window.location.href = '/desktop';
-          <% end %>
         }, 3000);
     });
 </script>

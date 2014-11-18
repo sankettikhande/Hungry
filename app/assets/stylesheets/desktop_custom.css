@@ -1,4 +1,13 @@
-@font-face {
+@media (min-width:992px) and (max-width: 1024px) {
+    .hidden-ipad {display: none;}
+    .visible-ipad {display: block;}
+}
+
+
+
+@media (min-width: 1025px) {
+
+    @font-face {
     font-family: 'latolight';
     src: url('/assets/lato-lig-webfont.eot');
     src: url('/assets/lato-lig-webfont.eot?#iefix') format('embedded-opentype'),
@@ -24,6 +33,8 @@
 
 }
 
+.hidden-desktop {display: none;}
+.visible-desktop {display: block;}
 
 ul,ol,dd,menu {margin: 0;padding: 0;list-style-type: none;}
 .hand-cursor {cursor: pointer;}
@@ -38,23 +49,27 @@ ul,ol,dd,menu {margin: 0;padding: 0;list-style-type: none;}
 
 body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 
-.container {width: 1170px !important;max-width: 1170px;min-width: 1170px;}
+.container {max-width: 1170px !important;}
 
 .hola-lg-navbar {background: #fff;margin-bottom: 0;height: 57px;box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-webkit-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-moz-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-o-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);-ms-box-shadow: 0 1px 5px 0 rgba(191,191,191,0.7);}
 .hola-lg-navbar .container {position: relative;}
-.hola-lg-navbar .navbar-header {width:780px !important;float: left;position: absolute;left: 0}
-.navbar-brand {padding: 0;margin-left: 15px;}
-.top-nav {padding-top: 10px;width: 505px;left: 750px;position: absolute;}
-.top-nav li a {padding: 0 15px;line-height: 34px;color: #2b2a28;font-size: 16.49px;float: left;display: block;width: auto;}
-.nav>li>a:hover, .nav>li>a:focus {background: none;}
-.playstore-icon {width: 101px;height: 36px;margin-top: 0;padding-top: 0}
+.hola-lg-navbar .navbar-header {/*width:780px !important;*/float: left;position: absolute;left: 0}
+.hola-lg-navbar .navbar-brand {padding: 0;margin-left: 15px;}
+.hola-lg-navbar .top-nav {padding-top: 10px;/*width: 505px;left: 750px;*/position: absolute;right: 50px}
+.hola-lg-navbar .top-nav li a {padding: 0 15px;line-height: 34px;color: #2b2a28;font-size: 16.49px;float: left;display: block;width: auto;}
+.hola-lg-navbar .nav>li>a:hover, .hola-lg-navbar .nav>li>a:focus {background: none;}
+.hola-lg-navbar .playstore-icon {width: 101px;height: 36px;margin-top: 0;padding-top: 0}
+
+.bag-count,.bag-count:hover,.bag-count:focus {background: url('/assets/cart-bag-f0.png')no-repeat left top;width: 40px;height: 40px;display: inline-block;text-align: center;margin-top: 6px;color: #000;padding-top: 18px;background-size: 100% 100%;text-indent: -4px;text-decoration: none;}
+
+
 .text-italic {font-style: italic;}
 
-.welcome-section {width: 100%;min-width: 1170px;}
-.welcome-section .carousel .item img {width: 100%;min-width: 1170px;}
+.welcome-section {width: 100%;}
+.welcome-section .carousel .item img {width: 100%;}
 
 /*.banner-pic {width: 100%;height: 550px;background-size: 100%;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;-ms-background-size: cover;min-width: 1170px}
-*/
+
 .table-container {min-width:1170px;min-height:1100px;background: url('wooden-top.jpg') repeat-y left top;padding-top: 50px;width: 100%;background-size: 100%;background-size: cover;-webkit-background-size: cover;-moz-background-size: cover;}
 .table-wrap {width: 735px;margin-left: auto;margin-right: auto;position: relative;}
 .table-top {position: relative;top: 100px;right: 0;left: 0;width: 100%;height: 585px;}
@@ -63,7 +78,7 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;}
 .fork {background: url('/assets/fork-img.png')no-repeat left top;width: 79px;height: 612px;left: 0;top: 60px;}
 .knife {background: url('/assets/knife-img.png')no-repeat left top;width: 71px;height: 648px;right: 0;top: 60px;}
 .spoon {background: url('/assets/spoon-img.png')no-repeat left top;width: 133px;height: 626px;top: 60px;right:-160px;}
-
+*/
 #testimo-slider {margin-top: 20px;}
 #testimo-slider {width: 790px;margin-left: auto;margin-right: auto;}
 #testimo-slider .carousel-control {top: 110px;opacity: 1;text-shadow:none;-webkit-text-shadow:none;-moz-text-shadow:none;-o-text-shadow:none;-ms-text-shadow:none;}
@@ -93,7 +108,7 @@ h1 {font-size: 36px;margin: 0;font-family: 'latoregular','Lato',Helvetica,Arial,
 
 .orange-text {color: #f36c36;}
 
-.stars-wrapper {min-height: 700px;width: 100%;background: #fff url('chef-photo.jpg') no-repeat right bottom;background-size: 793px 636px;min-width: 1170px;}
+.stars-wrapper {min-height: 700px;width: 100%;background: #fff url('chef-photo.jpg') no-repeat right bottom;background-size: 793px 636px;}
 .stars-wrapper hr {border-color: #a2a1a1;}
 
 .stars-caption {margin-top: 50px;}
@@ -142,6 +157,9 @@ bottom: 0;
 .footer-nav li:first-child a{padding-left: 0}
 .footer-nav li:last-child a{padding-right: 0}
 .footer-nav li a:hover {color: #f36c36;}
+
+
+
 
 /*
 .hc-modal {color: #fff}
@@ -245,3 +263,10 @@ bottom: 0;
 .callText1{font-size: 15px;}
 .callText2{font-size: 30px;}
 .callText3{font-size: 15px;}
+
+
+.seperator-80 {margin-top: 80px;}
+
+/*.square {height: 400px;overflow: hidden;}
+.square .recipe-block {height: 210px}*/
+}

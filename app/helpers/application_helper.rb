@@ -90,7 +90,22 @@ module ApplicationHelper
     return total
   end
 
-  def link_to_remove_fields(name, f)
+  def collect_cart_quantity
+    if session[:cart]
+      cart_quantity = []
+      session[:cart].each do |item|
+        item.each do |item_id, item_attr|
+          cart_quantity = cart_quantity << item_attr["quantity"].to_i
+        end
+      end
+      cart_quantity = cart_quantity.inject{|sum,x| sum + x }
+      return cart_quantity
+    end
+  end
+
+
+
+def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
   end
 

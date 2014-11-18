@@ -1,18 +1,3 @@
-// grid-system
-$("#hola-container, .hola-container").gridalicious({
-    gutter: 5,
-    animate:true,
-    animationOptions: {
-        queue: true,
-        speed: 100,
-        duration: 300,
-        effect: 'fadeInOnAppear',
-        complete: onComplete,
-    }
-});
-function onComplete()
-{
-}
 //  each item inside modal script
 $(document).ready(function(){
     if ($("#total_price").val() !== undefined){
@@ -20,36 +5,12 @@ $(document).ready(function(){
     }
     var total = 0;
     var cnt = parseInt($("#order-count").html(),10);
-    // $('.item').live('click', function(){
-    //     $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
-    //     $(".modal-footer").empty();
-    //     $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
-    //         "<p class='form-control looks-input hidden' id='order-count'>0</p>");
-    //     $.ajax({
-    //         'method': 'GET',
-    //         'url': '/cooking_todays/get_item_details',
-    //         'data': {'cooking_today_id': parseInt($(this).attr('id'))},
-    //         'dataType': 'script'
-    //     });
-    // });
 
     $('.time-slots span').click(function(){
       $(this).parent().find('.o-time').removeClass('selected');
       $(this).addClass('selected');
       $("#"+$(this).data('meal_type')).val($(this).html())
     });
-
-    // $('.about-content').on('click', function(){
-    //   $(this).closest('.square').find(".recipe-block").hide();
-    //   $(this).closest('.square').find(".recipe-about").show();
-    //   return false;
-    // });
-
-    //  $('.opacityimg,.opacityborder').on('click', function(){
-    //   $(this).closest('.square').find(".recipe-about").hide();
-    //   $(this).closest('.square').find(".recipe-block").show();
-    //   return false;
-    // });
 
     $('.recipe-block').on('click', function(){
         $(this).find('.dark-overlay').toggle()
@@ -147,16 +108,20 @@ $(document).ready(function(){
     /************************************* ADD REMOVE ITEMS TO CART ********************************/
 
     $(".increase-order-item").on('click', function(){
-        quantity_input = $(this).parent().prev().find("input")
-        new_link = $($(this).parent().parent().parent().parent().find('.update-cart'))
-        available_quantity = parseInt($(this).data("available-quantity"))
-        quantity = parseInt(quantity_input.val()) + 1
+        quantity_input = $(this).parent().prev().find("input");
+        new_link = $($(this).parent().parent().parent().parent().find('.update-cart'));
+        available_quantity = parseInt($(this).data("available-quantity"));
+        quantity = parseInt(quantity_input.val()) + 1;
+        $(this).parents('.square').addClass('added-2-cart');
         if(available_quantity >= quantity){
-            quantity_input.val(quantity)
-            $(new_link).data("quantity", quantity)
-
+            quantity_input.val(quantity);
+            $(this).parents('.square').find(".prod-carted span").html(quantity);
+            cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) +1;
+            $(".navbar-header div.pull-right a").text(cart_quantity);
+            $(new_link).data("quantity", quantity);
+            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
         }else{
-            alert("Max quantity reached")
+            alert("Max quantity reached");
         }
 
     })
@@ -165,15 +130,41 @@ $(document).ready(function(){
         quantity_input = $(this).parent().next().find("input")
         new_link = $($(this).parent().parent().parent().parent().find('.update-cart'))
         quantity = parseInt(quantity_input.val()) - 1
+        $(this).parents('.square').addClass('added-2-cart');
         if(quantity >= 0){
-            quantity_input.val(quantity)
+            quantity_input.val(quantity);
+            $(this).parents('.square').find(".prod-carted span").html(quantity);
+            cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) -1;
+            $(".navbar-header div.pull-right a").text(cart_quantity);
             $(new_link).data("quantity", quantity)
+            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
         }
 
     })
+    $(".layout-tabbed li").on("click",function(){
+        $(this).addClass("active");
+        if ($(this).attr("class") == ""){
+            $("#Lunch").removeClass("active");
+            meal_type= $(this).find("a").attr("href").replace("#",'');
+            $("#"+meal_type).addClass("active");
+        }
+        else{
+            meal_type= $(this).find("a").attr("href").replace("#",'');
+            $("#"+meal_type).addClass("active");
+            if (meal_type == "Lunch") {
+                $("#Dinner").removeClass("active");
+                $("#li_Dinner").removeClass("active");
+            }
+            else {
+                $("#Lunch").removeClass("active");
+                $("#li_Lunch").removeClass("active");
+            }
 
-    $(".update-cart").unbind("click").live('click',function(e){
-        data_attribs = $(this).data()
+        }
+    })
+
+
+    function update_cart(data_attribs){
         url = (parseInt(data_attribs.quantity) > 0) ? "/orders/set_cart" : "/orders/remove_from_cart"
         if (parseInt(data_attribs.quantity) > 0){
             $(this).parents("ul.square").find('.add-cart').removeClass('hidden')
@@ -187,7 +178,7 @@ $(document).ready(function(){
                 'dataType': 'script'
             })
 
-    })
+    }
    /********************************************************************************************/
 
 

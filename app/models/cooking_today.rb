@@ -11,7 +11,7 @@ class CookingToday < ActiveRecord::Base
   @@meal_type_time_span = {
                            "Lunch" => {from: "00:01 AM", to: "04:00 PM",fromDisplay: "12:00 AM", toDisplay: "04:00 PM"},
                            #"Evening Snacks" => {from: "00:01 AM", to: "07:00 PM",fromDisplay: "04:30 PM", toDisplay: "07:00 PM"},
-                           "Dinner" => {from: "00:01 AM", to: "11:30 PM",fromDisplay: "07:30 PM", toDisplay: "11:30 PM"}
+                           "Dinner" => {from: "00:01 AM", to: "11:30 PM",fromDisplay: "08:00 PM", toDisplay: "11:00 PM"}
                            #,"All Time Available" => {from: "12:00 AM", to: "11:59 PM"}
                           }
 

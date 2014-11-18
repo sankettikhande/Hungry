@@ -1,3 +1,24 @@
+<section class="welcome-section hidden">
+  <div class="carousel slide" id="welcome-slider" data-ride="carousel" data-interval="5000">
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="assets/banner/banner-1.jpg" class="full-width" alt="">
+      </div>
+      <div class="item">
+        <img src="assets/banner/banner-2.jpg" class="full-width" alt="">
+      </div>
+      <div class="item">
+        <img src="assets/banner/banner-3.jpg" class="full-width" alt="">
+      </div>
+      <div class="item">
+        <img src="assets/banner/banner-4.jpg" class="full-width" alt="">
+      </div>
+      <div class="item">
+        <img src="assets/banner/banner-5.jpg" class="full-width" alt="">
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="container">
 <div class="row">
@@ -11,14 +32,27 @@
         <div class="alert alert-danger" role="alert"><%= flash[:notice] %></div>
       <% end %>
       <% if @todays_menu %>
+          <ul class="nav nav-tabs nav-justified layout-tabbed">
           <% CookingToday.meal_types.each do |meal_type| %>
             <% next unless meal_available? (meal_type) %>
             <% meals_available = CookingToday.todays_menu_by_type(meal_type) %>
-
-            <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
+                <li id= "li_<%= meal_type %>" class= <%= (meal_type == "Lunch") ?  "active" :  meal_available?("Lunch") ? "" : "active" %>><a href="#<%= meal_type %>" data-toggle="tabs">
+                   <div class="text-center show-time followMeBar" data-category="<%= meal_type %> <span class='time-block'> (<%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> to <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %>)</span>" > </div>
+                   <div class="category_header"> <%= meal_type %> </div>
+                  <div class="category_header2">( <%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> - <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %> )</div>
+                </a></li>
           <% end %>
-
-      <% end %>
+         </ul>
+          <div class="tab-content">
+             <% CookingToday.meal_types.each do |meal_type| %>
+             <% next unless meal_available? (meal_type) %>
+             <div class="tab-pane <%= meal_type == "Lunch" ? "active" : meal_available?("Lunch") ? "" : "active"  %> fade in" id="<%= meal_type %>">
+               <% meals_available = CookingToday.todays_menu_by_type(meal_type) %>
+               <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
+             </div>
+             <% end%>
+          </div>
+    <% end %>
 
     </div>
     <input type="hidden" id="total_price" value= <%= calculate_total_price() %> />
@@ -48,3 +82,955 @@
   </div>
 </div>
 </div>
+
+<div class="hidden">
+<section class="social-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="orange-text text-center">People talk about Us</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="carousel slide" id="testimo-slider" data-ride="carousel" data-interval="5000">
+          <div class="carousel-inner text-center">
+            <div class="item active">
+              <figure class="user-testimo">
+                <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c2.0.148.148/p148x148/10271565_1439954799586108_8520418298721759883_n.jpg?oh=03c7a54eb4808baabb8f32a8f6f7ca16&oe=54BCFF5C&__gda__=1422221528_9b33d36601bac4c7e443c1575addba56" class="tt-user-dp center-block">
+                <figcaption class="testimo-text">
+                  <h6>Totally Sensational!!! #holachef you guys sent us a bagful of happiness and surprise. I am FLOORED! Food deliveries at the next level.</h6>
+                  <p>Foodowl, Andheri, Mumbai</p>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="item">
+              <figure class="user-testimo">
+                <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c3.3.37.37/p43x43/480249_10200358052782894_1503660046_n.jpg?oh=81db8b24d14975ee5962c2f8221bf00c&oe=54CAB948&__gda__=1422913524_33a8d0153975f8f0d9757f2c2a207f8a" class="tt-user-dp center-block">
+                <figcaption class="testimo-text">
+                  <h6>you guys are doing a superb job Holachef!</h6>
+                  <p>Hemant V Tendolkar, Powai, Mumbai</p>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="item">
+              <figure class="user-testimo">
+                <img src="https://pbs.twimg.com/profile_images/3649440131/0bc29feadbf18db8586a259b0abaff71_normal.jpeg">
+                <figcaption class="testimo-text">
+                  <h6>Thanks Chef Leela @hola_chef for the awesome lunch #worthCravingfor</h6>
+                  <p>Puneet Dubey, Mumbai</p>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="item">
+              <figure class="user-testimo">
+                <img src="https://pbs.twimg.com/profile_images/505601409060847616/NLahyGzD_normal.jpeg">
+                <figcaption class="testimo-text">
+                  <h6>Am super impressed with quality, quantity, packaging and taste! Yummy home food :)</h6>
+                  <p>Swati Maheshwari, Powai, Mumbai</p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <a class="carousel-control left" href="#testimo-slider" data-slide="prev"><i class="fa fa-angle-double-left"></i></a>
+          <a class="carousel-control right" href="#testimo-slider" data-slide="next"><i class="fa fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="stars-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="stars-caption">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="carousel slide" id="star-carousel" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="assets/chef-1.jpg" class="img-responsive pull-right" alt="">
+                    <div class="carousel-caption">
+                      <p class="text-italic">
+                        “Great food is no less than art. And like any other art form, it is about talent, practice and creativity that makes every morsel Worth Craving For. What makes our chefs unique is that they come from all walks of life. Their common passion for great and authentic food is what we look for in all chefs and that is what makes them Hola Stars !”
+                      </p>
+                      <p class="credit-text">-<strong> CHEF,</strong> Mohit, Mumbai</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="fixed-text">
+                  <h1 class="orange-text">HOLA STARS</h1>
+                </div>
+                <ol class="carousel-indicators">
+                  <li data-target="#star-carousel" data-slide-to="0" class="active">
+                    <img src="assets/chef-1.jpg" alt=""></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- hola modals -->
+<article>
+<div class="modal fade hc-modal" id="contact-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="contact-form">
+          <h4 class="modal-title lato-i">CONTACT US</h4>
+          <p class="form-title">Please feel free to contact us.</p>
+          <div class="form-group">
+            <input id="cust_name" type="text"  class="form-control" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <input id="cust_phno" type="tel" maxlength="12" class="form-control" placeholder="Phone Number">
+          </div>
+          <div class="form-group">
+            <input id="cust_email" type="email" class="form-control" placeholder="Enter your Email Id">
+          </div>
+          <div class="checkbox"><label><input type="checkbox" id="cust_chef">I'm Chef and want to work with Holachef.</label></div>
+          <div class="form-group">
+            <textarea id="cust_msg" class="form-control" rows="5" placeholder="Your Message"></textarea>
+          </div>
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-saffron" id="cform-submit-con" >Send Message</button>
+          </div>
+        </div>
+        <div class="success-msg text-center">
+          <div class="v-parent">
+            <div class="v-child">
+              <h3 class="text-saffron">Thank you <span class="text-dark">for contacting us !</span></h3>
+              <p class="lato-i">We will get in touch with you shortly .</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p class="text-right">...or you can call us at <span class="text-saffron">+91-808080-4652</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade hc-modal1" id="howitwork-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <button style="position: absolute;z-index: 1;margin-left: 97%;" class="close" data-dismiss="modal" type="button">x</button>
+        <img src="assets/HowitWork.png">
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<div class="modal fade hc-modal" id="party-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="contact-form">
+          <h4 class="modal-title lato-r">Party?  Meeting?</h4>
+          <p class="form-title">Please complete the form for requirements.
+            <span class="make-block text-light">*For orders of 10 people or more.</span></p>
+          <div class="form-group">
+            <input id="party_name" type="text" class="form-control" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <input id="party_phone" maxlength="12" type="tel" class="form-control" placeholder="Phone Number">
+          </div>
+          <div class="form-group">
+            <input id="party_email" type="email" class="form-control" placeholder="Enter your Email Id">
+          </div>
+          <div class="form-group">
+            <textarea id="party_msg" class="form-control" rows="5" placeholder="Special Instructions"></textarea>
+          </div>
+          <div class="form-group text-center">
+            <button type="button" class="btn btn-saffron" id="cform-submit" >Submit</button>
+          </div>
+        </div>
+        <div class="success-msg text-center">
+          <div class="v-parent">
+            <div class="v-child">
+              <h3 class="text-saffron">Thank you <span class="text-dark">for contacting us !</span></h3>
+              <p class="lato-i">We will get in touch with you shortly .</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p class="text-right">...or you can call us at <span class="text-saffron">+91-808080-4652</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade hc-modal" id="faq-modal">
+  <div class="modal-dialog wide-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4 class="modal-title lato-r">FREQUENTLY ASKED QUESTIONS</h4>
+        <ul class="ques-list">
+          <li class="ques-item">Q. What is Holachef?
+                  <span class="ques-ans">A. Holachef.com – A fine-dine restaurant in the cloud!
+
+At Holachef.com, the finest of chefs prepare gorgeous meals from the finest of ingredients every day
+
+only to be served to you right at your doorsteps. The menu changes every-day and offers an unmatched
+
+variety in terms of cuisines and dishes.<br/><br/>
+
+With Holachef.com, the need to look elsewhere for fine food or to burn cash at the expense of the
+
+comfort of staying put where you are, is over. Our star chefs are artists and they have practiced their art
+
+with the finest of restaurants around, some have showcased their skills at platforms like MasterChef or
+
+cookery shows while others have earned their names with carefully crafted gourmet catering services
+
+and then there are some who have simply mastered the art of cooking over generations of wisdom
+
+that has been passed onto them from within their family. They all love to cook and feel eager to see
+
+the happiness and comfort that food alone can bring to people. They specialize in cuisines and love to
+
+experiment.
+                  </span>
+          </li>
+          <li class="ques-item">Q. How does Holachef work?
+                  <span class="ques-ans">
+                  A. At Holachef.com – there is just one goal for all of us; your taste, your choice and above all your
+
+convenience. <br/><br/>
+
+The food is prepared by the chefs; packaged in the Holachef special packages that keep the food
+
+absolutely fresh and warm and are delivered to your doorstep in under 20 minutes through ‘Elvis’ – Our
+
+delivery service.
+                  </span>
+          </li>
+          <li class="ques-item">Q. Where does Holachef deliver?
+                  <span class="ques-ans">
+                  A. Currently, Holachef delivers to Powai, Chandivali, Vikhroli (West), Bhandup (W), Andheri (E), Sakinaka,
+
+Marol and JVLR<br/><br/>
+
+We will begin our services in the rest of Mumbai very soon.
+                  </span>
+          </li>
+          <li class="ques-item">Q. Who are the chefs at Holachef?
+                  <span class="ques-ans">
+                 A. Our star chefs are artists and they have practiced their art with the finest of restaurants around, some
+
+have showcased their skills at platforms like Master Chef or cookery shows while others have earned
+
+their names with carefully crafted gourmet catering services and then there are some who have simply
+
+mastered the art of cooking over generations of wisdom that has been passed onto them from within
+
+their family. They all love to cook and feel eager to see the happiness and comfort that food alone can
+
+bring to people. They specialize in cuisines and love to experiment.
+                  </span>
+          </li>
+          <li class="ques-item">Q. Can I apply to be a chef at Holachef?
+                  <span class="ques-ans">
+                 A. Yes. You can. If you have had a professional experience as a chef or specialize in a regional cuisine and
+
+bring a bag full of flavors on the table, you are most welcome to apply. Just reach out to us by applying
+
+through the “I’m a Chef” section in the website or by simply dropping an email to chef@holachef.com
+
+and we will get in touch with you.
+                  </span>
+          </li>
+          <li class="ques-item">Q. Where do the chefs prepare the food?
+                  <span class="ques-ans">
+                A. Holachef has a beautiful Kitchen where our chefs practice their art. Some chefs also operate from
+
+their own kitchens. <br/><br/>
+
+We make sure that all Kitchens are operating under proper food preparation guidelines and have a
+
+separate preparation section for Vegetarian and Non-Vegetarian
+                  </span>
+          </li>
+          <li class="ques-item">Q. How do I order?
+                  <span class="ques-ans">
+                 A. You can place an order through www.holachef.com<br>
+Or you can download the Holachef App from Google Play Store<br>
+Or simply call up the - Holachef helpline at 808080HOLA (8080804652)
+                  </span>
+          </li>
+          <li class="ques-item">Q. Can I add more meals to an already placed order?
+                  <span class="ques-ans"> A. Yes, you can. Simply make a new order and we will deliver.
+                  </span>
+          </li>
+          <li class="ques-item">Q. Can I pre-book a meal?
+                  <span class="ques-ans">A. In case you want to pre-order a meal that you see at Holachef and want to preorder/book it, simply
+
+call our helpline 8080804652 and they will book it for you.
+                  </span>
+          </li>
+          <li class="ques-item">Q. Can I plan a party or place a bulk order with Holachef?
+                  <span class="ques-ans">
+                A. Yes you can. We can help you design stand-out menus for a get-together, party, office meetings
+
+etc. Simply place a request at the ‘Large Orders’ section on the App or the Website or Give us a call at
+
+8080804652 and we will
+                  </span>
+          </li>
+          <li class="ques-item">Q. How soon does Holachef deliver?
+                  <span class="ques-ans">
+                 A. We promise your food will reach you within 20 minutes of you placing your order.
+                  </span>
+          </li>
+          <li class="ques-item">Q. Is there any phone number where I can call to track my order?
+                  <span class="ques-ans">
+                A. You can call at 8080804652 in case you need to track the order. Although, we will be informing you
+
+with the help of SMS on the status of your order.
+                  </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade hc-modal" id="tos-modal">
+  <div class="modal-dialog wide-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4 class="modal-title lato-r">TERMS OF SERVICE</h4>
+        <ul class="ques-list">
+          <li class="ques-item">1. GENERAL
+                  <span class="ques-ans">
+                    In terms of Information Technology Act, 2000, this document is an electronic record. Being generated by a computer system it does not require any physical or digital signatures.<br/>
+                    This document is published in accordance with the provisions of Rule 3 (1) of the Information Technology (Intermediaries guidelines) Rules, 2011 that require publishing the rules and regulations, privacy policy and Terms of Use for access or usage of www.holachef.com.<br/>
+                    (a) The domain name www.holachef.com (hereinafter referred to as “the Website”) is owned by Holachef Hospitality Pvt. Ltd (hereinafter referred to as the “Company”), a Private Limited Company incorporated under the Companies Act 1956/ Companies Act 2013 having its registered office at registered office at <strong>A 104, Synchronicity, Nahar Amrit Shakti Road,Chandivali, Andheri East, Mumbai- 400 072.</strong><br/>
+                    (b) For the purpose of these Terms of Use, wherever the context so requires "You" or "User" shall mean any natural or legal person who has agreed to become a buyer on the Website and ordering the Goods and Services available on the Website by providing Registration Data while registering on the Website. The site also providing it’s services without registration does not absolve You of this contractual relationship. The term "We", "Us", "Our" or “holachef” shall mean the Company. The headings of each section in this Agreement are only for the purpose of organizing the various provisions under this Agreement in an orderly manner. These headings shall not be used by either party to interpret the provisions contained with them in any manner. Further, the headings have no legal or contractual value.<br/>
+                    (c) The use of this Website by You is solely governed by this policy and any policy so mentioned by terms of reference. Moving past home page, or using any of the services shall be taken to mean that You have read and agreed to be bound by all of the policies.<br/>
+                    You will be subject to the rules, guidelines, policies, terms, and conditions applicable to any service that is provided by this site, and they shall be deemed to be incorporated into this Terms of Use and shall be considered as part and parcel of this Terms of Use.<br/>
+                    (d) We hold the sole right to modify the Terms of Service without prior permission from You or informing You. The relationship creates on You a duty to periodically check the terms and stay updated on its requirements. If You continue to use the website following such a change, this is deemed as consent by You to the so amended policies. As long as You comply with these Terms of Use, We grant You a personal, non-exclusive, non-transferable, limited privilege to enter and use the Website.<br/>
+                    <strong>ABOUT US</strong><br/>Holachef is a platform that connects Homechefs (“Participating Chefs”) with end consumers who look to eat outside. HomeChefs will list their meals/dishes/signature preparations on the platform, and any User can scroll through different eating options available and place an order.We take the orders, collect payments and deliver the food at the doorstep of the User. Any order placed by the consumer is subject to product availability,delivery capacity and acceptance by Holachef and the participating chefs.
+                  </span>
+          </li>
+          <li class="ques-item">2. MEMBERSHIP
+                  <span class="ques-ans">
+                  Use of this Website is only available to those above the age of 18, barring those “Incompetent to Contract” which inter alia include insolvents, as described in the Indian Contract Act, 1872. If You are a minor and wish to use the Website, You may do so through Your legal guardian and the Website reserves the right to terminate Your account on knowledge of You being a minor and having registered on the Application or availing any of its services.
+                  </span>
+          </li>
+          <li class="ques-item">3. COMMUNICATIONS
+                  <span class="ques-ans">
+                  You are required to provide Us with your e-mail, login/ password while placing your order through this Website. By using this Website, it is deemed that you have consented to receiving calls, autodialed and/or pre-recorded message calls, from Us at any time with the use of the telephone that has been provided by you for the use of this website which are subject to the Privacy Policy. This includes contacting you through information received through other parties. The use of this website is also your consent to receive SMSs from US at any time we deem fit. This consent to be contacted is for purposes that include and are not limited to clarification calls and marketing and promotional calls. In case you wish to stop contact from Us for the same, you may send us a mail to the effect at [ ].<br/>
+                  You may also be contacted by Service Providers with whom we have entered into a contract in furtherance of our rights, duties and obligations under this document and all other policies followed by Us. Such contact will be made only in pursuance of such objectives, and no other calls will be made.<br/>
+                  The sharing of the information provided by you will be governed by the Privacy Policy and We will not give out such contact information of yours to third parties not connected with the Website.
+                  </span>
+          </li>
+          <li class="ques-item">4. WEBSITE AS AN INTERMEDIARY PLATFORM
+                  <span class="ques-ans">
+                  The Website is a platform that Users utilize to meet and interact with one another for their transactions. We are not a party to such interaction and take no liability that arises from any such communication.<br/>
+                  <strong>1.</strong> All communication which inter alia include the contract, its terms, your obligations, the sellers (in this case, the Participating Chef) obligations,prices, etc are outcomes of the communication between the seller and You.This includes, without any limitation, the prices, shipping costs, payment details, date, period and mode of delivery, warranties related to products and services and after sales services related to products and services. We do not have any control over such information and play no determinative role in the finalization of the same and hence do not stand liable for the outcomes of such communication.<br/>
+                  <strong>2.</strong> We do not endorse any of the food items offered for sale through the website nor place any guarantee as to its nature, price, quality, etc.<br/>
+                  <strong>3.</strong> Subject to the above sub-clauses, a contract exists between the You / Buyer and the Holachef and as such any breach of contract and thus, any claim arising from such breach is the subject matter of the Holachef and the buyer alone and we are in no way a party to such breach or involved in any suit arising from the same breach.
+                  </span>
+          </li>
+          <li class="ques-item">5. CHARGES
+                  <span class="ques-ans">
+                  The membership of this website is free of cost and this includes the browsing of the site. However, charges shall be applicable on the services rendered by us through our site, including without limitation the food items being made available through the Site.
+                  </span>
+          </li>
+          <li class="ques-item">6. USER OBLIGATIONS
+                  <span class="ques-ans">
+                 You are a restricted user of this website.<br/>
+                 6.1 You are bound not to Cut, copy, distribute, modify, recreate, reverse engineer, distribute, disseminate, post, publish or create derivative works from, transfer, or sell any information or software obtained from the website.With our prior permission limited use may be allowed. For the removal of doubt, it is clarified that unlimited or wholesale reproduction, copying of the content for commercial or non-commercial purposes and unwarranted modification of data and information within the content of the Website is not permitted.<br/>
+                 6.2 You agree not to access (or attempt to access) the Website and/or the materials or Services by any means other than through the interface that is provided by the website. The use of deep-link, robot, spider or other automatic device, program, algorithm or methodology, or any similar or equivalent manual process, to access, acquire, copy or monitor any portion of the Website or Content, or in any way reproduce or circumvent the navigational structure or presentation of the Website, materials or any Content, to obtain or attempt to obtain any materials, documents or information through any means not specifically made available through the Website is specifically banned. You acknowledge and agree that by accessing or using the Website or Services, You may be exposed to content from other users that You may consider offensive, indecent or otherwise objectionable. We disclaim all liabilities arising in relation to such offensive content on the Website. Further, You may report such allegedly offensive content.<br/>
+                 6.3 In places where this website allows you to post or upload data/information,You undertake to ensure that such material is not offensive and in accordance with applicable laws. Further, You undertake not to:
+                 <br/>
+                 a) Abuse, harass, threaten, defame, disillusion, erode, abrogate, demean or otherwise violate the legal rights of others;<br/>
+                 b) Engage in any activity that interferes with or disrupts access to the Website or the Services (or the servers and networks which are connected to the Website);<br/>
+                 c) Impersonate any person or entity, or falsely state or otherwise misrepresent Your affiliation with a person or entity;<br/>
+                 d) Publish, post, disseminate, any information which is grossly harmful, harassing, blasphemous, defamatory, obscene, pornographic, paedophilic, libellous, invasive of another's privacy, hateful, or racially, ethnically objectionable, disparaging, relating or encouraging money laundering or gambling, or otherwise unlawful in any manner whatever; or unlawfully threatening or unlawfully harassing including but not limited to "indecent representation of women" within the meaning of the Indecent Representation of Women (Prohibition) Act, 1986;<br/>
+                 e) Post any file that infringes the copyright, patent or trademark of other legal entities.<br/>
+                 f) Upload or distribute files that contain viruses, corrupted files, or any other similar software or programs that may damage the operation of the Website or another's computer;<br/>
+                 g) Probe, scan or test the vulnerability of the Website or any network connected to the Website, or breach the security or authentication measures on the Website or any network connected to the Website. You may not reverse look-up, trace or seek to trace any information on any other user, of or visitor to, the Website, or any other customer of the website, including any website Account not owned by You, to its source; or exploit the Website or Service or information made available or offered by or through the Website, in any manner, whether or not the purpose is to reveal any information, including but not limited to personal identification information, other than Your own information, as provided for by the Website;<br/>
+                 h) Disrupt or interfere with the security of, or otherwise cause harm to, the Website, systems resources, accounts, passwords, servers or networks connected to or accessible through the Websites or any affiliated or linked sites;<br/>
+                 i) Collect or store data about other users in connection with the prohibited conduct and activities set forth in this Section.<br/>
+                 j) Use the Website or any material or Content for any purpose that is unlawful or prohibited by these Terms of Use, or to solicit the performance of any illegal activity or other activity which infringes the rights of this website or other third parties;<br/>
+                 k) Violate any code of conduct or other guidelines, which may be applicable for or to any particular Service;<br/>
+                 l) Violate any applicable laws or regulations for the time being in force within or outside India;<br/>
+                 m) Violate the Terms of Use including but not limited to any applicable Additional Terms of the Website contained herein or elsewhere;<br/>
+                 n) Create liability for Us or cause Us to lose (in whole or in part) the services of Our internet service provider ("ISPs") or other suppliers;<br/>
+                 You shall not engage in advertising to, or solicitation of, other Users of the Website to buy or sell any products or services, including, but not limited to,products or services related to that being displayed on the Website or related to us. You may not transmit any chain letters or unsolicited commercial or junk email to other Users via the Website. It shall be a violation of these Terms of Use to use any information obtained from the Website in order to harass, abuse, or harm another person, or in order to contact, advertise to, solicit, or sell to another person without Our prior explicit consent. We can (and You hereby expressly authorize Us to) disclose any information about You to law enforcement or other government officials, as we, in Our sole discretion, believe necessary or appropriate in connection with the investigation and/or resolution of possible crimes, especially those that may involve personal injury.<br/>
+                 We have no obligation, to monitor the materials posted on the Website. We shall have the right to remove or edit any content that in its sole discretion violates, or is alleged to violate, any applicable law or either the spirit or letter of these Terms of Use. Notwithstanding this right, YOU REMAIN SOLELY RESPONSIBLE FOR THE CONTENT OF THE MATERIALS YOU POST ON THE WEBSITE AND IN YOUR PRIVATE MESSAGES. In no event shall We assume or have any responsibility or liability for any Content posted or for any claims, damages or losses resulting from use of Content and/or appearance of Content on the Website. You hereby represent and warrant that You have all necessary rights in and to all Content which You provide and all information it contains and that such Content shall not infringe any proprietary or other rights of third parties or contain any libelous, tortuous, or otherwise unlawful information.<br/>
+                  </span>
+          </li>
+          <li class="ques-item">7. PAYMENT & PRICE
+                  <span class="ques-ans">
+                  You understand that the contract is a bipartite contract between you and the seller using the Payment Facility, and You shall pay the Transaction Price through Your Issuing Bank to the Seller using Payment Facility.<br/>
+                  Any extension / increase in the Dispatch and/or Delivery time shall not be the responsibility of the Website.
+                  </span>
+          </li>
+          <li class="ques-item">8. DELIVERY
+                  <span class="ques-ans">
+                  8.1 Delivery period specified at the time of order may vary. The goods will be delivered to the address given at the time of giving the order.<br/>
+                  8.2 The delivery may be either done by the Participating Chef or by Holachef. In case of delivery by the Participating Chef, the delivery is the sole responsibility of the Participating Chef. No responsibility is taken by the Website in case of late delivery either by the Participating Chef or us.<br/>
+                  8.3 It may not be possible for Us or the Participating Chefs to deliver to some locations. In such a case, we will inform you and arrangements for change in delivery address or cancellation can be made.<br/>
+                  </span>
+          </li>
+          <li class="ques-item">9. CASH ON DELIVERY
+                  <span class="ques-ans">
+                  9.1 Cash on Delivery is available for orders starting from Rs____.<br/>
+                  9.2 Your delivery address should be under serviceable network of the couriers.<br/>
+                  9.3 Payment to the courier staff should be done in cash. Cheque or DD is not acceptable. The invoice amount will be inclusive of all charges.<br/>
+                  </span>
+          </li>
+          <li class="ques-item">10. THIRD PARTY INFORMATION
+                  <span class="ques-ans">
+                  All text, graphics, user interfaces, visual interfaces, photographs, trademarks,logos, sounds, music and artwork (collectively, "Content"), apart from the ones owned by Us, is a third party user generated content and We have no control over such third party user generated content.<br/>
+                  Other than when provided for, the use of such content and it being reproduced, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted or distributed in any way (including "mirroring") to any other computer, server, Website or other medium for publication or distribution or for any commercial enterprise, without Our express prior written consent is not allowed.<br/>
+                  The content that you post will become Our property and You grant Us the worldwide, perpetual and transferable rights in such Content. We shall be entitled to, consistent with Our Privacy Policy as adopted in accordance with applicable law, use the Content or any of its elements for any type of use forever, including but not limited to promotional and advertising purposes and in any media whether now known or hereafter devised, including the creation of derivative works that may include the Content You provide and are not entitled to any payment or other compensation for such use.
+                  </span>
+          </li>
+          <li class="ques-item">11. DATA PROVIDED BY US
+                  <span class="ques-ans">
+                  11.1 From time to time, Our team may post comments or articles. These articles are the Intellectual Property of the Company and you are prohibited from posting, re producing, publishing, changing, editing such articles. In case that you have a problem with any article so posted, you may report the same via mail and we will look into it. We are under no obligation to remove such articles and the final decision lies with us.<br/>
+                  11.2 We take utmost care to ensure that data provided at our Website is true and accurate. Sometimes, system errors creep in and data generated by other Users may be false. We are not responsible for any such data.<br/>
+                  11.3 We are not in any way liable to You, for any loss arising to you from activities that include but are not limited to our negligence, breach of contract,Intellectual Property and Trademark infringement, breach of laws, etc.<br/>
+                  11.4 From time to time, our Website with have external links connected to other websites. We in no way endorse these websites. We are in no way liable for the information found on those websites. External websites may have their own policies and we in no way are responsible for any loss or damage cause by the same to you. You are advised to use your own discretion in the navigation and use of external sites.<br/>
+                  </span>
+          </li>
+          <li class="ques-item">12. INDEMNIFICATION AND LIMITATION OF LIABILITY
+                  <span class="ques-ans">YOU AGREE TO INDEMNIFY, DEFEND AND HOLD HARMLESS THIS WEBSITE INCLUDING BUT NOT LIMITED TO ITS AFFILIATE VENDORS, AGENTS AND EMPLOYEES FROM AND AGAINST ANY AND ALL LOSSES, LIABILITIES, CLAIMS, DAMAGES, DEMANDS, COSTS AND EXPENSES (INCLUDING LEGAL FEES AND DISBURSEMENTS IN CONNECTION THEREWITH AND INTEREST CHARGEABLE THEREON) ASSERTED AGAINST OR INCURRED BY US THAT ARISE OUT OF, RESULT FROM, OR MAY BE PAYABLE BY VIRTUE OF, ANY BREACH OR NON-PERFORMANCE OF ANY REPRESENTATION, WARRANTY, COVENANT OR AGREEMENT MADE OR OBLIGATION TO BE PERFORMED BY YOU / US PURSUANT TO THESE TERMS OF USE. FURTHER, YOU AGREE TO HOLD US HARMLESS AGAINST ANY CLAIMS MADE BY ANY THIRD PARTY DUE TO, OR ARISING OUT OF, OR IN CONNECTION WITH, YOUR USE OF THE WEBSITE, ANY CLAIM THAT YOUR MATERIAL CAUSED DAMAGE TO A THIRD PARTY, YOUR VIOLATION OF THE TERMS OF USE, OR YOUR VIOLATION OF ANY RIGHTS OF ANOTHER, INCLUDING ANY INTELLECTUAL PROPERTY RIGHTS.<br/>
+                  IN NO EVENT SHALL WE, OUR OFFICERS, DIRECTORS, EMPLOYEES, PARTNERS OR SUPPLIERS BE LIABLE TO YOU, THE HOLACHEF OR ANY THIRD PARTY FOR ANY SPECIAL, INCIDENTAL, INDIRECT, CONSEQUENTIAL OR PUNITIVE DAMAGES WHATSOEVER, INCLUDING THOSE RESULTING FROM BREACH OF CONTRACT OR WARRANTY, NEGLIGENCE OR OTHER TORTIOUS ACTION, OR ANY OTHER CLAIM ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF OR ACCESS TO THE WEBSITE, SERVICES OR MATERIALS.<br/>
+                  THE LIMITATIONS AND EXCLUSIONS IN THIS SECTION APPLY TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW.
+                  </span>
+          </li>
+          <li class="ques-item">13. DISCLAIMER OF WARRANTIES AND LIABILITIES
+                  <span class="ques-ans">YOU EXPRESSLY UNDERSTAND AND AGREE THAT, TO THE MAXIMUM
+                  EXTENT PERMITTED BY APPLICABLE LAW:<br/>
+                  THE WEBSITE, SERVICES AND OTHER MATERIALS ARE PROVIDED BY THIS WEBSITE IS ON AN “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING THE IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. WITHOUT LIMITING THE FOREGOING, HOLACHEF MAKES NO WARRANTY THAT <br/>
+                  (I) YOUR REQUIREMENTS WILL BE MET OR THAT SERVICES PROVIDED WILL BE UNINTERRUPTED, OR IN A TIMELY MANNER;<br/>
+                  (II) ANY ERRORS OR DEFECTS IN THE WEBSITE, SERVICES OR OTHER MATERIALS WILL BE CORRECTED;<br/>
+                  (III) THE FOOD OFFERED THROUGH THE WEBSITE SHALL FIT THR IMAGES PROVIDED ON THE WEBSITE, SHALL MATCH THE DESCRIPTION ON THE WEBSITE OR BE FIT FOR CONSUMPTION.TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, WE WILL HAVE NO LIABILITY RELATED TO USER CONTENT ARISING UNDER INTELLECTUAL PROPERTY RIGHTS, LIBEL, PRIVACY, PUBLICITY, OBSCENITY OR OTHER LAWS. HOLACHEF ALSO DISCLAIMS ALL LIABILITY WITH RESPECT TO THE MISUSE, LOSS, MODIFICATION OR UNAVAILABILITY OF ANY USER CONTENT.
+                  </span>
+          </li>
+          <li class="ques-item">14. COMPLIANCE WITH LAWS:
+                  <span class="ques-ans">Your use of the Website shall comply with all the applicable laws (including without limitation Foreign Exchange Management Act, 1999 and the rules made and notifications issued thereunder and the Exchange Control Manual as may be issued by Reserve Bank of India from time to time, Customs Act, Information and Technology Act, 2000 as amended by the Information Technology (Amendment) Act 2008, Prevention of Money Laundering Act, 2002 and the rules made there under, Foreign Contribution Regulation Act, 1976 and the rules made there under, Income Tax Act, 1961 and the rules made there under, Export Import Policy of government of India) applicable to them respectively for using Payment Facility and the website.
+                  </span>
+          </li>
+          <li class="ques-item">15. DISPUTE RESOLUTION
+                  <span class="ques-ans">The formation, interpretation and performance of this Agreement and any disputes arising out of it shall be governed by the law, rules and regulations of India. The exclusive jurisdiction and venue for actions and disputes mentioned above shall be the courts located in Mumbai, and You hereby submit to the personal jurisdiction of such courts.
+                  </span>
+          </li>
+          <li class="ques-item">16. CONTACT US
+                  <span class="ques-ans">If You have any questions regarding the Agreement, the practices of Holachef or any complaints with the service, you can e-mail us at care@holachef.com.
+                  </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade hc-modal" id="policy-modal">
+<div class="modal-dialog wide-modal">
+<div class="modal-content">
+<div class="modal-header">
+  <button class="close" data-dismiss="modal" type="button">&times;</button>
+</div>
+<div class="modal-body">
+<h4 class="modal-title lato-r">PRIVACY POLICY</h4>
+<ul class="ques-list">
+<li class="ques-item"><!-- Thank you for visiting our website! -->
+                  <span class="ques-ans">
+                    <!-- This privacy policy tells you how we use personal information collected at this site. Please read this
+                  privacy policy before using the site or submitting any personal information. By using the site, you are
+                  accepting the practices described in this privacy policy. These practices may be changed, but any
+                  changes will only apply to activities and information on  a going forward, not retroactive basis. You are
+                   encouraged to review the privacy policy  whenever you visit the site to make sure that you understand
+                  how any personal information you provide will be used. -->
+                  We, Holachef, the creator of this Privacy Policy ensure our firm commitment
+
+to your privacy vis-à-vis the protection of your priceless information. The
+
+Privacy Policy contains information about ‘www.holachef.com’. In order to
+
+endow you with our uninterrupted use of services, we may collect and, in
+
+some circumstances, disclose information about you. To enhance better
+
+protection of your privacy, we provide this notice explaining our information
+
+practices and the choices you can make about the way your information is
+
+collected and used. <br/>
+
+If you have any questions or concerns regarding this privacy policy, you
+
+should contact our Customer Support Desk at support@holachef.com.
+
+                  </span>
+</li>
+<li class="ques-item">1. OVERVIEW
+                  <span class="ques-ans">
+                  We commit to respecting your online privacy and data. We further
+
+recognize your need for appropriate protection and management of any
+
+personally identifiable information ("Personal Information") you share with
+
+us. Information that is considered personal about you by us includes, but
+
+may not be limited to, your name and e-mail address.<br/>
+
+In order to use this website, you are required to register yourself by
+
+providing the following information which includes, but may not be limited
+
+to:<br/>
+
+(1) Name<br/>
+
+(2) E-mail Address<br/>
+
+(3) Contact Number<br/>
+
+(4) Credit/ Debit/ Account details<br/>
+                  </span>
+</li>
+<li class="ques-item">2. NOTIFICATION OF MODIFICATIONS AND CHANGES TO THE TERMS & CONDITONS AND PRIVACY POLICY
+                  <span class="ques-ans">
+                  We reserve the right to change the Terms and Privacy Policy from time to
+
+time as seen fit, without any intimation to you, and your continued use of
+
+the site will signify your acceptance of any amendment to these terms. <br/>
+
+You are therefore advised to re-read the Terms of Service on a regular
+
+basis. Should it be that you do not accept any of the modifications or
+
+amendments to the Terms, you may terminate your use of this website
+
+immediately.
+                  </span>
+</li>
+<li class="ques-item">3. INFORMATION WE COLLECT
+                  <span class="ques-ans">
+                  Our website's online requisition form requires users to give us contact
+
+information (like your name, e-mail address and contact number). As a
+
+user of this website you are required to provide a valid e-mail address at
+
+the time of registration and choose a username or alias that represents
+
+your identity on our website.<br/>
+
+Certain information, such as your name, e-mail address and contact
+
+number is collected in order to verify your identity and for use as account
+
+numbers in our record system, among other things. E-mail addresses,
+
+geo-locations, intellectual property, listings viewed, any information
+
+entered in the “Contact Us” form or any other form displayed on any
+
+section of the website are also collected.
+                  </span>
+</li>
+<li class="ques-item">4. COOKIES
+                  <span class="ques-ans">
+                  We use our as well as third parties’ data collection devices such
+
+as "cookies" on certain pages of our website. "Cookies" are small files
+
+stored on your hard drive that assist us in providing services customized to
+
+your requirements and tastes. We also offer certain features that are only
+
+available through the use of a "cookie". Cookies can also help us provide
+
+information, which is targeted to your interests. Cookies may be used
+
+whether you choose to register with us or not.<br/ >
+
+Third party vendors such as www.google.com (“Google”) may use cookies
+
+to serve ads based on your visits to this Website. You may visit the
+
+website of the third party and choose to opt out of the use of cookies for
+
+interest-based advertising, if the third party offers such an option. You may
+
+choose to opt-out of the DoubleClick cookie that Google and its partners
+
+use for interest-based advertising by visiting Ads Settings.
+                  </span>
+</li>
+<li class="ques-item">5. EXTERNAL LINKS ON WEBSITE
+                  <span class="ques-ans">
+                  The website may contain hyperlinks to other websites, content or
+
+resources. We have no control over any websites or resources, which are
+
+provided by other companies or persons.
+
+You acknowledge and agree that We are not responsible for the
+
+availability of any such external sites or resources, and does not endorse
+
+any advertising, products or other materials on or available from such
+
+websites or resources.<br/>
+
+You acknowledge and agree that We are not liable for any loss or damage
+
+which may be incurred by you as a result of the availability of those
+
+external sites or resources, or as a result of any reliance placed by you
+
+on the completeness, accuracy or existence of any advertising, products
+
+or other materials on, or available from, such websites or resources.
+
+These third-party service providers and third-party sites may have their
+
+own privacy policies governing the storage and retention of your personal
+
+information that you may be subject to. We recommend that when you
+
+enter a third-party website, you review the third party site’s privacy policy
+
+as it relates to safeguarding your personal information. We use third-party
+
+advertising companies to serve ads when you visit the Website.<br/>
+
+You may visit the third party websites and choose to opt-out of the use
+
+of cookies for interest-based advertising if the third party offers such an
+
+option.
+                  </span>
+</li>
+<li class="ques-item">6. OUR USE OF YOUR INFORMATION
+                  <span class="ques-ans">
+                  Your contact information is also used to contact you whenever necessary.
+
+We use your IP address to help diagnose problems with our server, and to
+
+administer our Website. Your IP address is also used to help identify you
+
+and to gather broad demographic information. Finally, we may use your
+
+IP address to help protect our partners and ourselves from fraud. We will
+
+continue to enhance our security procedures as new technology becomes
+
+available. We will transfer information about you if We are acquired by or
+
+merged with another company. In this event, we will notify you by email or
+
+by putting a prominent notice on the site before information about you is
+
+transferred and becomes subject to a different privacy policy.<br/>
+
+We may release your personal information to a third-party in order comply
+
+with a Court Order or other similar legal procedure, or when we believe
+
+in good faith that such disclosure is necessary to comply with the law;
+
+prevent imminent physical harm or financial loss; or investigate or take
+
+action regarding illegal activities, suspected fraud, or violations of Our
+
+Terms of Service. We may disclose personally identifiable information to
+
+parties in compliance with our Copyright Policy as mentioned in the Terms
+
+of Service as we in our sole discretion believe necessary or appropriate in
+
+connection with an investigation of fraud, intellectual property infringement,
+
+piracy, or other unlawful activity. In such events, We may disclose name,
+
+address, country, phone number, email address and company name.
+                  </span>
+</li>
+<li class="ques-item">7. CONFIDENTIALITY
+                  <span class="ques-ans">
+                  You further acknowledge that the Website may contain information which
+
+is designated confidential by Us and that you shall not disclose such
+
+information without our prior written consent.<br/>
+
+Your information is regarded as confidential and therefore will not be
+
+divulged to any third party, unless if legally required to do so to the
+
+appropriate authorities.<br/>
+
+We will not sell, share, or rent your personal information to any third party
+
+or use your e-mail address for unsolicited mail. Any emails sent by us will
+
+only be in connection with the provision of agreed services and products.
+                  </span>
+</li>
+<li class="ques-item">8. OUR DISCLOSURE OF YOUR INFORMATION
+                  <span class="ques-ans">
+                  Due to the existing regulatory environment, we cannot ensure that all of
+
+your private communications and other personally identifiable information
+
+will never be disclosed in ways not otherwise described in this Privacy
+
+Policy. By way of example (without limiting and foregoing), we may
+
+be forced to disclose information to the government, law enforcement
+
+agencies or third parties. Under certain circumstances, third parties may
+
+unlawfully intercept or access transmissions or private communications, or
+
+members may abuse or misuse your information that they collect from our
+
+Website. Therefore, although we use industry standard practices to protect
+
+your privacy, we do not promise, and you should not expect, that your
+
+personally identifiable information or private communications would always
+
+remain private.<br/>
+
+As a matter of policy, we do not sell or rent any personally identifiable
+
+information about you to any third party. However, the following describes
+
+some of the ways that your personally identifiable information may be
+
+disclosed.<br/>
+
+<strong>8.1 External Service Providers:</strong> There may be a number of services
+
+offered by external service providers that help you use our Websites. If
+
+you choose to use these optional services, and in the course of doing
+
+so, disclose information to the external service providers, and/or grant
+
+them permission to collect information about you, then their use of your
+
+information is governed by their private policy.<br/>
+
+<strong>8.2 Other Corporate Entities:</strong> We share much of our data, including
+
+personally identifiable information about you, with our parent and/or
+
+subsidiaries that are committed to serving your online needs and related
+
+services, throughout the world. Such data will be shared for the sole
+
+purpose of enhancing your browsing experience. To the extent that
+
+these entities have access to your information, they will treat it at least as
+
+protectively as they treat information they obtain from their other members.
+
+It is possible that We and/or its subsidiaries, or any combination of such,
+
+could merge with or be acquired by another business entity. Should such
+
+a combination occur, you should expect that we would share some or all
+
+of your information in order to continue to provide the service. You will
+
+receive notice of such event (to the extent that it occurs).<br/>
+
+<strong>8.3 Law and Order:</strong> We cooperate with law enforcement inquiries, as
+
+well as other third parties to enforce laws, such as: intellectual property
+
+rights, fraud and other rights. We can (and you authorize us to) disclose
+
+any information about you to law enforcement and other government
+
+officials as we, in our sole discretion, believe necessary or appropriate,
+
+in connection with an investigation of fraud, intellectual property
+
+infringements, or other activity that is illegal or may expose us or you to
+
+legal liability.<br/>
+                  </span>
+</li>
+<li class="ques-item">9. ACCESSING, REVIEWING AND CHANGING YOUR PROFILE
+                  <span class="ques-ans">
+                  Following registration, you can review and change the information you
+
+submitted except your display name, during registration. If you change any
+
+information we may keep track of your old information. You can change
+
+your registration information such as your Email ID etc.<br/>
+
+To remove your profile so that others cannot view it, contact our customer
+
+support team at <support@holachef.com> <br/>
+
+We will retain in our files the information you have requested to remove for
+
+certain circumstances, such as to resolve disputes, troubleshoot problems
+
+and enforce our terms and conditions. Further, such prior information is
+
+never completely removed from our databases due to technical and legal
+
+constraints, including stored 'back up' systems. Therefore, you should
+
+not expect that all of your personally identifiable information would be
+
+completely removed from our databases in response to your requests.
+                  </span>
+</li>
+<li class="ques-item">10. OTHER INFORMATION COLLECTORS
+                  <span class="ques-ans">
+                  Except as otherwise expressly mentioned in this Privacy Policy, this
+
+document only addresses the use and disclosure of information we collect
+
+from you. To the extent that you disclose your information to other parties,
+
+whether they are on our Websites or on other sites throughout the Internet,
+
+different rules may apply to their use or disclosure of the information you
+
+disclose to them. To the extent that we use third party advertisers, they
+
+adhere to their own privacy policies. Since we do not control the privacy
+
+policies of the third parties, you are subject to ask questions before you
+
+disclose your personal information to others. Any information that you
+
+make publicly available on the site may be potentially viewed by any party,
+
+and by posting such material it is deemed that you consent to share such
+
+information with such parties.
+                  </span>
+</li>
+<li class="ques-item">11. SECURITY
+                  <span class="ques-ans">
+                  We treat data as an asset that must be protected against loss and
+
+unauthorized access. We employ many different security techniques
+
+to protect such data from unauthorized access by members inside
+
+and outside the company. We do not recommend transfer of sensitive
+
+information (such as credit card number) and bank account details via
+
+the Site to any third party. Users are recommended to do so offline, on
+
+the phone or via personal emails. We follow generally accepted industry
+
+standards to protect the personal information submitted to us, both during
+
+transmission and once we receive it. However, "perfect security" does
+
+not exist on the Internet. You therefore agree that any security breaches
+
+beyond the control of our standard security procedures are at your sole
+
+risk and discretion.
+                  </span>
+</li>
+<li class="ques-item">12. DISCLAIMER
+                  <span class="ques-ans">
+                  We cannot ensure that all of your private communications and other
+
+personal information will never be disclosed in ways not otherwise
+
+described in this Privacy Policy. Therefore, although we are committed to
+
+protecting your privacy, we do not promise, and you should not expect,
+
+that your personal information will always remain private. As a user of the
+
+Site, you understand and agree that you assume all responsibility and risk
+
+for your use of the website, the internet generally, and the documents you
+
+post or access and for your conduct on and off the Site.
+                  </span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+
+
+
+</div>
+
+<section class="hola-footer hidden-sm hidden-xs hidden-ipad">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-5">
+        <ul class="social-icons">
+          <li><a target="_blank" href="https://www.facebook.com/HolaChef"><i class="fa fa-facebook"></i></a></li>
+          <li><a target="_blank" href="https://twitter.com/Hola_Chef"><i class="fa fa-twitter"></i></a></li>
+          <li><a target="_blank" href="https://www.linkedin.com/company/hola-chef-hospitality-pvt-ltd-"><i class="fa fa-linkedin-square"></i></a></li>
+          <li><a target="_blank" href="http://instagram.com/hola_chef"><i class="fa fa-instagram"></i></a></li>
+          <li><a target="_blank" href="http://www.pinterest.com/HolaChef/"><i class="fa fa-pinterest"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-xs-7">
+        <ul class="nav navbar-nav footer-nav navbar-right">
+          <li><a data-target="#contact-modal" data-toggle="modal" class="hand-cursor">Contact</a></li>
+          <li><a data-target="#faq-modal" data-toggle="modal" class="hand-cursor">Faq</a></li>
+          <li><a href="http://blog.holachef.com/" target="_blank">Blog</a></li>
+          <li><a data-target="#party-modal" data-toggle="modal" class="hand-cursor">Party Orders</a></li>
+          <li><a data-target="#tos-modal" data-toggle="modal" class="hand-cursor">Terms of Services</a></li>
+          <li><a data-target="#policy-modal" data-toggle="modal" class="hand-cursor">Privacy Policy</a></li>
+          <li><a data-target="#howitwork-modal" data-toggle="modal" class="hand-cursor">How it works?</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="text-right">©  2014 Holachef. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,14 +1,20 @@
 <div class="right-body">
-  <div class="container-fluid back-white seperator-b10 nopadding">
-    <ul class="booked-orders heading">
-      <li class="food-bill" style="border:0">
-        <span class="item-name ItemHead">MEAL</span>
-        <span class="item-qty ItemHead">QTY</span>
-        <span class="item-cost ItemHead">COST</span>
-        <span class="item-remove">&nbsp;</span>
-      </li>
-    </ul>
-  </div>
+<div class="grey-back seperator-80">
+  <div class="container nopadding">
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="booked-orders heading">
+          <li class="food-bill" style="border:0">
+            <span class="item-name ItemHead">MEAL</span>
+            <span class="item-qty ItemHead">QTY</span>
+            <span class="item-cost ItemHead">COST</span>
+            <span class="item-remove">&nbsp;</span>
+          </li>
+        </ul>        
+      </div>
+    </div>
+  </div>  
+</div>
   <% total = [] %>
   <% lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
   <%= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "12PM - 1PM", slot_2: "1PM - 2PM", slot_3: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
@@ -19,23 +25,37 @@
   <% dinner_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Dinner"]}).compact %>
   <%= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "8PM - 9PM", slot_2: "9PM - 10PM", slot_3: "10PM - 11PM", total: total, default_slot: "8PM - 9PM"  if dinner_items.present? %>
 
+<div class="grey-back">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+          <ul class="booked-orders backgroundLight">
+          <li class="food-bill">
+            <span class="item-name item-nameP">&nbsp;</span>
+            <span class="item-qty item-qtyP text-total">Total</span> <%#=total%>
+            <span class="item-cost text-total1 pull-right" id="review_order_total"><%= total.inject(:+) %></span>
+          </li>
+          </ul>        
+      </div>
+    </div>
+  </div>
+</div>
 
-<ul class="booked-orders backgroundLight">
-<li class="food-bill">
-<span class="item-name item-nameP">&nbsp;</span>
-<span class="item-qty item-qtyP text-total">Total</span> <%#=total%>
-<span class="item-cost text-total1" id="review_order_total"><%= total.inject(:+) %></span>
-</li>
-</ul>
-
-
-<ul class="booked-orders backgroundLight2 top-Space discountEditBox">
-<li class="food-bill">
-  <div id ="coupon_validate_msg"></div>
-  <%= text_field_tag "discount_code",nil, placeholder: "Enter new coupon code (if any)",  class: "discountCoupon" %>
-  <%= submit_tag "Apply", id: "check_coupon", class: "btn btn-saffron discountCouponBtn"  %>
-</li>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-inline review-bar-g text-center">
+        <li class="col-xs-9 col-sm-8 col-sm-offset-1">
+          <div id ="coupon_validate_msg"></div>
+          <%= text_field_tag "discount_code",nil, placeholder: "Enter new coupon code (if any)",  class: "discountCoupon form-control"%> 
+        </li>
+        <li class="col-xs-3 col-sm-2 text-left">
+          <%= submit_tag "Apply", id: "check_coupon", class: "btn btn-saffron btn-block discountCouponBtn"  %>          
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 <%
 discountC = 0;
 discountAmt = 0;
@@ -59,22 +79,32 @@ end
 discountAmt = total.inject(:+);
 end
 %>
-<ul class="booked-orders backgroundLight1 opaK top-Space " >
-<li class="food-bill">
-<span class="item-name item-nameP">&nbsp;</span>
-<span class="item-qty item-qtyP text-total">Discounted Amount</span>
-<span class="item-cost discount_span" id="review_order_total"><%= discountC %></span>
-<span class="item-edit discountEdit" style="cursor: pointer;"></span>
-</li>
-</ul>
-<ul class="booked-orders backgroundLight1 top-Space">
-<li class="food-bill">
-<span class="item-name item-nameP">&nbsp;</span>
-<span class="item-qty item-qtyP text-total opaK">Total Amount to be Paid</span>
-<span class="item-cost text-total text-bold total_amount" id="review_order_total"><%= discountAmt %></span>
-</li>
-</ul>
-
+<div class="grey-back seperator-15">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="list-inline review-bar-g text-right">
+          <li class="col-xs-9 text-total">Discounted Amount</li>
+          <li class="col-xs-3" id="review_order_total"><%= discountC %></li>
+        </ul>        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="grey-back seperator-15">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+      <ul class="list-inline review-bar-g text-right">
+        <li class="col-xs-9 text-total">
+          Total Amount to be Paid <i class="fa fa-rupee"></i>
+        </li>
+        <li class="col-xs-3 text-bold text-total total_amount" id="review_order_total"><%= discountAmt %></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
 </div> <!-- right-body div ends -->
 
 
