@@ -11,9 +11,10 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery-1.11.0.min
-//= require jquery-migrate-1.2.1.min
 //= require moment.min
 //= require bootstrap.min
+//= require custom
+//= require jquery-migrate-1.2.1.min
 //= require jquery.validationEngine
 //= require jquery.validationEngine-en
 //= require bootstrap-datetimepicker.min
@@ -22,5 +23,4 @@
 //= require jquery.fittext
 //= require ie8-responsive-file-warning
 //= require tag-it.min
-//= require custom
 
