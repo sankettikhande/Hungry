@@ -13,7 +13,6 @@
 //= require jquery-1.11.0.min
 //= require moment.min
 //= require bootstrap.min
-//= require jquery.grid-a-licious.min
 //= require custom
 //= require jquery-migrate-1.2.1.min
 //= require jquery.validationEngine

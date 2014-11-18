@@ -1,18 +1,3 @@
-// grid-system
-$("#hola-container, .hola-container").gridalicious({
-    gutter: 5,
-    animate:true,
-    animationOptions: {
-        queue: true,
-        speed: 100,
-        duration: 300,
-        effect: 'fadeInOnAppear',
-        complete: onComplete,
-    }
-});
-function onComplete()
-{
-}
 //  each item inside modal script
 $(document).ready(function(){
     if ($("#total_price").val() !== undefined){
@@ -20,36 +5,12 @@ $(document).ready(function(){
     }
     var total = 0;
     var cnt = parseInt($("#order-count").html(),10);
-    // $('.item').live('click', function(){
-    //     $(".modal-header").html("<button data-dismiss='modal' class='btn-close pull-right'>x</button>")
-    //     $(".modal-footer").empty();
-    //     $(".modal-body").html("<i class='modal-loading fa fa-spinner fa-spin'></i>" +
-    //         "<p class='form-control looks-input hidden' id='order-count'>0</p>");
-    //     $.ajax({
-    //         'method': 'GET',
-    //         'url': '/cooking_todays/get_item_details',
-    //         'data': {'cooking_today_id': parseInt($(this).attr('id'))},
-    //         'dataType': 'script'
-    //     });
-    // });
 
     $('.time-slots span').click(function(){
       $(this).parent().find('.o-time').removeClass('selected');
       $(this).addClass('selected');
       $("#"+$(this).data('meal_type')).val($(this).html())
     });
-
-    // $('.about-content').on('click', function(){
-    //   $(this).closest('.square').find(".recipe-block").hide();
-    //   $(this).closest('.square').find(".recipe-about").show();
-    //   return false;
-    // });
-
-    //  $('.opacityimg,.opacityborder').on('click', function(){
-    //   $(this).closest('.square').find(".recipe-about").hide();
-    //   $(this).closest('.square').find(".recipe-block").show();
-    //   return false;
-    // });
 
     $('.recipe-block').on('click', function(){
         $(this).find('.dark-overlay').toggle()
@@ -205,8 +166,6 @@ $(document).ready(function(){
 
 
     function update_cart(data_attribs){
-//    $(".update-cart").unbind("click").live('click',function(e){
-//        data_attribs = $(this).data()
         url = (parseInt(data_attribs.quantity) > 0) ? "/orders/set_cart" : "/orders/remove_from_cart"
         if (parseInt(data_attribs.quantity) > 0){
             $(this).parents("ul.square").find('.add-cart').removeClass('hidden')
@@ -220,7 +179,6 @@ $(document).ready(function(){
                 'dataType': 'script'
             })
 
-//    })
     }
    /********************************************************************************************/
 
