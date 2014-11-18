@@ -244,6 +244,7 @@ end
     <script type="text/javascript">
       $("#submit-order-button1").click(function(){
         var errorDisplay = false;
+        var errorMessage = 'Please select the delivery time.'
         if($("#lunch_slot").length > 0 && $("#lunch_slot").val() == "") {
           errorDisplay = true;
         }
@@ -253,10 +254,14 @@ end
         else if($("#dinner_slot").length > 0 && $("#dinner_slot").val() == "") {
            errorDisplay = true;
         }
-        else {}
+        else if(parseInt($("#review_order_total").html()) <= 100){
+          errorDisplay = true;
+          errorMessage = "Total amount must be greater than Rs. 100"
+
+        }
 
         if(errorDisplay == true){
-          $("#holaAlert .modal-body").html('Please select the delivery time.');
+          $("#holaAlert .modal-body").html(errorMessage);
           $("#holaAlert").modal('show');
         }
         else
