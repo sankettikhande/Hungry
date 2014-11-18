@@ -2,14 +2,14 @@ json.id order.id
 json.customer_name order.hola_user.blank? ? order.name : order.hola_user.name
 json.customer_contact_number order.hola_user.blank? ?  order.phone_no : order.try(:hola_user).try(:phoneNumber)
 json.address do
-  json.address_line_1 order.addressStreet1
-  json.address_line_2 order.addressStreet2
-  json.address_city order.addressCity
-  json.address_state order.addressState
-  json.pincode order.addressZip
-  json.landmark order.landmark
-  json.area order.area
-  json.sub_area order.sub_area
+  json.address_line_1 order.delivery_address.try(:building_name)
+  json.address_line_2 order.delivery_address.try(:street)
+  json.address_city order.delivery_address.try(:city)
+  json.address_state ""
+  json.pincode order.delivery_address.try(:pin)
+  json.landmark order.delivery_address.try(:landmark)
+  json.area order.delivery_address.try(:area)
+  json.sub_area order.delivery_address.try(:sub_area)
 end
 json.order_items  order.ordered_menus do |menu|
   json.menu_item_id menu.id
