@@ -108,21 +108,20 @@ $(document).ready(function(){
     /************************************* ADD REMOVE ITEMS TO CART ********************************/
 
     $(".increase-order-item").on('click', function(){
-        quantity_input = $(this).parent().prev().find("input")
-        new_link = $($(this).parent().parent().parent().parent().find('.update-cart'))
-        available_quantity = parseInt($(this).data("available-quantity"))
-        quantity = parseInt(quantity_input.val()) + 1
+        quantity_input = $(this).parent().prev().find("input");
+        new_link = $($(this).parent().parent().parent().parent().find('.update-cart'));
+        available_quantity = parseInt($(this).data("available-quantity"));
+        quantity = parseInt(quantity_input.val()) + 1;
         $(this).parents('.square').addClass('added-2-cart');
         if(available_quantity >= quantity){
             quantity_input.val(quantity);
             $(this).parents('.square').find(".prod-carted span").html(quantity);
             cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) +1;
             $(".navbar-header div.pull-right a").text(cart_quantity);
-            $(new_link).data("quantity", quantity)
+            $(new_link).data("quantity", quantity);
             update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
-
         }else{
-            alert("Max quantity reached")
+            alert("Max quantity reached");
         }
 
     })
