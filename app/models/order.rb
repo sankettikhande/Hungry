@@ -194,7 +194,7 @@ class Order < ActiveRecord::Base
   end
 
   def sub_area
-    delivery_address.blank? ? attributes["area"] : delivery_address.sub_area
+    delivery_address.blank? ? attributes["sub_area"] : delivery_address.sub_area
   end
 
   def landmark
