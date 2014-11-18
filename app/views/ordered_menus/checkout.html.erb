@@ -282,7 +282,7 @@ end
            }
            else{
                var coupon_code = $("#discount_code").val();
-               var total_amt = $("#review_order_total").text();
+               var total_amt = $("#items_total").text();
                $.ajax({
                    url: "/check_coupon",
                    data: {coupon_code: coupon_code, total_amount: total_amt}
