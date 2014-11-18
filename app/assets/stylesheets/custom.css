@@ -396,10 +396,10 @@ background-repeat: no-repeat;
 user-select: none;
 }
 
-label.orange-check-label {display: block;width: 100%;float: left;}
-/***** =Navbar *****/
+@media (max-width: 1024px) {
+
+.hola-lg-navbar {background: #ff8800;color: #fff;}
 .navbar-default.navbar-fixed-top {margin-bottom: 0;}
-.navbar-default {background: #ff8800;color: #fff;}
 .navbar-default .navbar-brand {color: #fff;text-indent: -99999px;background: url('/assets/hola-logo-xs.png') no-repeat left center;background-size: 100% auto;margin-left: 5px;width: 30px;overflow: hidden;height: auto;padding: 0 5px;margin-top: 8px;height: 40px;}
 
 .navbar-default .navbar-toggle {border: none;}
@@ -431,10 +431,15 @@ label.orange-check-label {display: block;width: 100%;float: left;}
 .navbar-titlebar .page-title .dropdown-menu li+li {border-top: 1px solid #d7d7d7}
 .navbar-titlebar .page-title .dropdown-menu li a {color: #000;display: block;width: 100%;padding: 10px 20px;}
 /*.navbar-titlebar .page-title a.drop-icon {background: url('/assets/dropd-icon.png') no-repeat;background-size: 10px 10px;background-position: 100% 100%;min-width: 160px}*/
+.bag-count,.bag-count:hover {background: url('/assets/cart-bag.png')no-repeat left top;width: 36px;height: 34px;display: inline-block;text-align: center;margin-top: 6px;color: #000;padding-top: 14px;background-size: 100% 100%;text-indent: -4px;text-decoration: none;}
 
-/*** cart-bag **/
-.bag-count {background: url('/assets/cart-bag.png')no-repeat left top;width: 36px;height: 34px;display: inline-block;text-align: center;margin-top: 6px;color: #000;padding-top: 14px;background-size: 100% 100%;text-indent: -4px}
-.bag-count:hover {text-decoration: none;}
+
+
+}
+
+label.orange-check-label {display: block;width: 100%;float: left;}
+
+
 
 /*** next-icon **/
 .icon-next:after {content: '';background: url('/assets/icon-next.png') no-repeat left top;background-size: 100% auto;display: inline-block;width: 12px;height: 24px;}
@@ -586,7 +591,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 .text-total{color: #6a6969;text-transform: uppercase;font-size: 1.1em;}
 .text-total1{color: #8d8d8d !important;text-transform: uppercase;font-size: 1.1em;}
 .top-Space{margin-top: 15px;}
-.discountCoupon{width: 90%;outline: none;padding: 5px;box-shadow: none;border:1px solid #d3c9b5;height: 35px;}
+.discountCoupon{outline: none;padding: 5px;box-shadow: none;border:1px solid #d3c9b5;height: 35px;}
 .booked-orders {padding: 15px 0 20px;display: block;float:left;width: 100%;background: #fff}
 .booked-orders li.food-bill {display: block;width: 100%;font-family: Sans-serif;padding: 0.5em 0 0;float: left;font-size: 1em;}
 .booked-orders li.food-bill {border-top:1px solid #d3c9b5;}
@@ -863,7 +868,6 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 
 }
 @media (max-width: 768px) {
-    .discountCoupon {width: 73%;}
     .booked-orders li.food-bill span.item-nameP {width: 0px;}
     .booked-orders li.food-bill span.item-qtyP {width: 75%;}
 }
@@ -887,14 +891,15 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 
 @media (max-width: 767px) {
 .bag-count {margin-right: 25px;}
-.bag-count + .btn-back {margin-left: 0px;}
+.bag-count + .btn-back {margin-left:-15px;}
+
 .booked-orders li.food-bill span.item-name {font-size: 12px}
 .booked-orders.heading li.food-bill span.item-qty {width: 16%;}
 .booked-orders.heading li.food-bill span.item-qty {width: 20%;}
 }
 
 
-
+scount
 /*******  =Offcanvas ************/
 
 .row-offcanvas {
@@ -1277,3 +1282,5 @@ input[type='number'] {
     .item-content {width: 33.3333%;}
 }
 
+
+.review-bar-g {padding: 6px 0;overflow: hidden;color: #6A6969}
