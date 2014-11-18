@@ -1,3 +1,9 @@
+<%
+  session.delete(:lt);
+  session.delete(:dt);
+  session.delete(:coupon_code);
+%>
+
 <%= content_for :header_content do %>
     <%= render :partial => "/layouts/facebook" %>
 <% end %>
