@@ -77,7 +77,7 @@
     url('/assets/fonts/Roboto-Light.svg#Roboto-Light') format('svg');
 }
 
-
+/*
 html,
 body {
     height: 100%;
@@ -90,10 +90,10 @@ body {
     padding: 0 0 50px;
     display: block;
 }
-
+*/
 .right-body {overflow: hidden;display: block;}
 
-body {background: #fff;padding-top: 54px;font-family: 'robotoregular',Sans-serif;padding-bottom: 60px}
+body {background: #fff;padding-top: 54px;font-family: 'robotoregular',Sans-serif;}
 .cursorP{cursor: pointer;}
 /** =Overwrite Bootstrap **/
 
@@ -424,6 +424,7 @@ user-select: none;
 
 .page-title span.time-block {display: block;line-height: 10px;}
 .navbar-titlebar .dropdown.page-title {line-height: 18px;padding-top: 16px;font-size: 16px;}
+
 
 .navbar-titlebar .page-title .dropdown-menu {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;background: #fff;padding-bottom: 0}
 .navbar-titlebar .page-title .dropdown-menu li {display: block;float:left;width: 100%;padding: 0;}
@@ -1257,6 +1258,7 @@ input[type='number'] {
 
 
 .layout-tabbed {margin: 0 auto;width: 100%;}
+
 .nav-justified.layout-tabbed > li {display: table-cell;width: 1%;float: none;clear: both;overflow: hidden;}
 .layout-tabbed > li > a {border-radius: 0 !important;border-bottom-color:1px solid #e1e1e1;}
 .layout-tabbed >li a {color: #969696;border-bottom-color: #e1e1e1;}
