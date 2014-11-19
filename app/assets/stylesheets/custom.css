@@ -77,7 +77,7 @@
     url('/assets/fonts/Roboto-Light.svg#Roboto-Light') format('svg');
 }
 
-
+/*
 html,
 body {
     height: 100%;
@@ -90,11 +90,10 @@ body {
     padding: 0 0 50px;
     display: block;
 }
+*/
 .right-body {overflow: hidden;display: block;}
-body.modal-open {overflow: visible;}
-/*.modal{ overflow-y: hidden !important; } */
 
-body {background: #fff;padding-top: 54px;font-family: 'robotoregular',Sans-serif;padding-bottom: 60px !important;}
+body {background: #fff;padding-top: 54px;font-family: 'robotoregular',Sans-serif;}
 .cursorP{cursor: pointer;}
 /** =Overwrite Bootstrap **/
 
@@ -1247,7 +1246,7 @@ input[type='number'] {
 
 
 
-.layout-tabbed {margin: 20px auto;width: 100%;}
+.layout-tabbed {margin: 80px auto 20px;width: 100%;}
 .nav-justified.layout-tabbed > li {display: table-cell;width: 1%;float: none;clear: both;overflow: hidden;}
 .layout-tabbed > li > a {border-radius: 0 !important;border-bottom-color:1px solid #e1e1e1;}
 .layout-tabbed >li a {color: #969696;border-bottom-color: #e1e1e1;}

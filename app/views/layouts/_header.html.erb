@@ -17,9 +17,17 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right top-nav visible-desktop hidden-xs hidden-sm hidden-ipad">
-        <li><a href="#hungry">I'm hungry</a></li>
-        <li><a data-target="#howitwork-modal" data-toggle="modal" class="hand-cursor">How it works?</a></li>
         <li><a href="#">Log in/Sign Up</a></li>
+         <li class="dropdown hidden-xs hidden-sm hidden-ipad">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <span class="orange-text">Poonam! <i class="fa fa-gear"></i></span></a>
+            <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Order History</a></li>
+            <li><a href="#">Address Book</a></li>
+            <li><a href="#">My Reviews</a></li>
+            <li><a href="#">Log Out</a></li>
+            </ul>
+        </li>
+
       </ul>
       <div class="pull-right">
       <a href="<%= collect_cart_quantity ? '/review_order' : (@cart_quantity ? @cart_quantity : '#' ) %>" class="bag-count" id="bag-count">
