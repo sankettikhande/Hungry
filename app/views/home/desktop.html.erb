@@ -1046,13 +1046,11 @@ post or access and for your conduct on and off the Site.
     var delta = 5;
     var navbarHeight = $('header').outerHeight();
 
-    function socail_click(url)
-    {
-        window.open(url,'Sharer','left=20,top=20,width=500,height=500,toolbar=1,resizable=0');
+      function socail_click(url){
+        var randomnumber = Math.floor((Math.random()*100)+1);  
+        window.open(url, '_blank', 'PopUp', randomnumber, 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0');
         return false;
-    }
-
-
-</script>
-</body>
+      }
+    </script>
+  </body>
 </html>
