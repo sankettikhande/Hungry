@@ -247,12 +247,14 @@ end
 
         if($("#lunch_slot").length > 0 && $("#lunch_slot").val() == "" && <%= !session[:lt] %>) {
           errorDisplay = true;
+          errorMessage = 'Please select the lunch delivery time.'
         }
         else if($("#evening_snacks_slot").length > 0 && $("#evening_snacks_slot").val() == "") {
            errorDisplay = true;
         }
         else if($("#dinner_slot").length > 0 && $("#dinner_slot").val() == ""  && <%= !session[:dt] %>) {
            errorDisplay = true;
+           errorMessage = 'Please select the dinner delivery time.'
         }
         else if(parseInt($("#review_order_total").html()) <= 100){
           errorDisplay = true;
