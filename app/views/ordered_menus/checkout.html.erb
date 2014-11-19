@@ -295,9 +295,9 @@ end
       <% if @show_values || discountC %>        
         $("#lunch_slot").val('<%= session[:lt] %>');
         $("#dinner_slot").val('<%= session[:dt] %>');
-        $('#discount').text(<%= discountC %>);
-        $('#review_order_total').text(<%= discountAmt %>);
-        $('#discount_code').val(<%= session[:coupon_code] %>);             
+        $('#discount').text('<%= discountC %>');
+        $('#review_order_total').text('<%= discountAmt %>');
+        $('#discount_code').val('<%= session[:coupon_code] %>');             
       <% end %>  
        
       $('.time-slots span').each(function(){        
