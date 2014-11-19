@@ -262,12 +262,14 @@ end
 
         }
 
-        if(errorDisplay == true){
+        if(errorDisplay == true && $('#item-modal').css('display') == 'none'){
           $("#holaAlert .modal-body").html(errorMessage);
           $("#holaAlert").modal('show');
         }
-        else
-        window.location = "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val()+"&cc="+$("#discount_code").val()
+        else      
+          if($('#item-modal').css('display') == 'none')
+            window.location = "/add-address?lt="+$("#lunch_slot").val()+"&et="+$("#evening_snacks_slot").val()+"&dt="+$("#dinner_slot").val()+"&cc="+$("#discount_code").val()  
+
       });
 
       if($("#discount_code").val()==""){
