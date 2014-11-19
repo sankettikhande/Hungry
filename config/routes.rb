@@ -112,6 +112,7 @@ Holachef::Application.routes.draw do
       get :get_sign_in_details
     end
   end
+  delete "/logout" => "hola_session#logout", as: :logout
 
   namespace :api do
     resources :orders do

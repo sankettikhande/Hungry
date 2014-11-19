@@ -30,6 +30,11 @@ class HolaSessionController < ApplicationController
     @hola_user = HolaUser.find_by_phoneNumber(params[:mobile_no])
   end
 
+  def logout
+    cookies.delete :user_mobile
+    redirect_to "/mobile"
+  end
+
   private
   def generate_and_send_opt
     otp_code = @hola_user.otp_code(time: (Time.now + 30.minutes))
