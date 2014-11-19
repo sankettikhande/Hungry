@@ -30,8 +30,9 @@
 
       </ul>
       <div class="pull-right">
-      <a href="<%= collect_cart_quantity ? '/review_order' : (@cart_quantity ? @cart_quantity : '#' ) %>" class="bag-count" id="bag-count">
-       <%= collect_cart_quantity ? collect_cart_quantity : (@cart_quantity ? @cart_quantity : 0 ) %>
+      <% cart_quantity =  collect_cart_quantity.to_i %>
+      <a href="<%= (cart_quantity > 0) ? '/review_order' : '#' %>" class="bag-count" id="bag-count">
+       <%= cart_quantity %>
       </a>
       <%= link_to_if(request.env['PATH_INFO'] == '/add-address', "", "/review_order", :class => "btn-back text-hide") {link_to "Back", back_actions(params), :class => "btn-back text-hide" unless params[:controller] == "home" && params[:action] == "mobile"} %>
       </div>

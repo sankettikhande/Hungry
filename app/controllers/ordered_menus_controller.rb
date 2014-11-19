@@ -13,7 +13,7 @@ class OrderedMenusController < ApplicationController
 
   def checkout
     @hola_user = hola_current_user
-    categories = []
+    categories, @discount = [], 0
     
     if session[:cart].blank?
       redirect_to("/mobile") and return
@@ -34,6 +34,29 @@ class OrderedMenusController < ApplicationController
     @show_values = false
     if session[:cart]
       @show_values = true        
+    end
+    
+    @total, @discount = 0, 0
+    if !session[:cart].nil?
+      session[:cart].each do |item|
+        item.each do |item_id, item_attr|
+          @total = @total + (item_attr['quantity'].to_i * item_attr['price'].to_i)
+        end
+      end
+    end
+
+    if session[:coupon_code]
+      coupon = Coupon.find_by_coupon_code(session[:coupon_code])
+      @discount = coupon.discount.to_i if coupon
+      @paid_amount = @total -  @discount
+      
+      session[:discountAmount] = @discount
+      session[:paidAmount] = @total
+      session[:netAmount] = @paid_amount
+
+      # Added for removal of added coupon on navigation issue pre-order orders issue
+      # session[:coupon_code] = params[:coupon_code]
+
     end
 
     respond_to do |format|
@@ -62,7 +85,6 @@ class OrderedMenusController < ApplicationController
             else
               @discount_amount = Coupon.calculate_percentage(params[:total_amount],discount)
             end
-            puts @discount_amount
             @msg ="Valid coupon code"
             @paid_amount = params[:total_amount].to_i -  @discount_amount.to_i
             session[:discountAmount] = @discount_amount

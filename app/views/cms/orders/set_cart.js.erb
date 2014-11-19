@@ -9,7 +9,8 @@ if (<%= !"#{request.referer}".include?('review_order')%>) {
    }
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
-$("#review_order_total").html("<%=@total%>");
-$("#items_total").html("<%=@total%>");
+$("#review_order_total").html("<%= @total%>");
+$("#discount").html("<%= @discount %>")
+$("#items_total").html("<%=@total + @discount %>");
 $(".total_amount").html("<%=@total%>");
 $(".navbar-header div.pull-right a").text("<%= collect_cart_quantity ? collect_cart_quantity : 0 %>");

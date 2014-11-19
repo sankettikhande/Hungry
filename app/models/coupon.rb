@@ -29,4 +29,9 @@ class Coupon < ActiveRecord::Base
       return confirm_order_count && confirm_order_count > 0 ? "" : "You can't use this #{self.coupon_code} coupon code."
     end
   end
+
+  def discount
+    coupon_discount_type = flat.blank? ? "percentage" : "flat"
+    coupon_discount_type == "flat" ? flat : Coupon.calculate_percentage(params[:total_amount], discount)
+  end
 end

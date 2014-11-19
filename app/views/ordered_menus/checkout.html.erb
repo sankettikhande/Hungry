@@ -256,7 +256,7 @@ end
            errorDisplay = true;
            errorMessage = 'Please select the dinner delivery time.'
         }
-        else if(parseInt($("#review_order_total").html()) <= 100){
+        else if(parseInt($("#items_total").html()) < 100){
           errorDisplay = true;
           errorMessage = "Total amount must be greater than Rs. 100"
 

@@ -16,7 +16,7 @@ class Cms::OrdersController < Cms::ContentBlockController
     else
       session[:cart] << ({params[:item_id]=>{'quantity'=> params[:qty], 'price' => params[:price], 'date' => params[:date], 'dish_name' => params[:dish_name],'category' => params[:category], 'meal_type' => params[:meal_type] }})
     end
-    @total = 0
+    @total, @discount = 0, 0
     if !session[:cart].nil?
       session[:cart].each do |item|
         item.each do |item_id, item_attr|
@@ -24,6 +24,22 @@ class Cms::OrdersController < Cms::ContentBlockController
         end
       end
     end
+
+    if session[:coupon_code]
+      coupon = Coupon.find_by_coupon_code(session[:coupon_code])
+      @discount = coupon.discount.to_i if coupon
+      @paid_amount = @total -  @discount
+      session[:discountAmount] = @discount
+      session[:paidAmount] = @total
+      session[:netAmount] = @paid_amount
+
+      # Added for removal of added coupon on navigation issue pre-order orders issue
+      # session[:coupon_code] = params[:coupon_code]
+
+    end
+
+    @total = @total - @discount
+
     respond_to do |format|
       format.js
     end
