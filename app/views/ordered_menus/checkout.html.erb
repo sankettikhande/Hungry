@@ -33,7 +33,7 @@
           <li class="food-bill">
             <span class="item-name item-nameP">&nbsp;</span>
             <span class="item-qty item-qtyP text-total">Total</span> <%#=total%>
-            <span class="item-cost text-total1 pull-right" id="review_order_total"><%= total.inject(:+) %></span>
+            <span class="item-cost text-total1 pull-right" id="items_total"><%= total.inject(:+) %></span>
           </li>
           </ul>        
       </div>
@@ -85,7 +85,7 @@ end
       <div class="col-xs-12">
         <ul class="list-inline review-bar-g text-right">
           <li class="col-xs-9 text-total">Discounted Amount</li>
-          <li class="col-xs-3" id="review_order_total"><%= discountC %></li>
+          <li class="col-xs-3" id="discount"><%= discountC %></li>
         </ul>        
       </div>
     </div>
@@ -245,13 +245,14 @@ end
       $("#submit-order-button1").click(function(){
         var errorDisplay = false;
         var errorMessage = 'Please select the delivery time.'
-        if($("#lunch_slot").length > 0 && $("#lunch_slot").val() == "") {
+
+        if($("#lunch_slot").length > 0 && $("#lunch_slot").val() == "" && <%= !session[:lt] %>) {
           errorDisplay = true;
         }
         else if($("#evening_snacks_slot").length > 0 && $("#evening_snacks_slot").val() == "") {
            errorDisplay = true;
         }
-        else if($("#dinner_slot").length > 0 && $("#dinner_slot").val() == "") {
+        else if($("#dinner_slot").length > 0 && $("#dinner_slot").val() == ""  && <%= !session[:dt] %>) {
            errorDisplay = true;
         }
         else if(parseInt($("#review_order_total").html()) <= 100){
@@ -281,7 +282,7 @@ end
            }
            else{
                var coupon_code = $("#discount_code").val();
-               var total_amt = $("#review_order_total").text();
+               var total_amt = $("#items_total").text();
                $.ajax({
                    url: "/check_coupon",
                    data: {coupon_code: coupon_code, total_amount: total_amt}
@@ -289,5 +290,21 @@ end
            }
 
        })
+
+    $(document).ready(function(){  
+      <% if @show_values || discountC %>        
+        $("#lunch_slot").val('<%= session[:lt] %>');
+        $("#dinner_slot").val('<%= session[:dt] %>');
+        $('#discount').text(<%= discountC %>);
+        $('#review_order_total').text(<%= discountAmt %>);
+        $('#discount_code').val(<%= session[:coupon_code] %>);             
+      <% end %>  
+       
+      $('.time-slots span').each(function(){        
+        if($(this).text() == '<%= session[:lt] %>' || $(this).text() == '<%= session[:dt] %>')
+          $(this).addClass('selected');                   
+      })   
+    })
+
     </script>
 <% end %>

@@ -223,8 +223,9 @@ class Cms::OrdersController < Cms::ContentBlockController
               @confirm = false
             else
               cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
-              order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")
+              order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")              
               @confirm = true
+              clear_session
             end
           end
         end
@@ -239,6 +240,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
           @order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")
+          clear_session
         end
       end
       end
@@ -376,4 +378,14 @@ class Cms::OrdersController < Cms::ContentBlockController
       redirect_to "/order-confirm/#{params[:order_id]}"
     end
   end
+
+  # Added for removal of added coupon on navigation issue 
+  # On 19/11/2014 By Pradnya Kulkarni 
+  # Contact: pradnya@sodelsolutions.com
+  private
+    def clear_session
+      session.delete(:lt);
+      session.delete(:dt);
+      session.delete(:coupon_code);
+    end
 end

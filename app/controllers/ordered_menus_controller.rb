@@ -1,4 +1,16 @@
 class OrderedMenusController < ApplicationController
+
+  # Added for removal of added coupon on navigation issue pre-order orders issue
+  # On 18/11/2014 By Pradnya Kulkarni 
+  # Contact: pradnya@sodelsolutions.com
+  before_filter :set_cache_buster
+
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
   def checkout
     @hola_user = hola_current_user
     categories = []
@@ -12,6 +24,18 @@ class OrderedMenusController < ApplicationController
             @categories = categories << value["category"]
       end
     end
+
+    # Added for displaying orders in Ascending order of date in case of pre-order orders issue
+    # On 17/11/2014 By Pradnya Kulkarni 
+    # Contact: pradnya@sodelsolutions.com
+    session[:cart] = session[:cart].sort_by { |h| h.first.second.first.second }
+
+    # Added for removal of added coupon on navigation issue pre-order orders issue
+    @show_values = false
+    if session[:cart]
+      @show_values = true        
+    end
+
     respond_to do |format|
       format.html {render :layout => 'application'}
     end
@@ -44,6 +68,10 @@ class OrderedMenusController < ApplicationController
             session[:discountAmount] = @discount_amount
             session[:paidAmount] = params[:total_amount].to_i
             session[:netAmount] = @paid_amount
+
+            # Added for removal of added coupon on navigation issue pre-order orders issue
+            session[:coupon_code] = params[:coupon_code]
+
             session[:cart].each do |cart_item|
               cart_item.each do |key, value|
                 value["discount_amount"] = @discount_amount
