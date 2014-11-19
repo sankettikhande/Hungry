@@ -423,7 +423,7 @@ user-select: none;
 .navbar-titlebar .page-title a:hover,.navbar-titlebar .page-title a:focus,.navbar-titlebar .page-title a:active {text-decoration: none;outline: none;}
 
 .page-title span.time-block {display: block;line-height: 10px;}
-.navbar-titlebar .dropdown.page-title {line-height: 18px;padding-top: 16px;font-size: 18px;}
+.navbar-titlebar .dropdown.page-title {line-height: 18px;padding-top: 16px;font-size: 16px;}
 
 .navbar-titlebar .page-title .dropdown-menu {border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;background: #fff;padding-bottom: 0}
 .navbar-titlebar .page-title .dropdown-menu li {display: block;float:left;width: 100%;padding: 0;}
@@ -581,7 +581,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 
 
 /**** Review Orders Page *******/
-.ItemHead{font-size: 0.7em !important;}
+.ItemHead{font-size: 16px !important;}
 .payment_mode_color,.payment_mode_color:hover{color: #6a6969;text-transform: uppercase;font-size: 1.1em;}
 .opaK{opacity: 0.8;}
 .backgroundLight{background-color: #d4d3d3 !important;padding: 0px 20px !important;}
@@ -801,8 +801,8 @@ ul.cover-image li.cover-text p {margin-top:8px;}
 
 /*.hola-sidemenu:before {content: '';background: #fff;position: absolute;left: 0;top: 0;bottom: 0;width: 100%;float: left;z-index: -1;overflow: hidden;}
 */
-.hola-sidemenu {margin-top: -10px;;width: 100%;}
-.hola-sidemenu .list-group {background: #F3F2F2;padding-bottom: 50px;padding-left: 5px;margin-bottom: 0;padding-right: 5px;}
+.hola-sidemenu {margin-top: -10px;width: 100%;overflow-y:auto}
+.hola-sidemenu .list-group {background: #F3F2F2;padding-bottom: 50px;padding-left: 5px;margin-bottom: 0;padding-right: 5px;min-height: 500px}
 .hola-sidemenu .list-group .list-group-item {border-radius:0;border-right: none;border-left: none;background: #F3F2F2}
 .hola-sidemenu .list-group .list-group-item:first-child {padding-top: 20px;}
 .hola-sidemenu .list-group a.list-group-item {color: #333;padding: 10px;font-weight:normal;}
@@ -857,6 +857,8 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 
 /****** =Responsive ****/
 
+.food-bill .ItemHead.item-name {width: 63% !important;}
+
 @media (min-width: 768px) {
     .navbar > .container .navbar-brand {margin-left: 0}
 
@@ -878,7 +880,7 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
     .recipe-header .recipe-name {font-size: 1.2em}
 
 }
-@media (max-width: 360px) {
+/*@media (max-width: 360px) {
 .booked-orders li.food-bill span.item-name {width:50%;}
 .booked-orders li.food-bill span.item-qty {width:8%;}
 .booked-orders li.food-bill span.item-date {width:21%;}
@@ -887,7 +889,7 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 .booked-orders li.food-bill span.item-remove {width:2%;}
 .text-total {font-size: 14px;}
 }
-
+*/
 @media (max-width: 767px) {
 .bag-count {margin-right: 25px;}
 .bag-count + .btn-back {margin-left:-15px;}
@@ -1247,7 +1249,7 @@ input[type='number'] {
 
 
 
-.layout-tabbed {margin: 20px auto 20px;width: 100%;}
+.layout-tabbed {margin: 0 auto;width: 100%;}
 .nav-justified.layout-tabbed > li {display: table-cell;width: 1%;float: none;clear: both;overflow: hidden;}
 .layout-tabbed > li > a {border-radius: 0 !important;border-bottom-color:1px solid #e1e1e1;}
 .layout-tabbed >li a {color: #969696;border-bottom-color: #e1e1e1;}
@@ -1257,8 +1259,6 @@ input[type='number'] {
 
 .layout-tabbed >li.active a .category_header {color: #ff8800;}
 .layout-tabbed >li.active a .category_header2 {color: #2b2a29;}
-
-.layout-tabbed+.tab-content {margin-top: 20px;}
 
 
 

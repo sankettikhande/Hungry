@@ -131,7 +131,7 @@ def link_to_remove_fields(name, f)
     when controller == "cms/food_items" && action == "signature_dishes"
       return "Signature Dish"
     when controller == "cms/orders" && action == "payment_gateway"
-      return "Select Payment Method"
+      return "Payment Method"
     when controller == "cms/orders" && action == "order_confirm"
       return "Thank You!"
     when controller == "cms/cheffs" && action == "show_details"
