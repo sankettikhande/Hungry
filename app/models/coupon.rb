@@ -1,4 +1,7 @@
 class Coupon < ActiveRecord::Base
+  attr_accessor :skip_callbacks
+  acts_as_content_block({:versioned => false})
+  
   acts_as_content_block
   attr_accessible :coupon_code
   has_and_belongs_to_many :hola_users, :join_table => "hola_user_coupons", :foreign_key => "coupon_id"

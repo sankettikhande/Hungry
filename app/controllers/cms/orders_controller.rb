@@ -95,7 +95,7 @@ class Cms::OrdersController < Cms::ContentBlockController
             if !@coupon.blank?
               @coupon_id = item_attr["coupon_id"]
               used_count = @coupon.no_of_used_coupons.to_i + 1
-              Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
+              Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count, :published => true)
               @coupon.hola_users << hola_user
             else
               @discount_amount = 0
@@ -161,7 +161,7 @@ class Cms::OrdersController < Cms::ContentBlockController
               @coupon = Coupon.find_by_id(item_attr["coupon_id"])
               if !@coupon.blank?
                 used_count = @coupon.no_of_used_coupons.to_i + 1
-                Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
+                Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count, :published => true)
                 @coupon.hola_users << hola_user
                 @coupon_id = item_attr["coupon_id"]
               else
