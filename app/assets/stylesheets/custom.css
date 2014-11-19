@@ -1128,6 +1128,7 @@ html{overflow-x:hidden}
 
 .n-dish-type {font-size: 0.5625em;}
 
+.n-dish-info .n-dish-title:hover {text-decoration: underline;}
 
 .action-row {line-height: 25px;}
 .action-row .col-xs-3.col-hola-1 {padding-right: 0}
