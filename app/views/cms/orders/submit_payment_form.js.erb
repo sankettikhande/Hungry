@@ -4,11 +4,11 @@ $(".payment_form form").append('<input class="text" name="merchantTxnId" type="h
 $(".payment_form form").append('<input class="text" name="firstName" type="hidden" value="<%= @order.name.split(' ')[0] %>" />');
 $(".payment_form form").append('<input class="text" name="lastName" type="hidden" value="<%= @order.name.split(' ')[1] %>" />');
 $(".payment_form form").append('<input class="text" name="phoneNumber" type="hidden" value="<%= @order.phone_no %>" />');
-$(".payment_form form").append('<input class="text" name="addressStreet1" type="hidden" value="<%= @order.addressStreet1 %>" />');
-$(".payment_form form").append('<input class="text" name="addressStreet2" type="hidden" value="<%= @order.addressStreet2 %>" />');
+$(".payment_form form").append('<input class="text" name="addressStreet1" type="hidden" value="<%= @order.delivery_address.try(:building_name) %>" />');
+$(".payment_form form").append('<input class="text" name="addressStreet2" type="hidden" value="<%= @order.delivery_address.try(:street)%>" />');
 $(".payment_form form").append('<input class="text" name="addressCity" type="hidden" value="Mumbai" />');
 $(".payment_form form").append('<input class="text" name="addressState" type="hidden" value="Maharashtra" />');
-$(".payment_form form").append('<input class="text" name="addressZip" type="hidden" value="<%= @order.addressZip %>" />');
+$(".payment_form form").append('<input class="text" name="addressZip" type="hidden" value="<%= @order.delivery_address.try(:pin) %>" />');
 $(".payment_form form").append('<input class="text" name="orderAmount" type="hidden" value="<%= @order.total %>" />');
 $(".payment_form form").append('<input class="text" name="currency" type="hidden" value="INR" />');
 $(".payment_form form").append('<input type="hidden" name="returnUrl" value="<%= Settings.citrus_gateway.returnUrl %>" />');
