@@ -44,20 +44,7 @@ class OrderedMenusController < ApplicationController
         end
       end
     end
-
-    if session[:coupon_code]
-      coupon = Coupon.find_by_coupon_code(session[:coupon_code])
-      @discount = coupon.discount.to_i if coupon
-      @paid_amount = @total -  @discount
-      
-      session[:discountAmount] = @discount
-      session[:paidAmount] = @total
-      session[:netAmount] = @paid_amount
-
-      # Added for removal of added coupon on navigation issue pre-order orders issue
-      # session[:coupon_code] = params[:coupon_code]
-
-    end
+    calculate_order_amounts
 
     respond_to do |format|
       format.html {render :layout => 'application'}

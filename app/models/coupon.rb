@@ -29,8 +29,8 @@ class Coupon < ActiveRecord::Base
     end
   end
 
-  def discount
+  def discount total = nil
     coupon_discount_type = flat.blank? ? "percentage" : "flat"
-    coupon_discount_type == "flat" ? flat : Coupon.calculate_percentage(params[:total_amount], discount)
+    coupon_discount_type == "flat" ? flat : Coupon.calculate_percentage(total, percentage)
   end
 end

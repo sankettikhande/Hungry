@@ -23,6 +23,8 @@ class CookingToday < ActiveRecord::Base
   validates :date, :presence => true
   validates :meal_type, presence: true
   validates :meal_type, inclusion: {in: @@meal_types}, :unless => Proc.new {|c| c.meal_type.blank?}
+  validate :order_quantity
+
 
   # before_save :set_meal_time
   before_save :set_category
@@ -34,6 +36,14 @@ class CookingToday < ActiveRecord::Base
       return false
     end
   end
+
+  def order_quantity
+    if ordered_changed? and ordered > quantity
+      errors.add(:base, "#{food_item.name} is out of stock.")
+      return false
+    end
+  end
+
   def name
     "Chef: #{self.cheff.chef_coordinate.name} | Dish: #{self.food_item.meal_info.name} " if self.cheff && self.food_item
   end
