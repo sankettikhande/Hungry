@@ -20,11 +20,20 @@ class HomeController < ApplicationController
   end
 
   def index
-    if cookies.signed[:returning_user]
-      cookies.signed[:returning_user] = true
-      redirect_to "/mobile"
+    if is_mobile?
+      if cookies.signed[:returning_user]
+        redirect_to "/mobile"
+      else
+        cookies.signed[:returning_user] = true
+        redirect_to "/landing"
+      end
     else
-      redirect_to "/landing"
+      if cookies.signed[:returning_user]
+        cookies.signed[:returning_user] = true
+        redirect_to "/desktop"
+      else
+        redirect_to "/landing"
+      end
     end
   end
 
