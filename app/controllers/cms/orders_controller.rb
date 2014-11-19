@@ -400,8 +400,11 @@ class Cms::OrdersController < Cms::ContentBlockController
   # Contact: pradnya@sodelsolutions.com
   private
     def clear_session
-      session.delete(:lt);
-      session.delete(:dt);
-      session.delete(:coupon_code);
+      session.delete(:lt)
+      session.delete(:dt)
+      session.delete(:coupon_code)
+      session.delete(:discountAmount)
+      session.delete(:paidAmount)
+      session.delete(:netAmount)
     end
 end
