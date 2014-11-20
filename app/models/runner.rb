@@ -4,7 +4,7 @@ class Runner < ActiveRecord::Base
 
   has_many :orders
 
-  validates :name, :phone, :address, presence: true
+  validates :name, :phone, :address, :username, :password, presence: true
   validates :username, uniqueness: true
 
   before_save :encode_password
