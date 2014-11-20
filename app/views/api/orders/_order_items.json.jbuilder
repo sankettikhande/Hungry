@@ -19,6 +19,7 @@ json.order_items  order.ordered_menus do |menu|
   json.menu_item_total (menu.quantity * menu.rate)
   json.order_status menu.order_status
   json.meal_type menu.cooking_today.meal_type if menu.cooking_today
+  json.cheff menu.cheff.name
 end
 
 json.bill_amount order.bill_amount
