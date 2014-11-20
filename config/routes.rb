@@ -117,7 +117,7 @@ Holachef::Application.routes.draw do
     resources :runners do
       get :orders
     end
-
+    match "/runner/login" => 'runners#authenticate_runner'
   end
 
   #end

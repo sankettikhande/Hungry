@@ -5,6 +5,9 @@ class Runner < ActiveRecord::Base
   has_many :orders
 
   validates :name, :phone, :address, presence: true
+  validates :username, uniqueness: true
+
+  before_save :encode_password
 
   def amount_pending
     orders_pending.collect{|a| a.total.to_i}.reduce(:+)
@@ -38,4 +41,10 @@ class Runner < ActiveRecord::Base
     return "" if delivery_times.blank?
     Time.at(delivery_times.inject{ |sum, el| sum + el }.to_f / delivery_times.size).utc.strftime("%H:%M:%S")
   end
+
+  def encode_password
+    enc   = Base64.encode64(self.password)
+    self.password = enc
+  end
+
 end
