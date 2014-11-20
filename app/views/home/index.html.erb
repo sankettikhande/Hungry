@@ -14,7 +14,7 @@
           <% CookingToday.meal_types.each do |meal_type| %>
             <%# next unless meal_available? (meal_type) %>
             <% meals_available = CookingToday.todays_menu_by_type(meal_type) %>
-                <li id= "li_<%= meal_type %>" class= "<%= (meal_available? (meal_type)) ? 'active' : '' %>"><a href="#<%= meal_type %>" data-toggle="tabs">
+                <li id= "li_<%= meal_type %>" class= "<%= (current_live_meal == meal_type) ? 'active' : '' %>"><a href="#<%= meal_type %>" data-toggle="tabs">
                    <div class="text-center show-time followMeBar" data-category="<%= meal_type %> <span class='time-block'> (<%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> to <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %>)</span>" > </div>
                    <div class="category_header"> <%= meal_type %> </div>
                   <div class="category_header2">( <%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> - <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %> )</div>
@@ -24,7 +24,7 @@
           <div class="tab-content">
              <% CookingToday.meal_types.each do |meal_type| %>
              <%# next unless meal_available? (meal_type) %>
-             <div class="tab-pane <%= meal_type == "Lunch" ? "active" : meal_available?("Lunch") ? "" : "active"  %>" id="<%= meal_type %>">
+             <div class="tab-pane <%= current_live_meal == meal_type ? "active" :"" %>" id="<%= meal_type %>">
                <% meals_available = CookingToday.todays_menu_by_type(meal_type) %>
                <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
              </div>
