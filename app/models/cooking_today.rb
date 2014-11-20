@@ -30,6 +30,8 @@ class CookingToday < ActiveRecord::Base
   before_save :set_category
   before_destroy :check_destroyability
 
+  scope :todays_menu, lambda { where(date: Date.today.to_s) }
+
   def check_destroyability
     if self.date == Date.today && self.published
       errors.add(:base, "Today's published item can't be deleted.")
