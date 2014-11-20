@@ -11,8 +11,8 @@ class Api::RunnersController < ApiController
   end
 
   def authenticate_runner
-    runner = Runner.where(username:params[:username], password: Base64.decode64(runner.password)).first
-    render :json => { "is_authenticated" => runner.blank? }
+    runner = Runner.where(username:params[:username]).first
+    render :json => { "is_authenticated" => runner ? params[:password] == Base64.decode64(runner.password) : false }
   end
 
 end
