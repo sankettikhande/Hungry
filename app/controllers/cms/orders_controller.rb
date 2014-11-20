@@ -210,6 +210,7 @@ class Cms::OrdersController < Cms::ContentBlockController
               cooking_today  = ordered_menu.cooking_today
               if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
                 updated_ordered_menus << cooking_today
+                ordered_menu.increase_food_items_served_count
               else
                 OrderedMenu.restore_ordered_menus(updated_ordered_menus)
                 clear_session
@@ -225,6 +226,7 @@ class Cms::OrdersController < Cms::ContentBlockController
             cooking_today  = ordered_menu.cooking_today
             if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
               updated_ordered_menus << cooking_today
+              ordered_menu.increase_food_items_served_count
             else
               OrderedMenu.restore_ordered_menus(updated_ordered_menus)
               clear_session
@@ -299,6 +301,7 @@ class Cms::OrdersController < Cms::ContentBlockController
             cooking_today  = ordered_menu.cooking_today
             if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
               updated_ordered_menus << cooking_today
+              ordered_menu.increase_food_items_served_count
             else
               OrderedMenu.restore_ordered_menus(updated_ordered_menus)
               clear_session
