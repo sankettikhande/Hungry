@@ -1,6 +1,6 @@
 require 'will_paginate/array'
 class Cms::FoodItemsController < Cms::ContentBlockController
-  skip_before_filter :login_required, :cms_access_required, :only => [:show_recipe, :signature_dishes, :update_ratings]
+  skip_before_filter :login_required, :cms_access_required, :only => [:show_recipe, :signature_dishes, :update_ratings, :post_review]
 
   def index
     if !params[:search].blank? && !params[:search][:term].blank?
@@ -100,5 +100,19 @@ class Cms::FoodItemsController < Cms::ContentBlockController
     end
     redirect_to "/cms/food_items"
   end
+
+  def post_review
+    if hola_current_user
+      @food_item = FoodItem.find(params[:food_item_id], include: :reviews)
+      food_item_review = @food_item.reviews.find_or_create_by_hola_user_id(hola_current_user.id)
+      if food_item_review
+        food_item_review.update_attributes(review: params[:review])
+      end
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
 end
