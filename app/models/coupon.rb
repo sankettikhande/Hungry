@@ -4,6 +4,7 @@ class Coupon < ActiveRecord::Base
   
   attr_accessible :coupon_code
   has_and_belongs_to_many :hola_users, :join_table => "hola_user_coupons", :foreign_key => "coupon_id"
+  has_many :orders
 
   validates :coupon_code, :coupon_type, :no_of_coupons,  presence: true
   validates :percentage, :presence => true, if: Proc.new { |p| p.flat.blank? }

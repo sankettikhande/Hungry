@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141117070930) do
+ActiveRecord::Schema.define(:version => 20141120111112) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -1058,6 +1058,8 @@ ActiveRecord::Schema.define(:version => 20141117070930) do
     t.boolean  "archived",      :default => false
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.string   "username"
+    t.string   "password"
   end
 
   create_table "section_nodes", :force => true do |t|

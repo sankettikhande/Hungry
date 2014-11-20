@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
   belongs_to :hola_user
   belongs_to :delivery_address, class_name: "HolaUserAddress"
   belongs_to :runner
-  has_one :coupon
+  belongs_to :coupon
 
   validates :date, :order_status, presence: true
   validates :order_status, inclusion: {in: @@order_statuses}
@@ -24,7 +24,7 @@ class Order < ActiveRecord::Base
 
   after_save :mark_paid, :send_delivery_message, :send_delivery_mail, :if => Proc.new {|o| o.order_status_changed? and o.delivered?}
   after_save :mark_menu_items, :if => Proc.new { |o| ["Damaged", "Delivered", "Canceled", "Returned"].include? o.order_status_changed? and o.order_status }
-  after_save :send_order_confirm_message, :if => Proc.new {|o| o.order_status_changed? and o.confirmed? and o.parent_order_id.blank?}
+  after_save :send_order_confirm_message, :update_coupon_used_count, :if => Proc.new {|o| o.order_status_changed? and o.confirmed? and o.parent_order_id.blank?}
   after_save :send_order_dispatched_message, :if => Proc.new {|o| o.order_status_changed? and o.dispatched? }
   before_save :build_order_status_history
   before_save :ensure_hola_user_id
@@ -32,6 +32,11 @@ class Order < ActiveRecord::Base
   before_save :ensure_order_not_dispatched, :if => Proc.new {|o| o.order_status_changed? and o.order_status_was == "Dispatched"}
   before_save :update_timestamps, :if => :order_status_changed?
   after_save :mark_sub_orders, :if => Proc.new {|o| o.order_type == "MultiMeal" and o.order_status_changed? and o.confirmed?}
+  
+
+  def update_coupon_used_count
+    coupon.increment!(:no_of_used_coupons) if coupon
+  end
 
   @@order_statuses.each do |s|
     define_method "#{s.downcase}?" do
