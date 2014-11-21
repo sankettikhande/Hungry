@@ -242,6 +242,9 @@ end
     </div>
     <script type="text/javascript">
       $("#submit-order-button1").click(function(){
+        if($('#holaAlert').hasClass('in') || $('#item-modal').hasClass('in') || $("#remove_dish").hasClass('in') ){
+          return false;
+        }
         var errorDisplay = false;
         var errorMessage = 'Please select the delivery time.'
 
