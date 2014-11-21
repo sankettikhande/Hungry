@@ -89,4 +89,20 @@ class Api::OrdersController < ApiController
     end
   end
 
+  def add_comment
+    @order = Order.find params[:order_id]
+    if @order
+      if !params[:comment].blank? and @order.update_attributes(comment: params[:comment])
+        @message = "Order comment updated"
+        render "api/success"
+      else
+        @message = @order.errors.full_messages
+        @message << "Comment can not be blank" if params[:comment].blank?
+        render "api/failure"
+      end
+    else
+      @message = {"msg" => "Order not found", "order_id" => params[:order_id]}
+    end
+  end
+
 end
