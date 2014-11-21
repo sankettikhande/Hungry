@@ -12,7 +12,10 @@ class Api::RunnersController < ApiController
 
   def authenticate_runner
     runner = Runner.where(username:params[:username]).first
-    render :json => { "is_authenticated" => runner ? params[:password] == Base64.decode64(runner.password) : false }
+    authenticated = (!runner.blank? && params[:password] == Base64.decode64(runner.password))
+    response_hash = { "is_authenticated" => authenticated }
+    response_hash.merge!(runner: {id: runner.id, name: runner.name}) if runner and authenticated
+    render :json => response_hash
   end
 
 end
