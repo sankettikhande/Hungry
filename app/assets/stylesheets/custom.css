@@ -1146,7 +1146,7 @@ html{overflow-x:hidden}
 .charged-cost {margin:0;color: #ff9900;font-family: 'robotobold',Helvetica,Sans-serif;font-size: 1.3em;}
 
 .order-count {font-weight: bold;}
-.prev-order-wrapper {margin-top: 10px;height: 225px;}
+.prev-order-wrapper {margin-top: 10px;}/*height: 225px;} */
 .prev-order-wrapper .table {margin-bottom: 10px;border:1px solid #ccc;background: #f6f6f6;}
 .prev-order-wrapper:nth-child(odd) .table {background: #e6e6e6;}
 .prev-order-wrapper thead td {font-family: 'robotobold',Helvetica,Arial,Sans-serif;}

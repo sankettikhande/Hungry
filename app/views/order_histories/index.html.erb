@@ -11,6 +11,7 @@
         </div>
       <% else %>
         <div class="row">
+          <% index = 1 %>
           <% @order_histories.each do |order| %>
             <div class="prev-order-wrapper col-xs-12 col-sm-6 col-md-4">
               <table class="table">
@@ -30,7 +31,7 @@
                     <td class="text-orange text-right roboto-b"></td>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody>                  
                   <% order.ordered_menus.each do |ordered_menu| %>
                     <% food_item = ordered_menu.food_item
                     picture = ordered_menu.food_item.meal_info.picture %>
@@ -50,14 +51,15 @@
                     </tr>
                     <tr>
                       <td>
-                        <div class="star" style="float:left;" data-score="<%= ordered_menu.food_item.reviews.find_by_hola_user_id(hola_current_user).try(:ratings) %>" data-id = "<%= food_item.id  if food_item %>" >
+                        <div class="star" style="float:left;" data-score="<%= ordered_menu.food_item.reviews.find_by_hola_user_id_and_order_id(hola_current_user, order.id).try(:ratings) %>" data-id = "<%= food_item.id  if food_item %>" data-order="<%= order.id %>" >
                         </div>    
-                        <div class="order_history_rating_msg" id="msg_<%= food_item.id %>">Thank You!</div>                     
+                        <div class="order_history_rating_msg" id="msg_<%= index %>">Thank You!</div>                     
                       </td>                                              
                       <td>
-                        <a href="#" onclick="post_review('<%= food_item.id %>')"> Review </a>                       
+                        <a href="#" onclick="post_review('<%= food_item.id %>','<%= order.id %>')"> Review </a>                       
                       </td>
-                    </tr>
+                    </tr>                                  
+                    <% index = index + 1 %>                    
                   <% end %>
                   <tr>
                     <td class="roboto-b text-orange">Total</td>
@@ -81,6 +83,7 @@
         <%= image_tag ('/assets/hola-logo-xs.png'), :id => 'review_page_modal_logo' %>
       </div>
       <div class="modal-body">                        
+        <input type="hidden" name="order_id" id="order_id" value=""/>
         <input type="hidden" name="food_item_id" id="item_id" value=""/>
         <textarea type="text" name="food_item_review" id="review" ></textarea><br/><br/>
         <button class="btn btn-saffron" onclick="submit_review()">Submit</button>       
@@ -90,10 +93,11 @@
 </div>
 
 <script type="text/javascript">
-  function post_review(food_item_id){    
+  function post_review(food_item_id, order_id){    
     <% if hola_current_user %>
       $('#reviewAlert').modal('show');    
       $('#item_id').val(food_item_id);
+      $('#order_id').val(order_id);
     <% else %>
       $('#login_modal').modal('show')
     <% end %>

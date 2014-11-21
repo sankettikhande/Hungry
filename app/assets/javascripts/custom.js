@@ -502,17 +502,16 @@ $(document).ready(function(){
             return $(this).attr('data-score');
         },
         click: function(score, evt) {
-            var id = $(this).data().id
-            
+            var id = $(this).data().id;
+            var msg_id = $(this).next().attr('id')            
             $.ajax({
                 'url' : '/update_ratings',
                 'type' : 'POST',
-                'data' : {'food_item_id': parseInt(id), 'food_item_ratings': $(this).data().score},
+                'data' : {'food_item_id': parseInt(id), 'food_item_ratings': $(this).data().score, 'order_id': $(this).data().order},
                 'dataType' : 'script',
-                'success' : function(){            
-                    id = '#msg_' + id;                    
-                    $(id).css('display', 'block'); 
-                    $(id).delay(1000).fadeOut(300);
+                'success' : function(){         
+                    $('#'+ msg_id).css('display', 'block'); 
+                    $('#'+ msg_id).delay(1000).fadeOut(300);
                    
                 }
             })
@@ -591,7 +590,11 @@ function submit_review(){
     $.ajax({
         'url' : '/post_review',
         'method': 'POST',
-        'data': {'food_item_id': $('#item_id').val(), 'review' : $('#review').val()},   
-        'dataType' : 'script'
+        'data': {'food_item_id': $('#item_id').val(), 'review' : $('#review').val(), 'order_id' : $('#order_id').val()},   
+        'dataType' : 'script',
+        'success' : function(){
+            $('#reviewAlert').modal('hide');  
+            $('#review').val("");  
+        }
     })
 }
