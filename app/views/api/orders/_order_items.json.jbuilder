@@ -33,7 +33,14 @@ end
 json.order_progress order.order_status_history_string
 json.payment_status order.payment_status
 json.payment_value order.total
-json.couponID order.coupon_id
+
+json.coupon do
+  json.coupon_used !order.coupon.blank?
+  json.coupon_id order.coupon.blank? ? '' : order.coupon.id
+  json.coupon_name order.coupon.blank? ? '' : order.coupon.name
+  json.coupon_code order.coupon.blank? ? '' : order.coupon.coupon_code
+end
+
 json.deliverySlot order.delivery_slot
 json.payment_mode (order.parent_order.blank? ? order.payment_mode : order.parent_order.payment_mode)
 
