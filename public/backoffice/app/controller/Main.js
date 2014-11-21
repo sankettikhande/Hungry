@@ -827,7 +827,7 @@ for (var i = 0; i < records.length; i++) {
                 innhtml = '<a href="#" onclick="ondeliverd(\'' + String(id) + '\');">Delivered</a> , <a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
             else if (status == "Canceled" || status == "Delivered" || status == "Returned" || status == "Reordered")
                 innhtml = '<a href="#" onclick="OrderdetailPopup(\'' + String(id) + '\',\'' + status + '\');"> View</a>';
-            debugger;
+   
             str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + String(id) + '</a></td><td>' + records[i]["deliverySlot"] + '</td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_name"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');"> ' + records[i]["customer_contact_number"] + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["payment_mode"] + '</a></td><td> <a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["order_progress"] + '</a></td>';
             str += '<td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + (records[i]["order_items"][0] == undefined ? "" : records[i]["order_items"][0]["meal_type"]) + '</a></td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["confirmed_at"] + '</td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup2(\'' + String(id) + '\',\'orderno\');">Print</td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["address"].area + '</td><td><a href="#" style="text-decoration:none;color:black;" onclick="OrderdetailPopup(\'' + String(id) + '\',\'orderno\');">' + records[i]["address"].sub_area + '</td></a>';
             str += '</a>';
@@ -1073,18 +1073,18 @@ function viewordetail(id,from)
 
             html += '</table></td></tr></table></td></tr><tr><td><div style="float: right; width: 30%"><select id="ddlaction"><option value="0">Select Action</option><option value="Canceled">Canceled</option><option value="Damaged">Damaged</option>';
             //<option value="Ordered">Ordered</option><option value="Returned">Returned</option>
-            html += '</select><button onclick="onbtnaction(\'' + String(records["id"]) + '\');">Submit</button></div></td></tr><tr><td><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Select</th><th>Item ID</th><th>Name</th><th>Box No</th><th>Qty</th><th>Unit Price</th><th>Row Total</th><th>Status</th></tr></thead><tbody>';
+            html += '</select><button onclick="onbtnaction(\'' + String(records["id"]) + '\');">Submit</button></div></td></tr><tr><td><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Select</th><th>Name</th><th>Chef Name</th><th>Box No</th><th>Qty</th><th>Unit Price</th><th>Row Total</th><th>Status</th></tr></thead><tbody>';
             
             var orders = records["order_items"];
             for (var i = 0; i < orders.length; i++)
             {
                 
-                html += '<tr class="datarow2"><td><input type="checkbox" value="' + orders[i].menu_item_id + '" id="orderchkbox_' + String(i) + '" /></td><td>1</td><td>' + orders[i].dish_name + '</td><td>1</td><td>' + orders[i].quantity + '</td><td>' + orders[i].rate + '</td><td>' + orders[i].menu_item_total + '</td><td>' + orders[i].order_status + '</td></tr>';
+                html += '<tr class="datarow2"><td><input type="checkbox" value="' + orders[i].menu_item_id + '" id="orderchkbox_' + String(i) + '" /></td><td>' + orders[i].dish_name + '</td><td>' + orders[i].cheff + '</td><td>1</td><td>' + orders[i].quantity + '</td><td>' + orders[i].rate + '</td><td>' + orders[i].menu_item_total + '</td><td>' + orders[i].order_status + '</td></tr>';
                 
             }
 
         
-            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"><textarea rows="10" cols="36" style= "width:100%;border: 1px solid black">Order History and Comments</textarea></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Coupon Id : ' + records["couponID"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Payable Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
+            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"><textarea id="TxtTweets1" rows="10" cols="36" style= "width:100%;border: 1px solid black"   onfocus="ChkOnFocus(this.id,this.value);" onblur="ChkOnBlur(this.id,this.value);" >Order History and Comments</textarea></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Coupon Name : ' + records["coupon"].coupon_name + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Payable Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
             var obj = Ext.getCmp('OrderViewpanel');            
             obj.setHtml(html);
             HolaChef.app.ShowHideLoader(false);
@@ -1132,7 +1132,7 @@ function viewordetail2(id,from)
             html += '<tr><td>' + pin + '</td></tr>';
             html += '<tr><td>' + land + '</td></tr>';
 
-            html += '</table></div></td></tr>';
+            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td>Delivery Slot :</td><td>' + records["deliverySlot"] + '</td></tr><tr><td>Payment :</td><td>' + records["payment_mode"] + '</td></tr></table></td></tr>';
 
             if (from == "Dispatched") {
                 var runner = records["runner"];
@@ -1614,6 +1614,30 @@ function predicatBy(prop){
         }
             return 0;
         }
+}
+
+function _g() { return document.getElementById(arguments[0]); }
+
+function ChkOnFocus(id, val) {
+ 
+   if (_g(id).value == 'Order History and Comments')
+  _g(id).value = '';
+ }
+
+function ChkOnBlur(id, val) {
+            
+  if (_g(id).value == '')
+ _g(id).value = 'Order History and Comments';
+}
+function submitComment(id)
+{ 
+  if(TxtTweets1.value == 'Order History and Comments')
+  {
+   alert('Please enter comment ');
+   return;
+  }
+  
+
 }
 Ext.override(Ext.MessageBox, {    
     hide:  function() {
