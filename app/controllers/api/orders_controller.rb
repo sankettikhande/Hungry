@@ -1,6 +1,7 @@
 class Api::OrdersController < ApiController
   def index
     @orders = Order.includes(:parent_order, :runner, :hola_user, {:ordered_menus => [:cooking_today, {:food_item => :meal_info}]}).order("orders.id desc")
+    @orders = @orders.where(order_type: "Regular")
     @orders = @orders.where("DATE(orders.created_at) >= ? ", params[:from_date]) if !params[:from_date].blank?
     @orders = @orders.where("DATE(orders.created_at) <= ? ", params[:to_date]) if !params[:to_date].blank?
     @orders = @orders.where("DATE(orders.created_at) >= ? ", Date.today) if (params[:from_date].blank? && params[:to_date].blank?)
