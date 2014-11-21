@@ -492,6 +492,33 @@ $(document).ready(function(){
             })
         }
     });
+
+
+    $('.star').raty({
+        path:'/assets/',
+        half: true,
+        scoreName: 'food_item[ratings]',
+        score: function() {
+            return $(this).attr('data-score');
+        },
+        click: function(score, evt) {
+            var id = $(this).data().id
+            
+            $.ajax({
+                'url' : '/update_ratings',
+                'type' : 'POST',
+                'data' : {'food_item_id': parseInt(id), 'food_item_ratings': $(this).data().score},
+                'dataType' : 'script',
+                'success' : function(){            
+                    id = '#msg_' + id;                    
+                    $(id).css('display', 'block'); 
+                    $(id).delay(1000).fadeOut(300);
+                   
+                }
+            })
+        }
+    });    
+
     if ($(".dish-image").length > 0){
         $(".recipe-image").removeClass('hidden')
         $(".recipe-name").addClass('hidden')
@@ -559,3 +586,12 @@ $(document).ready(function(){
     })
   });
 });
+
+function submit_review(){   
+    $.ajax({
+        'url' : '/post_review',
+        'method': 'POST',
+        'data': {'food_item_id': $('#item_id').val(), 'review' : $('#review').val()},   
+        'dataType' : 'script'
+    })
+}

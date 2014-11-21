@@ -1148,7 +1148,12 @@ html{overflow-x:hidden}
 .charged-cost {margin:0;color: #ff9900;font-family: 'robotobold',Helvetica,Sans-serif;font-size: 1.3em;}
 
 .order-count {font-weight: bold;}
-.prev-order-wrapper {margin-top: 10px;}
+.prev-order-wrapper {margin-top: 10px;height: 225px;}
+.prev-order-wrapper .table {margin-bottom: 10px;border:1px solid #ccc;background: #f6f6f6;}
+.prev-order-wrapper:nth-child(odd) .table {background: #e6e6e6;}
+.prev-order-wrapper thead td {font-family: 'robotobold',Helvetica,Arial,Sans-serif;}
+.prev-order-wrapper thead {background: #ccc;}
+
 .p-order-title {font-family: 'robotobold',Helvetica,Sans-serif;color: #535353;}
 .p-order-title .p-order-count:before {content: 'x';color: #535353;margin-left: 2px;margin-right: 2px;}
 .p-order-title .p-order-count {color: #000;}
@@ -1283,3 +1288,16 @@ input[type='number'] {
 
 
 .review-bar-g {padding: 6px 0;overflow: hidden;color: #6A6969}
+
+
+.img-full {width: 100%}
+
+.order_history_rating_msg{
+  color: #ff9901;
+  display: none;
+  float: left;
+  font-weight: bold;
+  line-height: 1.5;
+  padding-left: 5px;
+  padding-top: 10px;
+}
