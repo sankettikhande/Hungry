@@ -2,11 +2,15 @@ if (<%= !"#{request.referer}".include?('review_order')%>) {
 		$("body").append("<%= j render(:partial => 'layouts/footer') %>");
 	}
 $("#cheff_footer #footer div.col-xs-12 ul").removeClass("hidden");
+$('a#bag-count').prop('href', '/review_order');
 if (<%= !"#{request.referer}".include?('review_order')%>) {
        $("#footer .col-xs-12").empty();
        $("#footer .col-xs-12").html("<%= escape_javascript(render :partial => 'checkout_details' )%>");
    }
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
-$("#review_order_total").html("<%=@total%>");
+$("#review_order_total").html("<%= @total%>");
+$("#discount").html("<%= @discount %>")
+$("#items_total").html("<%=@total + @discount %>");
 $(".total_amount").html("<%=@total%>");
+$(".navbar-header div.pull-right a").text("<%= collect_cart_quantity ? collect_cart_quantity : 0 %>");

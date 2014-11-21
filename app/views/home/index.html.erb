@@ -1,8 +1,7 @@
-
 <div class="container">
 <div class="row">
   <div class="col-xs-12 paddingLR0">
-    <div id="hola-containerx  ">
+    <div id="hola-containerx">
       <% today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
       <% if flash[:notice] %>
         <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
@@ -11,19 +10,32 @@
         <div class="alert alert-danger" role="alert"><%= flash[:notice] %></div>
       <% end %>
       <% if @todays_menu %>
+          <ul class="nav nav-tabs nav-justified layout-tabbed">
           <% CookingToday.meal_types.each do |meal_type| %>
-            <% next unless meal_available? (meal_type) %>
+            <%# next unless meal_available? (meal_type) %>
             <% meals_available = CookingToday.todays_menu_by_type(meal_type) %>
-
-            <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
+                <li id= "li_<%= meal_type %>" class= "<%= (current_live_meal == meal_type) ? 'active' : '' %>"><a href="#<%= meal_type %>" data-toggle="tabs">
+                   <div class="text-center show-time followMeBar" data-category="<%= meal_type %> <span class='time-block'> (<%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> to <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %>)</span>" > </div>
+                   <div class="category_header"> <%= meal_type %> </div>
+                  <div class="category_header2">( <%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> - <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %> )</div>
+                </a></li>
           <% end %>
-
-      <% end %>
+         </ul>
+          <div class="tab-content">
+             <% CookingToday.meal_types.each do |meal_type| %>
+             <%# next unless meal_available? (meal_type) %>
+             <div class="tab-pane <%= current_live_meal == meal_type ? "active" :"" %>" id="<%= meal_type %>">
+               <% meals_available = CookingToday.todays_menu_by_type(meal_type) %>
+               <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
+             </div>
+             <% end%>
+          </div>
+    <% end %>
 
     </div>
     <input type="hidden" id="total_price" value= <%= calculate_total_price() %> />
     <div id="recipe-modal">
-      <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static">
+      <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" data-backdrop="static">
         <input type="hidden" id="selected_item" value="" />
         <input type="hidden" id="total_price" value="0" />
 
@@ -48,3 +60,113 @@
   </div>
 </div>
 </div>
+
+<div class="hidden">
+<section class="social-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="orange-text text-center">People talk about Us</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="carousel slide" id="testimo-slider" data-ride="carousel" data-interval="5000">
+          <div class="carousel-inner text-center">
+            <div class="item active">
+              <figure class="user-testimo">
+                <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c2.0.148.148/p148x148/10271565_1439954799586108_8520418298721759883_n.jpg?oh=03c7a54eb4808baabb8f32a8f6f7ca16&oe=54BCFF5C&__gda__=1422221528_9b33d36601bac4c7e443c1575addba56" class="tt-user-dp center-block">
+                <figcaption class="testimo-text">
+                  <h6>Totally Sensational!!! #holachef you guys sent us a bagful of happiness and surprise. I am FLOORED! Food deliveries at the next level.</h6>
+                  <p>Foodowl, Andheri, Mumbai</p>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="item">
+              <figure class="user-testimo">
+                <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c3.3.37.37/p43x43/480249_10200358052782894_1503660046_n.jpg?oh=81db8b24d14975ee5962c2f8221bf00c&oe=54CAB948&__gda__=1422913524_33a8d0153975f8f0d9757f2c2a207f8a" class="tt-user-dp center-block">
+                <figcaption class="testimo-text">
+                  <h6>you guys are doing a superb job Holachef!</h6>
+                  <p>Hemant V Tendolkar, Powai, Mumbai</p>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="item">
+              <figure class="user-testimo">
+                <img src="https://pbs.twimg.com/profile_images/3649440131/0bc29feadbf18db8586a259b0abaff71_normal.jpeg">
+                <figcaption class="testimo-text">
+                  <h6>Thanks Chef Leela @hola_chef for the awesome lunch #worthCravingfor</h6>
+                  <p>Puneet Dubey, Mumbai</p>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="item">
+              <figure class="user-testimo">
+                <img src="https://pbs.twimg.com/profile_images/505601409060847616/NLahyGzD_normal.jpeg">
+                <figcaption class="testimo-text">
+                  <h6>Am super impressed with quality, quantity, packaging and taste! Yummy home food :)</h6>
+                  <p>Swati Maheshwari, Powai, Mumbai</p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <a class="carousel-control left" href="#testimo-slider" data-slide="prev"><i class="fa fa-angle-double-left"></i></a>
+          <a class="carousel-control right" href="#testimo-slider" data-slide="next"><i class="fa fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="stars-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="stars-caption">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="carousel slide" id="star-carousel" data-ride="carousel" data-interval="3000">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="assets/chef-1.jpg" class="img-responsive pull-right" alt="">
+                    <div class="carousel-caption">
+                      <p class="text-italic">
+                        “Great food is no less than art. And like any other art form, it is about talent, practice and creativity that makes every morsel Worth Craving For. What makes our chefs unique is that they come from all walks of life. Their common passion for great and authentic food is what we look for in all chefs and that is what makes them Hola Stars !”
+                      </p>
+                      <p class="credit-text">-<strong> CHEF,</strong> Mohit, Mumbai</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="fixed-text">
+                  <h1 class="orange-text">HOLA STARS</h1>
+                </div>
+                <ol class="carousel-indicators">
+                  <li data-target="#star-carousel" data-slide-to="0" class="active">
+                    <img src="assets/chef-1.jpg" alt=""></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</div>
+
+<%= content_for :bottom_content do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".layout-tabbed").click(function(e){
+        e.preventDefault();
+      })
+    })
+  </script>
+<% end %>
+<!-- hola modals -->

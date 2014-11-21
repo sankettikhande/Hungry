@@ -16,7 +16,7 @@ class Cms::OrdersController < Cms::ContentBlockController
     else
       session[:cart] << ({params[:item_id]=>{'quantity'=> params[:qty], 'price' => params[:price], 'date' => params[:date], 'dish_name' => params[:dish_name],'category' => params[:category], 'meal_type' => params[:meal_type] }})
     end
-    @total = 0
+    @total, @discount = 0, 0
     if !session[:cart].nil?
       session[:cart].each do |item|
         item.each do |item_id, item_attr|
@@ -24,6 +24,11 @@ class Cms::OrdersController < Cms::ContentBlockController
         end
       end
     end
+
+    calculate_order_amounts
+
+    @total = @total - @discount
+
     respond_to do |format|
       format.js
     end
@@ -95,7 +100,7 @@ class Cms::OrdersController < Cms::ContentBlockController
             if !@coupon.blank?
               @coupon_id = item_attr["coupon_id"]
               used_count = @coupon.no_of_used_coupons.to_i + 1
-              Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
+              #Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count, :published => true)
               @coupon.hola_users << hola_user
             else
               @discount_amount = 0
@@ -161,7 +166,7 @@ class Cms::OrdersController < Cms::ContentBlockController
               @coupon = Coupon.find_by_id(item_attr["coupon_id"])
               if !@coupon.blank?
                 used_count = @coupon.no_of_used_coupons.to_i + 1
-                Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count)
+                #Coupon.where(:id => item_attr["coupon_id"]).update_all(:no_of_used_coupons => used_count, :published => true)
                 @coupon.hola_users << hola_user
                 @coupon_id = item_attr["coupon_id"]
               else
@@ -193,58 +198,51 @@ class Cms::OrdersController < Cms::ContentBlockController
   def order_confirm
     @footer = "false"
     @order = Order.find(params[:order_id])
-    orders = Order.where(:parent_order_id => params[:order_id])
-    cart_quantity = []
-    if !orders.blank?
-      orders.each do |order|
-        menus = order.ordered_menus
-        menus.each do |menu|
-          @cart_quantity = cart_quantity << menu.quantity.to_i
-        end
-      end
-    else
-      menus = @order.ordered_menus
-      menus.each do |menu|
-        @cart_quantity = cart_quantity << menu.quantity.to_i
-      end
-    end
-    @cart_quantity = @cart_quantity ?  @cart_quantity.inject{|sum,x| sum + x } : 0
-    session[:cart] = [] #if @order.
-    if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
-      if !orders.blank?
-        orders.each do |order|
-          menus = order.ordered_menus
-          menus.each do  |ordered_menu|
-            cooking_today  = ordered_menu.cooking_today
-            # raise cooking_today.inspect
-            if (cooking_today.not_orderable? && cooking_today.date == Date.today.to_s)
-              session[:cart] = nil
-              redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
-              @confirm = false
-            else
-              cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
-              order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")
-              @confirm = true
+    if @order.created?
+      orders = Order.where(:parent_order_id => params[:order_id])
+      session[:cart], updated_ordered_menus = [], []
+      if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
+        if !orders.blank?
+          orders.each do |order|
+            menus = order.ordered_menus
+            updated_ordered_menus = []
+            menus.each do  |ordered_menu|
+              cooking_today  = ordered_menu.cooking_today
+              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
+                updated_ordered_menus << cooking_today
+                ordered_menu.increase_food_items_served_count
+              else
+                OrderedMenu.restore_ordered_menus(updated_ordered_menus)
+                clear_session
+                redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+              end
             end
           end
-        end
-        @order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")  if @confirm == true
-      else
-      @order.ordered_menus.each do |ordered_menu|
-        cooking_today  = ordered_menu.cooking_today
-        # raise cooking_today.inspect
-        if (cooking_today.not_orderable?  && cooking_today.date == Date.today.to_s)
-          session[:cart] = nil
-          redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+          orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: "On Delivery")}            
+          @order.update_attributes!(order_status: "Confirmed", payment_mode: "On Delivery")#  if @confirm == true
+          clear_session
         else
-          cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
-          @order.update_attributes(order_status: "Confirmed", payment_mode: "On Delivery")
+          @order.ordered_menus.each do |ordered_menu|
+            cooking_today  = ordered_menu.cooking_today
+            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
+              updated_ordered_menus << cooking_today
+              ordered_menu.increase_food_items_served_count
+            else
+              OrderedMenu.restore_ordered_menus(updated_ordered_menus)
+              clear_session
+              redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+            end
+
+            @order.update_attributes!(order_status: "Confirmed", payment_mode: "On Delivery")#  if @confirm == true
+            clear_session
+          end
         end
       end
+      respond_to do |format|
+        format.html {render :layout => 'application'}
       end
-    end
-    respond_to do |format|
-      format.html {render :layout => 'application'}
+    else
+      redirect_to "/mobile", alert: "Order placed already!" and return
     end
   end
 
@@ -275,61 +273,66 @@ class Cms::OrdersController < Cms::ContentBlockController
     params.delete("action")
     @txstatus = params[:TxStatus]
     @order = Order.find(params[:TxId])
-    orders = Order.where(:parent_order_id => params[:order_id]) if params[:order_id]
-    if params[:TxStatus] == "SUCCESS"
-      if !orders.blank?
-        orders.each do |order|
-          menus = order.ordered_menus
-          menus.each do  |ordered_menu|
-            cooking_today  = ordered_menu.cooking_today
-            cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
-            food_item = FoodItem.find(ordered_menu.dish_id)
-            food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + ordered_menu.quantity.to_i)) if food_item
+    updated_ordered_menus = []
+    if @order.created?
+      orders = Order.where(:parent_order_id => params[:order_id]) if params[:order_id]
+      if params[:TxStatus] == "SUCCESS"
+        if !orders.blank?
+          orders.each do |order|
+            menus = order.ordered_menus
+            updated_ordered_menus = []
+            menus.each do  |ordered_menu|
+              cooking_today  = ordered_menu.cooking_today
+              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
+                updated_ordered_menus << cooking_today
+                ordered_menu.increase_food_items_served_count
+              else
+                OrderedMenu.restore_ordered_menus(updated_ordered_menus)
+                clear_session
+                redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+              end
+            end
           end
-          order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
-                                  :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email])
-
+          orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: "On Delivery")}            
+          @order.update_attributes!(order_status: "Confirmed", payment_mode: "On Delivery")#  if @confirm == true
+          clear_session
+        else
+          @order.ordered_menus.each do |ordered_menu|
+            cooking_today  = ordered_menu.cooking_today
+            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
+              updated_ordered_menus << cooking_today
+              ordered_menu.increase_food_items_served_count
+            else
+              OrderedMenu.restore_ordered_menus(updated_ordered_menus)
+              clear_session
+              redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
+            end
+            @order.update_attributes!(order_status: "Confirmed", payment_mode: "On Delivery")#  if @confirm == true
+            clear_session
+          end
         end
-        @order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
-                                 :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email])
-
+        ct = CitrusLib.new
+        ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
+        secSignature = ct.getHmac(@data)
+        if secSignature != @signature    # post signature verification to prevent forgery
+          @status = false
+        else
+          @statusmsg = 'Verified Response'
+        end
+        respond_to do |format|
+          format.html {render 'order_confirm',:layout => 'application'}
+        end
       else
-        @order.update_attributes(:order_status => "Confirmed", :payment_status => "Paid", :payment_gateway_response => params,
-                               :firstName => params[:firstName],:lastName => params[:lastName],:email => params[:email])
-      # @@cart_items.each do |item_id, quantity|
-      #   cooking_today  = CookingToday.find(item_id)
-      #   cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + quantity.to_i)) if cooking_today
-      # end
-      @order.ordered_menus.each do |ordered_menu|
-        cooking_today  = ordered_menu.cooking_today
-        cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i)) if cooking_today
-        food_item = FoodItem.find(ordered_menu.dish_id)
-        food_item.update_attributes(:dish_served => (food_item.dish_served.to_i + ordered_menu.quantity.to_i)) if food_item
-      end
+        if @txstatus == 'CANCELED'
+          @order.update_attributes(:payment_status => "User Canceled", :payment_gateway_response => params)
+        else
+          @order.update_attributes(:payment_status => "Payment Gateway Failed", :payment_gateway_response => params)
+        end
+        session[:cart] = @order.build_session
+        render "payment_gateway", :layout => 'application'
       end
     else
-      @order.update_attributes(:payment_status => "Payment Gateway Failed", :payment_gateway_response => params) unless @txstatus == 'CANCELED'
-    end
-
-    if @txstatus == 'CANCELED'
-      @statusmsg=@txmsg
-      session[:cart] = @order.build_session
-      @order.update_attributes(:payment_status => "User Canceled", :payment_gateway_response => params)
-      render "payment_gateway", :layout => 'application'
-    elsif @txstatus == 'SUCCESS'
-      ct = CitrusLib.new
-      ct.setApiKey(Settings.citrus_gateway.apikey,Settings.citrus_gateway.gateway)
-      secSignature = ct.getHmac(@data)
-      if secSignature != @signature    # post signature verification to prevent forgery
-        @status = false
-      else
-        @statusmsg = 'Verified Response'
-      end
-      respond_to do |format|
-        format.html {render 'order_confirm',:layout => 'application'}
-      end
-    else
-      render "payment_gateway", :layout => 'application'
+      redirect_to "/mobile", alert: "Order placed already!" and return
     end
   end
 
@@ -376,4 +379,10 @@ class Cms::OrdersController < Cms::ContentBlockController
       redirect_to "/order-confirm/#{params[:order_id]}"
     end
   end
+
+  # Added for removal of added coupon on navigation issue 
+  # On 19/11/2014 By Pradnya Kulkarni 
+  # Contact: pradnya@sodelsolutions.com
+  
+    
 end

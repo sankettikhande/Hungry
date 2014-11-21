@@ -47,10 +47,10 @@
       </tr>
       <tr>
         <td style="width:105px">Address :</td>
-        <td><%= @order.addressStreet1 %></br>
-        		<%= @order.addressStreet2 %></br>
-        		<%= @order.addressCity %></br>
-        		<%= @order.addressZip %>
+        <td><%= @order.delivery_address.try(:building_name) %></br>
+        		<%= @order.delivery_address.try(:street) %></br>
+        		<%= @order.delivery_address.try(:city) %></br>
+        		<%= @order.delivery_address.try(:pin) %>
         </td>
       </tr>
     </tbody>

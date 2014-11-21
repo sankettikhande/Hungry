@@ -11,6 +11,7 @@
  *= require_self
  *= require bootstrap.min
  *= require font-awesome.min
+ 
  *= require custom
  *= require validationEngine.jquery
  *= require jquery.tagit

@@ -11,7 +11,7 @@ class CookingToday < ActiveRecord::Base
   @@meal_type_time_span = {
                            "Lunch" => {from: "00:01 AM", to: "04:00 PM",fromDisplay: "12:00 AM", toDisplay: "04:00 PM"},
                            #"Evening Snacks" => {from: "00:01 AM", to: "07:00 PM",fromDisplay: "04:30 PM", toDisplay: "07:00 PM"},
-                           "Dinner" => {from: "00:01 AM", to: "11:30 PM",fromDisplay: "07:30 PM", toDisplay: "11:30 PM"}
+                           "Dinner" => {from: "00:01 AM", to: "11:30 PM",fromDisplay: "08:00 PM", toDisplay: "11:00 PM"}
                            #,"All Time Available" => {from: "12:00 AM", to: "11:59 PM"}
                           }
 
@@ -23,10 +23,14 @@ class CookingToday < ActiveRecord::Base
   validates :date, :presence => true
   validates :meal_type, presence: true
   validates :meal_type, inclusion: {in: @@meal_types}, :unless => Proc.new {|c| c.meal_type.blank?}
+  validate :order_quantity
+
 
   # before_save :set_meal_time
   before_save :set_category
   before_destroy :check_destroyability
+
+  scope :todays_menu, lambda { where(date: Date.today.to_s) }
 
   def check_destroyability
     if self.date == Date.today && self.published
@@ -34,6 +38,14 @@ class CookingToday < ActiveRecord::Base
       return false
     end
   end
+
+  def order_quantity
+    if ordered_changed? and ordered > quantity
+      errors.add(:base, "#{food_item.name} is out of stock.")
+      return false
+    end
+  end
+
   def name
     "Chef: #{self.cheff.chef_coordinate.name} | Dish: #{self.food_item.meal_info.name} " if self.cheff && self.food_item
   end

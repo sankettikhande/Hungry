@@ -1,6 +1,7 @@
 class Api::OrdersController < ApiController
   def index
     @orders = Order.includes(:parent_order, :runner, :hola_user, {:ordered_menus => [:cooking_today, {:food_item => :meal_info}]}).order("orders.id desc")
+    @orders = @orders.where(order_type: "Regular")
     @orders = @orders.where("DATE(orders.created_at) >= ? ", params[:from_date]) if !params[:from_date].blank?
     @orders = @orders.where("DATE(orders.created_at) <= ? ", params[:to_date]) if !params[:to_date].blank?
     @orders = @orders.where("DATE(orders.created_at) >= ? ", Date.today) if (params[:from_date].blank? && params[:to_date].blank?)
@@ -85,6 +86,22 @@ class Api::OrdersController < ApiController
     else
       @message = new_order.errors.full_messages
       render "api/failure"
+    end
+  end
+
+  def add_comment
+    @order = Order.find params[:order_id]
+    if @order
+      if !params[:comment].blank? and @order.update_attributes(comment: params[:comment])
+        @message = "Order comment updated"
+        render "api/success"
+      else
+        @message = @order.errors.full_messages
+        @message << "Comment can not be blank" if params[:comment].blank?
+        render "api/failure"
+      end
+    else
+      @message = {"msg" => "Order not found", "order_id" => params[:order_id]}
     end
   end
 

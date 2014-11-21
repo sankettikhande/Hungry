@@ -1,7 +1,8 @@
-<div class="navbar navbar-default navbar-fixed-top" role="navigation" id="hola-menu">
+<div class="navbar navbar-default hola-lg-navbar navbar-fixed-top" role="navigation" id="hola-menu">
   <div class="container">
     <div class="navbar-header">
-      <ul class="navbar-titlebar">
+      <a class="navbar-brand visible-desktop hidden-xs hidden-sm hidden-ipad" href="/desktop"><img src="assets/hola-logo-new.png" alt=""></a>
+      <ul class="navbar-titlebar visible-ipad hidden-desktop">
         <li class="side-menu-btn">
           <button type="button" class="navbar-toggle pull-left" id="sidebar-button" data-toggle="offcanvas" data-target="#sidebar">
             <span class="sr-only">Menu</span>
@@ -10,16 +11,32 @@
             <span class="icon-bar"></span>
           </button>
         </li>
-
         <li><a class="navbar-brand" data-toggle="offcanvas" data-target="#sidebar" href="javascript:void(0)">Hola</a></li>
         <li class="dropdown page-title" id="pg_title">
           <%= set_drop_down_title(params[:controller], params[:action], params[:id] ).html_safe %>
         </li>
       </ul>
+      <ul class="nav navbar-nav navbar-right top-nav visible-desktop hidden-xs hidden-sm hidden-ipad">
+        <li><a href="#">Log in/Sign Up</a></li>
+         <li class="dropdown hidden-xs hidden-sm hidden-ipad">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <span class="orange-text">Poonam! <i class="fa fa-gear"></i></span></a>
+            <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Order History</a></li>
+            <li><a href="#">Address Book</a></li>
+            <li><a href="#">My Reviews</a></li>
+            <li><a href="#">Log Out</a></li>
+            </ul>
+        </li>
 
-        <div class="pull-right">
-            <%= link_to_if(request.env['PATH_INFO'] == '/add-address', "", "/review_order", :class => "btn-back text-hide") {link_to "Back", back_actions(params), :class => "btn-back text-hide" unless params[:controller] == "home" && params[:action] == "mobile"} %>
-          </div>
+      </ul>
+      <div class="pull-right">
+      <% cart_quantity =  collect_cart_quantity.to_i %>
+      <a href="<%= (cart_quantity > 0) ? '/review_order' : '#' %>" class="bag-count" id="bag-count">
+       <%= cart_quantity %>
+      </a>
+      <%= link_to_if(request.env['PATH_INFO'] == '/add-address', "", "/review_order", :class => "btn-back text-hide") {link_to "Back", back_actions(params), :class => "btn-back text-hide" unless params[:controller] == "home" && params[:action] == "mobile"} %>
+      </div>
     </div>
   </div>
 </div> <!-- navbar ends -->
+

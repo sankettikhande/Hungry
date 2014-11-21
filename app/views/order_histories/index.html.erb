@@ -1,54 +1,105 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row row-offcanvas row-offcanvas-left">
     <div class="col-xs-12">
       <% if @order_histories.blank?  %>
         <div class="row vertical-center-row NoOrder">
-        <div class="col-lg-12">
+          <div class="col-lg-12">
             <div class="row">
-                <div class="col-xs-8 col-xs-offset-2 NoOrder1" >No order history found.</div>
+              <div class="col-xs-8 col-xs-offset-2 NoOrder1">No order history found.</div>
             </div>
+          </div>
         </div>
-    </div>
       <% else %>
+        <div class="row">
+          <% index = 1 %>
           <% @order_histories.each do |order| %>
-              <div class="row prev-order-wrapper">
-                <div class="col-xs-12">
-                  <table class="table table-white">
-                    <colgroup>
-                      <col class="col-xs-9"><col class="col-xs-3">
-                    </colgroup>
-                    <thead>
+            <div class="prev-order-wrapper col-xs-12 col-sm-6 col-md-4">
+              <table class="table">
+                <colgroup>
+                  <col class="col-xs-9"><col class="col-xs-3">
+                </colgroup>
+                <thead>
+                  <tr>
+                    <td>
+                      <% if order.date == Date.today %>
+                        Today
+                      <% else %>
+                        <% date = order.date %>
+                        <%= date.strftime("#{date.day.ordinalize} %b, %a") %>
+                      <% end %>
+                    </td>
+                    <td class="text-orange text-right roboto-b"></td>
+                  </tr>
+                </thead>
+                <tbody>                  
+                  <% order.ordered_menus.each do |ordered_menu| %>
+                    <% food_item = ordered_menu.food_item
+                    picture = ordered_menu.food_item.meal_info.picture %>
                     <tr>
-                      <td><% if order.date == Date.today %>
-                            Today
-                        <% else %>
-                            <% date = order.date %>
-                            <%= date.strftime("#{date.day.ordinalize} %b, %a") %>
-                        <% end %>
+                      <td class="p-order-title">
+                        <%= ordered_menu.food_item.meal_info.try(:name).camelize %>
+                        <span class="p-order-count">
+                          <%= ordered_menu.try(:quantity) %>
+                        </span>
+                        <span class="p-order-chefname">
+                          CHEF <%= ordered_menu.cheff.try(:chef_coordinate).try(:name) %>
+                        </span>
                       </td>
-                      <td class="text-orange text-right roboto-b"></td></tr>
-                    </thead>
-                    <tbody>
-                    <% order.ordered_menus.each do |ordered_menu| %>
-                        <tr>
-                          <td class="p-order-title"><%= ordered_menu.food_item.meal_info.try(:name).camelize %>
-                            <span class="p-order-count"> <%= ordered_menu.try(:quantity) %></span>
-                            <span class="p-order-chefname">CHEF <%= ordered_menu.cheff.try(:chef_coordinate).try(:name) %></span>
-                          </td>
-
-                        </tr>
-                    <% end %>
-                    <tr>
-                      <td class="roboto-b text-orange">Total</td>
-                      <td class="p-total-cost text-orange text-right"><%= order.try(:total) %></td>
+                      <td>
+                        <img class="img-full center-block" src="<%= (food_item && picture ) ? picture.image : "" %>" alt="">
+                      </td>
                     </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                    <tr>
+                      <td>
+                        <div class="star" style="float:left;" data-score="<%= ordered_menu.food_item.reviews.find_by_hola_user_id_and_order_id(hola_current_user, order.id).try(:ratings) %>" data-id = "<%= food_item.id  if food_item %>" data-order="<%= order.id %>" >
+                        </div>    
+                        <div class="order_history_rating_msg" id="msg_<%= index %>">Thank You!</div>                     
+                      </td>                                              
+                      <td>
+                        <a href="#" onclick="post_review('<%= food_item.id %>','<%= order.id %>')"> Review </a>                       
+                      </td>
+                    </tr>                                  
+                    <% index = index + 1 %>                    
+                  <% end %>
+                  <tr>
+                    <td class="roboto-b text-orange">Total</td>
+                    <td class="p-total-cost text-orange text-right"><%= order.try(:total) %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           <% end %>
+        </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<div class="modal fade bs-example-modal-sm" data-backdrop="false" id="reviewAlert" tabindex="-1">
+  <div class="modal-dialog modal-sm modal-alert">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button data-dismiss="modal" class="btn-close pull-right">x</button>
+        <%= image_tag ('/assets/hola-logo-xs.png'), :id => 'review_page_modal_logo' %>
+      </div>
+      <div class="modal-body">                        
+        <input type="hidden" name="order_id" id="order_id" value=""/>
+        <input type="hidden" name="food_item_id" id="item_id" value=""/>
+        <textarea type="text" name="food_item_review" id="review" ></textarea><br/><br/>
+        <button class="btn btn-saffron" onclick="submit_review()">Submit</button>       
+      </div>        
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function post_review(food_item_id, order_id){    
+    <% if hola_current_user %>
+      $('#reviewAlert').modal('show');    
+      $('#item_id').val(food_item_id);
+      $('#order_id').val(order_id);
+    <% else %>
+      $('#login_modal').modal('show')
+    <% end %>
+  };
+</script>

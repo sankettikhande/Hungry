@@ -2,8 +2,10 @@ $("body").append("<%= j render(:partial => 'layouts/footer') %>");
 if (<%= session[:cart].blank? %>){
   $("#footer .col-xs-12").empty();
   $("body #footer").addClass('hidden');
+  $("a#bag-count").prop("href", "#");
 }
 $("#total_price").val("<%=@total%>");
 $("#bill_amount").html("<%=@total%>/-");
 $("#review_order_total").html("<%=@total%>");
 $(".total_amount").html("<%=@total%>");
+$(".navbar-header div.pull-right a").text("<%= collect_cart_quantity ? collect_cart_quantity : 0 %>");

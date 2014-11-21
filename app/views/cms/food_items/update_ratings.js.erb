@@ -1,6 +1,6 @@
 <% if hola_current_user %>
-  $("div.rating_msg").css('display','block');
-  $("div.rating_msg").html("Thank You!");
+  // $("div.rating_msg").css('display','block');
+  // $("div.rating_msg").html("Thank You!");
   $("#average_rating").html("<%= @food_item.average_rating %>/5")
 <% else %>
    $('#login_modal').modal('show')

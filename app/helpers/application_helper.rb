@@ -90,7 +90,22 @@ module ApplicationHelper
     return total
   end
 
-  def link_to_remove_fields(name, f)
+  def collect_cart_quantity
+    if session[:cart]
+      cart_quantity = []
+      session[:cart].each do |item|
+        item.each do |item_id, item_attr|
+          cart_quantity = cart_quantity << item_attr["quantity"].to_i
+        end
+      end
+      cart_quantity = cart_quantity.inject{|sum,x| sum + x }
+      return cart_quantity
+    end
+  end
+
+
+
+def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
   end
 
@@ -116,7 +131,7 @@ module ApplicationHelper
     when controller == "cms/food_items" && action == "signature_dishes"
       return "Signature Dish"
     when controller == "cms/orders" && action == "payment_gateway"
-      return "Select Payment Method"
+      return "Payment Method"
     when controller == "cms/orders" && action == "order_confirm"
       return "Thank You!"
     when controller == "cms/cheffs" && action == "show_details"
@@ -290,7 +305,15 @@ module ApplicationHelper
     meal_availability = CookingToday.meal_type_time_span[meal_type]
     meal_availability_from_time = Time.zone.parse("#{Date.today} #{meal_availability[:from]}")
     meal_availability_to_time = Time.zone.parse("#{Date.today} #{meal_availability[:to]}")
-    (Time.now < meal_availability_to_time)
+    # (Time.now < meal_availability_to_time)
+
+    (Time.now > meal_availability_from_time and Time.now < meal_availability_to_time)
+  end
+
+  def current_live_meal
+    CookingToday.meal_types.each do |meal_type|
+      return meal_type if meal_available? meal_type
+    end
   end
 
 

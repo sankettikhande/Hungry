@@ -1,7 +1,10 @@
 class Coupon < ActiveRecord::Base
-  acts_as_content_block
+  attr_accessor :skip_callbacks
+  acts_as_content_block({:versioned => false})
+  
   attr_accessible :coupon_code
   has_and_belongs_to_many :hola_users, :join_table => "hola_user_coupons", :foreign_key => "coupon_id"
+  has_many :orders
 
   validates :coupon_code, :coupon_type, :no_of_coupons,  presence: true
   validates :percentage, :presence => true, if: Proc.new { |p| p.flat.blank? }
@@ -25,5 +28,10 @@ class Coupon < ActiveRecord::Base
       confirm_order_count = HolaUser.confirm_orders_last_3_days(user_id)
       return confirm_order_count && confirm_order_count > 0 ? "" : "You can't use this #{self.coupon_code} coupon code."
     end
+  end
+
+  def discount total = nil
+    coupon_discount_type = flat.blank? ? "percentage" : "flat"
+    coupon_discount_type == "flat" ? flat : Coupon.calculate_percentage(total, percentage)
   end
 end
