@@ -383,14 +383,6 @@ class Cms::OrdersController < Cms::ContentBlockController
   # Added for removal of added coupon on navigation issue 
   # On 19/11/2014 By Pradnya Kulkarni 
   # Contact: pradnya@sodelsolutions.com
-  private
-    def clear_session
-      session.delete(:cart)
-      session.delete(:lt)
-      session.delete(:dt)
-      session.delete(:coupon_code)
-      session.delete(:discountAmount)
-      session.delete(:paidAmount)
-      session.delete(:netAmount)
-    end
+  
+    
 end

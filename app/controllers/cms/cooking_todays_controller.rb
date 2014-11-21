@@ -36,6 +36,7 @@ class Cms::CookingTodaysController < Cms::ContentBlockController
       session[:cart].each do |item|
         session[:cart].delete(item) if item.keys.flatten.include?(params[:item_id])
       end
+      clear_session if session[:cart].blank?
     end
   end
 
