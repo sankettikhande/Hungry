@@ -42,14 +42,14 @@
               </div>
           <% else %>
               <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart colorItemFix about-content">
-
-                <div class="add-lens">
-                  <p class="text-center">
-                    <% if qty_left(menu) == 0 %>
-                      <span class='text-leftitem'>Sold </span><span class='text-leftitem'>Out</span>
-                    <% end %>
-                  </p>
-                </div>
+                <% if qty_left(menu) == 0 %>
+                  <div class="add-lens">
+                    <p class="text-center">                    
+                      <span class='text-leftitem'>Sold </span>
+                      <span class='text-leftitem'>Out</span>                    
+                    </p>
+                  </div>
+                <% end %>
                 <div class="add-heart"></div>
                 <div class="recipe-name">
                   <%= menu.food_item.meal_info.name %>
