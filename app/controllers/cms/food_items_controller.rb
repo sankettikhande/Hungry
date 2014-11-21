@@ -81,9 +81,9 @@ class Cms::FoodItemsController < Cms::ContentBlockController
   def update_ratings
     if hola_current_user
       @food_item = FoodItem.find(params[:food_item_id], include: :reviews)
-      food_item_review = @food_item.reviews.find_or_create_by_hola_user_id(hola_current_user.id)
+      food_item_review = @food_item.reviews.find_or_create_by_hola_user_id_and_order_id(hola_current_user.id, params[:order_id])      
       if food_item_review
-        food_item_review.update_attributes(ratings: params[:food_item_ratings], review_date: Date.today)
+        food_item_review.update_attributes(ratings: params[:food_item_ratings], review_date: Date.today, order_id: params[:order_id])
       end
     end
     respond_to do |format|
@@ -104,9 +104,9 @@ class Cms::FoodItemsController < Cms::ContentBlockController
   def post_review
     if hola_current_user
       @food_item = FoodItem.find(params[:food_item_id], include: :reviews)
-      food_item_review = @food_item.reviews.find_or_create_by_hola_user_id(hola_current_user.id)
+      food_item_review = @food_item.reviews.find_or_create_by_hola_user_id_and_order_id(hola_current_user.id, params[:order_id])
       if food_item_review
-        food_item_review.update_attributes(review: params[:review])
+        food_item_review.update_attributes(review: params[:review], order_id: params[:order_id])
       end
     end
     respond_to do |format|
