@@ -117,9 +117,9 @@ $(document).ready(function(){
             $(this).parents('.square').find(".prod-carted span").html(quantity);
             cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) +1;           
             $(new_link).data("quantity", quantity);
-            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
-            quantity_input.val(quantity);
-            $(".navbar-header div.pull-right a").text(cart_quantity);            
+            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data(), quantity_input, quantity);
+            // quantity_input.val(quantity);
+            // $(".navbar-header div.pull-right a").text(cart_quantity);            
         }else{
             alert("Max quantity reached");
         }
@@ -135,9 +135,9 @@ $(document).ready(function(){
             $(this).parents('.square').find(".prod-carted span").html(quantity);
             cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) -1;            
             $(new_link).data("quantity", quantity)
-            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
-            quantity_input.val(quantity);
-            $(".navbar-header div.pull-right a").text(cart_quantity);
+            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data(), quantity_input, quantity);
+            // quantity_input.val(quantity);
+            // $(".navbar-header div.pull-right a").text(cart_quantity);
         }
 
     })
@@ -164,7 +164,7 @@ $(document).ready(function(){
     })
 
 
-    function update_cart(data_attribs){
+    function update_cart(data_attribs, quantity_input, quantity){
         url = (parseInt(data_attribs.quantity) > 0) ? "/orders/set_cart" : "/orders/remove_from_cart"
         if (parseInt(data_attribs.quantity) > 0){
             $(this).parents("ul.square").find('.add-cart').removeClass('hidden')
@@ -175,7 +175,10 @@ $(document).ready(function(){
                 'method': 'GET',
                 'url': url ,
                 'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
-                'dataType': 'script'
+                'dataType': 'script',
+                'complete': function(){                    
+                    quantity_input.val(quantity);
+                }
             })
 
     }

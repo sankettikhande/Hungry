@@ -1,3 +1,5 @@
+console.log('set_cart.js is called');
+
 if (<%= !"#{request.referer}".include?('review_order')%>) {
 		$("body").append("<%= j render(:partial => 'layouts/footer') %>");
 	}
@@ -15,5 +17,4 @@ $("#items_total").html("<%=@total + @discount %>");
 $(".total_amount").html("<%=@total%>");
 
 
-
-// $(".navbar-header div.pull-right a").text("<%= collect_cart_quantity ? collect_cart_quantity : 0 %>");
+ $(".navbar-header div.pull-right a").text("<%= collect_cart_quantity ? collect_cart_quantity : 0 %>");
