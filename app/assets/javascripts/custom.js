@@ -108,42 +108,36 @@ $(document).ready(function(){
     /************************************* ADD REMOVE ITEMS TO CART ********************************/
 
     $(".increase-order-item").on('click', function(){
-
-        $(this).css("display",'none');
-
         quantity_input = $(this).parent().prev().find("input");
         new_link = $($(this).parent().parent().parent().parent().find('.update-cart'));
         available_quantity = parseInt($(this).data("available-quantity"));
         quantity = parseInt(quantity_input.val()) + 1;
         $(this).parents('.square').addClass('added-2-cart');
-        if(available_quantity >= quantity){
-            quantity_input.val(quantity);
+        if(available_quantity >= quantity){            
             $(this).parents('.square').find(".prod-carted span").html(quantity);
             cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) +1;
             $(".navbar-header div.pull-right a").text(cart_quantity);
             $(new_link).data("quantity", quantity);
             update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
+            quantity_input.val(quantity);
         }else{
             alert("Max quantity reached");
         }
 
     })
 
-    $(".decrease-order-item").on('click', function(){
-
-        $(this).css("visibility","hidden");
-
+    $(".decrease-order-item").on('click', function(){        
         quantity_input = $(this).parent().next().find("input")
         new_link = $($(this).parent().parent().parent().parent().find('.update-cart'))
         quantity = parseInt(quantity_input.val()) - 1
         $(this).parents('.square').addClass('added-2-cart');
-        if(quantity >= 0){
-            quantity_input.val(quantity);
+        if(quantity >= 0){            
             $(this).parents('.square').find(".prod-carted span").html(quantity);
             cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) -1;
             $(".navbar-header div.pull-right a").text(cart_quantity);
             $(new_link).data("quantity", quantity)
             update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
+            quantity_input.val(quantity);
         }
 
     })
@@ -181,11 +175,7 @@ $(document).ready(function(){
                 'method': 'GET',
                 'url': url ,
                 'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
-                'dataType': 'script',
-                'complete': function(){
-                    $(".increase-order-item").css("display","block");
-                    $(".decrease-order-item").css("visibility","visible");
-                }
+                'dataType': 'script'
             })
 
     }
