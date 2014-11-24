@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141120111112) do
+ActiveRecord::Schema.define(:version => 20141124052748) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -853,6 +853,7 @@ ActiveRecord::Schema.define(:version => 20141120111112) do
     t.string   "area"
     t.string   "sub_area"
     t.integer  "delivery_address_id"
+    t.text     "comment"
   end
 
   add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"
@@ -1027,6 +1028,7 @@ ActiveRecord::Schema.define(:version => 20141120111112) do
     t.datetime "created_at",                                                  :null => false
     t.datetime "updated_at",                                                  :null => false
     t.integer  "hola_user_id"
+    t.integer  "order_id"
   end
 
   create_table "runner_versions", :force => true do |t|

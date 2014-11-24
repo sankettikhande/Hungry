@@ -8,6 +8,7 @@ class Runner < ActiveRecord::Base
   validates :username, uniqueness: true
 
   before_save :encode_password
+  before_validation :set_username_password, :if => Proc.new {|r| r.username.blank?}, on: :create
 
   def amount_pending
     orders_pending.collect{|a| a.total.to_i}.reduce(:+)
@@ -45,6 +46,11 @@ class Runner < ActiveRecord::Base
   def encode_password
     enc   = Base64.encode64(self.password)
     self.password = enc
+  end
+
+  def set_username_password
+    self.username = "#{self.name} #{rand.to_s[2..4]}".parameterize.underscore
+    self.password = self.username
   end
 
 end
