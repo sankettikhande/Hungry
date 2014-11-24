@@ -625,7 +625,7 @@ OldBtnHandler: function () {
             Ext.Msg.alert("Info", "No Record found...!");
     },
     onbtrefreshclick: function () {
-   HolaChef.app.Orderidfilter='0';
+        HolaChef.app.Orderidfilter='0';
         HolaChef.app.getController("Main").GetDefectGridData();
     },
     onbtndamagerefund: function () {
@@ -927,7 +927,7 @@ for (var i = 0; i < records.length; i++) {
                                             HolaChef.app.MenuOrder = false;
                                             HolaChef.app.MenuOrderStatus = '';
                                             ref.GetDefectGridData();
-                                            Ext.getCmp('OredrDetailspanel').setHtml("");
+                                            Ext.getCmp('OrderViewpanel').setHtml("");
                                             Ext.getCmp('OredrDetailspanel').hide();                                            
                                         }
                                     }
@@ -989,7 +989,7 @@ for (var i = 0; i < records.length; i++) {
                                             HolaChef.app.MenuOrder = false;
                                             HolaChef.app.MenuOrderStatus = '';
                                             ref.GetDefectGridData();
-                                            Ext.getCmp('OredrDetailspanel2').setHtml("");
+                                            Ext.getCmp('OrderViewpanel2').setHtml("");
                                             Ext.getCmp('OredrDetailspanel2').hide();                                            
                                         }
                                     }
@@ -997,7 +997,7 @@ for (var i = 0; i < records.length; i++) {
                         },
                             {
                                 xtype: 'container',
-                                id: 'OrderViewpanel',
+                                id: 'OrderViewpanel2',
                                 html: ''
                             }
 
@@ -1084,7 +1084,8 @@ function viewordetail(id,from)
             }
 
         
-            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"><textarea id="TxtTweets1" rows="10" cols="36" style= "width:100%;border: 1px solid black"   onfocus="ChkOnFocus(this.id,this.value);" onblur="ChkOnBlur(this.id,this.value);" >Order History and Comments</textarea></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Coupon Name : ' + records["coupon"].coupon_name + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Payable Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
+            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"><textarea id="TxtTweets1" rows="10" cols="36" style= "width:100%;border: 1px solid black"   onfocus="ChkOnFocus(this.id,this.value);" onblur="ChkOnBlur(this.id,this.value);" >Order History and Comments</textarea><button  onclick="submitComment(\'' + String(records["id"]) + '\');">Submit</button></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Coupon Name : ' + records["coupon"].coupon_name + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Payable Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
+            
             var obj = Ext.getCmp('OrderViewpanel');            
             obj.setHtml(html);
             HolaChef.app.ShowHideLoader(false);
@@ -1158,10 +1159,10 @@ function viewordetail2(id,from)
                 html += '<tr class="datarow2"><td>' + orders[i].dish_name + '</td><td>' + orders[i].quantity + '</td></tr>';
                 
             }
-
+            debugger;
         
-            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
-            var obj = Ext.getCmp('OrderViewpanel');            
+            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td  style="width:40%;"></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["payment_value"] + '</td></tr><tr><td colspan="2">Comment: ' + records["comment"] + '</td></tr></table></td></tr></table></div>';
+            var obj = Ext.getCmp('OrderViewpanel2');            
             obj.setHtml(html);
             HolaChef.app.ShowHideLoader(false);
         },
@@ -1619,7 +1620,7 @@ function predicatBy(prop){
 function _g() { return document.getElementById(arguments[0]); }
 
 function ChkOnFocus(id, val) {
- 
+
    if (_g(id).value == 'Order History and Comments')
   _g(id).value = '';
  }
@@ -1633,9 +1634,24 @@ function submitComment(id)
 { 
   if(TxtTweets1.value == 'Order History and Comments')
   {
-   alert('Please enter comment ');
+   Ext.Msg.alert('Alert', 'Please Enter Comment');
    return;
   }
+  
+  $.ajax({
+        type: "GET",
+        
+        url: HolaChef.app.dataUrl + 'orders/' + id + '/add_comment.json?comment=' + TxtTweets1.value,
+        contentType: 'application/json; charset=utf-8',
+        dataType: "jsonp",
+        success: function (response) {//On Successfull service call
+          
+            Ext.Msg.alert('Alert', 'Comment saved sussesfully.');
+        },
+        failure: function (response) {
+            alert(response);
+        }
+    });
   
 
 }

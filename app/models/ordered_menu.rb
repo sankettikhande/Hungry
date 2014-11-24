@@ -64,7 +64,7 @@ class OrderedMenu < ActiveRecord::Base
     updated_ordered_menus.each do |ordered_menu|
       cooking_today = ordered_menu.cooking_today
       cooking_today.update_attribute(:ordered, (cooking_today.ordered - ordered_menu.quantity))
-      decrease_food_items_served_count
+      ordered_menu.decrease_food_items_served_count
     end
   end
 
