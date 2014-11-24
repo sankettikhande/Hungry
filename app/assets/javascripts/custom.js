@@ -108,6 +108,9 @@ $(document).ready(function(){
     /************************************* ADD REMOVE ITEMS TO CART ********************************/
 
     $(".increase-order-item").on('click', function(){
+
+        $(this).css("display",'none');
+
         quantity_input = $(this).parent().prev().find("input");
         new_link = $($(this).parent().parent().parent().parent().find('.update-cart'));
         available_quantity = parseInt($(this).data("available-quantity"));
@@ -127,6 +130,9 @@ $(document).ready(function(){
     })
 
     $(".decrease-order-item").on('click', function(){
+
+        $(this).css("visibility","hidden");
+
         quantity_input = $(this).parent().next().find("input")
         new_link = $($(this).parent().parent().parent().parent().find('.update-cart'))
         quantity = parseInt(quantity_input.val()) - 1
@@ -175,7 +181,11 @@ $(document).ready(function(){
                 'method': 'GET',
                 'url': url ,
                 'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
-                'dataType': 'script'
+                'dataType': 'script',
+                'complete': function(){
+                    $(".increase-order-item").css("display","block");
+                    $(".decrease-order-item").css("visibility","visible");
+                }
             })
 
     }
