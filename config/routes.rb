@@ -22,6 +22,7 @@ Holachef::Application.routes.draw do
   # On 20/11/2014 By Pradnya Kulkarni 
   # Contact: pradnya@sodelsolutions.com
   match '/post_review' => "Cms::food_items#post_review" 
+  match '/get_review' => "Cms::food_items#get_review" 
   
   match '/cms/food_items/load_chef_dishes'=>'Cms::food_items#load_chef_dishes'
 
