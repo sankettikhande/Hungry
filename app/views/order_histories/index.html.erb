@@ -55,8 +55,8 @@
                         </div>    
                         <div class="order_history_rating_msg" id="msg_<%= index %>">Thank You!</div>                     
                       </td>                                              
-                      <td>
-                        <a href="#" onclick="post_review('<%= food_item.id %>','<%= order.id %>')"> Review </a>                       
+                      <td>      
+                        <a href="#" class="update_review" data-order-id="<%= order.id %>" data-food-item-id="<%= food_item.id %>"> Review </a>
                       </td>
                     </tr>                                  
                     <% index = index + 1 %>                    
@@ -75,31 +75,25 @@
   </div>
 </div>
 
-<div class="modal fade bs-example-modal-sm" data-backdrop="false" id="reviewAlert" tabindex="-1">
-  <div class="modal-dialog modal-sm modal-alert">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button data-dismiss="modal" class="btn-close pull-right">x</button>
-        <%= image_tag ('/assets/hola-logo-xs.png'), :id => 'review_page_modal_logo' %>
-      </div>
-      <div class="modal-body">                        
-        <input type="hidden" name="order_id" id="order_id" value=""/>
-        <input type="hidden" name="food_item_id" id="item_id" value=""/>
-        <textarea type="text" name="food_item_review" id="review" ></textarea><br/><br/>
-        <button class="btn btn-saffron" onclick="submit_review()">Submit</button>       
-      </div>        
-    </div>
-  </div>
-</div>
+<%= render '/cms/food_items/review' %>
 
-<script type="text/javascript">
-  function post_review(food_item_id, order_id){    
-    <% if hola_current_user %>
-      $('#reviewAlert').modal('show');    
-      $('#item_id').val(food_item_id);
-      $('#order_id').val(order_id);
-    <% else %>
-      $('#login_modal').modal('show')
-    <% end %>
-  };
-</script>
+<%= content_for :bottom_content do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".update_review").click(function(){
+        
+          $.ajax({
+                  'url' : "/get_review",
+                  'type' : 'GET',
+                  'data' : {"order_id": $(this).data('order-id'), "food_item_id": $(this).data("food-item-id")},
+                  'dataType' : 'script',
+                  'success' : function(){
+                  
+                  }
+                  
+              })
+
+      })
+    })
+  </script>
+<% end %>
