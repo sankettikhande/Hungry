@@ -32,6 +32,7 @@ class Order < ActiveRecord::Base
   before_save :ensure_order_not_dispatched, :if => Proc.new {|o| o.order_status_changed? and o.order_status_was == "Dispatched"}
   before_save :update_timestamps, :if => :order_status_changed?
   after_save :mark_sub_orders, :if => Proc.new {|o| o.order_type == "MultiMeal" and o.order_status_changed? and o.confirmed?}
+  after_save :restore_menu_quantities, :if => Proc.new {|o| o.order_status_changed? and ["Canceled", "Returned"].include? o.order_status}
   
 
   def update_coupon_used_count
@@ -180,5 +181,9 @@ class Order < ActiveRecord::Base
       session_cart_items << {"#{menu.dish_id}" =>{'quantity'=> menu.quantity, 'price' => menu.rate, 'date' => date, 'dish_name' => menu.food_item.name }}
     end
     session_cart_items
+  end
+
+  def restore_menu_quantities
+    OrderedMenu.restore_ordered_menus ordered_menus
   end
 end
