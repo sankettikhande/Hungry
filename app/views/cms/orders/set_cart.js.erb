@@ -8,9 +8,12 @@ if (<%= !"#{request.referer}".include?('review_order')%>) {
        $("#footer .col-xs-12").html("<%= escape_javascript(render :partial => 'checkout_details' )%>");
    }
 $("#total_price").val("<%=@total%>");
-$("#bill_amount").html("<%=@total%>/-");
+// $("#bill_amount").html("<%=@total%>/-");
 $("#review_order_total").html("<%= @total%>");
 $("#discount").html("<%= @discount %>")
 $("#items_total").html("<%=@total + @discount %>");
 $(".total_amount").html("<%=@total%>");
-$(".navbar-header div.pull-right a").text("<%= collect_cart_quantity ? collect_cart_quantity : 0 %>");
+
+
+
+// $(".navbar-header div.pull-right a").text("<%= collect_cart_quantity ? collect_cart_quantity : 0 %>");

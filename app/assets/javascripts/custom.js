@@ -115,11 +115,11 @@ $(document).ready(function(){
         $(this).parents('.square').addClass('added-2-cart');
         if(available_quantity >= quantity){            
             $(this).parents('.square').find(".prod-carted span").html(quantity);
-            cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) +1;
-            $(".navbar-header div.pull-right a").text(cart_quantity);
+            cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) +1;           
             $(new_link).data("quantity", quantity);
             update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
             quantity_input.val(quantity);
+            $(".navbar-header div.pull-right a").text(cart_quantity);            
         }else{
             alert("Max quantity reached");
         }
@@ -133,11 +133,11 @@ $(document).ready(function(){
         $(this).parents('.square').addClass('added-2-cart');
         if(quantity >= 0){            
             $(this).parents('.square').find(".prod-carted span").html(quantity);
-            cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) -1;
-            $(".navbar-header div.pull-right a").text(cart_quantity);
+            cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) -1;            
             $(new_link).data("quantity", quantity)
             update_cart($(this).parent().parent().parent().parent().find('.update-cart').data());
             quantity_input.val(quantity);
+            $(".navbar-header div.pull-right a").text(cart_quantity);
         }
 
     })
