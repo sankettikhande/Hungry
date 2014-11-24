@@ -586,15 +586,15 @@ $(document).ready(function(){
   });
 });
 
-function submit_review(){   
+$('#submit_review').click(function(){
     $.ajax({
         'url' : '/post_review',
         'method': 'POST',
-        'data': {'food_item_id': $('#item_id').val(), 'review' : $('#review').val(), 'order_id' : $('#order_id').val()},   
+        'data': {'food_item_id': $('#review').data('food-item-id'), 'review' : $('#review').val(), 'order_id' : $('#review').data('order-id')},   
         'dataType' : 'script',
         'success' : function(){
             $('#reviewAlert').modal('hide');  
-            $('#review').val("");  
+           
         }
     })
-}
+})

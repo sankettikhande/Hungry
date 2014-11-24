@@ -17,7 +17,7 @@ set :rails_env, "production"
 
 task :qa do
   default_run_options[:pty] = true
-  set :branch, 'paymentcodeMaster'
+  set :branch, 'qa-new'
 
   # be sure to change these
   set :user, 'root'
