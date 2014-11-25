@@ -512,7 +512,7 @@ $(document).ready(function(){
             $.ajax({
                 'url' : '/update_ratings',
                 'type' : 'POST',
-                'data' : {'food_item_id': parseInt(id), 'food_item_ratings': $(this).data().score, 'order_id': $(this).data().order},
+                'data' : {'food_item_id': parseInt(id), 'food_item_ratings': score, 'order_id': $(this).data().order},
                 'dataType' : 'script',
                 'success' : function(){         
                     $('#'+ msg_id).css('display', 'block'); 
