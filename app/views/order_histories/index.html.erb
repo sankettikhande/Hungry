@@ -51,7 +51,9 @@
                     </tr>
                     <tr>
                       <td>
-                        <div class="star" style="float:left;" data-score="<%= ordered_menu.food_item.reviews.find_by_hola_user_id_and_order_id(hola_current_user, order.id).try(:ratings) %>" data-id = "<%= food_item.id  if food_item %>" data-order="<%= order.id %>" >
+                        <!-- <div class="star" style="float:left;" data-score="<%#= ordered_menu.food_item.reviews.find_by_hola_user_id_and_order_id(hola_current_user, order.id).try(:ratings) %>" data-id = "<%#= food_item.id  if food_item %>" data-order="<%= order.id %>" > -->
+                        <% review = Review.find_by_hola_user_id_and_order_id_and_food_item_id(hola_current_user, order.id, food_item.id) %>
+                        <div class="star" style="float:left;" data-score="<%= review.present? ? review.try(:ratings) : '' %>" data-id = "<%= food_item.id  if food_item %>" data-order="<%= order.id %>" >
                         </div>    
                         <div class="order_history_rating_msg" id="msg_<%= index %>">Thank You!</div>                     
                       </td>                                              
