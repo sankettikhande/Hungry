@@ -409,7 +409,7 @@ user-select: none;
 .nav.navbar-nav li a:hover {text-decoration: underline;}
 
 
-.navbar-titlebar {width:auto;overflow: hidden;display: inline-block;}
+.navbar-titlebar {width:auto;overflow: hidden;display: inline-block;float: left;}
 
 .navbar-header .btn-back {float: right;display: block;background: url('/assets/icon-back.png') no-repeat left center;background-size: 12px 24px;width: 12px;height: 24px;margin:15px 16px  ;cursor: pointer;}
 
