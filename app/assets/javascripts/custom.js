@@ -481,7 +481,7 @@ $(document).ready(function(){
 
     $('#star').raty({
         path:'/assets/',
-        half: true,
+        half: false,
         scoreName: 'food_item[ratings]',
         score: function() {
             return $(this).attr('data-score');
@@ -499,7 +499,7 @@ $(document).ready(function(){
 
     $('.star').raty({
         path:'/assets/',
-        half: true,
+        half: false,
         scoreName: 'food_item[ratings]',
         score: function() {
             return $(this).attr('data-score');
