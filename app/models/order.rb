@@ -184,6 +184,10 @@ class Order < ActiveRecord::Base
   end
 
   def restore_menu_quantities
-    OrderedMenu.restore_ordered_menus ordered_menus
+    if self.order_status_history.count == 2 && self.order_status_history.take(2) == ['Created', 'Canceled']
+      puts '-----Quantity is updated after order confirmation so before confirmation no need to restore quantity-----'      
+    else      
+      OrderedMenu.restore_ordered_menus ordered_menus
+    end     
   end
 end
