@@ -112,12 +112,12 @@ $(document).ready(function(){
         new_link = $($(this).parent().parent().parent().parent().find('.update-cart'));
         available_quantity = parseInt($(this).data("available-quantity"));
         quantity = parseInt(quantity_input.val()) + 1;
-        $(this).parents('.square').addClass('added-2-cart');
+        flash_msg = $(this).parents('.square');
         if(available_quantity >= quantity){            
-            flash_msg_element = $(this).parents('.square').find(".prod-carted span");
+            flash_msg_cart_count = $(this).parents('.square').find(".prod-carted span");
             cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) +1;           
             $(new_link).data("quantity", quantity);
-            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data(), quantity_input, quantity, flash_msg_element);
+            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data(), quantity_input, quantity, flash_msg_cart_count, flash_msg);
             // quantity_input.val(quantity);
             // $(".navbar-header div.pull-right a").text(cart_quantity);            
         }else{
@@ -130,12 +130,12 @@ $(document).ready(function(){
         quantity_input = $(this).parent().next().find("input")
         new_link = $($(this).parent().parent().parent().parent().find('.update-cart'))
         quantity = parseInt(quantity_input.val()) - 1
-        $(this).parents('.square').addClass('added-2-cart');
+        flash_msg = $(this).parents('.square');
         if(quantity >= 0){            
-            flash_msg_element = $(this).parents('.square').find(".prod-carted span");
+            flash_msg_cart_count = $(this).parents('.square').find(".prod-carted span");
             cart_quantity=parseInt($(".navbar-header div.pull-right").text(),10) -1;            
             $(new_link).data("quantity", quantity)
-            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data(), quantity_input, quantity, flash_msg_element);
+            update_cart($(this).parent().parent().parent().parent().find('.update-cart').data(), quantity_input, quantity, flash_msg_cart_count, flash_msg);
             // quantity_input.val(quantity);
             // $(".navbar-header div.pull-right a").text(cart_quantity);
         }
@@ -164,7 +164,7 @@ $(document).ready(function(){
     })
 
 
-    function update_cart(data_attribs, quantity_input, quantity, flash_msg_element){
+    function update_cart(data_attribs, quantity_input, quantity, flash_msg_cart_count, flash_msg){
         url = (parseInt(data_attribs.quantity) > 0) ? "/orders/set_cart" : "/orders/remove_from_cart"
         if (parseInt(data_attribs.quantity) > 0){
             $(this).parents("ul.square").find('.add-cart').removeClass('hidden')
@@ -178,7 +178,8 @@ $(document).ready(function(){
                 'dataType': 'script',
                 'complete': function(){                    
                     quantity_input.val(quantity);
-                    flash_msg_element.html(quantity);
+                    flash_msg_cart_count.html(quantity);
+                    flash_msg.addClass('added-2-cart');
                 }
             })
 
