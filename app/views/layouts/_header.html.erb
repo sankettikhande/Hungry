@@ -17,16 +17,23 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right top-nav visible-desktop hidden-xs hidden-sm hidden-ipad">
-        <li><a href="#">Log in/Sign Up</a></li>
-         <li class="dropdown hidden-xs hidden-sm hidden-ipad">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <span class="orange-text">Poonam! <i class="fa fa-gear"></i></span></a>
+        <% if hola_current_user.blank? %>
+          <li><a href="#">Log in/Sign Up</a></li>
+        <% else %>
+          <li class="dropdown hidden-xs hidden-sm hidden-ipad">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Welcome, <span class="orange-text"><%= hola_current_user.name %>! <i class="fa fa-gear"></i></span>
+            </a>
             <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Order History</a></li>
-            <li><a href="#">Address Book</a></li>
-            <li><a href="#">My Reviews</a></li>
-            <li><a href="#">Log Out</a></li>
+            <li><a href="/order_histories">Order History</a></li>
+            <li><a href="/hola_user_addresses">Address Book</a></li>
+            <li>
+              <%= link_to "Log Out", logout_url, method: :delete %>
+            </li>
+
             </ul>
-        </li>
+          </li>
+        <% end %>
 
       </ul>
       <div class="pull-right">
