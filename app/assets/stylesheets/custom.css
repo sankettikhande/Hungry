@@ -1137,13 +1137,15 @@ html{overflow-x:hidden}
 .action-row .col-xs-6.col-hola-2 {padding: 0}
 .action-row .col-xs-3.col-hola-3 {padding-left: 0}
 
-.set-order {display:block;width: 120px;overflow: hidden;margin-right: auto;margin-left: auto;}
+.set-order {display:block;width: 120px;overflow: hidden;margin-left: auto;margin-right: 0}
 .set-order>li {display: inline-block;text-align: center;width: 33%;float: left;}
 .set-order>li button {border-radius: 50%; background: #fff; border: 2px solid #cccccc; color: #ff8800; text-align: center; display: block; width: 31px; height: 30px;outline: none; margin-top: 2px; font-weight: bold;}
 .set-order>li.order-less button {float: left;}
 .set-order>li.order-more button {float: right;}
 .set-order>li>input {width: 30px;border:1px solid #ccc;text-align: center;height: 30px;margin-top: 2px;}
 .new-cart-icon img {float: right;margin-top: 3px;}
+
+#item-modal .set-order {display:block;width: 120px;overflow: hidden;margin-left: auto;margin-right: auto} 
 
 .charged-cost {margin:0;color: #ff9900;font-family: 'robotobold',Helvetica,Sans-serif;font-size: 1.3em;}
 

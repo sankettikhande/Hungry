@@ -24,6 +24,7 @@ class MealInfo < ActiveRecord::Base
 
   def speciality_meal
      return if self.speciality_of_dish.blank?
-     return self.speciality_of_dish.split(",").map {|i| i.downcase}.join(", ")
+     # return self.speciality_of_dish.split(",").map {|i| i.downcase}.join(", ")
+     return self.speciality_of_dish
   end
 end
