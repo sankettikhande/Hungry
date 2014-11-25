@@ -1,8 +1,10 @@
 var pushNotification;
-
+//alert("in js");
 function onDeviceReady() {
+    //alert("onDeviceReady");
     try
     {
+        //alert("TryonDeviceReady");
         pushNotification = window.plugins.pushNotification;
         if (device.platform == 'android' || device.platform == 'Android' || device.platform == 'amazon-fireos' ) {
             pushNotification.register(successHandler, errorHandler, {"senderID":"592196293895","ecb":"onNotification"});
@@ -48,7 +50,7 @@ function getCookie(cname) {
 }
 // handle GCM notifications for Android
 function onNotification(e){
-    //alert("3");
+    //alert("onNotification");
     switch( e.event )
     {
         case 'registered':
@@ -71,9 +73,18 @@ function onNotification(e){
                     type: "POST",
                     url: customUrl,
                     data: sendData,
-                    success: function(data){},
+					async:true,
+					cache:true,
+					timeout:10000,
+                    success: function(data){
+					 
+					  console.log(data);
+					},
                     error: function(XMLHttpRequest, textStatus, errorThrown){}
                 });
+
+                
+
             }
             break;
 
