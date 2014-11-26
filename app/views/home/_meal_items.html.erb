@@ -28,12 +28,10 @@
                   <!--<div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>-->
                   <div class="dark-overlay">
                     <div class="overlay-inner">
-                      <div class="parent-middle">
                         <div class="v-holder">
                               <p class="over-descr"><%= truncate(menu.food_item.meal_info.short_description, length: 250) %> </p>
                               <p class="over-portion"><%= menu.food_item.meal_info.portion_size %></p>
                         </div>
-                      </div>
                     </div>
                   </div>
             </div>
@@ -51,17 +49,17 @@
                   </div>
                 <% end %>
                 <div class="add-heart"></div>
-                <div class="recipe-name">
-                  <%= menu.food_item.meal_info.name %>
+                <div class="name-parent">
+                  <div class="recipe-name">
+                    <%= menu.food_item.meal_info.name %>
+                  </div>                  
                 </div>
                 <!--<div class='add-cart <%= add_cart_view(today_menu,menu)%>'></div>-->
                 <div class="dark-overlay">
                    <div class="overlay-inner">
-                    <div class="parent-middle">
                         <div class="v-holder">
                           <p class="over-descr"><strong>Description:</strong><%= truncate(menu.food_item.meal_info.short_description, length: 250) %> </p>
                           <p class="over-portion"><strong>Portions:</strong> <%= menu.food_item.meal_info.portion_size %></p>
-                      </div>
                       </div>
                   </div>
                 </div>

@@ -301,7 +301,7 @@ $(document).ready(function(){
         $(this).closest('.review_order_list').find('span.item-name').click();
     });
 
-    $("#submit-order-button").click(function(e){
+    $("#submit-order-button, #desktop-proceed-address").click(function(e){
         $("#submit_order").submit();
     })
     $("#submit_order input").focus(function(){

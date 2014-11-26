@@ -51,3 +51,27 @@
     </div>
 </div>
 
+<!-- cart proceed button -->
+<div class="container hidden-ipad visible-md visible-lg">
+  <div class="row">
+    <div class="col-xs-12 text-center seperator-25">
+      <a id="desktop-proceed" href="#" class="btn btn-saffron select_payment_method">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<div class="container hidden-ipad visible-md visible-lg">
+  <div class="row">
+    <div class="col-xs-12 text-center seperator-25">
+      <a id="desktop-proceed" href="/order-confirm/<%= @order.id%>?payment_mode=cash_on_delivery" class="btn btn-saffron cash_delivery">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<div class="container hidden-ipad visible-md visible-lg">
+  <div class="row">
+    <div class="col-xs-12 text-center seperator-25">
+      <a id="desktop-proceed" href="#" class="btn btn-saffron payment_mode netbanking" data-paymentMode="NET_BANKING" data-orderId="<%= @order.id %>">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
+    </div>
+  </div>
+</div>
