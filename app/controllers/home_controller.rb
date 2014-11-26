@@ -38,10 +38,10 @@ class HomeController < ApplicationController
   end
 
   def mobile
-    @todays_menu = CookingToday.grouped_by_category
+    # @todays_menu = CookingToday.grouped_by_category
     @sunday_override = params[:sunday_override]
     update_cart(@todays_menu) if !@todays_menu.blank?
-
+    @todays_menu_by_meal_type = get_todays_menu_by_meal_type
     respond_to do |format|
       if Date.today == Date.parse('2014-10-23')
         format.html{render template: "home/sunday"}
@@ -89,5 +89,13 @@ class HomeController < ApplicationController
     session[:cart].each do |item|
       session[:cart].delete(item) if cart_keys.any? {|cart_key| not todays_ids.include?(cart_key.to_i) }
     end
+  end
+
+  def get_todays_menu_by_meal_type
+    menu_by_meal_type = {}
+    CookingToday.meal_types.each do |meal_type|
+      menu_by_meal_type.merge!(meal_type => CookingToday.todays_menu_by_type(meal_type))
+    end
+    menu_by_meal_type
   end
 end

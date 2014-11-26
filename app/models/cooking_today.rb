@@ -80,8 +80,8 @@ class CookingToday < ActiveRecord::Base
   end
 
   def self.todays_menu_by_type meal_type
-    where(date: Date.today.to_s, meal_type: meal_type, published: true).sort_by(&:qty_left).reverse
-  end
+    where(date: Date.today.to_s, meal_type: meal_type, published: true).includes([:cheff, {:food_item => [:cheff, :recipe, {:meal_info => :picture}]}]).sort_by(&:qty_left).reverse
+  end 
 
   def orderable?
     meal_availability = CookingToday.meal_type_time_span[meal_type]
