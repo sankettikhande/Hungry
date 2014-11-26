@@ -34,6 +34,7 @@ group :development do
   gem 'capistrano', '2.15.4', require: false
   gem 'rvm-capistrano'
   gem 'pry-rails'
+  gem "bullet"
 end
 gem 'exception_notification'
 
