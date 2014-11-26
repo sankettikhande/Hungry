@@ -1,0 +1,4 @@
+<%= f.cms_text_field :name, :disabled => true %>
+<%= f.cms_drop_down :from, TIME_ARR.map{|time| [ time[1], time[0] ]}  %>
+<%= f.cms_drop_down :to, TIME_ARR.map{|time| [ time[1], time[0] ]} %>
+<%= f.cms_check_box :is_active %>
