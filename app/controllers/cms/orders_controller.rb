@@ -104,7 +104,7 @@ class Cms::OrdersController < Cms::ContentBlockController
               @coupon.hola_users << hola_user
             else
               @discount_amount = 0
-              @coupon_id = 0
+              @coupon_id = nil
             end
           end
         end
@@ -170,7 +170,7 @@ class Cms::OrdersController < Cms::ContentBlockController
                 @coupon.hola_users << hola_user
                 @coupon_id = item_attr["coupon_id"]
               else
-                @coupon_id = 0
+                @coupon_id = nil
               end
             end
           end
