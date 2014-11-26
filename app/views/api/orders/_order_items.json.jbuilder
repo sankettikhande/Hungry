@@ -35,10 +35,10 @@ json.payment_status order.payment_status
 json.payment_value order.total
 
 json.coupon do
-  json.coupon_used !order.coupon.blank?
-  json.coupon_id order.coupon.blank? ? '' : order.coupon.id
-  json.coupon_name order.coupon.blank? ? '' : order.coupon.name
-  json.coupon_code order.coupon.blank? ? '' : order.coupon.coupon_code
+  json.coupon_used !order.coupon_id.blank?
+  json.coupon_id order.coupon_id.blank? ? '' : order.coupon.id
+  json.coupon_name order.coupon_id.blank? ? '' : order.coupon.name
+  json.coupon_code order.coupon_id.blank? ? '' : order.coupon.coupon_code
 end
 
 json.deliverySlot order.delivery_slot
