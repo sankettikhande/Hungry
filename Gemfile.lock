@@ -45,6 +45,9 @@ GEM
       sass-rails (~> 3.2.6)
       term-ansicolor
     builder (3.0.4)
+    bullet (4.14.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     capistrano (2.15.4)
       highline
       net-scp (>= 1.0.0)
@@ -184,6 +187,7 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.6.2)
     will_paginate (3.0.7)
 
 PLATFORMS
@@ -194,6 +198,7 @@ DEPENDENCIES
   acts-as-taggable-on
   ancestry
   browsercms
+  bullet
   capistrano (= 2.15.4)
   coffee-rails (~> 3.2.1)
   daemons
