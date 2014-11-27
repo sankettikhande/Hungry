@@ -77,24 +77,11 @@
     url('/assets/fonts/Roboto-Light.svg#Roboto-Light') format('svg');
 }
 
-
-html,
-body {
-    height: 100%;
-}
-
-
-#wrap {
-    min-height: 100%;
-    height: auto;
-    margin: 0 auto -50px;
-    padding: 0 0 50px;
-    display: block;
-}
 .right-body {overflow: hidden;display: block;}
-
+html {position: relative;min-height: 100%}
 body {background: #fff;padding-top: 54px;font-family: 'robotoregular',Sans-serif;}
-.cursorP{cursor: pointer;}
+
+.cursorP,.hand-cursor{cursor: pointer;}
 /** =Overwrite Bootstrap **/
 
 .container,.container-fluid {padding-left: 10px;padding-right: 10px}
@@ -1330,7 +1317,7 @@ input[type='number'] {
 
 
 @media (min-width: 1025px) {
-    .layout-tabbed {margin-bottom: 5px;}
+    .layout-tabbed {margin-bottom: 5px;margin-top: 10px;}
 
     .item-content {width: 33.3333%;}
 
@@ -1339,7 +1326,6 @@ input[type='number'] {
     .modal .square {height: auto;width: 100%;}
     
     .modal .square .recipe-block,.modal .square .recipe-block .recipe-image,.modal .square .recipe-image img {height: auto;}
-
 
 }
 
