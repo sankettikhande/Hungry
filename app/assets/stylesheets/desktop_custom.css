@@ -2,7 +2,6 @@
 
 @media (min-width: 1025px) {
 
-
 @font-face {
     font-family: 'latolight';
     src: url('/assets/lato-lig-webfont.eot');
@@ -29,12 +28,8 @@
 
 }
 
-
 .hidden-desktop {display: none;}
 .visible-desktop {display: block;}
-
-ul,ol,dd,menu {margin: 0;padding: 0;list-style-type: none;}
-.hand-cursor {cursor: pointer;}
 
 .text-saffron {color: #f36c36;}
 .text-dark {color: #2c2c2c;}
@@ -44,7 +39,8 @@ ul,ol,dd,menu {margin: 0;padding: 0;list-style-type: none;}
 .lato-r {font-family: 'latoregular',Helvetica,Sans-serif;}
 .lato-i {font-family: 'latolight',Helvetica,Sans-serif;}
 
-body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;padding-bottom: 106px}
+
+body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;padding-bottom: 106px;} /*** margib-bottom issue *****/
 
 .container {max-width: 1170px !important;}
 
@@ -181,7 +177,7 @@ bottom: 0;
 
 .validate{color:#f36c36;}
 
-.hc-modal1 {color: #414141}
+.hc-modal1 {color: #414141;}
 .hc-modal1 .modal-title {font-size: 30px;text-align: center;margin-bottom: 20px;}
 .hc-modal1 .modal-header {padding: 10px 15px 0;overflow: hidden;}
 .hc-modal1 .modal-body {padding:0;min-height: 497px;}
@@ -205,6 +201,9 @@ bottom: 0;
 .hc-modal1 input.form-control {height: 38px;}
 
 .hc-modal1 .checkbox {margin-top: 0;margin-bottom: 20px}
+
+.white-modal .modal-content {background: #fff;}
+
 .ques-list{height:400px;overflow-y:scroll;}
 .image-order{position: absolute;cursor: pointer;}
 .overlayMouse {position: fixed;width: 100%;height: 100%;margin: 0;top: 0;left: 0;color: #fff;z-index: 999999999;background-color: #ff8800;display: none;opacity: 0.8;filter: alpha(opacity=80);}
@@ -225,7 +224,7 @@ bottom: 0;
 
 .hola-footer .navbar-nav.navbar-right:last-child {margin-right: 0}
 
-.hola-footer {background: #2b2a28;min-height: 106px;position: fixed;bottom: 0;left: 0;right: 0;z-index: 12}
+.hola-footer {background: #2b2a28;min-height: 106px;position: absolute;bottom: 0;left: 0;right: 0;z-index: 12;}
 .hola-footer p {margin: 0;font-size: 10px;line-height: 20px;color: #575552}
 .social-icons {width: 100%;overflow: hidden;margin-top: 32px;}
 .social-icons li {display: inline-block;}
@@ -243,6 +242,7 @@ bottom: 0;
 
 
 .hola-sidemenu {display: none !important;left: -80%;}
+
 #footer {display: none;}
 
 

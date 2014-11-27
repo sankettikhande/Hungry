@@ -7,3 +7,8 @@ if (<%= session[:cart].blank? %>){
 else{
     $('#remove_dish').modal('show');
 }
+
+
+setTimeout(function(){
+    $('#remove_dish').modal('hide');
+}, 2000);

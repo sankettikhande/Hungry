@@ -5,7 +5,7 @@ class HolaSessionController < ApplicationController
                                               email: params[:email]
                                             })
     @hola_user.update_attributes(:email => params[:email])  if @hola_user.email.blank?
-    generate_and_send_opt
+    generate_and_send_opt if params[:auth_type] != 'password'
   end
 
   def confirm_with_otp
@@ -17,8 +17,18 @@ class HolaSessionController < ApplicationController
       }
       format.js{
         @otp_authenticated = @hola_user.authenticate_otp(params[:otp], drift: 30.minutes) || params[:otp] == "808080"
+        if @otp_authenticated and !params[:new_password].blank?
+          @hola_user.password = params[:new_password]
+          @hola_user.save
+        end
       }
     end
+  end
+
+  def create_cookie
+    @hola_user = HolaUser.create_from_params({phone_no: Base64.decode64(params[:pnx])})
+    cookies.signed[:user_mobile] = {value: @hola_user.phoneNumber, expires: 5.year.from_now} if @hola_user
+    redirect_to params[:redirect_to_url]
   end
 
   def regenerate_otp

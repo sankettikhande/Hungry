@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141124052748) do
+ActiveRecord::Schema.define(:version => 20141127073424) do
 
   create_table "backend_users", :force => true do |t|
     t.string   "email",                  :default => "",             :null => false
@@ -610,6 +610,7 @@ ActiveRecord::Schema.define(:version => 20141124052748) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.string   "otp_secret_key"
+    t.string   "password"
   end
 
   create_table "html_block_versions", :force => true do |t|

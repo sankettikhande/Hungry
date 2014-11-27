@@ -40,17 +40,17 @@ $(document).ready(function(){
         $(".undefinedformError").css('left','21px');
     })
     $("#radio-nbanking").click(function(){
-       $(".netbanking").show();
-       $(".cash_delivery").hide();
-       $(".select_payment_method").hide();
-       $(".undefinedformError").hide();
+       $(".netbanking").css("display","inline-block");
+       $(".cash_delivery").css("display","none");
+       $(".select_payment_method").css("display","none");
+       $(".undefinedformError").css("display","none");
     });
 
     $("#radio-cod").click(function(){
-       $(".cash_delivery").show();
-       $(".netbanking").hide();
-       $(".select_payment_method").hide();
-       $(".undefinedformError").hide();
+       $(".cash_delivery").css("display","inline-block");
+       $(".netbanking").css("display","none");
+       $(".select_payment_method").css("display","none");
+       $(".undefinedformError").css("display","none");
     });
 
     $('#add-order-plus').unbind("click").live('click', function(e) {
@@ -602,4 +602,16 @@ $('#submit_review').click(function(){
            
         }
     })
+})
+
+$(document).ready(function(){
+  $("input:radio[name=auth_type]").click(function() {
+    var value = $(this).val();
+    if(value == "password"){
+      $("#password_auth").show()
+    }
+    else{
+      $("#password_auth").hide()
+    }
+  });
 })

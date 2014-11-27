@@ -909,8 +909,8 @@ for (var i = 0; i < records.length; i++) {
                     }
                 },
                 centered: true,
-                width: '80%',
-                height: '85%',
+                width: '100%',
+                height: '100%',
                 scrollable: true,
                 items: [
                         {
@@ -1032,7 +1032,7 @@ function viewordetail(id,from)
         },
         success: function (records) {
           
-            html += '<div style="padding:20px"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
+            html += '<div style="padding:20px;font-size:90%;padding-top:0px !important;"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
             if (from == "Dispatched")
                 html += '<div style="float: left; width: 30%"><button onclick="ondeliverd(\'' + String(records["id"]) + '\')">Delivered</button><button onclick="onreturnd(\'' + String(records["id"]) + '\')">Returned</button><button onclick="ondamage(\'' + String(records["id"]) + '\');">Damage</button><button onclick="oncancelbtn(\'' + String(records["id"]) + '\')">Cancel</button></div>';
             else if (from == "Delivered")
@@ -1073,18 +1073,18 @@ function viewordetail(id,from)
 
             html += '</table></td></tr></table></td></tr><tr><td><div style="float: right; width: 30%"><select id="ddlaction"><option value="0">Select Action</option><option value="Canceled">Canceled</option><option value="Damaged">Damaged</option>';
             //<option value="Ordered">Ordered</option><option value="Returned">Returned</option>
-            html += '</select><button onclick="onbtnaction(\'' + String(records["id"]) + '\');">Submit</button></div></td></tr><tr><td><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Select</th><th>Name</th><th>Chef Name</th><th>Qty</th><th>Unit Price</th><th>Row Total</th><th>Status</th></tr></thead><tbody>';
+            html += '</select><button onclick="onbtnaction(\'' + String(records["id"]) + '\');">Submit</button></div></td></tr><tr><td><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>select</th><th style="max-width: 550px;">Name</th><th>Chef Name</th><th>Qty</th><th>Unit Price</th><th>Row Total</th><th>Status</th></tr></thead><tbody>';
             
             var orders = records["order_items"];
             for (var i = 0; i < orders.length; i++)
             {
                 
-                html += '<tr class="datarow2"><td><input type="checkbox" value="' + orders[i].menu_item_id + '" id="orderchkbox_' + String(i) + '" /></td><td>' + orders[i].dish_name + '</td><td>' + orders[i].cheff + '</td><td>' + orders[i].quantity + '</td><td>' + orders[i].rate + '</td><td>' + orders[i].menu_item_total + '</td><td>' + orders[i].order_status + '</td></tr>';
+                html += '<tr class="datarow2" style="line-height:20px;border-bottom: 1px solid black;"><td><input type="checkbox" value="' + orders[i].menu_item_id + '" id="orderchkbox_' + String(i) + '" /></td><td  style="max-width: 550px;text-overflow: ellipsis;overflow:hidden;">' + orders[i].dish_name + '</td><td>' + orders[i].cheff + '</td><td>' + orders[i].quantity + '</td><td>' + orders[i].rate + '</td><td>' + orders[i].menu_item_total + '</td><td>' + orders[i].order_status + '</td></tr>';
                 
             }
 
         
-            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"><textarea id="TxtTweets1" rows="10" cols="36" style= "width:100%;border: 1px solid black"   onfocus="ChkOnFocus(this.id,this.value);" onblur="ChkOnBlur(this.id,this.value);" >Order History and Comments</textarea><button  onclick="submitComment(\'' + String(records["id"]) + '\');">Submit</button></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Coupon Name : ' + records["coupon"].coupon_name + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Payable Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
+            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td rowspan="3" style="width:40%;"><textarea id="TxtTweets1" rows="5" cols="36" style= "width:80%;border: 1px solid black;float:left;"   onfocus="ChkOnFocus(this.id,this.value);" onblur="ChkOnBlur(this.id,this.value);" >Order History and Comments</textarea>&nbsp;<button  onclick="submitComment(\'' + String(records["id"]) + '\');">Submit</button></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["bill_amount"] + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Coupon Name : ' + records["coupon"].coupon_name + '</td></tr><tr><td style="padding-left:25%;vertical-align:text-top;">Payable Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
             
             var obj = Ext.getCmp('OrderViewpanel');            
             obj.setHtml(html);
@@ -1109,7 +1109,7 @@ function viewordetail2(id,from)
         },
         success: function (records) {
           
-            html += '<div style="padding:20px"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
+            html += '<div style="padding:20px;font-size:90%;padding-top:0px !important;"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
             if (from == "Dispatched")
                 html += '<div style="float: left; width: 30%"><button onclick="ondeliverd(\'' + String(records["id"]) + '\')">Delivered</button><button onclick="onreturnd(\'' + String(records["id"]) + '\')">Returned</button><button onclick="ondamage(\'' + String(records["id"]) + '\');">Damage</button><button onclick="oncancelbtn(\'' + String(records["id"]) + '\')">Cancel</button></div>';
             else if (from == "Delivered")
@@ -1156,7 +1156,7 @@ function viewordetail2(id,from)
             for (var i = 0; i < orders.length; i++)
             {
                 
-                html += '<tr class="datarow2"><td>' + orders[i].dish_name + '</td><td>' + orders[i].quantity + '</td></tr>';
+                html += '<tr class="datarow2" style="line-height:20px;border-bottom:1px solid black;"><td>' + orders[i].dish_name + '</td><td>' + orders[i].quantity + '</td></tr>';
                 
             }
             debugger;

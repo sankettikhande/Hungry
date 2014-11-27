@@ -9,6 +9,14 @@ class HolaUser < ActiveRecord::Base
 
   validates :phoneNumber, uniqueness: true, presence: true
 
+  before_save :set_password
+
+  def set_password
+    if self.password_changed? and !self.password.blank?
+      self.password = Base64.encode64 self.password
+    end
+  end
+
   def self.add_to_favorite(hola_user, chef_id)
     fav_chef = MyFavoriteChef.where(:hola_user_id => hola_user.id, :cheff_id => chef_id)
     if fav_chef.blank?
@@ -61,6 +69,10 @@ class HolaUser < ActiveRecord::Base
   def self.confirm_orders_last_3_days(hola_user_id)
     hola_user = HolaUser.find_by_id(hola_user_id)
     return  !hola_user.blank? ? hola_user.orders.confirm_orders.where("date >= ? and date <= ?",3.days.ago, Date.today).count : 0
+  end
+
+  def authenticated_by_password? password
+    password == Base64.decode64(self.password)
   end
 
 end

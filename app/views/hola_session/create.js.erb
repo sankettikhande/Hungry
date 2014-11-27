@@ -1,5 +1,18 @@
-$("#login_form").addClass("hidden")
-$("#otp_form").removeClass("hidden")
-$("#red_url_otp").val("<%= params[:redirect_to_url] %>")
-$("#pnx").val("<%= j Base64.encode64(@hola_user.phoneNumber) %>")
+<% if params[:auth_type] == 'password' %>
+	<% if @hola_user.authenticated_by_password? params[:password] %>
+		window.location = "/hola_session/create_cookie?pnx=<%=j Base64.encode64(@hola_user.phoneNumber)%>&redirect_to_url=<%= j(params[:redirect_to_url]) %>"
+	<% else %>
+		$("#err-msg").html("<span class='text-orange'>Invalid password</span>")
+	<% end %>
+<% else %>
+	$("#login_form").addClass("hidden")
+	$("#otp_form").removeClass("hidden")
+	$("#red_url_otp").val("<%= params[:redirect_to_url] %>")
+	$("#pnx").val("<%= j Base64.encode64(@hola_user.phoneNumber) %>")
+	$(".password_dev").show()
+	<% unless params[:new_password].blank? %>
+		$("#otp_form #new_password").val("<%= params[:new_password] %>")
+	<% end %>
+<% end %>
+$("#login_otp_sms_button").removeAttr("disabled")
 
