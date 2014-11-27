@@ -64,6 +64,6 @@ Holachef::Application.configure do
     # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
     Bullet.raise = false
     Bullet.unused_eager_loading_enable = false
+    Bullet.n_plus_one_query_enable     = false
   end
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141126122910) do
+ActiveRecord::Schema.define(:version => 20141127054800) do
 
   create_table "categories", :force => true do |t|
     t.integer  "category_type_id"
@@ -701,6 +701,8 @@ ActiveRecord::Schema.define(:version => 20141126122910) do
     t.string   "version_comment"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.string   "from_display",                          :null => false
+    t.string   "to_display",                            :null => false
   end
 
   create_table "meal_types", :force => true do |t|
@@ -717,6 +719,8 @@ ActiveRecord::Schema.define(:version => 20141126122910) do
     t.boolean  "archived",      :default => false
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.string   "from_display",                     :null => false
+    t.string   "to_display",                       :null => false
   end
 
   create_table "message_reports", :force => true do |t|

@@ -9,6 +9,8 @@ class MealType < ActiveRecord::Base
 
    	before_save :reset_name, :if => Proc.new {|mt| ['Breakfast', 'Lunch', 'Dinner', 'All Time'].include?(mt.name_was) }
   
+   	scope :active_meal_type, lambda{ where(:is_active => true) }
+
    	def reset_name  
    		self.name = self.name_was
    	end 	

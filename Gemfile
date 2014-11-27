@@ -35,6 +35,7 @@ group :development do
   gem 'rvm-capistrano'
   gem 'pry-rails'
   gem "bullet"
+  gem 'awesome_print'
 end
 gem 'exception_notification'
 
