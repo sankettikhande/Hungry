@@ -614,4 +614,8 @@ $(document).ready(function(){
       $("#password_auth").hide()
     }
   });
+
+  $("#login_link").click(function(){
+    $('#login_modal').modal('show')
+  })
 })
