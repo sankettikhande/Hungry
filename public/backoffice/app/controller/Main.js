@@ -909,8 +909,8 @@ for (var i = 0; i < records.length; i++) {
                     }
                 },
                 centered: true,
-                width: '80%',
-                height: '85%',
+                width: '100%',
+                height: '100%',
                 scrollable: true,
                 items: [
                         {
@@ -1073,13 +1073,13 @@ function viewordetail(id,from)
 
             html += '</table></td></tr></table></td></tr><tr><td><div style="float: right; width: 30%"><select id="ddlaction"><option value="0">Select Action</option><option value="Canceled">Canceled</option><option value="Damaged">Damaged</option>';
             //<option value="Ordered">Ordered</option><option value="Returned">Returned</option>
-            html += '</select><button onclick="onbtnaction(\'' + String(records["id"]) + '\');">Submit</button></div></td></tr><tr><td><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Select</th><th>Name</th><th>Chef Name</th><th>Qty</th><th>Unit Price</th><th>Row Total</th><th>Status</th></tr></thead><tbody>';
+            html += '</select><button onclick="onbtnaction(\'' + String(records["id"]) + '\');">Submit</button></div></td></tr><tr><td><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th style="width:500px;">Name</th><th>Chef Name</th><th>Qty</th><th>Unit Price</th><th>Row Total</th><th>Status</th></tr></thead><tbody>';
             
             var orders = records["order_items"];
             for (var i = 0; i < orders.length; i++)
             {
                 
-                html += '<tr class="datarow2"><td><input type="checkbox" value="' + orders[i].menu_item_id + '" id="orderchkbox_' + String(i) + '" /></td><td>' + orders[i].dish_name + '</td><td>' + orders[i].cheff + '</td><td>' + orders[i].quantity + '</td><td>' + orders[i].rate + '</td><td>' + orders[i].menu_item_total + '</td><td>' + orders[i].order_status + '</td></tr>';
+                html += '<tr class="datarow2"><td  style="max-width: 500px;overflow-x: scroll;">' + orders[i].dish_name + '</td><td>' + orders[i].cheff + '</td><td>' + orders[i].quantity + '</td><td>' + orders[i].rate + '</td><td>' + orders[i].menu_item_total + '</td><td>' + orders[i].order_status + '</td></tr>';
                 
             }
 
