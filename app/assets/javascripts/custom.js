@@ -141,25 +141,40 @@ $(document).ready(function(){
         }
 
     })
+    // $(".layout-tabbed li").on("click",function(){
+    //     $(this).addClass("active");
+    //     if ($(this).attr("class") == ""){
+    //         $("#Lunch").removeClass("active");
+    //         meal_type= $(this).find("a").attr("href").replace("#",'');
+    //         $("#"+meal_type).addClass("active");
+    //     }
+    //     else{
+    //         meal_type= $(this).find("a").attr("href").replace("#",'');
+    //         $("#"+meal_type).addClass("active");
+    //         if (meal_type == "Lunch") {
+    //             $("#Dinner").removeClass("active");
+    //             $("#li_Dinner").removeClass("active");
+    //         }
+    //         else {
+    //             $("#Lunch").removeClass("active");
+    //             $("#li_Lunch").removeClass("active");
+    //         }
+
+    //     }
+    // })
+
     $(".layout-tabbed li").on("click",function(){
+        $(".layout-tabbed li").removeClass("active");
+        $('div.tab-content div').removeClass('active');
         $(this).addClass("active");
-        if ($(this).attr("class") == ""){
-            $("#Lunch").removeClass("active");
+        if ($(this).attr("class") == ""){            
             meal_type= $(this).find("a").attr("href").replace("#",'');
             $("#"+meal_type).addClass("active");
         }
         else{
             meal_type= $(this).find("a").attr("href").replace("#",'');
             $("#"+meal_type).addClass("active");
-            if (meal_type == "Lunch") {
-                $("#Dinner").removeClass("active");
-                $("#li_Dinner").removeClass("active");
-            }
-            else {
-                $("#Lunch").removeClass("active");
-                $("#li_Lunch").removeClass("active");
-            }
-
+            $('div.tab-content').find('#'+meal_type).addClass('active');
         }
     })
 
