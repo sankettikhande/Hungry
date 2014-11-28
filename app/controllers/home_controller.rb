@@ -34,13 +34,7 @@ class HomeController < ApplicationController
     update_cart(@todays_menu) if !@todays_menu.blank?
     @todays_menu_by_meal_type = get_todays_menu_by_meal_type
     respond_to do |format|
-      if Date.today == Date.parse('2014-10-23')
-        format.html{render template: "home/sunday"}
-      elsif (!Time.now.sunday? || !@sunday_override.blank?)
-        format.html{render template: "home/index"}
-      else
-        format.html{render template: "home/sunday"}
-      end
+      format.html{render template: "home/index"}
     end
   end
 
