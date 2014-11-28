@@ -20,9 +20,10 @@
         <% if hola_current_user.blank? %>
           <li><a href="#" id="login_link">Log in/Sign Up</a></li>
         <% else %>
+          <li class="a-link"><a href="/mobile">Home</a></li>      
           <li class="dropdown hidden-xs hidden-sm hidden-ipad">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Welcome, <span class="orange-text"><%= hola_current_user.name %>! <i class="fa fa-gear"></i></span>
+              Welcome, <span><%= hola_current_user.name %>! <i class="fa fa-gear"></i></span>
             </a>
             <ul class="dropdown-menu" role="menu">
             <li><a href="/order_histories">Order History</a></li>

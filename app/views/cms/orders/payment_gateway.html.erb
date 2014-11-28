@@ -53,27 +53,15 @@
 
 <!-- cart proceed button -->
 <div class="seperator-25 mb-4">
-  <div class="container hidden-ipad visible-md visible-lg">
-  <div class="row">
-    <div class="col-xs-12 text-center">
+    <div class="clearfix text-center">
       <a id="desktop-proceed" href="#" class="btn btn-saffron select_payment_method">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
     </div>
-  </div>
-</div>
 
-<div class="container hidden-ipad visible-md visible-lg">
-  <div class="row">
-    <div class="col-xs-12 text-center">
+    <div class="clearfix text-center">
       <a id="desktop-proceed" href="/order-confirm/<%= @order.id%>?payment_mode=cash_on_delivery" class="btn btn-saffron cash_delivery">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
     </div>
-  </div>
-</div>
 
-<div class="container hidden-ipad visible-md visible-lg">
-  <div class="row">
-    <div class="col-xs-12 text-center">
+    <div class="clearfix text-center">
       <a id="desktop-proceed" href="#" class="btn btn-saffron payment_mode netbanking" data-paymentMode="NET_BANKING" data-orderId="<%= @order.id %>">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
     </div>
-  </div>
-</div>
 </div>

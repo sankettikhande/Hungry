@@ -39,6 +39,7 @@
 .lato-r {font-family: 'latoregular',Helvetica,Sans-serif;}
 .lato-i {font-family: 'latolight',Helvetica,Sans-serif;}
 
+.btn-checkout {font-family:'latoregular',sans-serif;}
 
 body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;padding-bottom: 106px;} /*** margib-bottom issue *****/
 
@@ -52,6 +53,9 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;padding-bot
 .hola-lg-navbar .top-nav li a {padding: 0 15px;line-height: 34px;color: #2b2a28;font-size: 16.49px;float: left;display: block;width: auto;}
 .hola-lg-navbar .nav>li>a:hover, .hola-lg-navbar .nav>li>a:focus {background: none;}
 .hola-lg-navbar .playstore-icon {width: 101px;height: 36px;margin-top: 0;padding-top: 0}
+.hola-lg-navbar .top-nav .a-link a {color: #ff8800;}
+.hola-lg-navbar .top-nav .a-link a:hover {color: #000;}
+.hola-lg-navbar .top-nav li a.dropdown-toggle span {color: #ff8800}
 
 .top-nav.navbar-nav>li>.dropdown-menu{border-top: 3px solid #ff8800;box-shadow: none;-webkit-box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none;-ms-box-shadow:none;border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;-o-border-radius: 0;-ms-border-radius: 0;padding: 0 10px;margin-top: 10px;max-width: 190px;}
 .top-nav .dropdown-menu>li>a:hover,.top-nav .dropdown-menu>li>a:focus {color: #ff8800;background-color: transparent;}
