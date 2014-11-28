@@ -1063,7 +1063,7 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .address-table tbody td.a-radio {text-align: center;}
 .address-brief {cursor: pointer;color: #8D8D8D}
 
-
+.two-btns .btn {margin-bottom: 10px;}
 /*.address-table tbody td label {vertical-align: middle; display: inline-block;font-weight: normal;margin-bottom: 0;}
 */
 
