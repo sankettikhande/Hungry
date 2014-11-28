@@ -39,19 +39,19 @@ $(document).ready(function(){
         $(".payment_method_div").validationEngine('showPrompt', ' Please select a payment method', 'error');
         $(".undefinedformError").css('left','21px');
     })
-    $("#radio-nbanking").click(function(){
-       $(".netbanking").css("display","inline-block");
-       $(".cash_delivery").css("display","none");
-       $(".select_payment_method").css("display","none");
-       $(".undefinedformError").css("display","none");
-    });
+    // $("#radio-nbanking").click(function(){
+    //    $(".netbanking").css("display","inline-block");
+    //    $(".cash_delivery").css("display","none");
+    //    $(".select_payment_method").css("display","none");
+    //    $(".undefinedformError").css("display","none");
+    // });
 
-    $("#radio-cod").click(function(){
-       $(".cash_delivery").css("display","inline-block");
-       $(".netbanking").css("display","none");
-       $(".select_payment_method").css("display","none");
-       $(".undefinedformError").css("display","none");
-    });
+    // $("#radio-cod").click(function(){
+    //    $(".cash_delivery").css("display","inline-block");
+    //    $(".netbanking").css("display","none");
+    //    $(".select_payment_method").css("display","none");
+    //    $(".undefinedformError").css("display","none");
+    // });
 
     $('#add-order-plus').unbind("click").live('click', function(e) {
         e.preventDefault();
@@ -533,16 +533,43 @@ $(document).ready(function(){
         $("#recipe-page-txt").addClass('hidden')
     }
 
-    $(".payment_mode").click(function(){
-        var paymentMode = $(this).attr('data-paymentmode');
-        var orderId = $(this).attr('data-orderid');
-        $.ajax({
-            'url' : '/submit_payment_form',
-            'method': 'POST',
-            'data': {'paymentMode': paymentMode, 'orderId':orderId},
-            'dataType':'script'
-        })
-    });
+    // $(".payment_mode").click(function(){
+    //     var paymentMode = $(this).attr('data-paymentmode');
+    //     var orderId = $(this).attr('data-orderid');
+    //     $.ajax({
+    //         'url' : '/submit_payment_form',
+    //         'method': 'POST',
+    //         'data': {'paymentMode': paymentMode, 'orderId':orderId},
+    //         'dataType':'script'
+    //     })
+    // });
+
+    $("#desktop-proceed-pay").click(function(){
+        pay_option = $("input[name=pay-by]:checked")
+        if(pay_option.val() === undefined){
+            $(".payment_method_div").validationEngine('showPrompt', ' Please select a payment method', 'error');
+            $(".undefinedformError").css('left','11%');
+        }
+        else{
+            payment_mode = pay_option.data('payment-mode');
+            order_id = pay_option.data('order-id')
+            if(payment_mode == "net_banking")
+            {
+                $.ajax({
+                  'url' : '/submit_payment_form',
+                  'method': 'POST',
+                  'data': {'paymentMode': payment_mode, 'orderId':order_id},
+                  'dataType':'script'
+                });
+                
+            }else{
+              window.location = "/order-confirm/"+order_id+"?payment_mode="+payment_mode
+
+            }
+        console.log(pay_option)
+        
+        }
+    })
 
     $("#cover-title").fitText(1.2, {
         minFontSize:'16px',

@@ -21,12 +21,20 @@
         <!--<form id="payment_method" method="post" action="">-->
         <ul class="pay-options-radio">
                 <li class="orange-check">
-                      <input name="pay-by" id="radio-cod" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." type="radio">
-                      <label for="radio-cod" class="css-label">Card/Cash on Delivery</label>
+                      <input name="pay-by" id="radio-cod" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." data-payment-mode="cash_on_delivery" data-order-id="<%= @order.id %>" type="radio">
+                      <label for="radio-cod" class="css-label">Cash on Delivery</label>
                 </li>
                 <li class="orange-check">
-                      <input name="pay-by" id="radio-nbanking" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method" type="radio">
+                      <input name="pay-by" id="radio-caod" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." data-payment-mode="card_on_delivery" data-order-id="<%= @order.id %>" type="radio">
+                      <label for="radio-caod" class="css-label">Card on Delivery</label>
+                </li>
+                <li class="orange-check">
+                      <input name="pay-by" id="radio-nbanking" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method" type="radio" data-payment-mode="net_banking" data-order-id="<%= @order.id %>">
                       <label for="radio-nbanking" class="css-label">NetBanking</label>
+                </li>
+                <li class="orange-check">
+                      <input name="pay-by" id="radio-coud" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." type="radio" data-payment-mode="coupons_on_delivery" data-order-id="<%= @order.id %>">
+                      <label for="radio-coud" class="css-label">Coupon on Delivery</label>
                 </li>
               </ul>
         <!--</form>-->
@@ -53,15 +61,7 @@
 
 <!-- cart proceed button -->
 <div class="seperator-25 mb-4">
-    <div class="clearfix text-center">
-      <a id="desktop-proceed" href="#" class="btn btn-saffron select_payment_method">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
-    </div>
-
-    <div class="clearfix text-center">
-      <a id="desktop-proceed" href="/order-confirm/<%= @order.id%>?payment_mode=cash_on_delivery" class="btn btn-saffron cash_delivery">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
-    </div>
-
-    <div class="clearfix text-center">
-      <a id="desktop-proceed" href="#" class="btn btn-saffron payment_mode netbanking" data-paymentMode="NET_BANKING" data-orderId="<%= @order.id %>">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
-    </div>
+  <div class="clearfix text-center">
+    <a id="desktop-proceed-pay" href="#" class="btn btn-saffron">Proceed to Checkout <i class="fa fa-angle-double-right"></i></a>
+  </div>
 </div>
