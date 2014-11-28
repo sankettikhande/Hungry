@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
 
 
@@ -6,16 +7,16 @@
         <div class="successMsg"><%= flash[:notice] %></div>
       <% end %>
       <div class="col-xs-12">
-        <div class="form-group grey-header">
-            <div class="address-label">
-              <a href="/new_address" class="btn back-white btn-block text-grey address-btn">
-                  <span class="glyphicon glyphicon-plus"></span> ADD NEW ADDRESS
-              </a>
-            </div>
+        <div class="grey-header text-center text-uppercase">
+          <h4>Addresses</h4>
         </div>
       </div>
     </div>
+  </div>
+
     <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
               <% if hola_current_user %>
 
               <% hola_current_user.hola_user_addresses.each_with_index do |address, index| %>
@@ -25,11 +26,11 @@
                       <tr>
                         <td>
                             <label for="addr-<%= index %>">
-                              <p class="address-brief">
+                              <span class="address-brief">
                                 <% address.address_array.each do |addrs| %>
                                   <span><%=addrs %><%= address.address_array.last == addrs ? "" : ", " %></span>
                                 <% end %>
-                              </p>
+                              </span>
                             </label>
                         </td>
                       </tr>
@@ -37,6 +38,17 @@
                 </div>
               <% end %>
 
-            <% end %>
+            <% end %>            
+          </div>
         </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group text-center">
+              <a href="/new_address" class="btn btn-saffron">
+                  <span class="glyphicon glyphicon-plus"></span> ADD NEW ADDRESS
+              </a>
+            </div>
+          </div>
+        </div>
+    </div>
 <%= render 'layouts/dynamik_footer', message: "Your Place. Your Plate." %>

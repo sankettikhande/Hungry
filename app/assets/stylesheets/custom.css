@@ -1050,7 +1050,6 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 
 .empty-labels {padding: 7px 10px;}
 
-.address-brief {cursor: pointer;}
 .address-card {margin: 10px 0;padding: 10px;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;}
 .address-card a {color: #ff9900;font-family: 'robotobold',Sans-serif;font-size: 1em;}
 .address-card a:hover,.address-card a:focus,.address-card a:active {text-decoration: none;outline: none;}
@@ -1058,13 +1057,15 @@ h6.page-title {font-family: 'robotobold',Sans-serif;font-size: 1.025em;color: #3
 .address-form .form-group {margin-bottom: 5px;}
 .address-form .form-group .btn+.btn {margin-left: 15px;}
 
-.grey-header .address-btn {color: #6a6969;background: #d4d3d3;text-align: left;padding: 0 10px;overflow: hidden;display: block;font-weight: bold;}
 
 .address-table {background: #fff;border-radius: 4px;border:1px solid #ccc;margin-bottom: 0}
 .address-table tbody td {border-top: 0;vertical-align: middle !important;}
 .address-table tbody td.a-radio {text-align: center;}
+.address-brief {cursor: pointer;color: #8D8D8D}
+
+
 /*.address-table tbody td label {vertical-align: middle; display: inline-block;font-weight: normal;margin-bottom: 0;}
-*/.address-table tbody td label p {margin-bottom: 0;color: #8d8d8d;}
+*/
 
 .radio-bar {padding: 10px 6px;margin-top: 10px;background: #fff;width: 100%;display: block;overflow: hidden;}
 .radio-bar label {font-weight: normal;}
@@ -1116,7 +1117,7 @@ html{overflow-x:hidden}
 .n-dish-info .n-dish-title {font-size: 0.875em; color: #010101; cursor: pointer;text-transform: capitalize;line-height: 16px}
 .n-dish-info .n-chef-name {font-size: 0.75em;color: #8d8d8d;text-transform: uppercase;line-height: 18px;}
 .n-dish-spec{font-size: 0.875em;color: #8d8d8d;line-height: 14px;}
-.n-dish-info .n-chef-name a {color: #f60;text-transform: capitalize;font-size: 0.95em}
+.n-dish-info .n-chef-name a {color: #f60;text-transform: capitalize;font-size: 1.2em;}
 
 .n-dish-type {font-size: 0.5625em;}
 
@@ -1141,7 +1142,7 @@ html{overflow-x:hidden}
 
 .order-count {font-weight: bold;}
 
-
+.prev-masonry .prev-order-wrapper {width: 100%;width: 33%\9}
 .prev-masonry {
 -moz-column-count:3;
 -webkit-column-count:3;
@@ -1173,7 +1174,6 @@ column-count:1;
 -webkit-column-gap:10px;
 column-gap:10px;}
 }
-
 
 
 .prev-order-wrapper {margin:0 0 10px;display: inline-block;}
@@ -1265,6 +1265,8 @@ input[type='number'] {
 
 img {font-size: 0}
 
+.discountCouponBtn {padding: 5px 12px;}
+
 .layout-tabbed {margin: 0 auto;width: 100%;}
 .nav-justified.layout-tabbed > li {display: table-cell;width: 1%;float: none;clear: both;overflow: hidden;}
 .nav-justified.layout-tabbed > li > a {border-radius: 0 !important;border-bottom-color:#ff8800;}
@@ -1326,6 +1328,7 @@ img {font-size: 0}
 
 
 @media (min-width: 1025px) {
+    body {padding-top: 57px;}
     .layout-tabbed {margin-bottom: 5px;margin-top: 10px;}
 
     .item-content {width: 33.3333%;}
@@ -1348,8 +1351,8 @@ img {font-size: 0}
   display: none;
   float: left;
   font-weight: bold;
-  line-height: 1.5;
+  line-height: 22px;
   padding-left: 5px;
-  padding-top: 10px;
+  padding-top: 3px;
 }
 

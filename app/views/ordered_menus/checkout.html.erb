@@ -1,6 +1,5 @@
 <div class="right-body">
-<div class="grey-back seperator-80">
-  <div class="container nopadding">
+<div class="container grey-back seperator-80">
     <div class="row">
       <div class="col-xs-12">
         <ul class="booked-orders heading">
@@ -12,20 +11,21 @@
         </ul>        
       </div>
     </div>
-  </div>  
 </div>
-  <% total = [] %>
-  <% lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
-  <%= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "12PM - 1PM", slot_2: "1PM - 2PM", slot_3: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
+<div class="container">
+<div class="row">
+    <% total = [] %>
+    <% lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
+    <%= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "12PM - 1PM", slot_2: "1PM - 2PM", slot_3: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
 
-  <% snack_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Evening Snacks"]}).compact %>
-  <%= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
+    <% snack_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Evening Snacks"]}).compact %>
+    <%= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
 
-  <% dinner_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Dinner"]}).compact %>
-  <%= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "8PM - 9PM", slot_2: "9PM - 10PM", slot_3: "10PM - 11PM", total: total, default_slot: "8PM - 9PM"  if dinner_items.present? %>
-
-<div class="grey-back">
-  <div class="container">
+    <% dinner_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Dinner"]}).compact %>
+    <%= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "8PM - 9PM", slot_2: "9PM - 10PM", slot_3: "10PM - 11PM", total: total, default_slot: "8PM - 9PM"  if dinner_items.present? %>
+    </div>
+</div>
+  <div class="container grey-back">
     <div class="row">
       <div class="col-xs-12">
           <ul class="booked-orders backgroundLight">
@@ -38,7 +38,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <div class="container">
   <div class="row">
@@ -79,15 +78,13 @@ end
 discountAmt = total.inject(:+);
 end
 %>
-<div class="grey-back seperator-15">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="list-inline review-bar-g text-right">
-          <li class="col-xs-9 text-total">Discounted Amount</li>
-          <li class="col-xs-3" id="discount"><%= discountC %></li>
-        </ul>        
-      </div>
+<div class="grey-back seperator-15 container">
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-inline review-bar-g text-right">
+        <li class="col-xs-9 text-total">Discounted Amount</li>
+        <li class="col-xs-3" id="discount"><%= discountC %></li>
+      </ul>        
     </div>
   </div>
 </div>
@@ -177,7 +174,7 @@ end
 <!--
      <% remaining_categories = get_remaining_category(@categories) %>
         <% remaining_categories.each do |remaining_categories| %>
-            <div class="container-fluid back-white seperator-3">
+            <div class="container back-white seperator-3">
               <div class="container">
                 <div class="row">
                   <div class="col-xs-12">
@@ -198,7 +195,7 @@ end
 
 
 <% if false %>
-<div class="container-fluid back-white seperator-4">
+<div class="container back-white seperator-4">
   <div class="row">
     <div class="col-xs-12">
       <div class="container">
