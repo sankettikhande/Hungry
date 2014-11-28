@@ -35,6 +35,46 @@
                 </div>
               </div>
 
+              <div class="row password_new_dev" style="display:none">
+                <div class="col-xs-3 form-group">
+                  <label class="control-label text-6" style="vertical-align:middle;margin-bottom:-10px;">Password</label>
+                </div>
+                <div class="col-xs-9 form-group">
+                  <%= password_field_tag :new_password, '', class: "form-control  validate[required]", placeholder: "Password for future use",  "data-prompt-position" => "bottomLeft" %>
+                </div>
+              </div>
+
+              <div class="row password_dev" style="display:none">
+                <div id="password_options" >
+                  <div class="col-xs-3 form-group">
+                    <label class="control-label text-6" style="vertical-align:middle;margin-bottom:-10px;">Login with</label>
+                  </div>
+                  <div class="col-xs-3 form-group">
+                    <%= radio_button_tag :auth_type, 'password', false, class: "auth_type", placeholder: "Password for future use" %> 
+                    <label class="control-label text-6" for="auth_type_password">
+                      Password
+                    </label>
+                  </div>
+                  <div class="col-xs-3 form-group">
+                    <%= radio_button_tag :auth_type, 'otp', false, class: "auth_type", placeholder: "Password for future use" %> 
+                    <label class="control-label text-6" for="auth_type_otp">
+                      OTP
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div id="password_auth" style="display:none">
+                  <div class="col-xs-3 form-group">
+                    <label class="control-label text-6" style="vertical-align:middle;margin-bottom:-10px;">Password</label>
+                  </div>
+                  <div class="col-xs-9 form-group">
+                    <%= password_field_tag :password, '', class: "form-control validate[required]", placeholder: "Password", "data-prompt-position" => "bottomLeft" %>
+                    <div id="err-msg"></div>
+                  </div>
+                </div>
+              </div>
+
               <%= hidden_field :save_user_details, true %>
               <%= hidden_field_tag :redirect_to_url, request.path, id: "red_url" %>
             </div>
@@ -63,6 +103,7 @@
               <%= hidden_field :save_user_details, true %>
               <%= hidden_field_tag :redirect_to_url, '', id: "red_url_otp" %>
               <%= hidden_field_tag :pnx, '', id: "pnx" %>
+              <%= hidden_field_tag :new_password %>
             </div>
           </div>
           <div class="modal-footer">

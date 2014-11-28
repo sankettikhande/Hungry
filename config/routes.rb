@@ -112,6 +112,7 @@ Holachef::Application.routes.draw do
       get :confirm_with_otp
       get :regenerate_otp
       get :get_sign_in_details
+      get :create_cookie
     end
   end
 

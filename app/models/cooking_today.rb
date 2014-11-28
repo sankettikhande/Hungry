@@ -84,7 +84,7 @@ class CookingToday < ActiveRecord::Base
   end
 
   def self.todays_menu_by_type meal_type
-    where(date: Date.today.to_s, meal_type: meal_type, published: true).includes([:cheff, {:food_item => [:cheff, :recipe, {:meal_info => :picture}]}]).sort_by(&:qty_left).reverse
+    where(date: Date.today.to_s, meal_type: meal_type, published: true).includes([:cheff, {:food_item => [:cheff, :recipe, {:meal_info => :picture}]}]).sort_by(&:stock_price).reverse
   end 
 
   def orderable?
@@ -99,6 +99,10 @@ class CookingToday < ActiveRecord::Base
     meal_availability_from_time = Time.zone.parse("#{Date.today} #{meal_availability[:from]}")
     meal_availability_to_time = Time.zone.parse("#{Date.today} #{meal_availability[:to]}")
     (Time.now < meal_availability_from_time or Time.now > meal_availability_to_time or qty_left <= 0)
+  end
+
+  def stock_price
+    (qty_left * food_item.meal_info.hola_sell_price)
   end
 
   def self.meal_type_time_span

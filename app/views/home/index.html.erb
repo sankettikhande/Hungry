@@ -24,10 +24,14 @@
           <div class="tab-content">
              <% @todays_menu_by_meal_type.each do |meal_type, meals_available| %>
              <%# next unless meal_available? (meal_type) %>
-             <div class="tab-pane <%= current_live_meal == meal_type ? "active" :"" %>" id="<%= meal_type %>">
-               <%# meals_available = CookingToday.todays_menu_by_type(meal_type) %>
-               <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
-             </div>
+              <div class="tab-pane <%= current_live_meal == meal_type ? "active" :"" %>" id="<%= meal_type %>">
+                <% if Date.today.sunday? and meal_type == "Dinner" %>
+                  <%= render template: "home/sunday" %>
+                <% else %>
+                    <%# meals_available = CookingToday.todays_menu_by_type(meal_type) %>
+                    <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
+                <% end %>
+              </div>
              <% end%>
           </div>
     <%# end %>
