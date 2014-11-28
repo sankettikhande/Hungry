@@ -4,3 +4,37 @@
 <%= f.cms_drop_down :from_display, TIME_ARR %>
 <%= f.cms_drop_down :to_display, TIME_ARR %>
 <%= f.cms_check_box :is_active %>
+
+<%#= f.cms_drop_down :first_slot, TIME_SLOTS %>
+<%#= f.cms_drop_down :second_slot, TIME_SLOTS %>
+<%#= f.cms_drop_down :third_slot, TIME_SLOTS %>
+<% for i in 1..3 %>
+	<div id="select_container_<%= i %>" class="fields text_fields <%= i == 1 ? '' : 'hide'%>">
+		<label> 
+			<% if i == 1 %>
+				First
+			<% elsif i == 2 %>			
+				Second	
+			<% else %>
+				Third
+			<% end %>		
+			slot
+		</label>
+		<label for="from_slot_<%= i %>">From</label>
+		<select name="from_slot_<%= i %>" id="from_slot_<%= i %>">
+			<option value="0">Select Time</option>
+			<% TIME.each do |key, value| %>
+				<option value="<%= key %>"><%= key %></option>
+			<% end %>	
+		</select>
+  		<br/> <br/>
+  		<label> </label>
+		<label for="to_slot_<%= i %>">To</label>
+  		<select name="to_slot_<%= i %>" id="to_slot_<%= i %>">
+  			<option value="0">Select Time</option>
+  			<% TIME.each do |key, value| %>
+  				<option value="<%= key %>"><%= key %></option>
+  			<% end %>	
+  		</select>  	
+	</div>
+<% end %>
