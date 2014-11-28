@@ -113,6 +113,7 @@ Holachef::Application.routes.draw do
       get :create_cookie
     end
   end
+  delete "/logout" => "hola_session#logout", as: :logout
 
   namespace :api do
     resources :orders do
