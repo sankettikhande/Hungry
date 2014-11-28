@@ -1,7 +1,14 @@
 <% if @hola_user.blank? %>
     $("#name").val("");
     $("#email").val("");
+	$(".password_new_dev").show();
 <% else %>
-    $("#name").val("<%= @hola_user.name %>")
-    $("#email").val("<%= @hola_user.email%>")
+    $("#name").val("<%= @hola_user.name %>");
+    $("#email").val("<%= @hola_user.email%>");
+    <% if @hola_user.password.blank? %>
+    	$(".password_new_dev").show();
+    <% else %>
+    	$(".password_dev").show();
+    <% end %>
 <% end %>
+

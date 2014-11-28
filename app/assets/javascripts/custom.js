@@ -603,3 +603,15 @@ $('#submit_review').click(function(){
         }
     })
 })
+
+$(document).ready(function(){
+  $("input:radio[name=auth_type]").click(function() {
+    var value = $(this).val();
+    if(value == "password"){
+      $("#password_auth").show()
+    }
+    else{
+      $("#password_auth").hide()
+    }
+  });
+})
