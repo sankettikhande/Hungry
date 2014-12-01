@@ -104,7 +104,7 @@
 			</div>
 		<% end %>
 	</div>	
-
+	<input type="hidden" name="slot_updated" id="slot_updated" value="false"/>
 	<%= f.button "SUBMIT" %>
 
 <% end %>
@@ -130,6 +130,7 @@
 	$(document).ready(function(){
 		$('#add_slots').click(function(){
 			$('#slots_div').removeClass('hide');
+			$('#slot_updated').val('true');
 		})
 	})
 </script>
