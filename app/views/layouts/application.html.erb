@@ -4,9 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-
   <title>Holachef</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="Powai food, food cravings, order food in Powai, Eat Hearty, Eat Better" >
   <meta name="description" content="Eat Hearty, Eat Better! Everyday. Holachef brings the best taste, variety and convenience of ordering-in hearty, wholesome meals from the best chefs around. Download Holachef App from Google Play store or call now ?+91-8080804652? to order.? Service area currently restricted to Powai, Chandivali, Andheri East, JVLR, Vikhroli, Bhandup!">
   <!--FACEBOOK-->
@@ -37,7 +35,6 @@
   <%= render 'layouts/analytics' %>
 </head>
 <body>
-<div id="wrap">
   <%= render :partial => "/layouts/header" %>
   <div class="sliding-page row-offcanvas row-offcanvas-left">
     <%= render 'layouts/side_menu' %>
@@ -49,7 +46,6 @@
     </div>
   </div>
 
-    </div><!-- #wrap ends -->
   <% if !@footer %>
       <%= render 'layouts/content_footer' %>
   <% end %>
