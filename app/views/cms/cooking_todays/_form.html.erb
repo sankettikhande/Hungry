@@ -17,7 +17,7 @@
       <label for="dish_dish_image">Chef's Dishes</label>
       <select id="cooking_today_food_item_id" name="cooking_today[food_item_id]" style="width: 458px" disabled="disabled" class="selectbox"></select>
     </div>
-    <%= f.cms_drop_down :meal_type, CookingToday.meal_types, include_blank: "Select meal type" %>
+    <%= f.cms_drop_down :meal_type, CookingToday.meal_types_name, include_blank: "Select meal type" %>
 
     <%= f.cms_text_field :quantity %>
     <%= f.cms_date_picker :date %>

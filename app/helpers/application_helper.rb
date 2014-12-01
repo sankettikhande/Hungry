@@ -311,7 +311,7 @@ def link_to_remove_fields(name, f)
   end
 
   def current_live_meal
-    CookingToday.meal_types.each do |meal_type|
+    CookingToday.meal_types_name.each do |meal_type|
       return meal_type if meal_available? meal_type
     end
   end

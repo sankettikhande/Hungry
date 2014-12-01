@@ -15,7 +15,7 @@ class CookingToday < ActiveRecord::Base
   #                          #,"All Time Available" => {from: "12:00 AM", to: "11:59 PM"}
   #                         }
   
-  def self.meal_types
+  def self.meal_types_name
     MealType.active_meal_type.map {|mt| mt.name}              
   end
 
@@ -26,7 +26,7 @@ class CookingToday < ActiveRecord::Base
   validates_presence_of :cheff_id, :message => ": Chef's Name and Dish can't be blank"
   validates :date, :presence => true
   validates :meal_type, presence: true
-  validates :meal_type, inclusion: {in: meal_types}, :unless => Proc.new {|c| c.meal_type.blank?}
+  # validates :meal_type, inclusion: {in: meal_types_name}, :unless => Proc.new {|c| c.meal_type.blank?}
   validate :order_quantity
 
 
