@@ -1,38 +1,48 @@
 <div class="container">
-<div class="row">
-  <div class="col-xs-12 paddingLR0">
-    <div id="hola-containerx">
-      <% today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
-      <% if flash[:notice] %>
-        <div class="alert alert-success" role="alert"><%= flash[:notice] %></div>
-      <% end %>
-      <% if flash[:error] %>
-        <div class="alert alert-danger" role="alert"><%= flash[:notice] %></div>
-      <% end %>
-      <%# if @todays_menu %>
-          <ul class="nav nav-tabs nav-justified layout-tabbed">
+  <div class="row">
+    <div class="col-xs-12 paddingLR0">
+      <div id="hola-containerx">
+        <% today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
+        <% if flash[:notice] %>
+          <div class="alert alert-success" role="alert">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+        <% if flash[:error] %>
+          <div class="alert alert-danger" role="alert">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+        <%# if @todays_menu %>
+        <ul class="nav nav-tabs nav-justified layout-tabbed">
+        <% @todays_menu_by_meal_type.each do |meal_type, meals_available| %>
+          <%# next unless meal_available? (meal_type) %>
+          <%# meals_available = CookingToday.todays_menu_by_type(meal_type) %>
+          <% if meal_type != 'All Time' %>
+            <li id= "li_<%= meal_type %>" class= "<%= (current_live_meal == meal_type) ? 'active' : '' %>">
+              <a href="#<%= meal_type %>" data-toggle="tabs">
+                <div class="text-center show-time followMeBar" data-category="<%= meal_type %> <span class='time-block'> (<%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> to <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %>)</span>" > 
+                </div>
+                <div class="category_header"> <%= meal_type %> </div>
+                <div class="category_header2">( <%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> - <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %> )
+                </div>
+              </a>
+            </li>
+          <% end %>  
+        <% end %>
+        </ul>
+        <div class="tab-content">
           <% @todays_menu_by_meal_type.each do |meal_type, meals_available| %>
             <%# next unless meal_available? (meal_type) %>
-            <%# meals_available = CookingToday.todays_menu_by_type(meal_type) %>
-                <li id= "li_<%= meal_type %>" class= "<%= (current_live_meal == meal_type) ? 'active' : '' %>"><a href="#<%= meal_type %>" data-toggle="tabs">
-                   <div class="text-center show-time followMeBar" data-category="<%= meal_type %> <span class='time-block'> (<%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> to <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %>)</span>" > </div>
-                   <div class="category_header"> <%= meal_type %> </div>
-                  <div class="category_header2">( <%= CookingToday.meal_type_time_span[meal_type][:fromDisplay] %> - <%= CookingToday.meal_type_time_span[meal_type][:toDisplay] %> )</div>
-                </a></li>
-          <% end %>
-         </ul>
-          <div class="tab-content">
-             <% @todays_menu_by_meal_type.each do |meal_type, meals_available| %>
-             <%# next unless meal_available? (meal_type) %>
-              <div class="tab-pane <%= current_live_meal == meal_type ? "active" :"" %>" id="<%= meal_type %>">
-                <% if Date.today.sunday? and meal_type == "Dinner" %>
-                  <%= render template: "home/sunday" %>
-                <% else %>
-                    <%# meals_available = CookingToday.todays_menu_by_type(meal_type) %>
-                    <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
-                <% end %>
-              </div>
-             <% end%>
+            <div class="tab-pane <%= current_live_meal == meal_type ? "active" :"" %>" id="<%= meal_type %>">
+              <% if Date.today.sunday? and meal_type == "Dinner" %>
+                <%= render template: "home/sunday" %>
+              <% else %>
+                <%# meals_available = CookingToday.todays_menu_by_type(meal_type) %>
+                <%= render "meal_items", menus: meals_available, category: meal_type, today_menu: today_menu unless meals_available.blank? %>
+              <% end %>
+            </div>
+           <% end%>
           </div>
     <%# end %>
 
