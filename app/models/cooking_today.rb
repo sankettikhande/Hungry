@@ -1,19 +1,23 @@
 class CookingToday < ActiveRecord::Base
   acts_as_content_block({:versioned => false})
   attr_accessor :skip_callbacks
-  cattr_accessor :meal_types, :meal_type_time_span
-  @@meal_types = ["Lunch",
-                  #"Evening Snacks",
-                  "Dinner"
-                  #, "All Time Available"
-                  ]
+  # cattr_accessor :meal_types, :meal_type_time_span
+  # @@meal_types = ["Lunch",
+  #                 #"Evening Snacks",
+  #                 "Dinner"
+  #                 #, "All Time Available"
+  #                 ]
 
-  @@meal_type_time_span = {
-                           "Lunch" => {from: "00:01 AM", to: "04:00 PM",fromDisplay: "12:00 AM", toDisplay: "04:00 PM"},
-                           #"Evening Snacks" => {from: "00:01 AM", to: "07:00 PM",fromDisplay: "04:30 PM", toDisplay: "07:00 PM"},
-                           "Dinner" => {from: "00:01 AM", to: "11:30 PM",fromDisplay: "08:00 PM", toDisplay: "11:00 PM"}
-                           #,"All Time Available" => {from: "12:00 AM", to: "11:59 PM"}
-                          }
+  # @@meal_type_time_span = {
+  #                          "Lunch" => {from: "00:01 AM", to: "04:00 PM",fromDisplay: "12:00 AM", toDisplay: "04:00 PM"},
+  #                          #"Evening Snacks" => {from: "00:01 AM", to: "07:00 PM",fromDisplay: "04:30 PM", toDisplay: "07:00 PM"},
+  #                          "Dinner" => {from: "00:01 AM", to: "11:30 PM",fromDisplay: "08:00 PM", toDisplay: "11:00 PM"}
+  #                          #,"All Time Available" => {from: "12:00 AM", to: "11:59 PM"}
+  #                         }
+  
+  def self.meal_types
+    MealType.active_meal_type.map {|mt| mt.name}              
+  end
 
   belongs_to :cheff
   belongs_to :food_item
@@ -22,7 +26,7 @@ class CookingToday < ActiveRecord::Base
   validates_presence_of :cheff_id, :message => ": Chef's Name and Dish can't be blank"
   validates :date, :presence => true
   validates :meal_type, presence: true
-  validates :meal_type, inclusion: {in: @@meal_types}, :unless => Proc.new {|c| c.meal_type.blank?}
+  validates :meal_type, inclusion: {in: meal_types}, :unless => Proc.new {|c| c.meal_type.blank?}
   validate :order_quantity
 
 
@@ -100,4 +104,18 @@ class CookingToday < ActiveRecord::Base
   def stock_price
     (qty_left * food_item.meal_info.hola_sell_price)
   end
+
+  def self.meal_type_time_span
+    meal_type_time_span = Hash.new
+    MealType.active_meal_type.each do |meal|
+      meal_type_time_span[meal.name] = Hash.new
+      meal_type_time_span[meal.name][:from] = meal.from
+      meal_type_time_span[meal.name][:to] = meal.to
+      meal_type_time_span[meal.name][:fromDisplay] = meal.from_display
+      meal_type_time_span[meal.name][:toDisplay] = meal.to_display    
+    end
+
+    return meal_type_time_span
+  end
+
 end
