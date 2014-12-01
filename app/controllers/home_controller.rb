@@ -78,9 +78,14 @@ class HomeController < ApplicationController
 
   def get_todays_menu_by_meal_type
     menu_by_meal_type = {}
-    CookingToday.meal_types.each do |meal_type|
+    CookingToday.meal_types_name.each do |meal_type|
       menu_by_meal_type.merge!(meal_type => CookingToday.todays_menu_by_type(meal_type))
     end
+
+    # Provision for All Time Meal type cooking today items
+    menu_by_meal_type['Lunch'].concat menu_by_meal_type['All Time']
+    menu_by_meal_type['Dinner'].concat menu_by_meal_type['All Time']
+
     menu_by_meal_type
   end
 end
