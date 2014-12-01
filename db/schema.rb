@@ -694,6 +694,49 @@ ActiveRecord::Schema.define(:version => 20141127073424) do
     t.string   "speciality_of_dish"
   end
 
+  create_table "meal_type_versions", :force => true do |t|
+    t.integer  "original_record_id"
+    t.integer  "version"
+    t.string   "from",                                  :null => false
+    t.string   "to",                                    :null => false
+    t.boolean  "is_active",          :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "name"
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
+    t.string   "version_comment"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+    t.string   "from_display",                          :null => false
+    t.string   "to_display",                            :null => false
+    t.string   "first_slot",                            :null => false
+    t.string   "second_slot",                           :null => false
+    t.string   "third_slot",                            :null => false
+  end
+
+  create_table "meal_types", :force => true do |t|
+    t.integer  "version"
+    t.integer  "lock_version",  :default => 0
+    t.string   "from",                             :null => false
+    t.string   "to",                               :null => false
+    t.boolean  "is_active",     :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "name"
+    t.boolean  "published",     :default => false
+    t.boolean  "deleted",       :default => false
+    t.boolean  "archived",      :default => false
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+    t.string   "from_display",                     :null => false
+    t.string   "to_display",                       :null => false
+    t.string   "first_slot",                       :null => false
+    t.string   "second_slot",                      :null => false
+    t.string   "third_slot",                       :null => false
+  end
+
   create_table "message_reports", :force => true do |t|
     t.string   "message_type"
     t.string   "numbers"
@@ -1097,6 +1140,14 @@ ActiveRecord::Schema.define(:version => 20141127073424) do
 
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
+  create_table "talk_to_us", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "contact_number"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "tasks", :force => true do |t|
     t.integer  "assigned_by_id"
     t.integer  "assigned_to_id"
@@ -1117,7 +1168,7 @@ ActiveRecord::Schema.define(:version => 20141127073424) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
+  
   create_table "tips", :force => true do |t|
     t.integer  "dish_id"
     t.text     "tips"
