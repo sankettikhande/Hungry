@@ -1,7 +1,5 @@
 Holachef::Application.routes.draw do
 
-
-  
   resources :hola_users
   match "/add_chef_to_favorite"=> "hola_users#add_chef_to_favorite"
   match '/my_favorite_chefs'=>"hola_users#my_favorite_chefs"
@@ -50,6 +48,7 @@ Holachef::Application.routes.draw do
     content_blocks :feedbacks
     content_blocks :coupons
     content_blocks :meal_types
+    content_blocks :banners
   end
 
   resources :social_shares do
