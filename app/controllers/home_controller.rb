@@ -81,10 +81,11 @@ class HomeController < ApplicationController
     CookingToday.meal_types_name.each do |meal_type|
       menu_by_meal_type.merge!(meal_type => CookingToday.todays_menu_by_type(meal_type))
     end
+    all_time_meal = menu_by_meal_type.delete("All Time") || []
 
-    # Provision for All Time Meal type cooking today items
-    menu_by_meal_type['Lunch'].concat menu_by_meal_type['All Time']
-    menu_by_meal_type['Dinner'].concat menu_by_meal_type['All Time']
+    menu_by_meal_type.each do |meal_type, meal_items|
+      menu_by_meal_type[meal_type] = meal_items + all_time_meal
+    end
 
     menu_by_meal_type
   end
