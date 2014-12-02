@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  banner_type: MyString
+  start_date: 
+  end_date: 
+  description: 
+  target_url: MyString
+  banner_image: 
+
+two:
+  name: MyString
+  banner_type: MyString
+  start_date: 
+  end_date: 
+  description: 
+  target_url: MyString
+  banner_image: 

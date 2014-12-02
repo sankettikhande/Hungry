@@ -1,0 +1,8 @@
+
+<p><b>Name:</b> <%= @content_block.name %></p>
+<p><b>Banner Type:</b> <%= @content_block.banner_type %></p>
+<p><b>Start Date:</b> <%= @content_block.start_date %></p>
+<p><b>End Date:</b> <%= @content_block.end_date %></p>
+<p><b>Description:</b> <%= @content_block.description %></p>
+<p><b>Target Url:</b> <%= @content_block.target_url %></p>
+<p><b>Banner Image:</b> <%= link_to "Banner Image", attachment_path_for(@content_block.banner_image) %></p>
