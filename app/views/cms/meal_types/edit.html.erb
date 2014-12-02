@@ -51,10 +51,12 @@
 		<% if @meal_type.first_slot != '0 - 0' || @meal_type.second_slot != '0 - 0' || @meal_type.third_slot != '0 - 0' %>
 			<b>Added Delivery Slots are:</b><br/><br/>
 			<% if @meal_type.first_slot != '0 - 0' %>
-				First Slot : <%= @meal_type.first_slot %>
-			<% elsif @meal_type.second_slot != '0 - 0' %>
-				Second Slot : <%= @meal_type.second_slot %>
-			<% elsif @meal_type.third_slot != '0 - 0' %>
+				First Slot : <%= @meal_type.first_slot %><br/><br/>
+			<% end %>	
+			<% if @meal_type.second_slot != '0 - 0' %>
+				Second Slot : <%= @meal_type.second_slot %><br/><br/>
+			<% end %>	
+			<% if @meal_type.third_slot != '0 - 0' %>
 				Third Slot : <%= @meal_type.third_slot %>
 			<% end %><br/><br/>
 		<% end %>

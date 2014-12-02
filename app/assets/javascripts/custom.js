@@ -189,7 +189,7 @@ $(document).ready(function(){
         $.ajax({
                 'method': 'GET',
                 'url': url ,
-                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
+                'data': {'item_id': data_attribs.item_id + '_' + data_attribs.mealType  , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
                 'dataType': 'script',
                 'complete': function(){                    
                     quantity_input.val(quantity);
