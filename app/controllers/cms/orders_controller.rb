@@ -294,8 +294,8 @@ class Cms::OrdersController < Cms::ContentBlockController
               end
             end
           end
-          orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: "Net Banking")}            
-          @order.update_attributes!(order_status: "Confirmed", payment_mode: "Net Banking")#  if @confirm == true
+          orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: "Net Banking", payment_status: "Paid", payment_gateway_response: params)}            
+          @order.update_attributes!(order_status: "Confirmed", payment_mode: "Net Banking", payment_status: "Paid", payment_gateway_response: params)#  if @confirm == true
           clear_session
         else
           @order.ordered_menus.each do |ordered_menu|
@@ -308,7 +308,7 @@ class Cms::OrdersController < Cms::ContentBlockController
               clear_session
               redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
             end
-            @order.update_attributes!(order_status: "Confirmed", payment_mode: "Net Banking")#  if @confirm == true
+            @order.update_attributes!(order_status: "Confirmed", payment_mode: "Net Banking", payment_status: "Paid", payment_gateway_response: params)#  if @confirm == true
             clear_session
           end
         end
