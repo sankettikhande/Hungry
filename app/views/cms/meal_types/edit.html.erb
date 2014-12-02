@@ -97,10 +97,43 @@
 </style>
 
 <script type="text/javascript">
+    function set_options(index_for_slicing, ele_to_be_affected){ 
+        time_arr = ['12AM', ' 1AM', ' 2AM', ' 3AM', ' 4AM', ' 5AM', ' 6AM', ' 7AM', ' 8AM', ' 9AM', '10AM', '11AM', '12PM', ' 1PM', ' 2PM', ' 3PM', ' 4PM', ' 5PM', ' 6PM', ' 7PM', ' 8PM', ' 9PM', '10PM', '11PM'] 
+        options = "";
+        options += "<option value='0'>Select Time</option>";
+        sub_arr = time_arr.slice($.inArray(index_for_slicing,time_arr) + 1);        
+        for(var i = 0; i < sub_arr.length; i++) 
+            options += "<option value='" + sub_arr[i] + "'>" + sub_arr[i] + "</option>";
+        $('#'+ ele_to_be_affected +' option').remove();         
+        $('#'+ ele_to_be_affected).html(options);
+    }   
+
 	$(document).ready(function(){
 		$('#add_slots').click(function(){
 			$('#slots_div').removeClass('hide');
 			$('#slot_updated').val('true');
 		})
+
+		$('#from_slot_1').change(function(){    	
+        	set_options($(this).val(), 'to_slot_1');
+    	});
+
+    	$('#to_slot_1').change(function(){
+        	set_options($(this).val(), 'from_slot_2');          
+    	});
+
+    	$('#from_slot_2').change(function(){    
+        	set_options($(this).val(), 'to_slot_2');
+    	});
+
+	    $('#to_slot_2').change(function(){
+    	    set_options($(this).val(), 'from_slot_3');                  
+    	});
+
+    	$('#from_slot_3').change(function(){
+        	set_options($(this).val(), 'to_slot_3');
+    	});
+
 	})
+
 </script>
