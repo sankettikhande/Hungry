@@ -1,3 +1,6 @@
+<div class="grey-header text-center">
+  <h4 class="text-uppercase">Order History</h4>
+</div>
 <div class="container">
   <div class="row row-offcanvas row-offcanvas-left">
     <div class="col-xs-12">
@@ -10,10 +13,10 @@
           </div>
         </div>
       <% else %>
-        <div class="row">
+        <div class="prev-masonry">
           <% index = 1 %>
           <% @order_histories.each do |order| %>
-            <div class="prev-order-wrapper col-xs-12 col-sm-6 col-md-4">
+            <div class="prev-order-wrapper">
               <table class="table">
                 <colgroup>
                   <col class="col-xs-9"><col class="col-xs-3">
@@ -70,7 +73,7 @@
               </table>
             </div>
           <% end %>
-        </div>
+        </div>       
       <% end %>
     </div>
   </div>

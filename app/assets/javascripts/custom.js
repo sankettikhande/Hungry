@@ -39,19 +39,19 @@ $(document).ready(function(){
         $(".payment_method_div").validationEngine('showPrompt', ' Please select a payment method', 'error');
         $(".undefinedformError").css('left','21px');
     })
-    $("#radio-nbanking").click(function(){
-       $(".netbanking").show();
-       $(".cash_delivery").hide();
-       $(".select_payment_method").hide();
-       $(".undefinedformError").hide();
-    });
+    // $("#radio-nbanking").click(function(){
+    //    $(".netbanking").css("display","inline-block");
+    //    $(".cash_delivery").css("display","none");
+    //    $(".select_payment_method").css("display","none");
+    //    $(".undefinedformError").css("display","none");
+    // });
 
-    $("#radio-cod").click(function(){
-       $(".cash_delivery").show();
-       $(".netbanking").hide();
-       $(".select_payment_method").hide();
-       $(".undefinedformError").hide();
-    });
+    // $("#radio-cod").click(function(){
+    //    $(".cash_delivery").css("display","inline-block");
+    //    $(".netbanking").css("display","none");
+    //    $(".select_payment_method").css("display","none");
+    //    $(".undefinedformError").css("display","none");
+    // });
 
     $('#add-order-plus').unbind("click").live('click', function(e) {
         e.preventDefault();
@@ -74,6 +74,45 @@ $(document).ready(function(){
             $('#login_otp_sms_button').attr("disabled", true)
         }
     })
+    //  working on Fly to Cart effect
+    $('.increase-order-item').on('click', function () {
+            var cart = $('.bag-count');
+            var imgtodrag = $(this).parents('.square').find(".imageItemFix").eq(0);
+            if (imgtodrag) {
+                var imgclone = imgtodrag.clone()
+                    .offset({
+                    top: imgtodrag.offset().top,
+                    left: imgtodrag.offset().left
+                })
+                    .css({
+                    'opacity': '0.5',
+                        'position': 'absolute',
+                        'height': '150px',
+                        'width': '150px',
+                        'z-index': '9999'
+                })
+                .appendTo($('body'))
+                .animate({
+                    'top': cart.offset().top + 10,
+                        'left': cart.offset().left + 10,
+                        'width': 75,
+                        'height': 75
+                }, 1000, 'easeInOutExpo');
+
+                setTimeout(function () {
+                    cart.effect("shake", {
+                        times: 2
+                    }, 200);
+                }, 1500);
+
+                imgclone.animate({
+                    'width': 0,
+                        'height': 0
+                }, function () {
+                    $(this).detach()
+                });
+            }
+        });
 
     $('.add-order-plus').unbind("click").live('click', function(e) {
         e.preventDefault();
@@ -141,25 +180,40 @@ $(document).ready(function(){
         }
 
     })
+    // $(".layout-tabbed li").on("click",function(){
+    //     $(this).addClass("active");
+    //     if ($(this).attr("class") == ""){
+    //         $("#Lunch").removeClass("active");
+    //         meal_type= $(this).find("a").attr("href").replace("#",'');
+    //         $("#"+meal_type).addClass("active");
+    //     }
+    //     else{
+    //         meal_type= $(this).find("a").attr("href").replace("#",'');
+    //         $("#"+meal_type).addClass("active");
+    //         if (meal_type == "Lunch") {
+    //             $("#Dinner").removeClass("active");
+    //             $("#li_Dinner").removeClass("active");
+    //         }
+    //         else {
+    //             $("#Lunch").removeClass("active");
+    //             $("#li_Lunch").removeClass("active");
+    //         }
+
+    //     }
+    // })
+
     $(".layout-tabbed li").on("click",function(){
+        $(".layout-tabbed li").removeClass("active");
+        $('div.tab-content div').removeClass('active');
         $(this).addClass("active");
-        if ($(this).attr("class") == ""){
-            $("#Lunch").removeClass("active");
+        if ($(this).attr("class") == ""){            
             meal_type= $(this).find("a").attr("href").replace("#",'');
             $("#"+meal_type).addClass("active");
         }
         else{
             meal_type= $(this).find("a").attr("href").replace("#",'');
             $("#"+meal_type).addClass("active");
-            if (meal_type == "Lunch") {
-                $("#Dinner").removeClass("active");
-                $("#li_Dinner").removeClass("active");
-            }
-            else {
-                $("#Lunch").removeClass("active");
-                $("#li_Lunch").removeClass("active");
-            }
-
+            $('div.tab-content').find('#'+meal_type).addClass('active');
         }
     })
 
@@ -174,7 +228,7 @@ $(document).ready(function(){
         $.ajax({
                 'method': 'GET',
                 'url': url ,
-                'data': {'item_id': data_attribs.item_id , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
+                'data': {'item_id': data_attribs.item_id + '_' + data_attribs.mealType  , 'qty': data_attribs.quantity, 'price': data_attribs.price, 'dish_name': data_attribs.dishName, 'category': data_attribs.category, 'meal_type': data_attribs.mealType },
                 'dataType': 'script',
                 'complete': function(){                    
                     quantity_input.val(quantity);
@@ -301,7 +355,7 @@ $(document).ready(function(){
         $(this).closest('.review_order_list').find('span.item-name').click();
     });
 
-    $("#submit-order-button").click(function(e){
+    $("#submit-order-button, #desktop-proceed-address").click(function(e){
         $("#submit_order").submit();
     })
     $("#submit_order input").focus(function(){
@@ -533,16 +587,43 @@ $(document).ready(function(){
         $("#recipe-page-txt").addClass('hidden')
     }
 
-    $(".payment_mode").click(function(){
-        var paymentMode = $(this).attr('data-paymentmode');
-        var orderId = $(this).attr('data-orderid');
-        $.ajax({
-            'url' : '/submit_payment_form',
-            'method': 'POST',
-            'data': {'paymentMode': paymentMode, 'orderId':orderId},
-            'dataType':'script'
-        })
-    });
+    // $(".payment_mode").click(function(){
+    //     var paymentMode = $(this).attr('data-paymentmode');
+    //     var orderId = $(this).attr('data-orderid');
+    //     $.ajax({
+    //         'url' : '/submit_payment_form',
+    //         'method': 'POST',
+    //         'data': {'paymentMode': paymentMode, 'orderId':orderId},
+    //         'dataType':'script'
+    //     })
+    // });
+
+    $("#desktop-proceed-pay").click(function(){
+        pay_option = $("input[name=pay-by]:checked")
+        if(pay_option.val() === undefined){
+            $(".payment_method_div").validationEngine('showPrompt', ' Please select a payment method', 'error');
+            $(".undefinedformError").css('left','11%');
+        }
+        else{
+            payment_mode = pay_option.data('payment-mode');
+            order_id = pay_option.data('order-id')
+            if(payment_mode == "net_banking")
+            {
+                $.ajax({
+                  'url' : '/submit_payment_form',
+                  'method': 'POST',
+                  'data': {'paymentMode': payment_mode, 'orderId':order_id},
+                  'dataType':'script'
+                });
+                
+            }else{
+              window.location = "/order-confirm/"+order_id+"?payment_mode="+payment_mode
+
+            }
+        console.log(pay_option)
+        
+        }
+    })
 
     $("#cover-title").fitText(1.2, {
         minFontSize:'16px',
@@ -589,6 +670,7 @@ $(document).ready(function(){
       'dataType': 'script'
     })
   });
+  
 });
 
 $('#submit_review').click(function(){
@@ -614,4 +696,8 @@ $(document).ready(function(){
       $("#password_auth").hide()
     }
   });
+
+  $("#login_link").click(function(){
+    $('#login_modal').modal('show')
+  })
 })

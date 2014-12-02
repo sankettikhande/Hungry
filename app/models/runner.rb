@@ -4,6 +4,8 @@ class Runner < ActiveRecord::Base
 
   has_many :orders
 
+  attr_accessible :name, :phone, :address
+
   validates :name, :phone, :address, :username, :password, presence: true
   validates :username, uniqueness: true
 

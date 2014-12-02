@@ -201,7 +201,8 @@ class Cms::OrdersController < Cms::ContentBlockController
     if @order.created?
       orders = Order.where(:parent_order_id => params[:order_id])
       session[:cart], updated_ordered_menus = [], []
-      if ["swipe_on_delivery", "cash_on_delivery"].include? params[:payment_mode]
+      payment_mode = params[:payment_mode].titleize
+      if ["card_on_delivery", "cash_on_delivery", "coupons_on_delivery"].include? params[:payment_mode]
         if !orders.blank?
           orders.each do |order|
             menus = order.ordered_menus
@@ -218,8 +219,8 @@ class Cms::OrdersController < Cms::ContentBlockController
               end
             end
           end
-          orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: "On Delivery")}            
-          @order.update_attributes!(order_status: "Confirmed", payment_mode: "On Delivery")#  if @confirm == true
+          orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)}            
+          @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)#  if @confirm == true
           clear_session
         else
           @order.ordered_menus.each do |ordered_menu|
@@ -233,7 +234,7 @@ class Cms::OrdersController < Cms::ContentBlockController
               redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
             end
 
-            @order.update_attributes!(order_status: "Confirmed", payment_mode: "On Delivery")#  if @confirm == true
+            @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)#  if @confirm == true
             clear_session
           end
         end
@@ -248,7 +249,7 @@ class Cms::OrdersController < Cms::ContentBlockController
 
   def submit_payment_form
     @order = Order.find(params[:orderId])
-    @order.update_attribute(:payment_mode, "Online")
+    @order.update_attribute(:payment_mode, "Net Banking")
     @paymentMode = params[:paymentMode]
     @flag=false
     @secSignature=''
@@ -293,8 +294,8 @@ class Cms::OrdersController < Cms::ContentBlockController
               end
             end
           end
-          orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: "Online")}            
-          @order.update_attributes!(order_status: "Confirmed", payment_mode: "Online")#  if @confirm == true
+          orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: "Net Banking")}            
+          @order.update_attributes!(order_status: "Confirmed", payment_mode: "Net Banking")#  if @confirm == true
           clear_session
         else
           @order.ordered_menus.each do |ordered_menu|
@@ -307,7 +308,7 @@ class Cms::OrdersController < Cms::ContentBlockController
               clear_session
               redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
             end
-            @order.update_attributes!(order_status: "Confirmed", payment_mode: "Online")#  if @confirm == true
+            @order.update_attributes!(order_status: "Confirmed", payment_mode: "Net Banking")#  if @confirm == true
             clear_session
           end
         end

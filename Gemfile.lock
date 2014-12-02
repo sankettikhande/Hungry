@@ -36,6 +36,7 @@ GEM
     ancestry (1.2.5)
       activerecord (>= 2.2.2)
     arel (3.0.3)
+    awesome_print (1.2.0)
     browsercms (3.5.7)
       ancestry (~> 1.2.4)
       ckeditor_rails (~> 3.6.4)
@@ -197,6 +198,7 @@ DEPENDENCIES
   active_model_otp
   acts-as-taggable-on
   ancestry
+  awesome_print
   browsercms
   bullet
   capistrano (= 2.15.4)

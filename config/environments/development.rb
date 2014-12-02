@@ -55,8 +55,8 @@ Holachef::Application.configure do
     Bullet.rails_logger = true
     # Bullet.bugsnag = true
     # Bullet.airbrake = true
-    Bullet.add_footer = true
+    # Bullet.add_footer = true
     # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
-  end
 
+  end
 end
