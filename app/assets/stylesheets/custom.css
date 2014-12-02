@@ -396,7 +396,7 @@ user-select: none;
 .nav.navbar-nav li a:hover {text-decoration: underline;}
 
 
-.navbar-titlebar {width:auto;overflow: hidden;display: inline-block;float: left;}
+.navbar-titlebar {width:auto;display: inline-block;}
 
 .navbar-header .btn-back {float: right;display: block;background: url('/assets/icon-back.png') no-repeat left center;background-size: 12px 24px;width: 28px;height: 40px;margin:7px 0 7px 16px ;cursor: pointer;padding-right: 16px}
 
@@ -1268,8 +1268,9 @@ img {font-size: 0}
 
 .discountCouponBtn {padding: 5px 12px;}
 
-.layout-tabbed {margin: 0 auto;width: 100%;}
-.nav-justified.layout-tabbed > li {display: table-cell;width: 1%;float: none;clear: both;overflow: hidden;}
+.layout-tabbed {margin: 0 auto;width: 100%;clear: both;display: block;}
+.layout-tabbed:before {display: block;content: '';}
+.nav-justified.layout-tabbed > li {display: table-cell;width: 1%;float: none;clear: both;}
 .nav-justified.layout-tabbed > li > a {border-radius: 0 !important;border-bottom-color:#ff8800;}
 .nav-justified.layout-tabbed > li > a {background-color: #eee}
 .layout-tabbed >li a {color: #969696;border-bottom-color: #e1e1e1;}
