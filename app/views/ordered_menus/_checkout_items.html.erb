@@ -8,9 +8,6 @@
       <%= CookingToday.meal_type_time_span["#{meal_type}"][:toDisplay] %>
     </li>
     <% current_time_hour = Time.now.hour
-
-raise slot_1.inspect
-
       if ( current_time_hour <= TIME[slot_1.first(4)] ) %>
       <li class="time-slots">
         <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_1 %></span>
