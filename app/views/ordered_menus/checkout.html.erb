@@ -26,9 +26,10 @@
   <%#= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "8PM - 9PM", slot_2: "9PM - 10PM", slot_3: "10PM - 11PM", total: total, default_slot: "8PM - 9PM"  if dinner_items.present? %>
 
   <% MealType.active_meal_type.each do |meal| %>
-    <% items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["#{meal.name}"]}).compact %>
-
-  <%= render "checkout_items", meal_type: "#{meal.name}", items: items, slot_1: "#{meal.first_slot}", slot_2: "#{meal.second_slot}", slot_3: "#{meal.third_slot}", total: total, default_slot: "#{meal.first_slot}", from_display: "#{meal.from_display}", to_display: "#{meal.to_display}"  if items.present? %>
+    <% items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type")  == ["#{meal.name}"]}).compact %>
+      
+<%= render "checkout_items", meal_type: "#{meal.name}", items: items, slot_1: "#{meal.first_slot}", slot_2: "#{meal.second_slot}", slot_3: "#{meal.third_slot}", total: total, default_slot: "#{meal.first_slot}", from_display: "#{meal.from_display}", to_display: "#{meal.to_display}", slot_1_active: "#{meal.first_slot_active}", slot_2_active: "#{meal.second_slot_active}",slot_3_active: "#{meal.third_slot_active}" if items.present? %>
+  
   <% end %>
     <div class="row">
       <div class="col-xs-12">
@@ -92,8 +93,7 @@ end
     </div>
   </div>
 </div>
-<div class="grey-back seperator-15">
-  <div class="container">
+<div class="grey-back container seperator-15">
     <div class="row">
       <div class="col-xs-12">
       <ul class="list-inline review-bar-g text-right">
@@ -104,7 +104,6 @@ end
       </ul>
       </div>
     </div>
-  </div>
 </div>
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141201104841) do
+ActiveRecord::Schema.define(:version => 20141202070912) do
 
   create_table "banner_versions", :force => true do |t|
     t.integer  "original_record_id"
@@ -754,23 +754,26 @@ ActiveRecord::Schema.define(:version => 20141201104841) do
 
   create_table "meal_types", :force => true do |t|
     t.integer  "version"
-    t.integer  "lock_version",  :default => 0
-    t.string   "from",                                     :null => false
-    t.string   "to",                                       :null => false
-    t.string   "from_display",                             :null => false
-    t.string   "to_display",                               :null => false
-    t.string   "first_slot",    :default => " 8AM -  9AM", :null => false
-    t.string   "second_slot",   :default => " 9AM - 10AM", :null => false
-    t.string   "third_slot",    :default => "10AM - 11AM", :null => false
-    t.boolean  "is_active",     :default => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.integer  "lock_version",       :default => 0
+    t.string   "from",                                          :null => false
+    t.string   "to",                                            :null => false
+    t.string   "from_display",                                  :null => false
+    t.string   "to_display",                                    :null => false
+    t.string   "first_slot",         :default => " 8AM -  9AM", :null => false
+    t.string   "second_slot",        :default => " 9AM - 10AM", :null => false
+    t.string   "third_slot",         :default => "10AM - 11AM", :null => false
+    t.boolean  "is_active",          :default => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.string   "name"
-    t.boolean  "published",     :default => false
-    t.boolean  "deleted",       :default => false
-    t.boolean  "archived",      :default => false
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.boolean  "first_slot_active",  :default => true
+    t.boolean  "second_slot_active", :default => true
+    t.boolean  "third_slot_active",  :default => true
   end
 
   create_table "message_reports", :force => true do |t|
