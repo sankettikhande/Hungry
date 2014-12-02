@@ -738,8 +738,8 @@ ActiveRecord::Schema.define(:version => 20141201104841) do
     t.string   "from_display",                                  :null => false
     t.string   "to_display",                                    :null => false
     t.string   "first_slot",         :default => " 8AM -  9AM", :null => false
-    t.string   "second_slot"
-    t.string   "third_slot"
+    t.string   "second_slot",        :default => " 9AM - 10AM", :null => false
+    t.string   "third_slot",         :default => "10AM - 11AM", :null => false
     t.boolean  "is_active",          :default => false
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
@@ -760,8 +760,8 @@ ActiveRecord::Schema.define(:version => 20141201104841) do
     t.string   "from_display",                             :null => false
     t.string   "to_display",                               :null => false
     t.string   "first_slot",    :default => " 8AM -  9AM", :null => false
-    t.string   "second_slot"
-    t.string   "third_slot"
+    t.string   "second_slot",   :default => " 9AM - 10AM", :null => false
+    t.string   "third_slot",    :default => "10AM - 11AM", :null => false
     t.boolean  "is_active",     :default => false
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
