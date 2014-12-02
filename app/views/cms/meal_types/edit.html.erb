@@ -32,25 +32,24 @@
 		<%= f.select :to_display, TIME_ARR %>	
 	</div>	
 	<div class="fields select_fields">
-		<label for="meal_type_is_active">Is Active</label>
+		<label>Is Active</label>
 		<%= f.check_box :is_active %>		
 	</div>
 	<div class="fields select_fields">
-		<% if @meal_type.first_slot != '0 - 0' || @meal_type.second_slot != '0 - 0' || @meal_type.third_slot != '0 - 0' %>
-			<b>Added Delivery Slots are:</b><br/><br/>
-			<% if @meal_type.first_slot != '0 - 0' %>
-				First Slot : <%= @meal_type.first_slot %><br/><br/>
-			<% end %>	
-			<% if @meal_type.second_slot != '0 - 0' %>
-				Second Slot : <%= @meal_type.second_slot %><br/><br/>
-			<% end %>	
-			<% if @meal_type.third_slot != '0 - 0' %>
-				Third Slot : <%= @meal_type.third_slot %>
-			<% end %><br/><br/>
-		<% end %>
+		<b>Added Delivery Slots are:</b><br/><br/>
+		<div class="fields select_fields">						
+			First Slot : <%= @meal_type.first_slot %>
+			<%= f.check_box :first_slot_active %><br/><br/>	<br/>			
+			
+			Second Slot : <%= @meal_type.second_slot %>
+			<%= f.check_box :second_slot_active %><br/><br/><br/>
+					
+			Third Slot : <%= @meal_type.third_slot %>		
+			<%= f.check_box :third_slot_active %>				
+		</div>				
 	</div>
 	<div class="fields text_fields">		
-		<a id="add_slots">Add/Edit Slots </a> <br/><br/>
+		<a id="add_slots">Edit Slots </a> <br/><br/>
 	</div>			
 
 	<div id="slots_div" class="hide">
@@ -101,7 +100,7 @@
         time_arr = ['12AM', ' 1AM', ' 2AM', ' 3AM', ' 4AM', ' 5AM', ' 6AM', ' 7AM', ' 8AM', ' 9AM', '10AM', '11AM', '12PM', ' 1PM', ' 2PM', ' 3PM', ' 4PM', ' 5PM', ' 6PM', ' 7PM', ' 8PM', ' 9PM', '10PM', '11PM'] 
         options = "";
         options += "<option value='0'>Select Time</option>";
-        sub_arr = time_arr.slice($.inArray(index_for_slicing,time_arr) + 1);        
+        sub_arr = time_arr.slice($.inArray(index_for_slicing,time_arr));        
         for(var i = 0; i < sub_arr.length; i++) 
             options += "<option value='" + sub_arr[i] + "'>" + sub_arr[i] + "</option>";
         $('#'+ ele_to_be_affected +' option').remove();         
