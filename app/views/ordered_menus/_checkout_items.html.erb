@@ -19,7 +19,7 @@
         <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_2 %></span>
         <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_3 %></span>
       </li>
-    <% els if (current_time_hour <= TIME[slot_3.first(4)]) %>
+    <% elsif (current_time_hour <= TIME[slot_3.first(4)]) %>
       <li class="time-slots">
         <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot"><%= slot_3 %></span>
       </li>      
