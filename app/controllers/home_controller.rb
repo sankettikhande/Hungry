@@ -20,20 +20,11 @@ class HomeController < ApplicationController
   end
 
   def index
-    if is_mobile?
-      if cookies.signed[:returning_user]
-        redirect_to "/mobile"
-      else
-        cookies.signed[:returning_user] = true
-        redirect_to "/landing"
-      end
+    if cookies.signed[:returning_user]
+      cookies.signed[:returning_user] = true
+      redirect_to "/mobile"
     else
-      if cookies.signed[:returning_user]
-        cookies.signed[:returning_user] = true
-        redirect_to "/desktop"
-      else
-        redirect_to "/landing"
-      end
+      redirect_to "/landing"
     end
   end
 
@@ -87,9 +78,15 @@ class HomeController < ApplicationController
 
   def get_todays_menu_by_meal_type
     menu_by_meal_type = {}
-    CookingToday.meal_types.each do |meal_type|
+    CookingToday.meal_types_name.each do |meal_type|
       menu_by_meal_type.merge!(meal_type => CookingToday.todays_menu_by_type(meal_type))
     end
+    all_time_meal = menu_by_meal_type.delete("All Time") || []
+
+    menu_by_meal_type.each do |meal_type, meal_items|
+      menu_by_meal_type[meal_type] = meal_items + all_time_meal
+    end
+
     menu_by_meal_type
   end
 end

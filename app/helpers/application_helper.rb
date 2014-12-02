@@ -51,7 +51,7 @@ module ApplicationHelper
   end
 
   def select_food_item_having_image(chef)
-    item = chef.food_items.includes(meal_info: :picture).select{|item| item.meal_info.picture}.first.meal_info
+    item = chef.food_items.includes(meal_info: :picture).select{|item| item.meal_info.picture}.first.try(:meal_info)
     return item
   end
 
@@ -311,7 +311,7 @@ def link_to_remove_fields(name, f)
   end
 
   def current_live_meal
-    CookingToday.meal_types.each do |meal_type|
+    CookingToday.meal_types_name.each do |meal_type|
       return meal_type if meal_available? meal_type
     end
   end

@@ -1,31 +1,36 @@
 <div class="right-body">
-<div class="grey-back seperator-80">
-  <div class="container nopadding">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="booked-orders heading">
-          <li class="food-bill" style="border:0">
-            <span class="item-name ItemHead">MEAL</span>
-            <span class="item-qty ItemHead">QTY</span>
-            <span class="item-cost ItemHead">COST</span>
-          </li>
-        </ul>        
+<div class="container grey-back seperator-80">
+      <div class="row">
+        <div class="col-xs-12">
+          <ul class="booked-orders heading">
+          <li class="food-bill">
+              <span class="item-name ItemHead">MEAL</span>
+              <span class="item-qty ItemHead">QTY</span>
+              <span class="item-cost ItemHead">COST</span>
+            </li>
+          </ul>        
+        </div>
       </div>
-    </div>
-  </div>  
 </div>
-  <% total = [] %>
-  <% lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
-  <%= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "12PM - 1PM", slot_2: "1PM - 2PM", slot_3: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
+<div class="container">
+<div class="row">
+    <% total = [] %>
 
-  <% snack_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Evening Snacks"]}).compact %>
-  <%= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
+  <%# lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
+  <%#= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "12PM - 1PM", slot_2: "1PM - 2PM", slot_3: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
 
-  <% dinner_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Dinner"]}).compact %>
-  <%= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "8PM - 9PM", slot_2: "9PM - 10PM", slot_3: "10PM - 11PM", total: total, default_slot: "8PM - 9PM"  if dinner_items.present? %>
+  <%# snack_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Evening Snacks"]}).compact %>
+  <%#= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
 
-<div class="grey-back">
-  <div class="container">
+  <%# dinner_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Dinner"]}).compact %>
+  <%#= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "8PM - 9PM", slot_2: "9PM - 10PM", slot_3: "10PM - 11PM", total: total, default_slot: "8PM - 9PM"  if dinner_items.present? %>
+
+  <% MealType.active_meal_type.each do |meal| %>
+    <% items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type")  == ["#{meal.name}"]}).compact %>
+      
+<%= render "checkout_items", meal_type: "#{meal.name}", items: items, slot_1: "#{meal.first_slot}", slot_2: "#{meal.second_slot}", slot_3: "#{meal.third_slot}", total: total, default_slot: "#{meal.first_slot}", from_display: "#{meal.from_display}", to_display: "#{meal.to_display}", slot_1_active: "#{meal.first_slot_active}", slot_2_active: "#{meal.second_slot_active}",slot_3_active: "#{meal.third_slot_active}" if items.present? %>
+  
+  <% end %>
     <div class="row">
       <div class="col-xs-12">
           <ul class="booked-orders backgroundLight">
@@ -38,14 +43,14 @@
       </div>
     </div>
   </div>
-</div>
 
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
+      <h5 class="text-center" id ="coupon_validate_msg"></h5>
       <ul class="list-inline review-bar-g text-center">
         <li class="col-xs-9 col-sm-8 col-sm-offset-1">
-          <div id ="coupon_validate_msg"></div>
+          
           <%= text_field_tag "discount_code",nil, placeholder: "Enter new coupon code (if any)",  class: "discountCoupon form-control"%> 
         </li>
         <li class="col-xs-3 col-sm-2 text-left">
@@ -78,20 +83,17 @@ end
 discountAmt = total.inject(:+);
 end
 %>
-<div class="grey-back seperator-15">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="list-inline review-bar-g text-right">
-          <li class="col-xs-9 text-total">Discounted Amount</li>
-          <li class="col-xs-3" id="discount"><%= discountC %></li>
-        </ul>        
-      </div>
+<div class="grey-back seperator-15 container">
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-inline review-bar-g text-right">
+        <li class="col-xs-9 text-total">Discounted Amount</li>
+        <li class="col-xs-3" id="discount"><%= discountC %></li>
+      </ul>        
     </div>
   </div>
 </div>
-<div class="grey-back seperator-15">
-  <div class="container">
+<div class="grey-back container seperator-15">
     <div class="row">
       <div class="col-xs-12">
       <ul class="list-inline review-bar-g text-right">
@@ -102,8 +104,14 @@ end
       </ul>
       </div>
     </div>
-  </div>
 </div>
+
+
+<!-- cart proceed button -->
+    <div class="clearfix text-center seperator-25">
+      <button id="desktop-proceed" type="button" class="btn btn-checkout btn-saffron">Proceed to Checkout <i class="fa fa-angle-double-right"></i></button>
+    </div>
+
 </div> <!-- right-body div ends -->
 
 
@@ -169,7 +177,7 @@ end
 <!--
      <% remaining_categories = get_remaining_category(@categories) %>
         <% remaining_categories.each do |remaining_categories| %>
-            <div class="container-fluid back-white seperator-3">
+            <div class="container back-white seperator-3">
               <div class="container">
                 <div class="row">
                   <div class="col-xs-12">
@@ -190,7 +198,7 @@ end
 
 
 <% if false %>
-<div class="container-fluid back-white seperator-4">
+<div class="container back-white seperator-4">
   <div class="row">
     <div class="col-xs-12">
       <div class="container">
@@ -241,7 +249,7 @@ end
       </div>
     </div>
     <script type="text/javascript">
-      $("#submit-order-button1").click(function(){
+      $("#submit-order-button1, #desktop-proceed").click(function(){
         if($('#holaAlert').hasClass('in') || $('#item-modal').hasClass('in') || $("#remove_dish").hasClass('in') ){
           return false;
         }

@@ -11,26 +11,50 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141127073424) do
+ActiveRecord::Schema.define(:version => 20141202070912) do
 
-  create_table "backend_users", :force => true do |t|
-    t.string   "email",                  :default => "",             :null => false
-    t.string   "encrypted_password",     :default => "",             :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,              :null => false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "role",                   :default => "delivery_boy"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+  create_table "banner_versions", :force => true do |t|
+    t.integer  "original_record_id"
+    t.integer  "version"
+    t.string   "name"
+    t.string   "banner_type"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.text     "description"
+    t.string   "target_url"
+    t.text     "pages_to_display"
+    t.integer  "height"
+    t.integer  "width"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
+    t.string   "version_comment"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
   end
 
-  add_index "backend_users", ["email"], :name => "index_backend_users_on_email", :unique => true
-  add_index "backend_users", ["reset_password_token"], :name => "index_backend_users_on_reset_password_token", :unique => true
+  create_table "banners", :force => true do |t|
+    t.integer  "version"
+    t.integer  "lock_version",     :default => 0
+    t.string   "name"
+    t.string   "banner_type"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.text     "description"
+    t.string   "target_url"
+    t.text     "pages_to_display"
+    t.integer  "height"
+    t.integer  "width"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.boolean  "published",        :default => false
+    t.boolean  "deleted",          :default => false
+    t.boolean  "archived",         :default => false
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+  end
 
   create_table "categories", :force => true do |t|
     t.integer  "category_type_id"
@@ -659,24 +683,6 @@ ActiveRecord::Schema.define(:version => 20141127073424) do
     t.integer  "recipe_id"
   end
 
-  create_table "installs", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-  end
-
-  add_index "installs", ["email"], :name => "index_installs_on_email", :unique => true
-  add_index "installs", ["reset_password_token"], :name => "index_installs_on_reset_password_token", :unique => true
-
   create_table "link_versions", :force => true do |t|
     t.integer  "original_record_id"
     t.integer  "version"
@@ -722,6 +728,52 @@ ActiveRecord::Schema.define(:version => 20141127073424) do
     t.datetime "updated_at",         :null => false
     t.text     "short_description"
     t.string   "speciality_of_dish"
+  end
+
+  create_table "meal_type_versions", :force => true do |t|
+    t.integer  "original_record_id"
+    t.integer  "version"
+    t.string   "from",                                          :null => false
+    t.string   "to",                                            :null => false
+    t.string   "from_display",                                  :null => false
+    t.string   "to_display",                                    :null => false
+    t.string   "first_slot",         :default => " 8AM -  9AM", :null => false
+    t.string   "second_slot",        :default => " 9AM - 10AM", :null => false
+    t.string   "third_slot",         :default => "10AM - 11AM", :null => false
+    t.boolean  "is_active",          :default => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.string   "name"
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
+    t.string   "version_comment"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+  end
+
+  create_table "meal_types", :force => true do |t|
+    t.integer  "version"
+    t.integer  "lock_version",       :default => 0
+    t.string   "from",                                          :null => false
+    t.string   "to",                                            :null => false
+    t.string   "from_display",                                  :null => false
+    t.string   "to_display",                                    :null => false
+    t.string   "first_slot",         :default => " 8AM -  9AM", :null => false
+    t.string   "second_slot",        :default => " 9AM - 10AM", :null => false
+    t.string   "third_slot",         :default => "10AM - 11AM", :null => false
+    t.boolean  "is_active",          :default => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.string   "name"
+    t.boolean  "published",          :default => false
+    t.boolean  "deleted",            :default => false
+    t.boolean  "archived",           :default => false
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
+    t.boolean  "first_slot_active",  :default => true
+    t.boolean  "second_slot_active", :default => true
+    t.boolean  "third_slot_active",  :default => true
   end
 
   create_table "message_reports", :force => true do |t|
@@ -814,8 +866,8 @@ ActiveRecord::Schema.define(:version => 20141127073424) do
     t.integer  "total"
     t.date     "date"
     t.string   "order_status"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.string   "name"
     t.boolean  "published",                :default => false
     t.boolean  "deleted",                  :default => false
@@ -837,7 +889,7 @@ ActiveRecord::Schema.define(:version => 20141127073424) do
     t.string   "addressZip"
     t.integer  "hola_user_id"
     t.string   "payment_mode"
-    t.string   "payment_status"
+    t.string   "payment_status",           :default => "Waiting for Payment"
     t.string   "order_status_history"
     t.integer  "runner_id"
     t.datetime "dispatched_at"
@@ -856,8 +908,6 @@ ActiveRecord::Schema.define(:version => 20141127073424) do
     t.integer  "delivery_address_id"
     t.text     "comment"
   end
-
-  add_index "orders", ["hola_user_id"], :name => "index_orders_on_hola_user_id"
 
   create_table "page_route_options", :force => true do |t|
     t.integer  "page_route_id"

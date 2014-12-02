@@ -1,0 +1,14 @@
+<%= f.cms_text_field :name %>
+<%= f.cms_drop_down :banner_type, Banner.banner_types, prompt: "Please Select" %>
+<%= f.cms_date_picker :start_date %>
+<%= f.cms_date_picker :end_date %>
+<%= f.cms_text_field :target_url %>
+<%= f.cms_file_field :banner_image, :label => "Banner Image" %>
+<%= f.cms_text_field :height %>
+<%= f.cms_text_field :width %>
+<div class="fields text_fields">
+  <label for="banner_pages_to_display">Pages to display</label>
+  <%= f.select :pages_to_display, Banner.pages_to_display_list, {}, {multiple: true} %>
+</div>
+
+<%= f.cms_text_editor :description %>

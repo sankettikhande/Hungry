@@ -2,13 +2,16 @@
   <div class="modal-dialog modal-sm modal-alert">
     <div class="modal-content">
       <div class="modal-header">                    
-        <%= image_tag ('/assets/hola-logo-xs.png'), :id => 'review_page_modal_logo' %> &nbsp; &nbsp; POST YOUR REVIEW          
-        <button data-dismiss="modal" class="btn-close pull-right">x</button>
+        <%= image_tag ('/assets/hola-logo-xs.png'), :id => 'review_page_modal_logo' %>
+        <h4 class="modal-title text-center">POST YOUR REVIEW </h4>
+        <button data-dismiss="modal" class="btn-close pull-right" style="position:absolute;right:15px;top:0">x</button>
       </div>
-      <div class="modal-body">                             
-        <textarea name="food_item_review" id="review" data-order-id="" data-food-item-id="" ></textarea><br/><br/>
-        <button id="submit_review" class="btn btn-saffron">Submit</button>
-      </div>        
+      <div class="modal-body">
+        <textarea rows="4" class="form-control" name="food_item_review" id="review" data-order-id="" data-food-item-id="" ></textarea>
+      </div>
+      <div class="modal-footer">
+        <button id="submit_review" class="btn btn-saffron">Submit</button>        
+      </div>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="navbar navbar-default hola-lg-navbar navbar-fixed-top" role="navigation" id="hola-menu">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand visible-desktop hidden-xs hidden-sm hidden-ipad" href="/desktop"><img src="assets/hola-logo-new.png" alt=""></a>
+      <a class="navbar-brand visible-desktop hidden-xs hidden-sm hidden-ipad" href="/mobile"><img src="/assets/hola-logo-new.png" alt=""></a>
       <ul class="navbar-titlebar visible-ipad hidden-desktop">
         <li class="side-menu-btn">
           <button type="button" class="navbar-toggle pull-left" id="sidebar-button" data-toggle="offcanvas" data-target="#sidebar">
@@ -17,16 +17,24 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right top-nav visible-desktop hidden-xs hidden-sm hidden-ipad">
-        <li><a href="#">Log in/Sign Up</a></li>
-         <li class="dropdown hidden-xs hidden-sm hidden-ipad">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <span class="orange-text">Poonam! <i class="fa fa-gear"></i></span></a>
+        <% if hola_current_user.blank? %>
+          <li><a href="#" id="login_link">Log in/Sign Up</a></li>
+        <% else %>
+          <li class="a-link"><a href="/mobile">Home</a></li>      
+          <li class="dropdown hidden-xs hidden-sm hidden-ipad">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Welcome, <span><%= hola_current_user.name %>! <i class="fa fa-gear"></i></span>
+            </a>
             <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Order History</a></li>
-            <li><a href="#">Address Book</a></li>
-            <li><a href="#">My Reviews</a></li>
-            <li><a href="#">Log Out</a></li>
+            <li><a href="/order_histories">Order History</a></li>
+            <li><a href="/hola_user_addresses">Address Book</a></li>
+            <li>
+              <%= link_to "Log Out", logout_url, method: :delete %>
+            </li>
+
             </ul>
-        </li>
+          </li>
+        <% end %>
 
       </ul>
       <div class="pull-right">
