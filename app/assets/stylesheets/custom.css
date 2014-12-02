@@ -701,6 +701,7 @@ p.text-orangeS{color: #ff9900;font-size: 1.2em;font-weight: bold;}
 .chef-page .profile-details li.profile ul.cover-image {width: 100%;display: block;}
 .chef-page .profile-details li.profile ul.cover-image li.cover {width: 100%;display: block;float: left;}
 
+.chef-page .profile-details li.profile ul.cover-image li.cover-photo {height: 200px;width: 100%;overflow: hidden;}
 .chef-page .profile-details li.profile ul.cover-image li.cover-photo img {width: 100%;min-height: 180px;}
 .chef-page .profile-details li.profile ul.cover-image li.cover-text {text-align: center;padding: 15px 10px;min-height: 180px;}
 .chef-page .profile-details li.profile-heart {position: relative;right: 0;z-index: 1;}
@@ -1270,6 +1271,7 @@ img {font-size: 0}
 .layout-tabbed {margin: 0 auto;width: 100%;}
 .nav-justified.layout-tabbed > li {display: table-cell;width: 1%;float: none;clear: both;overflow: hidden;}
 .nav-justified.layout-tabbed > li > a {border-radius: 0 !important;border-bottom-color:#ff8800;}
+.nav-justified.layout-tabbed > li > a {background-color: #eee}
 .layout-tabbed >li a {color: #969696;border-bottom-color: #e1e1e1;}
 .layout-tabbed >li a .category_header,.layout-tabbed >li a .category_header2 {color: #969696;}
 
@@ -1355,4 +1357,7 @@ img {font-size: 0}
   padding-left: 5px;
   padding-top: 3px;
 }
+
+/******************** =animate ***********************/
+
 
