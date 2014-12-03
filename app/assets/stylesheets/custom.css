@@ -1363,6 +1363,8 @@ img {font-size: 0}
   padding-top: 3px;
 }
 
-/******************** =animate ***********************/
+/******************** =validate ***********************/
 
+
+.formErrorContent {width: auto !important}
 
