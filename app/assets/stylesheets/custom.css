@@ -491,6 +491,7 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 
 .modal-scroll {max-height: 400px;overflow-y:auto}
 
+#howitwork-modal, #servicearea-modal {overflow: hidden !important;}
 
 #login_modal .modal-header {border-bottom: none;}
 #login_modal .modal-footer {border-top: none;}
