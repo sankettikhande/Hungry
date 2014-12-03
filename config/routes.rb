@@ -76,7 +76,7 @@ Holachef::Application.routes.draw do
   #resources :home do
   match '/chef-profile/:chef_id'=>'Cms::cheffs#show_details'
 
-  match '/desktop' => 'home#desktop'
+  match '/desktop' => redirect("/")
   match '/landing' => 'home#landing'
   match '/add-dishes' => 'home#add_other_dishes'
 
