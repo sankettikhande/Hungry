@@ -37,7 +37,7 @@
         <% end %>
 
       </ul>
-      <div class="pull-right">
+      <div class="pull-right nav-bag">
       <% cart_quantity =  collect_cart_quantity.to_i %>
       <a href="<%= (cart_quantity > 0) ? '/review_order' : '#' %>" class="bag-count" id="bag-count">
        <%= cart_quantity %>
