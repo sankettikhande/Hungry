@@ -1,36 +1,35 @@
 <div class="right-body">
-<div class="container grey-back seperator-80">
-      <div class="row">
-        <div class="col-xs-12">
-          <ul class="booked-orders heading">
+  <div class="container grey-back seperator-80">
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="booked-orders heading">
           <li class="food-bill">
-              <span class="item-name ItemHead">MEAL</span>
-              <span class="item-qty ItemHead">QTY</span>
-              <span class="item-cost ItemHead">COST</span>
-            </li>
-          </ul>        
-        </div>
+            <span class="item-name ItemHead">MEAL</span>
+            <span class="item-qty ItemHead">QTY</span>
+            <span class="item-cost ItemHead">COST</span>
+          </li>
+        </ul>        
       </div>
-</div>
-<div class="container">
-<div class="row">
-    <% total = [] %>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <% total = [] %>
 
-  <%# lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
-  <%#= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "12PM - 1PM", slot_2: "1PM - 2PM", slot_3: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
+      <%# lunch_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Lunch"]}).compact %>
+      <%#= render "checkout_items", meal_type: "Lunch", items: lunch_items, slot_1: "12PM - 1PM", slot_2: "1PM - 2PM", slot_3: "2PM - 3PM", total: total, default_slot: "12PM - 1PM"  if lunch_items.present? %>
 
-  <%# snack_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Evening Snacks"]}).compact %>
-  <%#= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
+      <%# snack_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Evening Snacks"]}).compact %>
+      <%#= render "checkout_items", meal_type: "Evening Snacks", items: snack_items, slot_1: "3PM - 4PM", slot_2: "4PM - 5PM", slot_3: "5PM - 6PM", total: total, default_slot: "3PM - 4PM"  if snack_items.present? %>
 
-  <%# dinner_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Dinner"]}).compact %>
-  <%#= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "8PM - 9PM", slot_2: "9PM - 10PM", slot_3: "10PM - 11PM", total: total, default_slot: "8PM - 9PM"  if dinner_items.present? %>
+      <%# dinner_items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type") == ["Dinner"]}).compact %>
+      <%#= render "checkout_items", meal_type: "Dinner", items: dinner_items, slot_1: "8PM - 9PM", slot_2: "9PM - 10PM", slot_3: "10PM - 11PM", total: total, default_slot: "8PM - 9PM"  if dinner_items.present? %>
 
-  <% MealType.active_meal_type.each do |meal| %>
-    <% items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type")  == ["#{meal.name}"]}).compact %>
-      
-<%= render "checkout_items", meal_type: "#{meal.name}", items: items, slot_1: "#{meal.first_slot}", slot_2: "#{meal.second_slot}", slot_3: "#{meal.third_slot}", total: total, default_slot: "#{meal.first_slot}", from_display: "#{meal.from_display}", to_display: "#{meal.to_display}", slot_1_active: "#{meal.first_slot_active}", slot_2_active: "#{meal.second_slot_active}",slot_3_active: "#{meal.third_slot_active}" if items.present? %>
-  
-  <% end %>
+      <% MealType.active_meal_type.each do |meal| %>
+        <% items = (session[:cart].collect {|item| item if item.values.first.values_at("meal_type")  == ["#{meal.name}"]}).compact %>
+        <%= render "checkout_items", meal_type: "#{meal.name}", items: items, total: total if items.present? %>  
+      <% end %>
+    
     <div class="row">
       <div class="col-xs-12">
           <ul class="booked-orders backgroundLight">
@@ -43,7 +42,7 @@
       </div>
     </div>
   </div>
-
+</div>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -112,7 +111,7 @@ end
       <button id="desktop-proceed" type="button" class="btn btn-checkout btn-saffron">Proceed to Checkout <i class="fa fa-angle-double-right"></i></button>
     </div>
 
-</div> <!-- right-body div ends -->
+<!-- </div> -- closed to manage rows. -->
 
 
 <div id="recipe-modal">
@@ -229,8 +228,7 @@ end
   </div>
 </div> <!-- fluid container ends -->
 <% end %>
-<!-- <div class="floral-block"></div> -->
-</div><!-- #wrap ends -->
+</div><!-- #right body  ends -->
 
 <%= javascript_include_tag "jquery-1.11.0.min" %>
 <% content_for :review_order_footer do %>

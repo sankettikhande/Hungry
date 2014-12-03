@@ -488,6 +488,9 @@ li.recipe-title, li.recipe-tags {padding-left: 10px;padding-right: 10px;}
 .modal-dialog.modal-sm {max-width:300px;width: 80%;margin-left:auto;margin-right:auto;margin-top: 6em;margin-bottom: 80px;overflow: hidden;}
 .modal-dialog.modal-alert {overflow: visible;}
 
+.modal-scroll {max-height: 400px;overflow-y:auto}
+
+
 #login_modal .modal-header {border-bottom: none;}
 #login_modal .modal-footer {border-top: none;}
 #login_modal .modal-body .modal-titleA {color: #6a6969;font-size: 1.2em;font-weight: bold;}
