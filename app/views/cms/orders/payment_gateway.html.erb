@@ -17,28 +17,32 @@
           <!--</li>-->
       <!--</ul>-->
 
-    <div class="payment_method_div">
-        <!--<form id="payment_method" method="post" action="">-->
-        <ul class="pay-options-radio">
-                <li class="orange-check">
-                      <input name="pay-by" id="radio-cod" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." data-payment-mode="cash_on_delivery" data-order-id="<%= @order.id %>" type="radio">
-                      <label for="radio-cod" class="css-label">Cash on Delivery</label>
-                </li>
-                <li class="orange-check">
-                      <input name="pay-by" id="radio-caod" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." data-payment-mode="card_on_delivery" data-order-id="<%= @order.id %>" type="radio">
-                      <label for="radio-caod" class="css-label">Card on Delivery</label>
-                </li>
-                <li class="orange-check">
-                      <input name="pay-by" id="radio-nbanking" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method" type="radio" data-payment-mode="net_banking" data-order-id="<%= @order.id %>">
-                      <label for="radio-nbanking" class="css-label">Online</label>
-                </li>
-                <li class="orange-check">
-                      <input name="pay-by" id="radio-coud" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." type="radio" data-payment-mode="coupons_on_delivery" data-order-id="<%= @order.id %>">
-                      <label for="radio-coud" class="css-label">Coupon on Delivery</label>
-                </li>
-              </ul>
-        <!--</form>-->
-    </div>
+      <div class="row">
+        <div class="col-xs-12">
+            <div class="payment_method_div">
+                <!--<form id="payment_method" method="post" action="">-->
+                <ul class="pay-options-radio">
+                        <li class="orange-check">
+                              <input name="pay-by" id="radio-cod" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." data-payment-mode="cash_on_delivery" data-order-id="<%= @order.id %>" type="radio">
+                              <label for="radio-cod" class="css-label">Cash on Delivery</label>
+                        </li>
+                        <li class="orange-check">
+                              <input name="pay-by" id="radio-caod" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." data-payment-mode="card_on_delivery" data-order-id="<%= @order.id %>" type="radio">
+                              <label for="radio-caod" class="css-label">Card on Delivery</label>
+                        </li>
+                        <li class="orange-check">
+                              <input name="pay-by" id="radio-nbanking" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method" type="radio" data-payment-mode="net_banking" data-order-id="<%= @order.id %>">
+                              <label for="radio-nbanking" class="css-label">Online</label>
+                        </li>
+                        <li class="orange-check">
+                              <input name="pay-by" id="radio-coud" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." type="radio" data-payment-mode="coupons_on_delivery" data-order-id="<%= @order.id %>">
+                              <label for="radio-coud" class="css-label">Coupon on Delivery</label>
+                        </li>
+                      </ul>
+                <!--</form>-->
+            </div>
+        </div>
+      </div>
 
     <div class="payment_form"></div>
 
