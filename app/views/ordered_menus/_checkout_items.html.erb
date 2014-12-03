@@ -19,20 +19,8 @@
         </span>
       <% end %>      
     <% end %>          
-  </li>        
-  <% if meal_type == "Lunch" and Time.now >= Time.parse("#{Date.today.to_s} 02:45PM") %> 
-    <li class="time-slots">
-      <span class="o-time" data-meal_type="lunch_slot">
-          3PM - 4PM
-      </span>
-    </li> 
-  <% elsif meal_type == "Dinner" and Time.now >= Time.parse("#{Date.today.to_s} 23:00PM")  %> 
-    <li class="time-slots">
-      <span class="o-time" data-meal_type="dinner_slot">
-        11PM - 12AM
-      </span>
-    </li> 
-  <% end %> 
+  </li>
+            
 </ul>
 <%= hidden_field_tag "#{meal_type.downcase.gsub(' ', '_')}_slot", "" %>
 <div class="row">
