@@ -28,7 +28,7 @@ class OrderedMenusController < ApplicationController
     # Added for displaying orders in Ascending order of date in case of pre-order orders issue
     # On 17/11/2014 By Pradnya Kulkarni 
     # Contact: pradnya@sodelsolutions.com
-    session[:cart] = session[:cart].sort_by { |h| h.first.second.first.second }
+    # session[:cart] = session[:cart].sort_by { |h| h.first.second.first.second }
 
     # Added for removal of added coupon on navigation issue pre-order orders issue
     @show_values = false
