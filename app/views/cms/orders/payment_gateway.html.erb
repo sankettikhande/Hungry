@@ -1,7 +1,7 @@
 
   <div class="container-fluid back-white">
       <div class="grey-header">
-          <h4 class="text-uppercase text-center grey-text">Choose your option</h4>
+          <h4 class="text-uppercase text-center grey-text">Choose Payment Mode</h4>
       </div>
   </div> <!-- fluid container ends -->
 
@@ -30,7 +30,7 @@
                 </li>
                 <li class="orange-check">
                       <input name="pay-by" id="radio-nbanking" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method" type="radio" data-payment-mode="net_banking" data-order-id="<%= @order.id %>">
-                      <label for="radio-nbanking" class="css-label">NetBanking</label>
+                      <label for="radio-nbanking" class="css-label">Online</label>
                 </li>
                 <li class="orange-check">
                       <input name="pay-by" id="radio-coud" class="css-checkbox validate[required]" data-errormessage="Please choose a payment method." type="radio" data-payment-mode="coupons_on_delivery" data-order-id="<%= @order.id %>">

@@ -1,6 +1,7 @@
 $(".payment_form").append("<form action='<%= @action %>' method='POST' id='transactionForm'>");
 $(".payment_form form").append('<input class="text" name="merchantAccessKey" type="hidden" value="<%= Settings.citrus_gateway.accesskey %>" />');
 $(".payment_form form").append('<input class="text" name="merchantTxnId" type="hidden" value="<%= @order.id %>" />');
+$(".payment_form form").append('<input class="text" name="email" type="hidden" value="<%= hola_current_user.email %>" />');
 $(".payment_form form").append('<input class="text" name="firstName" type="hidden" value="<%= @order.name.split(' ')[0] %>" />');
 $(".payment_form form").append('<input class="text" name="lastName" type="hidden" value="<%= @order.name.split(' ')[1] %>" />');
 $(".payment_form form").append('<input class="text" name="phoneNumber" type="hidden" value="<%= @order.phone_no %>" />');
