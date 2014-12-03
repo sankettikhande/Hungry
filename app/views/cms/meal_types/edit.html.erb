@@ -45,7 +45,22 @@
 			<%= f.check_box :second_slot_active %><br/><br/><br/>
 					
 			Third Slot : <%= @meal_type.third_slot %>		
-			<%= f.check_box :third_slot_active %>				
+			<%= f.check_box :third_slot_active %><br/><br/><br/>
+
+			<% if @meal_type.fourth_slot != '0 - 0' %>
+				Fourth Slot : <%= @meal_type.fourth_slot %>
+				<%= f.check_box :fourth_slot_active %><br/><br/><br/>
+			<% end %>	
+
+			<% if @meal_type.fifth_slot != '0 - 0' %>
+				Fifth Slot : <%= @meal_type.fifth_slot %>
+				<%= f.check_box :fifth_slot_active %><br/><br/><br/> 
+			<% end %>	
+			
+			<% if @meal_type.sixth_slot != '0 - 0' %>
+				Sixth Slot : <%= @meal_type.sixth_slot %>
+				<%= f.check_box :sixth_slot_active %> 
+			<% end %>		
 		</div>				
 	</div>
 	<div class="fields text_fields">		
@@ -53,16 +68,23 @@
 	</div>			
 
 	<div id="slots_div" class="hide">
-		<% for i in 1..3 %>
+		<% for i in 1..6 %>
 			<div id="select_container_<%= i %>" class="fields text_fields">
 				<label> 
-					<% if i == 1 %>
-						First
-					<% elsif i == 2 %>			
-						Second	
-					<% else %>
-						Third
-					<% end %>		
+					<% case i
+						when 1 %>
+  							First
+  					<%	when 2 %>
+  							Second
+					<%	when 3 %>
+							Third
+					<%	when 4 %>
+  							Fourth
+  					<%	when 5 %>
+  							Fifth
+  					<%	when 6 %>
+  							Sixth
+					<%	end %>					
 					slot
 				</label>				
 				<label for="from_slot_<%= i %>">From</label>
@@ -96,11 +118,16 @@
 </style>
 
 <script type="text/javascript">
-    function set_options(index_for_slicing, ele_to_be_affected){ 
-        time_arr = ['12AM', ' 1AM', ' 2AM', ' 3AM', ' 4AM', ' 5AM', ' 6AM', ' 7AM', ' 8AM', ' 9AM', '10AM', '11AM', '12PM', ' 1PM', ' 2PM', ' 3PM', ' 4PM', ' 5PM', ' 6PM', ' 7PM', ' 8PM', ' 9PM', '10PM', '11PM'] 
+	time_arr = ['12AM', ' 1AM', ' 2AM', ' 3AM', ' 4AM', ' 5AM', ' 6AM', ' 7AM', ' 8AM', ' 9AM', '10AM', '11AM', '12PM', ' 1PM', ' 2PM', ' 3PM', ' 4PM', ' 5PM', ' 6PM', ' 7PM', ' 8PM', ' 9PM', '10PM', '11PM'] 
+
+	from_to_time_arr = ["12:00 AM", "01:00 AM", "02:00 AM", "03:00 AM", "04:00 AM", "05:00 AM", "06:00 AM", "07:00 AM", "08:00 AM", 
+	"09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "04:30 PM", "05:00 PM", "06:00 PM", 
+	"07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM", "11:30 PM", "11:59 PM"]
+
+    function set_options(index_for_slicing, ele_to_be_affected, arr){ 
         options = "";
         options += "<option value='0'>Select Time</option>";
-        sub_arr = time_arr.slice($.inArray(index_for_slicing,time_arr));        
+        sub_arr = arr.slice($.inArray(index_for_slicing,arr));        
         for(var i = 0; i < sub_arr.length; i++) 
             options += "<option value='" + sub_arr[i] + "'>" + sub_arr[i] + "</option>";
         $('#'+ ele_to_be_affected +' option').remove();         
@@ -114,25 +141,55 @@
 		})
 
 		$('#from_slot_1').change(function(){    	
-        	set_options($(this).val(), 'to_slot_1');
+        	set_options($(this).val(), 'to_slot_1', time_arr);
     	});
 
     	$('#to_slot_1').change(function(){
-        	set_options($(this).val(), 'from_slot_2');          
+        	set_options($(this).val(), 'from_slot_2', time_arr);          
     	});
 
     	$('#from_slot_2').change(function(){    
-        	set_options($(this).val(), 'to_slot_2');
+        	set_options($(this).val(), 'to_slot_2', time_arr);
     	});
 
 	    $('#to_slot_2').change(function(){
-    	    set_options($(this).val(), 'from_slot_3');                  
+    	    set_options($(this).val(), 'from_slot_3', time_arr);                  
     	});
 
     	$('#from_slot_3').change(function(){
-        	set_options($(this).val(), 'to_slot_3');
+        	set_options($(this).val(), 'to_slot_3', time_arr);
     	});
 
-	})
+		$('#to_slot_3').change(function(){
+        	set_options($(this).val(), 'from_slot_4', time_arr);          
+    	});
 
+    	$('#from_slot_4').change(function(){    	
+        	set_options($(this).val(), 'to_slot_4', time_arr);
+    	});
+
+    	$('#to_slot_4').change(function(){
+        	set_options($(this).val(), 'from_slot_5', time_arr);          
+    	});
+
+    	$('#from_slot_5').change(function(){    	
+        	set_options($(this).val(), 'to_slot_5', time_arr);
+    	});
+
+    	$('#to_slot_5').change(function(){
+        	set_options($(this).val(), 'from_slot_6', time_arr);          
+    	});
+
+    	$('#from_slot_6').change(function(){    	
+        	set_options($(this).val(), 'to_slot_6', time_arr);
+    	});
+
+    	$('#meal_type_from').change(function(){    	
+        	set_options($(this).val(), 'meal_type_to', from_to_time_arr);
+    	});
+
+    	$('#meal_type_from_display').change(function(){    	
+        	set_options($(this).val(), 'meal_type_to_display', from_to_time_arr);
+    	});
+	})
 </script>

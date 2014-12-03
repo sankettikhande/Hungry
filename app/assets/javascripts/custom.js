@@ -611,8 +611,8 @@ $(document).ready(function(){
     $("#desktop-proceed-pay").click(function(){
         pay_option = $("input[name=pay-by]:checked")
         if(pay_option.val() === undefined){
-            $(".payment_method_div").validationEngine('showPrompt', ' Please select a payment method', 'error');
-            $(".undefinedformError").css('left','11%');
+            $(".payment_method_div").validationEngine('showPrompt', ' Please select a payment method', 'error','topLeft');
+            // $(".undefinedformError").css('left','11%');
         }
         else{
             payment_mode = pay_option.data('payment-mode');

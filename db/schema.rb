@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141203052457) do
+ActiveRecord::Schema.define(:version => 20141203085816) do
 
   create_table "banner_versions", :force => true do |t|
     t.integer  "original_record_id"
@@ -775,6 +775,12 @@ ActiveRecord::Schema.define(:version => 20141203052457) do
     t.boolean  "first_slot_active",  :default => true
     t.boolean  "second_slot_active", :default => true
     t.boolean  "third_slot_active",  :default => true
+    t.string   "fourth_slot"
+    t.string   "fifth_slot"
+    t.string   "sixth_slot"
+    t.boolean  "fourth_slot_active", :default => false
+    t.boolean  "fifth_slot_active",  :default => false
+    t.boolean  "sixth_slot_active",  :default => false
   end
 
   create_table "message_reports", :force => true do |t|

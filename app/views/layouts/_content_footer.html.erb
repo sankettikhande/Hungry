@@ -5,7 +5,6 @@
 <% elsif content_for?(:cheff_footer) %>
     <%= yield(:cheff_footer) %>
 <% elsif content_for?(:other_footer) %>
-    <%= yield(:other_footer) %>
-<% else %>
-    <%= render :partial => "/layouts/footer" %>
+    <%= yield(:other_footer) %>   
 <% end %>
+<%= render :partial => "/layouts/footer" %>
