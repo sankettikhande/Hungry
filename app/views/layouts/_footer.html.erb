@@ -1,28 +1,33 @@
-  <div class="modal fade hc-modal" id="contact-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close" data-dismiss="modal" type="button">&times;</button>
-        </div>
-        <div class="modal-body">
+<div class="modal fade hc-modal" id="contact-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag "/feedback" , :id => 'talk-us-form' do |f| %>
           <div class="contact-form">
             <h4 class="modal-title lato-i">CONTACT US</h4>
             <p class="form-title">Please feel free to contact us.</p>
             <div class="form-group">
-              <input id="cust_name" type="text"  class="form-control" placeholder="Name">
+              <input id="cust_name" type="text"  class="form-control validate[required]" placeholder="Name" name="name">
             </div>
             <div class="form-group">
-              <input id="cust_phno" type="tel" maxlength="12" class="form-control" placeholder="Phone Number">
+              <input id="cust_phno" type="tel" maxlength="12" class="form-control validate[required]" placeholder="Phone Number" name="contact_no">
             </div>
             <div class="form-group">
-              <input id="cust_email" type="email" class="form-control" placeholder="Enter your Email Id">
+              <input id="cust_email" type="email" class="form-control validate[required]" placeholder="Enter your Email Id" name="email">
             </div>
-            <div class="checkbox"><label><input type="checkbox" id="cust_chef">I'm Chef and want to work with Holachef.</label></div>
+            <div class="checkbox">
+              <label><input type="checkbox" id="cust_chef" name="is_chef">I'm Chef and want to work with Holachef.</label>
+            </div>
             <div class="form-group">
-              <textarea id="cust_msg" class="form-control" rows="5" placeholder="Your Message"></textarea>
+              <textarea id="cust_msg" class="form-control validate[required]" rows="5" placeholder="Your Message" name="feedback">
+              </textarea>
             </div>
+            <input type="hidden" name="called_from" value="footer"/>
             <div class="form-group text-center">
-              <button type="button" class="btn btn-saffron" id="cform-submit-con" >Send Message</button>
+              <button type="submit" class="btn btn-saffron" id="cform-submit-con" >Send Message</button>
             </div>
           </div>
           <div class="success-msg text-center">
@@ -34,59 +39,64 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <p class="text-right">...or you can call us at <span class="text-saffron">+91-808080-4652</span></p>
-        </div>
+      <% end %>  
+      <div class="modal-footer">
+        <p class="text-right">...or you can call us at <span class="text-saffron">+91-808080-4652</span></p>
       </div>
     </div>
   </div>
-  <div class="modal fade hc-modal1 white-modal" id="howitwork-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <button style="position:absolute;right:30px" class="close" data-dismiss="modal" type="button">x</button>
-          <img class="img-responsive center-block" src="assets/HowitWork.png" alt="">
-        </div>
+</div>
+<div class="modal fade hc-modal1 white-modal" id="howitwork-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button style="position:absolute;right:30px" class="close" data-dismiss="modal" type="button">x</button>
+        <img class="img-responsive center-block" src="assets/HowitWork.png" alt="">
       </div>
     </div>
   </div>
-  <div class="modal fade hc-modal1 white-modal" id="servicearea-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <button style="position:absolute;right:30px" class="close" data-dismiss="modal" type="button">x</button>
-          <img class="img-responsive center-block" src="assets/service-map.jpg" alt="">
-        </div>
+</div>
+<div class="modal fade hc-modal1 white-modal" id="servicearea-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button style="position:absolute;right:30px" class="close" data-dismiss="modal" type="button">x</button>
+        <img class="img-responsive center-block" src="assets/service-map.jpg" alt="">
       </div>
     </div>
   </div>
-  <div class="modal fade hc-modal" id="party-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close" data-dismiss="modal" type="button">&times;</button>
-        </div>
-        <div class="modal-body">
+</div>
+<div class="modal fade hc-modal" id="party-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="new_party_order" class="new_party_order" method="post" action="/create_party_orders" accept-charset="UTF-8">
           <div class="contact-form">
             <h4 class="modal-title lato-r">Party?  Meeting?</h4>
             <p class="form-title">Please complete the form for requirements.
-              <span class="make-block text-light">*For orders of 10 people or more.</span></p>
+              <span class="make-block text-light">*For orders of 10 people or more.</span>
+            </p>
             <div class="form-group">
-              <input id="party_name" type="text" class="form-control" placeholder="Name">
+              <input id="party_name" type="text" class="form-control validate[required]" placeholder="Name" name="party_order[name]">
             </div>
             <div class="form-group">
-              <input id="party_phone" maxlength="12" type="tel" class="form-control" placeholder="Phone Number">
+              <input id="party_phone" maxlength="12" type="tel" class="form-control validate[required]" placeholder="Phone Number" name="party_order[contact_no]">
             </div>
             <div class="form-group">
-              <input id="party_email" type="email" class="form-control" placeholder="Enter your Email Id">
+              <input id="party_email" type="email" class="form-control validate[required]" placeholder="Enter your Email Id" name="party_order[email]">
             </div>
             <div class="form-group">
-              <textarea id="party_msg" class="form-control" rows="5" placeholder="Special Instructions"></textarea>
+              <textarea id="party_msg" class="form-control" rows="5" placeholder="Special Instructions" name="party_order[details]"></textarea>
             </div>
+            <input type='hidden' value="footer" name="called_from" />
             <div class="form-group text-center">
-              <button type="button" class="btn btn-saffron" id="cform-submit" >Submit</button>
+              <button type="submit" class="btn btn-saffron" id="cform-submit" >Submit</button>
             </div>
           </div>
+        </form>
           <div class="success-msg text-center">
             <div class="v-parent">
               <div class="v-child">

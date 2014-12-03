@@ -396,7 +396,7 @@ user-select: none;
 .nav.navbar-nav li a:hover {text-decoration: underline;}
 
 
-.navbar-titlebar {width:auto;display: inline-block;}
+.navbar-titlebar {width:auto;display: inline-block;float: left;}
 
 .navbar-header .btn-back {float: right;display: block;background: url('/assets/icon-back.png') no-repeat left center;background-size: 12px 24px;width: 28px;height: 40px;margin:7px 0 7px 16px ;cursor: pointer;padding-right: 16px}
 
@@ -419,6 +419,7 @@ user-select: none;
 /*.navbar-titlebar .page-title a.drop-icon {background: url('/assets/dropd-icon.png') no-repeat;background-size: 10px 10px;background-position: 100% 100%;min-width: 160px}*/
 .bag-count,.bag-count:hover {background: url('/assets/cart-bag.png')no-repeat left top;width: 36px;height: 34px;display: inline-block;text-align: center;margin-top: 6px;color: #000;padding-top: 14px;background-size: 100% 100%;text-indent: -4px;text-decoration: none;}
 }
+
 
 label.orange-check-label {display: block;width: 100%;float: left;}
 
@@ -878,7 +879,6 @@ ol.direction-list > li.text {line-height: 1.8em;color: #666}
 }
 
 @media (max-width: 767px) {
-.bag-count {margin-right: 25px;}
 .bag-count + .btn-back {margin-left:-15px;}
 
 .recipe-header .name-parent {height: 185px;}
@@ -1324,6 +1324,7 @@ img {font-size: 0}
 
 
 @media (max-width: 1024px) {
+.nav-bag {width: 80px;display: inline-block;}
 
     .hola-sidemenu {display: none;}
 }

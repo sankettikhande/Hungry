@@ -9,7 +9,7 @@ $(document).ready(function(){
     $('.time-slots span').click(function(){
       $(this).parent().find('.o-time').removeClass('selected');
       $(this).addClass('selected');
-      $("#"+$(this).data('meal_type')).val($(this).html())
+      $("#"+$(this).data('meal_type')).val(jQuery.trim($(this).html()));
     });
 
     $('.recipe-block').on('click', function(){
@@ -233,7 +233,17 @@ $(document).ready(function(){
                 'complete': function(){                    
                     quantity_input.val(quantity);
                     flash_msg_cart_count.html(quantity);
-                    flash_msg.addClass('added-2-cart');
+                    if(quantity == 0){
+                        flash_msg_cart_count.parent().hide()
+                        // flash_msg_cart_count.parent().parent().hide()
+                        flash_msg.removeClass('added-2-cart');
+                    }else{
+                        flash_msg_cart_count.parent().show()
+                        // flash_msg_cart_count.parent().parent().show()
+                        flash_msg.addClass('added-2-cart');
+                    }
+                    // flash_msg_cart_count.html(quantity);
+                    
                 }
             })
 
@@ -620,7 +630,7 @@ $(document).ready(function(){
               window.location = "/order-confirm/"+order_id+"?payment_mode="+payment_mode
 
             }
-        console.log(pay_option)
+        
         
         }
     })
