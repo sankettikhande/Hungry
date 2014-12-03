@@ -235,13 +235,15 @@ $(document).ready(function(){
                     flash_msg_cart_count.html(quantity);
                     if(quantity == 0){
                         flash_msg_cart_count.parent().hide()
-                        flash_msg_cart_count.parent().parent().hide()
+                        // flash_msg_cart_count.parent().parent().hide()
+                        flash_msg.removeClass('added-2-cart');
                     }else{
                         flash_msg_cart_count.parent().show()
-                        flash_msg_cart_count.parent().parent().show()
+                        // flash_msg_cart_count.parent().parent().show()
+                        flash_msg.addClass('added-2-cart');
                     }
                     // flash_msg_cart_count.html(quantity);
-                    flash_msg.addClass('added-2-cart');
+                    
                 }
             })
 
