@@ -194,6 +194,14 @@ $(document).ready(function(){
                 'complete': function(){                    
                     quantity_input.val(quantity);
                     flash_msg_cart_count.html(quantity);
+                    if(quantity == 0){
+                        flash_msg_cart_count.parent().hide()
+                        flash_msg_cart_count.parent().parent().hide()
+                    }else{
+                        flash_msg_cart_count.parent().show()
+                        flash_msg_cart_count.parent().parent().show()
+                    }
+                    // flash_msg_cart_count.html(quantity);
                     flash_msg.addClass('added-2-cart');
                 }
             })
@@ -581,7 +589,7 @@ $(document).ready(function(){
               window.location = "/order-confirm/"+order_id+"?payment_mode="+payment_mode
 
             }
-        console.log(pay_option)
+        
         
         }
     })

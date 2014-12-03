@@ -31,7 +31,7 @@ module ApplicationHelper
   def collect_cart_items(menu)
     today = {}
     if !session[:cart].blank?
-      item = session[:cart].select{|x| x.has_key?(menu.id.to_s)}
+      item = session[:cart].select{|x| x.has_key?("#{menu.id.to_s}_#{menu.meal_type}")}
       unless item.blank?
         item_attr = item.first.values.first
         menu = {:price => item_attr['price'], :quantity => item_attr['quantity'], :dish_name => item_attr['dish_name'], :category => item_attr['category'],
