@@ -9,7 +9,7 @@ $(document).ready(function(){
     $('.time-slots span').click(function(){
       $(this).parent().find('.o-time').removeClass('selected');
       $(this).addClass('selected');
-      $("#"+$(this).data('meal_type')).val($(this).html())
+      $("#"+$(this).data('meal_type')).val(jQuery.trim($(this).html()));
     });
 
     $('.recipe-block').on('click', function(){
