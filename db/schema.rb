@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141202070912) do
+ActiveRecord::Schema.define(:version => 20141203052457) do
 
   create_table "banner_versions", :force => true do |t|
     t.integer  "original_record_id"
@@ -482,6 +482,7 @@ ActiveRecord::Schema.define(:version => 20141202070912) do
     t.boolean  "archived",      :default => false
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
+    t.boolean  "is_chef",       :default => false
   end
 
   create_table "file_block_versions", :force => true do |t|
