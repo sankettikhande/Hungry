@@ -12,7 +12,7 @@
     <input type="hidden" class="chef-profile-pic" value="<%= cart_menu[:cheff_image] if cart_menu  %>"/>
     <input type="hidden" class="chef-name" value="<%= cart_menu[:cheff_name] if cart_menu  %>"/>
     <input type="hidden" class="chef-id" value="<%= cart_menu[:cheff_id] if cart_menu  %>"/>
-    <ul class="square">
+    <ul class="square added-2-cart">
       <li class="recipe-block <%=set_cooing_today_type(menu)%>">
         <% if menu.food_item.meal_info.picture && menu.food_item.meal_info.picture.image? %>
           <div class="recipe-image append-cart">
@@ -40,8 +40,10 @@
               </div>
             </div>
           </div>
-          <div class="prod-carted">
-            <h5 class="carted-text"><span></span> in your cart</h5>
+          <div class="prod-carted" style="display: <%= cart_menu[:quantity].to_i > 0 ? 'block' : 'none'%>">
+            <h5 class="carted-text" style="display: <%= cart_menu[:quantity].to_i > 0 ? 'block' : 'none'%>">
+              <span><%= cart_menu[:quantity].to_i%></span> in your cart
+            </h5>
           </div>
         <% else %>
           <div class="recipe-header <%=set_cooing_today_type(menu)%> append-cart colorItemFix about-content">
@@ -74,8 +76,8 @@
               </div>
             </div>
           </div>
-          <div class="prod-carted">
-            <h5 class="carted-text"><span></span> in your cart</h5>
+          <div class="prod-carted" style="display: <%= cart_menu[:quantity].to_i > 0 ? 'block' : 'none'%>">
+            <h5 class="carted-text"><span><%= cart_menu[:quantity].to_i%></span> in your cart</h5>
           </div>
         <% end %>
       </li>

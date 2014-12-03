@@ -8,9 +8,13 @@ class Cms::FeedbacksController < Cms::ContentBlockController
   end
 
   def feedback
-    @feedback = Feedback.new(feedback: params[:feedback], email: params[:email], contact_no: params[:contact_no], name: params[:name])
+    @feedback = Feedback.new(feedback: params[:feedback], email: params[:email], contact_no: params[:contact_no], name: params[:name], is_chef: params[:is_chef])
     if @feedback.save
-      redirect_to "/talk_to_us", notice: "Thanks!! Feedback received."
+      if params[:called_from]
+        redirect_to :back
+      else
+        redirect_to "/talk_to_us", notice: "Thanks!! Feedback received."
+      end  
     else
       render 'talk_to_us'
     end
