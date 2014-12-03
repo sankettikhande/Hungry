@@ -9,9 +9,14 @@ class Cms::PartyOrdersController < Cms::ContentBlockController
   end
 
   def create_party_orders
+
     @party_order = PartyOrder.new(params[:party_order])
     if @party_order.save
-      redirect_to "/party_orders", notice: "Thanks for your query ! We will get in touch with you very soon."
+      if params[:called_from]
+        redirect_to  :back
+      else
+        redirect_to "/party_orders", notice: "Thanks for your query ! We will get in touch with you very soon."
+      end  
     else
       render 'party_orders'
     end
