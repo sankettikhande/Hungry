@@ -8,70 +8,21 @@
     <%= CookingToday.meal_type_time_span["#{meal_type}"][:toDisplay] %>
   </li>
 
-  <% slot_1_active_time = Time.local(Time.now.year, Time.now.month, Time.now.day, TIME[slot_1.last(4)]) - 15 * 60 %>
+  <% active_slots = get_active_slots(meal_type) 
+  current_time_hour = Time.now.hour %>
 
-  <% slot_2_active_time = Time.local(Time.now.year, Time.now.month, Time.now.day, TIME[slot_2.last(4)]) - 15 * 60 %>
-
-  <% slot_3_active_time = Time.local(Time.now.year, Time.now.month, Time.now.day, TIME[slot_3.last(4)]) - 15 * 60 %>
-
-  <% current_time_hour = Time.now.hour
-    if ( current_time_hour <= TIME[slot_1.first(4)] ) %>
-      <li class="time-slots">
-        <% if slot_1_active == 'true' && slot_1_active_time > Time.now %>
-          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot">
-            <%= slot_1 %>
-          </span>
-        <% end %>
-        <% if slot_2_active  == 'true' && slot_2_active_time > Time.now %>  
-          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot">
-            <%= slot_2 %>
-          </span>
-        <% end %>
-        <% if slot_3_active == 'true' && slot_3_active_time > Time.now %>
-          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot">
-            <%= slot_3 %>
-          </span>
-        <% end %>  
-      </li>        
-    <% elsif ( current_time_hour <= TIME[slot_2.first(4)] ) %>
-      <li class="time-slots">
-        <% if slot_2_active == 'true' && slot_2_active_time > Time.now %>
-          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot">
-            <%= slot_2 %> 
-          </span>
-        <% end %>  
-        <% if slot_3_active == 'true' && slot_3_active_time > Time.now %>
-          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot">
-            <%= slot_3 %>
-          </span>
-        <% end %>  
-      </li>
-    <% elsif (current_time_hour <= TIME[slot_3.first(4)]) %>
-      <% if slot_3_active == 'true' && slot_3_active_time > Time.now %>
-        <li class="time-slots">
-          <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot">
-            <%= slot_3 %>
-          </span>
-        </li>      
-      <% end %>
-    <% end %>
-
-    <% if meal_type == "Lunch" and Time.now >= Time.parse("#{Date.today.to_s} 02:45PM") %> 
-      <li class="time-slots">
-        <span class="o-time" data-meal_type="lunch_slot">
-          3PM - 4PM
+  <li class="time-slots">
+    <% active_slots.each do |slot| %>
+      <% if current_time_hour <= TIME[slot.first(4)] && get_slot_active_time(slot) > Time.now %>
+        <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot">
+          <%= slot %>
         </span>
-      </li> 
-    <% elsif meal_type == "Dinner" and Time.now >= Time.parse("#{Date.today.to_s} 23:00PM")  %> 
-      <li class="time-slots">
-        <span class="o-time" data-meal_type="dinner_slot">
-          11PM - 12AM
-        </span>
-      </li> 
-    <% end %>
-    
-  </ul>
-  <%= hidden_field_tag "#{meal_type.downcase.gsub(' ', '_')}_slot", "" %>
+      <% end %>      
+    <% end %>          
+  </li>
+            
+</ul>
+<%= hidden_field_tag "#{meal_type.downcase.gsub(' ', '_')}_slot", "" %>
 <div class="row">
   <div class="col-xs-12">
     <div class="container">
