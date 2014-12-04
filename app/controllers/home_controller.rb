@@ -5,6 +5,7 @@ class HomeController < ApplicationController
   # before_filter :landing, :only => [:index]
   #skip_before_filter :prepare_for_mobile, :only => [:desktop]
 
+  before_filter :set_cache_buster, :only => [:mobile]
 
   def landing
 
@@ -29,6 +30,7 @@ class HomeController < ApplicationController
   end
 
   def mobile
+
     # @todays_menu = CookingToday.grouped_by_category
     @sunday_override = params[:sunday_override]
     update_cart(@todays_menu) if !@todays_menu.blank?
