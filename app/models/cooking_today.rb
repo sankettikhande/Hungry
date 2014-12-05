@@ -44,7 +44,9 @@ class CookingToday < ActiveRecord::Base
   end
 
   def order_quantity
-    if ordered_changed? and ordered > quantity
+    ordered_quantity_from_ordered_menu =  OrderedMenu.joins(:order).where("ordered_menus.cooking_today_id = ?  AND orders.order_status != ?", id, "Created").sum(&:quantity)
+        
+    if ordered_changed? and ordered_quantity_from_ordered_menu >= quantity
       errors.add(:base, "#{food_item.name} is out of stock.")
       return false
     end

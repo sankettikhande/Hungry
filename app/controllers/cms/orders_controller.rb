@@ -1,9 +1,12 @@
 require "#{Rails.root}/lib/citrus_lib.rb"
 include ApplicationHelper
 class Cms::OrdersController < Cms::ContentBlockController
+  skip_before_filter :verify_authenticity_token, only: [:callback]
   skip_before_filter :login_required, :cms_access_required, :only => [:email_invoice, :set_cart, :payment_gateway,:order_confirm,
                                                                      :remove_from_cart, :create_signature_order, :callback,
                                                                      :submit_payment_form, :add_address]
+  before_filter :check_inventory_and_redirect, only: [:add_address, :payment_gateway, :order_confirm, :submit_payment_form, :callback]
+  
   def set_cart
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []
@@ -329,7 +332,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           @order.update_attributes(:payment_status => "Payment Gateway Failed", :payment_gateway_response => params)
         end
-        session[:cart] = @order.build_session
+        #session[:cart] = @order.build_session
         render "payment_gateway", :layout => 'application'
       end
     else

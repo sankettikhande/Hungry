@@ -322,7 +322,7 @@ $(document).ready(function(){
             $.ajax({
                 'method': 'GET',
                 'url': '/orders/set_cart',
-                'data': {'item_id': parseInt($("#selected_item").val(),10) , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html(), 'category' : category, 'meal_type' : meal_type },
+                'data': {'item_id': parseInt($("#selected_item").val(),10) + '_' + meal_type , 'qty': $("#order-count").html(), 'price': menu_price, 'date': date, 'dish_name': $(".modal-body .recipe-name").html(), 'category' : category, 'meal_type' : meal_type },
                 'dataType': 'script'
             })
             $("#"+selected_review_id+" span.item-name").html($(".modal-body .recipe-name").html() )
@@ -622,7 +622,7 @@ $(document).ready(function(){
                 $.ajax({
                   'url' : '/submit_payment_form',
                   'method': 'POST',
-                  'data': {'paymentMode': payment_mode, 'orderId':order_id},
+                  'data': {'paymentMode': payment_mode, 'orderId':order_id, 'authenticity_token': $("#payment_form_atk").html()},
                   'dataType':'script'
                 });
                 
