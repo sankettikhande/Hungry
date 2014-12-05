@@ -622,7 +622,7 @@ $(document).ready(function(){
                 $.ajax({
                   'url' : '/submit_payment_form',
                   'method': 'POST',
-                  'data': {'paymentMode': payment_mode, 'orderId':order_id},
+                  'data': {'paymentMode': payment_mode, 'orderId':order_id, 'authenticity_token': $("#payment_form_atk").html()},
                   'dataType':'script'
                 });
                 

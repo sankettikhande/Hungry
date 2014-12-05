@@ -1,0 +1,66 @@
+
+<% if !@insufficient_inventory_items_info.blank? and params[:r].blank? %>
+  <div class="modal fade" id="inventory_check_modal" data-keyboard="false"  data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div id="login_form">
+          <div class="modal-header" style="border-bottom:0">
+            <button data-dismiss="modal" class="btn-close pull-right">&times;</button>
+            <h4 class="modal-title text-center">We are sorry but some items are short in inventory</h4>
+            <p class="modal-titleB text-center no-margin">Please find details below</p>
+          </div>
+          <div class="modal-body" style="border-top:1px solid #d7d7d7">
+            <div class="row">
+              <div class="col-xs-8 col-sm-8 col-sm-offset-1">
+                <strong class="roboto-b lato-b">Food Item</strong>
+              </div>
+              <div class="col-xs-4 col-sm-3">
+                <strong class="roboto-b lato-b">In&nbsp;Stock</strong>
+              </div>
+            </div>
+            <% @insufficient_inventory_items_info.each do |item| %>
+              <div class="row">
+                <div class="col-xs-8 col-sm-8 col-sm-offset-1">
+                  <%= item[:item_name] %>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                  <%= item[:available_quantity] %>
+                </div>
+             </div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+          <div class="row">
+            <div class="col-xs-6">
+            <div class="form-group text-right">
+                <button type="submit" id="back_home" class="btn btn-saffron"><i class="fa fa-home"></i> <span class="hidden-xs">Go To Menu</span></button>
+            </div>
+            </div>
+            <div class="col-xs-6">
+            <div class="form-group text-left">
+                <button type="submit" id="edit_quantity" class="btn btn-saffron"><i class="fa fa-pencil"></i> <span class="hidden-xs">Edit Order</span></button>               
+            </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <script>
+    $(document).ready(function(){
+      $('#inventory_check_modal').modal('show');
+      $('#inventory_check_modal').on('hidden.bs.modal', function () {
+        window.location = "/"
+      })
+
+      $("#edit_quantity").click(function(){
+        window.location = "/review_order?r=tx"
+      })
+
+      $("#back_home").click(function(){
+        window.location = "/"
+      })
+    })
+  </script>
+<% end %>
