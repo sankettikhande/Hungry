@@ -1,5 +1,5 @@
 
-<% if !@insufficient_inventory_items_info.blank? and params[:r].blank? %>
+<% if !@insufficient_inventory_items_info.blank? and params[:r].blank? and !hola_current_user.blank? %>
   <div class="modal fade" id="inventory_check_modal" data-keyboard="false"  data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
