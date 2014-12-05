@@ -4,6 +4,8 @@ class Cms::OrdersController < Cms::ContentBlockController
   skip_before_filter :login_required, :cms_access_required, :only => [:email_invoice, :set_cart, :payment_gateway,:order_confirm,
                                                                      :remove_from_cart, :create_signature_order, :callback,
                                                                      :submit_payment_form, :add_address]
+  before_filter :check_inventory, only: [:add_address]
+  
   def set_cart
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []

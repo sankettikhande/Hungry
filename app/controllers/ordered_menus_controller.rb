@@ -5,6 +5,7 @@ class OrderedMenusController < ApplicationController
   # Contact: pradnya@sodelsolutions.com
   before_filter :set_cache_buster
 
+  before_filter :check_inventory, only: [:add_address]
 
   def checkout
     @hola_user = hola_current_user

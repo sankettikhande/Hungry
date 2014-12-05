@@ -70,12 +70,37 @@ class ApplicationController < ActionController::Base
     session.delete(:netAmount)
   end
 
+  def insufficient_inventory? 
+    @insufficient_inventory_items_info = {}
+    menu_quantity_map = get_inventory_for_cart_items
+    session[:cart].each do |item|
+      cooking_today_id = item.keys.first.split("_").first 
+      cooking_today_inventory_info = menu_quantity_map[cooking_today_id.to_i]
+      if cooking_today_inventory_info
+        item_info = item.values.first
+        total_ordered = cooking_today_inventory_info['sold_quantity'] + item_info['quantity'].to_i  
+        @insufficient_inventory_items_info.merge!(cooking_today_id: item_info['dish_id'], item_name: item_info['dish_name'], available_quantity:  cooking_today_inventory_info['available_quantity']) if (total_ordered >= cooking_today_inventory_info['available_quantity'])
+      end
+    end
+    !@insufficient_inventory_items_info.blank?
+  end
 
+  def get_inventory_for_cart_items
+    menu_quantity_map = {}
+    cooking_today_ids = session[:cart].collect{|item| item.keys}.flatten.collect {|c| c.split("_").first}
+    ordered_menus = OrderedMenu.where(cooking_today_id: cooking_today_ids).joins(:order, :cooking_today).where("orders.order_status != 'Created'").select("sum(ordered_menus.quantity) as sold_quantity, ordered_menus.cooking_today_id, cooking_todays.quantity as available_quantity").group("ordered_menus.cooking_today_id")
+    ordered_menus.collect {|om| menu_quantity_map.merge!(om.cooking_today_id => {"sold_quantity" => om.sold_quantity, "available_quantity" => om.available_quantity})}
+    menu_quantity_map
+  end
+
+  def check_inventory
+    redirect_to "/", alert: "Sorry! There were some menus in your cart that we can't serve right now." if insufficient_inventory?
+  end
 
   def set_cache_buster
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
-  
+
 end
