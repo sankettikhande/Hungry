@@ -11,7 +11,6 @@ set :deploy_via, :remote_cache
 set :scm, 'git'
 default_run_options[:pty] = true
 
-
 set :scm_verbose, true
 set :use_sudo, false
 set :keep_releases, 2
@@ -33,6 +32,8 @@ task :qa do
 end
 
 task :prod do
+
+  set :rvm_type, :system
 
   set :branch, 'master'
   # be sure to change these
