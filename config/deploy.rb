@@ -1,5 +1,6 @@
 
 require 'bundler/capistrano'
+require 'rvm/capistrano'
 require 'delayed/recipes'
 load 'config/recipes/db'
 # load "config/recipes/delayed_job"
@@ -20,12 +21,12 @@ task :qa do
   set :branch, 'qa-new'
 
   # be sure to change these
-  set :user, 'root'
-  set :domain, '103.13.97.227'
+  set :user, 'azureuser'
+  set :domain, 'holachef-qa.cloudapp.net'
   set :deploy_env, 'qa'
 
   # the rest should be good
-  set :deploy_to, "/data/apps/#{application}-qa"
+  set :deploy_to, "/data/apps/#{application}"
 
   role :db, domain, :primary => true
 
