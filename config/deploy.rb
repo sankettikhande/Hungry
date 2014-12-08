@@ -4,7 +4,7 @@ require 'delayed/recipes'
 load 'config/recipes/db'
 # load "config/recipes/delayed_job"
 # default_run_options[:shell] = '/bin/bash'
-set :repository, "git@github.com:Sodel/holachef.git"
+set :repository, "git@github.com:sodel/holachef.git"
 set :application, 'holachef'
 set :deploy_to, "/data/apps/#{application}"
 set :deploy_via, :remote_cache
