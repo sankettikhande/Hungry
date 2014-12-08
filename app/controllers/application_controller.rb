@@ -96,7 +96,7 @@ class ApplicationController < ActionController::Base
   def get_inventory_for_cart_items
     menu_quantity_map = {}
     cooking_today_ids = session[:cart].collect{|item| item.keys}.flatten.collect {|c| c.split("_").first} #rescue []
-    ordered_menus = OrderedMenu.where(cooking_today_id: cooking_today_ids).joins(:order, :cooking_today).where("orders.order_status NOT IN (?)", ['Created', 'Canceled']).select("sum(ordered_menus.quantity) as sold_quantity, ordered_menus.cooking_today_id, cooking_todays.quantity as available_quantity").group("ordered_menus.cooking_today_id")
+    ordered_menus = OrderedMenu.where(cooking_today_id: cooking_today_ids).joins(:order, :cooking_today).where("orders.order_status != 'Created'").select("sum(ordered_menus.quantity) as sold_quantity, ordered_menus.cooking_today_id, cooking_todays.quantity as available_quantity").group("ordered_menus.cooking_today_id")
     ordered_menus.collect {|om| menu_quantity_map.merge!(om.cooking_today_id => {"sold_quantity" => om.sold_quantity, "available_quantity" => om.available_quantity})}
     menu_quantity_map
   end
