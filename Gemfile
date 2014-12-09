@@ -49,6 +49,7 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'active_model_otp'
 gem "newrelic_rpm", :require=>'newrelic_rpm'
+gem "table_print"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

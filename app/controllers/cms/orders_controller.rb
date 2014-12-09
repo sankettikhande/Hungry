@@ -203,17 +203,16 @@ class Cms::OrdersController < Cms::ContentBlockController
     @order = Order.find(params[:order_id])
     if @order.created?
       orders = Order.where(:parent_order_id => params[:order_id])
-      session[:cart], updated_ordered_menus = [], []
       payment_mode = params[:payment_mode].titleize
       if ["card_on_delivery", "cash_on_delivery", "coupons_on_delivery"].include? params[:payment_mode]
         if !orders.blank?
+          updated_ordered_menus = []
           orders.each do |order|
             menus = order.ordered_menus
-            updated_ordered_menus = []
             menus.each do  |ordered_menu|
               cooking_today  = ordered_menu.cooking_today
-              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
-                updated_ordered_menus << cooking_today
+              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered_quantity_from_ordered_menus.to_i + ordered_menu.quantity.to_i))
+                updated_ordered_menus << ordered_menu
                 ordered_menu.increase_food_items_served_count
               else
                 OrderedMenu.restore_ordered_menus(updated_ordered_menus)
@@ -223,13 +222,13 @@ class Cms::OrdersController < Cms::ContentBlockController
             end
           end
           orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)}            
-          @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)#  if @confirm == true
+          @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)
           clear_session
         else
           @order.ordered_menus.each do |ordered_menu|
             cooking_today  = ordered_menu.cooking_today
-            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
-              updated_ordered_menus << cooking_today
+            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered_quantity_from_ordered_menus.to_i + ordered_menu.quantity.to_i))
+              updated_ordered_menus << ordered_menu
               ordered_menu.increase_food_items_served_count
             else
               OrderedMenu.restore_ordered_menus(updated_ordered_menus)
@@ -237,7 +236,7 @@ class Cms::OrdersController < Cms::ContentBlockController
               redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
             end
 
-            @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)#  if @confirm == true
+            @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)
             clear_session
           end
         end
@@ -277,18 +276,17 @@ class Cms::OrdersController < Cms::ContentBlockController
     params.delete("action")
     @txstatus = params[:TxStatus]
     @order = Order.find(params[:TxId])
-    updated_ordered_menus = []
     if @order.created?
       orders = Order.where(:parent_order_id => params[:order_id]) if params[:order_id]
       if params[:TxStatus] == "SUCCESS"
         if !orders.blank?
+          updated_ordered_menus = []
           orders.each do |order|
             menus = order.ordered_menus
-            updated_ordered_menus = []
             menus.each do  |ordered_menu|
               cooking_today  = ordered_menu.cooking_today
-              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
-                updated_ordered_menus << cooking_today
+              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered_quantity_from_ordered_menus.to_i + ordered_menu.quantity.to_i))
+                updated_ordered_menus << ordered_menu
                 ordered_menu.increase_food_items_served_count
               else
                 OrderedMenu.restore_ordered_menus(updated_ordered_menus)
@@ -303,8 +301,8 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           @order.ordered_menus.each do |ordered_menu|
             cooking_today  = ordered_menu.cooking_today
-            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
-              updated_ordered_menus << cooking_today
+            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered_quantity_from_ordered_menus.to_i  + ordered_menu.quantity.to_i))
+              updated_ordered_menus << ordered_menu
               ordered_menu.increase_food_items_served_count
             else
               OrderedMenu.restore_ordered_menus(updated_ordered_menus)
