@@ -63,6 +63,7 @@ class OrderedMenu < ActiveRecord::Base
 
   def self.restore_ordered_menus updated_ordered_menus
     updated_ordered_menus.each do |ordered_menu|
+      next if (ordered_menu.canceled? or ordered_menu.damaged?)
       cooking_today = ordered_menu.cooking_today
       ordered_qty = cooking_today.ordered - ordered_menu.quantity
       cooking_today.update_attribute(:ordered, (ordered_qty < 0 ? 0 : ordered_qty))
