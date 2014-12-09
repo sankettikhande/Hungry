@@ -464,7 +464,7 @@ function include(parent, objects, clobber, merge) {
             include(result, obj.children, clobber, merge);
           }
         } catch(e) {
-         // utils.alert('Exception building cordova JS globals: ' + e + ' for key "' + key + '"');
+          utils.alert('Exception building cordova JS globals: ' + e + ' for key "' + key + '"');
         }
     });
 }
@@ -4181,13 +4181,13 @@ define("cordova/plugin/android/promptbasednativeapi", function(require, exports,
 
 module.exports = {
     exec: function(service, action, callbackId, argsJson) {
-        //return prompt(argsJson, 'gap:'+JSON.stringify([service, action, callbackId]));
+        return prompt(argsJson, 'gap:'+JSON.stringify([service, action, callbackId]));
     },
     setNativeToJsBridgeMode: function(value) {
-        //prompt(value, 'gap_bridge_mode:');
+        prompt(value, 'gap_bridge_mode:');
     },
     retrieveJsMessages: function() {
-        //return prompt('', 'gap_poll:');
+        return prompt('', 'gap_poll:');
     }
 };
 
@@ -5123,7 +5123,7 @@ function Device() {
             channel.onCordovaInfoReady.fire();
         },function(e) {
             me.available = false;
-            //utils.alert("[ERROR] Error initializing Cordova: " + e);
+            utils.alert("[ERROR] Error initializing Cordova: " + e);
         });
     });
 }
@@ -6303,7 +6303,7 @@ module.exports = {
     alert: function(message, completeCallback, title, buttonLabel) {
         var _title = (title || "Alert");
         var _buttonLabel = (buttonLabel || "OK");
-        //exec(completeCallback, null, "Notification", "alert", [message, _title, _buttonLabel]);
+        exec(completeCallback, null, "Notification", "alert", [message, _title, _buttonLabel]);
     },
 
     /**
@@ -6358,7 +6358,7 @@ module.exports = {
         var _title = (title || "Prompt");
         var _buttonLabels = (buttonLabels || ["OK","Cancel"]);
         var _defaultText = (defaultText || "Default text");
-        //exec(resultCallback, null, "Notification", "prompt", [_message, _title, _buttonLabels, _defaultText]);
+        exec(resultCallback, null, "Notification", "prompt", [_message, _title, _buttonLabels, _defaultText]);
     },
 
     /**
@@ -6674,14 +6674,14 @@ utils.extend = (function() {
 
 /**
  * Alerts a message in any available way: alert or console.log.
- 
+ */
 utils.alert = function(msg) {
     if (window.alert) {
         window.alert(msg);
     } else if (console && console.log) {
         console.log(msg);
     }
-};*/
+};
 
 
 //------------------------------------------------------------------------------

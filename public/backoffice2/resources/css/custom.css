@@ -1,0 +1,186 @@
+
+.btntext span.x-button-label {white-space: normal !important;}
+.btns{ width:20em; height:3em;}
+/*.x-toolbar-dark {background-color: #014292 !important;background-image: none !important;}*/
+.x-input-el.x-form-field.x-input-text {border: solid 1px #ccc;}
+.x-button-icon.x-shown.home{margin-bottom: 4px !important;margin-right: -12px !important;}
+.model-list {width:170px;}
+.x-field-mask {border: solid 1px #A0A0A3;} 
+.x-unsized .x-field-input {}
+.x-unsized.x-field-input {}
+
+.bg-stripe
+{
+	background-image: url(../images/bg-stripes.gif);
+	background-repeat: repeat;
+	background-position: left top;
+	margin:0px auto;	
+}
+.footer-stripe
+{
+	background-image: url(../images/footer.jpg);
+	background-repeat: repeat;
+	background-position: left top;
+	margin:0px auto;
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	color: #5c5253;
+	font-size: 15px;
+}
+
+.other-tools-chart,.part-number-chart,.handbook-chart {width: 100%;border-bottom: 1px solid #333;overflow: hidden;float: left;height: 100%}
+.other-note-chart {overflow: hidden;height: 100%;border-bottom: 1px solid #333;}
+
+.other-note-chart li.each-entry{display:inline-block;padding: 2px 7px;
+  text-align: left;
+  vertical-align: top;  
+  height: 100%;
+  float: left;
+  padding-bottom: 100%;
+  margin-bottom: -100%;
+}
+
+.other-tools-chart li.each-entry,.part-number-chart li.each-entry {display:inline-block;padding: 2px 7px;
+  text-align: left;
+  vertical-align: top;
+  display: table-cell;
+  border-right: 1px solid #000;
+  border-top: 1px solid #ccc;
+  height: 100%;
+  float: left;
+  padding-bottom: 100%;
+  margin-bottom: -100%;
+
+}
+.other-tools-chart li.sr-no {width: 10%;}
+.other-tools-chart li.descr {width: 60%;}
+.other-tools-chart li.part-no {width: 30%;}
+
+.part-number-chart li.sr-no {width: 25%;}
+.part-number-chart li.descr {width: 45%;}
+.part-number-chart li.part-no {width: 30%;}
+
+.chart-header {background: #ccc;text-transform: uppercase;}
+
+.conversion-fact-heading {background-color: #ccc;padding: 2px 7px;}
+.conversion-fact-data{width: 45%;display: inline-block;padding: 2px 7px;}
+.conversion-fact-dataoperator{width: 10%;display: inline-block;padding: 2px 7px;}
+
+.handbook-chart {overflow: hidden;height: 100%;border-bottom: 1px solid #333;}
+.handbook-chart li.each-entry,.part-number-chart li.each-entry {display:inline-block;padding: 2px 7px;
+  text-align: left;
+  vertical-align: top;
+  display: table-cell;
+  border-right: 1px solid #000;
+  border-top: 1px solid #ccc;
+  height: 100%;
+  float: left;
+  padding-bottom: 100%;
+  margin-bottom: -100%;
+
+}
+.handbook-chart li.descr {width: 33.333333333333333333333333333333%;}
+.handbook-chart li.part-no {width: 33.333333333333333333333333333333%;}
+.handbook-chart li.type {width: 33.333333333333333333333333333333%;}
+.handbook-chart li.data {width: 66.66666666666666666666666666667%;}
+
+.vehicle-specification-header {
+	color: #000;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 8px;
+	border-bottom: 1px solid #D4D4D4;
+	background: -webkit-linear-gradient(top, #f0f0f0,#dfdfdf)
+}
+.vehicle-stats li.dimen {border-bottom:1px solid #000;display: block;width: 100%;float: none;}
+.vehicle-stats li.dimen span.one {width: 50%;float: left;padding-left: 7px;}
+.vehicle-stats li.dimen span.two {width: 50%}
+
+
+.fixed-img img {min-width: 400px;height: auto;max-width: 80%}
+
+.img-responsive {width: 40%;height: auto;display: block;vertical-align: middle;border:0;margin: 0;padding:0;}
+
+.img-responsive_homescreen {
+		width: 100%;
+		height: auto;
+		display: block;
+		vertical-align: middle;
+		border: 0;
+		margin: 0;
+		padding: 0;
+}
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.textcenter{text-align:center !important;}
+.table-bordered {
+border: 1px solid #000;
+}
+.table-responsive {
+    width: 100%;
+    margin-bottom: 15px;    
+  }
+.table-responsive > .table {
+    margin-bottom: 0;width: 100%;
+  }  
+  .table-responsive > .table > thead > tr > th{border-bottom: 1px solid #000;border-right: 1px solid #000; padding-left:10px; text-align:center; } 
+  .table-responsive > .table > tbody > tr > th,
+  .table-responsive > .table > tfoot > tr > th,
+  .table-responsive > .table > thead > tr > td,
+  .table-responsive > .table > tbody > tr > td,
+  .table-responsive > .table > tfoot > tr > td {
+    white-space: nowrap;border-right: 1px solid #000; text-align:center;padding-left:10px;
+  }
+  .table-responsive > .table-bordered {
+   border: 1px solid #000;width: 100%;
+  }
+  .table-responsive > .table-bordered > thead > tr > th:first-child,
+  .table-responsive > .table-bordered > tbody > tr > th:first-child,
+  .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+  .table-responsive > .table-bordered > thead > tr > td:first-child,
+  .table-responsive > .table-bordered > tbody > tr > td:first-child,
+  .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+    border-left: 0;
+  }
+  .table-responsive > .table-bordered > thead > tr > th:last-child,
+  .table-responsive > .table-bordered > tbody > tr > th:last-child,
+  .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+  .table-responsive > .table-bordered > thead > tr > td:last-child,
+  .table-responsive > .table-bordered > tbody > tr > td:last-child,
+  .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+    border-right: 0;
+  }
+  .table-responsive > .table-bordered > tbody > tr:last-child > th,
+  .table-responsive > .table-bordered > tfoot > tr:last-child > th,
+  .table-responsive > .table-bordered > tbody > tr:last-child > td,
+  .table-responsive > .table-bordered > tfoot > tr:last-child > td  
+  {
+  	border-bottom:0; 
+  }
+  
+.headerrow {      
+      background-color: #f7f7f7;   
+      line-height:40px;
+      font-weight:bold;   
+    }
+    .datarow1 {      
+       background-color: #DBDADA;
+       line-height:40px;
+    }
+    .datarow2 {      
+       background-color: #ffffff;
+       line-height:40px;
+    }
+    .datarow5 {      
+       background-color: red;
+       line-height:40px;
+    }
+    /*.x-button{background-color:#1468a2 !important;background-image:none;}*/

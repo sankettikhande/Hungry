@@ -131,6 +131,11 @@ Holachef::Application.routes.draw do
     match "/runner/login" => 'runners#authenticate_runner'
   end
 
+  namespace :api_v2 do
+    resources :orders do
+    end
+  end
+
   #end
 
   # The priority is based upon order of creation:
