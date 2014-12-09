@@ -1,25 +1,6 @@
 class Api::OrdersController < ApiController
   def index
-    @orders = Order.includes(:parent_order, :runner, :hola_user, :delivery_address, :coupon, {:ordered_menus => [:cooking_today, {:food_item => :meal_info},  {:cheff => :chef_coordinate}]}).order("orders.id desc")
-    @orders = @orders.where(order_type: "Regular")
-    @orders = @orders.where("DATE(orders.created_at) >= ? ", params[:from_date]) if !params[:from_date].blank?
-    @orders = @orders.where("DATE(orders.created_at) <= ? ", params[:to_date]) if !params[:to_date].blank?
-    @orders = @orders.where("DATE(orders.created_at) >= ? ", Date.today) if (params[:from_date].blank? && params[:to_date].blank?)
-
-    slots = {"11AM - 12PM" => 1,
-             "12PM - 1PM" => 2,
-             "1PM - 2PM" => 3,
-             "2PM - 3PM" => 4,
-             "3PM - 4PM" => 5,
-             "4PM - 5PM" => 6,
-             "5PM - 6PM" => 7,
-             "6PM - 7PM" => 8,
-             "7PM - 8PM" => 9,
-             "8PM - 9PM" => 10,
-             "9PM - 10PM" => 11,
-             "10PM - 11PM" => 12}
-    @orders = @orders.sort {|a, b| slots[a.delivery_slot].to_i <=> slots[b.delivery_slot].to_i}
-
+    @orders = Order.order_items_list(params[:from_date], params[:to_date])
   end
 
   def show
@@ -104,5 +85,4 @@ class Api::OrdersController < ApiController
       @message = {"msg" => "Order not found", "order_id" => params[:order_id]}
     end
   end
-
 end
