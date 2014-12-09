@@ -205,8 +205,8 @@ class Cms::OrdersController < Cms::ContentBlockController
       orders = Order.where(:parent_order_id => params[:order_id])
       payment_mode = params[:payment_mode].titleize
       if ["card_on_delivery", "cash_on_delivery", "coupons_on_delivery"].include? params[:payment_mode]
+        updated_ordered_menus = []
         if !orders.blank?
-          updated_ordered_menus = []
           orders.each do |order|
             menus = order.ordered_menus
             menus.each do  |ordered_menu|
@@ -279,8 +279,8 @@ class Cms::OrdersController < Cms::ContentBlockController
     if @order.created?
       orders = Order.where(:parent_order_id => params[:order_id]) if params[:order_id]
       if params[:TxStatus] == "SUCCESS"
+        updated_ordered_menus = []
         if !orders.blank?
-          updated_ordered_menus = []
           orders.each do |order|
             menus = order.ordered_menus
             menus.each do  |ordered_menu|
