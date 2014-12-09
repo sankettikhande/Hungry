@@ -1109,7 +1109,7 @@ function viewordetail2(id,from)
         },
         success: function (records) {
           
-            html += '<div style="padding:20px;font-size:90%;padding-top:0px !important;"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
+            html += '<div style="padding:20px;font-size:70%;padding-top:0px !important;"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
             if (from == "Dispatched")
                 html += '<div style="float: left; width: 30%"><button onclick="ondeliverd(\'' + String(records["id"]) + '\')">Delivered</button><button onclick="onreturnd(\'' + String(records["id"]) + '\')">Returned</button><button onclick="ondamage(\'' + String(records["id"]) + '\');">Damage</button><button onclick="oncancelbtn(\'' + String(records["id"]) + '\')">Cancel</button></div>';
             else if (from == "Delivered")
@@ -1150,18 +1150,18 @@ function viewordetail2(id,from)
 
             html += '</table></td></tr></table></td></tr><tr><td>';
            
-            html += '</td></tr><tr><td><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Name</th><th>Qty</th></tr></thead><tbody>';
+            html += '</td></tr><tr><td><div class="table-responsive" id="grid"><table class="table table-bordered" id=""><thead><tr class="headerrow"><th>Qty</th><th>Name</th></tr></thead><tbody>';
             
             var orders = records["order_items"];
             for (var i = 0; i < orders.length; i++)
             {
                 
-                html += '<tr class="datarow2" style="line-height:20px;border-bottom:1px solid black;"><td>' + orders[i].dish_name + '</td><td>' + orders[i].quantity + '</td></tr>';
+                html += '<tr class="datarow2" style="line-height:20px;border-bottom:1px solid black;"><td>' + orders[i].quantity + '</td><td>' + orders[i].dish_name + '</td></tr>';
                 
             }
             debugger;
         
-            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td  style="width:40%;"></td><td style="padding-left:25%;vertical-align:text-top;">Total Amount : ' + records["payment_value"] + '</td></tr><tr><td colspan="2">Comment: ' + records["comment"] + '</td></tr></table></td></tr></table></div>';
+            html += '</tbody></table></td></tr><tr><td><table cellpadding="0" cellspacing="0" width="100%"><tr><td style="vertical-align:text-top;">Total Amount : ' + records["payment_value"] + '</td></tr></table></td></tr></table></div>';
             var obj = Ext.getCmp('OrderViewpanel2');            
             obj.setHtml(html);
             HolaChef.app.ShowHideLoader(false);
