@@ -49,7 +49,7 @@ task :staging do
   set :deploy_to, "/data/apps/#{application}-staging"
   set :rvm_type, :system
 
-  set :branch, 'release'
+  set :branch, 'staging'
   # be sure to change these
   set :user, 'root'
   set :domain, '103.13.97.227'
