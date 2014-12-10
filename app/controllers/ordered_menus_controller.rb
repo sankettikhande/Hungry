@@ -57,7 +57,7 @@ class OrderedMenusController < ApplicationController
         @msg = "Invalid coupon code"
       else
         ## check coupon validity added check only for 1U1T
-        @msg = coupon.check_coupons_validity(hola_current_user.id)
+        @msg = coupon.check_coupons_validity(hola_current_user.id, session[:app_request])
         if @msg.blank?
           discount = coupon.flat.blank? ? coupon.percentage : coupon.flat
           discount_type = coupon.flat.blank? ? "percentage" : "flat"
