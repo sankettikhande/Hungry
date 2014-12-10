@@ -13,7 +13,7 @@
 
   <li class="time-slots">
     <% active_slots.each do |slot| %>
-      <% if current_time_hour <= TIME[slot.first(4)] && get_slot_active_time(slot) > Time.now %>
+      <% if current_time_hour <= TIME[slot.split("-").first.strip] && get_slot_active_time(slot) > Time.now %>
         <span class="o-time" data-meal_type="<%= meal_type.downcase.gsub(' ', '_') %>_slot">
           <%= slot %>
         </span>
