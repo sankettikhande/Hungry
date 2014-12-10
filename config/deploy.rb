@@ -57,6 +57,19 @@ task :prod do
   ##after "deploy:restart", "delayed_job:restart"
 end
 
+task :staging do
+  set :deploy_to, "/data/apps/#{application}-staging"
+  set :rvm_type, :system
+
+  set :branch, 'release'
+  # be sure to change these
+  set :user, 'root'
+  set :domain, '103.13.97.227'
+  set :deploy_env, 'staging'
+
+  role :db, domain, :primary => true
+  server domain, :app, :web
+end
 
 namespace :deploy do
   task :restart do
