@@ -44,10 +44,8 @@ class CookingToday < ActiveRecord::Base
   end
 
   def order_quantity
-    ordered_quantity_from_ordered_menu =  OrderedMenu.joins(:order).where("ordered_menus.cooking_today_id = ?  AND orders.order_status != ?", id, "Created").sum(&:quantity)
-        
-    if ordered_changed? and ordered_quantity_from_ordered_menu >= quantity
-      errors.add(:base, "#{food_item.name} is out of stock.")
+    if ordered_changed? and ordered > quantity
+      errors.add(:quantity, "#{food_item.name} is out of stock.")
       return false
     end
   end
@@ -118,6 +116,10 @@ class CookingToday < ActiveRecord::Base
     end
 
     return meal_type_time_span
+  end
+
+  def ordered_quantity_from_ordered_menus
+    ordered_quantity_from_ordered_menu = OrderedMenu.joins(:order).where("ordered_menus.cooking_today_id = ?  AND orders.order_status NOT IN (?)", id, ["Created", "Canceled"]).sum(&:quantity)
   end
 
 end

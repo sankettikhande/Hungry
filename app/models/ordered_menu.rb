@@ -15,6 +15,7 @@ class OrderedMenu < ActiveRecord::Base
   validates :order_status, presence: true, inclusion: { in: @@order_statuses }
 
   after_save :add_back_quantity, :if => Proc.new {|o| o.order.order_status != "Created" and o.order_status_changed? and o.canceled?}
+  after_save :update_order_total, :if => Proc.new {|o| o.order.order_status != "Created" and o.order_status_changed? and o.canceled?}
 
   @@order_statuses.each do |s|
     define_method "#{s.downcase}?" do
@@ -62,8 +63,10 @@ class OrderedMenu < ActiveRecord::Base
 
   def self.restore_ordered_menus updated_ordered_menus
     updated_ordered_menus.each do |ordered_menu|
+      next if (ordered_menu.canceled? or ordered_menu.damaged?)
       cooking_today = ordered_menu.cooking_today
-      cooking_today.update_attribute(:ordered, (cooking_today.ordered - ordered_menu.quantity))
+      ordered_qty = cooking_today.ordered - ordered_menu.quantity
+      cooking_today.update_attribute(:ordered, (ordered_qty < 0 ? 0 : ordered_qty))
       ordered_menu.decrease_food_items_served_count
     end
   end
@@ -74,5 +77,10 @@ class OrderedMenu < ActiveRecord::Base
 
   def decrease_food_items_served_count
     food_item.update_attribute(:dish_served, food_item.dish_served.to_i - quantity.to_i) if food_item.dish_served > 0
+  end
+
+  def update_order_total
+    order_total = order.total - (quantity * rate)
+    order.update_attribute(:total, order_total)
   end
 end
