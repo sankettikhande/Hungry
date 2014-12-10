@@ -33,6 +33,6 @@ module OrderedMenusHelper
 	end
 
 	def get_slot_active_time(slot)
-		Time.local(Time.now.year, Time.now.month, Time.now.day, TIME[slot.last(4)]) - 15 * 60			
+		Time.local(Time.now.year, Time.now.month, Time.now.day, TIME[slot.split("-").last.strip]) - 15 * 60			
 	end	
 end
