@@ -8,7 +8,7 @@ class MealType < ActiveRecord::Base
     validates :name, uniqueness: true
     
     validates :first_slot, :second_slot, :third_slot, length: {
-      minimum: 11,
+      minimum: 1,
       too_short: "Please add delivery slot"    
     }
 
