@@ -35,7 +35,7 @@ task :prod do
 
   set :rvm_type, :system
 
-  set :branch, 'master'
+  set :branch, 'release'
   # be sure to change these
   set :user, 'root'
   set :domain, '103.13.97.227'

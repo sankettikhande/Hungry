@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   #skip_before_filter :prepare_for_mobile, :only => [:desktop]
 
   before_filter :set_cache_buster, :only => [:mobile]
+  before_filter :set_mobile_request_flag, :only => [:mobile]
 
   def landing
 
@@ -90,5 +91,9 @@ class HomeController < ApplicationController
     end
 
     menu_by_meal_type
+  end
+
+  def set_mobile_request_flag
+    session[:app_request] = true unless params[:app_request].blank?
   end
 end
