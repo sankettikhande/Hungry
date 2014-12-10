@@ -50,16 +50,22 @@
 			<% if @meal_type.fourth_slot != '0 - 0' %>
 				Fourth Slot : <%= @meal_type.fourth_slot %>
 				<%= f.check_box :fourth_slot_active %><br/><br/><br/>
+			<% else %>
+				<%= f.check_box :fourth_slot_active, { :class => 'hide'} , 0 %>
 			<% end %>	
 
 			<% if @meal_type.fifth_slot != '0 - 0' %>
 				Fifth Slot : <%= @meal_type.fifth_slot %>
 				<%= f.check_box :fifth_slot_active %><br/><br/><br/> 
+			<% else %>
+				<%= f.check_box :fifth_slot_active, { :class => 'hide'} , 0 %>
 			<% end %>	
 			
 			<% if @meal_type.sixth_slot != '0 - 0' %>
 				Sixth Slot : <%= @meal_type.sixth_slot %>
 				<%= f.check_box :sixth_slot_active %> 
+			<% else %>
+				<%= f.check_box :sixth_slot_active, { :class => 'hide'} , 0 %>	
 			<% end %>		
 		</div>				
 	</div>
@@ -191,5 +197,40 @@
     	$('#meal_type_from_display').change(function(){    	
         	set_options($(this).val(), 'meal_type_to_display', from_to_time_arr);
     	});
-	})
+
+    	$('#from_slot_1').val('<%= @meal_type.first_slot.split('-').first.strip %>');
+    	set_options($('#from_slot_1').val(), 'to_slot_1', time_arr);
+
+    	$('#to_slot_1').val('<%= @meal_type.first_slot.split('-').last.strip %>');
+    	set_options($('#to_slot_1').val(), 'from_slot_2', time_arr);
+
+    	$('#from_slot_2').val('<%= @meal_type.second_slot.split('-').first.strip %>');
+    	set_options($('#from_slot_2').val(), 'to_slot_2', time_arr);
+
+    	$('#to_slot_2').val('<%= @meal_type.second_slot.split('-').last.strip %>');
+    	set_options($('#to_slot_2').val(), 'from_slot_3', time_arr);
+
+    	$('#from_slot_3').val('<%= @meal_type.third_slot.split('-').first.strip %>');
+    	set_options($('#from_slot_3').val(), 'to_slot_3', time_arr);
+
+    	$('#to_slot_3').val('<%= @meal_type.third_slot.split('-').last.strip %>');
+    	set_options($('#to_slot_3').val(), 'from_slot_4', time_arr);
+
+    	$('#from_slot_4').val('<%= @meal_type.fourth_slot.split('-').first.strip %>');
+    	set_options($('#from_slot_4').val(), 'to_slot_4', time_arr);
+
+    	$('#to_slot_4').val('<%= @meal_type.fourth_slot.split('-').last.strip %>');
+    	set_options($('#to_slot_4').val(), 'from_slot_5', time_arr);
+
+    	$('#from_slot_5').val('<%= @meal_type.fifth_slot.split('-').first.strip %>');
+    	set_options($('#from_slot_5').val(), 'to_slot_5', time_arr);
+
+    	$('#to_slot_5').val('<%= @meal_type.fifth_slot.split('-').last.strip %>');
+    	set_options($('#to_slot_5').val(), 'from_slot_6', time_arr);
+
+    	$('#from_slot_6').val('<%= @meal_type.sixth_slot.split('-').first.strip %>');
+    	set_options($('#from_slot_6').val(), 'to_slot_6', time_arr);
+
+    	$('#to_slot_6').val('<%= @meal_type.sixth_slot.split('-').last.strip %>');    	
+	});
 </script>
