@@ -1,6 +1,8 @@
 require 'bundler/capistrano'
 require 'rvm/capistrano'
 require 'delayed/recipes'
+require 'capistrano/deploy/tagger'
+
 load 'config/recipes/db'
 # load "config/recipes/delayed_job"
 # default_run_options[:shell] = '/bin/bash'
@@ -25,6 +27,8 @@ task :qa do
   set :user, 'azureuser'
   set :domain, 'holachef-qa.cloudapp.net'
   set :deploy_env, 'qa'
+
+  set :update_deploy_tags, false
 
   # the rest should be good
   role :db, domain, :primary => true
@@ -54,6 +58,8 @@ task :staging do
   set :user, 'root'
   set :domain, '103.13.97.227'
   set :deploy_env, 'staging'
+
+  set :update_deploy_tags, false
 
   role :db, domain, :primary => true
   server domain, :app, :web
