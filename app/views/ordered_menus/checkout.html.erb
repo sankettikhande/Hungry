@@ -259,10 +259,10 @@ end
         else if($("#evening_snacks_slot").length > 0 && $("#evening_snacks_slot").val() == "") {
            errorDisplay = true;
         }
-        else if($("#dinner_slot").length > 0 && $("#dinner_slot").val() == ""  && <%= !session[:dt] %>) {
+        /*else if($("#dinner_slot").length > 0 && $("#dinner_slot").val() == ""  && <%= !session[:dt] %>) {
            errorDisplay = true;
            errorMessage = 'Please select the dinner delivery time.'
-        }
+        }*/
         else if(parseInt($("#items_total").html()) < 100){
           errorDisplay = true;
           errorMessage = "Total amount must be greater than Rs. 100"
