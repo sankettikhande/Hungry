@@ -54,7 +54,7 @@ class Order < ActiveRecord::Base
   def send_order_confirm_message
     if self.order_status_was == 'Created' && self.created_at >= 1.hour.ago
       message = "Hola! Our chef has received your order and is on it already. Your order number is #{self.id} for Rs. #{self.total}."
-      # MessagingLib.send_messages(message, self.phone_no, "Transaction")
+      MessagingLib.send_messages(message, self.phone_no, "Transaction")
     end
   end
 
