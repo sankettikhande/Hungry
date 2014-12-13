@@ -37,12 +37,13 @@ end
 
 task :prod do
 
-  set :rvm_type, :system
+  #set :rvm_type, :system
+  set :deploy_to, "/ebs/apps/#{application}"
 
   set :branch, 'release'
   # be sure to change these
-  set :user, 'root'
-  set :domain, '103.13.97.227'
+  set :user, 'ec2-user'
+  set :domain, '54.148.106.214'
   set :deploy_env, 'prod'
 
   role :db, domain, :primary => true
@@ -50,13 +51,13 @@ task :prod do
 end
 
 task :staging do
-  set :deploy_to, "/data/apps/#{application}-staging"
-  set :rvm_type, :system
+  set :deploy_to, "/ebs/apps/#{application}-staging"
+  #set :rvm_type, :system
 
   set :branch, 'staging'
   # be sure to change these
-  set :user, 'root'
-  set :domain, '103.13.97.227'
+  set :user, 'ec2-user'
+  set :domain, '54.148.106.214'
   set :deploy_env, 'staging'
 
   set :update_deploy_tags, false
