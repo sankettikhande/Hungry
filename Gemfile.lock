@@ -55,6 +55,8 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    capistrano-deploy-tagger (2.3.4)
+      capistrano (>= 1.0.0)
     ckeditor_rails (3.6.4.1)
       railties (~> 3.0)
       thor (~> 0.14)
@@ -203,6 +205,7 @@ DEPENDENCIES
   browsercms
   bullet
   capistrano (= 2.15.4)
+  capistrano-deploy-tagger
   coffee-rails (~> 3.2.1)
   daemons
   deep_cloneable (~> 2.0.0)
