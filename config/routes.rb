@@ -35,6 +35,7 @@ Holachef::Application.routes.draw do
     match '/cuisine_geographies/load_sub_cuisines'=>'cuisine_geographies#load_sub_cuisines'
     match '/cuisine_geographies/load_parent_cuisine'=>'cuisine_geographies#load_parent_cuisine'
     match '/cuisine_geographies/delete/:id' =>'cuisine_geographies#delete_cuisine'
+    match '/cooking_todays/delete'=> 'cooking_todays#delete_cooking_today_item'
     content_blocks :cheffs
     content_blocks :cooking_todays
     content_blocks :orders
