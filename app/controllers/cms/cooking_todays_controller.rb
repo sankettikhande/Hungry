@@ -1,5 +1,13 @@
+require 'will_paginate/array'
 class Cms::CookingTodaysController < Cms::ContentBlockController
   skip_before_filter :login_required, :cms_access_required, :only => [:get_review_order_details, :get_item_details, :total_calculation, :delete_item]
+
+  def index
+    @cooking_todays = CookingToday.find(:all, :conditions => {:date => params[:date] || Date.today}).paginate(:per_page => 10, :page => params[:page])
+    respond_to do |format|
+      format.html
+    end
+  end
 
   def get_review_order_details
     @cooking_today = CookingToday.find(params[:cooking_today_id])
@@ -38,6 +46,16 @@ class Cms::CookingTodaysController < Cms::ContentBlockController
       end
       clear_session if session[:cart].blank?
     end
+  end
+
+  def delete_cooking_today_item
+    @cooking_today = CookingToday.find(params[:id])
+    if @cooking_today.destroy
+      flash[:notice] = "Deleted cooking today successfully."
+    else
+      flash[:notice] = "No cooking today found."
+    end
+    redirect_to "/cms/cooking_todays?date=#{@cooking_today.date}"
   end
 
 end
