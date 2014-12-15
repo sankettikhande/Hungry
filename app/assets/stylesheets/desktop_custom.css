@@ -245,11 +245,13 @@ bottom: 0;
 
 .footer-nav-r {margin-top: 40px;}
 .hola-footer .footer-nav li a {color: #fff;text-transform: capitalize;font-size: 12px;display: inline-block;float: left;background: transparent;padding: 0}
-.hola-footer .footer-nav-r li a {font-size: 14px;}
+
+.hola-footer .footer-nav-r li a {font-size: 14px}
 .hola-footer .footer-nav li+li a{padding-left: 10px;}
-.footer-nav li:first-child a{padding-left: 0}
+
 .footer-nav li:last-child a{padding-right: 0}
 .footer-nav li a:hover {color: #f36c36;}
+
 
 
 .hola-sidemenu {display: none !important;left: -80%;}
