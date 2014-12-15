@@ -34,7 +34,7 @@ module OrderedMenusHelper
 
 	def get_slot_active_time(slot)
 		minutes = 0
-		minutes = 30 if slot == '11PM - 11:30PM'	
+		minutes = 45 if slot == '11PM - 11:30PM'
 		
 		Time.local(Time.now.year, Time.now.month, Time.now.day, TIME[slot.split("-").last.strip], minutes) - 15 * 60	
 	end
