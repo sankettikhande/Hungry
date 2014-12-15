@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'bootstrap-datetimepicker.min' %>
 <%= stylesheet_link_tag 'custom' %>
-<script type="text/javascript" src="/assets/moment.min"></script>
-<script type="text/javascript" src="/assets/bootstrap-datetimepicker.min"></script>
+<%= javascript_include_tag 'moment.min' %>
+<%= javascript_include_tag 'bootstrap-datetimepicker.min' %>
 
 <div style="margin: 20px 0;">
   <%= link_to "Add New Cooking Food","/cms/cooking_todays/new", :style => "background-color: #396DAF;color: #FFFFFF;font-size: 15px;padding: 5px 15px;" %>
