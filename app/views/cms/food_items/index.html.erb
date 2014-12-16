@@ -54,7 +54,7 @@
 </style>
 <div style="margin: 20px 0;">
   <%= link_to "Add New Food Item","/cms/food_items/new", :style => "background-color: #396DAF;color: #FFFFFF;font-size: 15px;padding: 5px 15px;" %>
-  <% chefs = Cheff.find(:all, :include => :chef_coordinate, :order => "chef_coordinates.name ASC") %>
+  <% chefs = Cheff.find(:all, :include => :chef_coordinate) %>
   Select Cheff:
   <select name="cheff_id" id="load_chef_dishes">
      <option value="">Please Select</option>
