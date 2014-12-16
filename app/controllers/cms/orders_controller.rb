@@ -211,7 +211,7 @@ class Cms::OrdersController < Cms::ContentBlockController
             menus = order.ordered_menus
             menus.each do  |ordered_menu|
               cooking_today  = ordered_menu.cooking_today
-              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered_quantity_from_ordered_menus.to_i + ordered_menu.quantity.to_i))
+              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
                 updated_ordered_menus << ordered_menu
                 ordered_menu.increase_food_items_served_count
               else
@@ -227,7 +227,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           @order.ordered_menus.each do |ordered_menu|
             cooking_today  = ordered_menu.cooking_today
-            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered_quantity_from_ordered_menus.to_i + ordered_menu.quantity.to_i))
+            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
               updated_ordered_menus << ordered_menu
               ordered_menu.increase_food_items_served_count
             else
@@ -285,7 +285,7 @@ class Cms::OrdersController < Cms::ContentBlockController
             menus = order.ordered_menus
             menus.each do  |ordered_menu|
               cooking_today  = ordered_menu.cooking_today
-              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered_quantity_from_ordered_menus.to_i + ordered_menu.quantity.to_i))
+              if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
                 updated_ordered_menus << ordered_menu
                 ordered_menu.increase_food_items_served_count
               else
@@ -301,7 +301,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           @order.ordered_menus.each do |ordered_menu|
             cooking_today  = ordered_menu.cooking_today
-            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered_quantity_from_ordered_menus.to_i  + ordered_menu.quantity.to_i))
+            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i  + ordered_menu.quantity.to_i))
               updated_ordered_menus << ordered_menu
               ordered_menu.increase_food_items_served_count
             else

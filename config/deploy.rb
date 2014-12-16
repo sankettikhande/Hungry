@@ -54,7 +54,7 @@ task :staging do
   set :deploy_to, "/ebs/apps/#{application}-staging"
   #set :rvm_type, :system
 
-  set :branch, 'staging'
+  set :branch, 'release'
   # be sure to change these
   set :user, 'ec2-user'
   set :domain, '54.148.106.214'
