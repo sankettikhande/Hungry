@@ -1,17 +1,13 @@
-require 'bundler/capistrano'
-require 'rvm/capistrano'
-require 'delayed/recipes'
-require 'capistrano/deploy/tagger'
 
+require 'bundler/capistrano'
+require 'delayed/recipes'
 load 'config/recipes/db'
 # load "config/recipes/delayed_job"
 # default_run_options[:shell] = '/bin/bash'
-set :repository, "git@github.com:sodel/holachef.git"
+set :repository,  "git@bitbucket.org:pravinhmhatre/holachef.git"
 set :application, 'holachef'
-set :deploy_to, "/data/apps/#{application}"
 set :deploy_via, :remote_cache
 set :scm, 'git'
-default_run_options[:pty] = true
 
 set :scm_verbose, true
 set :use_sudo, false
@@ -21,50 +17,46 @@ set :rails_env, "production"
 
 task :qa do
   default_run_options[:pty] = true
-  set :branch, 'qa'
+  set :branch, 'qa-new'
 
   # be sure to change these
-  set :user, 'azureuser'
-  set :domain, 'holachef-qa.cloudapp.net'
+  set :user, 'root'
+  set :domain, '103.13.97.227'
   set :deploy_env, 'qa'
 
-  set :update_deploy_tags, false
-
   # the rest should be good
+  set :deploy_to, "/data/apps/#{application}-qa"
+
   role :db, domain, :primary => true
+
   server domain, :app, :web
+
+  after "deploy:update_code", "deploy:migrate"
+  after "deploy:create_symlink", "deploy:change_permission_for_tmp"
+  ##after "deploy:restart", "delayed_job:restart"
 end
 
 task :prod do
+  default_run_options[:pty] = true
+  set :branch, 'master'
 
-  #set :rvm_type, :system
-  set :deploy_to, "/ebs/apps/#{application}"
-
-  set :branch, 'release'
   # be sure to change these
-  set :user, 'ec2-user'
-  set :domain, '54.148.106.214'
+  set :user, 'root'
+  set :domain, '103.13.97.227'
   set :deploy_env, 'prod'
 
-  role :db, domain, :primary => true
-  server domain, :app, :web
-end
-
-task :staging do
-  set :deploy_to, "/ebs/apps/#{application}-staging"
-  #set :rvm_type, :system
-
-  set :branch, 'staging'
-  # be sure to change these
-  set :user, 'ec2-user'
-  set :domain, '54.148.106.214'
-  set :deploy_env, 'staging'
-
-  set :update_deploy_tags, false
+  # the rest should be good
+  set :deploy_to, "/data/apps/#{application}"
 
   role :db, domain, :primary => true
+
   server domain, :app, :web
+
+  after "deploy:update_code", "deploy:migrate"
+  after "deploy:create_symlink", "deploy:change_permission_for_tmp"
+  ##after "deploy:restart", "delayed_job:restart"
 end
+
 
 namespace :deploy do
   task :restart do
@@ -85,12 +77,15 @@ namespace :deploy do
   end
 
   namespace :assets do
-    task :precompile, :roles => :web, :except => {:no_release => true} do
+    task :precompile, :roles => :web, :except => { :no_release => true } do
       logger.info "Skipping asset pre-compilation because there were no asset changes"
     end
   end
 end
 
-after "deploy:update_code", "db:symlink", "deploy:copy_configs", "deploy:migrate"
+after "deploy:update_code", "db:symlink", "deploy:copy_configs"
 after "deploy:update", "deploy:cleanup"
-after "deploy:create_symlink", "deploy:change_permission_for_tmp"
+
+
+
+

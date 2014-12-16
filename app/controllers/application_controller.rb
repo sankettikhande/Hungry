@@ -70,58 +70,12 @@ class ApplicationController < ActionController::Base
     session.delete(:netAmount)
   end
 
-  def insufficient_inventory? 
-    build_insufficient_inventory_info
-    !@insufficient_inventory_items_info.blank?
-  end
 
-  def build_insufficient_inventory_info
-    @insufficient_inventory_items_info = []
-    menu_quantity_map = get_inventory_for_cart_items
-    if session[:cart]
-      session[:cart].each do |item|
-        cooking_today_id = item.keys.first.split("_").first 
-        cooking_today_inventory_info = menu_quantity_map[cooking_today_id.to_i]
-        if cooking_today_inventory_info
-          item_info = item.values.first
-          total_ordered = cooking_today_inventory_info['sold_quantity'] + item_info['quantity'].to_i 
-          available_for_sale = cooking_today_inventory_info['available_quantity'].to_i - cooking_today_inventory_info['sold_quantity'].to_i
-          @insufficient_inventory_items_info << {cooking_today_id: cooking_today_id, item_name: item_info['dish_name'], available_quantity:  (available_for_sale > 0) ? available_for_sale : "SOLD OUT"} if (total_ordered > cooking_today_inventory_info['available_quantity'])
-        end
-      end
-    end
-  end
-
-  def get_inventory_for_cart_items
-    menu_quantity_map = {}
-    cooking_today_ids = session[:cart].collect{|item| item.keys}.flatten.collect {|c| c.split("_").first} #rescue []
-    ordered_menus = OrderedMenu.where(cooking_today_id: cooking_today_ids).joins(:order, :cooking_today).where("orders.order_status NOT IN ('Created', 'Canceled')").select("sum(ordered_menus.quantity) as sold_quantity, ordered_menus.cooking_today_id, cooking_todays.quantity as available_quantity").group("ordered_menus.cooking_today_id")
-    ordered_menus.collect {|om| menu_quantity_map.merge!(om.cooking_today_id => {"sold_quantity" => om.sold_quantity, "available_quantity" => om.available_quantity})}
-    menu_quantity_map
-  end
-
-  def check_inventory
-    build_insufficient_inventory_info
-  end
-
-  def check_inventory_and_redirect
-    # redirect_to "/review_order", alert: "Sorry! There were some menus in your cart that we can't serve right now." if insufficient_inventory?
-    if insufficient_inventory? 
-      respond_to do |format|
-        format.html do
-          redirect_to "/review_order" 
-        end
-        format.js do
-          render 'cms/orders/insufficient_inventory'
-        end
-      end
-    end
-  end
 
   def set_cache_buster
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
-
+  
 end
