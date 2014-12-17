@@ -22,14 +22,14 @@ class Cms::OrdersController < Cms::ContentBlockController
     end
     @total, @discount = 0, 0
 
-    coupon = Coupon.find_by_coupon_code(session[:coupon_code]) if session[:coupon_code]
+    coupon = Coupon.find_by_coupon_code(session[:coupon_code]) if session[:coupon_code] 
 
     if !session[:cart].nil?
       session[:cart].each do |item|
         item.each do |item_id, item_attr|
           @total = @total + (item_attr['quantity'].to_i * item_attr['price'].to_i)
 
-          item_attr['coupon_id'] = coupon.id if session[:coupon_code]
+          item_attr['coupon_id'] = coupon.id if session[:coupon_code] && coupon
 
         end
       end
