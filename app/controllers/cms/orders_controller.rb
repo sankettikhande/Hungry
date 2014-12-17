@@ -8,6 +8,7 @@ class Cms::OrdersController < Cms::ContentBlockController
   before_filter :check_inventory_and_redirect, only: [:add_address, :payment_gateway, :order_confirm, :submit_payment_form, :callback]
   
   def set_cart
+
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []
     cart_ids = session[:cart].collect{|item| item.keys}.flatten
@@ -20,10 +21,16 @@ class Cms::OrdersController < Cms::ContentBlockController
       session[:cart] << ({params[:item_id]=>{'quantity'=> params[:qty], 'price' => params[:price], 'date' => params[:date], 'dish_name' => params[:dish_name],'category' => params[:category], 'meal_type' => params[:meal_type] }})
     end
     @total, @discount = 0, 0
+
+    coupon = Coupon.find_by_coupon_code(session[:coupon_code]) if session[:coupon_code]
+
     if !session[:cart].nil?
       session[:cart].each do |item|
         item.each do |item_id, item_attr|
           @total = @total + (item_attr['quantity'].to_i * item_attr['price'].to_i)
+
+          item_attr['coupon_id'] = coupon.id if session[:coupon_code]
+
         end
       end
     end
