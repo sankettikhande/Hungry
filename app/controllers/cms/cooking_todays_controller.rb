@@ -3,7 +3,7 @@ class Cms::CookingTodaysController < Cms::ContentBlockController
   skip_before_filter :login_required, :cms_access_required, :only => [:get_review_order_details, :get_item_details, :total_calculation, :delete_item]
 
   def index
-    @cooking_todays = CookingToday.find(:all, :conditions => {:date => params[:date] || Date.today}).paginate(:per_page => 10, :page => params[:page])
+    @cooking_todays = CookingToday.find(:all, :conditions => {:date => params[:date] || Date.today}).paginate(:per_page => 25, :page => params[:page])
     respond_to do |format|
       format.html
     end
