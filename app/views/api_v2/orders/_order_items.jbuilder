@@ -11,6 +11,7 @@ json.order_items  order.ordered_menus do |menu|
   json.meal_type menu.cooking_today.meal_type if menu.cooking_today
 end
 
+json.order_status order.order_status
 json.order_progress order.order_status_history_string
 json.delivery_slot order.delivery_slot
 json.payment_mode (order.parent_order.blank? ? order.payment_mode : order.parent_order.payment_mode)
