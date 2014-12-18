@@ -6,7 +6,7 @@ class Picture < ActiveRecord::Base
   has_attached_file :image, :styles =>
                               {:thumb => "60x60>", :medium => "120x120>"}
 
-  validates_attachment_content_type :image, :content_type => %w(image/jpeg image/jpg)
+  validates_attachment_content_type :image, :content_type => %w(image/jpeg image/jpg/ image/png image/gif)
 
   validates_presence_of :image
 end
