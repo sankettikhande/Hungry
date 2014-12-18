@@ -51,6 +51,7 @@ gem 'active_model_otp'
 gem "newrelic_rpm", :require=>'newrelic_rpm'
 gem "table_print"
 gem 'capistrano-deploy-tagger'
+gem 'paperclip', "4.2.1"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
