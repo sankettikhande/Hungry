@@ -228,7 +228,7 @@ def link_to_remove_fields(name, f)
 
   def chef_image(fav_chef)
     if fav_chef.cheff && fav_chef.cheff.picture
-      return fav_chef.cheff.picture.image.url
+      return fav_chef.cheff.picture.image.url(:thumb)
     else
       return "/assets/chef-icon.png"
     end
