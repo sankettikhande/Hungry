@@ -58,7 +58,9 @@ class OrderedMenu < ActiveRecord::Base
   end
 
   def add_back_quantity
-    cooking_today.update_attributes(ordered: (cooking_today.ordered - self.quantity)) if (cooking_today.ordered - self.quantity) >= 0
+    if !self.order.canceled?
+      cooking_today.update_attributes(ordered: (cooking_today.ordered - self.quantity)) if (cooking_today.ordered - self.quantity) >= 0
+    end  
   end
 
   def self.restore_ordered_menus updated_ordered_menus
