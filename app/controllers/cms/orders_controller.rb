@@ -1,9 +1,12 @@
 require "#{Rails.root}/lib/citrus_lib.rb"
 include ApplicationHelper
 class Cms::OrdersController < Cms::ContentBlockController
+  skip_before_filter :verify_authenticity_token, only: [:callback]
   skip_before_filter :login_required, :cms_access_required, :only => [:email_invoice, :set_cart, :payment_gateway,:order_confirm,
                                                                      :remove_from_cart, :create_signature_order, :callback,
                                                                      :submit_payment_form, :add_address]
+  before_filter :check_inventory_and_redirect, only: [:add_address, :payment_gateway, :order_confirm, :submit_payment_form, :callback]
+  
   def set_cart
     session[:cart] = [] if session[:cart].nil?
     cart_ids = []
@@ -200,17 +203,16 @@ class Cms::OrdersController < Cms::ContentBlockController
     @order = Order.find(params[:order_id])
     if @order.created?
       orders = Order.where(:parent_order_id => params[:order_id])
-      session[:cart], updated_ordered_menus = [], []
       payment_mode = params[:payment_mode].titleize
       if ["card_on_delivery", "cash_on_delivery", "coupons_on_delivery"].include? params[:payment_mode]
+        updated_ordered_menus = []
         if !orders.blank?
           orders.each do |order|
             menus = order.ordered_menus
-            updated_ordered_menus = []
             menus.each do  |ordered_menu|
               cooking_today  = ordered_menu.cooking_today
               if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
-                updated_ordered_menus << cooking_today
+                updated_ordered_menus << ordered_menu
                 ordered_menu.increase_food_items_served_count
               else
                 OrderedMenu.restore_ordered_menus(updated_ordered_menus)
@@ -220,13 +222,13 @@ class Cms::OrdersController < Cms::ContentBlockController
             end
           end
           orders.each {|order| order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)}            
-          @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)#  if @confirm == true
+          @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)
           clear_session
         else
           @order.ordered_menus.each do |ordered_menu|
             cooking_today  = ordered_menu.cooking_today
             if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
-              updated_ordered_menus << cooking_today
+              updated_ordered_menus << ordered_menu
               ordered_menu.increase_food_items_served_count
             else
               OrderedMenu.restore_ordered_menus(updated_ordered_menus)
@@ -234,7 +236,7 @@ class Cms::OrdersController < Cms::ContentBlockController
               redirect_to "/mobile", alert: "Sorry! There were some menus in your cart that we can't serve right now." and return
             end
 
-            @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)#  if @confirm == true
+            @order.update_attributes!(order_status: "Confirmed", payment_mode: payment_mode)
             clear_session
           end
         end
@@ -274,18 +276,17 @@ class Cms::OrdersController < Cms::ContentBlockController
     params.delete("action")
     @txstatus = params[:TxStatus]
     @order = Order.find(params[:TxId])
-    updated_ordered_menus = []
     if @order.created?
       orders = Order.where(:parent_order_id => params[:order_id]) if params[:order_id]
       if params[:TxStatus] == "SUCCESS"
+        updated_ordered_menus = []
         if !orders.blank?
           orders.each do |order|
             menus = order.ordered_menus
-            updated_ordered_menus = []
             menus.each do  |ordered_menu|
               cooking_today  = ordered_menu.cooking_today
               if cooking_today.orderable? && cooking_today.date.to_s == Date.today.to_s && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
-                updated_ordered_menus << cooking_today
+                updated_ordered_menus << ordered_menu
                 ordered_menu.increase_food_items_served_count
               else
                 OrderedMenu.restore_ordered_menus(updated_ordered_menus)
@@ -300,8 +301,8 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           @order.ordered_menus.each do |ordered_menu|
             cooking_today  = ordered_menu.cooking_today
-            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i + ordered_menu.quantity.to_i))
-              updated_ordered_menus << cooking_today
+            if cooking_today.orderable? && (cooking_today.date.to_s == Date.today.to_s) && cooking_today.update_attributes(:ordered => (cooking_today.ordered.to_i  + ordered_menu.quantity.to_i))
+              updated_ordered_menus << ordered_menu
               ordered_menu.increase_food_items_served_count
             else
               OrderedMenu.restore_ordered_menus(updated_ordered_menus)
@@ -329,7 +330,7 @@ class Cms::OrdersController < Cms::ContentBlockController
         else
           @order.update_attributes(:payment_status => "Payment Gateway Failed", :payment_gateway_response => params)
         end
-        session[:cart] = @order.build_session
+        #session[:cart] = @order.build_session
         render "payment_gateway", :layout => 'application'
       end
     else

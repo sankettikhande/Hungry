@@ -36,9 +36,9 @@ json.payment_value order.total
 
 json.coupon do
   json.coupon_used !order.coupon_id.blank?
-  json.coupon_id order.coupon_id.blank? ? '' : order.coupon.id
-  json.coupon_name order.coupon_id.blank? ? '' : order.coupon.name
-  json.coupon_code order.coupon_id.blank? ? '' : order.coupon.coupon_code
+  json.coupon_id order.coupon_id.blank? ? '' : order.coupon.try(:id)
+  json.coupon_name order.coupon_id.blank? ? '' : order.coupon.try(:name)
+  json.coupon_code order.coupon_id.blank? ? '' : order.coupon.try(:coupon_code)
 end
 
 json.deliverySlot order.delivery_slot
