@@ -1,0 +1,66 @@
+<%= stylesheet_link_tag 'bootstrap-datetimepicker.min' %>
+<%= stylesheet_link_tag 'custom' %>
+<%= javascript_include_tag 'moment.min' %>
+<%= javascript_include_tag 'bootstrap-datetimepicker.min' %>
+
+<div style="margin: 20px 0;">
+  <%= link_to "Add New Cooking Food","/cms/cooking_todays/new", :style => "background-color: #396DAF;color: #FFFFFF;font-size: 15px;padding: 5px 15px;" %>
+  <input type='text' readonly ="readonly" class="form-control date" id='datetimepicker5' data-date-format="YYYY/MM/DD"/>
+</div>
+<table id="blocks" class="data cms-content-table" data-plural_title="Coupon Contents" data-can_publish="true" data-versioned="false" data-content_type="coupon_contents">
+  <thead>
+  <th style="width: 60%;">
+    <div class="dividers">Name</div>
+  </th>
+  <th style="width: 19%;">
+    <div class="dividers">Date</div>
+  </th>
+  <th style="width: 19%;">
+    <div class="dividers">Edit</div>
+  </th>
+  <th style="width: 19%;">
+    <div class="dividers">Delete</div>
+  </th>
+  </thead>
+  <% if @cooking_todays.blank? %>
+      <tr> <td>Sorry, No Cooking today found with this search.</td> </tr>
+  <% else %>
+      <tbody class="cooking_todays_list">
+      <% @cooking_todays.each do |cooking_today|%>
+          <tr class="coupon_detail">
+            <td style=" padding-left: 8px;">
+              <%= cooking_today.name %>
+            </td>
+            <td>
+              <%= cooking_today.date  %>
+            </td>
+            <td>
+              <%= link_to "Edit Detail", "/cms/cooking_todays/#{cooking_today.id}/edit" %>
+            </td>
+            <td>
+              <%= link_to 'Delete', "/cms/cooking_todays/delete?id=#{cooking_today.id}"%>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+  <% end %>
+
+</table>
+<%= render_pagination @cooking_todays, :cooking_todays, {:date => params[:date]} %>
+<script>
+    $(document).ready(function() {
+        var dateParam = "<%=params[:date]%>";
+        var date = new Date();
+        var dd = date.getDate();
+        var mm = date.getMonth()+1; //January is 0!
+        var yyyy = date.getFullYear();
+        var today = dateParam ? dateParam :yyyy+'/'+mm+'/'+dd;
+        $('#datetimepicker5').datetimepicker({
+            pickTime: false,
+            defaultDate: today
+        }).on('dp.change', function(ev){
+            var date = $("#datetimepicker5").val();
+            window.location = "/cms/cooking_todays?date="+date
+        });
+    });
+</script>
