@@ -58,6 +58,9 @@ $(document).ready(function(){
         $("#add-order-minus").removeClass("disabled");
         $("#add-order-minus").removeAttr("disabled");
         var max_qty = parseInt($("#item_max_qty").val(), 10);
+        
+        cnt = parseInt($("#order-count").html(),10);
+        
         if (cnt < parseInt(max_qty,10)){
             cnt = parseInt($("#order-count").html(),10) + 1;
             $("#order-count").html(cnt);
@@ -622,7 +625,7 @@ $(document).ready(function(){
                 $.ajax({
                   'url' : '/submit_payment_form',
                   'method': 'POST',
-                  'data': {'paymentMode': payment_mode, 'orderId':order_id},
+                  'data': {'paymentMode': payment_mode, 'orderId':order_id, 'authenticity_token': $("#payment_form_atk").html()},
                   'dataType':'script'
                 });
                 
