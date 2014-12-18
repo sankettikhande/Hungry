@@ -21,7 +21,7 @@
                   <div class="add-heart <%= add_chef_filled_class(@chef) %>" id="add_chef_to_favorite" data-cheff_id="<%= @chef.id %>"></div>
                 </li>
                 <li class="profile profile-dp">
-                  <%= image_tag @chef.picture.image.url, :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" if @chef.picture %>
+                  <%= image_tag @chef.picture.image.url(:medium), :class => "img-responsive img-circle center-block", :alt => "#{@chef.name}" if @chef.picture %>
                 </li>
                 <li class="profile user-name"><%= @chef.chef_coordinate.name %></li>
                 <li class="profile user-level">
@@ -98,55 +98,6 @@
   </div>
 </div>
 
-<!--<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="normal-header">
-        <h3>Cooking Today:</h3>
-      </div>
-      <div class="normal-body">
-
-        <div id="hola-container">
-          <% @today_menu = collect_items(session[:cart]) if !session[:cart].nil? %>
-          <% if @cooking_todays %>
-              <% @cooking_todays.each do |menu| %>
-                  <% @menu = menu %>
-                  <%= render :partial => "home/item", :locals => {:menu => menu, :today_menu => @today_menu } %>
-              <% end %>
-          <% end %>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  &lt;!&ndash; <div class="row">
-    <div class="col-xs-12">
-      <div class="normal-header">
-        <h3>Signature Dishes</h3>
-      </div>
-      <div class="normal-body">
-        <%#= render 'signature_dishes', :locals => { :signature_dishes => @signature_dishes} %>
-      </div>
-
-    </div>
-  </div> &ndash;&gt;
-
-  &lt;!&ndash; <div class="row">
-    <div class="col-xs-12">
-      <div class="normal-header">
-        <h3>Recipes:</h3>
-      </div>
-      <div class="normal-body">
-        <%#= render 'receipes', :locals => {:recipes => @recipes} %>
-      </div>
-
-    </div>
-  </div> &ndash;&gt;
-
-
-</div>-->
 <div id="recipe-modal">
   <div class="modal fade bs-example-modal-sm" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
