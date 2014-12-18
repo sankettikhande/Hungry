@@ -43,7 +43,7 @@ task :prod do
   set :branch, 'release'
   # be sure to change these
   set :user, 'ec2-user'
-  set :domain, '54.148.106.214'
+  set :domain, '54.69.207.151'
   set :deploy_env, 'prod'
 
   role :db, domain, :primary => true
@@ -57,7 +57,7 @@ task :staging do
   set :branch, 'release'
   # be sure to change these
   set :user, 'ec2-user'
-  set :domain, '54.148.106.214'
+  set :domain, '54.69.207.151'
   set :deploy_env, 'staging'
 
   set :update_deploy_tags, false
