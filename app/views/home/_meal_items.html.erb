@@ -161,7 +161,7 @@
             </li>
             <li class="pull-right m_type_mark">
               <span>
-                <img src="assets/<%= set_cooing_today_type(menu) %>.png" alt="Cart">
+                <img src="/assets/<%= set_cooing_today_type(menu) %>.png" alt="Cart">
               </span>
             </li>
           </ul>
@@ -192,7 +192,7 @@
                   </ul>
                 </div>
                 <div class="col-xs-3 col-hola-3" style="display:none">
-                  <a class="pull-right new-cart-icon update-cart" data-quantity="<%= cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>" data-meal-type="<%= category %>"><img src="assets/done-button.png" alt="Cart">
+                  <a class="pull-right new-cart-icon update-cart" data-quantity="<%= cart_menu[:quantity].to_i %>" data-item_id="<%= menu.id %>" data-price="<%= cart_menu[:price] %>" data-category="<%= menu.category %>" data-dish-name="<%= menu.food_item.meal_info.name %>" data-meal-type="<%= category %>"><img src="/assets/done-button.png" alt="Cart">
                   </a>
                 </div>
               <% end %>
