@@ -26,7 +26,7 @@
               </div>
           <% end %>
         </li>
-        <li class="recipe-title" style="margin:10px 0;"><%= @cooking_today.food_item.meal_info.name %> <img src="assets/<%= set_cooing_today_type(cooking_today) %>.png" alt="Cart" style="position: absolute;right: 20px;"></li>
+        <li class="recipe-title" style="margin:10px 0;"><%= @cooking_today.food_item.meal_info.name %> <img src="/assets/<%= set_cooing_today_type(cooking_today) %>.png" alt="Cart" style="position: absolute;right: 20px;"></li>
         <li class="recipe-tags hidden">
           <ul class="stock-value">
             <li class="recipe-stock"><span class="stock-count"><%= qty_left(@cooking_today).to_i - cart_menu[:quantity].to_i %></span> left</li>
