@@ -1,46 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+  <title>Hola chef</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
 
-  <title>Holachef</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Powai food, food cravings, order food in Powai, Eat Hearty, Eat Better" >
-  <meta name="description" content="Eat Hearty, Eat Better! Everyday. Holachef brings the best taste, variety and convenience of ordering-in hearty, wholesome meals from the best chefs around. Download Holachef App from Google Play store or call now ?+91-8080804652? to order.? Service area currently restricted to Powai, Chandivali, Andheri East, JVLR, Vikhroli, Bhandup!">
-  <!--FACEBOOK-->
-  <meta property="og:title" content="Eat Hearty, Eat Better! Everyday." >
-  <meta property="og:site_name" content="Holachef">
-  <meta property="og:url" content="http://www.holachef.com/landing" >
-  <meta property="og:description" content="Eat Hearty, Eat Better! Everyday. Holachef brings the best taste, variety and convenience of ordering-in hearty, wholesome meals from the best chefs around. Download Holachef App from Google Play store or call now ?+91-8080804652? to order.? Service area currently restricted to Powai, Chandivali, Andheri East, JVLR, Vikhroli, Bhandup!" >
-  
-  
-  <!--TWITTER-->
-  <meta property="twitter:card" content="summary" >
-  <meta property="twitter:title" content="Eat Hearty, Eat Better! Everyday." >
-  <meta property="twitter:description" content="Eat Hearty, Eat Better! Everyday. Holachef brings the best taste, variety and convenience of ordering-in hearty, wholesome meals from the best chefs around. Download Holachef App from Google Play store or call now ?+91-8080804652? to order.? Service area currently restricted to Powai, Chandivali, Andheri East, JVLR, Vikhroli, Bhandup!" >
-  <meta property="twitter:creator" content="@" >
-  <meta property="twitter:url" content="www.holachef.com" >
-  <meta property="twitter:image" content="" >
+      .page-overlay {text-align: center;top: 0;right: 0;bottom: 0;left: 0;width: 100%;height: 100%;vertical-align: middle;text-align: center;background-color: #333;background-color:rgba(0,0,0,0.62);opacity:1;position: fixed;width: 100%;display: table;z-index: 99999}
+      .overlay-inside {display: table-cell;vertical-align: middle;text-align:center;color: #fff;padding: 30px 100px;}
+      .overlay-content {max-width: 420px;height: auto;position: absolute;top: 30px;bottom: 30px;left:0;right: 0;text-align: center;margin: auto auto;overflow: hidden;max-height: 650px;overflow: hidden;}
+      .overlay-text {margin:auto;background:#333;background:rgba(0,0,0,0.6);padding: 10px 30px;display: none;height:100%;}
+      .strawberry .overlay-text {display: block;}
+      .strawberry {background: url('/assets/strawberry.jpg') no-repeat center center;background-size: cover;padding: 20px;}
+      .map-overlay {display: none;}
+      #map-canvas {width: 100%;height: 100%;background-color: #CCC;color: #000;min-height: 400px;}
+      .overlay-text img {margin-bottom: 15px;max-width: 40%;}
+      .overlay-text .btn-orange {background: #d66b2e;border-color: transparent;text-transform: uppercase;color: #fff}
+      .overlay-text .btn-orange:hover {background: #f06c22;border-color: transparent;color: #fff}
+      .overlay-text p {font-size: 1.5em;color: #fff;line-height: 1.4;text-align: center;font-family: 'robotoregular','lato-l',Helvetica,Arial,Sans-serif;}
+      .map-dmenu {position: absolute;bottom: 0;right:0;left:0;z-index: 1000000;margin: 0 auto;padding: 10px 30px;color: #000;text-align: center;padding: 30px;background: #fff;background: rgba(255,255,255,0.7);}
+      .map-dmenu select {max-width: 200px;margin: 0 auto 20px;}
+      .btn{display:inline-block;margin-bottom:0;font-weight:400;text-align:center;vertical-align:middle;cursor:pointer;background-image:none;border:1px solid transparent;white-space:nowrap;padding:6px 12px;font-size:14px;line-height:1.42857143;border-radius:4px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.btn:focus,.btn:active:focus,.btn.active:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}.btn:hover,.btn:focus{color:#333;text-decoration:none}.btn:active,.btn.active{outline:0;background-image:none;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,0.125);box-shadow:inset 0 3px 5px rgba(0,0,0,0.125)}
 
-  <%= stylesheet_link_tag "application" %>
-  <link rel="shortcut icon" href="/assets/favicon.png">
-  <!--[if lt IE 9]><script src="/assets/ie8-responsive-file-warning.js"></script><![endif]-->
-  <!--[if lt IE 9]>
-  <script src="/assets/html5shiv.js"></script>
-  <script src="/assets/respond.min.js"></script>
-  <![endif]-->
+
+      @media (max-width: 767px) {
+          .overlay-content {top: 0;bottom: 0}
+          .overlay-content p {font-size: 1em;}
+      }
+      @media (min-width: 768px) and (max-width: 991px) {
+          .overlay-content p {font-size: 1.2em;}
+      }
+
+  </style>
 </head>
+
 <body>
-   <%= yield %>
-   <%= javascript_include_tag "application"%>
+
+<div class="page-overlay">
+  <div class="overlay-inside">
+    <div class="overlay-content strawberry">
+      <div class="overlay-text">
+        <img class="img-responsive center-block" src="/assets/hola-orange.png" alt="Hola">
+
+        <p>Delivering a fine-dine experience at your doorstep! </p>
+        <button class="btn btn-orange" id="btn-map-toggle" type="button" onclick="window.location.href='/'">Browse Menu</button>
+
+        <p>The best chefs in town serve a new menu every day, exclusively for you! </p>
+      </div>
+
+    </div>
+  </div>
+</div>
 </body>
-<script>
-    $(document).ready(function() {
-        window.setTimeout(function() {
-            window.location.href = '/mobile';
-        }, 3000);
-    });
-</script>
 </html>
