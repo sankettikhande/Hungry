@@ -8,3 +8,4 @@ citrus_gateway:
   action : 'http://staging.holachef.com/orders/callback' # change it as required by your app...
   returnUrl : ' http://staging.holachef.com/orders/callback'
 server: "qa"
+cookie_domain: ".staging.holachef.com"
