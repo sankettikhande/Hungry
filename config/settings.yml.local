@@ -19,3 +19,4 @@ email_delivery:
     user_name: 'dev.web.20140801'
     password: 'abc12345#'
 server: "local"
+cookie_domain: ".local.holachef.com"
