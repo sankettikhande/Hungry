@@ -19,7 +19,7 @@ class Coupon < ActiveRecord::Base
   def check_coupons_validity(user_id, app_request)
     coupon = Coupon.find_by_coupon_code(self.coupon_code)
     return if coupon.blank?
-    return "You can not use this coupon. validity Reached"  if  !coupon.blank? && (coupon.no_of_coupons == coupon.no_of_used_coupons)
+    return "You can not use this coupon. Validity Reached."  if  coupon.no_of_coupons <= coupon.no_of_used_coupons
     if coupon.coupon_type == '1U1T'
       coupon_used_count = HolaUserCoupon.where(:coupon_id => coupon.id, :hola_user_id => user_id).count
       if app_request
