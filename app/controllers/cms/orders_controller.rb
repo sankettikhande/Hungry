@@ -259,7 +259,6 @@ class Cms::OrdersController < Cms::ContentBlockController
   def submit_payment_form
     @order = Order.find(params[:orderId])
     @order.update_attribute(:payment_mode, "Net Banking")
-    @paymentMode = params[:paymentMode]
     @flag=false
     @secSignature=''
     @reqtime = Time.now.to_f*1000
