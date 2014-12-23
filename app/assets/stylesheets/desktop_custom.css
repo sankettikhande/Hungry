@@ -57,7 +57,7 @@ body {font-family: 'latoregular','Lato',Arial, Helvetica, Sans-serif;padding-bot
 .hola-lg-navbar .top-nav .a-link a:hover {color: #000;}
 .hola-lg-navbar .top-nav li a.dropdown-toggle span {color: #ff8800}
 
-.top-nav.navbar-nav>li>.dropdown-menu{border-top: 3px solid #ff8800;box-shadow: none;-webkit-box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none;-ms-box-shadow:none;border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;-o-border-radius: 0;-ms-border-radius: 0;padding: 0 10px;margin-top: 10px;max-width: 190px;}
+.top-nav.navbar-nav>li>.dropdown-menu{border-top: 3px solid #ff8800;box-shadow: none;-webkit-box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none;-ms-box-shadow:none;border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;-o-border-radius: 0;-ms-border-radius: 0;padding: 0 10px;margin-top: 10px;max-width: 210px;}
 .top-nav .dropdown-menu>li>a:hover,.top-nav .dropdown-menu>li>a:focus {color: #ff8800;background-color: transparent;}
 .top-nav .dropdown .dropdown-menu li + li {border-top: 1px solid #000;display: inline-block;width: 100%;}
 .top-nav.nav .open>a, .hola-lg-navbar .top-nav.nav .open>a:hover, .hola-lg-navbar .top-nav.nav .open>a:focus{background-color: transparent;}
