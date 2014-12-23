@@ -52,6 +52,7 @@ gem "newrelic_rpm", :require=>'newrelic_rpm'
 gem "table_print"
 gem 'capistrano-deploy-tagger'
 gem 'paperclip', "4.2.1"
+gem "aws-sdk"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
