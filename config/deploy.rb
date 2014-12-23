@@ -74,7 +74,7 @@ namespace :deploy do
   task :copy_configs do
     run "cp #{release_path}/config/newrelic.yml.#{deploy_env} #{release_path}/config/newrelic.yml"
     run "cp #{release_path}/config/settings.yml.#{deploy_env} #{release_path}/config/settings.yml"
-    run "ln -s #{release_path}/config/aws.yml #{shared_path}/config/aws.yml"
+    run "ln -s #{shared_path}/config/aws.yml #{release_path}/config/aws.yml"
   end
 
   task :change_permission_for_fcgi do
