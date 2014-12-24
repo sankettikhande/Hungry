@@ -1433,7 +1433,8 @@ img {font-size: 0}
 #last_page_link {
     background: url("/assets/last.gif") no-repeat scroll 0 0 transparent;
 }
-*****************=Chef page*****************/
+
+/*****************=Chef page*****************/
 .chef-detail-wrapper {padding:100px 0; }
 .chef-img-container {background-color: #e8e8e8;padding: 50px 0;text-align: center;color: #2b2a28;border: 1px solid #dbdada;position: relative;overflow: hidden;z-index: 1;}
 .chef-bg-img {position: absolute;left: 0;top: 0;z-index: -1;width: auto;height: 120%;min-width: 100%;
