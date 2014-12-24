@@ -1109,7 +1109,7 @@ function viewordetail2(id,from)
         },
         success: function (records) {
 
-            html += '<div style="padding:20px;font-size:90%;padding-top:0px !important;"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
+            html += '<div style="padding:20px;font-size:70%;padding-top:0px !important;"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
             if (from == "Dispatched")
                 html += '<div style="float: left; width: 30%"><button onclick="ondeliverd(\'' + String(records["id"]) + '\')">Delivered</button><button onclick="onreturnd(\'' + String(records["id"]) + '\')">Returned</button><button onclick="ondamage(\'' + String(records["id"]) + '\');">Damage</button><button onclick="oncancelbtn(\'' + String(records["id"]) + '\')">Cancel</button></div>';
             else if (from == "Delivered")

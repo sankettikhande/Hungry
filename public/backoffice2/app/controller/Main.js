@@ -81,7 +81,7 @@ Ext.define('HolaChef.controller.Main', {
         HolaChef.app.ShowHideLoader(true);
         var ref = this;
         Ext.data.JsonP.request({
-            url: HolaChef.app.dataUrl + 'runners.json',
+             url: HolaChef.app.dataUrl + 'runners.json',
             params: {
                 method: 'orders',
                 format: 'json',
@@ -755,7 +755,7 @@ Ext.define('HolaChef.controller.Main', {
         var ref = this;
         //this.getDefectPageHtmlRef().setHtml("");
         Ext.data.JsonP.request({
-            url: '/api_v2/orders.json',
+           url: '/api_v2/orders.json',
             params: {
                 method: 'orders',
                 format: 'json',
@@ -1056,7 +1056,7 @@ function viewordetail(id,from)
             html += '<tr><td>' + pin + '</td></tr>';
             html += '<tr><td>' + land + '</td></tr>';
 
-            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td >Order progress : </td><td style="width:60%"> ' + records["order_progress"] + '</td></tr><tr><td>Payment : </td><td>' + records["payment_mode"] + '</td></tr><tr><td>Delivery Time : </td><td>' + records["deliverySlot"] + '</td></tr><tr><td>Runner Name :</td><td>' + records["runner"].name + '</td></tr>';
+            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td >Order progress : </td><td style="width:60%"> ' + records["order_progress"] + '</td></tr><tr><td>Payment : </td><td>' + records["payment_mode"] + '</td></tr><tr><td>Delivery Time : </td><td>' + records["delivery_slot"] + '</td></tr><tr><td>Runner Name :</td><td>' + records["runner"].name + '</td></tr>';
 
             if (from == "Dispatched") {
                 var runner = records["runner"];
@@ -1109,7 +1109,7 @@ function viewordetail2(id,from)
         },
         success: function (records) {
 
-            html += '<div style="padding:20px;font-size:90%;padding-top:0px !important;"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
+            html += '<div style="padding:20px;font-size:70%;padding-top:0px !important;"><table cellpadding="0" cellspacing="0" width="100%"><tr><td><div style="float: left; width: 70%">Order No :<span id="orderno">' + String(records["id"]) + '</span></div>';
             if (from == "Dispatched")
                 html += '<div style="float: left; width: 30%"><button onclick="ondeliverd(\'' + String(records["id"]) + '\')">Delivered</button><button onclick="onreturnd(\'' + String(records["id"]) + '\')">Returned</button><button onclick="ondamage(\'' + String(records["id"]) + '\');">Damage</button><button onclick="oncancelbtn(\'' + String(records["id"]) + '\')">Cancel</button></div>';
             else if (from == "Delivered")
@@ -1133,7 +1133,7 @@ function viewordetail2(id,from)
             html += '<tr><td>' + pin + '</td></tr>';
             html += '<tr><td>' + land + '</td></tr>';
 
-            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td>Delivery Slot :</td><td>' + records["deliverySlot"] + '</td></tr><tr><td>Payment :</td><td>' + records["payment_mode"] + '</td></tr></table></td></tr>';
+            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td>Delivery Slot :</td><td>' + records["delivery_slot"] + '</td></tr><tr><td>Payment :</td><td>' + records["payment_mode"] + '</td></tr></table></td></tr>';
 
             if (from == "Dispatched") {
                 var runner = records["runner"];
