@@ -2,5 +2,25 @@ $("#cooking_today_food_item_id").removeAttr('disabled')
 $("#cooking_today_food_item_id").empty()
 $.each(<%= @list.to_json.html_safe %>, function(key, value)
 {
-    $('<option></option>').val(key).text(value).appendTo('#cooking_today_food_item_id');
+    var mealName = value[0],
+        redFlag = value[1];
+    if (redFlag) {
+        $('<option redFlag=true></option>').val(key).text(mealName).appendTo('#cooking_today_food_item_id');
+    }else{
+        $('<option></option>').val(key).text(mealName).appendTo('#cooking_today_food_item_id');
+    }
 });
+
+var redFlag = $("#cooking_today_food_item_id option:selected").attr('redFlag');
+if (redFlag) {
+    $('div.red_flag_item').text('This is Red Flag Item');
+}
+$("#cooking_today_food_item_id").change(function(){
+    var redFlag = $('option:selected', this).attr('redFlag');
+    if (redFlag) {
+        $('div.red_flag_item').text('This is Red Flag Item');
+    }else{
+        $('div.red_flag_item').text('');
+    }
+})
+

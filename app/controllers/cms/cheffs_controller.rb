@@ -4,7 +4,7 @@ class Cms::CheffsController < Cms::ContentBlockController
 
   def load_dishes
     recipe = FoodItem.where(:cheff_id => params[:cheff_id]) if !params[:cheff_id].blank?
-    @list = {}.tap{ |h| recipe.each{ |c| h[c.id] = c.meal_info.name } }
+    @list = {}.tap{ |h| recipe.each{ |c| h[c.id] = [c.meal_info.name, c.red_flag] } }
     respond_to do |format|
       format.js
     end

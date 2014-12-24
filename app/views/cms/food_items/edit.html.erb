@@ -27,6 +27,11 @@
     </div>
 
     <div class="fields text_fields">
+      <%= f.label :red_flag %>
+      <%= f.select :red_flag, ["true", "false"] %>
+    </div>
+
+    <div class="fields text_fields">
       <%= f.label :if_recipe %>
       <%= f.select :if_recipe, ["true", "false"] %>
     </div>
