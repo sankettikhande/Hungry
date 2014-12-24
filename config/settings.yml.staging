@@ -9,3 +9,4 @@ citrus_gateway:
   returnUrl : ' http://staging.holachef.com/orders/callback'
 server: "qa"
 cookie_domain: ".staging.holachef.com"
+cloud_front_url: "d1e7veuf3koykl.cloudfront.net"

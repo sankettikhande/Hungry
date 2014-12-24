@@ -1,0 +1,10 @@
+development:
+   bucket: hola-local
+   access_key_id: AKIAJ72OOUWTZNXKN7IQ
+   secret_access_key: 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
+   region: us-west-2
+production:
+   bucket: hola-local
+   access_key_id: AKIAJ72OOUWTZNXKN7IQ
+   secret_access_key: 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
+   region: us-west-2

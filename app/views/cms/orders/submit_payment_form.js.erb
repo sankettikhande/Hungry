@@ -15,5 +15,4 @@ $(".payment_form form").append('<input class="text" name="currency" type="hidden
 $(".payment_form form").append('<input type="hidden" name="returnUrl" value="<%= Settings.citrus_gateway.returnUrl %>" />');
 $(".payment_form form").append('<input type="hidden" name="secSignature" value="<%= @secSignature %>" />');
 $(".payment_form form").append('<input type="hidden" name="reqtime" value="<%= @reqtime %>" />');
-$(".payment_form form").append('<input class="text" name="paymentMode" type="hidden" value="<%= @paymentMode%>" />');
 $('#transactionForm').submit();

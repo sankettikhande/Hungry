@@ -20,3 +20,4 @@ email_delivery:
     password: 'abc12345#'
 server: "local"
 cookie_domain: ".local.holachef.com"
+cloud_front_url: "d37u7ofg857djl.cloudfront.net"

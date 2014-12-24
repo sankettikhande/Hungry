@@ -84,7 +84,7 @@ class CookingToday < ActiveRecord::Base
   end
 
   def self.todays_menu_by_type meal_type
-    where(date: Date.today.to_s, meal_type: meal_type, published: true).includes([:cheff, {:food_item => [:cheff, :recipe, {:meal_info => :picture}]}]).sort_by(&:stock_price).reverse
+    where(date: Date.today.to_s, meal_type: meal_type, published: true).includes([:cheff, {:food_item => [:cheff, :recipe, {:meal_info => :picture}]}]).sort_by{|ct| ct.qty_left == 0 ? 0 : rand(1..10)}.reverse
   end 
 
   def orderable?
