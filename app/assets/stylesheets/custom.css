@@ -1433,3 +1433,35 @@ img {font-size: 0}
 #last_page_link {
     background: url("/assets/last.gif") no-repeat scroll 0 0 transparent;
 }
+
+/*****************=Chef page*****************/
+.chef-detail-wrapper {padding:100px 0; }
+.chef-img-container {background-color: #e8e8e8;padding: 50px 0;text-align: center;color: #2b2a28;border: 1px solid #dbdada;position: relative;overflow: hidden;z-index: 1;}
+.chef-bg-img {position: absolute;left: 0;top: 0;z-index: -1;width: auto;height: 120%;min-width: 100%;
+    opacity: 0.1;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: alpha(opacity=10);
+}
+.chef-actual-img{width: 179px;height: 179px;border-radius: 50%;border: 2px solid #fff;box-shadow: 0 0 1px #666;}
+.chef-img-container {margin-bottom: 10px;}
+.chef-img-container .chef-name{font-size: 26px;margin: 30px 0 0;}
+.chef-addres {font-size: 16px;font-family: 'latolight',Helvetica,Arial,Sans-serif;}
+.chef-img-container .chef-hotel{color:#ff8800;font-size: 20px;margin: 13px 0 0;}
+.chef-img-container .chef-address{font-size: 16px;margin: 11px 0 0;}
+.chef-img-container .add-to-fav-btn{border-radius: 0;font-size: 16px;padding: 10px;margin-top: 36px;}
+.chef-detail-content .dish-discr-tab {margin-top: 0;}
+.chef-detail-content .panel-discr-body{min-height: 349px;}
+.chef-discr-tab .nav-tabs>li>a {border: transparent;}
+.dish-discr-tab .nav-justified>li {display: table-cell;width: 1%;}
+.dish-discr-tab .nav-tabs>li>a{color: #6a6968;border-radius: 0;border-bottom: 1px solid #eaeaea;padding-top: 10px;padding-bottom: 10px;}
+.dish-discr-tab .nav-tabs>li>a:hover{border-color:transparent;border-bottom-color: #eaeaea;}
+.dish-discr-tab .nav-tabs>li.active>a,.dish-discr-tab .nav-tabs>li.active>a:hover,.dish-discr-tab .nav-tabs>li.active>a:focus{color: #656463;background-color: #f0f0f0;border-radius: 0;border-bottom: 3px solid #f80;padding-top: 9px;padding-bottom: 9px;border-top: 2px solid #f0f0f0;border-left: 0;border-right: 0;}
+.dish-discr-tab .nav-tabs>li+li {margin-left: 0;}
+.dish-discr-tab{border: 1px solid #eaeaea;margin-top: 20px;}
+.panel-discr-body, .panel-discr-footer {padding: 15px 15px;}
+.shrarer-text-info{color: #2b2a28;font-size: 14px;}
+.sicons-list li {display: inline-block;margin-right: 20px;}
+.sicons-list li a {font-size: 25px;color: #686663;}
+/*****************=Chef page*****************/
