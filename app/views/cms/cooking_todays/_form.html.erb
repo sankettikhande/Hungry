@@ -8,9 +8,16 @@
     overflow-x: hidden;
     max-height: 200px;
   }
+  .red_flag_item {
+      color:#FF0000;
+      font-size:20px;
+      margin: 10px 0px 10px;
+  }
 </style>
+
+<div class="red_flag_item"></div>
 <%#= f.cms_text_field :name %>
-<%= f.cms_drop_down :cheff_id, Cheff.all(:order => "id").map { |c| [c.name, c.id] },
+<%= f.cms_drop_down :cheff_id, Cheff.all(:include => :chef_coordinate, :order => "chef_coordinates.name").map { |c| [c.chef_coordinate.name, c.id] },
                         :prompt => "Select Chef Name", :label => "Chef Name" %>
 <% if @block.new_record? %>
     <div class="fields text_fields">

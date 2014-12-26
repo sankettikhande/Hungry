@@ -31,6 +31,11 @@
       <%= f.select :if_recipe, ["true", "false"] %>
     </div>
 
+    <div class="fields text_fields">
+      <%= f.label :red_flag %>
+      <%= f.select :red_flag, ["true", "false"] %>
+    </div>
+
     <%= f.fields_for :meal_info do |builder| %>
         <%= render 'meal_info_fields', :f => builder %>
     <% end %>

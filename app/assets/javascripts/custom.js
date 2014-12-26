@@ -13,7 +13,8 @@ $(document).ready(function(){
     });
 
     $('.recipe-block').on('click', function(){
-        $(this).find('.dark-overlay').toggle()
+        $(this).find('.dark-overlay').fadeToggle();
+        $(this).find('.add-heart').toggle();
     });
     $('.foodDesp').on('click', function(){
         $(this).closest('.square').find('.dark-overlay').toggle()
