@@ -1133,7 +1133,7 @@ function viewordetail2(id,from)
             html += '<tr><td>' + pin + '</td></tr>';
             html += '<tr><td>' + land + '</td></tr>';
 
-            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td>Delivery Slot :</td><td>' + records["delivery_slot"] + '</td></tr><tr><td>Payment :</td><td>' + records["payment_mode"] + '</td></tr></table></td></tr>';
+            html += '</table></div></td><td style="border:1px solid black;padding:5px;width:50%"><table cellpadding="0" cellspacing="0"><tr><td>Delivery Slot :</td><td>' + records["deliverySlot"] + '</td></tr><tr><td>Payment :</td><td>' + records["payment_mode"] + '</td></tr></table></td></tr>';
 
             if (from == "Dispatched") {
                 var runner = records["runner"];
