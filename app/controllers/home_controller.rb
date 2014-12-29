@@ -66,6 +66,14 @@ class HomeController < ApplicationController
    redirect_to("/mobile") and return
   end
 
+  def how_it_works
+    render :layout => false
+  end
+
+  def service_areas
+    render :layout => false
+  end
+
   private
   def update_cart(todays_menu)
     return if todays_menu.blank?
