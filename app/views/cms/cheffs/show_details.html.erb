@@ -17,12 +17,6 @@
                       <%= @chef.chef_profile.classification %>
                   <% end %>
                 </p>
-                <p class="chef-addres">
-                  <% if @chef.chef_coordinate.locality.present? %>
-                      <%= @chef.chef_coordinate.locality.camelize %>,
-                  <% end %>
-                  <%= @chef.chef_coordinate.city.camelize %>
-                </p>
                 <ul class="block-3 block-1 text-center" style="padding:0 30px">
                   <li class="each-block">
                     <span id="served-count" class="upper roboto-b"><%= @total_qty %></span>
@@ -55,17 +49,17 @@
                         <p class="shrarer-text-info">SHARE WITH FRIENDS </p>
                         <ul class="sicons-list">
                           <li class="in_browser">
-                            <a href="#" title="Facebook" onclick="socail_click('http://www.facebook.com/sharer.php?u=http://www.holachef.com')">
+                            <a href="#" title="Facebook" onclick="socail_click('http://www.facebook.com/sharer.php?u=http://www.holachef.com/chef-profile/<%= @chef.id %>')">
                               <i class="fa fa-facebook"></i>
                             </a>
                           </li>
                           <li class="in_browser">
-                            <a href="#" title="Twitter" onclick="socail_click('https://twitter.com/intent/tweet?text=Check out this&url=http://www.holachef.com')">
+                            <a href="#" title="Twitter" onclick="socail_click('https://twitter.com/intent/tweet?text=Check out this&url=http://www.holachef.com/chef-profile/<%= @chef.id %>')">
                               <i class="fa fa-twitter"></i>
                             </a>
                           </li>
                           <li class="in_browser">
-                            <a href="#" title="Instagram" onclick="socail_click('http://instagram.com/hola_chef')">
+                            <a href="#" title="Instagram" onclick="socail_click('http://instagram.com/hola_chef/chef-profile/<%= @chef.id %>')">
                               <i class="fa fa-instagram"></i>
                             </a>
                           </li>
