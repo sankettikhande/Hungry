@@ -134,6 +134,7 @@ Holachef::Application.routes.draw do
 
   namespace :api_v2 do
     resources :orders do
+      get :update_area_and_sub_area
     end
   end
 

@@ -16,7 +16,7 @@ json.order_progress order.order_status_history_string
 json.delivery_slot order.delivery_slot
 json.payment_mode (order.parent_order.blank? ? order.payment_mode : order.parent_order.payment_mode)
 
-json.confirmed_at order.confirmed_at
+json.confirmed_at order.confirmed_at.strftime("%H:%M") if !order.confirmed_at.blank?
 json.dispatched_at order.dispatched_at
 json.delivered_at order.delivered_at
 json.since_confirmed order.confirmed_at ? ((Time.now - order.confirmed_at)/60).floor : nil
