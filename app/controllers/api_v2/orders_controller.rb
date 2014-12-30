@@ -9,6 +9,7 @@ class ApiV2::OrdersController < ApiController
       @order.delivery_address.update_attributes(:area =>params[:area], :sub_area => params[:sub_area] )
         render "api/success"
     else
+        @message = "There is no address associated with this order."
         render "api/failure"
     end
   end
