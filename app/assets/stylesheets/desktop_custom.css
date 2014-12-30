@@ -140,7 +140,7 @@ bottom: 0;
 .hc-modal .modal-body {padding-top:0;padding-bottom: 0;min-height: 497px;}
 .hc-modal .modal-dialog {width: 440px;margin: 30px auto;}
 .hc-modal .modal-dialog.wide-modal {max-width: 591px;width: 100%}
-.hc-modal .modal-content {background: #c6c6c5;border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;-o-border-radius: 0;-ms-border-radius: 0;border:0;padding: 0 5px;}
+.hc-modal .modal-content {background: #ffffff;border-radius: 0;-webkit-border-radius: 0;-moz-border-radius: 0;-o-border-radius: 0;-ms-border-radius: 0;border:0;}
 .hc-modal .modal-content .modal-header,.hc-modal .modal-content .modal-body,.hc-modal .modal-content .modal-footer {border:0;}
 .hc-modal .modal-footer {padding:10px 15px}
 

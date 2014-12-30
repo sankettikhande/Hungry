@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Location</title>
+ <style>
+      #map-canvas {
+        width: "100%";
+        height: 400px;
+        background-color: #CCC;
+      }
+	  .labels {
+     color: black;
+     background-color: white;
+     
+     font-size: 10px;
+     font-weight: bold;
+     text-align: center;
+     width: 40px;     
+     border: 2px solid black;
+     white-space: nowrap;
+   }
+</style>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>  
+<script type="text/javascript" src="/assets/markerwithlabel.js"></script>  
+<!--script type="text/javascript" src="cordova.js"></script-->
+<script>
+
+function initialize() {	
+	var PinCodeArr = ["400042", "400059", "400060", "400076", "400078", "400072","400079", "400086", "400087","400093","400096"]
+	var latlongArr = [{lat:19.136826, long:72.939562},
+	{lat:19.114113, long:72.878270},
+	{lat:19.137026, long:72.854970},
+	{lat:19.133430, long:72.913268},
+	{lat:19.150988, long:72.931525},
+	{lat:19.094896, long:72.886525},
+	{lat:19.091182, long:72.920864},
+	{lat:19.090806, long:72.907667},
+	{lat:19.140221, long:72.898752},
+	{lat:19.119984, long:72.867964},
+	{lat:19.126657, long:72.876655},
+	{lat:19.119767, long:72.905145},
+	
+	]
+	var marker = null;
+	var map = "";	
+	var _latlng = new google.maps.LatLng("19.0800", "73.0100");
+  	var geocoder = new google.maps.Geocoder();        
+	var mapCanvas = document.getElementById('map-canvas');
+	var mapOptions = {
+	  center: _latlng,
+	  zoom: 12,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
+	}	
+	map = new google.maps.Map(mapCanvas, mapOptions);
+	
+	for(var i =0; i<latlongArr.length; i++){
+if(latlongArr[i].lat!='19.119767')	{
+		marker = new MarkerWithLabel({
+			map: map,
+			labelContent: PinCodeArr[i],
+			labelClass: "labels",
+			labelStyle: {opacity: 0.75},
+			animation: google.maps.Animation.DROP,
+			position: new google.maps.LatLng(latlongArr[i].lat, latlongArr[i].long)
+		});
+		}
+		else
+		{
+		   marker = new MarkerWithLabel({
+			map: map,
+			labelContent: 'hello',
+			labelClass: "labels",
+			visible: false,
+			labelStyle: {opacity: 0.75},
+			animation: google.maps.Animation.DROP,
+			position: new google.maps.LatLng(latlongArr[i].lat, latlongArr[i].long)
+		});
+		}
+	}
+
+	if(marker)
+		map.setCenter(marker.getPosition());
+}
+
+</script>
+</head>
+
+<body onload="initialize()">
+	<div id="locationdiv"></div>
+	<div id="map-canvas" style="width: 700px;height: 500px;"></div>
+</body>
+</html>
