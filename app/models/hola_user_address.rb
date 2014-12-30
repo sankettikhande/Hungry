@@ -1,6 +1,6 @@
 class HolaUserAddress < ActiveRecord::Base
 
-  @@pin_codes = ["400042", "400059", "400060", "400076", "400078", "400072","400079", "400086", "400087","400093","400096"]
+  @@pin_codes = ["400042", "400059", "400060", "400076", "400078", "400072","400079", "400086", "400087","400093","400096", "400080", "400082", "400081"]
   cattr_accessor :pin_codes
   attr_accessible :address, :hola_user_id, :address_type, :name, :building_name, :street, :city, :pin, :landmark, :default, :mobile_no, :landline_no, :area, :sub_area
 
@@ -14,5 +14,9 @@ class HolaUserAddress < ActiveRecord::Base
 
   def address_to_string
     address_array.join(", ")
+  end
+
+  def self.sorted_pin_codes
+    pin_codes.map(&:to_i).sort
   end
 end

@@ -6,7 +6,7 @@
  <style>
       #map-canvas {
         width: "100%";
-        height: 400px;
+        /*height: 400px;*/
         background-color: #CCC;
       }
 	  .labels {
@@ -27,7 +27,7 @@
 <script>
 
 function initialize() {	
-	var PinCodeArr = ["400042", "400059", "400060", "400076", "400078", "400072","400079", "400086", "400087","400093","400096"]
+	var PinCodeArr = ["400042", "400059", "400060", "400076", "400078", "400072","400079", "400086", "400087","400093","400096","400080","400082","400081"]
 	var latlongArr = [{lat:19.136826, long:72.939562},
 	{lat:19.114113, long:72.878270},
 	{lat:19.137026, long:72.854970},
@@ -39,7 +39,11 @@ function initialize() {
 	{lat:19.140221, long:72.898752},
 	{lat:19.119984, long:72.867964},
 	{lat:19.126657, long:72.876655},
-	{lat:19.119767, long:72.905145},
+	{lat:19.172554, long:72.942537},
+	{lat:19.168869, long:72.934983},
+	{lat:19.153485, long:72.965215},
+	
+	{lat:19.119767, long:72.905145}
 	
 	]
 	var marker = null;
@@ -88,6 +92,6 @@ if(latlongArr[i].lat!='19.119767')	{
 
 <body onload="initialize()">
 	<div id="locationdiv"></div>
-	<div id="map-canvas" style="width: 700px;height: 500px;"></div>
+	<div id="map-canvas" style="width: 550px;height: 550px;"></div>
 </body>
 </html>
